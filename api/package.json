@@ -1,0 +1,67 @@
+{
+  "name": "@robgietema/isometric",
+  "description": "Isometric Backend",
+  "maintainers": [
+    {
+      "name": "Rob Gietema",
+      "email": "rob.gietema@gmail.com",
+      "url": "https://robgietema.nl"
+    }
+  ],
+  "license": "MIT",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:robgietema/isometric.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robgietema/isometric/issues",
+    "email": "plone-developers@lists.sourceforge.net"
+  },
+  "homepage": "https://plone.org",
+  "keywords": [
+    "react"
+  ],
+  "scripts": {
+    "start": "nodemon --exec babel-node src/server.js",
+    "test": "jest",
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run",
+    "rollback": "knex migrate:rollback --all",
+    "reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "engines": {
+    "node": "~16.13.0"
+  },
+  "dependencies": {
+    "@babel/core": "7.17.5",
+    "@babel/node": "7.16.8",
+    "@babel/plugin-proposal-decorators": "7.17.2",
+    "@babel/plugin-proposal-export-default-from": "7.16.7",
+    "@babel/preset-env": "7.16.11",
+    "autobind-decorator": "2.4.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "27.5.1",
+    "bcrypt": "5.0.1",
+    "bcrypt-promise": "2.0.0",
+    "body-parser": "1.19.2",
+    "bookshelf": "1.2.0",
+    "deepmerge": "4.2.2",
+    "express": "4.17.3",
+    "jest": "27.5.1",
+    "jsonwebtoken": "8.5.1",
+    "knex": "1.0.3",
+    "lodash": "4.17.21",
+    "moment": "2.29.1",
+    "nodemon": "2.0.15",
+    "pg": "8.7.3",
+    "prettier": "2.5.1",
+    "slugify": "1.6.5",
+    "supertest": "6.2.2",
+    "supertest-as-promised": "4.0.2"
+  }
+}
