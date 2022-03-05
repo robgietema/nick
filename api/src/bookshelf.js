@@ -14,7 +14,7 @@ const Knex = knex({
 });
 
 Knex.on('query', (query) => {
-  // console.log(query);
+  console.log(query);
 });
 
 const Bookshelf = bookshelf(Knex);

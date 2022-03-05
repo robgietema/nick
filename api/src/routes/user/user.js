@@ -35,7 +35,7 @@ export default [
     handler: (context, permissions, roles, req, res) =>
       requirePermission('View', permissions, res, () =>
         UserRepository.findAll(
-          req.query.query ? ['id', 'like', `%${req.query.query}%`] : {},
+          req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         ).then((users) =>
           res.send(
             users.map((user) => ({

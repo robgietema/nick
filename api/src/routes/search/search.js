@@ -3,8 +3,10 @@
  * @module routes/search/search
  */
 
-import { requirePermission } from '../../helpers';
 import moment from 'moment';
+import { endsWith, keys, repeat } from 'lodash';
+import { requirePermission } from '../../helpers';
+import { DocumentRepository } from '../../repositories';
 
 /**
  * Convert document to json.
@@ -15,80 +17,66 @@ import moment from 'moment';
  */
 function documentToJson(document, req) {
   return {
-    '@id': `${req.protocol || 'http'}://${req.headers.host}${document.path}`,
-    '@type': document.portal_type,
-    description: document.Description,
-    title: document.Title,
-    review_state: document.review_state,
-    ModificationDate: moment.unix(document.modified).format(),
-    EffectiveDate: moment.unix(document.effective).format(),
+    '@id': `${req.protocol || 'http'}://${req.headers.host}${document.get(
+      'path',
+    )}`,
+    '@type': document.get('type'),
+    description: document.get('json').description,
+    title: document.get('json').title,
+    review_state: '',
+    ModificationDate: moment(document.get('modified')).format(),
+    EffectiveDate: moment(document.get('created')).format(),
+    is_folderish: true,
   };
-}
-
-/**
- * Strip incorrect chars from string
- * @method stripString
- * @param {String} string Input string
- * @returns {String} Stripped string.
- */
-function stripString(string) {
-  return string.replace(/\*/g, '');
 }
 
 /**
  * Convert querystring to query.
  * @method querystringToQuery
  * @param {Object} querystring Querystring
+ * @param {String} path Path to search
  * @returns {Object} Query.
  */
-function querystringToQuery(querystring) {
-  const fields = [];
-  const sort = {};
-  Object.keys(querystring).map((key) => {
+function querystringToQuery(querystring, path = '/') {
+  const root = endsWith(path, '/') ? path : `${path}/`;
+  const fields = {
+    path: ['~', `^${path}`],
+  };
+  const sort = {
+    field: 'uuid',
+    order: 'ASC',
+  };
+  keys(querystring).map((key) => {
     switch (key) {
       case 'SearchableText':
-        fields.push({
-          FIELD: 'SearchableText',
-          VALUE: stripString(querystring[key]),
-        });
+        fields["json->>'title'"] = ['~*', querystring[key].replace(/\*/g, '')];
         break;
       case 'sort_on':
-        sort.FIELD = [querystring[key]];
+        switch (querystring[key]) {
+          case 'sortable_title':
+            sort.field = "json->>'title'";
+            break;
+          case 'effective':
+            sort.field = "json->>'effective'";
+            break;
+          default:
+            break;
+        }
         break;
       case 'sort_order':
-        sort.DIRECTION =
-          querystring[key] === 'ascending' ? 'ASCENDING' : 'DESCENDING';
+        sort.DIRECTION = querystring[key] === 'ascending' ? 'ASC' : 'DESC';
+        break;
+      case 'path.depth':
+        fields['path'] = [
+          '~',
+          `^${root}[^/]+${repeat('(/[^/]+)?', querystring[key] - 1)}$`,
+        ];
+        break;
+      default:
         break;
     }
   });
-  return fields.length === 0
-    ? [
-        {
-          ALL_DOCUMENTS: true,
-        },
-        {
-          DOCUMENTS: true,
-        },
-        {
-          FIELD: sort.FIELD || '_id',
-          DIRECTION: sort.DIRECTION || 'ASCENDING',
-        },
-      ]
-    : [
-        {
-          AND: fields,
-        },
-        {
-          DOCUMENTS: true,
-          SCORE: {
-            TYPE: 'TFIDF',
-          },
-        },
-        {
-          FIELD: sort.FIELD || '_score',
-          DIRECTION: sort.DIRECTION || 'DESCENDING',
-        },
-      ];
+  return [fields, `${sort.field} ${sort.order}`];
 }
 
 export default [
@@ -97,13 +85,15 @@ export default [
     view: '/@search',
     handler: (context, permissions, roles, req, res) =>
       requirePermission('View', permissions, res, () =>
-        query(...querystringToQuery(req.query)).then((items) =>
+        DocumentRepository.findAll(
+          ...querystringToQuery(req.query, context.get('path')),
+        ).then((items) =>
           res.send({
             '@id': `${req.protocol || 'http'}://${req.headers.host}${
               req.params[0]
             }/@search`,
-            items: items.RESULT.map((item) => documentToJson(item._doc, req)),
-            items_total: items.RESULT_LENGTH,
+            items: items.map((item) => documentToJson(item, req)),
+            items_total: items.length,
           }),
         ),
       ),
@@ -113,15 +103,15 @@ export default [
     view: '/@querystring-search',
     handler: (context, permissions, roles, req, res) =>
       requirePermission('View', permissions, res, () =>
-        query({ FIELD: 'end', VALUE: 0 }).then((items) => {
-          return res.send({
+        DocumentRepository.findAll().then((items) =>
+          res.send({
             '@id': `${req.protocol || 'http'}://${req.headers.host}${
               req.params[0]
             }/@search`,
-            items: items.RESULT.map((item) => documentToJson(item._doc, req)),
-            items_total: items.RESULT_LENGTH,
-          });
-        }),
+            items: items.map((item) => documentToJson(item, req)),
+            items_total: items.length,
+          }),
+        ),
       ),
   },
 ];

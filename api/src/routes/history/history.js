@@ -14,7 +14,7 @@ export default [
       requirePermission('View', permissions, res, () =>
         VersionRepository.findAll(
           { document: context.get('uuid') },
-          [{ column: 'version', order: 'desc' }],
+          'version desc',
           { withRelated: ['actor'] },
         ).then((items) =>
           res.send(

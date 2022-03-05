@@ -71,7 +71,10 @@ function getRoles(document, user) {
   return UserRoleDocumentRepository.findAll({
     document: document.get('uuid'),
     user: user.get('uuid'),
-  }).then((entries) => entries.map((entry) => entry.get('role')));
+  }).then((entries) => {
+    console.log(entries);
+    return entries.map((entry) => entry.get('role'));
+  });
 }
 
 /**

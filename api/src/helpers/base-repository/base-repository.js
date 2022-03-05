@@ -4,7 +4,7 @@
  */
 
 import autobind from 'autobind-decorator';
-import { isArray } from 'lodash';
+import { keys, map, isArray } from 'lodash';
 
 @autobind
 /**
@@ -25,18 +25,30 @@ export default class BaseRepository {
   /**
    * Find all Models.
    * @function findAll
-   * @param {Object|string} [where] Bookshelf key/operator/value or attributes hash.
-   * @param {Object} [options] Bookshelf options to pass on to fetchAll.
+   * @param {Object} where Bookshelf key/operator/value or attributes hash.
+   * @param {String} order Order field.
+   * @param {Object} options Bookshelf options to pass on to fetchAll.
    * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
    */
   findAll(where = {}, order = 'id', options = {}) {
     if (isArray(where)) {
       return this.Model.where(...where)
-        .orderBy(order)
+        .query('orderByRaw', order)
         .fetchAll(options);
-    } else {
-      return this.Model.where(where).orderBy(order).fetchAll(options);
     }
+    return this.Model.query((qb) => {
+      map(keys(where), (key) => {
+        qb.whereRaw(
+          // user is a reserved word so needs to be wrapper in quotes
+          `${key === 'user' ? '"user"' : key} ${
+            isArray(where[key]) ? where[key][0] : '='
+          } ?`,
+          [isArray(where[key]) ? where[key][1] : where[key]],
+        );
+      });
+    })
+      .query('orderByRaw', order)
+      .fetchAll(options);
   }
 
   /**
