@@ -80,6 +80,7 @@ describe('Content', () => {
         type: 'page',
         path: '/news/my-news-item',
         position_in_parent: 0,
+        workflow_state: 'private',
         json: {
           title: 'My News Item',
           description: 'News Description',
@@ -103,6 +104,7 @@ describe('Content', () => {
         type: 'page',
         path: '/news/my-news-item',
         position_in_parent: 0,
+        workflow_state: 'private',
         json: {
           title: 'My News Item',
           description: 'News Description',

@@ -15,12 +15,10 @@ describe('Content', () => {
       .expect((res) =>
         Promise.all([
           expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/@search/),
-          expect(res.body.items.length).toBe(3),
-          expect(res.body.items[0]['@id']).toMatch(
-            /http:\/\/127.0.0.1:.*\/news/,
-          ),
-          expect(res.body.items[0]['@type']).toBe('folder'),
-          expect(res.body.items[0].title).toBe('News'),
+          expect(res.body.items.length).toBe(4),
+          expect(res.body.items[0]['@id']).toMatch(/http:\/\/127.0.0.1:.*\//),
+          expect(res.body.items[0]['@type']).toBe('site'),
+          expect(res.body.items[0].title).toBe('Welcome to Isometric'),
         ]),
       ));
 });

@@ -178,11 +178,14 @@ export default [
             DocumentRepository.findAll({
               parent: req.document.get('parent'),
             }).then((items) => {
-              id = uniqueId(
-                id,
-                0,
-                items.map((item) => item.get('id')),
-              );
+              id =
+                req.body.id && req.body.id !== req.document.get('id')
+                  ? uniqueId(
+                      id,
+                      0,
+                      items.map((item) => item.get('id')),
+                    )
+                  : id;
               const newPath = path === '/' ? path : `${parent}/${id}`;
 
               return req.document
@@ -218,7 +221,11 @@ export default [
                 .then(() =>
                   path === newPath
                     ? Promise.resolve({})
-                    : DocumentRepository.replacePath(path, newPath),
+                    : DocumentRepository.replacePath(
+                        path,
+                        newPath,
+                        req.document.get('uuid'),
+                      ),
                 )
                 .then((data) => res.status(204).send());
             });
@@ -230,7 +237,7 @@ export default [
     op: 'delete',
     view: '',
     handler: (req, res) =>
-      requirePermission('Delete', req, res, () =>
+      requirePermission('Modify', req, res, () =>
         DocumentRepository.delete({ uuid: req.document.get('uuid') }).then(() =>
           res.status(204).send(),
         ),

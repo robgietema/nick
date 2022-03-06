@@ -27,20 +27,28 @@ export class DocumentRepository extends BaseRepository {
    * @method replacePath
    * @param {String} oldPath Old path.
    * @param {String} newPath New path.
+   * @param {String} document Uuid of the document.
    * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
    */
-  replacePath(oldPath, newPath) {
+  replacePath(oldPath, newPath, document) {
     return RedirectRepository.create(
       {
+        document,
         path: oldPath,
         redirect: newPath,
       },
       { method: 'insert' },
-    ).then(() =>
-      bookshelf.knex.raw(
-        `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
-      ),
-    );
+    )
+      .then(() =>
+        bookshelf.knex.raw(
+          `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
+        ),
+      )
+      .then(() =>
+        bookshelf.knex.raw(
+          `update redirect set redirect = '${newPath}' where document = '${document}'`,
+        ),
+      );
   }
 }
 
