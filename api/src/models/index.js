@@ -5,6 +5,7 @@
  */
 
 export Document from './document/document';
+export Redirect from './redirect/redirect';
 export Role from './role/role';
 export RolePermission from './role-permission/role-permission';
 export Type from './type/type';

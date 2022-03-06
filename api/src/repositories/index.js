@@ -5,9 +5,10 @@
  */
 
 export DocumentRepository from './document/document';
-export TypeRepository from './type/type';
+export RedirectRepository from './redirect/redirect';
 export RolePermissionRepository from './role-permission/role-permission';
 export RoleRepository from './role/role';
+export TypeRepository from './type/type';
 export UserRepository from './user/user';
 export UserRoleDocumentRepository from './user-role-document/user-role-document';
 export VersionRepository from './version/version';

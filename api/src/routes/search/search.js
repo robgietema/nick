@@ -4,7 +4,7 @@
  */
 
 import moment from 'moment';
-import { endsWith, keys, repeat } from 'lodash';
+import { endsWith, mapKeys, repeat } from 'lodash';
 import { requirePermission } from '../../helpers';
 import { DocumentRepository } from '../../repositories';
 
@@ -46,13 +46,17 @@ function querystringToQuery(querystring, path = '/') {
     field: 'uuid',
     order: 'ASC',
   };
-  keys(querystring).map((key) => {
+  const page = {
+    offset: 0,
+    limit: 100,
+  };
+  mapKeys(querystring, (value, key) => {
     switch (key) {
       case 'SearchableText':
-        fields["json->>'title'"] = ['~*', querystring[key].replace(/\*/g, '')];
+        fields["json->>'title'"] = ['~*', value.replace(/\*/g, '')];
         break;
       case 'sort_on':
-        switch (querystring[key]) {
+        switch (value) {
           case 'sortable_title':
             sort.field = "json->>'title'";
             break;
@@ -64,19 +68,25 @@ function querystringToQuery(querystring, path = '/') {
         }
         break;
       case 'sort_order':
-        sort.DIRECTION = querystring[key] === 'ascending' ? 'ASC' : 'DESC';
+        sort.DIRECTION = value === 'ascending' ? 'ASC' : 'DESC';
         break;
       case 'path.depth':
         fields['path'] = [
           '~',
-          `^${root}[^/]+${repeat('(/[^/]+)?', querystring[key] - 1)}$`,
+          `^${root}[^/]+${repeat('(/[^/]+)?', value - 1)}$`,
         ];
+        break;
+      case 'b_size':
+        page.limit = value;
+        break;
+      case 'b_start':
+        page.offset = value;
         break;
       default:
         break;
     }
   });
-  return [fields, `${sort.field} ${sort.order}`];
+  return [fields, `${sort.field} ${sort.order}`, page];
 }
 
 export default [
@@ -93,7 +103,7 @@ export default [
               req.params[0]
             }/@search`,
             items: items.map((item) => documentToJson(item, req)),
-            items_total: items.length,
+            items_total: items.pagination?.rowCount || items.length,
           }),
         ),
       ),

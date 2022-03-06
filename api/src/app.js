@@ -11,6 +11,7 @@ import jwt from 'jsonwebtoken';
 import routes from './routes';
 import {
   DocumentRepository,
+  RedirectRepository,
   RolePermissionRepository,
   UserRepository,
   UserRoleDocumentRepository,
@@ -72,7 +73,6 @@ function getRoles(document, user) {
     document: document.get('uuid'),
     user: user.get('uuid'),
   }).then((entries) => {
-    console.log(entries);
     return entries.map((entry) => entry.get('role'));
   });
 }
@@ -123,9 +123,13 @@ map(routes, (route) => {
       .then(({ document, permissions, roles }) =>
         route.handler(document, permissions, roles, req, res),
       )
-      .catch(DocumentRepository.Model.NotFoundError, () => {
-        res.status(404).send({ error: 'Not Found' });
-      });
+      .catch(DocumentRepository.Model.NotFoundError, () =>
+        RedirectRepository.findOne({ path: req.params[0] })
+          .then((redirect) => res.redirect(301, redirect.get('redirect')))
+          .catch(RedirectRepository.Model.NotFoundError, () => {
+            res.status(404).send({ error: 'Not Found' });
+          }),
+      );
   });
 });
 

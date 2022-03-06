@@ -48,7 +48,7 @@ export default class BaseRepository {
       });
     })
       .query('orderByRaw', order)
-      .fetchAll(options);
+      .fetchPage(options);
   }
 
   /**

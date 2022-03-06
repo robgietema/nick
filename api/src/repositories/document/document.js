@@ -5,6 +5,7 @@
 
 import { Document } from '../../models';
 import { BaseRepository } from '../../helpers';
+import { RedirectRepository } from '../../repositories';
 import bookshelf from '../../bookshelf';
 
 /**
@@ -29,8 +30,16 @@ export class DocumentRepository extends BaseRepository {
    * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
    */
   replacePath(oldPath, newPath) {
-    return bookshelf.knex.raw(
-      `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
+    return RedirectRepository.create(
+      {
+        path: oldPath,
+        redirect: newPath,
+      },
+      { method: 'insert' },
+    ).then(() =>
+      bookshelf.knex.raw(
+        `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
+      ),
     );
   }
 }
