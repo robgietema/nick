@@ -10,7 +10,7 @@ exports.up = (knex) =>
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table.string('id').notNull();
-    table.json('json').notNull();
+    table.jsonb('json').notNull();
   });
 
 exports.down = (knex) => knex.schema.dropTable('version');

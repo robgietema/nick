@@ -12,3 +12,4 @@ export Type from './type/type';
 export User from './user/user';
 export UserRoleDocument from './user-role-document/user-role-document';
 export Version from './version/version';
+export Workflow from './workflow/workflow';

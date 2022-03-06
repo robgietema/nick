@@ -15,5 +15,8 @@ exports.seed = (knex) =>
         {
           id: 'Review',
         },
+        {
+          id: 'Submit',
+        },
       ]),
     );

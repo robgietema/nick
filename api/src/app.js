@@ -5,7 +5,7 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
-import { compact, drop, head, map, uniq } from 'lodash';
+import { compact, drop, flatten, head, map, uniq } from 'lodash';
 import jwt from 'jsonwebtoken';
 
 import routes from './routes';
@@ -13,6 +13,7 @@ import {
   DocumentRepository,
   RedirectRepository,
   RolePermissionRepository,
+  TypeRepository,
   UserRepository,
   UserRoleDocumentRepository,
 } from './repositories';
@@ -90,7 +91,7 @@ function traverse(document, slugs, user, roles) {
   if (slugs.length === 0) {
     const extendedRoles = [
       ...roles,
-      user.get('id') === 'Anonymous' ? 'Anonymous' : 'Authenticated',
+      user.get('id') === 'anonymous' ? 'Anonymous' : 'Authenticated',
     ];
     return RolePermissionRepository.findAll(['role', 'in', extendedRoles]).then(
       (entries) => ({
@@ -120,9 +121,31 @@ map(routes, (route) => {
           traverse(document, compact(slugs), req.user, roles),
         ),
       )
-      .then(({ document, permissions, roles }) =>
-        route.handler(document, permissions, roles, req, res),
-      )
+      .then(({ document, permissions, roles }) => {
+        TypeRepository.findOne(
+          { id: document.get('type') },
+          { withRelated: ['workflow'] },
+        ).then((type) =>
+          route.handler(
+            document,
+            uniq([
+              ...permissions,
+              ...flatten(
+                map(
+                  roles,
+                  (role) =>
+                    type.related('workflow').get('json').states[
+                      document.get('workflowState')
+                    ].permissions[role] || [],
+                ),
+              ),
+            ]),
+            roles,
+            req,
+            res,
+          ),
+        );
+      })
       .catch(DocumentRepository.Model.NotFoundError, () =>
         RedirectRepository.findOne({ path: req.params[0] })
           .then((redirect) => res.redirect(301, redirect.get('redirect')))

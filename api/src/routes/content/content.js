@@ -35,6 +35,7 @@ function documentToJson(document, req) {
     modified: document.get('modified'),
     UID: document.get('uuid'),
     is_folderish: true,
+    review_state: document.get('workflow_state'),
   };
 }
 
@@ -99,7 +100,10 @@ export default [
     view: '',
     handler: (context, permissions, roles, req, res) =>
       requirePermission('Add', permissions, res, () =>
-        TypeRepository.findOne({ id: req.body['@type'] }).then((type) => {
+        TypeRepository.findOne(
+          { id: req.body['@type'] },
+          { withRelated: ['workflow'] },
+        ).then((type) => {
           let id = req.body.id || slugify(req.body.title, { lower: true });
           const created = moment.utc().format();
           DocumentRepository.findAll({ parent: context.get('uuid') }).then(
@@ -121,6 +125,8 @@ export default [
                   modified: created,
                   version: 0,
                   position_in_parent: 0,
+                  workflow_state: type.related('workflow').get('json')
+                    .initial_state,
                   json: {
                     ...omit(
                       pick(req.body, keys(type.get('schema').properties)),

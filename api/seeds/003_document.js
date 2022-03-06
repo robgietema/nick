@@ -12,6 +12,7 @@ exports.seed = (knex) =>
           type: 'site',
           position_in_parent: 0,
           version: 0,
+          workflow_state: 'published',
           json: {
             title: 'Welcome to Isometric',
             description:
@@ -56,6 +57,7 @@ exports.seed = (knex) =>
           type: 'folder',
           position_in_parent: 0,
           version: 1,
+          workflow_state: 'published',
           json: {
             title: 'News',
             blocks: {
@@ -78,6 +80,7 @@ exports.seed = (knex) =>
           type: 'folder',
           position_in_parent: 1,
           version: 0,
+          workflow_state: 'published',
           json: {
             title: 'Events',
             blocks: {
@@ -100,6 +103,7 @@ exports.seed = (knex) =>
           type: 'folder',
           position_in_parent: 2,
           version: 0,
+          workflow_state: 'published',
           json: {
             title: 'Users',
             blocks: {

@@ -12,3 +12,4 @@ export TypeRepository from './type/type';
 export UserRepository from './user/user';
 export UserRoleDocumentRepository from './user-role-document/user-role-document';
 export VersionRepository from './version/version';
+export WorkflowRepository from './workflow/workflow';

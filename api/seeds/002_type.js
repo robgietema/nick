@@ -179,18 +179,21 @@ exports.seed = (knex) =>
           title: 'Site',
           addable: false,
           schema: merge(dublinCore, layout, dates),
+          workflow: 'simple_publication_workflow',
         },
         {
           id: 'folder',
           title: 'Folder',
           addable: true,
           schema: merge(dublinCore, layout, dates),
+          workflow: 'simple_publication_workflow',
         },
         {
           id: 'page',
           title: 'Page',
           addable: true,
           schema: merge(dublinCore, layout, dates),
+          workflow: 'simple_publication_workflow',
         },
       ]),
     );

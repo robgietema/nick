@@ -17,7 +17,8 @@ exports.up = (knex) =>
       .onDelete('CASCADE');
     table.integer('position_in_parent');
     table.integer('version');
-    table.json('json').notNull();
+    table.jsonb('json').notNull();
+    table.string('workflow_state').notNull();
   });
 
 exports.down = (knex) => knex.schema.dropTable('document');

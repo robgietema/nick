@@ -3,7 +3,13 @@ exports.up = (knex) =>
     table.string('id').primary().notNull();
     table.string('title').notNull();
     table.boolean('addable');
-    table.json('schema').notNull();
+    table.jsonb('schema').notNull();
+    table
+      .string('workflow')
+      .references('workflow.id')
+      .notNull()
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
   });
 
 exports.down = (knex) => knex.schema.dropTable('type');
