@@ -16,6 +16,7 @@ import roles from './roles/roles';
 import search from './search/search';
 import types from './types/types';
 import user from './user/user';
+import workflow from './workflow/workflow';
 
 export default [
   ...actions,
@@ -30,5 +31,6 @@ export default [
   ...search,
   ...types,
   ...user,
+  ...workflow,
   ...content, // Always keep the content routes last since this is the fallback
 ];

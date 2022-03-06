@@ -35,7 +35,7 @@ function documentToJson(document, req) {
     modified: document.get('modified'),
     UID: document.get('uuid'),
     is_folderish: true,
-    review_state: document.get('workflow_state'),
+    review_state: document.get('workflowState'),
   };
 }
 
