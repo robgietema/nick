@@ -17,6 +17,7 @@ exports.up = (knex) =>
       .onDelete('CASCADE');
     table.integer('position_in_parent');
     table.integer('version');
+    table.uuid('owner').references('user.uuid');
     table.jsonb('json').notNull();
     table.string('workflow_state').notNull();
   });

@@ -13,6 +13,7 @@ exports.seed = (knex) =>
           position_in_parent: 0,
           version: 0,
           workflow_state: 'published',
+          owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
             title: 'Welcome to Isometric',
             description:
@@ -58,6 +59,7 @@ exports.seed = (knex) =>
           position_in_parent: 0,
           version: 1,
           workflow_state: 'published',
+          owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
             title: 'News',
             blocks: {
@@ -81,6 +83,7 @@ exports.seed = (knex) =>
           position_in_parent: 1,
           version: 0,
           workflow_state: 'published',
+          owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
             title: 'Events',
             blocks: {
@@ -104,6 +107,7 @@ exports.seed = (knex) =>
           position_in_parent: 2,
           version: 0,
           workflow_state: 'published',
+          owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
             title: 'Users',
             blocks: {

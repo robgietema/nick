@@ -92,6 +92,7 @@ function traverse(document, slugs, user, roles) {
     const extendedRoles = [
       ...roles,
       user.get('id') === 'anonymous' ? 'Anonymous' : 'Authenticated',
+      ...(user.get('uuid') === document.get('owner') ? ['Owner'] : []),
     ];
     return RolePermissionRepository.findAll(['role', 'in', extendedRoles]).then(
       (entries) => ({
