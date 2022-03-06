@@ -10,8 +10,8 @@ export default [
   {
     op: 'get',
     view: '/@types',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         TypeRepository.findAll().then((types) =>
           res.send(
             types.map((type) => ({
@@ -28,8 +28,8 @@ export default [
   {
     op: 'get',
     view: '/@types/:type',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         TypeRepository.findOne({ id: req.params.type })
           .then((type) =>
             res.send({

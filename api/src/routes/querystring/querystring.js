@@ -9,12 +9,12 @@ export default [
   {
     op: 'get',
     view: '/@querystring',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         res.send({
-          '@id': `${req.protocol || 'http'}://${req.headers.host}${context.get(
-            'path',
-          )}/@querystring`,
+          '@id': `${req.protocol || 'http'}://${
+            req.headers.host
+          }${req.document.get('path')}/@querystring`,
           indexes: {
             Creator: {
               description: 'The person that created an item',

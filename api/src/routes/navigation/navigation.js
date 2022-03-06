@@ -10,8 +10,8 @@ export default [
   {
     op: 'get',
     view: '/@navigation',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         DocumentRepository.findOne({ parent: null }).then((root) =>
           DocumentRepository.findAll(
             { parent: root.get('uuid') },

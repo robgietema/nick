@@ -12,7 +12,7 @@ describe('Types', () => {
       .get('/@types')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect(res => {
+      .expect((res) => {
         expect(res.body.length).toBe(3);
         expect(res.body[0]['@id']).toBeDefined();
         expect(res.body[0].title).toBeDefined();
@@ -23,7 +23,7 @@ describe('Types', () => {
       .get('/@types/page')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect(res => {
+      .expect((res) => {
         expect(res.body.title).toBe('Page');
       }));
   it('should return not found when type not found', () =>

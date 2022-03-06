@@ -13,5 +13,5 @@ describe('Actions', () => {
       .get('/@actions')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect(res => expect(res.body.object).toBeDefined()));
+      .expect((res) => expect(res.body.object).toBeDefined()));
 });

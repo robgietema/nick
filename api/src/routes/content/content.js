@@ -56,19 +56,19 @@ export default [
   {
     op: 'get',
     view: '/@history/:version',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         DocumentRepository.findAll(
-          { parent: context.get('uuid') },
+          { parent: req.document.get('uuid') },
           'position_in_parent',
         ).then((items) =>
           VersionRepository.findOne({
-            document: context.get('uuid'),
+            document: req.document.get('uuid'),
             version: parseInt(req.params.version, 10),
           }).then((version) =>
             res.send({
               ...{
-                ...documentToJson(context, req),
+                ...documentToJson(req.document, req),
                 ...version.get('json'),
                 id: version.get('id'),
                 modified: version.get('created'),
@@ -82,14 +82,14 @@ export default [
   {
     op: 'get',
     view: '',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         DocumentRepository.findAll(
-          { parent: context.get('uuid') },
+          { parent: req.document.get('uuid') },
           'position_in_parent',
         ).then((items) =>
           res.send({
-            ...documentToJson(context, req),
+            ...documentToJson(req.document, req),
             items: items.map((item) => documentToJson(item, req)),
           }),
         ),
@@ -98,15 +98,15 @@ export default [
   {
     op: 'post',
     view: '',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('Add', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('Add', req, res, () =>
         TypeRepository.findOne(
           { id: req.body['@type'] },
           { withRelated: ['workflow'] },
         ).then((type) => {
           let id = req.body.id || slugify(req.body.title, { lower: true });
           const created = moment.utc().format();
-          DocumentRepository.findAll({ parent: context.get('uuid') }).then(
+          DocumentRepository.findAll({ parent: req.document.get('uuid') }).then(
             (items) => {
               id = uniqueId(
                 id,
@@ -115,10 +115,12 @@ export default [
               );
               DocumentRepository.create(
                 {
-                  parent: context.get('uuid'),
+                  parent: req.document.get('uuid'),
                   id,
                   path: `${
-                    context.get('path') === '/' ? '' : context.get('path')
+                    req.document.get('path') === '/'
+                      ? ''
+                      : req.document.get('path')
                   }/${id}`,
                   type: req.body['@type'],
                   created,
@@ -164,16 +166,18 @@ export default [
   {
     op: 'patch',
     view: '',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('Modify', permissions, res, () =>
-        TypeRepository.findOne({ id: context.get('type') }).then((type) => {
-          let id = req.body.id || context.get('id');
-          const path = context.get('path');
-          const slugs = path.split('/');
-          const parent = dropRight(slugs).join('/');
-          const modified = moment.utc().format();
-          DocumentRepository.findAll({ parent: context.get('parent') }).then(
-            (items) => {
+    handler: (req, res) =>
+      requirePermission('Modify', req, res, () =>
+        TypeRepository.findOne({ id: req.document.get('type') }).then(
+          (type) => {
+            let id = req.body.id || req.document.get('id');
+            const path = req.document.get('path');
+            const slugs = path.split('/');
+            const parent = dropRight(slugs).join('/');
+            const modified = moment.utc().format();
+            DocumentRepository.findAll({
+              parent: req.document.get('parent'),
+            }).then((items) => {
               id = uniqueId(
                 id,
                 0,
@@ -181,15 +185,15 @@ export default [
               );
               const newPath = path === '/' ? path : `${parent}/${id}`;
 
-              return context
+              return req.document
                 .save(
                   {
                     id,
                     path: newPath,
-                    version: context.get('version') + 1,
+                    version: req.document.get('version') + 1,
                     modified,
                     json: {
-                      ...context.get('json'),
+                      ...req.document.get('json'),
                       ...omit(
                         pick(req.body, keys(type.get('schema').properties)),
                         omitProperties,
@@ -200,13 +204,13 @@ export default [
                 )
                 .then(() =>
                   VersionRepository.create({
-                    document: context.get('uuid'),
+                    document: req.document.get('uuid'),
                     id,
                     created: modified,
                     actor: req.user.get('uuid'),
-                    version: context.get('version'),
+                    version: req.document.get('version'),
                     json: {
-                      ...context.get('json'),
+                      ...req.document.get('json'),
                       changeNote: req.body.changeNote,
                     },
                   }),
@@ -217,17 +221,17 @@ export default [
                     : DocumentRepository.replacePath(path, newPath),
                 )
                 .then((data) => res.status(204).send());
-            },
-          );
-        }),
+            });
+          },
+        ),
       ),
   },
   {
     op: 'delete',
     view: '',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('Delete', permissions, res, () =>
-        DocumentRepository.delete({ uuid: context.get('uuid') }).then(() =>
+    handler: (req, res) =>
+      requirePermission('Delete', req, res, () =>
+        DocumentRepository.delete({ uuid: req.document.get('uuid') }).then(() =>
           res.status(204).send(),
         ),
       ),

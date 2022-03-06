@@ -126,26 +126,24 @@ map(routes, (route) => {
         TypeRepository.findOne(
           { id: document.get('type') },
           { withRelated: ['workflow'] },
-        ).then((type) =>
-          route.handler(
-            document,
-            uniq([
-              ...permissions,
-              ...flatten(
-                map(
-                  roles,
-                  (role) =>
-                    type.related('workflow').get('json').states[
-                      document.get('workflowState')
-                    ].permissions[role] || [],
-                ),
+        ).then((type) => {
+          req.document = document;
+          req.type = type;
+          req.permissions = uniq([
+            ...permissions,
+            ...flatten(
+              map(
+                roles,
+                (role) =>
+                  type.related('workflow').get('json').states[
+                    document.get('workflowState')
+                  ].permissions[role] || [],
               ),
-            ]),
-            roles,
-            req,
-            res,
-          ),
-        );
+            ),
+          ]);
+          req.roles = roles;
+          route.handler(req, res);
+        });
       })
       .catch(DocumentRepository.Model.NotFoundError, () =>
         RedirectRepository.findOne({ path: req.params[0] })

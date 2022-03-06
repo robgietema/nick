@@ -9,7 +9,7 @@ export default [
   {
     op: 'get',
     view: '/@controlpanels',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () => res.send([])),
+    handler: (req, res) =>
+      requirePermission('View', req, res, () => res.send([])),
   },
 ];

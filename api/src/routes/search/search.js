@@ -93,10 +93,10 @@ export default [
   {
     op: 'get',
     view: '/@search',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         DocumentRepository.findAll(
-          ...querystringToQuery(req.query, context.get('path')),
+          ...querystringToQuery(req.query, req.document.get('path')),
         ).then((items) =>
           res.send({
             '@id': `${req.protocol || 'http'}://${req.headers.host}${
@@ -111,8 +111,8 @@ export default [
   {
     op: 'post',
     view: '/@querystring-search',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         DocumentRepository.findAll().then((items) =>
           res.send({
             '@id': `${req.protocol || 'http'}://${req.headers.host}${

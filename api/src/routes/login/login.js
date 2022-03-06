@@ -13,7 +13,7 @@ export default [
   {
     op: 'post',
     view: '/@login',
-    handler: (context, permissions, roles, req, res) => {
+    handler: (req, res) => {
       if (!req.body.login || !req.body.password) {
         return res.status(400).send({
           error: {
@@ -57,7 +57,7 @@ export default [
   {
     op: 'post',
     view: '/@login-renew',
-    handler: (context, permissions, roles, req, res) =>
+    handler: (req, res) =>
       res.send({
         token: jwt.sign(
           {
@@ -72,6 +72,6 @@ export default [
   {
     op: 'post',
     view: '/@logout',
-    handler: (context, permissions, roles, req, res) => res.status(204).send(),
+    handler: (req, res) => res.status(204).send(),
   },
 ];

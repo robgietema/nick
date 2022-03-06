@@ -14,7 +14,7 @@ describe('Content', () => {
         password: 'admin',
       })
       .expect(200)
-      .expect(res => expect(res.body.token).toBeDefined()));
+      .expect((res) => expect(res.body.token).toBeDefined()));
   it('should fail on incorrect credentials', () =>
     request(app)
       .post('/@login')
@@ -23,7 +23,9 @@ describe('Content', () => {
         password: 'wrong',
       })
       .expect(401)
-      .expect(res => expect(res.body.error.type).toBe('Invalid credentials')));
+      .expect((res) =>
+        expect(res.body.error.type).toBe('Invalid credentials'),
+      ));
   it('should fail on missing credentials', () =>
     request(app)
       .post('/@login')
@@ -31,14 +33,13 @@ describe('Content', () => {
         login: 'admin',
       })
       .expect(400)
-      .expect(res => expect(res.body.error.type).toBe('Missing credentials')));
+      .expect((res) =>
+        expect(res.body.error.type).toBe('Missing credentials'),
+      ));
   it('should handle login-renew', () =>
     request(app)
       .post('/@login-renew')
       .expect(200)
-      .expect(res => expect(res.body.token).toBeDefined()));
-  it('should handle logout', () =>
-    request(app)
-      .post('/@logout')
-      .expect(204));
+      .expect((res) => expect(res.body.token).toBeDefined()));
+  it('should handle logout', () => request(app).post('/@logout').expect(204));
 });

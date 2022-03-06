@@ -10,10 +10,10 @@ export default [
   {
     op: 'get',
     view: '/@history',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         VersionRepository.findAll(
-          { document: context.get('uuid') },
+          { document: req.document.get('uuid') },
           'version desc',
           { withRelated: ['actor'] },
         ).then((items) =>
@@ -21,7 +21,7 @@ export default [
             items.map((item) => ({
               '@id': `${req.protocol || 'http'}://${
                 req.headers.host
-              }${context.get('path')}/@history/${item.get('version')}`,
+              }${req.document.get('path')}/@history/${item.get('version')}`,
               action: 'Edited',
               actor: {
                 '@id': `${req.protocol || 'http'}://${

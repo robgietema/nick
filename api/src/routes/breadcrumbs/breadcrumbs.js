@@ -39,8 +39,8 @@ export default [
   {
     op: 'get',
     view: '/@breadcrumbs',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () => {
+    handler: (req, res) =>
+      requirePermission('View', req, res, () => {
         const slugs = req.params[0].split('/');
         return DocumentRepository.findOne({ parent: null })
           .then((document) =>

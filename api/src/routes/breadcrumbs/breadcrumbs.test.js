@@ -2,7 +2,6 @@ import request from 'supertest';
 
 import app from '../../app';
 import bookshelf from '../../bookshelf';
-import { DocumentRepository } from '../../repositories';
 import { getAdminHeader } from '../../helpers';
 
 describe('Content', () => {

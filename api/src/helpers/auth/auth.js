@@ -12,13 +12,13 @@ import { secret } from '../../config.js';
  * Check required permission.
  * @method requirePermission
  * @param {string} permission Permission to check.
- * @param {Array} permissions Array of current permissions.
+ * @param {Object} req Request object.
  * @param {Object} res Response object.
  * @param {function} callback Callback function.
  * @returns {Promise<Object>} A Promise that resolves to an object.
  */
-export function requirePermission(permission, permissions, res, callback) {
-  if (indexOf(permissions, permission) !== -1) {
+export function requirePermission(permission, req, res, callback) {
+  if (indexOf(req.permissions, permission) !== -1) {
     return callback();
   } else {
     return res.status(401).send({

@@ -10,8 +10,8 @@ export default [
   {
     op: 'get',
     view: '/@users/:id',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         UserRepository.findOne({ id: req.params.id })
           .then((user) =>
             res.send({
@@ -19,7 +19,7 @@ export default [
                 req.params[0]
               }/@users/${req.params.id}`,
               id: user.get('id'),
-              roles,
+              roles: [],
               username: user.get('username'),
               fullname: user.get('fullname'),
             }),
@@ -32,8 +32,8 @@ export default [
   {
     op: 'get',
     view: '/@users',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         UserRepository.findAll(
           req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         ).then((users) =>

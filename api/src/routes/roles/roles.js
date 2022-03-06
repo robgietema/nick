@@ -10,8 +10,8 @@ export default [
   {
     op: 'get',
     view: '/@roles',
-    handler: (context, permissions, roles, req, res) =>
-      requirePermission('View', permissions, res, () =>
+    handler: (req, res) =>
+      requirePermission('View', req, res, () =>
         RoleRepository.findAll().then((roles) =>
           res.send(
             roles.map((role) => ({

@@ -13,7 +13,7 @@ describe('Content', () => {
       .get('/news/@navigation')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect(res =>
+      .expect((res) =>
         Promise.all([
           expect(res.body['@id']).toMatch(
             /http:\/\/127.0.0.1:.*\/news\/@navigation/,
