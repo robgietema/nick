@@ -13,7 +13,7 @@ exports.seed = (knex) =>
           id: 'Modify',
         },
         {
-          id: 'Delete',
+          id: 'Review',
         },
       ]),
     );
