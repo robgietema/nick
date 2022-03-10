@@ -43,16 +43,66 @@ function documentToJson(document, req) {
  * Create a unique id
  * @method uniqueId
  * @param {String} id Base id.
- * @param {Number} counter Current iteration.
  * @param {Array<String>} ids Array of sibling ids.
+ * @param {Number} counter Current iteration.
  * @returns {String} Unique id.
  */
-function uniqueId(id, counter, ids) {
+function uniqueId(id, ids, counter = 0) {
   const newId = counter === 0 ? id : `${id}-${counter}`;
-  return ids.indexOf(newId) === -1 ? newId : uniqueId(id, counter + 1, ids);
+  return ids.indexOf(newId) === -1 ? newId : uniqueId(id, ids, counter + 1);
 }
 
 export default [
+  {
+    op: 'post',
+    view: '/@move',
+    handler: (req, res) =>
+      requirePermission('Add', req, res, async () => {
+        let siblings = await DocumentRepository.findAll({
+          parent: req.document.get('uuid'),
+        });
+        siblings = siblings.map((sibling) => sibling.get('id'));
+
+        let items = [];
+        let source;
+
+        for (let i = 0; i < req.body.source.length; i++) {
+          source = req.body.source[i];
+          const document = await DocumentRepository.findOne({ path: source });
+          if (req.document.get('uuid') === document.get('parent')) {
+            items.push({
+              source,
+              target: source,
+            });
+          } else {
+            const newPath = `${req.document.get('path')}/${uniqueId(
+              document.get('id'),
+              siblings,
+            )}`;
+            await DocumentRepository.replacePath(source, newPath);
+            await document.save({
+              parent: req.document.get('uuid'),
+              path: newPath,
+            });
+            items.push({
+              source,
+              target: newPath,
+            });
+          }
+        }
+
+        res.send(
+          items.map((item) => ({
+            source: `${req.protocol || 'http'}://${req.headers.host}${
+              item.source
+            }`,
+            target: `${req.protocol || 'http'}://${req.headers.host}${
+              item.target
+            }`,
+          })),
+        );
+      }),
+  },
   {
     op: 'get',
     view: '/@history/:version',
@@ -110,7 +160,6 @@ export default [
             (items) => {
               id = uniqueId(
                 id,
-                0,
                 items.map((item) => item.get('id')),
               );
               DocumentRepository.create(
@@ -182,50 +231,44 @@ export default [
                 req.body.id && req.body.id !== req.document.get('id')
                   ? uniqueId(
                       id,
-                      0,
                       items.map((item) => item.get('id')),
                     )
                   : id;
               const newPath = path === '/' ? path : `${parent}/${id}`;
 
-              return req.document
-                .save(
-                  {
-                    id,
-                    path: newPath,
-                    version: req.document.get('version') + 1,
-                    modified,
-                    json: {
-                      ...req.document.get('json'),
-                      ...omit(
-                        pick(req.body, keys(type.get('schema').properties)),
-                        omitProperties,
-                      ),
-                    },
-                  },
-                  { patch: true },
-                )
-                .then(() =>
-                  VersionRepository.create({
-                    document: req.document.get('uuid'),
-                    id,
-                    created: modified,
-                    actor: req.user.get('uuid'),
-                    version: req.document.get('version'),
-                    json: {
-                      ...req.document.get('json'),
-                      changeNote: req.body.changeNote,
-                    },
-                  }),
-                )
+              return VersionRepository.create({
+                document: req.document.get('uuid'),
+                id,
+                created: modified,
+                actor: req.user.get('uuid'),
+                version: req.document.get('version'),
+                json: {
+                  ...req.document.get('json'),
+                  changeNote: req.body.changeNote,
+                },
+              })
                 .then(() =>
                   path === newPath
                     ? Promise.resolve({})
-                    : DocumentRepository.replacePath(
-                        path,
-                        newPath,
-                        req.document.get('uuid'),
-                      ),
+                    : DocumentRepository.replacePath(path, newPath),
+                )
+                .then(() =>
+                  req.document.save(
+                    {
+                      id,
+                      path: newPath,
+                      version: req.document.get('version') + 1,
+                      modified,
+                      json: {
+                        ...req.document.get('json'),
+                        ...omit(
+                          pick(req.body, keys(type.get('schema').properties)),
+                          omitProperties,
+                        ),
+                      },
+                    },
+                    { patch: true },
+                  ),
                 )
                 .then((data) => res.status(204).send());
             });

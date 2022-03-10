@@ -27,26 +27,39 @@ export class DocumentRepository extends BaseRepository {
    * @method replacePath
    * @param {String} oldPath Old path.
    * @param {String} newPath New path.
-   * @param {String} document Uuid of the document.
    * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
    */
-  replacePath(oldPath, newPath, document) {
-    return RedirectRepository.create(
-      {
-        document,
-        path: oldPath,
-        redirect: newPath,
-      },
-      { method: 'insert' },
-    )
-      .then(() =>
-        bookshelf.knex.raw(
-          `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
+  replacePath(oldPath, newPath) {
+    return this.findAll({ path: ['~', `^${oldPath}`] })
+      .then((documents) =>
+        Promise.all(
+          documents.map((document) => {
+            const redirect =
+              oldPath === document.get('path')
+                ? newPath
+                : document
+                    .get('path')
+                    .replace(RegExp(`^${oldPath}(.*)$`), `${newPath}$1`);
+            return RedirectRepository.create(
+              {
+                document: document.get('uuid'),
+                path: document.get('path'),
+                redirect,
+              },
+              { method: 'insert' },
+            ).then(() =>
+              bookshelf.knex.raw(
+                `update redirect set redirect = '${redirect}' where document = '${document.get(
+                  'uuid',
+                )}'`,
+              ),
+            );
+          }),
         ),
       )
       .then(() =>
         bookshelf.knex.raw(
-          `update redirect set redirect = '${newPath}' where document = '${document}'`,
+          `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
         ),
       );
   }
