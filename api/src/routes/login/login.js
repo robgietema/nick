@@ -13,7 +13,7 @@ export default [
   {
     op: 'post',
     view: '/@login',
-    handler: (req, res) => {
+    handler: async (req, res) => {
       if (!req.body.login || !req.body.password) {
         return res.status(400).send({
           error: {
@@ -22,36 +22,39 @@ export default [
           },
         });
       }
-      UserRepository.findOne({ id: req.body.login })
-        .then((user) =>
-          bcrypt.compare(req.body.password, user.get('password')).then((same) =>
-            same
-              ? res.send({
-                  token: jwt.sign(
-                    {
-                      sub: user.get('id'),
-                      fullname: user.get('fullname'),
-                    },
-                    secret,
-                    { expiresIn: '12h' },
-                  ),
-                })
-              : res.status(401).send({
-                  error: {
-                    message: 'Wrong login and/or password.',
-                    type: 'Invalid credentials',
-                  },
-                }),
-          ),
-        )
-        .catch(UserRepository.Model.NotFoundError, () =>
+      try {
+        const user = await UserRepository.findOne({ id: req.body.login });
+        const same = await bcrypt.compare(
+          req.body.password,
+          user.get('password'),
+        );
+        if (same) {
+          res.send({
+            token: jwt.sign(
+              {
+                sub: user.get('id'),
+                fullname: user.get('fullname'),
+              },
+              secret,
+              { expiresIn: '12h' },
+            ),
+          });
+        } else {
           res.status(401).send({
             error: {
               message: 'Wrong login and/or password.',
               type: 'Invalid credentials',
             },
-          }),
-        );
+          });
+        }
+      } catch (e) {
+        res.status(401).send({
+          error: {
+            message: 'Wrong login and/or password.',
+            type: 'Invalid credentials',
+          },
+        });
+      }
     },
   },
   {

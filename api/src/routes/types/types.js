@@ -11,35 +11,33 @@ export default [
     op: 'get',
     view: '/@types',
     handler: (req, res) =>
-      requirePermission('View', req, res, () =>
-        TypeRepository.findAll().then((types) =>
-          res.send(
-            types.map((type) => ({
-              '@id': `${req.protocol || 'http'}://${
-                req.headers.host
-              }/@types/${type.get('id')}`,
-              addable: type.get('addable'),
-              title: type.get('title'),
-            })),
-          ),
-        ),
-      ),
+      requirePermission('View', req, res, async () => {
+        const types = await TypeRepository.findAll();
+        res.send(
+          types.map((type) => ({
+            '@id': `${req.protocol || 'http'}://${
+              req.headers.host
+            }/@types/${type.get('id')}`,
+            addable: type.get('addable'),
+            title: type.get('title'),
+          })),
+        );
+      }),
   },
   {
     op: 'get',
     view: '/@types/:type',
     handler: (req, res) =>
-      requirePermission('View', req, res, () =>
-        TypeRepository.findOne({ id: req.params.type })
-          .then((type) =>
-            res.send({
-              ...type.get('schema'),
-              title: type.get('title'),
-            }),
-          )
-          .catch(TypeRepository.Model.NotFoundError, () => {
-            res.status(404).send({ error: 'Not Found' });
-          }),
-      ),
+      requirePermission('View', req, res, async () => {
+        try {
+          const type = await TypeRepository.findOne({ id: req.params.type });
+          res.send({
+            ...type.get('schema'),
+            title: type.get('title'),
+          });
+        } catch (e) {
+          res.status(404).send({ error: 'Not Found' });
+        }
+      }),
   },
 ];

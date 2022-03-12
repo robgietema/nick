@@ -18,28 +18,26 @@ export default [
         json.transitions[req.params.transition].permission,
         req,
         res,
-        () => {
+        async () => {
           const new_state = json.transitions[req.params.transition].new_state;
           const modified = moment.utc().format();
 
-          req.document
-            .save(
-              {
-                modified: modified,
-                workflow_state: new_state,
-              },
-              { patch: true },
-            )
-            .then(() =>
-              res.send({
-                action: req.params.transition,
-                actor: req.user.get('id'),
-                comments: '',
-                review_state: new_state,
-                time: modified,
-                title: json.states[new_state].title,
-              }),
-            );
+          await req.document.save(
+            {
+              modified: modified,
+              workflow_state: new_state,
+            },
+            { patch: true },
+          );
+
+          res.send({
+            action: req.params.transition,
+            actor: req.user.get('id'),
+            comments: '',
+            review_state: new_state,
+            time: modified,
+            title: json.states[new_state].title,
+          });
         },
       );
     },

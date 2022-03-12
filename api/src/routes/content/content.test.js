@@ -72,8 +72,8 @@ describe('Content', () => {
           expect(res.body.UID).toBeDefined(),
         ]),
       ));
-  it('should update a content object', () =>
-    DocumentRepository.create(
+  it('should update a content object', async () => {
+    await DocumentRepository.create(
       {
         parent: '5ba6ac12-2a02-40be-a76f-9067ce98ed47',
         id: 'my-news-item',
@@ -87,17 +87,17 @@ describe('Content', () => {
         },
       },
       { method: 'insert' },
-    ).then(() =>
-      request(app)
-        .patch('/news/my-news-item')
-        .set('Authorization', getAdminHeader())
-        .send({
-          title: 'My New News Item',
-        })
-        .expect(204),
-    ));
-  it('should delete a content object', () =>
-    DocumentRepository.create(
+    );
+    return request(app)
+      .patch('/news/my-news-item')
+      .set('Authorization', getAdminHeader())
+      .send({
+        title: 'My New News Item',
+      })
+      .expect(204);
+  });
+  it('should delete a content object', async () => {
+    await DocumentRepository.create(
       {
         parent: '5ba6ac12-2a02-40be-a76f-9067ce98ed47',
         id: 'my-news-item',
@@ -111,12 +111,12 @@ describe('Content', () => {
         },
       },
       { method: 'insert' },
-    ).then(() =>
-      request(app)
-        .delete('/news/my-news-item')
-        .set('Authorization', getAdminHeader())
-        .expect(204),
-    ));
+    );
+    return request(app)
+      .delete('/news/my-news-item')
+      .set('Authorization', getAdminHeader())
+      .expect(204);
+  });
   it('should return not found when content not found', () =>
     request(app)
       .get('/random')

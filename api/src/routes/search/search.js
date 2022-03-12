@@ -105,34 +105,32 @@ export default [
     op: 'get',
     view: '/@search',
     handler: (req, res) =>
-      requirePermission('View', req, res, () =>
-        DocumentRepository.findAll(
+      requirePermission('View', req, res, async () => {
+        const items = await DocumentRepository.findAll(
           ...querystringToQuery(req.query, req.document.get('path')),
-        ).then((items) =>
-          res.send({
-            '@id': `${req.protocol || 'http'}://${req.headers.host}${
-              req.params[0]
-            }/@search`,
-            items: items.map((item) => documentToJson(item, req)),
-            items_total: items.pagination?.rowCount || items.length,
-          }),
-        ),
-      ),
+        );
+        res.send({
+          '@id': `${req.protocol || 'http'}://${req.headers.host}${
+            req.params[0]
+          }/@search`,
+          items: items.map((item) => documentToJson(item, req)),
+          items_total: items.pagination?.rowCount || items.length,
+        });
+      }),
   },
   {
     op: 'post',
     view: '/@querystring-search',
     handler: (req, res) =>
-      requirePermission('View', req, res, () =>
-        DocumentRepository.findAll().then((items) =>
-          res.send({
-            '@id': `${req.protocol || 'http'}://${req.headers.host}${
-              req.params[0]
-            }/@search`,
-            items: items.map((item) => documentToJson(item, req)),
-            items_total: items.length,
-          }),
-        ),
-      ),
+      requirePermission('View', req, res, async () => {
+        const items = await DocumentRepository.findAll();
+        res.send({
+          '@id': `${req.protocol || 'http'}://${req.headers.host}${
+            req.params[0]
+          }/@search`,
+          items: items.map((item) => documentToJson(item, req)),
+          items_total: items.length,
+        });
+      }),
   },
 ];
