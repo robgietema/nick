@@ -7,5 +7,5 @@ import { BaseModel } from '../../helpers';
 
 export default BaseModel.extend({
   tableName: 'redirect',
-  idAttribute: 'path',
+  idAttribute: 'uuid',
 });

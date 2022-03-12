@@ -8,6 +8,7 @@ import { User, Role, Document } from '../../models';
 
 export default BaseModel.extend({
   tableName: 'user_role_document',
+  idAttribute: 'id',
   user() {
     return this.belongsTo(User);
   },

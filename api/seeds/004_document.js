@@ -62,6 +62,7 @@ exports.seed = (knex) =>
           owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
             title: 'News',
+            description: 'News Items',
             blocks: {
               '79ba8858-1dd3-4719-b731-5951e32fbf79': {
                 '@type': 'title',

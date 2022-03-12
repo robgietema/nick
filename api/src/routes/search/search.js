@@ -5,7 +5,7 @@
 
 import moment from 'moment';
 import { endsWith, mapKeys, repeat } from 'lodash';
-import { requirePermission } from '../../helpers';
+import { formatSize, requirePermission } from '../../helpers';
 import { DocumentRepository } from '../../repositories';
 
 /**
@@ -16,17 +16,27 @@ import { DocumentRepository } from '../../repositories';
  * @returns {Object} Json representation of the document.
  */
 function documentToJson(document, req) {
+  const json = document.get('json');
   return {
     '@id': `${req.protocol || 'http'}://${req.headers.host}${document.get(
       'path',
     )}`,
     '@type': document.get('type'),
-    description: document.get('json').description,
-    title: document.get('json').title,
-    review_state: '',
+    UID: document.get('uuid'),
+    Creator: document.related('owner').get('fullname'),
+    Description: json.description,
+    title: json.title,
+    review_state: document.get('workflowState'),
     ModificationDate: moment(document.get('modified')).format(),
-    EffectiveDate: moment(document.get('created')).format(),
+    CreationDate: moment(document.get('created')).format(),
+    EffectiveDate: 'None',
+    ExpirationDate: 'None',
+    id: document.get('id'),
     is_folderish: true,
+    Subject: json.subjects,
+    getObjSize: formatSize(JSON.stringify(json).length),
+    start: null,
+    end: null,
   };
 }
 
@@ -46,9 +56,10 @@ function querystringToQuery(querystring, path = '/') {
     field: 'uuid',
     order: 'ASC',
   };
-  const page = {
+  const options = {
     offset: 0,
     limit: 100,
+    withRelated: ['owner'],
   };
   mapKeys(querystring, (value, key) => {
     switch (key) {
@@ -77,16 +88,16 @@ function querystringToQuery(querystring, path = '/') {
         ];
         break;
       case 'b_size':
-        page.limit = value;
+        options.limit = value;
         break;
       case 'b_start':
-        page.offset = value;
+        options.offset = value;
         break;
       default:
         break;
     }
   });
-  return [fields, `${sort.field} ${sort.order}`, page];
+  return [fields, `${sort.field} ${sort.order}`, options];
 }
 
 export default [

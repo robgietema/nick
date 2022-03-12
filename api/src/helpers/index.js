@@ -7,3 +7,4 @@
 export BaseModel from './base-model/base-model';
 export BaseRepository from './base-repository/base-repository';
 export { getAdminHeader, requirePermission } from './auth/auth';
+export { formatSize } from './format/format';

@@ -8,6 +8,7 @@ import { Role, Permission } from '../../models';
 
 export default BaseModel.extend({
   tableName: 'role_permission',
+  idAttribute: 'id',
   role() {
     return this.belongsTo(Role);
   },

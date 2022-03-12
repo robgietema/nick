@@ -4,7 +4,7 @@
  */
 
 import { BaseModel } from '../../helpers';
-import { Type } from '../../models';
+import { Type, User } from '../../models';
 
 export default BaseModel.extend({
   tableName: 'document',
@@ -14,5 +14,8 @@ export default BaseModel.extend({
   },
   type() {
     return this.belongsTo(Type);
+  },
+  owner() {
+    return this.belongsTo(User, 'owner', 'uuid');
   },
 });
