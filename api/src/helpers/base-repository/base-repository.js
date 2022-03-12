@@ -66,17 +66,6 @@ export default class BaseRepository {
   }
 
   /**
-   * Find a Model by id.
-   * @function findById
-   * @param {string} id A uuid of a Model.
-   * @param {Object} [options] Bookshelf options to pass on to fetch.
-   * @returns {Promise<Model>} A Promise that resolves to a Model.
-   */
-  findById(id, options) {
-    return this.findOne({ id }, options);
-  }
-
-  /**
    * Create a new Model.
    * @function create
    * @param {Object} attributes An object containing key-value attributes of the Model.
@@ -85,18 +74,6 @@ export default class BaseRepository {
    */
   create(attributes, options = {}) {
     return new this.Model(attributes).save(null, options);
-  }
-
-  /**
-   * Delete a Model by id.
-   * @function deleteById
-   * @param {string} id An object containing key-value attributes of the User.
-   * @param {Object} [options] Bookshelf options to pass on to destroy.
-   * @returns {Promise<Model>} A promise resolving to the destroyed
-   * and thus "empty" Model.
-   */
-  deleteById(id, options = {}) {
-    return this.findById(id).then((record) => record.destroy(options));
   }
 
   /**
@@ -111,20 +88,5 @@ export default class BaseRepository {
     return this.findAll(where).then((records) =>
       records.map((record) => record.destroy(options)),
     );
-  }
-
-  /**
-   * Update a policy with specified id.
-   * @function updateById
-   * @param {string} id A uuid of the policy.
-   * @param {Object} attributes An object containing key-value attributes of the Model.
-   * @param {Object} [options] Bookshelf options to pass on to save.
-   * @returns {Promise<Model>} A promise resolving to the updated Model.
-   */
-  updateById(id, attributes, options = {}) {
-    return this.findById(id).then((record) => {
-      record.updateWith(attributes);
-      return record.save(options);
-    });
   }
 }

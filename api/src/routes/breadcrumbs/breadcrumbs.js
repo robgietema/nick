@@ -44,14 +44,12 @@ export default [
         const document = await DocumentRepository.findOne({ parent: null });
         const items = await traverse(document, compact(slugs), [
           {
-            '@id': `${req.protocol || 'http'}://${req.headers.host}`,
+            '@id': `${req.protocol}://${req.headers.host}`,
             title: document.get('json').title,
           },
         ]);
         res.send({
-          '@id': `${req.protocol || 'http'}://${req.headers.host}${
-            req.params[0]
-          }/@breadcrumbs`,
+          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@breadcrumbs`,
           items: drop(items),
         });
       }),

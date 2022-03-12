@@ -18,14 +18,10 @@ export default [
           'position_in_parent',
         );
         res.send({
-          '@id': `${req.protocol || 'http'}://${req.headers.host}${
-            req.params[0]
-          }/@navigation`,
+          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@navigation`,
           items: items.map((item) => ({
             ...item.get('json'),
-            '@id': `${req.protocol || 'http'}://${req.headers.host}/${item.get(
-              'id',
-            )}`,
+            '@id': `${req.protocol}://${req.headers.host}/${item.get('id')}`,
             '@type': item.get('type'),
             id: item.get('id'),
             UID: item.get('uuid'),

@@ -25,6 +25,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
     "test": "jest",
+    "coverage": "jest --coverage",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
     "rollback": "knex migrate:rollback --all",

@@ -49,6 +49,9 @@ exports.seed = (knex) =>
             {
               id: 'Submit',
             },
+            {
+              id: 'Manage Users',
+            },
           ]),
         ),
     )
@@ -88,6 +91,10 @@ exports.seed = (knex) =>
             {
               role: 'Administrator',
               permission: 'Submit',
+            },
+            {
+              role: 'Administrator',
+              permission: 'Manage Users',
             },
           ]),
         ),

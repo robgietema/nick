@@ -26,6 +26,17 @@ describe('Content', () => {
       .expect((res) =>
         expect(res.body.error.type).toBe('Invalid credentials'),
       ));
+  it('should fail on invalid user', () =>
+    request(app)
+      .post('/@login')
+      .send({
+        login: 'doesntexist',
+        password: 'wrong',
+      })
+      .expect(401)
+      .expect((res) =>
+        expect(res.body.error.type).toBe('Invalid credentials'),
+      ));
   it('should fail on missing credentials', () =>
     request(app)
       .post('/@login')

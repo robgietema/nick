@@ -28,18 +28,6 @@ const instanceProps = {
       {},
     );
   },
-  orderBy(column, order) {
-    return this.query(qb => {
-      qb.orderBy(column, order);
-    });
-  },
-  updateWith(data) {
-    this.keys().forEach(key => {
-      if (key !== this.idAttribute && typeof data[key] !== 'undefined') {
-        this.set(key, data[key]);
-      }
-    });
-  },
 };
 
 const classProps = {};

@@ -22,4 +22,33 @@ describe('User', () => {
           expect(res.body.id).toBe('admin'),
         ]),
       ));
+  it('should return an error on invalid user', () =>
+    request(app)
+      .get('/@users/nonexisting')
+      .set('Authorization', getAdminHeader())
+      .expect(404));
+  it('should get a list of users', () =>
+    request(app)
+      .get('/@users')
+      .set('Authorization', getAdminHeader())
+      .expect(200)
+      .expect((res) =>
+        Promise.all([
+          expect(res.body.length).toBe(2),
+          expect(res.body[0].id).toBe('admin'),
+        ]),
+      ));
+  it('should get a list of users by query', () =>
+    request(app)
+      .get('/@users?query=admin')
+      .set('Authorization', getAdminHeader())
+      .expect(200)
+      .expect((res) =>
+        Promise.all([
+          expect(res.body.length).toBe(1),
+          expect(res.body[0].id).toBe('admin'),
+        ]),
+      ));
+  it('should get an error when not logged in', () =>
+    request(app).get('/@users/admin').expect(401));
 });

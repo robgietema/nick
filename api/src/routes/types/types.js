@@ -15,9 +15,9 @@ export default [
         const types = await TypeRepository.findAll();
         res.send(
           types.map((type) => ({
-            '@id': `${req.protocol || 'http'}://${
-              req.headers.host
-            }/@types/${type.get('id')}`,
+            '@id': `${req.protocol}://${req.headers.host}/@types/${type.get(
+              'id',
+            )}`,
             addable: type.get('addable'),
             title: type.get('title'),
           })),

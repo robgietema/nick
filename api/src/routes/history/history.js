@@ -19,14 +19,14 @@ export default [
         );
         res.send(
           items.map((item) => ({
-            '@id': `${req.protocol || 'http'}://${
-              req.headers.host
-            }${req.document.get('path')}/@history/${item.get('version')}`,
+            '@id': `${req.protocol}://${req.headers.host}${req.document.get(
+              'path',
+            )}/@history/${item.get('version')}`,
             action: 'Edited',
             actor: {
-              '@id': `${req.protocol || 'http'}://${
-                req.headers.host
-              }/@users/${item.related('actor').get('id')}`,
+              '@id': `${req.protocol}://${req.headers.host}/@users/${item
+                .related('actor')
+                .get('id')}`,
               fullname: item.related('actor').get('fullname'),
               id: item.related('actor').get('id'),
               username: item.related('actor').get('id'),
