@@ -15,9 +15,9 @@ export default [
         const roles = await RoleRepository.findAll();
         res.send(
           roles.map((role) => ({
-            '@id': `${req.protocol || 'http'}://${
-              req.headers.host
-            }/@roles/${role.get('id')}`,
+            '@id': `${req.protocol}://${req.headers.host}/@roles/${role.get(
+              'id',
+            )}`,
             '@type': 'role',
             id: role.get('id'),
             title: role.get('id'),

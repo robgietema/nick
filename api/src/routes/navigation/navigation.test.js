@@ -2,10 +2,9 @@ import request from 'supertest';
 
 import app from '../../app';
 import bookshelf from '../../bookshelf';
-import { DocumentRepository } from '../../repositories';
 import { getAdminHeader } from '../../helpers';
 
-describe('Content', () => {
+describe('Navigation', () => {
   afterAll(() => bookshelf.knex.destroy());
 
   it('should return the navigation', () =>

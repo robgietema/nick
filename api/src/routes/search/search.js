@@ -18,9 +18,7 @@ import { DocumentRepository } from '../../repositories';
 function documentToJson(document, req) {
   const json = document.get('json');
   return {
-    '@id': `${req.protocol || 'http'}://${req.headers.host}${document.get(
-      'path',
-    )}`,
+    '@id': `${req.protocol}://${req.headers.host}${document.get('path')}`,
     '@type': document.get('type'),
     UID: document.get('uuid'),
     Creator: document.related('owner').get('fullname'),
@@ -79,7 +77,7 @@ function querystringToQuery(querystring, path = '/') {
         }
         break;
       case 'sort_order':
-        sort.DIRECTION = value === 'ascending' ? 'ASC' : 'DESC';
+        sort.order = value === 'ascending' ? 'ASC' : 'DESC';
         break;
       case 'path.depth':
         fields['path'] = [
@@ -110,9 +108,7 @@ export default [
           ...querystringToQuery(req.query, req.document.get('path')),
         );
         res.send({
-          '@id': `${req.protocol || 'http'}://${req.headers.host}${
-            req.params[0]
-          }/@search`,
+          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@search`,
           items: items.map((item) => documentToJson(item, req)),
           items_total: items.pagination?.rowCount || items.length,
         });
@@ -125,9 +121,7 @@ export default [
       requirePermission('View', req, res, async () => {
         const items = await DocumentRepository.findAll();
         res.send({
-          '@id': `${req.protocol || 'http'}://${req.headers.host}${
-            req.params[0]
-          }/@search`,
+          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@search`,
           items: items.map((item) => documentToJson(item, req)),
           items_total: items.length,
         });
