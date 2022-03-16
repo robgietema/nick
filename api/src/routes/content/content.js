@@ -12,7 +12,7 @@ import {
   TypeRepository,
   VersionRepository,
 } from '../../repositories';
-import { requirePermission } from '../../helpers';
+import { lockExpired, requirePermission } from '../../helpers';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
 
@@ -36,6 +36,7 @@ function documentToJson(document, req) {
     UID: document.get('uuid'),
     is_folderish: true,
     review_state: document.get('workflowState'),
+    lock: document.get('lock'),
   };
 }
 
@@ -113,17 +114,21 @@ export default [
     view: '/@history/:version',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
+        let document = req.document;
+        if (document.get('lock').locked && lockExpired(document)) {
+          document = await DocumentRepository.deleteLock();
+        }
         const items = await DocumentRepository.findAll(
-          { parent: req.document.get('uuid') },
+          { parent: document.get('uuid') },
           'position_in_parent',
         );
         const version = await VersionRepository.findOne({
-          document: req.document.get('uuid'),
+          document: document.get('uuid'),
           version: parseInt(req.params.version, 10),
         });
         res.send({
           ...{
-            ...documentToJson(req.document, req),
+            ...documentToJson(document, req),
             ...version.get('json'),
             id: version.get('id'),
             modified: version.get('created'),
@@ -137,12 +142,16 @@ export default [
     view: '',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
+        let document = req.document;
+        if (document.get('lock').locked && lockExpired(document)) {
+          document = await DocumentRepository.deleteLock();
+        }
         const items = await DocumentRepository.findAll(
-          { parent: req.document.get('uuid') },
+          { parent: document.get('uuid') },
           'position_in_parent',
         );
         res.send({
-          ...documentToJson(req.document, req),
+          ...documentToJson(document, req),
           items: items.map((item) => documentToJson(item, req)),
         });
       }),
@@ -177,7 +186,9 @@ export default [
             modified: created,
             version: 0,
             position_in_parent: 0,
+            lock: { locked: false, stealable: true },
             workflow_state: type.related('workflow').get('json').initial_state,
+            owner: req.user.get('uuid'),
             json: {
               ...omit(
                 pick(req.body, keys(type.get('schema').properties)),
@@ -209,6 +220,22 @@ export default [
     view: '',
     handler: (req, res) =>
       requirePermission('Modify', req, res, async () => {
+        const lock = req.document.get('lock');
+
+        // Check if locked
+        if (
+          lock.locked &&
+          !lockExpired(req.document) &&
+          req.headers['lock-token'] !== lock.token
+        ) {
+          return res.status(401).send({
+            error: {
+              message:
+                "You don't have permission to save this document because it is locked by another user.",
+              type: 'Document locked',
+            },
+          });
+        }
         const type = await TypeRepository.findOne({
           id: req.document.get('type'),
         });
@@ -262,6 +289,10 @@ export default [
                 pick(req.body, keys(type.get('schema').properties)),
                 omitProperties,
               ),
+            },
+            lock: {
+              locked: false,
+              stealable: true,
             },
           },
           { patch: true },

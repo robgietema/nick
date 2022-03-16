@@ -63,6 +63,7 @@
     "prettier": "2.5.1",
     "slugify": "1.6.5",
     "supertest": "6.2.2",
-    "supertest-as-promised": "4.0.2"
+    "supertest-as-promised": "4.0.2",
+    "uuid": "8.3.2"
   }
 }

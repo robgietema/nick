@@ -63,6 +63,24 @@ export class DocumentRepository extends BaseRepository {
         ),
       );
   }
+
+  /**
+   * Delete lock
+   * @method deleteLock
+   * @param {Object} document Document of lock to be deleted
+   * @returns {Promise<Object>} A Promise that resolves to the updated document.
+   */
+  deleteLock(document) {
+    return document.save(
+      {
+        lock: {
+          locked: false,
+          stealable: true,
+        },
+      },
+      { patch: true },
+    );
+  }
 }
 
 export default new DocumentRepository();

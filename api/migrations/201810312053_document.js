@@ -19,6 +19,7 @@ exports.up = (knex) =>
     table.integer('version');
     table.uuid('owner').references('user.uuid');
     table.jsonb('json').notNull();
+    table.jsonb('lock').notNull();
     table.string('workflow_state').notNull();
   });
 

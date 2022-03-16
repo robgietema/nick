@@ -12,6 +12,7 @@ exports.seed = (knex) =>
           type: 'site',
           position_in_parent: 0,
           version: 0,
+          lock: { locked: false, stealable: true },
           workflow_state: 'published',
           owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
@@ -58,6 +59,7 @@ exports.seed = (knex) =>
           type: 'folder',
           position_in_parent: 0,
           version: 1,
+          lock: { locked: false, stealable: true },
           workflow_state: 'published',
           owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
@@ -83,6 +85,7 @@ exports.seed = (knex) =>
           type: 'folder',
           position_in_parent: 1,
           version: 0,
+          lock: { locked: false, stealable: true },
           workflow_state: 'published',
           owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
@@ -107,6 +110,7 @@ exports.seed = (knex) =>
           type: 'folder',
           position_in_parent: 2,
           version: 0,
+          lock: { locked: false, stealable: true },
           workflow_state: 'published',
           owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
           json: {
