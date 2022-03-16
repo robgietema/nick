@@ -85,6 +85,36 @@ export class DocumentRepository extends BaseRepository {
   }
 
   /**
+   * Reorder
+   * @method reorder
+   * @param {String} uuid Uuid of the container to be fixed
+   * @param {String} id Id of item to be moved
+   * @param {Number} delta Offset of item to be moved
+   * @param {Object} [options] Bookshelf options to pass on to destroy.
+   * @returns {Promise} A Promise that resolves when the ordering has been done.
+   */
+  reorder(uuid, id, delta, options = {}) {
+    const newDelta = delta < 0 ? delta * 10 - 5 : delta * 10 + 5;
+    return this.findAll({ parent: uuid }, 'position_in_parent', options).then(
+      (items) =>
+        Promise.all(
+          items.map(
+            async (item, index) =>
+              await item.save(
+                {
+                  position_in_parent:
+                    item.get('id') === id
+                      ? item.get('positionInParent') * 10 + newDelta
+                      : item.get('positionInParent') * 10,
+                },
+                { ...options, patch: true, require: false },
+              ),
+          ),
+        ),
+    );
+  }
+
+  /**
    * Fix order
    * @method fixOrder
    * @param {String} uuid Uuid of the container to be fixed
@@ -94,12 +124,14 @@ export class DocumentRepository extends BaseRepository {
   fixOrder(uuid, options = {}) {
     return this.findAll({ parent: uuid }, 'position_in_parent', options).then(
       (items) =>
-        items.map(
-          async (item, index) =>
-            await item.save(
-              { position_in_parent: index },
-              { ...options, patch: true, require: false },
-            ),
+        Promise.all(
+          items.map(
+            async (item, index) =>
+              await item.save(
+                { position_in_parent: index },
+                { ...options, patch: true, require: false },
+              ),
+          ),
         ),
     );
   }

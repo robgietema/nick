@@ -227,6 +227,31 @@ export default [
     view: '',
     handler: (req, res) =>
       requirePermission('Modify', req, res, async () => {
+        if (typeof req.body?.ordering !== 'undefined') {
+          const id = req.body.ordering.obj_id;
+          const delta = req.body.ordering.delta;
+          const document = await DocumentRepository.findOne({
+            parent: req.document.get('uuid'),
+            id,
+          });
+
+          if (delta === 'top') {
+            await document.save({ position_in_parent: -1 }, { patch: true });
+          } else if (delta === 'bottom') {
+            await document.save({ position_in_parent: 32767 }, { patch: true });
+          } else {
+            await DocumentRepository.reorder(
+              req.document.get('uuid'),
+              id,
+              delta,
+            );
+          }
+          await DocumentRepository.fixOrder(req.document.get('uuid'));
+
+          // Send ok
+          return res.status(204).send();
+        }
+
         const lock = req.document.get('lock');
 
         // Check if locked
