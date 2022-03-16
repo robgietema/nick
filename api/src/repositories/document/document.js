@@ -27,9 +27,10 @@ export class DocumentRepository extends BaseRepository {
    * @method replacePath
    * @param {String} oldPath Old path.
    * @param {String} newPath New path.
+   * @param {Object} [options] Bookshelf options to pass on to destroy.
    * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
    */
-  replacePath(oldPath, newPath) {
+  replacePath(oldPath, newPath, options = {}) {
     return this.findAll({ path: ['~', `^${oldPath}`] })
       .then((documents) =>
         Promise.all(
@@ -46,7 +47,7 @@ export class DocumentRepository extends BaseRepository {
                 path: document.get('path'),
                 redirect,
               },
-              { method: 'insert' },
+              { ...options, method: 'insert' },
             ).then(() =>
               bookshelf.knex.raw(
                 `update redirect set redirect = '${redirect}' where document = '${document.get(
@@ -68,9 +69,10 @@ export class DocumentRepository extends BaseRepository {
    * Delete lock
    * @method deleteLock
    * @param {Object} document Document of lock to be deleted
+   * @param {Object} [options] Bookshelf options to pass on to destroy.
    * @returns {Promise<Object>} A Promise that resolves to the updated document.
    */
-  deleteLock(document) {
+  deleteLock(document, options = {}) {
     return document.save(
       {
         lock: {
@@ -78,7 +80,27 @@ export class DocumentRepository extends BaseRepository {
           stealable: true,
         },
       },
-      { patch: true },
+      { ...options, patch: true },
+    );
+  }
+
+  /**
+   * Fix order
+   * @method fixOrder
+   * @param {String} uuid Uuid of the container to be fixed
+   * @param {Object} [options] Bookshelf options to pass on to destroy.
+   * @returns {Promise} A Promise that resolves when the ordering has been done.
+   */
+  fixOrder(uuid, options = {}) {
+    return this.findAll({ parent: uuid }, 'position_in_parent', options).then(
+      (items) =>
+        items.map(
+          async (item, index) =>
+            await item.save(
+              { position_in_parent: index },
+              { ...options, patch: true, require: false },
+            ),
+        ),
     );
   }
 }

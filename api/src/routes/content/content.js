@@ -66,6 +66,8 @@ export default [
 
         let items = [];
         let source;
+        let parent;
+        let path;
 
         // Loop through source objects to be moved
         for (let i = 0; i < req.body.source.length; i++) {
@@ -81,21 +83,26 @@ export default [
               target: source,
             });
           } else {
-            const newPath = `${req.document.get('path')}/${uniqueId(
+            parent = document.get('parent');
+            path = req.document.get('path');
+            const newPath = `${path}${path === '/' ? '' : '/'}${uniqueId(
               document.get('id'),
               siblings.map((sibling) => sibling.get('id')),
             )}`;
             await DocumentRepository.replacePath(source, newPath);
             await document.save({
               parent: req.document.get('uuid'),
+              position_in_parent: 32767,
               path: newPath,
             });
+            await DocumentRepository.fixOrder(parent);
             items.push({
               source,
               target: newPath,
             });
           }
         }
+        await DocumentRepository.fixOrder(req.document.get('uuid'));
 
         res.send(
           items.map((item) => ({
@@ -185,7 +192,7 @@ export default [
             created,
             modified: created,
             version: 0,
-            position_in_parent: 0,
+            position_in_parent: items.length,
             lock: { locked: false, stealable: true },
             workflow_state: type.related('workflow').get('json').initial_state,
             owner: req.user.get('uuid'),
@@ -306,9 +313,18 @@ export default [
     op: 'delete',
     view: '',
     handler: (req, res) =>
-      requirePermission('Modify', req, res, async () => {
-        await DocumentRepository.delete({ uuid: req.document.get('uuid') });
-        res.status(204).send();
+      requirePermission('Modify', req, res, () => {
+        const parent = req.document.get('parent');
+        DocumentRepository.transaction(async (transaction) => {
+          await DocumentRepository.delete(
+            { uuid: req.document.get('uuid') },
+            { transacting: transaction },
+          );
+          await DocumentRepository.fixOrder(parent, {
+            transacting: transaction,
+          });
+          res.status(204).send();
+        });
       }),
   },
 ];

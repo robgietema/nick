@@ -5,6 +5,7 @@
 
 import autobind from 'autobind-decorator';
 import { keys, map, isArray } from 'lodash';
+import bookshelf from '../../bookshelf';
 
 @autobind
 /**
@@ -86,7 +87,16 @@ export default class BaseRepository {
    */
   delete(where, options = {}) {
     return this.findAll(where).then((records) =>
-      records.map((record) => record.destroy(options)),
+      Promise.all(records.map((record) => record.destroy(options))),
     );
+  }
+
+  /**
+   * Create a transaction.
+   * @function transaction
+   * @param {Function} callback Callback funnction
+   */
+  transaction(callback) {
+    bookshelf.transaction(callback);
   }
 }

@@ -72,6 +72,9 @@ function querystringToQuery(querystring, path = '/') {
           case 'effective':
             sort.field = "json->>'effective'";
             break;
+          case 'getObjPositionInParent':
+            sort.field = 'position_in_parent';
+            break;
           default:
             break;
         }
