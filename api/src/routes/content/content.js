@@ -76,8 +76,11 @@ export default [
           // Get item to be moved
           const document = await DocumentRepository.findOne({ path: source });
 
-          // If moved to same folder do nothing
-          if (req.document.get('uuid') === document.get('parent')) {
+          // If moved to same folder or subfolder do nothing
+          if (
+            req.document.get('uuid') === document.get('parent') ||
+            req.document.get('path').indexOf(document.get('path')) !== -1
+          ) {
             items.push({
               source,
               target: source,
