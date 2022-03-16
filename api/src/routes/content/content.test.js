@@ -85,6 +85,7 @@ describe('Content', () => {
           title: 'My News Item',
           description: 'News Description',
         },
+        lock: { locked: false, stealable: true },
       },
       { method: 'insert' },
     );
@@ -109,6 +110,7 @@ describe('Content', () => {
           title: 'My News Item',
           description: 'News Description',
         },
+        lock: { locked: false, stealable: true },
       },
       { method: 'insert' },
     );
