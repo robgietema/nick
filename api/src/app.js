@@ -16,6 +16,7 @@ import {
   TypeRepository,
   UserRepository,
   UserRoleDocumentRepository,
+  UserRoleRepository,
 } from './repositories';
 import { secret } from './config';
 
@@ -33,33 +34,31 @@ app.use((req, res, next) => {
 });
 
 // Add JWT authentication
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   const token =
     req.headers.authorization &&
     req.headers.authorization.match(/^Bearer (.*)$/);
-  UserRepository.findOne({ id: 'anonymous' }).then((anonymous) => {
-    if (token) {
-      jwt.verify(token[1], secret, (err, decoded) => {
-        if (err || new Date().getTime() / 1000 > decoded.exp) {
+  const anonymous = await UserRepository.findOne({ id: 'anonymous' });
+
+  if (token) {
+    jwt.verify(token[1], secret, async (err, decoded) => {
+      if (err || new Date().getTime() / 1000 > decoded.exp) {
+        req.user = anonymous;
+        next();
+      } else {
+        try {
+          req.user = await UserRepository.findOne({ id: decoded.sub });
+          next();
+        } catch (e) {
           req.user = anonymous;
           next();
-        } else {
-          UserRepository.findOne({ id: decoded.sub })
-            .then((user) => {
-              req.user = user;
-              next();
-            })
-            .catch(UserRepository.Model.NotFoundError, () => {
-              req.user = anonymous;
-              next();
-            });
         }
-      });
-    } else {
-      req.user = anonymous;
-      next();
-    }
-  });
+      }
+    });
+  } else {
+    req.user = anonymous;
+    next();
+  }
 });
 
 /**
@@ -69,13 +68,12 @@ app.use((req, res, next) => {
  * @param {Object} user Current user object.
  * @returns {Array} An array of the permissions.
  */
-function getRoles(document, user) {
-  return UserRoleDocumentRepository.findAll({
+async function getRoles(document, user) {
+  const entries = await UserRoleDocumentRepository.findAll({
     document: document.get('uuid'),
     user: user.get('uuid'),
-  }).then((entries) => {
-    return entries.map((entry) => entry.get('role'));
   });
+  return entries.map((entry) => entry.get('role'));
 }
 
 /**
@@ -87,71 +85,83 @@ function getRoles(document, user) {
  * @param {Array} roles Array of roles.
  * @returns {Promise<Object>} A Promise that resolves to an object.
  */
-function traverse(document, slugs, user, roles) {
+async function traverse(document, slugs, user, roles) {
   if (slugs.length === 0) {
     const extendedRoles = [
       ...roles,
       user.get('id') === 'anonymous' ? 'Anonymous' : 'Authenticated',
       ...(user.get('uuid') === document.get('owner') ? ['Owner'] : []),
     ];
-    return RolePermissionRepository.findAll(['role', 'in', extendedRoles]).then(
-      (entries) => ({
-        document,
-        permissions: entries.map((entry) => entry.get('permission')),
-        roles: extendedRoles,
-      }),
-    );
+    const entries = await RolePermissionRepository.findAll([
+      'role',
+      'in',
+      extendedRoles,
+    ]);
+    return {
+      document,
+      permissions: entries.map((entry) => entry.get('permission')),
+      roles: extendedRoles,
+    };
   } else {
-    return DocumentRepository.findOne({
+    const child = await DocumentRepository.findOne({
       parent: document.get('uuid'),
       id: head(slugs),
-    }).then((child) =>
-      getRoles(child, user).then((childRoles) =>
-        traverse(child, drop(slugs), user, uniq([...roles, ...childRoles])),
-      ),
-    );
+    });
+    const childRoles = await getRoles(child, user);
+    return traverse(child, drop(slugs), user, uniq([...roles, ...childRoles]));
   }
 }
 
 map(routes, (route) => {
-  app[route.op](`*${route.view}`, (req, res) => {
+  app[route.op](`*${route.view}`, async (req, res) => {
     const slugs = req.params[0].split('/');
-    DocumentRepository.findOne({ parent: null })
-      .then((document) =>
-        getRoles(document, req.user).then((roles) =>
-          traverse(document, compact(slugs), req.user, roles),
-        ),
-      )
-      .then(({ document, permissions, roles }) => {
-        TypeRepository.findOne(
-          { id: document.get('type') },
-          { withRelated: ['workflow'] },
-        ).then((type) => {
-          req.document = document;
-          req.type = type;
-          req.permissions = uniq([
-            ...permissions,
-            ...flatten(
-              map(
-                roles,
-                (role) =>
-                  type.related('workflow').get('json').states[
-                    document.get('workflowState')
-                  ].permissions[role] || [],
-              ),
-            ),
-          ]);
-          req.roles = roles;
-          route.handler(req, res);
-        });
-      })
-      .catch(DocumentRepository.Model.NotFoundError, () =>
-        RedirectRepository.findOne({ path: req.params[0] })
-          .then((redirect) => res.redirect(301, redirect.get('redirect')))
-          .catch(RedirectRepository.Model.NotFoundError, () => {
-            res.status(404).send({ error: 'Not Found' });
-          }),
+
+    const globalRoleObjects = await UserRoleRepository.findAll({
+      user: req.user.get('uuid'),
+    });
+    const globalRoles = globalRoleObjects.map((entry) => entry.get('role'));
+
+    const root = await DocumentRepository.findOne({ parent: null });
+    const rootRoles = await getRoles(root, req.user);
+
+    try {
+      const { document, permissions, roles } = await traverse(
+        root,
+        compact(slugs),
+        req.user,
+        uniq([...rootRoles, ...globalRoles]),
       );
+
+      const type = await TypeRepository.findOne(
+        { id: document.get('type') },
+        { withRelated: ['workflow'] },
+      );
+      req.document = document;
+      req.type = type;
+      req.permissions = uniq([
+        ...permissions,
+        ...flatten(
+          map(
+            roles,
+            (role) =>
+              type.related('workflow').get('json').states[
+                document.get('workflowState')
+              ].permissions[role] || [],
+          ),
+        ),
+      ]);
+      req.roles = roles;
+      route.handler(req, res);
+    } catch (e) {
+      try {
+        const redirect = await RedirectRepository.findOne({
+          path: req.params[0],
+        });
+        res.redirect(301, redirect.get('redirect'));
+      } catch (e) {
+        res.status(404).send({ error: 'Not Found' });
+      }
+    }
   });
 });
 

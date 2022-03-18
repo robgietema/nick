@@ -85,10 +85,9 @@ export default class BaseRepository {
    * @returns {Promise<Model>} A promise resolving to the destroyed
    * and thus "empty" Model.
    */
-  delete(where, options = {}) {
-    return this.findAll(where).then((records) =>
-      Promise.all(records.map((record) => record.destroy(options))),
-    );
+  async delete(where, options = {}) {
+    const records = await this.findAll(where);
+    return await Promise.all(records.map((record) => record.destroy(options)));
   }
 
   /**

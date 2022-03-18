@@ -28,41 +28,36 @@ export class DocumentRepository extends BaseRepository {
    * @param {String} oldPath Old path.
    * @param {String} newPath New path.
    * @param {Object} [options] Bookshelf options to pass on to destroy.
-   * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
+   * @returns {Promise} A Promise that resolves when replace is done.
    */
-  replacePath(oldPath, newPath, options = {}) {
-    return this.findAll({ path: ['~', `^${oldPath}`] })
-      .then((documents) =>
-        Promise.all(
-          documents.map((document) => {
-            const redirect =
-              oldPath === document.get('path')
-                ? newPath
-                : document
-                    .get('path')
-                    .replace(RegExp(`^${oldPath}(.*)$`), `${newPath}$1`);
-            return RedirectRepository.create(
-              {
-                document: document.get('uuid'),
-                path: document.get('path'),
-                redirect,
-              },
-              { ...options, method: 'insert' },
-            ).then(() =>
-              bookshelf.knex.raw(
-                `update redirect set redirect = '${redirect}' where document = '${document.get(
-                  'uuid',
-                )}'`,
-              ),
-            );
-          }),
-        ),
-      )
-      .then(() =>
-        bookshelf.knex.raw(
-          `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
-        ),
-      );
+  async replacePath(oldPath, newPath, options = {}) {
+    const documents = await this.findAll({ path: ['~', `^${oldPath}`] });
+    await Promise.all(
+      documents.map(async (document) => {
+        const redirect =
+          oldPath === document.get('path')
+            ? newPath
+            : document
+                .get('path')
+                .replace(RegExp(`^${oldPath}(.*)$`), `${newPath}$1`);
+        await RedirectRepository.create(
+          {
+            document: document.get('uuid'),
+            path: document.get('path'),
+            redirect,
+          },
+          { ...options, method: 'insert' },
+        );
+        await bookshelf.knex.raw(
+          `update redirect set redirect = '${redirect}' where document = '${document.get(
+            'uuid',
+          )}'`,
+        );
+      }),
+    );
+    await bookshelf.knex.raw(
+      `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
+    );
   }
 
   /**
@@ -93,24 +88,26 @@ export class DocumentRepository extends BaseRepository {
    * @param {Object} [options] Bookshelf options to pass on to destroy.
    * @returns {Promise} A Promise that resolves when the ordering has been done.
    */
-  reorder(uuid, id, delta, options = {}) {
+  async reorder(uuid, id, delta, options = {}) {
     const newDelta = delta < 0 ? delta * 10 - 5 : delta * 10 + 5;
-    return this.findAll({ parent: uuid }, 'position_in_parent', options).then(
-      (items) =>
-        Promise.all(
-          items.map(
-            async (item, index) =>
-              await item.save(
-                {
-                  position_in_parent:
-                    item.get('id') === id
-                      ? item.get('positionInParent') * 10 + newDelta
-                      : item.get('positionInParent') * 10,
-                },
-                { ...options, patch: true, require: false },
-              ),
+    const items = await this.findAll(
+      { parent: uuid },
+      'position_in_parent',
+      options,
+    );
+    return await Promise.all(
+      items.map(
+        async (item, index) =>
+          await item.save(
+            {
+              position_in_parent:
+                item.get('id') === id
+                  ? item.get('positionInParent') * 10 + newDelta
+                  : item.get('positionInParent') * 10,
+            },
+            { ...options, patch: true, require: false },
           ),
-        ),
+      ),
     );
   }
 
@@ -121,18 +118,20 @@ export class DocumentRepository extends BaseRepository {
    * @param {Object} [options] Bookshelf options to pass on to destroy.
    * @returns {Promise} A Promise that resolves when the ordering has been done.
    */
-  fixOrder(uuid, options = {}) {
-    return this.findAll({ parent: uuid }, 'position_in_parent', options).then(
-      (items) =>
-        Promise.all(
-          items.map(
-            async (item, index) =>
-              await item.save(
-                { position_in_parent: index },
-                { ...options, patch: true, require: false },
-              ),
+  async fixOrder(uuid, options = {}) {
+    const items = await this.findAll(
+      { parent: uuid },
+      'position_in_parent',
+      options,
+    );
+    return await Promise.all(
+      items.map(
+        async (item, index) =>
+          await item.save(
+            { position_in_parent: index },
+            { ...options, patch: true, require: false },
           ),
-        ),
+      ),
     );
   }
 }

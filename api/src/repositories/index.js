@@ -11,5 +11,6 @@ export RoleRepository from './role/role';
 export TypeRepository from './type/type';
 export UserRepository from './user/user';
 export UserRoleDocumentRepository from './user-role-document/user-role-document';
+export UserRoleRepository from './user-role/user-role';
 export VersionRepository from './version/version';
 export WorkflowRepository from './workflow/workflow';

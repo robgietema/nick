@@ -169,31 +169,29 @@ const dates = {
   required: [],
 };
 
-exports.seed = (knex) =>
-  knex('type')
-    .del()
-    .then(() =>
-      knex('type').insert([
-        {
-          id: 'site',
-          title: 'Site',
-          addable: false,
-          schema: merge(dublinCore, layout, dates),
-          workflow: 'simple_publication_workflow',
-        },
-        {
-          id: 'folder',
-          title: 'Folder',
-          addable: true,
-          schema: merge(dublinCore, layout, dates),
-          workflow: 'simple_publication_workflow',
-        },
-        {
-          id: 'page',
-          title: 'Page',
-          addable: true,
-          schema: merge(dublinCore, layout, dates),
-          workflow: 'simple_publication_workflow',
-        },
-      ]),
-    );
+exports.seed = async (knex) => {
+  await knex('type').del();
+  await knex('type').insert([
+    {
+      id: 'site',
+      title: 'Site',
+      addable: false,
+      schema: merge(dublinCore, layout, dates),
+      workflow: 'simple_publication_workflow',
+    },
+    {
+      id: 'folder',
+      title: 'Folder',
+      addable: true,
+      schema: merge(dublinCore, layout, dates),
+      workflow: 'simple_publication_workflow',
+    },
+    {
+      id: 'page',
+      title: 'Page',
+      addable: true,
+      schema: merge(dublinCore, layout, dates),
+      workflow: 'simple_publication_workflow',
+    },
+  ]);
+};
