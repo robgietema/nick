@@ -24,7 +24,7 @@ function documentToJson(document, req) {
     Creator: document.related('owner').get('fullname'),
     Description: json.description,
     title: json.title,
-    review_state: document.get('workflowState'),
+    review_state: document.get('workflow_state'),
     ModificationDate: moment(document.get('modified')).format(),
     CreationDate: moment(document.get('created')).format(),
     EffectiveDate: 'None',

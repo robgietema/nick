@@ -145,7 +145,7 @@ map(routes, (route) => {
             roles,
             (role) =>
               type.related('workflow').get('json').states[
-                document.get('workflowState')
+                document.get('workflow_state')
               ].permissions[role] || [],
           ),
         ),

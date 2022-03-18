@@ -63,7 +63,7 @@ export default [
         remove(
           transitions,
           (transition) =>
-            json.states[req.document.get('workflowState')].transitions.indexOf(
+            json.states[req.document.get('workflow_state')].transitions.indexOf(
               transition[0],
             ) === -1,
         );
@@ -74,9 +74,9 @@ export default [
           }${req.document.get('path')}/@workflow`,
           history: [],
           state: {
-            id: req.document.get('workflowState'),
+            id: req.document.get('workflow_state'),
             title: req.type.related('workflow').get('json').states[
-              req.document.get('workflowState')
+              req.document.get('workflow_state')
             ].title,
           },
           transitions: map(transitions, (item) => ({

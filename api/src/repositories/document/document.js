@@ -102,8 +102,8 @@ export class DocumentRepository extends BaseRepository {
             {
               position_in_parent:
                 item.get('id') === id
-                  ? item.get('positionInParent') * 10 + newDelta
-                  : item.get('positionInParent') * 10,
+                  ? item.get('position_in_parent') * 10 + newDelta
+                  : item.get('position_in_parent') * 10,
             },
             { ...options, patch: true, require: false },
           ),
