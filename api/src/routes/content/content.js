@@ -220,9 +220,7 @@ export default [
             changeNote: req.body.changeNote || 'Initial version',
           },
         });
-        res
-          .status(201)
-          .send(documentToJson(document, req, `/${document.get('id')}`));
+        res.status(201).send(documentToJson(document, req));
       }),
   },
   {

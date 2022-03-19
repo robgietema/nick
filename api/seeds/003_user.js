@@ -9,12 +9,14 @@ exports.seed = async (knex) => {
       id: 'admin',
       password,
       fullname: 'Admin',
+      email: '',
     },
     {
       uuid: '695efb73-cbdd-4bef-935a-a56f70a20854',
       id: 'anonymous',
       password,
       fullname: 'Anonymous',
+      email: '',
     },
   ]);
 };

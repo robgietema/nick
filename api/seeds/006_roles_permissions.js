@@ -2,19 +2,24 @@ exports.seed = async (knex) => {
   await knex('role').del();
   await knex('role').insert([
     {
+      id: 'Reader',
+      order: 0,
+    },
+    {
       id: 'Contributer',
+      order: 1,
     },
     {
       id: 'Editor',
-    },
-    {
-      id: 'Reader',
+      order: 2,
     },
     {
       id: 'Reviewer',
+      order: 3,
     },
     {
       id: 'Administrator',
+      order: 4,
     },
   ]);
   await knex('permission').del();

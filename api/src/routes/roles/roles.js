@@ -12,7 +12,7 @@ export default [
     view: '/@roles',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const roles = await RoleRepository.findAll();
+        const roles = await RoleRepository.findAll({}, 'order');
         res.send(
           roles.map((role) => ({
             '@id': `${req.protocol}://${req.headers.host}/@roles/${role.get(

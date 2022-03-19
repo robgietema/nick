@@ -50,7 +50,7 @@ export default class BaseRepository {
         ]);
       });
     })
-      .query('orderByRaw', order)
+      .query('orderByRaw', order === 'order' ? '"order"' : order)
       .fetchPage(options);
   }
 

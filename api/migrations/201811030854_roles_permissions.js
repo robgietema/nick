@@ -1,6 +1,7 @@
 exports.up = async (knex) => {
   await knex.schema.createTable('role', (table) => {
     table.string('id').primary();
+    table.integer('order');
   });
   await knex.schema.createTable('permission', (table) => {
     table.string('id').primary();

@@ -4,12 +4,16 @@ exports.seed = async (knex) => {
     {
       uuid: '595efb73-cbdd-4bef-935a-156f70a20854',
       id: 'authenticated',
-      groupname: 'Authenticated',
+      title: 'Authenticated',
+      description: '',
+      email: '',
     },
     {
       uuid: '595efb73-cbdd-4bef-935a-256f70a20854',
       id: 'owner',
-      groupname: 'Owner',
+      title: 'Owner',
+      description: '',
+      email: '',
     },
   ]);
 };

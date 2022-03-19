@@ -4,6 +4,7 @@ exports.up = (knex) =>
     table.string('id').unique().notNull();
     table.string('password').notNull();
     table.string('fullname');
+    table.string('email');
   });
 
 exports.down = (knex) => knex.schema.dropTable('user');
