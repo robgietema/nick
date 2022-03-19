@@ -14,9 +14,8 @@ exports.seed = async (knex) => {
       workflow_state: 'published',
       owner: '595efb73-cbdd-4bef-935a-a56f70a20854',
       json: {
-        title: 'Welcome to Isometric',
-        description:
-          'Congratulations! You have successfully installed Isometric.',
+        title: 'Welcome to Volto',
+        description: 'Congratulations! You have successfully installed Volto.',
         blocks: {
           '79ba8858-1dd3-4719-b731-5951e32fbf79': {
             '@type': 'title',
@@ -27,7 +26,7 @@ exports.seed = async (knex) => {
               blocks: [
                 {
                   key: '9f35d',
-                  text: 'Congratulations! You have succesfully installed Isometric.',
+                  text: 'Congratulations! You have succesfully installed Volto.',
                   type: 'unstyled',
                   depth: 0,
                   inlineStyleRanges: [],

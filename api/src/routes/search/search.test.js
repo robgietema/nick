@@ -18,7 +18,7 @@ describe('Search', () => {
           expect(res.body.items.length).toBe(4),
           expect(res.body.items[0]['@id']).toMatch(/http:\/\/127.0.0.1:.*\//),
           expect(res.body.items[0]['@type']).toBe('site'),
-          expect(res.body.items[0].title).toBe('Welcome to Isometric'),
+          expect(res.body.items[0].title).toBe('Welcome to Volto'),
         ]),
       ));
   it('should find the news folder', () =>
@@ -51,9 +51,7 @@ describe('Search', () => {
       .set('Authorization', getAdminHeader())
       .expect(200)
       .expect((res) =>
-        Promise.all([
-          expect(res.body.items[0].title).toBe('Welcome to Isometric'),
-        ]),
+        Promise.all([expect(res.body.items[0].title).toBe('Welcome to Volto')]),
       ));
   it('should ignore sort when unknown sort is specified', () =>
     request(app)
@@ -61,9 +59,7 @@ describe('Search', () => {
       .set('Authorization', getAdminHeader())
       .expect(200)
       .expect((res) =>
-        Promise.all([
-          expect(res.body.items[0].title).toBe('Welcome to Isometric'),
-        ]),
+        Promise.all([expect(res.body.items[0].title).toBe('Welcome to Volto')]),
       ));
   it('should be able to sort results reverse', () =>
     request(app)
@@ -71,9 +67,7 @@ describe('Search', () => {
       .set('Authorization', getAdminHeader())
       .expect(200)
       .expect((res) =>
-        Promise.all([
-          expect(res.body.items[0].title).toBe('Welcome to Isometric'),
-        ]),
+        Promise.all([expect(res.body.items[0].title).toBe('Welcome to Volto')]),
       ));
   it('should be able to filter on depth', () =>
     request(app)

@@ -15,6 +15,7 @@ import navigation from './navigation/navigation';
 import querystring from './querystring/querystring';
 import roles from './roles/roles';
 import search from './search/search';
+import sharing from './sharing/sharing';
 import types from './types/types';
 import user from './user/user';
 import workflow from './workflow/workflow';
@@ -31,6 +32,7 @@ export default [
   ...querystring,
   ...roles,
   ...search,
+  ...sharing,
   ...types,
   ...user,
   ...workflow,

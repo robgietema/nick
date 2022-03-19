@@ -1,38 +1,38 @@
 /**
- * User Role Document Repository.
+ * Group Role Document Repository.
  * @module repositories/user-role-document/user-role-document
  */
 
-import { UserRoleDocument } from '../../models';
+import { GroupRoleDocument } from '../../models';
 import { BaseRepository } from '../../helpers';
 
 /**
- * A Repository for User Role Document.
- * @class UserRoleDocumentRepository
+ * A Repository for Group Role Document.
+ * @class GroupRoleDocumentRepository
  * @extends BaseRepository
  */
-export class UserRoleDocumentRepository extends BaseRepository {
+export class GroupRoleDocumentRepository extends BaseRepository {
   /**
-   * Construct a UserRoleDocumentRepository.
-   * @constructs UserRoleDocumentRepository
+   * Construct a GroupRoleDocumentRepository.
+   * @constructs GroupRoleDocumentRepository
    */
   constructor() {
-    super(UserRoleDocument);
+    super(GroupRoleDocument);
   }
 
   /**
    * Get roles.
    * @method getRoles
    * @param {Object} document Current document object.
-   * @param {Object} user Current user object.
+   * @param {Array} groups Array of groups
    * @param {Object} [options] Bookshelf options to pass on to destroy.
    * @returns {Array} An array of the permissions.
    */
-  async getRoles(document, user, options = {}) {
+  async getRoles(document, groups, options = {}) {
     const entries = await this.findAll(
       {
+        group: ['=', groups],
         document: document.get('uuid'),
-        user: user.get('uuid'),
       },
       'id',
       options,
@@ -41,4 +41,4 @@ export class UserRoleDocumentRepository extends BaseRepository {
   }
 }
 
-export default new UserRoleDocumentRepository();
+export default new GroupRoleDocumentRepository();

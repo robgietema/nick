@@ -19,6 +19,24 @@ export class UserRoleRepository extends BaseRepository {
   constructor() {
     super(UserRole);
   }
+
+  /**
+   * Get roles.
+   * @method getRoles
+   * @param {Object} user Current user object.
+   * @param {Object} [options] Bookshelf options to pass on to destroy.
+   * @returns {Array} An array of the permissions.
+   */
+  async getRoles(user, options = {}) {
+    const entries = await this.findAll(
+      {
+        user: user.get('uuid'),
+      },
+      'id',
+      options,
+    );
+    return entries.map((entry) => entry.get('role'));
+  }
 }
 
 export default new UserRoleRepository();

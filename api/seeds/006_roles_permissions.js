@@ -2,19 +2,10 @@ exports.seed = async (knex) => {
   await knex('role').del();
   await knex('role').insert([
     {
-      id: 'Anonymous',
-    },
-    {
-      id: 'Authenticated',
-    },
-    {
       id: 'Contributer',
     },
     {
       id: 'Editor',
-    },
-    {
-      id: 'Owner',
     },
     {
       id: 'Reader',
@@ -50,11 +41,11 @@ exports.seed = async (knex) => {
   await knex('role_permission').del();
   await knex('role_permission').insert([
     {
-      role: 'Contributer',
-      permission: 'Add',
+      role: 'Reader',
+      permission: 'View',
     },
     {
-      role: 'Owner',
+      role: 'Contributer',
       permission: 'Add',
     },
     {
@@ -74,10 +65,6 @@ exports.seed = async (knex) => {
       permission: 'Submit',
     },
     {
-      role: 'Owner',
-      permission: 'Submit',
-    },
-    {
       role: 'Administrator',
       permission: 'Submit',
     },
@@ -86,12 +73,26 @@ exports.seed = async (knex) => {
       permission: 'Manage Users',
     },
   ]);
-  await knex('user_role_document').del();
-  await knex('user_role_document').insert([
+  await knex('user_role').del();
+  await knex('user_role').insert([
     {
       user: '595efb73-cbdd-4bef-935a-a56f70a20854',
       role: 'Administrator',
-      document: '4ba6ac12-2a02-40be-a76f-9067ce98ed47',
+    },
+  ]);
+  await knex('group_role').del();
+  await knex('group_role').insert([
+    {
+      group: '595efb73-cbdd-4bef-935a-256f70a20854',
+      role: 'Contributer',
+    },
+    {
+      group: '595efb73-cbdd-4bef-935a-256f70a20854',
+      role: 'Editor',
+    },
+    {
+      group: '595efb73-cbdd-4bef-935a-156f70a20854',
+      role: 'Reader',
     },
   ]);
 };

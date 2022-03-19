@@ -32,20 +32,22 @@ export default class BaseRepository {
    * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
    */
   findAll(where = {}, order = 'id', options = {}) {
+    /*
     if (isArray(where)) {
       return this.Model.where(...where)
         .query('orderByRaw', order)
         .fetchAll(options);
     }
+    */
     return this.Model.query((qb) => {
       map(keys(where), (key) => {
-        qb.whereRaw(
-          // user is a reserved word so needs to be wrapper in quotes
-          `${key === 'user' ? '"user"' : key} ${
-            isArray(where[key]) ? where[key][0] : '='
-          } ?`,
-          [isArray(where[key]) ? where[key][1] : where[key]],
-        );
+        // user and group are reserved words so need to be wrapper in quotes
+        const field = key === 'user' || key === 'group' ? `"${key}"` : key;
+        const operator = isArray(where[key]) ? where[key][0] : '=';
+        const value = isArray(where[key]) ? where[key][1] : where[key];
+        qb.whereRaw(`${field} ${operator} ${isArray(value) ? 'any(?)' : '?'}`, [
+          value,
+        ]);
       });
     })
       .query('orderByRaw', order)

@@ -14,7 +14,7 @@ describe('Roles', () => {
       .expect(200)
       .expect((res) =>
         Promise.all([
-          expect(res.body.length).toBe(8),
+          expect(res.body.length).toBe(5),
           expect(res.body[0]['@id']).toMatch(
             /http:\/\/127.0.0.1:.*\/@roles\/Administrator/,
           ),
