@@ -18,6 +18,7 @@ const documentFields = [
   'owner',
   'lock',
   'workflow_state',
+  'sharing',
 ];
 
 const versionFields = ['uuid', 'version', 'id', 'created', 'actor', 'document'];
@@ -96,6 +97,26 @@ export const seed = async (knex) => {
 
       // Insert versions
       await knex('version').insert(versions);
+
+      // Insert sharing data for users
+      const sharingUsers = document.sharing?.users || [];
+      mapSync(sharingUsers, async (user) => {
+        await knex('user_role_document').insert(
+          map(user.roles, (role) => ({ user: user.id, role, document: uuid })),
+        );
+      });
+
+      // Insert sharing data for groups
+      const sharingGroups = document.sharing?.groups || [];
+      mapSync(sharingGroups, async (group) => {
+        await knex('group_role_document').insert(
+          map(group.roles, (role) => ({
+            group: group.id,
+            role,
+            document: uuid,
+          })),
+        );
+      });
     });
   } catch (e) {
     // No data to be imported
