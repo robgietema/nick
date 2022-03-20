@@ -15,7 +15,7 @@ export const seed = async (knex) => {
           password: await bcrypt.hash('admin', 10),
         });
         const userRoles = map(user.roles, (role) => ({
-          user: user.uuid,
+          user: user.id,
           role,
         }));
         if (userRoles.length > 0) {

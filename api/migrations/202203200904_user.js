@@ -1,7 +1,6 @@
 export const up = async (knex) => {
   await knex.schema.createTable('user', (table) => {
-    table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
-    table.string('id').unique().notNull();
+    table.string('id').primary().notNull();
     table.string('password').notNull();
     table.string('fullname');
     table.string('email');
@@ -9,9 +8,9 @@ export const up = async (knex) => {
   await knex.schema.createTable('user_role', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
-      .uuid('user')
+      .string('user')
       .notNull()
-      .references('user.uuid')
+      .references('user.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
@@ -24,15 +23,15 @@ export const up = async (knex) => {
   await knex.schema.createTable('user_group', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
-      .uuid('user')
+      .string('user')
       .notNull()
-      .references('user.uuid')
+      .references('user.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
-      .uuid('group')
+      .string('group')
       .notNull()
-      .references('group.uuid')
+      .references('group.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
   });

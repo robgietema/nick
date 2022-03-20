@@ -17,7 +17,7 @@ export const up = async (knex) => {
       .onDelete('CASCADE');
     table.integer('position_in_parent');
     table.integer('version');
-    table.uuid('owner').references('user.uuid');
+    table.string('owner').references('user.id');
     table.jsonb('json').notNull();
     table.jsonb('lock').notNull();
     table.string('workflow_state').notNull();
@@ -26,7 +26,7 @@ export const up = async (knex) => {
     table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.integer('version');
     table.dateTime('created');
-    table.uuid('actor').references('user.uuid');
+    table.string('actor').references('user.id');
     table
       .uuid('document')
       .references('document.uuid')
@@ -38,9 +38,9 @@ export const up = async (knex) => {
   await knex.schema.createTable('user_role_document', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
-      .uuid('user')
+      .string('user')
       .notNull()
-      .references('user.uuid')
+      .references('user.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
@@ -59,9 +59,9 @@ export const up = async (knex) => {
   await knex.schema.createTable('group_role_document', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
-      .uuid('group')
+      .string('group')
       .notNull()
-      .references('group.uuid')
+      .references('group.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table

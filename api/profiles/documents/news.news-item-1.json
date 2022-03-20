@@ -9,7 +9,7 @@
   "position_in_parent": 0,
   "lock": { "locked": false, "stealable": true },
   "workflow_state": "published",
-  "owner": "595efb73-cbdd-4bef-935a-a56f70a20854",
+  "owner": "admin",
   "json": {
     "title": "News Item 1",
     "description": "",

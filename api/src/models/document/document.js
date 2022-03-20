@@ -10,6 +10,6 @@ export default BaseModel.extend({
   tableName: 'document',
   idAttribute: 'uuid',
   owner() {
-    return this.belongsTo(User, 'owner', 'uuid');
+    return this.belongsTo(User, 'owner', 'id');
   },
 });

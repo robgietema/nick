@@ -8,7 +8,7 @@ import { Role } from '../../models';
 
 export default BaseModel.extend({
   tableName: 'group',
-  idAttribute: 'uuid',
+  idAttribute: 'id',
   roles() {
     return this.belongsToMany(Role, 'group_role', 'group', 'role');
   },

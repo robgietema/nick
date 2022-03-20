@@ -30,7 +30,7 @@ export class UserRoleRepository extends BaseRepository {
   async getRoles(user, options = {}) {
     const entries = await this.findAll(
       {
-        user: user.get('uuid'),
+        user: user.get('id'),
       },
       'id',
       options,

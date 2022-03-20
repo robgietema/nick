@@ -77,7 +77,7 @@ export default [
           roles.map(
             async (role) =>
               await GroupRoleRepository.create({
-                group: group.get('uuid'),
+                group: group.get('id'),
                 role,
               }),
           ),
@@ -110,14 +110,14 @@ export default [
         if (req.body.roles) {
           // Delete current roles
           await GroupRoleRepository.delete({
-            group: group.get('uuid'),
+            group: group.get('id'),
           });
 
           // Add new roles
           await Promise.all(
             map(req.body.roles, async (role) => {
               await GroupRoleRepository.create({
-                group: group.get('uuid'),
+                group: group.get('id'),
                 role,
               });
             }),

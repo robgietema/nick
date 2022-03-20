@@ -11,7 +11,6 @@ import jwt from 'jsonwebtoken';
 import routes from './routes';
 import {
   DocumentRepository,
-  GroupRepository,
   GroupRoleDocumentRepository,
   GroupRoleRepository,
   RedirectRepository,
@@ -60,16 +59,11 @@ app.use(async (req, res, next) => {
           // Find user object
           req.user = await UserRepository.findOne({ id: decoded.sub });
 
-          // Get authenticated group
-          const authenticated = await GroupRepository.findOne({
-            id: 'authenticated',
-          });
-
           // Get global groups of user
           const globalGroups = await UserGroupRepository.getGroups(req.user);
 
           // Combine groups
-          req.groups = [...globalGroups, authenticated.get('uuid')];
+          req.groups = [...globalGroups, 'Authenticated'];
           next();
         } catch (e) {
           req.user = anonymous;
@@ -98,26 +92,17 @@ app.use(async (req, res, next) => {
 async function traverse(document, slugs, user, groups, roles) {
   // Check if at leaf node
   if (slugs.length === 0) {
-    // Get owner group
-    const owner = await GroupRepository.findOne({ id: 'owner' });
-
     // Add owner to groups if current document owned by user
     const extendedGroups = [
       ...groups,
-      ...(user.get('uuid') === document.get('owner')
-        ? [owner.get('uuid')]
-        : []),
+      ...(user.get('id') === document.get('owner') ? ['Owner'] : []),
     ];
 
     // Get all roles from groups
     const groupRoles = await GroupRoleRepository.getRoles(extendedGroups);
 
     // Combine all roles
-    const extendedRoles = uniq([
-      ...roles,
-      ...groupRoles,
-      ...(user.get('uuid') === document.get('owner') ? ['Owner'] : []),
-    ]);
+    const extendedRoles = uniq([...roles, ...groupRoles]);
 
     // Get all permissions from roles
     const permissions = await RolePermissionRepository.getPermissions(

@@ -35,7 +35,7 @@ export const seed = async (knex) => {
       await knex('version').insert(versions);
 
       //        const groupRoles = map(group.roles, (role) => ({
-      //          group: group.uuid,
+      //          group: group.id,
       //          role,
       //        }));
       //        if (groupRoles.length > 0) {

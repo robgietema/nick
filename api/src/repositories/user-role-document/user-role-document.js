@@ -32,7 +32,7 @@ export class UserRoleDocumentRepository extends BaseRepository {
     const entries = await this.findAll(
       {
         document: document.get('uuid'),
-        user: user.get('uuid'),
+        user: user.get('id'),
       },
       'id',
       options,

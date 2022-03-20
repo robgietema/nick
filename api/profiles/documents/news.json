@@ -11,7 +11,7 @@
     {
       "id": "news",
       "created": "2022-02-27T15:00:00+00:00",
-      "actor": "595efb73-cbdd-4bef-935a-a56f70a20854",
+      "actor": "admin",
       "json": {
         "title": "Old News",
         "changeNote": "Initial version",
@@ -28,7 +28,7 @@
     {
       "id": "news",
       "created": "2022-02-27T16:00:00+00:00",
-      "actor": "595efb73-cbdd-4bef-935a-a56f70a20854",
+      "actor": "admin",
       "json": {
         "title": "News",
         "changeNote": "Changed title",
@@ -45,7 +45,7 @@
   ],
   "lock": { "locked": false, "stealable": true },
   "workflow_state": "published",
-  "owner": "595efb73-cbdd-4bef-935a-a56f70a20854",
+  "owner": "admin",
   "json": {
     "title": "News",
     "description": "News Items",

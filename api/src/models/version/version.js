@@ -10,6 +10,6 @@ export default BaseModel.extend({
   tableName: 'version',
   idAttribute: 'uuid',
   actor() {
-    return this.belongsTo(User, 'actor', 'uuid');
+    return this.belongsTo(User, 'actor', 'id');
   },
 });

@@ -82,7 +82,7 @@ export default [
           roles.map(
             async (role) =>
               await UserRoleRepository.create({
-                user: user.get('uuid'),
+                user: user.get('id'),
                 role,
               }),
           ),
@@ -92,10 +92,9 @@ export default [
         const groups = req.body.groups || [];
         await Promise.all(
           groups.map(async (group) => {
-            const groupObject = await GroupRepository.findOne({ id: group });
             await UserGroupRepository.create({
-              user: user.get('uuid'),
-              group: groupObject.get('uuid'),
+              user: user.get('id'),
+              group,
             });
           }),
         );
@@ -129,16 +128,16 @@ export default [
             // Check if to be removed
             if (roles[role] === false) {
               // Delete role from user
-              await UserRoleRepository.delete({ user: user.get('uuid'), role });
+              await UserRoleRepository.delete({ user: user.get('id'), role });
             } else {
               // Add role to user if not exists
               const exists = await UserRoleRepository.findAll({
-                user: user.get('uuid'),
+                user: user.get('id'),
                 role,
               });
               if (exists.isEmpty()) {
                 await UserRoleRepository.create({
-                  user: user.get('uuid'),
+                  user: user.get('id'),
                   role,
                 });
               }

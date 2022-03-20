@@ -11,7 +11,7 @@ export const seed = async (knex) => {
       map(profile.groups, async (group) => {
         await knex('group').insert(omit(group, ['roles']));
         const groupRoles = map(group.roles, (role) => ({
-          group: group.uuid,
+          group: group.id,
           role,
         }));
         if (groupRoles.length > 0) {

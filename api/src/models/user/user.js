@@ -8,7 +8,7 @@ import { Role } from '../../models';
 
 export default BaseModel.extend({
   tableName: 'user',
-  idAttribute: 'uuid',
+  idAttribute: 'id',
   roles() {
     return this.belongsToMany(Role, 'user_role', 'user', 'role');
   },

@@ -30,7 +30,7 @@ export class UserGroupRepository extends BaseRepository {
   async getGroups(user, options = {}) {
     const groupObjects = await this.findAll(
       {
-        user: user.get('uuid'),
+        user: user.get('id'),
       },
       'id',
       options,
