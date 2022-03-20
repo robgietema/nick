@@ -1,0 +1,30 @@
+{
+  "purge": true,
+  "roles": [
+    {
+      "id": "Reader",
+      "order": 0,
+      "permissions": ["View"]
+    },
+    {
+      "id": "Contributer",
+      "order": 1,
+      "permissions": ["Add"]
+    },
+    {
+      "id": "Editor",
+      "order": 2,
+      "permissions": ["Submit"]
+    },
+    {
+      "id": "Reviewer",
+      "order": 3,
+      "permissions": ["Review"]
+    },
+    {
+      "id": "Administrator",
+      "order": 4,
+      "permissions": ["Add", "Review", "Submit", "Manage Users"]
+    }
+  ]
+}

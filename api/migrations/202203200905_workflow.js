@@ -1,4 +1,4 @@
-exports.up = (knex) =>
+export const up = (knex) =>
   knex.schema.createTable('workflow', (table) => {
     table.string('id').primary();
     table.string('title').notNull();
@@ -6,4 +6,4 @@ exports.up = (knex) =>
     table.jsonb('json').notNull();
   });
 
-exports.down = (knex) => knex.schema.dropTable('workflow');
+export const down = (knex) => knex.schema.dropTable('workflow');

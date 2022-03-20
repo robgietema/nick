@@ -26,7 +26,7 @@ describe('Content', () => {
       .expect((res) =>
         Promise.all([
           expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/news/),
-          expect(res.body['@type']).toBe('folder'),
+          expect(res.body['@type']).toBe('Folder'),
           expect(res.body.title).toBe('News'),
           expect(res.body.id).toBe('news'),
           expect(res.body.UID).toBeDefined(),
@@ -42,7 +42,7 @@ describe('Content', () => {
       .expect((res) =>
         Promise.all([
           expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/news/),
-          expect(res.body['@type']).toBe('folder'),
+          expect(res.body['@type']).toBe('Folder'),
           expect(res.body.title).toBe('Old News'),
           expect(res.body.id).toBe('news'),
           expect(res.body.UID).toBeDefined(),
@@ -55,7 +55,7 @@ describe('Content', () => {
       .post('/news')
       .set('Authorization', getAdminHeader())
       .send({
-        '@type': 'page',
+        '@type': 'Page',
         title: 'My News Item',
         description: 'News Description',
       })
@@ -65,7 +65,7 @@ describe('Content', () => {
           expect(res.body['@id']).toMatch(
             /http:\/\/127.0.0.1:.*\/news\/my-news-item/,
           ),
-          expect(res.body['@type']).toBe('page'),
+          expect(res.body['@type']).toBe('Page'),
           expect(res.body.title).toBe('My News Item'),
           expect(res.body.description).toBe('News Description'),
           expect(res.body.id).toBe('my-news-item'),
@@ -77,7 +77,7 @@ describe('Content', () => {
       {
         parent: '5ba6ac12-2a02-40be-a76f-9067ce98ed47',
         id: 'my-news-item',
-        type: 'page',
+        type: 'Page',
         path: '/news/my-news-item',
         position_in_parent: 0,
         workflow_state: 'private',
@@ -102,7 +102,7 @@ describe('Content', () => {
       {
         parent: '5ba6ac12-2a02-40be-a76f-9067ce98ed47',
         id: 'my-news-item',
-        type: 'page',
+        type: 'Page',
         path: '/news/my-news-item',
         position_in_parent: 0,
         workflow_state: 'private',

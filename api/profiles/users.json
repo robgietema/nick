@@ -1,0 +1,20 @@
+{
+  "purge": true,
+  "users": [
+    {
+      "uuid": "595efb73-cbdd-4bef-935a-a56f70a20854",
+      "id": "admin",
+      "password": "admin",
+      "fullname": "Admin",
+      "email": "",
+      "roles": ["Administrator"]
+    },
+    {
+      "uuid": "695efb73-cbdd-4bef-935a-a56f70a20854",
+      "id": "anonymous",
+      "password": "anonymous",
+      "fullname": "Anonymous",
+      "email": ""
+    }
+  ]
+}

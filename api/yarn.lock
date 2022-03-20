@@ -1465,6 +1465,11 @@ babel-jest@27.5.1, babel-jest@^27.5.1:
     graceful-fs "^4.2.9"
     slash "^3.0.0"
 
+babel-plugin-add-module-exports@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-module-exports/-/babel-plugin-add-module-exports-1.0.4.tgz#6caa4ddbe1f578c6a5264d4d3e6c8a2720a7ca2b"
+  integrity sha512-g+8yxHUZ60RcyaUpfNzy56OtWW+x9cyEe9j+CranqLiqbju2yf/Cy6ZtYK40EZxtrdHllzlVZgLmcOUCTlJ7Jg==
+
 babel-plugin-dynamic-import-node@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.3.3.tgz#84fda19c976ec5c6defef57f9427b3def66e17a3"
@@ -4046,6 +4051,11 @@ pg-int8@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/pg-int8/-/pg-int8-1.0.1.tgz#943bd463bf5b71b4170115f80f8efc9a0c0eb78c"
   integrity sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
+
+pg-large-object@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/pg-large-object/-/pg-large-object-2.0.0.tgz#19e863aa5aee64ee3735238b740b2cb250eb5b7e"
+  integrity sha1-GehjqlruZO43NSOLdAssslDrW34=
 
 pg-pool@^3.5.1:
   version "3.5.1"

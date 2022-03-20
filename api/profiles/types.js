@@ -1,4 +1,4 @@
-const merge = require('deepmerge');
+import { mergeSchemas } from '../src/helpers';
 
 const dublinCore = {
   fieldsets: [
@@ -169,29 +169,83 @@ const dates = {
   required: [],
 };
 
-exports.seed = async (knex) => {
-  await knex('type').del();
-  await knex('type').insert([
+const image = {
+  fieldsets: [
     {
-      id: 'site',
+      fields: ['image'],
+      id: 'default',
+      title: 'Default',
+    },
+  ],
+  properties: {
+    image: {
+      description: '',
+      title: 'Image',
+      type: 'object',
+      widget: 'file',
+      factory: 'Image',
+    },
+  },
+  required: ['image'],
+};
+
+const file = {
+  fieldsets: [
+    {
+      fields: ['file'],
+      id: 'default',
+      title: 'Default',
+    },
+  ],
+  properties: {
+    file: {
+      description: '',
+      title: 'File',
+      type: 'object',
+      widget: 'file',
+      factory: 'File',
+    },
+  },
+  required: ['file'],
+};
+
+export default {
+  purge: true,
+  types: [
+    {
+      id: 'Site',
       title: 'Site',
       addable: false,
-      schema: merge(dublinCore, layout, dates),
+      schema: mergeSchemas(dublinCore, layout, dates),
       workflow: 'simple_publication_workflow',
     },
     {
-      id: 'folder',
+      id: 'Folder',
       title: 'Folder',
       addable: true,
-      schema: merge(dublinCore, layout, dates),
+      schema: mergeSchemas(dublinCore, layout, dates),
       workflow: 'simple_publication_workflow',
     },
     {
-      id: 'page',
+      id: 'Page',
       title: 'Page',
       addable: true,
-      schema: merge(dublinCore, layout, dates),
+      schema: mergeSchemas(dublinCore, layout, dates),
       workflow: 'simple_publication_workflow',
     },
-  ]);
+    {
+      id: 'Image',
+      title: 'Image',
+      addable: true,
+      schema: mergeSchemas(dublinCore, dates, image),
+      workflow: 'simple_publication_workflow',
+    },
+    {
+      id: 'File',
+      title: 'File',
+      addable: true,
+      schema: mergeSchemas(dublinCore, dates, file),
+      workflow: 'simple_publication_workflow',
+    },
+  ],
 };

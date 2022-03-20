@@ -175,7 +175,9 @@ export default [
           { id: req.body['@type'] },
           { withRelated: ['workflow'] },
         );
-        let id = req.body.id || slugify(req.body.title, { lower: true });
+        let id =
+          req.body.id ||
+          slugify(req.body.title, { lower: true, remove: /[*+~.()'"!:@]/g });
         const created = moment.utc().format();
         const items = await DocumentRepository.findAll({
           parent: req.document.get('uuid'),

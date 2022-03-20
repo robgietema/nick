@@ -1,4 +1,4 @@
-exports.up = async (knex) => {
+export const up = async (knex) => {
   await knex.schema.createTable('group', (table) => {
     table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('id').unique().notNull();
@@ -6,24 +6,24 @@ exports.up = async (knex) => {
     table.string('description');
     table.string('email');
   });
-  await knex.schema.createTable('user_group', (table) => {
+  await knex.schema.createTable('group_role', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
-    table
-      .uuid('user')
-      .notNull()
-      .references('user.uuid')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
     table
       .uuid('group')
       .notNull()
       .references('group.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    table
+      .string('role')
+      .notNull()
+      .references('role.id')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
   });
 };
 
-exports.down = async (knex) => {
-  await knex.schema.dropTable('user_group');
+export const down = async (knex) => {
+  await knex.schema.dropTable('group_role');
   await knex.schema.dropTable('group');
 };

@@ -1,0 +1,23 @@
+{
+  "purge": true,
+  "permissions": [
+    {
+      "id": "View"
+    },
+    {
+      "id": "Add"
+    },
+    {
+      "id": "Modify"
+    },
+    {
+      "id": "Review"
+    },
+    {
+      "id": "Submit"
+    },
+    {
+      "id": "Manage Users"
+    }
+  ]
+}

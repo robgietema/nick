@@ -1,4 +1,4 @@
-exports.up = (knex) =>
+export const up = (knex) =>
   knex.schema.createTable('type', (table) => {
     table.string('id').primary().notNull();
     table.string('title').notNull();
@@ -12,4 +12,4 @@ exports.up = (knex) =>
       .onDelete('CASCADE');
   });
 
-exports.down = (knex) => knex.schema.dropTable('type');
+export const down = (knex) => knex.schema.dropTable('type');

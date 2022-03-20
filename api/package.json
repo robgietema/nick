@@ -26,10 +26,11 @@
     "start": "nodemon --exec babel-node src/server.js",
     "test": "jest --runInBand",
     "coverage": "jest --coverage --runInBand",
-    "migrate": "knex migrate:latest",
-    "seed": "knex seed:run",
-    "rollback": "knex migrate:rollback --all",
-    "reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run"
+    "knex": "babel-node node_modules/.bin/knex",
+    "migrate": "yarn knex migrate:latest",
+    "seed": "yarn knex seed:run",
+    "rollback": "yarn knex migrate:rollback --all",
+    "reset": "yarn knex migrate:rollback --all && yarn knex migrate:latest && yarn knex seed:run"
   },
   "prettier": {
     "trailingComma": "all",
@@ -47,6 +48,7 @@
     "autobind-decorator": "2.4.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "27.5.1",
+    "babel-plugin-add-module-exports": "1.0.4",
     "bcrypt": "5.0.1",
     "bcrypt-promise": "2.0.0",
     "body-parser": "1.19.2",
@@ -60,6 +62,7 @@
     "moment": "2.29.1",
     "nodemon": "2.0.15",
     "pg": "8.7.3",
+    "pg-large-object": "2.0.0",
     "prettier": "2.5.1",
     "slugify": "1.6.5",
     "supertest": "6.2.2",

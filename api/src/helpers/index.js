@@ -9,3 +9,4 @@ export BaseRepository from './base-repository/base-repository';
 export { getAdminHeader, requirePermission } from './auth/auth';
 export { formatSize } from './format/format';
 export { lockExpired } from './lock/lock';
+export { mergeSchemas } from './schema/schema';

@@ -1,4 +1,4 @@
-exports.up = (knex) =>
+export const up = (knex) =>
   knex.schema.createTable('redirect', (table) => {
     table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.uuid('document').notNull();
@@ -6,4 +6,4 @@ exports.up = (knex) =>
     table.string('redirect').notNull();
   });
 
-exports.down = (knex) => knex.schema.dropTable('redirect');
+export const down = (knex) => knex.schema.dropTable('redirect');

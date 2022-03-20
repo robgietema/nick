@@ -27,7 +27,7 @@ import { secret } from './config';
 const app = express();
 
 // Parse JSON
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '64mb' }));
 
 // CORS
 app.use((req, res, next) => {

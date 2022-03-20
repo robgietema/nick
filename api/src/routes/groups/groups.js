@@ -3,7 +3,7 @@
  * @module routes/groups/groups
  */
 
-import { map, keys } from 'lodash';
+import { map } from 'lodash';
 import { GroupRepository, GroupRoleRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
 
