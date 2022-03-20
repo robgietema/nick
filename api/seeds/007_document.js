@@ -1,7 +1,8 @@
 import { dropRight, last, map, omit } from 'lodash';
 import { promises as fs } from 'fs';
-import { mapSync } from '../src/helpers';
 import moment from 'moment';
+
+import { mapSync } from '../src/helpers';
 
 const documentFields = [
   'uuid',
@@ -97,7 +98,6 @@ export const seed = async (knex) => {
       await knex('version').insert(versions);
     });
   } catch (e) {
-    console.log(e);
     // No data to be imported
   }
 };
