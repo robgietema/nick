@@ -9,8 +9,8 @@ import {
   UserRepository,
   UserRoleRepository,
   UserGroupRepository,
-  GroupRepository,
 } from '../../repositories';
+import config from '../../config';
 import { requirePermission } from '../../helpers';
 
 /**
@@ -154,19 +154,27 @@ export default [
     view: '/@users/:id',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        try {
-          await UserRepository.delete({ id: req.params.id });
-        } catch (e) {
-          return res.status(500).send({
+        if (config.systemUsers.indexOf(req.params.id) === -1) {
+          try {
+            await UserRepository.delete({ id: req.params.id });
+          } catch (e) {
+            return res.status(500).send({
+              error: {
+                message:
+                  'Unable to remove user, most likely this user is still owner of documents.',
+                type: 'Delete User',
+              },
+            });
+          }
+          res.status(204).send();
+        } else {
+          res.status(401).send({
             error: {
-              message:
-                'Unable to remove user, most likely this user is still owner of documents.',
-              type: 'Delete User',
+              message: "You can't delete system groups.",
+              type: 'System group',
             },
           });
         }
-
-        res.status(204).send();
       }),
   },
 ];

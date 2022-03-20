@@ -7,6 +7,6 @@ export default {
     password: 'isometric',
   },
   secret: 'secret',
-  internalUsers: ['admin', 'anonymous'],
-  internalGroups: ['Authenticated', 'Owner'],
+  systemUsers: ['admin', 'anonymous'],
+  systemGroups: ['Authenticated', 'Owner'],
 };

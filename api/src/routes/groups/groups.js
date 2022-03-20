@@ -6,6 +6,7 @@
 import { map } from 'lodash';
 import { GroupRepository, GroupRoleRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
+import config from '../../config';
 
 /**
  * Convert group to json.
@@ -133,8 +134,17 @@ export default [
     view: '/@groups/:id',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        await GroupRepository.delete({ id: req.params.id });
-        res.status(204).send();
+        if (config.systemGroups.indexOf(req.params.id) === -1) {
+          await GroupRepository.delete({ id: req.params.id });
+          res.status(204).send();
+        } else {
+          res.status(401).send({
+            error: {
+              message: "You can't delete system groups.",
+              type: 'System group',
+            },
+          });
+        }
       }),
   },
 ];
