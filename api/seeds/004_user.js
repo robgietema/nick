@@ -10,16 +10,28 @@ export const seed = async (knex) => {
     }
     await Promise.all(
       map(profile.users, async (user) => {
+        // Insert user
         await knex('user').insert({
           ...omit(user, ['password', 'roles', 'groups']),
           password: await bcrypt.hash('admin', 10),
         });
+
+        // Insert roles
         const userRoles = map(user.roles, (role) => ({
           user: user.id,
           role,
         }));
         if (userRoles.length > 0) {
           await knex('user_role').insert(userRoles);
+        }
+
+        // Insert groups
+        const userGroups = map(user.groups, (group) => ({
+          user: user.id,
+          group,
+        }));
+        if (userGroups.length > 0) {
+          await knex('user_group').insert(userGroups);
         }
       }),
     );
