@@ -1,0 +1,24 @@
+{
+  "uuid": "7ba6ac12-2a02-40be-a76f-9067ce98ed47",
+  "parent": "4ba6ac12-2a02-40be-a76f-9067ce98ed47",
+  "id": "users",
+  "path": "/users",
+  "created": "2022-02-27T16:00:00+00:00",
+  "modified": "2022-02-27T16:00:00+00:00",
+  "type": "Folder",
+  "position_in_parent": 2,
+  "lock": { "locked": false, "stealable": true },
+  "workflow_state": "published",
+  "owner": "595efb73-cbdd-4bef-935a-a56f70a20854",
+  "json": {
+    "title": "Users",
+    "blocks": {
+      "79ba8858-1dd3-4719-b731-5951e32fbf79": {
+        "@type": "title"
+      }
+    },
+    "blocks_layout": {
+      "items": ["79ba8858-1dd3-4719-b731-5951e32fbf79"]
+    }
+  }
+}

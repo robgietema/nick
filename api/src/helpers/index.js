@@ -10,3 +10,4 @@ export { getAdminHeader, requirePermission } from './auth/auth';
 export { formatSize } from './format/format';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas } from './schema/schema';
+export { mapSync } from './utils/utils';

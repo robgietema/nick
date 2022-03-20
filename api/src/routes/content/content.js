@@ -12,7 +12,7 @@ import {
   TypeRepository,
   VersionRepository,
 } from '../../repositories';
-import { lockExpired, requirePermission } from '../../helpers';
+import { lockExpired, mapSync, requirePermission } from '../../helpers';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
 
@@ -65,14 +65,11 @@ export default [
         });
 
         let items = [];
-        let source;
         let parent;
         let path;
 
         // Loop through source objects to be moved
-        for (let i = 0; i < req.body.source.length; i++) {
-          source = req.body.source[i];
-
+        mapSync(req.body.source, async (source) => {
           // Get item to be moved
           const document = await DocumentRepository.findOne({ path: source });
 
@@ -104,7 +101,7 @@ export default [
               target: newPath,
             });
           }
-        }
+        });
         await DocumentRepository.fixOrder(req.document.get('uuid'));
 
         res.send(
