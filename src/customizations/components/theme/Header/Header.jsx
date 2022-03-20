@@ -51,9 +51,7 @@ class Header extends Component {
         <Container>
           <div className="header">
             <div className="logo-nav-wrapper">
-              <div className="logo">
-                <Breadcrumbs pathname={this.props.pathname} />
-              </div>
+              <Breadcrumbs pathname={this.props.pathname} />
             </div>
             <div className="tools-search-wrapper">
               <LanguageSelector />

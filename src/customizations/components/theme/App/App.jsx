@@ -125,7 +125,7 @@ class App extends Component {
 
     return (
       <PluggablesProvider>
-        {this.state.isClient && (
+        {this.state.isClient && false && (
           <Portal node={document.getElementById('navbar')}>
             <Navigation pathname={this.props.pathname} />
           </Portal>
