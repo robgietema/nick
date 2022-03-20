@@ -215,10 +215,16 @@ map(routes, (route) => {
       route.handler(req, res);
     } catch (e) {
       try {
-        const redirect = await RedirectRepository.findOne({
-          path: req.params[0],
-        });
-        res.redirect(301, `${redirect.get('redirect')}${route.view}`);
+        const redirect = await RedirectRepository.findOne(
+          {
+            path: req.params[0],
+          },
+          { withRelated: ['document'] },
+        );
+        res.redirect(
+          301,
+          `${redirect.related('document').get('path')}${route.view}`,
+        );
       } catch (e) {
         res.status(404).send({ error: 'Not Found' });
       }

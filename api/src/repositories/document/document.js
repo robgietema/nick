@@ -34,24 +34,12 @@ export class DocumentRepository extends BaseRepository {
     const documents = await this.findAll({ path: ['~', `^${oldPath}`] });
     await Promise.all(
       documents.map(async (document) => {
-        const redirect =
-          oldPath === document.get('path')
-            ? newPath
-            : document
-                .get('path')
-                .replace(RegExp(`^${oldPath}(.*)$`), `${newPath}$1`);
         await RedirectRepository.create(
           {
             document: document.get('uuid'),
             path: document.get('path'),
-            redirect,
           },
           { ...options, method: 'insert' },
-        );
-        await bookshelf.knex.raw(
-          `update redirect set redirect = '${redirect}' where document = '${document.get(
-            'uuid',
-          )}'`,
         );
       }),
     );
