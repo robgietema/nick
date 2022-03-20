@@ -9,7 +9,7 @@ describe('Content', () => {
   afterEach(() =>
     DocumentRepository.delete(
       {
-        parent: '5ba6ac12-2a02-40be-a76f-9067ce98ed47',
+        id: 'my-news-item',
       },
       {
         require: false,
@@ -73,22 +73,14 @@ describe('Content', () => {
         ]),
       ));
   it('should update a content object', async () => {
-    await DocumentRepository.create(
-      {
-        parent: '5ba6ac12-2a02-40be-a76f-9067ce98ed47',
-        id: 'my-news-item',
-        type: 'Page',
-        path: '/news/my-news-item',
-        position_in_parent: 0,
-        workflow_state: 'private',
-        json: {
-          title: 'My News Item',
-          description: 'News Description',
-        },
-        lock: { locked: false, stealable: true },
-      },
-      { method: 'insert' },
-    );
+    await request(app)
+      .post('/news')
+      .set('Authorization', getAdminHeader())
+      .send({
+        '@type': 'Page',
+        title: 'My News Item',
+        description: 'News Description',
+      });
     return request(app)
       .patch('/news/my-news-item')
       .set('Authorization', getAdminHeader())
@@ -98,22 +90,14 @@ describe('Content', () => {
       .expect(204);
   });
   it('should delete a content object', async () => {
-    await DocumentRepository.create(
-      {
-        parent: '5ba6ac12-2a02-40be-a76f-9067ce98ed47',
-        id: 'my-news-item',
-        type: 'Page',
-        path: '/news/my-news-item',
-        position_in_parent: 0,
-        workflow_state: 'private',
-        json: {
-          title: 'My News Item',
-          description: 'News Description',
-        },
-        lock: { locked: false, stealable: true },
-      },
-      { method: 'insert' },
-    );
+    await request(app)
+      .post('/news')
+      .set('Authorization', getAdminHeader())
+      .send({
+        '@type': 'Page',
+        title: 'My News Item',
+        description: 'News Description',
+      });
     return request(app)
       .delete('/news/my-news-item')
       .set('Authorization', getAdminHeader())

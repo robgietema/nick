@@ -15,10 +15,7 @@ describe('Search', () => {
       .expect((res) =>
         Promise.all([
           expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/@search/),
-          expect(res.body.items.length).toBe(4),
-          expect(res.body.items[0]['@id']).toMatch(/http:\/\/127.0.0.1:.*\//),
-          expect(res.body.items[0]['@type']).toBe('Site'),
-          expect(res.body.items[0].title).toBe('Welcome to Volto'),
+          expect(res.body.items.length).toBe(5),
         ]),
       ));
   it('should find the news folder', () =>
@@ -43,7 +40,7 @@ describe('Search', () => {
       .set('Authorization', getAdminHeader())
       .expect(200)
       .expect((res) =>
-        Promise.all([expect(res.body.items[0].title).toBe('Events')]),
+        Promise.all([expect(res.body.items[0].title).toBe('Event 1')]),
       ));
   it('should be able to sort results on date', () =>
     request(app)
@@ -58,9 +55,7 @@ describe('Search', () => {
       .get('/@search?sort_on=nonexisting')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect((res) =>
-        Promise.all([expect(res.body.items[0].title).toBe('Welcome to Volto')]),
-      ));
+      .expect((res) => Promise.all([expect(res.body.items.length).toBe(5)])));
   it('should be able to sort results reverse', () =>
     request(app)
       .get('/@search?sort_on=sortable_title&sort_order=descending')
@@ -86,17 +81,17 @@ describe('Search', () => {
       .get('/@search?b_size=3&b_start=2')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(2)])));
+      .expect((res) => Promise.all([expect(res.body.items.length).toBe(3)])));
   it('should ignore unknown parameters', () =>
     request(app)
       .get('/@search?nonexisting')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(4)])));
+      .expect((res) => Promise.all([expect(res.body.items.length).toBe(5)])));
   it('should be able to do a querystring search', () =>
     request(app)
       .post('/@querystring-search')
       .set('Authorization', getAdminHeader())
       .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(4)])));
+      .expect((res) => Promise.all([expect(res.body.items.length).toBe(5)])));
 });

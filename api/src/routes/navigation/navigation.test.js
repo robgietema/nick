@@ -19,11 +19,11 @@ describe('Navigation', () => {
           ),
           expect(res.body.items.length).toBe(3),
           expect(res.body.items[0]['@id']).toMatch(
-            /http:\/\/127.0.0.1:.*\/news/,
+            /http:\/\/127.0.0.1:.*\/events/,
           ),
           expect(res.body.items[0]['@type']).toBe('Folder'),
-          expect(res.body.items[0].title).toBe('News'),
-          expect(res.body.items[0].id).toBe('news'),
+          expect(res.body.items[0].title).toBe('Events'),
+          expect(res.body.items[0].id).toBe('events'),
         ]),
       ));
 });

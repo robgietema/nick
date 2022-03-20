@@ -1,7 +1,6 @@
 {
-  "type": "Site",
-  "title": "Welcome to Volto",
-  "description": "Congratulations! You have successfully installed Volto.",
+  "type": "Page",
+  "title": "Event 1",
   "owner": "admin",
   "workflow_state": "published",
   "blocks": {
@@ -14,7 +13,7 @@
         "blocks": [
           {
             "key": "9f35d",
-            "text": "Congratulations! You have succesfully installed Volto.",
+            "text": "This is the first event.",
             "type": "unstyled",
             "depth": 0,
             "inlineStyleRanges": [],
