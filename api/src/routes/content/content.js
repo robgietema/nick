@@ -12,7 +12,13 @@ import {
   TypeRepository,
   VersionRepository,
 } from '../../repositories';
-import { lockExpired, mapSync, requirePermission } from '../../helpers';
+import {
+  lockExpired,
+  mapSync,
+  readFile,
+  requirePermission,
+  writeFile,
+} from '../../helpers';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
 
@@ -23,7 +29,26 @@ const omitProperties = ['@type', 'id', 'changeNote'];
  * @param {Object} req Request object.
  * @returns {Object} Json representation of the document.
  */
-function documentToJson(document, req) {
+async function documentToJson(document, req) {
+  // Get file fields
+  const type = await TypeRepository.findOne({ id: document.get('type') });
+  const fileFields = type.getFactoryFields('File');
+
+  // Loop through file fields
+  const json = document.get('json');
+  await mapSync(fileFields, async (field) => {
+    // Set data
+    json[field] = {
+      'content-type': json[field]['content-type'],
+      download: `${req.protocol || 'http'}://${req.headers.host}${document.get(
+        'path',
+      )}/@@download/file`,
+      filename: json[field].filename,
+      size: json[field].size,
+    };
+  });
+
+  // Return data
   return {
     ...document.get('json'),
     '@id': `${req.protocol || 'http'}://${req.headers.host}${document.get(
@@ -135,13 +160,31 @@ export default [
         });
         res.send({
           ...{
-            ...documentToJson(document, req),
+            ...(await documentToJson(document, req)),
             ...version.get('json'),
             id: version.get('id'),
             modified: version.get('created'),
           },
-          items: items.map((item) => documentToJson(item, req)),
+          items: await Promise.all(
+            items.map(async (item) => await documentToJson(item, req)),
+          ),
         });
+      }),
+  },
+  {
+    op: 'get',
+    view: '/@@download/:field',
+    handler: (req, res) =>
+      requirePermission('View', req, res, async () => {
+        const field = req.document.get('json')[req.params.field];
+        res.setHeader('Content-Type', field['content-type']);
+        res.setHeader(
+          'Content-Disposition',
+          `attachment; filename="${field.filename}"`,
+        );
+        const buffer = readFile(field.uuid);
+        res.write(buffer, 'binary');
+        res.end(undefined, 'binary');
       }),
   },
   {
@@ -158,8 +201,10 @@ export default [
           'position_in_parent',
         );
         res.send({
-          ...documentToJson(document, req),
-          items: items.map((item) => documentToJson(item, req)),
+          ...(await documentToJson(document, req)),
+          items: await Promise.all(
+            items.map(async (item) => documentToJson(item, req)),
+          ),
         });
       }),
   },
@@ -168,21 +213,55 @@ export default [
     view: '',
     handler: (req, res) =>
       requirePermission('Add', req, res, async () => {
+        // Get content type date
         const type = await TypeRepository.findOne(
           { id: req.body['@type'] },
           { withRelated: ['workflow'] },
         );
-        let id =
-          req.body.id ||
-          slugify(req.body.title, { lower: true, remove: /[*+~.()'"!:@]/g });
+
+        // Set creation time
         const created = moment.utc().format();
+
+        // Get child nodes
         const items = await DocumentRepository.findAll({
           parent: req.document.get('uuid'),
         });
+
+        // Set unique id
+        let id =
+          req.body.id ||
+          slugify(req.body.title, { lower: true, remove: /[*+~.()'"!:@]/g });
         id = uniqueId(
           id,
           items.map((item) => item.get('id')),
         );
+
+        // Get json data
+        const properties = type.get('schema').properties;
+        const json = {
+          ...omit(pick(req.body, keys(properties)), omitProperties),
+        };
+
+        // Get file fields
+        const fileFields = type.getFactoryFields('File');
+
+        await mapSync(fileFields, async (field) => {
+          // Create filestream
+          const { uuid, size } = await writeFile(
+            json[field].data,
+            json[field].encoding,
+          );
+
+          // Set data
+          json[field] = {
+            'content-type': json[field]['content-type'],
+            uuid,
+            filename: json[field].filename,
+            size,
+          };
+        });
+
+        // Insert document in database
         const newDocument = await DocumentRepository.create(
           {
             parent: req.document.get('uuid'),
@@ -198,16 +277,15 @@ export default [
             lock: { locked: false, stealable: true },
             workflow_state: type.related('workflow').get('json').initial_state,
             owner: req.user.get('id'),
-            json: {
-              ...omit(
-                pick(req.body, keys(type.get('schema').properties)),
-                omitProperties,
-              ),
-            },
+            json,
           },
           { method: 'insert' },
         );
+
+        // Fetch inserted data
         const document = await newDocument.fetch();
+
+        // Create initial version
         await VersionRepository.create({
           document: document.get('uuid'),
           id,
@@ -219,7 +297,9 @@ export default [
             changeNote: req.body.changeNote || 'Initial version',
           },
         });
-        res.status(201).send(documentToJson(document, req));
+
+        // Send data back to client
+        res.status(201).send(await documentToJson(document, req));
       }),
   },
   {

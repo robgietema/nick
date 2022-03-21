@@ -6,7 +6,7 @@
 import { map } from 'lodash';
 import { GroupRepository, GroupRoleRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
-import config from '../../config';
+import config from '../../../config';
 
 /**
  * Convert group to json.

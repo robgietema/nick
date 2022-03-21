@@ -21,7 +21,7 @@ import {
   UserRoleDocumentRepository,
   UserRoleRepository,
 } from './repositories';
-import { secret } from './config';
+import { secret } from '../config';
 
 const app = express();
 

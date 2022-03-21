@@ -6,6 +6,8 @@ export default {
     user: 'isometric',
     password: 'isometric',
   },
+  blobsDir: `${__dirname}/blobs`,
+  port: 8000,
   secret: 'secret',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Authenticated', 'Owner'],

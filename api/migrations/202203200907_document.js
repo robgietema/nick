@@ -1,3 +1,7 @@
+import { readdirSync, rmSync } from 'fs';
+
+import config from '../config';
+
 export const up = async (knex) => {
   await knex.schema.createTable('document', (table) => {
     table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
@@ -84,8 +88,7 @@ export const down = async (knex) => {
   await knex.schema.dropTable('user_role_document');
   await knex.schema.dropTable('version');
   await knex.schema.dropTable('document');
-  await knex.raw('SELECT lo_unlink(l.oid) FROM pg_largeobject_metadata l;');
-  await knex.raw('COMMIT;');
-  await knex.raw('VACUUM FULL ANALYZE pg_largeobject;');
-  await knex.raw('COMMIT;');
+  readdirSync(config.blobsDir).forEach((file) =>
+    rmSync(`${config.blobsDir}/${file}`),
+  );
 };

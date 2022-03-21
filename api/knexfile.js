@@ -1,5 +1,5 @@
 var path = require('path');
-var config = require('./src/config');
+var config = require('./config');
 
 const knexSettings = {
   client: 'pg',

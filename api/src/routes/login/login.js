@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
 
 import { UserRepository } from '../../repositories';
-import { secret } from '../../config.js';
+import { secret } from '../../../config.js';
 
 export default [
   {

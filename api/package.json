@@ -62,7 +62,6 @@
     "moment": "2.29.1",
     "nodemon": "2.0.15",
     "pg": "8.7.3",
-    "pg-large-object": "2.0.0",
     "prettier": "2.5.1",
     "slugify": "1.6.5",
     "supertest": "6.2.2",

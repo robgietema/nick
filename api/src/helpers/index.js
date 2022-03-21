@@ -4,10 +4,11 @@
  * @example import { BaseModel } from './helpers';
  */
 
+export { getAdminHeader, requirePermission } from './auth/auth';
 export BaseModel from './base-model/base-model';
 export BaseRepository from './base-repository/base-repository';
-export { getAdminHeader, requirePermission } from './auth/auth';
 export { formatSize } from './format/format';
+export { readFile, writeFile } from './fs/fs';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas } from './schema/schema';
 export { mapSync } from './utils/utils';

@@ -41,6 +41,7 @@ lighthouse-report.html
 /api/share/python-wheels/
 /api/var/
 /api/venv/
+/api/blobs/
 /bin/
 /lib/
 .Python

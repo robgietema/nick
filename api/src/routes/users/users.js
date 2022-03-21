@@ -10,7 +10,7 @@ import {
   UserRoleRepository,
   UserGroupRepository,
 } from '../../repositories';
-import config from '../../config';
+import config from '../../../config';
 import { requirePermission } from '../../helpers';
 
 /**
