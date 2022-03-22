@@ -25,6 +25,43 @@ import {
 const omitProperties = ['@type', 'id', 'changeNote'];
 
 /**
+ * Handle file uploads and updates
+ * @method handleFiles
+ * @param {Object} json Current json object.
+ * @param {Object} type Type object.
+ * @returns {Object} Fields with uuid info.
+ */
+function handleFiles(json, type) {
+  // Make a copy of the json data
+  const fields = { ...json };
+
+  // Get file fields
+  const fileFields = type.getFactoryFields('File');
+
+  mapSync(fileFields, (field) => {
+    // Check if new data is uploaded
+    if ('data' in fields[field]) {
+      // Create filestream
+      const { uuid, size } = writeFile(
+        fields[field].data,
+        fields[field].encoding,
+      );
+
+      // Set data
+      fields[field] = {
+        'content-type': fields[field]['content-type'],
+        uuid,
+        filename: fields[field].filename,
+        size,
+      };
+    }
+  });
+
+  // Return new field data
+  return fields;
+}
+
+/**
  * Convert document to json.
  * @method documentToJson
  * @param {Object} document Current document object.
@@ -240,28 +277,14 @@ export default [
 
         // Get json data
         const properties = type.get('schema').properties;
-        const json = {
-          ...omit(pick(req.body, keys(properties)), omitProperties),
-        };
 
-        // Get file fields
-        const fileFields = type.getFactoryFields('File');
-
-        mapSync(fileFields, (field) => {
-          // Create filestream
-          const { uuid, size } = writeFile(
-            json[field].data,
-            json[field].encoding,
-          );
-
-          // Set data
-          json[field] = {
-            'content-type': json[field]['content-type'],
-            uuid,
-            filename: json[field].filename,
-            size,
-          };
-        });
+        // Handle file uploads
+        const json = handleFiles(
+          {
+            ...omit(pick(req.body, keys(properties)), omitProperties),
+          },
+          type,
+        );
 
         // Insert document in database
         const newDocument = await DocumentRepository.create(
@@ -378,36 +401,17 @@ export default [
           id: req.document.get('type'),
         });
 
-        // Get json data
-        const json = {
-          ...req.document.get('json'),
-          ...omit(
-            pick(req.body, keys(type.get('schema').properties)),
-            omitProperties,
-          ),
-        };
-
-        // Get file fields
-        const fileFields = type.getFactoryFields('File');
-
-        mapSync(fileFields, (field) => {
-          // Check if new data is uploaded
-          if ('data' in json[field]) {
-            // Create filestream
-            const { uuid, size } = writeFile(
-              json[field].data,
-              json[field].encoding,
-            );
-
-            // Set data
-            json[field] = {
-              'content-type': json[field]['content-type'],
-              uuid,
-              filename: json[field].filename,
-              size,
-            };
-          }
-        });
+        // Handle file uploads
+        const json = handleFiles(
+          {
+            ...req.document.get('json'),
+            ...omit(
+              pick(req.body, keys(type.get('schema').properties)),
+              omitProperties,
+            ),
+          },
+          type,
+        );
 
         // Create new version
         const modified = moment.utc().format();
