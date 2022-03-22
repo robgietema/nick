@@ -2,7 +2,7 @@ import { dropRight, last, map, omit } from 'lodash';
 import { promises as fs } from 'fs';
 import moment from 'moment';
 
-import { mapSync } from '../src/helpers';
+import { mapAsync } from '../src/helpers';
 
 const documentFields = [
   'uuid',
@@ -30,7 +30,7 @@ export const seed = async (knex) => {
       await fs.readdir(`${__dirname}/../profiles/documents`),
       (file) => dropRight(file.split('.')).join('.'),
     ).sort();
-    await mapSync(files, async (file) => {
+    await mapAsync(files, async (file) => {
       const document = require(`../profiles/documents/${file}`);
       const slugs = file.split('.');
       const id = last(slugs) === '_root' ? 'root' : last(slugs);
@@ -100,7 +100,7 @@ export const seed = async (knex) => {
 
       // Insert sharing data for users
       const sharingUsers = document.sharing?.users || [];
-      mapSync(sharingUsers, async (user) => {
+      await mapAsync(sharingUsers, async (user) => {
         await knex('user_role_document').insert(
           map(user.roles, (role) => ({ user: user.id, role, document: uuid })),
         );
@@ -108,7 +108,7 @@ export const seed = async (knex) => {
 
       // Insert sharing data for groups
       const sharingGroups = document.sharing?.groups || [];
-      mapSync(sharingGroups, async (group) => {
+      await mapAsync(sharingGroups, async (group) => {
         await knex('group_role_document').insert(
           map(group.roles, (role) => ({
             group: group.id,

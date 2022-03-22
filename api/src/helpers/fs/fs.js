@@ -3,7 +3,7 @@
  * @module helpers/fs/fs
  */
 
-import fs from 'fs';
+import { rmSync, readFileSync, writeFileSync } from 'fs';
 import { v4 as uuid } from 'uuid';
 
 import config from '../../../config';
@@ -15,7 +15,7 @@ import config from '../../../config';
  * @returns {Buffer} File buffer.
  */
 export function readFile(uuid) {
-  return fs.readFileSync(`${config.blobsDir}/${uuid}`);
+  return readFileSync(`${config.blobsDir}/${uuid}`);
 }
 
 /**
@@ -25,16 +25,26 @@ export function readFile(uuid) {
  * @param {String} encoding Encoding of the file data
  * @returns {Promise} A Promise that resolves when the file has been written.
  */
-export async function writeFile(data, encoding) {
+export function writeFile(data, encoding) {
   const buffer = Buffer.from(data, encoding);
   const id = uuid();
 
   // Write file to disk
-  fs.writeFileSync(`${config.blobsDir}/${id}`, buffer);
+  writeFileSync(`${config.blobsDir}/${id}`, buffer);
 
   // Return data
   return {
     uuid: id,
     size: Buffer.byteLength(buffer),
   };
+}
+
+/**
+ * Remove file
+ * @method removeFile
+ * @param {string} uuid Uuid of the file to remove.
+ * @returns {undefined} File buffer.
+ */
+export function removeFile(uuid) {
+  rmSync(`${config.blobsDir}/${uuid}`);
 }

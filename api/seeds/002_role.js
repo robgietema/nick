@@ -1,6 +1,6 @@
 import { map, omit } from 'lodash';
 
-import { mapSync } from '../src/helpers';
+import { mapAsync } from '../src/helpers';
 
 export const seed = async (knex) => {
   try {
@@ -9,7 +9,7 @@ export const seed = async (knex) => {
       await knex('role').del();
       await knex('role_permission').del();
     }
-    await mapSync(profile.roles, async (role, index) => {
+    await mapAsync(profile.roles, async (role, index) => {
       await knex('role').insert({
         ...omit(role, ['permissions']),
         order: role.order || index,

@@ -5,7 +5,7 @@
 
 import slugify from 'slugify';
 import moment from 'moment';
-import { dropRight, keys, omit, pick } from 'lodash';
+import { dropRight, flatten, keys, omit, pick, uniq } from 'lodash';
 
 import {
   DocumentRepository,
@@ -14,8 +14,10 @@ import {
 } from '../../repositories';
 import {
   lockExpired,
+  mapAsync,
   mapSync,
   readFile,
+  removeFile,
   requirePermission,
   writeFile,
 } from '../../helpers';
@@ -36,7 +38,7 @@ async function documentToJson(document, req) {
 
   // Loop through file fields
   const json = document.get('json');
-  await mapSync(fileFields, async (field) => {
+  mapSync(fileFields, (field) => {
     // Set data
     json[field] = {
       'content-type': json[field]['content-type'],
@@ -94,7 +96,7 @@ export default [
         let path;
 
         // Loop through source objects to be moved
-        mapSync(req.body.source, async (source) => {
+        await mapAsync(req.body.source, async (source) => {
           // Get item to be moved
           const document = await DocumentRepository.findOne({ path: source });
 
@@ -148,7 +150,7 @@ export default [
       requirePermission('View', req, res, async () => {
         let document = req.document;
         if (document.get('lock').locked && lockExpired(document)) {
-          document = await DocumentRepository.deleteLock();
+          document = await DocumentRepository.deleteLock(req.document);
         }
         const items = await DocumentRepository.findAll(
           { parent: document.get('uuid') },
@@ -194,7 +196,7 @@ export default [
       requirePermission('View', req, res, async () => {
         let document = req.document;
         if (document.get('lock').locked && lockExpired(document)) {
-          document = await DocumentRepository.deleteLock();
+          document = await DocumentRepository.deleteLock(req.document);
         }
         const items = await DocumentRepository.findAll(
           { parent: document.get('uuid') },
@@ -245,9 +247,9 @@ export default [
         // Get file fields
         const fileFields = type.getFactoryFields('File');
 
-        await mapSync(fileFields, async (field) => {
+        mapSync(fileFields, (field) => {
           // Create filestream
-          const { uuid, size } = await writeFile(
+          const { uuid, size } = writeFile(
             json[field].data,
             json[field].encoding,
           );
@@ -307,7 +309,9 @@ export default [
     view: '',
     handler: (req, res) =>
       requirePermission('Modify', req, res, async () => {
+        // Check if ordering request
         if (typeof req.body?.ordering !== 'undefined') {
+          // Get document to be ordered
           const id = req.body.ordering.obj_id;
           const delta = req.body.ordering.delta;
           const document = await DocumentRepository.findOne({
@@ -315,6 +319,7 @@ export default [
             id,
           });
 
+          // Check ordering method
           if (delta === 'top') {
             await document.save({ position_in_parent: -1 }, { patch: true });
           } else if (delta === 'bottom') {
@@ -326,15 +331,16 @@ export default [
               delta,
             );
           }
+
+          // Fix order
           await DocumentRepository.fixOrder(req.document.get('uuid'));
 
           // Send ok
           return res.status(204).send();
         }
 
-        const lock = req.document.get('lock');
-
         // Check if locked
+        const lock = req.document.get('lock');
         if (
           lock.locked &&
           !lockExpired(req.document) &&
@@ -348,15 +354,13 @@ export default [
             },
           });
         }
-        const type = await TypeRepository.findOne({
-          id: req.document.get('type'),
-        });
+
+        // Get id and path variables of document, parent and siblings
         const id = req.body.id || req.document.get('id');
         const path = req.document.get('path');
         const slugs = path.split('/');
         const parent = dropRight(slugs).join('/');
-        const modified = moment.utc().format();
-        const items = await DocumentRepository.findAll({
+        const siblings = await DocumentRepository.findAll({
           parent: req.document.get('parent'),
         });
 
@@ -365,20 +369,57 @@ export default [
           req.body.id && req.body.id !== req.document.get('id')
             ? uniqueId(
                 id,
-                items.map((item) => item.get('id')),
+                siblings.map((sibling) => sibling.get('id')),
               )
             : id;
         const newPath = path === '/' ? path : `${parent}/${newId}`;
 
+        const type = await TypeRepository.findOne({
+          id: req.document.get('type'),
+        });
+
+        // Get json data
+        const json = {
+          ...req.document.get('json'),
+          ...omit(
+            pick(req.body, keys(type.get('schema').properties)),
+            omitProperties,
+          ),
+        };
+
+        // Get file fields
+        const fileFields = type.getFactoryFields('File');
+
+        mapSync(fileFields, (field) => {
+          // Check if new data is uploaded
+          if ('data' in json[field]) {
+            // Create filestream
+            const { uuid, size } = writeFile(
+              json[field].data,
+              json[field].encoding,
+            );
+
+            // Set data
+            json[field] = {
+              'content-type': json[field]['content-type'],
+              uuid,
+              filename: json[field].filename,
+              size,
+            };
+          }
+        });
+
         // Create new version
+        const modified = moment.utc().format();
+        const version = req.document.get('version') + 1;
         await VersionRepository.create({
           document: req.document.get('uuid'),
           id: newId,
           created: modified,
           actor: req.user.get('id'),
-          version: req.document.get('version'),
+          version,
           json: {
-            ...req.document.get('json'),
+            ...json,
             changeNote: req.body.changeNote,
           },
         });
@@ -393,15 +434,9 @@ export default [
           {
             id: newId,
             path: newPath,
-            version: req.document.get('version') + 1,
+            version,
             modified,
-            json: {
-              ...req.document.get('json'),
-              ...omit(
-                pick(req.body, keys(type.get('schema').properties)),
-                omitProperties,
-              ),
-            },
+            json,
             lock: {
               locked: false,
               stealable: true,
@@ -418,18 +453,42 @@ export default [
     op: 'delete',
     view: '',
     handler: (req, res) =>
-      requirePermission('Modify', req, res, () => {
+      requirePermission('Modify', req, res, async () => {
+        // Get parent id
         const parent = req.document.get('parent');
-        DocumentRepository.transaction(async (transaction) => {
-          await DocumentRepository.delete(
-            { uuid: req.document.get('uuid') },
-            { transacting: transaction },
-          );
-          await DocumentRepository.fixOrder(parent, {
-            transacting: transaction,
-          });
-          res.status(204).send();
+
+        // Get file fields
+        const type = await TypeRepository.findOne({
+          id: req.document.get('type'),
         });
+        const fileFields = type.getFactoryFields('File');
+
+        // If file fields exist
+        if (fileFields.length > 0) {
+          // Find all version
+          const versions = await VersionRepository.findAll({
+            document: req.document.get('uuid'),
+          });
+
+          // Get all file uuids from all versions and all fields
+          const files = uniq(
+            flatten(
+              versions.map((version) =>
+                fileFields.map((field) => version.get('json')[field].uuid),
+              ),
+            ),
+          );
+
+          // Remove files
+          files.map((file) => removeFile(file));
+        }
+
+        // Remove document (versions will be cascaded)
+        await DocumentRepository.delete({ uuid: req.document.get('uuid') });
+
+        // Fix order in parent
+        await DocumentRepository.fixOrder(parent);
+        res.status(204).send();
       }),
   },
 ];
