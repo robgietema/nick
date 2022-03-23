@@ -1,5 +1,5 @@
 {
-  "name": "@robgietema/isometric",
+  "name": "@robgietema/nick",
   "description": "Isometric Backend",
   "maintainers": [
     {
@@ -12,10 +12,10 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git@github.com:robgietema/isometric.git"
+    "url": "git@github.com:robgietema/nick.git"
   },
   "bugs": {
-    "url": "https://github.com/robgietema/isometric/issues",
+    "url": "https://github.com/robgietema/nick/issues",
     "email": "plone-developers@lists.sourceforge.net"
   },
   "homepage": "https://plone.org",

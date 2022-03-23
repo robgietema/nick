@@ -9,12 +9,12 @@
 
 ### Create Database
 
-    $ CREATE DATABASE isometric;
-    $ CREATE USER isometric WITH ENCRYPTED PASSWORD 'isometric';
-    $ GRANT ALL PRIVILEGES ON DATABASE isometric TO isometric;
+    $ CREATE DATABASE nick;
+    $ CREATE USER nick WITH ENCRYPTED PASSWORD 'nick';
+    $ GRANT ALL PRIVILEGES ON DATABASE nick TO nick;
     $ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-Make sure the isometric user has the privileges to run the last command.
+Make sure the nick user has the privileges to run the last command.
 
 ### Install Dependencies
 

@@ -28,6 +28,7 @@ import {
   readFile,
   removeFile,
   requirePermission,
+  uniqueId,
   writeFile,
   writeImage,
 } from '../../helpers';
@@ -180,19 +181,6 @@ async function documentToJson(document, req) {
   };
 }
 
-/**
- * Create a unique id
- * @method uniqueId
- * @param {String} id Base id.
- * @param {Array<String>} ids Array of sibling ids.
- * @param {Number} counter Current iteration.
- * @returns {String} Unique id.
- */
-function uniqueId(id, ids, counter = 0) {
-  const newId = counter === 0 ? id : `${id}-${counter}`;
-  return ids.indexOf(newId) === -1 ? newId : uniqueId(id, ids, counter + 1);
-}
-
 export default [
   {
     op: 'post',
@@ -276,7 +264,7 @@ export default [
         res.send({
           ...{
             ...(await documentToJson(document, req)),
-            ...version.get('json'),
+            ...omit(version.get('json'), ['changeNote']),
             id: version.get('id'),
             modified: version.get('created'),
           },
@@ -309,6 +297,38 @@ export default [
       requirePermission('View', req, res, async () => {
         res.setHeader('Content-Type', `image/${req.params.ext}`);
         const buffer = readFile(req.params.uuid);
+        res.write(buffer, 'binary');
+        res.end(undefined, 'binary');
+      }),
+  },
+  {
+    op: 'get',
+    view: '/@@images/:field',
+    handler: (req, res) =>
+      requirePermission('View', req, res, async () => {
+        const field = req.document.get('json')[req.params.field];
+        res.setHeader('Content-Type', field['content-type']);
+        res.setHeader(
+          'Content-Disposition',
+          `attachment; filename="${field.filename}"`,
+        );
+        const buffer = readFile(field.uuid);
+        res.write(buffer, 'binary');
+        res.end(undefined, 'binary');
+      }),
+  },
+  {
+    op: 'get',
+    view: '/@@images/:field/:scale',
+    handler: (req, res) =>
+      requirePermission('View', req, res, async () => {
+        const field = req.document.get('json')[req.params.field];
+        res.setHeader('Content-Type', field['content-type']);
+        res.setHeader(
+          'Content-Disposition',
+          `attachment; filename="${field.filename}"`,
+        );
+        const buffer = readFile(field.scales[req.params.scale].uuid);
         res.write(buffer, 'binary');
         res.end(undefined, 'binary');
       }),

@@ -18,4 +18,4 @@ export {
 } from './fs/fs';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas } from './schema/schema';
-export { mapAsync, mapSync } from './utils/utils';
+export { mapAsync, mapSync, uniqueId } from './utils/utils';

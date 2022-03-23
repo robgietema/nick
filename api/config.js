@@ -2,9 +2,9 @@ export default {
   connection: {
     port: 5432,
     host: 'localhost',
-    database: 'isometric',
-    user: 'isometric',
-    password: 'isometric',
+    database: 'nick',
+    user: 'nick',
+    password: 'nick',
   },
   blobsDir: `${__dirname}/blobs`,
   port: 8000,

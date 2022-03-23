@@ -27,3 +27,16 @@ export function mapSync(array, callback) {
     callback(array[i], i);
   }
 }
+
+/**
+ * Create a unique id
+ * @method uniqueId
+ * @param {String} id Base id.
+ * @param {Array<String>} ids Array of sibling ids.
+ * @param {Number} counter Current iteration.
+ * @returns {String} Unique id.
+ */
+export function uniqueId(id, ids, counter = 0) {
+  const newId = counter === 0 ? id : `${id}-${counter}`;
+  return ids.indexOf(newId) === -1 ? newId : uniqueId(id, ids, counter + 1);
+}

@@ -3,7 +3,7 @@
  * @module helpers/fs/fs
  */
 
-import { keys } from 'lodash';
+import { keys, max, round } from 'lodash';
 import { rmSync, readFileSync, writeFileSync } from 'fs';
 import { v4 as uuid } from 'uuid';
 import sharp from 'sharp';
@@ -12,27 +12,34 @@ import config from '../../../config';
 import { mapAsync } from '../../helpers';
 
 /**
- * Get width
- * @method getWidth
- * @param {Object} metadata Image metadata
- * @returns {Number} Width of the image.
+ * Get scale dimensions
+ * @method getScaleDimensions
+ * @param {Number} orgWidth Original width
+ * @param {Number} orgHeight Original height
+ * @param {Number} limitWidth Limit width
+ * @param {Number} limitHeight Limit height
+ * @returns {Object} Object with new width and height attributes
  */
-export function getWidth(metadata) {
-  return metadata.orientation && metadata.orientation > 4
-    ? metadata.height
-    : metadata.width;
+export function getScaleDimensions(
+  orgWidth,
+  orgHeight,
+  limitWidth,
+  limitHeight,
+) {
+  const scale = max([orgWidth / limitWidth, orgHeight / limitHeight]);
+  return [round(orgWidth / scale), round(orgHeight / scale)];
 }
 
 /**
- * Get height
- * @method getHeight
+ * Get dimensions
+ * @method getDimensions
  * @param {Object} metadata Image metadata
- * @returns {Number} Height of the image.
+ * @returns {Array} Array of width and height.
  */
-export function getHeight(metadata) {
+export function getDimensions(metadata) {
   return metadata.orientation && metadata.orientation > 4
-    ? metadata.width
-    : metadata.height;
+    ? [metadata.height, metadata.width]
+    : [metadata.width, metadata.height];
 }
 
 /**
@@ -83,20 +90,27 @@ export async function writeImage(data, encoding) {
   // Create image and get metadata
   const image = sharp(buffer);
   const metadata = await image.metadata();
+  const [width, height] = getDimensions(metadata);
   const scales = {};
 
   // Write scales
   await mapAsync(keys(config.imageScales), async (scale) => {
     const scaleId = uuid();
-    const scaleImage = sharp(buffer).resize(...config.imageScales[scale], {
-      fit: 'inside',
-    });
+    const scaleImage = sharp(buffer)
+      .rotate()
+      .resize(...config.imageScales[scale], {
+        fit: 'inside',
+      });
     await scaleImage.toFile(`${config.blobsDir}/${scaleId}`);
-    const scaleMetadata = await scaleImage.metadata();
+    const [scaleWidth, scaleHeight] = getScaleDimensions(
+      width,
+      height,
+      ...config.imageScales[scale],
+    );
     scales[scale] = {
       uuid: scaleId,
-      width: getWidth(scaleMetadata),
-      height: getHeight(scaleMetadata),
+      width: scaleWidth,
+      height: scaleHeight,
     };
   });
 
@@ -104,8 +118,8 @@ export async function writeImage(data, encoding) {
   return {
     uuid: id,
     size: Buffer.byteLength(buffer),
-    width: getWidth(metadata),
-    height: getHeight(metadata),
+    width,
+    height,
     scales,
   };
 }
