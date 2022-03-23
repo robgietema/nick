@@ -5,7 +5,16 @@
 
 import slugify from 'slugify';
 import moment from 'moment';
-import { dropRight, flatten, keys, omit, pick, uniq } from 'lodash';
+import {
+  dropRight,
+  flattenDeep,
+  keys,
+  map,
+  mapValues,
+  omit,
+  pick,
+  uniq,
+} from 'lodash';
 
 import {
   DocumentRepository,
@@ -20,7 +29,9 @@ import {
   removeFile,
   requirePermission,
   writeFile,
+  writeImage,
 } from '../../helpers';
+import config from '../../../config';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
 
@@ -62,6 +73,46 @@ function handleFiles(json, type) {
 }
 
 /**
+ * Handle image uploads and updates
+ * @method handleImages
+ * @param {Object} json Current json object.
+ * @param {Object} type Type object.
+ * @returns {Object} Fields with uuid info.
+ */
+async function handleImages(json, type) {
+  // Make a copy of the json data
+  const fields = { ...json };
+
+  // Get file fields
+  const fileFields = type.getFactoryFields('Image');
+
+  await mapAsync(fileFields, async (field) => {
+    // Check if new data is uploaded
+    if ('data' in fields[field]) {
+      // Create filestream
+      const { uuid, size, width, height, scales } = await writeImage(
+        fields[field].data,
+        fields[field].encoding,
+      );
+
+      // Set data
+      fields[field] = {
+        'content-type': fields[field]['content-type'],
+        uuid,
+        width,
+        height,
+        scales,
+        filename: fields[field].filename,
+        size,
+      };
+    }
+  });
+
+  // Return new field data
+  return fields;
+}
+
+/**
  * Convert document to json.
  * @method documentToJson
  * @param {Object} document Current document object.
@@ -71,19 +122,44 @@ function handleFiles(json, type) {
 async function documentToJson(document, req) {
   // Get file fields
   const type = await TypeRepository.findOne({ id: document.get('type') });
-  const fileFields = type.getFactoryFields('File');
+  const json = document.get('json');
 
   // Loop through file fields
-  const json = document.get('json');
+  const fileFields = type.getFactoryFields('File');
   mapSync(fileFields, (field) => {
     // Set data
     json[field] = {
       'content-type': json[field]['content-type'],
-      download: `${req.protocol || 'http'}://${req.headers.host}${document.get(
+      download: `${req.protocol}://${req.headers.host}${document.get(
         'path',
       )}/@@download/file`,
       filename: json[field].filename,
       size: json[field].size,
+    };
+  });
+
+  // Loop through image fields
+  const imageFields = type.getFactoryFields('Image');
+  mapSync(imageFields, (field) => {
+    // Set data
+    json[field] = {
+      'content-type': json[field]['content-type'],
+      download: `${req.protocol}://${req.headers.host}${document.get(
+        'path',
+      )}/@@images/${json[field].uuid}.${
+        json[field]['content-type'].split('/')[1]
+      }`,
+      filename: json[field].filename,
+      size: json[field].size,
+      width: json[field].width,
+      height: json[field].height,
+      scales: mapValues(json[field].scales, (scale) => ({
+        width: scale.width,
+        height: scale.height,
+        download: `${req.protocol}://${req.headers.host}${document.get(
+          'path',
+        )}/@@images/${scale.uuid}.${json[field]['content-type'].split('/')[1]}`,
+      })),
     };
   });
 
@@ -228,6 +304,17 @@ export default [
   },
   {
     op: 'get',
+    view: '/@@images/:uuid.:ext',
+    handler: (req, res) =>
+      requirePermission('View', req, res, async () => {
+        res.setHeader('Content-Type', `image/${req.params.ext}`);
+        const buffer = readFile(req.params.uuid);
+        res.write(buffer, 'binary');
+        res.end(undefined, 'binary');
+      }),
+  },
+  {
+    op: 'get',
     view: '',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
@@ -279,12 +366,11 @@ export default [
         const properties = type.get('schema').properties;
 
         // Handle file uploads
-        const json = handleFiles(
-          {
-            ...omit(pick(req.body, keys(properties)), omitProperties),
-          },
-          type,
-        );
+        let json = {
+          ...omit(pick(req.body, keys(properties)), omitProperties),
+        };
+        json = handleFiles(json, type);
+        json = await handleImages(json, type);
 
         // Insert document in database
         const newDocument = await DocumentRepository.create(
@@ -402,16 +488,15 @@ export default [
         });
 
         // Handle file uploads
-        const json = handleFiles(
-          {
-            ...req.document.get('json'),
-            ...omit(
-              pick(req.body, keys(type.get('schema').properties)),
-              omitProperties,
-            ),
-          },
-          type,
-        );
+        let json = {
+          ...req.document.get('json'),
+          ...omit(
+            pick(req.body, keys(type.get('schema').properties)),
+            omitProperties,
+          ),
+        };
+        json = handleFiles(json, type);
+        json = await handleImages(json, type);
 
         // Create new version
         const modified = moment.utc().format();
@@ -461,14 +546,15 @@ export default [
         // Get parent id
         const parent = req.document.get('parent');
 
-        // Get file fields
+        // Get file and image fields
         const type = await TypeRepository.findOne({
           id: req.document.get('type'),
         });
         const fileFields = type.getFactoryFields('File');
+        const imageFields = type.getFactoryFields('Image');
 
         // If file fields exist
-        if (fileFields.length > 0) {
+        if (fileFields.length > 0 || imageFields.length > 0) {
           // Find all version
           const versions = await VersionRepository.findAll({
             document: req.document.get('uuid'),
@@ -476,10 +562,17 @@ export default [
 
           // Get all file uuids from all versions and all fields
           const files = uniq(
-            flatten(
-              versions.map((version) =>
-                fileFields.map((field) => version.get('json')[field].uuid),
-              ),
+            flattenDeep(
+              versions.map((version) => [
+                ...fileFields.map((field) => version.get('json')[field].uuid),
+                ...imageFields.map((field) => [
+                  version.get('json')[field].uuid,
+                  ...map(
+                    keys(config.imageScales),
+                    (scale) => version.get('json')[field].scales[scale].uuid,
+                  ),
+                ]),
+              ]),
             ),
           );
 

@@ -63,6 +63,7 @@
     "nodemon": "2.0.15",
     "pg": "8.7.3",
     "prettier": "2.5.1",
+    "sharp": "0.30.3",
     "slugify": "1.6.5",
     "supertest": "6.2.2",
     "supertest-as-promised": "4.0.2",

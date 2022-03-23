@@ -8,7 +8,14 @@ export { getAdminHeader, requirePermission } from './auth/auth';
 export BaseModel from './base-model/base-model';
 export BaseRepository from './base-repository/base-repository';
 export { formatSize } from './format/format';
-export { readFile, removeFile, writeFile } from './fs/fs';
+export {
+  getHeight,
+  getWidth,
+  readFile,
+  removeFile,
+  writeFile,
+  writeImage,
+} from './fs/fs';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas } from './schema/schema';
 export { mapAsync, mapSync } from './utils/utils';

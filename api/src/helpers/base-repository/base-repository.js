@@ -32,13 +32,6 @@ export default class BaseRepository {
    * @returns {Promise<Collection>} A Promise that resolves to a Collection of Models.
    */
   findAll(where = {}, order = 'id', options = {}) {
-    /*
-    if (isArray(where)) {
-      return this.Model.where(...where)
-        .query('orderByRaw', order)
-        .fetchAll(options);
-    }
-    */
     return this.Model.query((qb) => {
       map(keys(where), (key) => {
         // user and group are reserved words so need to be wrapper in quotes
@@ -51,7 +44,7 @@ export default class BaseRepository {
       });
     })
       .query('orderByRaw', order === 'order' ? '"order"' : order)
-      .fetchPage(options);
+      .fetchPage({ limit: 65535, ...options });
   }
 
   /**
