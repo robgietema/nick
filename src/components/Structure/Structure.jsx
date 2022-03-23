@@ -611,7 +611,7 @@ export class StructureComponent extends Component {
           <Table.Body>
             {this.props.items.map((item, index, items) => [
               <Table.Row>
-                <Table.Cell>
+                <Table.Cell className="hide-not-full-size">
                   <Button icon basic>
                     <Icon
                       name={dragSVG}
@@ -637,7 +637,7 @@ export class StructureComponent extends Component {
                     to={item.url}
                     className="icon-align-name"
                   >
-                    <div className="expire-align">
+                    <div className="expire-align" style={{ paddingLeft: 4 }}>
                       <Icon
                         name={getContentIcon(item['@type'], item.is_folderish)}
                         size="20px"
