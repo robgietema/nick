@@ -39,7 +39,7 @@ export default [
           const group = await groupRepository.findOne({ id: req.params.id });
           res.send(groupToJson(group, req));
         } catch (e) {
-          res.status(404).send({ error: 'Not Found' });
+          res.status(404).send({ error: req.i18n('Not Found') });
         }
       }),
   },
@@ -140,8 +140,8 @@ export default [
         } else {
           res.status(401).send({
             error: {
-              message: "You can't delete system groups.",
-              type: 'System group',
+              message: req.i18n("You can't delete system groups."),
+              type: req.i18n('System group'),
             },
           });
         }

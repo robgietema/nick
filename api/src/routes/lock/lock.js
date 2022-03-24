@@ -39,8 +39,10 @@ export default [
             // Send error
             res.status(401).send({
               error: {
-                message: 'This document is already locked by another user.',
-                type: 'Already locked',
+                message: req.i18n(
+                  'This document is already locked by another user.',
+                ),
+                type: req.i18n('Already locked'),
               },
             });
           }
@@ -94,8 +96,10 @@ export default [
           // Send error
           res.status(401).send({
             error: {
-              message: "You don't have permission to unlock this document.",
-              type: 'Not allowed',
+              message: req.i18n(
+                "You don't have permission to unlock this document.",
+              ),
+              type: req.i18n('Not allowed'),
             },
           });
         }

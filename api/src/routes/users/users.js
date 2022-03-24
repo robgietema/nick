@@ -160,9 +160,10 @@ export default [
           } catch (e) {
             return res.status(500).send({
               error: {
-                message:
+                message: req.i18n(
                   'Unable to remove user, most likely this user is still owner of documents.',
-                type: 'Delete User',
+                ),
+                type: req.i18n('Delete User'),
               },
             });
           }
@@ -170,8 +171,8 @@ export default [
         } else {
           res.status(401).send({
             error: {
-              message: "You can't delete system groups.",
-              type: 'System group',
+              message: req.i18n("You can't delete system groups."),
+              type: req.i18n('System group'),
             },
           });
         }

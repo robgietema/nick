@@ -19,7 +19,7 @@ export default [
               'id',
             )}`,
             addable: type.get('addable'),
-            title: type.get('title'),
+            title: req.i18n(type.get('title')),
           })),
         );
       }),
@@ -33,10 +33,10 @@ export default [
           const type = await typeRepository.findOne({ id: req.params.type });
           res.send({
             ...type.get('schema'),
-            title: type.get('title'),
+            title: req.i18n(type.get('title')),
           });
         } catch (e) {
-          res.status(404).send({ error: 'Not Found' });
+          res.status(404).send({ error: req.i18n('Not Found') });
         }
       }),
   },

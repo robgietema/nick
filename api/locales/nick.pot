@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-03-24T20:46:28.394Z\n"
+"POT-Creation-Date: 2022-03-24T21:43:54.207Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,11 @@ msgstr ""
 msgid "A related item from which this item is derived."
 msgstr ""
 
+#: src/routes/actions/actions.js:51
+# defaultMessage: Accessibility
+msgid "Accessibility"
+msgstr ""
+
 #: src/profiles/permissions.json:10
 # defaultMessage: Add
 msgid "Add"
@@ -45,6 +50,11 @@ msgstr ""
 #: src/profiles/roles.json:26
 # defaultMessage: Administrator
 msgid "Administrator"
+msgstr ""
+
+#: src/routes/lock/lock.js:45
+# defaultMessage: Already locked
+msgid "Already locked"
 msgstr ""
 
 #: src/profiles/types.js:63
@@ -82,6 +92,16 @@ msgstr ""
 msgid "Change Note"
 msgstr ""
 
+#: src/routes/actions/actions.js:56
+# defaultMessage: Contact
+msgid "Contact"
+msgstr ""
+
+#: src/routes/actions/actions.js:29
+# defaultMessage: Contents
+msgid "Contents"
+msgstr ""
+
 #: src/profiles/roles.json:11
 # defaultMessage: Contributer
 msgid "Contributer"
@@ -90,6 +110,11 @@ msgstr ""
 #: src/profiles/types.js:36
 # defaultMessage: Coverage
 msgid "Coverage"
+msgstr ""
+
+#: src/routes/actions/actions.js:68
+# defaultMessage: Dashboard
+msgid "Dashboard"
 msgstr ""
 
 #: src/profiles/types.js:153
@@ -104,9 +129,25 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
+#: src/routes/users/users.js:166
+# defaultMessage: Delete User
+msgid "Delete User"
+msgstr ""
+
 #: src/profiles/types.js:41
 # defaultMessage: Description
 msgid "Description"
+msgstr ""
+
+#: src/routes/content/content.js:483
+#: src/routes/history/history.js:69
+# defaultMessage: Document locked
+msgid "Document locked"
+msgstr ""
+
+#: src/routes/actions/actions.js:24
+# defaultMessage: Edit
+msgid "Edit"
 msgstr ""
 
 #: src/profiles/roles.json:16
@@ -133,6 +174,11 @@ msgstr ""
 #: src/profiles/types.js:227
 # defaultMessage: Folder
 msgid "Folder"
+msgstr ""
+
+#: src/routes/actions/actions.js:34
+# defaultMessage: History
+msgid "History"
 msgstr ""
 
 #: src/profiles/types.js:47
@@ -172,6 +218,11 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
+#: src/routes/actions/actions.js:78
+# defaultMessage: Log out
+msgid "Log out"
+msgstr ""
+
 #: src/routes/login/login.js:21
 # defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
@@ -183,13 +234,24 @@ msgid "Manage Users"
 msgstr ""
 
 #: src/routes/login/login.js:20
-# defaultMessage: default missing
+# defaultMessage: Missing credentials
 msgid "Missing credentials"
 msgstr ""
 
 #: src/profiles/permissions.json:14
 # defaultMessage: Modify
 msgid "Modify"
+msgstr ""
+
+#: src/routes/groups/groups.js:42
+#: src/routes/types/types.js:39
+# defaultMessage: Not Found
+msgid "Not Found"
+msgstr ""
+
+#: src/routes/lock/lock.js:102
+# defaultMessage: Not allowed
+msgid "Not allowed"
 msgstr ""
 
 #: src/profiles/groups.json:13
@@ -210,6 +272,11 @@ msgstr ""
 #: src/profiles/workflows.json:24
 # defaultMessage: Pending review
 msgid "Pending review"
+msgstr ""
+
+#: src/routes/actions/actions.js:63
+# defaultMessage: Preferences
+msgid "Preferences"
 msgstr ""
 
 #: src/profiles/workflows.json:12
@@ -287,6 +354,11 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+#: src/routes/actions/actions.js:39
+# defaultMessage: Sharing
+msgid "Sharing"
+msgstr ""
+
 #: src/profiles/workflows.json:6
 # defaultMessage: Simple Publication Workflow
 msgid "Simple Publication Workflow"
@@ -302,6 +374,16 @@ msgstr ""
 msgid "Site"
 msgstr ""
 
+#: src/routes/actions/actions.js:46
+# defaultMessage: Site Map
+msgid "Site Map"
+msgstr ""
+
+#: src/routes/actions/actions.js:73
+# defaultMessage: Site Setup
+msgid "Site Setup"
+msgstr ""
+
 #: src/profiles/types.js:93
 # defaultMessage: Source
 msgid "Source"
@@ -315,6 +397,12 @@ msgstr ""
 #: src/profiles/workflows.json:66
 # defaultMessage: Submit for publication
 msgid "Submit for publication"
+msgstr ""
+
+#: src/routes/groups/groups.js:144
+#: src/routes/users/users.js:175
+# defaultMessage: System group
+msgid "System group"
 msgstr ""
 
 #: src/profiles/types.js:104
@@ -347,6 +435,11 @@ msgstr ""
 msgid "The topic of this item."
 msgstr ""
 
+#: src/routes/lock/lock.js:42
+# defaultMessage: This document is already locked by another user.
+msgid "This document is already locked by another user."
+msgstr ""
+
 #: src/profiles/types.js:46
 # defaultMessage: This name will be displayed in the URL.
 msgid "This name will be displayed in the URL."
@@ -357,6 +450,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: src/routes/users/users.js:163
+# defaultMessage: Unable to remove user, most likely this user is still owner of documents.
+msgid "Unable to remove user, most likely this user is still owner of documents."
+msgstr ""
+
+#: src/routes/actions/actions.js:19
 #: src/profiles/permissions.json:6
 # defaultMessage: View
 msgid "View"
@@ -381,4 +480,21 @@ msgstr ""
 #: src/routes/login/login.js:54
 # defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
+msgstr ""
+
+#: src/routes/groups/groups.js:143
+#: src/routes/users/users.js:174
+# defaultMessage: You can't delete system groups.
+msgid "You can't delete system groups."
+msgstr ""
+
+#: src/routes/content/content.js:480
+#: src/routes/history/history.js:66
+# defaultMessage: You don't have permission to save this document because it is locked by another user.
+msgid "You don't have permission to save this document because it is locked by another user."
+msgstr ""
+
+#: src/routes/lock/lock.js:99
+# defaultMessage: You don't have permission to unlock this document.
+msgid "You don't have permission to unlock this document."
 msgstr ""

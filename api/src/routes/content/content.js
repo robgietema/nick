@@ -477,9 +477,10 @@ export default [
         ) {
           return res.status(401).send({
             error: {
-              message:
+              message: req.i18n(
                 "You don't have permission to save this document because it is locked by another user.",
-              type: 'Document locked',
+              ),
+              type: req.i18n('Document locked'),
             },
           });
         }

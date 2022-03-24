@@ -16,66 +16,66 @@ export default [
             {
               icon: '',
               id: 'view',
-              title: 'View',
+              title: req.i18n('View'),
             },
             {
               icon: '',
               id: 'edit',
-              title: 'Edit',
+              title: req.i18n('Edit'),
             },
             {
               icon: '',
               id: 'folderContents',
-              title: 'Contents',
+              title: req.i18n('Contents'),
             },
             {
               icon: '',
               id: 'history',
-              title: 'History',
+              title: req.i18n('History'),
             },
             {
               icon: '',
               id: 'local_roles',
-              title: 'Sharing',
+              title: req.i18n('Sharing'),
             },
           ],
           site_actions: [
             {
               icon: '',
               id: 'sitemap',
-              title: 'Site Map',
+              title: req.i18n('Site Map'),
             },
             {
               icon: '',
               id: 'accessibility',
-              title: 'Accessibility',
+              title: req.i18n('Accessibility'),
             },
             {
               icon: '',
               id: 'contact',
-              title: 'Contact',
+              title: req.i18n('Contact'),
             },
           ],
           user: [
             {
               icon: '',
               id: 'preferences',
-              title: 'Preferences',
+              title: req.i18n('Preferences'),
             },
             {
               icon: '',
               id: 'dashboard',
-              title: 'Dashboard',
+              title: req.i18n('Dashboard'),
             },
             {
               icon: '',
               id: 'plone_setup',
-              title: 'Site Setup',
+              title: req.i18n('Site Setup'),
             },
             {
               icon: '',
               id: 'logout',
-              title: 'Log out',
+              title: req.i18n('Log out'),
             },
           ],
         }),

@@ -17,7 +17,7 @@ export default [
       if (!req.body.login || !req.body.password) {
         return res.status(400).send({
           error: {
-            type: req.i18n('Missing credentials', 'default missing'),
+            type: req.i18n('Missing credentials'),
             message: req.i18n('Login and password must be provided in body.'),
           },
         });

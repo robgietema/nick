@@ -20,7 +20,7 @@ export default [
             )}`,
             '@type': 'role',
             id: role.get('id'),
-            title: role.get('id'),
+            title: req.i18n(role.get('title')),
           })),
         );
       }),
