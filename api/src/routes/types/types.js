@@ -3,8 +3,32 @@
  * @module routes/types/types
  */
 
+import { map, mapValues } from 'lodash';
+
 import { typeRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
+
+/**
+ * Translate the schema
+ * @method translateSchema
+ * @param {Object} schema Schema object.
+ * @param {Object} req Request object.
+ * @returns {Object} Translated schema.
+ */
+function translateSchema(schema, req) {
+  return {
+    ...schema,
+    fieldsets: map(schema.fieldsets, (fieldset) => ({
+      ...fieldset,
+      title: req.i18n(fieldset.title),
+    })),
+    properties: mapValues(schema.properties, (property) => ({
+      ...property,
+      title: req.i18n(property.title),
+      description: req.i18n(property.description),
+    })),
+  };
+}
 
 export default [
   {
@@ -32,7 +56,7 @@ export default [
         try {
           const type = await typeRepository.findOne({ id: req.params.type });
           res.send({
-            ...type.get('schema'),
+            ...translateSchema(type.get('schema'), req),
             title: req.i18n(type.get('title')),
           });
         } catch (e) {

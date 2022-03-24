@@ -75,15 +75,17 @@ export default [
           history: [],
           state: {
             id: req.document.get('workflow_state'),
-            title: req.type.related('workflow').get('json').states[
-              req.document.get('workflow_state')
-            ].title,
+            title: req.i18n(
+              req.type.related('workflow').get('json').states[
+                req.document.get('workflow_state')
+              ].title,
+            ),
           },
           transitions: map(transitions, (item) => ({
             '@id': `${req.protocol || 'http'}://${
               req.headers.host
             }${req.document.get('path')}/@workflow/${item[0]}`,
-            title: item[1].title,
+            title: req.i18n(item[1].title),
           })),
         });
       }),
