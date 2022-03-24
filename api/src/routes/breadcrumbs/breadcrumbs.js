@@ -5,7 +5,7 @@
 
 import { compact, drop, head, last } from 'lodash';
 
-import { DocumentRepository } from '../../repositories';
+import { documentRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
 
 /**
@@ -20,7 +20,7 @@ async function traverse(document, slugs, items) {
   if (slugs.length === 0) {
     return items;
   } else {
-    const parent = await DocumentRepository.findOne({
+    const parent = await documentRepository.findOne({
       parent: document.get('uuid'),
       id: head(slugs),
     });
@@ -41,7 +41,7 @@ export default [
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
         const slugs = req.params[0].split('/');
-        const document = await DocumentRepository.findOne({ parent: null });
+        const document = await documentRepository.findOne({ parent: null });
         const items = await traverse(document, compact(slugs), [
           {
             '@id': `${req.protocol}://${req.headers.host}`,

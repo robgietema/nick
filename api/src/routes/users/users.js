@@ -6,11 +6,11 @@
 import bcrypt from 'bcrypt-promise';
 import { map, keys } from 'lodash';
 import {
-  UserRepository,
-  UserRoleRepository,
-  UserGroupRepository,
+  userRepository,
+  userRoleRepository,
+  userGroupRepository,
 } from '../../repositories';
-import config from '../../../config';
+import { config } from '../../../config';
 import { requirePermission } from '../../helpers';
 
 /**
@@ -39,7 +39,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
         try {
-          const user = await UserRepository.findOne({ id: req.params.id });
+          const user = await userRepository.findOne({ id: req.params.id });
           res.send(userToJson(user, req));
         } catch (e) {
           res.status(404).send({ error: 'Not Found' });
@@ -51,7 +51,7 @@ export default [
     view: '/@users',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        const users = await UserRepository.findAll(
+        const users = await userRepository.findAll(
           req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
           'fullname',
           { withRelated: ['roles'] },
@@ -65,7 +65,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
         const password = await bcrypt.hash(req.body.password, 10);
-        const newUser = await UserRepository.create(
+        const newUser = await userRepository.create(
           {
             id: req.body.username,
             fullname: req.body.fullname,
@@ -81,7 +81,7 @@ export default [
         await Promise.all(
           roles.map(
             async (role) =>
-              await UserRoleRepository.create({
+              await userRoleRepository.create({
                 user: user.get('id'),
                 role,
               }),
@@ -92,7 +92,7 @@ export default [
         const groups = req.body.groups || [];
         await Promise.all(
           groups.map(async (group) => {
-            await UserGroupRepository.create({
+            await userGroupRepository.create({
               user: user.get('id'),
               group,
             });
@@ -109,7 +109,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
         // Get user
-        const user = await UserRepository.findOne({ id: req.params.id });
+        const user = await userRepository.findOne({ id: req.params.id });
 
         // Save document with new values
         await user.save(
@@ -128,15 +128,15 @@ export default [
             // Check if to be removed
             if (roles[role] === false) {
               // Delete role from user
-              await UserRoleRepository.delete({ user: user.get('id'), role });
+              await userRoleRepository.delete({ user: user.get('id'), role });
             } else {
               // Add role to user if not exists
-              const exists = await UserRoleRepository.findAll({
+              const exists = await userRoleRepository.findAll({
                 user: user.get('id'),
                 role,
               });
               if (exists.isEmpty()) {
-                await UserRoleRepository.create({
+                await userRoleRepository.create({
                   user: user.get('id'),
                   role,
                 });
@@ -156,7 +156,7 @@ export default [
       requirePermission('Manage Users', req, res, async () => {
         if (config.systemUsers.indexOf(req.params.id) === -1) {
           try {
-            await UserRepository.delete({ id: req.params.id });
+            await userRepository.delete({ id: req.params.id });
           } catch (e) {
             return res.status(500).send({
               error: {

@@ -1,4 +1,4 @@
-export default {
+export const config = {
   connection: {
     port: 5432,
     host: 'localhost',
@@ -11,6 +11,8 @@ export default {
   secret: 'secret',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Authenticated', 'Owner'],
+  supportedLanguages: ['en', 'nl'],
+  defaultLanguage: 'en',
   imageScales: {
     large: [768, 768],
     preview: [400, 400],

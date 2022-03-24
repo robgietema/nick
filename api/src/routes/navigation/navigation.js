@@ -3,7 +3,7 @@
  * @module routes/navigation/navigation
  */
 
-import { DocumentRepository } from '../../repositories';
+import { documentRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
 
 export default [
@@ -12,8 +12,8 @@ export default [
     view: '/@navigation',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const root = await DocumentRepository.findOne({ parent: null });
-        const items = await DocumentRepository.findAll(
+        const root = await documentRepository.findOne({ parent: null });
+        const items = await documentRepository.findAll(
           { parent: root.get('uuid') },
           'position_in_parent',
         );

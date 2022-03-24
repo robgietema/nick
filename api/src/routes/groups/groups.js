@@ -4,9 +4,9 @@
  */
 
 import { map } from 'lodash';
-import { GroupRepository, GroupRoleRepository } from '../../repositories';
+import { groupRepository, groupRoleRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
-import config from '../../../config';
+import { config } from '../../../config';
 
 /**
  * Convert group to json.
@@ -36,7 +36,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
         try {
-          const group = await GroupRepository.findOne({ id: req.params.id });
+          const group = await groupRepository.findOne({ id: req.params.id });
           res.send(groupToJson(group, req));
         } catch (e) {
           res.status(404).send({ error: 'Not Found' });
@@ -48,7 +48,7 @@ export default [
     view: '/@groups',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        const users = await GroupRepository.findAll(
+        const users = await groupRepository.findAll(
           req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
           'title',
           { withRelated: ['roles'] },
@@ -61,7 +61,7 @@ export default [
     view: '/@groups',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        const newGroup = await GroupRepository.create(
+        const newGroup = await groupRepository.create(
           {
             id: req.body.groupname,
             title: req.body.title,
@@ -77,7 +77,7 @@ export default [
         await Promise.all(
           roles.map(
             async (role) =>
-              await GroupRoleRepository.create({
+              await groupRoleRepository.create({
                 group: group.get('id'),
                 role,
               }),
@@ -94,7 +94,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
         // Get group
-        const group = await GroupRepository.findOne({ id: req.params.id });
+        const group = await groupRepository.findOne({ id: req.params.id });
 
         // Save document with new values
         await group.save(
@@ -110,14 +110,14 @@ export default [
         // Loop through roles
         if (req.body.roles) {
           // Delete current roles
-          await GroupRoleRepository.delete({
+          await groupRoleRepository.delete({
             group: group.get('id'),
           });
 
           // Add new roles
           await Promise.all(
             map(req.body.roles, async (role) => {
-              await GroupRoleRepository.create({
+              await groupRoleRepository.create({
                 group: group.get('id'),
                 role,
               });
@@ -135,7 +135,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
         if (config.systemGroups.indexOf(req.params.id) === -1) {
-          await GroupRepository.delete({ id: req.params.id });
+          await groupRepository.delete({ id: req.params.id });
           res.status(204).send();
         } else {
           res.status(401).send({

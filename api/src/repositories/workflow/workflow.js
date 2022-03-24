@@ -21,4 +21,4 @@ export class WorkflowRepository extends BaseRepository {
   }
 }
 
-export default new WorkflowRepository();
+export const workflowRepository = new WorkflowRepository();

@@ -5,8 +5,8 @@
  */
 
 export { getAdminHeader, requirePermission } from './auth/auth';
-export BaseModel from './base-model/base-model';
-export BaseRepository from './base-repository/base-repository';
+export { BaseModel } from './base-model/base-model';
+export { BaseRepository } from './base-repository/base-repository';
 export { formatSize } from './format/format';
 export {
   getHeight,

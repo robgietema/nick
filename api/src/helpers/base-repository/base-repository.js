@@ -3,17 +3,15 @@
  * @module common/base-repository
  */
 
-import autobind from 'autobind-decorator';
 import { keys, map, isArray } from 'lodash';
 import bookshelf from '../../bookshelf';
 
-@autobind
 /**
  * Base repository.
  * Do not forget to add the autobind decorator when extending.
  * @class BaseRepository
  */
-export default class BaseRepository {
+export class BaseRepository {
   /**
    * Create a BaseRepository for Model.
    * @constructs BaseRepository

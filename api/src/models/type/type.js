@@ -8,7 +8,7 @@ import { compact, keys, map } from 'lodash';
 import { BaseModel } from '../../helpers';
 import { Workflow } from '../../models';
 
-export default BaseModel.extend({
+export const Type = BaseModel.extend({
   tableName: 'type',
   idAttribute: 'id',
   workflow() {

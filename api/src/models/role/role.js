@@ -5,4 +5,4 @@
 
 import { BaseModel } from '../../helpers';
 
-export default BaseModel.extend({ tableName: 'role', idAttribute: 'id' });
+export const Role = BaseModel.extend({ tableName: 'role', idAttribute: 'id' });

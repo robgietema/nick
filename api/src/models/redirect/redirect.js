@@ -6,7 +6,7 @@
 import { BaseModel } from '../../helpers';
 import { Document } from '../../models';
 
-export default BaseModel.extend({
+export const Redirect = BaseModel.extend({
   tableName: 'redirect',
   idAttribute: 'uuid',
   document() {

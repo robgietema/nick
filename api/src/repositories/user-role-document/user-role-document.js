@@ -41,4 +41,4 @@ export class UserRoleDocumentRepository extends BaseRepository {
   }
 }
 
-export default new UserRoleDocumentRepository();
+export const userRoleDocumentRepository = new UserRoleDocumentRepository();

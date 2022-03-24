@@ -6,7 +6,7 @@
 import { BaseModel } from '../../helpers';
 import { User } from '../../models';
 
-export default BaseModel.extend({
+export const Document = BaseModel.extend({
   tableName: 'document',
   idAttribute: 'uuid',
   owner() {

@@ -39,4 +39,4 @@ export class UserGroupRepository extends BaseRepository {
   }
 }
 
-export default new UserGroupRepository();
+export const userGroupRepository = new UserGroupRepository();

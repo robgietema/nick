@@ -6,7 +6,7 @@
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 import { lockExpired, requirePermission } from '../../helpers';
-import { DocumentRepository } from '../../repositories';
+import { documentRepository } from '../../repositories';
 
 export default [
   {
@@ -15,7 +15,7 @@ export default [
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
         if (req.document.get('lock').locked && lockExpired(req.document)) {
-          const document = await DocumentRepository.deleteLock(req.document);
+          const document = await documentRepository.deleteLock(req.document);
           res.send(document.get('lock'));
         } else {
           res.send(req.document.get('lock'));
@@ -88,7 +88,7 @@ export default [
           (req.body?.force && lock.stealable === true)
         ) {
           // Delete lock and send new status
-          const document = await DocumentRepository.deleteLock(req.document);
+          const document = await documentRepository.deleteLock(req.document);
           res.send(document.get('lock'));
         } else {
           // Send error

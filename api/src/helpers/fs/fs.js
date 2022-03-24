@@ -8,7 +8,7 @@ import { rmSync, readFileSync, writeFileSync } from 'fs';
 import { v4 as uuid } from 'uuid';
 import sharp from 'sharp';
 
-import config from '../../../config';
+import { config } from '../../../config';
 import { mapAsync } from '../../helpers';
 
 /**

@@ -21,4 +21,4 @@ export class VersionRepository extends BaseRepository {
   }
 }
 
-export default new VersionRepository();
+export const versionRepository = new VersionRepository();

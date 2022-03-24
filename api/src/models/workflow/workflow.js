@@ -5,4 +5,7 @@
 
 import { BaseModel } from '../../helpers';
 
-export default BaseModel.extend({ tableName: 'workflow', idAttribute: 'id' });
+export const Workflow = BaseModel.extend({
+  tableName: 'workflow',
+  idAttribute: 'id',
+});

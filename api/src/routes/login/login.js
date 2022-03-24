@@ -5,9 +5,29 @@
 
 import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
+import { defineMessages } from '@formatjs/intl';
 
-import { UserRepository } from '../../repositories';
-import { secret } from '../../../config.js';
+import { userRepository } from '../../repositories';
+import { config } from '../../../config.js';
+
+const messages = defineMessages({
+  errorMissingType: {
+    id: 'Missing credentials',
+    defaultMessage: 'Missing credentials',
+  },
+  errorMissingMessage: {
+    id: 'Login and password must be provided in body.',
+    defaultMessage: 'Login and password must be provided in body.',
+  },
+  errorInvalidType: {
+    id: 'Invalid credentials',
+    defaultMessage: 'Invalid credentials',
+  },
+  errorInvalidMessage: {
+    id: 'Wrong login and/or password.',
+    defaultMessage: 'Wrong login and/or password.',
+  },
+});
 
 export default [
   {
@@ -17,13 +37,13 @@ export default [
       if (!req.body.login || !req.body.password) {
         return res.status(400).send({
           error: {
-            message: 'Login and password must be provided in body.',
-            type: 'Missing credentials',
+            type: req.intl.formatMessage(messages.errorMissingType),
+            message: req.intl.formatMessage(messages.errorMissingMessage),
           },
         });
       }
       try {
-        const user = await UserRepository.findOne({ id: req.body.login });
+        const user = await userRepository.findOne({ id: req.body.login });
         const same = await bcrypt.compare(
           req.body.password,
           user.get('password'),
@@ -35,23 +55,23 @@ export default [
                 sub: user.get('id'),
                 fullname: user.get('fullname'),
               },
-              secret,
+              config.secret,
               { expiresIn: '12h' },
             ),
           });
         } else {
           res.status(401).send({
             error: {
-              message: 'Wrong login and/or password.',
-              type: 'Invalid credentials',
+              type: req.intl.formatMessage(messages.errorInvalidType),
+              message: req.intl.formatMessage(messages.errorInvalidMessage),
             },
           });
         }
       } catch (e) {
         res.status(401).send({
           error: {
-            message: 'Wrong login and/or password.',
-            type: 'Invalid credentials',
+            type: req.intl.formatMessage(messages.errorInvalidType),
+            message: req.intl.formatMessage(messages.errorInvalidMessage),
           },
         });
       }
@@ -67,7 +87,7 @@ export default [
             sub: req.user.get('id'),
             fullname: req.user.get('fullname'),
           },
-          secret,
+          config.secret,
           { expiresIn: '12h' },
         ),
       }),

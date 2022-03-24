@@ -21,4 +21,4 @@ export class UserRepository extends BaseRepository {
   }
 }
 
-export default new UserRepository();
+export const userRepository = new UserRepository();

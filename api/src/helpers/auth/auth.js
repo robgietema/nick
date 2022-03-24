@@ -6,7 +6,7 @@
 import { indexOf } from 'lodash';
 import jwt from 'jsonwebtoken';
 
-import { secret } from '../../../config.js';
+import { config } from '../../../config.js';
 
 /**
  * Check required permission.
@@ -41,7 +41,7 @@ export function getAdminHeader() {
       sub: 'admin',
       fullname: 'Admin',
     },
-    secret,
+    config.secret,
     { expiresIn: '12h' },
   )}`;
 }

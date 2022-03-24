@@ -5,7 +5,7 @@
 
 import { BaseModel } from '../../helpers';
 
-export default BaseModel.extend({
+export const UserGroup = BaseModel.extend({
   tableName: 'user_group',
   idAttribute: 'id',
 });

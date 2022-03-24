@@ -17,9 +17,9 @@ import {
 } from 'lodash';
 
 import {
-  DocumentRepository,
-  TypeRepository,
-  VersionRepository,
+  documentRepository,
+  typeRepository,
+  versionRepository,
 } from '../../repositories';
 import {
   lockExpired,
@@ -32,7 +32,7 @@ import {
   writeFile,
   writeImage,
 } from '../../helpers';
-import config from '../../../config';
+import { config } from '../../../config';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
 
@@ -122,7 +122,7 @@ async function handleImages(json, type) {
  */
 async function documentToJson(document, req) {
   // Get file fields
-  const type = await TypeRepository.findOne({ id: document.get('type') });
+  const type = await typeRepository.findOne({ id: document.get('type') });
   const json = document.get('json');
 
   // Loop through file fields
@@ -188,7 +188,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Add', req, res, async () => {
         // Get Siblings
-        const siblings = await DocumentRepository.findAll({
+        const siblings = await documentRepository.findAll({
           parent: req.document.get('uuid'),
         });
 
@@ -199,7 +199,7 @@ export default [
         // Loop through source objects to be moved
         await mapAsync(req.body.source, async (source) => {
           // Get item to be moved
-          const document = await DocumentRepository.findOne({ path: source });
+          const document = await documentRepository.findOne({ path: source });
 
           // If moved to same folder or subfolder do nothing
           if (
@@ -217,20 +217,20 @@ export default [
               document.get('id'),
               siblings.map((sibling) => sibling.get('id')),
             )}`;
-            await DocumentRepository.replacePath(source, newPath);
+            await documentRepository.replacePath(source, newPath);
             await document.save({
               parent: req.document.get('uuid'),
               position_in_parent: 32767,
               path: newPath,
             });
-            await DocumentRepository.fixOrder(parent);
+            await documentRepository.fixOrder(parent);
             items.push({
               source,
               target: newPath,
             });
           }
         });
-        await DocumentRepository.fixOrder(req.document.get('uuid'));
+        await documentRepository.fixOrder(req.document.get('uuid'));
 
         res.send(
           items.map((item) => ({
@@ -251,13 +251,13 @@ export default [
       requirePermission('View', req, res, async () => {
         let document = req.document;
         if (document.get('lock').locked && lockExpired(document)) {
-          document = await DocumentRepository.deleteLock(req.document);
+          document = await documentRepository.deleteLock(req.document);
         }
-        const items = await DocumentRepository.findAll(
+        const items = await documentRepository.findAll(
           { parent: document.get('uuid') },
           'position_in_parent',
         );
-        const version = await VersionRepository.findOne({
+        const version = await versionRepository.findOne({
           document: document.get('uuid'),
           version: parseInt(req.params.version, 10),
         });
@@ -340,9 +340,9 @@ export default [
       requirePermission('View', req, res, async () => {
         let document = req.document;
         if (document.get('lock').locked && lockExpired(document)) {
-          document = await DocumentRepository.deleteLock(req.document);
+          document = await documentRepository.deleteLock(req.document);
         }
-        const items = await DocumentRepository.findAll(
+        const items = await documentRepository.findAll(
           { parent: document.get('uuid') },
           'position_in_parent',
         );
@@ -360,7 +360,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Add', req, res, async () => {
         // Get content type date
-        const type = await TypeRepository.findOne(
+        const type = await typeRepository.findOne(
           { id: req.body['@type'] },
           { withRelated: ['workflow'] },
         );
@@ -369,7 +369,7 @@ export default [
         const created = moment.utc().format();
 
         // Get child nodes
-        const items = await DocumentRepository.findAll({
+        const items = await documentRepository.findAll({
           parent: req.document.get('uuid'),
         });
 
@@ -393,7 +393,7 @@ export default [
         json = await handleImages(json, type);
 
         // Insert document in database
-        const newDocument = await DocumentRepository.create(
+        const newDocument = await documentRepository.create(
           {
             parent: req.document.get('uuid'),
             id,
@@ -417,7 +417,7 @@ export default [
         const document = await newDocument.fetch();
 
         // Create initial version
-        await VersionRepository.create({
+        await versionRepository.create({
           document: document.get('uuid'),
           id,
           version: 0,
@@ -443,7 +443,7 @@ export default [
           // Get document to be ordered
           const id = req.body.ordering.obj_id;
           const delta = req.body.ordering.delta;
-          const document = await DocumentRepository.findOne({
+          const document = await documentRepository.findOne({
             parent: req.document.get('uuid'),
             id,
           });
@@ -454,7 +454,7 @@ export default [
           } else if (delta === 'bottom') {
             await document.save({ position_in_parent: 32767 }, { patch: true });
           } else {
-            await DocumentRepository.reorder(
+            await documentRepository.reorder(
               req.document.get('uuid'),
               id,
               delta,
@@ -462,7 +462,7 @@ export default [
           }
 
           // Fix order
-          await DocumentRepository.fixOrder(req.document.get('uuid'));
+          await documentRepository.fixOrder(req.document.get('uuid'));
 
           // Send ok
           return res.status(204).send();
@@ -489,7 +489,7 @@ export default [
         const path = req.document.get('path');
         const slugs = path.split('/');
         const parent = dropRight(slugs).join('/');
-        const siblings = await DocumentRepository.findAll({
+        const siblings = await documentRepository.findAll({
           parent: req.document.get('parent'),
         });
 
@@ -503,7 +503,7 @@ export default [
             : id;
         const newPath = path === '/' ? path : `${parent}/${newId}`;
 
-        const type = await TypeRepository.findOne({
+        const type = await typeRepository.findOne({
           id: req.document.get('type'),
         });
 
@@ -521,7 +521,7 @@ export default [
         // Create new version
         const modified = moment.utc().format();
         const version = req.document.get('version') + 1;
-        await VersionRepository.create({
+        await versionRepository.create({
           document: req.document.get('uuid'),
           id: newId,
           created: modified,
@@ -535,7 +535,7 @@ export default [
 
         // If path has changed change path of document and children
         if (path !== newPath) {
-          await DocumentRepository.replacePath(path, newPath);
+          await documentRepository.replacePath(path, newPath);
         }
 
         // Save document with new values
@@ -567,7 +567,7 @@ export default [
         const parent = req.document.get('parent');
 
         // Get file and image fields
-        const type = await TypeRepository.findOne({
+        const type = await typeRepository.findOne({
           id: req.document.get('type'),
         });
         const fileFields = type.getFactoryFields('File');
@@ -576,7 +576,7 @@ export default [
         // If file fields exist
         if (fileFields.length > 0 || imageFields.length > 0) {
           // Find all version
-          const versions = await VersionRepository.findAll({
+          const versions = await versionRepository.findAll({
             document: req.document.get('uuid'),
           });
 
@@ -601,10 +601,10 @@ export default [
         }
 
         // Remove document (versions will be cascaded)
-        await DocumentRepository.delete({ uuid: req.document.get('uuid') });
+        await documentRepository.delete({ uuid: req.document.get('uuid') });
 
         // Fix order in parent
-        await DocumentRepository.fixOrder(parent);
+        await documentRepository.fixOrder(parent);
         res.status(204).send();
       }),
   },

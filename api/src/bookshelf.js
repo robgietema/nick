@@ -6,7 +6,7 @@
 import bookshelf from 'bookshelf';
 import knex from 'knex';
 
-import config from '../config';
+import { config } from '../config';
 
 const Knex = knex({
   client: 'pg',

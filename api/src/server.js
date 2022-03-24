@@ -6,7 +6,7 @@
 import fs from 'fs';
 
 import app from './app';
-import config from '../config';
+import { config } from '../config';
 
 if (!fs.existsSync(config.blobsDir)) {
   fs.mkdirSync(config.blobsDir);

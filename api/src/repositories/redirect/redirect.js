@@ -21,4 +21,4 @@ export class RedirectRepository extends BaseRepository {
   }
 }
 
-export default new RedirectRepository();
+export const redirectRepository = new RedirectRepository();

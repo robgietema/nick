@@ -8,4 +8,4 @@ import bookshelf from '../../bookshelf';
 const instanceProps = {};
 const classProps = {};
 
-export default bookshelf.Model.extend(instanceProps, classProps);
+export const BaseModel = bookshelf.Model.extend(instanceProps, classProps);

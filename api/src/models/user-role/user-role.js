@@ -5,7 +5,7 @@
 
 import { BaseModel } from '../../helpers';
 
-export default BaseModel.extend({
+export const UserRole = BaseModel.extend({
   tableName: 'user_role',
   idAttribute: 'id',
 });

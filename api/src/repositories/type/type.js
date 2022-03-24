@@ -21,4 +21,4 @@ export class TypeRepository extends BaseRepository {
   }
 }
 
-export default new TypeRepository();
+export const typeRepository = new TypeRepository();

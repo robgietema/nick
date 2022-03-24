@@ -6,7 +6,7 @@
 import { BaseModel } from '../../helpers';
 import { User } from '../../models';
 
-export default BaseModel.extend({
+export const Version = BaseModel.extend({
   tableName: 'version',
   idAttribute: 'uuid',
   actor() {

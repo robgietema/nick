@@ -21,4 +21,4 @@ export class GroupRepository extends BaseRepository {
   }
 }
 
-export default new GroupRepository();
+export const groupRepository = new GroupRepository();

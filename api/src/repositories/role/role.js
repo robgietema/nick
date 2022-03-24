@@ -21,4 +21,4 @@ export class RoleRepository extends BaseRepository {
   }
 }
 
-export default new RoleRepository();
+export const roleRepository = new RoleRepository();

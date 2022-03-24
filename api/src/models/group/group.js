@@ -6,7 +6,7 @@
 import { BaseModel } from '../../helpers';
 import { Role } from '../../models';
 
-export default BaseModel.extend({
+export const Group = BaseModel.extend({
   tableName: 'group',
   idAttribute: 'id',
   roles() {

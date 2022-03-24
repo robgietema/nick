@@ -5,7 +5,7 @@
 
 import moment from 'moment';
 import { dropRight, omit } from 'lodash';
-import { DocumentRepository, VersionRepository } from '../../repositories';
+import { documentRepository, versionRepository } from '../../repositories';
 import { lockExpired, requirePermission, uniqueId } from '../../helpers';
 
 export default [
@@ -14,7 +14,7 @@ export default [
     view: '/@history',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const items = await VersionRepository.findAll(
+        const items = await versionRepository.findAll(
           { document: req.document.get('uuid') },
           'version desc',
           { withRelated: ['actor'] },
@@ -49,7 +49,7 @@ export default [
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
         // Get version
-        const version = await VersionRepository.findOne({
+        const version = await versionRepository.findOne({
           document: req.document.get('uuid'),
           version: req.body.version,
         });
@@ -75,7 +75,7 @@ export default [
         const path = req.document.get('path');
         const slugs = path.split('/');
         const parent = dropRight(slugs).join('/');
-        const siblings = await DocumentRepository.findAll({
+        const siblings = await documentRepository.findAll({
           parent: req.document.get('parent'),
         });
 
@@ -93,7 +93,7 @@ export default [
         const json = omit(version.get('json'), ['changeNote']);
         const modified = moment.utc().format();
         const versionNumber = req.document.get('version') + 1;
-        await VersionRepository.create({
+        await versionRepository.create({
           document: req.document.get('uuid'),
           id: newId,
           created: modified,
@@ -107,7 +107,7 @@ export default [
 
         // If path has changed change path of document and children
         if (path !== newPath) {
-          await DocumentRepository.replacePath(path, newPath);
+          await documentRepository.replacePath(path, newPath);
         }
 
         // Save document with new values

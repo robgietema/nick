@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nick\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-23T23:16:46.160Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Rob Gietema\n"
+"Language: \n"
+"Language-Team: Nick\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Language-Code: nl\n"
+"Language-Name: Nederlands\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: nick\n"
+
+#: src/routes/login/login.js:22
+# defaultMessage: Invalid credentials
+msgid "Invalid credentials"
+msgstr "Ongeldige inloggegevens"
+
+#: src/routes/login/login.js:18
+# defaultMessage: Login and password must be provided in body.
+msgid "Login and password must be provided in body."
+msgstr "Login en wachtwoord moeten in de aanvraag aanwezig zijn."
+
+#: src/routes/login/login.js:14
+# defaultMessage: Missing credentials
+msgid "Missing credentials"
+msgstr "Missende inloggegevens"
+
+#: src/routes/login/login.js:26
+# defaultMessage: Wrong login and/or password.
+msgid "Wrong login and/or password."
+msgstr "Verkeerde login en/of wachtwoord"

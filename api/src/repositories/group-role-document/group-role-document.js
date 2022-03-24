@@ -41,4 +41,4 @@ export class GroupRoleDocumentRepository extends BaseRepository {
   }
 }
 
-export default new GroupRoleDocumentRepository();
+export const groupRoleDocumentRepository = new GroupRoleDocumentRepository();

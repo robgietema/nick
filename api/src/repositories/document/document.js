@@ -124,4 +124,4 @@ export class DocumentRepository extends BaseRepository {
   }
 }
 
-export default new DocumentRepository();
+export const documentRepository = new DocumentRepository();

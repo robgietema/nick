@@ -1,8 +1,4 @@
 {
   "presets": ["@babel/preset-env"],
-  "plugins": [
-    "@babel/plugin-proposal-export-default-from",
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    "add-module-exports"
-  ]
+  "plugins": []
 }

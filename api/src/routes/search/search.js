@@ -6,7 +6,7 @@
 import moment from 'moment';
 import { endsWith, mapKeys, repeat } from 'lodash';
 import { formatSize, requirePermission } from '../../helpers';
-import { DocumentRepository } from '../../repositories';
+import { documentRepository } from '../../repositories';
 
 /**
  * Convert document to json.
@@ -107,7 +107,7 @@ export default [
     view: '/@search',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const items = await DocumentRepository.findAll(
+        const items = await documentRepository.findAll(
           ...querystringToQuery(req.query, req.document.get('path')),
         );
         res.send({
@@ -122,7 +122,7 @@ export default [
     view: '/@querystring-search',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const items = await DocumentRepository.findAll();
+        const items = await documentRepository.findAll();
         res.send({
           '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@search`,
           items: items.map((item) => documentToJson(item, req)),
