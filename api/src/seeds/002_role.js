@@ -1,10 +1,10 @@
 import { map, omit } from 'lodash';
 
-import { mapAsync } from '../src/helpers';
+import { mapAsync, stripI18n } from '../helpers';
 
 export const seed = async (knex) => {
   try {
-    const profile = require('../profiles/roles');
+    const profile = stripI18n(require('../profiles/roles'));
     if (profile.purge) {
       await knex('role').del();
       await knex('role_permission').del();

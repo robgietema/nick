@@ -5,29 +5,9 @@
 
 import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
-import { defineMessages } from '@formatjs/intl';
 
 import { userRepository } from '../../repositories';
-import { config } from '../../../config.js';
-
-const messages = defineMessages({
-  errorMissingType: {
-    id: 'Missing credentials',
-    defaultMessage: 'Missing credentials',
-  },
-  errorMissingMessage: {
-    id: 'Login and password must be provided in body.',
-    defaultMessage: 'Login and password must be provided in body.',
-  },
-  errorInvalidType: {
-    id: 'Invalid credentials',
-    defaultMessage: 'Invalid credentials',
-  },
-  errorInvalidMessage: {
-    id: 'Wrong login and/or password.',
-    defaultMessage: 'Wrong login and/or password.',
-  },
-});
+import { config } from '../../../config';
 
 export default [
   {
@@ -37,8 +17,8 @@ export default [
       if (!req.body.login || !req.body.password) {
         return res.status(400).send({
           error: {
-            type: req.intl.formatMessage(messages.errorMissingType),
-            message: req.intl.formatMessage(messages.errorMissingMessage),
+            type: req.i18n('Missing credentials', 'default missing'),
+            message: req.i18n('Login and password must be provided in body.'),
           },
         });
       }
@@ -62,16 +42,16 @@ export default [
         } else {
           res.status(401).send({
             error: {
-              type: req.intl.formatMessage(messages.errorInvalidType),
-              message: req.intl.formatMessage(messages.errorInvalidMessage),
+              type: req.i18n('Invalid credentials'),
+              message: req.i18n('Wrong login and/or password.'),
             },
           });
         }
       } catch (e) {
         res.status(401).send({
           error: {
-            type: req.intl.formatMessage(messages.errorInvalidType),
-            message: req.intl.formatMessage(messages.errorInvalidMessage),
+            type: req.i18n('Invalid credentials'),
+            message: req.i18n('Wrong login and/or password.'),
           },
         });
       }

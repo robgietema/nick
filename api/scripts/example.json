@@ -1,0 +1,10 @@
+{
+  "hoeba": "tilde",
+  "kek:i18n": "bla",
+  "dfadsf": [
+    "bla",
+    { "kek:i18n": "bla", "hoeba": "tilde", "kek": ["test", "test:i18n"] },
+    "bla",
+    "bla"
+  ]
+}

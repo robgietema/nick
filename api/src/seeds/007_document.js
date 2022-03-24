@@ -2,7 +2,7 @@ import { dropRight, last, map, omit } from 'lodash';
 import { promises as fs } from 'fs';
 import moment from 'moment';
 
-import { mapAsync } from '../src/helpers';
+import { mapAsync, stripI18n } from '../helpers';
 
 const documentFields = [
   'uuid',
@@ -31,7 +31,7 @@ export const seed = async (knex) => {
       (file) => dropRight(file.split('.')).join('.'),
     ).sort();
     await mapAsync(files, async (file) => {
-      const document = require(`../profiles/documents/${file}`);
+      const document = stripI18n(require(`../profiles/documents/${file}`));
       const slugs = file.split('.');
       const id = last(slugs) === '_root' ? 'root' : last(slugs);
       const path = last(slugs) === '_root' ? '/' : `/${slugs.join('/')}`;

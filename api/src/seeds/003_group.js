@@ -1,8 +1,10 @@
 import { map, omit } from 'lodash';
 
+import { stripI18n } from '../helpers';
+
 export const seed = async (knex) => {
   try {
-    const profile = require('../profiles/groups');
+    const profile = stripI18n(require('../profiles/groups'));
     if (profile.purge) {
       await knex('group').del();
       await knex('group_role').del();

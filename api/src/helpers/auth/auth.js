@@ -6,7 +6,7 @@
 import { indexOf } from 'lodash';
 import jwt from 'jsonwebtoken';
 
-import { config } from '../../../config.js';
+import { config } from '../../../config';
 
 /**
  * Check required permission.

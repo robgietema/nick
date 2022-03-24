@@ -4,11 +4,12 @@
  * @module scripts/i18n
  */
 
-import { extract } from '@formatjs/cli';
 import { find, keys, map, zipObject } from 'lodash';
 import { sync as glob } from 'glob';
-import fs from 'fs';
 import Pofile from 'pofile';
+import { transformSync } from '@babel/core';
+import { readFileSync, writeFileSync } from 'fs';
+import { endsWith } from 'lodash';
 
 /**
  * Convert messages to pot format
@@ -19,7 +20,7 @@ import Pofile from 'pofile';
 function messagesToPot(messages) {
   return map(keys(messages).sort(), (key) =>
     [
-      `#: ${messages[key].file}:${messages[key].line}`,
+      ...map(messages[key].files, (file) => `#: ${file.file}:${file.line}`),
       `# defaultMessage: ${messages[key].defaultMessage}`,
       `msgid "${key}"`,
       'msgstr ""',
@@ -58,12 +59,12 @@ msgstr ""
  */
 function poToJson() {
   map(glob('locales/**/*.po'), (filename) => {
-    let { items } = Pofile.parse(fs.readFileSync(filename, 'utf8'));
+    let { items } = Pofile.parse(readFileSync(filename, 'utf8'));
     const lang = filename.match(/locales\/(.*)\/LC_MESSAGES\//)[1];
 
     // Write the corresponding language JSON, cover the special EN use case for including
     // defaults if not present
-    fs.writeFileSync(
+    writeFileSync(
       `locales/${lang}.json`,
       JSON.stringify(
         zipObject(
@@ -105,19 +106,19 @@ function formatHeader(comments, headers) {
  * @return {undefined}
  */
 function syncPoByPot() {
-  const pot = Pofile.parse(fs.readFileSync('locales/nick.pot', 'utf8'));
+  const pot = Pofile.parse(readFileSync('locales/nick.pot', 'utf8'));
 
   map(glob('locales/**/*.po'), (filename) => {
-    const po = Pofile.parse(fs.readFileSync(filename, 'utf8'));
+    const po = Pofile.parse(readFileSync(filename, 'utf8'));
 
-    fs.writeFileSync(
+    writeFileSync(
       filename,
       `${formatHeader(po.comments, po.headers)}
 ${map(pot.items, (item) => {
   const poItem = find(po.items, { msgid: item.msgid });
   return [
     `${map(item.references, (ref) => `#: ${ref}`).join('\n')}`,
-    `# ${item.comments[0]}`,
+    ...map(item.comments, (comment) => `# ${comment}`),
     `msgid "${item.msgid}"`,
     `msgstr "${poItem ? poItem.msgstr : ''}"`,
   ].join('\n');
@@ -126,13 +127,76 @@ ${map(pot.items, (item) => {
   });
 }
 
+function extractMessages() {
+  const messages = {};
+
+  const plugin = (file) => ({
+    visitor: {
+      CallExpression(path) {
+        const callee = path.node.callee;
+        let name = callee.type === 'Identifier' ? callee.name : '';
+        name = callee.type === 'MemberExpression' ? callee.property.name : name;
+
+        if (
+          name === 'i18n' &&
+          path.node.arguments[0].type === 'StringLiteral'
+        ) {
+          const id = path.node.arguments[0].value;
+          const defaultMessage =
+            path.node.arguments.length > 1 ? path.node.arguments[1].value : id;
+          messages[id] = {
+            id,
+            defaultMessage,
+            files: [
+              ...(id in messages ? messages[id].files : []),
+              { line: path.node.loc.start.line, file },
+            ],
+          };
+        }
+      },
+      ObjectProperty(path) {
+        if (endsWith(path.node.key.value, ':i18n')) {
+          const id = path.node.value.value;
+          messages[id] = {
+            id,
+            defaultMessage: id,
+            files: [
+              ...(id in messages ? messages[id].files : []),
+              { line: path.node.loc.start.line, file },
+            ],
+          };
+          // path.node.key.value = path.node.key.value.replace(':i18n', '');
+        }
+      },
+    },
+  });
+
+  // Read js files
+  map(glob('src/**/*.js'), (file) => {
+    transformSync(readFileSync(file), {
+      plugins: [plugin(file)],
+    });
+  });
+
+  // Read json files
+  map(glob('src/**/*.json'), (file) => {
+    transformSync(`export default ${readFileSync(file)}`, {
+      plugins: [plugin(file)],
+    });
+  });
+
+  return messages;
+}
+
+/**
+ * Main function
+ * @function main
+ * @return {undefined}
+ */
 async function main() {
   console.log('Extracting messages from source files...');
-  const messages = JSON.parse(
-    await extract(glob('src/**/*.js'), {
-      extractSourceLocation: true,
-    }),
-  );
+
+  const messages = extractMessages();
 
   console.log('Synchronizing messages to pot file...');
 
@@ -140,13 +204,14 @@ async function main() {
     /"POT-Creation-Date:(.*)\\n"/,
     '',
   );
-  const oldPot = fs
-    .readFileSync('locales/nick.pot', 'utf8')
-    .replace(/"POT-Creation-Date:(.*)\\n"/, '');
+  const oldPot = readFileSync('locales/nick.pot', 'utf8').replace(
+    /"POT-Creation-Date:(.*)\\n"/,
+    '',
+  );
 
   // We only write the pot file if it's really different
   if (newPot !== oldPot) {
-    fs.writeFileSync(
+    writeFileSync(
       'locales/nick.pot',
       `${potHeader()}${messagesToPot(messages)}\n`,
     );

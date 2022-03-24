@@ -1,0 +1,29 @@
+{
+  "purge": true,
+  "permissions": [
+    {
+      "id": "View",
+      "title:i18n": "View"
+    },
+    {
+      "id": "Add",
+      "title:i18n": "Add"
+    },
+    {
+      "id": "Modify",
+      "title:i18n": "Modify"
+    },
+    {
+      "id": "Review",
+      "title:i18n": "Review"
+    },
+    {
+      "id": "Submit",
+      "title:i18n": "Submit"
+    },
+    {
+      "id": "Manage Users",
+      "title:i18n": "Manage Users"
+    }
+  ]
+}

@@ -24,10 +24,11 @@
   ],
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
+    "extract": "nodemon --exec babel-node scripts/extract.js",
     "test": "jest --runInBand",
     "coverage": "jest --coverage --runInBand",
-    "knex": "babel-node node_modules/.bin/knex",
-    "i18n": "babel-node i18n.js",
+    "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",
+    "i18n": "babel-node scripts/i18n.js",
     "migrate": "yarn knex migrate:latest",
     "seed": "yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
@@ -43,6 +44,7 @@
   "dependencies": {
     "@babel/core": "7.17.5",
     "@babel/node": "7.16.8",
+    "@babel/plugin-proposal-export-default-from": "7.16.7",
     "@babel/preset-env": "7.16.11",
     "@formatjs/cli": "4.8.2",
     "@formatjs/intl": "2.1.0",

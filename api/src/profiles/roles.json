@@ -3,22 +3,27 @@
   "roles": [
     {
       "id": "Reader",
+      "title:i18n": "Reader",
       "permissions": ["View"]
     },
     {
       "id": "Contributer",
+      "title:i18n": "Contributer",
       "permissions": ["Add"]
     },
     {
       "id": "Editor",
+      "title:i18n": "Editor",
       "permissions": ["Submit"]
     },
     {
       "id": "Reviewer",
+      "title:i18n": "Reviewer",
       "permissions": ["Review"]
     },
     {
       "id": "Administrator",
+      "title:i18n": "Administrator",
       "permissions": ["Add", "Review", "Submit", "Manage Users"]
     }
   ]

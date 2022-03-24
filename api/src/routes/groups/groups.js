@@ -22,8 +22,8 @@ function groupToJson(group, req) {
     }/@groups/${group.get('id')}`,
     id: group.get('id'),
     groupname: group.get('id'),
-    title: group.get('title'),
-    description: group.get('description'),
+    title: req.i18n(group.get('title')),
+    description: req.i18n(group.get('description')),
     email: group.get('email'),
     roles: group.related('roles').map((role) => role.get('id')),
   };

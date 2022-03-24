@@ -1,6 +1,8 @@
+import { stripI18n } from '../helpers';
+
 export const seed = async (knex) => {
   try {
-    const profile = require('../profiles/workflows');
+    const profile = stripI18n(require('../profiles/workflows'));
     if (profile.purge) {
       await knex('workflow').del();
     }

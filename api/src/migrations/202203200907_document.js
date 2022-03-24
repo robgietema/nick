@@ -1,6 +1,6 @@
 import { readdirSync, rmSync } from 'fs';
 
-import { config } from '../config';
+import { config } from '../../config';
 
 export const up = async (knex) => {
   await knex.schema.createTable('document', (table) => {

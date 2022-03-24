@@ -3,14 +3,14 @@
   "workflows": [
     {
       "id": "simple_publication_workflow",
-      "title": "Simple Publication Workflow",
-      "description": "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published.",
+      "title:i18n": "Simple Publication Workflow",
+      "description:i18n": "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published.",
       "json": {
         "initial_state": "private",
         "states": {
           "private": {
-            "title": "Private",
-            "description": "Can only be seen and edited by the owner.",
+            "title:i18n": "Private",
+            "description:i18n": "Can only be seen and edited by the owner.",
             "transitions": ["publish", "submit"],
             "permissions": {
               "Contributer": ["View"],
@@ -21,8 +21,8 @@
             }
           },
           "pending": {
-            "title": "Pending review",
-            "description": "Waiting to be reviewed, not editable by the owner.",
+            "title:i18n": "Pending review",
+            "description:i18n": "Waiting to be reviewed, not editable by the owner.",
             "transitions": ["publish", "reject", "retract"],
             "permissions": {
               "Contributer": ["View"],
@@ -34,8 +34,8 @@
             }
           },
           "published": {
-            "title": "Published",
-            "description": "Visible to everyone, editable by the owner.",
+            "title:i18n": "Published",
+            "description:i18n": "Visible to everyone, editable by the owner.",
             "transitions": ["reject", "retract"],
             "permissions": {
               "Anonymous": ["View"],
@@ -48,22 +48,22 @@
         },
         "transitions": {
           "publish": {
-            "title": "Publish",
+            "title:i18n": "Publish",
             "new_state": "published",
             "permission": "Review"
           },
           "reject": {
-            "title": "Send back",
+            "title:i18n": "Send back",
             "new_state": "private",
             "permission": "Review"
           },
           "retract": {
-            "title": "Retract",
+            "title:i18n": "Retract",
             "new_state": "private",
             "permission": "Submit"
           },
           "submit": {
-            "title": "Submit for publication",
+            "title:i18n": "Submit for publication",
             "new_state": "pending",
             "permission": "Submit"
           }

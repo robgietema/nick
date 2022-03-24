@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-03-23T23:16:46.160Z\n"
+"POT-Creation-Date: 2022-03-24T20:46:28.394Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -13,22 +13,372 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
-#: src/routes/login/login.js:22
+#: src/profiles/types.js:73
+#: src/profiles/types.js:185
+#: src/profiles/types.js:205
+#: src/profiles/groups.json:7
+#: src/profiles/groups.json:14
+# defaultMessage: 
+msgid ""
+msgstr ""
+
+#: src/profiles/types.js:40
+# defaultMessage: A description of this item.
+msgid "A description of this item."
+msgstr ""
+
+#: src/profiles/types.js:109
+# defaultMessage: A name given to this item.
+msgid "A name given to this item."
+msgstr ""
+
+#: src/profiles/types.js:92
+# defaultMessage: A related item from which this item is derived.
+msgid "A related item from which this item is derived."
+msgstr ""
+
+#: src/profiles/permissions.json:10
+# defaultMessage: Add
+msgid "Add"
+msgstr ""
+
+#: src/profiles/roles.json:26
+# defaultMessage: Administrator
+msgid "Administrator"
+msgstr ""
+
+#: src/profiles/types.js:63
+# defaultMessage: An entity responsible for making this item available.
+msgid "An entity responsible for making this item available."
+msgstr ""
+
+#: src/profiles/groups.json:6
+# defaultMessage: Authenticated
+msgid "Authenticated"
+msgstr ""
+
+#: src/profiles/types.js:130
+# defaultMessage: Blocks
+msgid "Blocks"
+msgstr ""
+
+#: src/profiles/types.js:140
+# defaultMessage: Blocks Layout
+msgid "Blocks Layout"
+msgstr ""
+
+#: src/profiles/workflows.json:13
+# defaultMessage: Can only be seen and edited by the owner.
+msgid "Can only be seen and edited by the owner."
+msgstr ""
+
+#: src/profiles/types.js:18
+# defaultMessage: Categorization
+msgid "Categorization"
+msgstr ""
+
+#: src/profiles/types.js:30
+# defaultMessage: Change Note
+msgid "Change Note"
+msgstr ""
+
+#: src/profiles/roles.json:11
+# defaultMessage: Contributer
+msgid "Contributer"
+msgstr ""
+
+#: src/profiles/types.js:36
+# defaultMessage: Coverage
+msgid "Coverage"
+msgstr ""
+
+#: src/profiles/types.js:153
+# defaultMessage: Dates
+msgid "Dates"
+msgstr ""
+
+#: src/profiles/types.js:8
+#: src/profiles/types.js:180
+#: src/profiles/types.js:200
+# defaultMessage: Default
+msgid "Default"
+msgstr ""
+
+#: src/profiles/types.js:41
+# defaultMessage: Description
+msgid "Description"
+msgstr ""
+
+#: src/profiles/roles.json:16
+# defaultMessage: Editor
+msgid "Editor"
+msgstr ""
+
+#: src/profiles/types.js:28
+# defaultMessage: Enter a comment that describes the changes you made.
+msgid "Enter a comment that describes the changes you made."
+msgstr ""
+
+#: src/profiles/types.js:167
+# defaultMessage: Expiration Date
+msgid "Expiration Date"
+msgstr ""
+
+#: src/profiles/types.js:206
+#: src/profiles/types.js:248
+# defaultMessage: File
+msgid "File"
+msgstr ""
+
+#: src/profiles/types.js:227
+# defaultMessage: Folder
+msgid "Folder"
+msgstr ""
+
+#: src/profiles/types.js:47
+# defaultMessage: Identifier
+msgid "Identifier"
+msgstr ""
+
+#: src/profiles/types.js:158
+# defaultMessage: If this date is in the future, the content will not show up in listings and searches until this date.
+msgid "If this date is in the future, the content will not show up in listings and searches until this date."
+msgstr ""
+
+#: src/profiles/types.js:186
+#: src/profiles/types.js:241
+# defaultMessage: Image
+msgid "Image"
+msgstr ""
+
+#: src/profiles/types.js:86
+# defaultMessage: Information about rights held in and over this item.
+msgid "Information about rights held in and over this item."
+msgstr ""
+
+#: src/routes/login/login.js:45
+#: src/routes/login/login.js:53
 # defaultMessage: Invalid credentials
 msgid "Invalid credentials"
 msgstr ""
 
-#: src/routes/login/login.js:18
+#: src/profiles/types.js:59
+# defaultMessage: Language
+msgid "Language"
+msgstr ""
+
+#: src/profiles/types.js:122
+# defaultMessage: Layout
+msgid "Layout"
+msgstr ""
+
+#: src/routes/login/login.js:21
 # defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
 msgstr ""
 
-#: src/routes/login/login.js:14
-# defaultMessage: Missing credentials
+#: src/profiles/permissions.json:26
+# defaultMessage: Manage Users
+msgid "Manage Users"
+msgstr ""
+
+#: src/routes/login/login.js:20
+# defaultMessage: default missing
 msgid "Missing credentials"
 msgstr ""
 
-#: src/routes/login/login.js:26
+#: src/profiles/permissions.json:14
+# defaultMessage: Modify
+msgid "Modify"
+msgstr ""
+
+#: src/profiles/groups.json:13
+# defaultMessage: Owner
+msgid "Owner"
+msgstr ""
+
+#: src/profiles/types.js:23
+# defaultMessage: Ownership
+msgid "Ownership"
+msgstr ""
+
+#: src/profiles/types.js:234
+# defaultMessage: Page
+msgid "Page"
+msgstr ""
+
+#: src/profiles/workflows.json:24
+# defaultMessage: Pending review
+msgid "Pending review"
+msgstr ""
+
+#: src/profiles/workflows.json:12
+# defaultMessage: Private
+msgid "Private"
+msgstr ""
+
+#: src/profiles/workflows.json:51
+# defaultMessage: Publish
+msgid "Publish"
+msgstr ""
+
+#: src/profiles/workflows.json:37
+# defaultMessage: Published
+msgid "Published"
+msgstr ""
+
+#: src/profiles/types.js:65
+# defaultMessage: Publisher
+msgid "Publisher"
+msgstr ""
+
+#: src/profiles/types.js:160
+# defaultMessage: Publishing Date
+msgid "Publishing Date"
+msgstr ""
+
+#: src/profiles/roles.json:6
+# defaultMessage: Reader
+msgid "Reader"
+msgstr ""
+
+#: src/profiles/types.js:74
+# defaultMessage: Related
+msgid "Related"
+msgstr ""
+
+#: src/profiles/types.js:80
+# defaultMessage: Related Items
+msgid "Related Items"
+msgstr ""
+
+#: src/profiles/types.js:71
+# defaultMessage: Related resources.
+msgid "Related resources."
+msgstr ""
+
+#: src/profiles/workflows.json:61
+# defaultMessage: Retract
+msgid "Retract"
+msgstr ""
+
+#: src/profiles/permissions.json:18
+# defaultMessage: Review
+msgid "Review"
+msgstr ""
+
+#: src/profiles/roles.json:21
+# defaultMessage: Reviewer
+msgid "Reviewer"
+msgstr ""
+
+#: src/profiles/types.js:88
+# defaultMessage: Rights
+msgid "Rights"
+msgstr ""
+
+#: src/profiles/workflows.json:56
+# defaultMessage: Send back
+msgid "Send back"
+msgstr ""
+
+#: src/profiles/types.js:13
+# defaultMessage: Settings
+msgid "Settings"
+msgstr ""
+
+#: src/profiles/workflows.json:6
+# defaultMessage: Simple Publication Workflow
+msgid "Simple Publication Workflow"
+msgstr ""
+
+#: src/profiles/workflows.json:7
+# defaultMessage: Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published.
+msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
+msgstr ""
+
+#: src/profiles/types.js:220
+# defaultMessage: Site
+msgid "Site"
+msgstr ""
+
+#: src/profiles/types.js:93
+# defaultMessage: Source
+msgid "Source"
+msgstr ""
+
+#: src/profiles/permissions.json:22
+# defaultMessage: Submit
+msgid "Submit"
+msgstr ""
+
+#: src/profiles/workflows.json:66
+# defaultMessage: Submit for publication
+msgid "Submit for publication"
+msgstr ""
+
+#: src/profiles/types.js:104
+# defaultMessage: Tags
+msgid "Tags"
+msgstr ""
+
+#: src/profiles/types.js:128
+# defaultMessage: The JSON representation of the object blocks information. Must be a JSON object.
+msgid "The JSON representation of the object blocks information. Must be a JSON object."
+msgstr ""
+
+#: src/profiles/types.js:138
+# defaultMessage: The JSON representation of the object blocks layout. Must be a JSON array.
+msgid "The JSON representation of the object blocks layout. Must be a JSON array."
+msgstr ""
+
+#: src/profiles/types.js:56
+# defaultMessage: The language of this item.
+msgid "The language of this item."
+msgstr ""
+
+#: src/profiles/types.js:34
+# defaultMessage: The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant.
+msgid "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
+msgstr ""
+
+#: src/profiles/types.js:101
+# defaultMessage: The topic of this item.
+msgid "The topic of this item."
+msgstr ""
+
+#: src/profiles/types.js:46
+# defaultMessage: This name will be displayed in the URL.
+msgid "This name will be displayed in the URL."
+msgstr ""
+
+#: src/profiles/types.js:110
+# defaultMessage: Title
+msgid "Title"
+msgstr ""
+
+#: src/profiles/permissions.json:6
+# defaultMessage: View
+msgid "View"
+msgstr ""
+
+#: src/profiles/workflows.json:38
+# defaultMessage: Visible to everyone, editable by the owner.
+msgid "Visible to everyone, editable by the owner."
+msgstr ""
+
+#: src/profiles/workflows.json:25
+# defaultMessage: Waiting to be reviewed, not editable by the owner.
+msgid "Waiting to be reviewed, not editable by the owner."
+msgstr ""
+
+#: src/profiles/types.js:165
+# defaultMessage: When this date is reached, the content will no longer be visible in listings and searches.
+msgid "When this date is reached, the content will no longer be visible in listings and searches."
+msgstr ""
+
+#: src/routes/login/login.js:46
+#: src/routes/login/login.js:54
 # defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
 msgstr ""

@@ -3,15 +3,15 @@
   "groups": [
     {
       "id": "Authenticated",
-      "title": "Authenticated",
-      "description": "",
+      "title:i18n": "Authenticated",
+      "description:i18n": "",
       "email": "",
       "roles": ["Reader"]
     },
     {
       "id": "Owner",
-      "title": "Owner",
-      "description": "",
+      "title:i18n": "Owner",
+      "description:i18n": "",
       "email": "",
       "roles": ["Contributer", "Editor"]
     }

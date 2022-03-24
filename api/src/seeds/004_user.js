@@ -1,9 +1,11 @@
 import { map, omit } from 'lodash';
 import bcrypt from 'bcrypt-promise';
 
+import { stripI18n } from '../helpers';
+
 export const seed = async (knex) => {
   try {
-    const profile = require('../profiles/users');
+    const profile = stripI18n(require('../profiles/users'));
     if (profile.purge) {
       await knex('user').del();
       await knex('user_role').del();

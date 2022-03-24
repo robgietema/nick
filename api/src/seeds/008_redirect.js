@@ -1,6 +1,8 @@
+import { stripI18n } from '../helpers';
+
 export const seed = async (knex) => {
   try {
-    const profile = require('../profiles/redirects');
+    const profile = stripI18n(require('../profiles/redirects'));
     if (profile.purge) {
       await knex('redirect').del();
     }

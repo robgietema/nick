@@ -16,6 +16,7 @@ export {
   writeFile,
   writeImage,
 } from './fs/fs';
+export { stripI18n } from './i18n/i18n';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas } from './schema/schema';
 export { mapAsync, mapSync, uniqueId } from './utils/utils';

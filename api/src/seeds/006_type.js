@@ -1,6 +1,8 @@
+import { stripI18n } from '../helpers';
+
 export const seed = async (knex) => {
   try {
-    const profile = require('../profiles/types');
+    const profile = stripI18n(require('../profiles/types'));
     if (profile.purge) {
       await knex('type').del();
     }
