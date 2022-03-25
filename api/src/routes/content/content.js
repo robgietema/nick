@@ -175,7 +175,7 @@ async function documentToJson(document, req) {
     created: document.get('created'),
     modified: document.get('modified'),
     UID: document.get('uuid'),
-    is_folderish: true,
+    is_folderish: type.get('behaviors').indexOf('folderish') !== -1,
     review_state: document.get('workflow_state'),
     lock: document.get('lock'),
   };

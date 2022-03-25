@@ -3,6 +3,13 @@
   "title:i18n": "Site",
   "description:i18n": "",
   "addable": false,
-  "behaviors": ["dublin_core", "dates", "blocks", "versioning", "versioning"],
+  "behaviors": [
+    "dublin_core",
+    "dates",
+    "blocks",
+    "versioning",
+    "versioning",
+    "folderish"
+  ],
   "workflow": "simple_publication_workflow"
 }

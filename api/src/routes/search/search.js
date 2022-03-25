@@ -6,7 +6,7 @@
 import moment from 'moment';
 import { endsWith, mapKeys, repeat } from 'lodash';
 import { formatSize, requirePermission } from '../../helpers';
-import { documentRepository } from '../../repositories';
+import { documentRepository, typeRepository } from '../../repositories';
 
 /**
  * Convert document to json.
@@ -15,7 +15,8 @@ import { documentRepository } from '../../repositories';
  * @param {Object} req Request object.
  * @returns {Object} Json representation of the document.
  */
-function documentToJson(document, req) {
+async function documentToJson(document, req) {
+  const type = await typeRepository.findOne({ id: document.get('type') });
   const json = document.get('json');
   return {
     '@id': `${req.protocol}://${req.headers.host}${document.get('path')}`,
@@ -30,7 +31,7 @@ function documentToJson(document, req) {
     EffectiveDate: 'None',
     ExpirationDate: 'None',
     id: document.get('id'),
-    is_folderish: true,
+    is_folderish: type.get('behaviors').indexOf('folderish') !== -1,
     Subject: json.subjects,
     getObjSize: formatSize(JSON.stringify(json).length),
     start: null,
@@ -112,7 +113,9 @@ export default [
         );
         res.send({
           '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@search`,
-          items: items.map((item) => documentToJson(item, req)),
+          items: await Promise.all(
+            items.map(async (item) => await documentToJson(item, req)),
+          ),
           items_total: items.pagination?.rowCount || items.length,
         });
       }),

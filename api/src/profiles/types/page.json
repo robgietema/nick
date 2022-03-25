@@ -3,6 +3,13 @@
   "title:i18n": "Page",
   "description:i18n": "",
   "addable": true,
-  "behaviors": ["dublin_core", "dates", "blocks", "versioning", "short_name"],
+  "behaviors": [
+    "dublin_core",
+    "dates",
+    "blocks",
+    "versioning",
+    "short_name",
+    "folderish"
+  ],
   "workflow": "simple_publication_workflow"
 }
