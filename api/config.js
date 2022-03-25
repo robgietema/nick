@@ -10,7 +10,7 @@ export const config = {
   port: 8000,
   secret: 'secret',
   systemUsers: ['admin', 'anonymous'],
-  systemGroups: ['Authenticated', 'Owner'],
+  systemGroups: ['Owner'],
   supportedLanguages: ['en', 'nl'],
   defaultLanguage: 'en',
   imageScales: {

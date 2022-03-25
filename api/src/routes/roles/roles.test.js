@@ -14,13 +14,13 @@ describe('Roles', () => {
       .expect(200)
       .expect((res) =>
         Promise.all([
-          expect(res.body.length).toBe(5),
+          expect(res.body.length).toBe(7),
           expect(res.body[0]['@id']).toMatch(
-            /http:\/\/127.0.0.1:.*\/@roles\/Reader/,
+            /http:\/\/127.0.0.1:.*\/@roles\/Anonymous/,
           ),
           expect(res.body[0]['@type']).toBe('role'),
-          expect(res.body[0].id).toBe('Reader'),
-          expect(res.body[0].title).toBe('Reader'),
+          expect(res.body[0].id).toBe('Anonymous'),
+          expect(res.body[0].title).toBe('Anonymous'),
         ]),
       ));
 });

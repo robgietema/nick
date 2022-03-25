@@ -2,6 +2,16 @@
   "purge": true,
   "roles": [
     {
+      "id": "Anonymous",
+      "title:i18n": "Anonymous",
+      "permissions": ["Login", "Register"]
+    },
+    {
+      "id": "Authenticated",
+      "title:i18n": "Authenticated",
+      "permissions": ["Logout", "Manage Preferences"]
+    },
+    {
       "id": "Reader",
       "title:i18n": "Reader",
       "permissions": ["View"]
@@ -24,7 +34,7 @@
     {
       "id": "Administrator",
       "title:i18n": "Administrator",
-      "permissions": ["Add", "Review", "Submit", "Manage Users"]
+      "permissions": ["Add", "Review", "Submit", "Manage Users", "Manage Site"]
     }
   ]
 }

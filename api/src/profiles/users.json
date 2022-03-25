@@ -12,7 +12,8 @@
       "id": "anonymous",
       "password": "anonymous",
       "fullname": "Anonymous",
-      "email": ""
+      "email": "",
+      "roles": ["Anonymous"]
     }
   ]
 }

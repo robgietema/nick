@@ -10,8 +10,32 @@
       "title:i18n": "Add"
     },
     {
+      "id": "Login",
+      "title:i18n": "Login"
+    },
+    {
+      "id": "Logout",
+      "title:i18n": "Logout"
+    },
+    {
+      "id": "Manage Preferences",
+      "title:i18n": "Manage Preferences"
+    },
+    {
+      "id": "Manage Users",
+      "title:i18n": "Manage Users"
+    },
+    {
+      "id": "Manage Site",
+      "title:i18n": "Manage Site"
+    },
+    {
       "id": "Modify",
       "title:i18n": "Modify"
+    },
+    {
+      "id": "Register",
+      "title:i18n": "Register"
     },
     {
       "id": "Review",
@@ -20,10 +44,6 @@
     {
       "id": "Submit",
       "title:i18n": "Submit"
-    },
-    {
-      "id": "Manage Users",
-      "title:i18n": "Manage Users"
     }
   ]
 }

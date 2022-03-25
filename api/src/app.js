@@ -89,6 +89,7 @@ app.use(async (req, res, next) => {
   // Check if auth token
   if (!token) {
     req.user = anonymous;
+    req.roles = ['Anonymous'];
     req.groups = await userGroupRepository.getGroups(anonymous);
     return next();
   }
@@ -97,6 +98,7 @@ app.use(async (req, res, next) => {
     // If not valid token or expired
     if (err || new Date().getTime() / 1000 > decoded.exp) {
       req.user = anonymous;
+      req.roles = ['Anonymous'];
       req.groups = await userGroupRepository.getGroups(anonymous);
       next();
     } else {
@@ -105,14 +107,12 @@ app.use(async (req, res, next) => {
 
       // Check if user exists
       if (req.user) {
-        // Get global groups of user
-        const globalGroups = await userGroupRepository.getGroups(req.user);
-
-        // Combine groups
-        req.groups = [...globalGroups, 'Authenticated'];
+        req.groups = await userGroupRepository.getGroups(req.user);
+        req.roles = ['Authenticated'];
         next();
       } else {
         req.user = anonymous;
+        req.roles = ['Anonymous'];
         req.groups = await userGroupRepository.getGroups(anonymous);
         next();
       }
@@ -225,6 +225,7 @@ map(routes, (route) => {
         ...rootGroupRoles,
         ...globalUserRoles,
         ...globalGroupRoles,
+        ...req.roles,
       ]),
     );
 

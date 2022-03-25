@@ -2,13 +2,6 @@
   "purge": true,
   "groups": [
     {
-      "id": "Authenticated",
-      "title:i18n": "Authenticated",
-      "description:i18n": "",
-      "email": "",
-      "roles": ["Reader"]
-    },
-    {
       "id": "Owner",
       "title:i18n": "Owner",
       "description:i18n": "",

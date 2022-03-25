@@ -1,0 +1,107 @@
+{
+  "purge": true,
+  "document_actions": [],
+  "object": [
+    {
+      "id": "view",
+      "title:i18n": "View",
+      "permission": "View"
+    },
+    {
+      "id": "edit",
+      "title:i18n": "Edit",
+      "permission": "Modify"
+    },
+    {
+      "id": "folderContents",
+      "title:i18n": "Contents",
+      "permission": "Modify"
+    },
+    {
+      "id": "history",
+      "title:i18n": "History",
+      "permission": "Modify"
+    },
+    {
+      "id": "local_roles",
+      "title:i18n": "Sharing",
+      "permission": "Modify"
+    },
+    {
+      "id": "contentrules",
+      "title:i18n": "Rules",
+      "permission": "Modify"
+    }
+  ],
+  "site_actions": [
+    {
+      "id": "sitemap",
+      "title:i18n": "Sitemap",
+      "permission": "View"
+    },
+    {
+      "id": "accessibility",
+      "title:i18n": "Accessibility",
+      "permission": "View"
+    },
+    {
+      "id": "contact",
+      "title:i18n": "Contact",
+      "permission": "View"
+    }
+  ],
+  "object_buttons": [
+    {
+      "id": "cut",
+      "title:i18n": "Cut",
+      "permission": "Modify"
+    },
+    {
+      "id": "copy",
+      "title:i18n": "Copy",
+      "permission": "Modify"
+    },
+    {
+      "id": "paste",
+      "title:i18n": "Paste",
+      "permission": "Add"
+    },
+    {
+      "id": "delete",
+      "title:i18n": "Delete",
+      "permission": "Modify"
+    },
+    {
+      "id": "rename",
+      "title:i18n": "Rename",
+      "permission": "Modify"
+    }
+  ],
+  "user": [
+    {
+      "id": "preferences",
+      "title:i18n": "Preferences",
+      "permission": "Manage Preferences"
+    },
+    {
+      "id": "plone_setup",
+      "title:i18n": "Site Setup",
+      "permission": "Manage Site"
+    },
+    {
+      "id": "login",
+      "title:i18n": "Log in",
+      "permission": "Login"
+    },
+    {
+      "id": "logout",
+      "title:i18n": "Log out",
+      "permission": "Logout"
+    },
+    {
+      "id": "register",
+      "title:i18n": "Register",
+      "permission": "Register"
+    }
+  ]
+}

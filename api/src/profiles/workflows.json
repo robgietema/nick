@@ -15,8 +15,6 @@
             "permissions": {
               "Contributer": ["View"],
               "Editor": ["View", "Modify"],
-              "Owner": ["View", "Modify"],
-              "Reader": ["View"],
               "Administrator": ["View", "Modify"]
             }
           },
@@ -27,8 +25,6 @@
             "permissions": {
               "Contributer": ["View"],
               "Editor": ["View"],
-              "Owner": ["View"],
-              "Reader": ["View"],
               "Reviewer": ["View", "Modify"],
               "Administrator": ["View", "Modify"]
             }
@@ -40,8 +36,8 @@
             "permissions": {
               "Anonymous": ["View"],
               "Authenticated": ["View"],
+              "Reader": ["View"],
               "Editor": ["Modify"],
-              "Owner": ["Modify"],
               "Administrator": ["Modify"]
             }
           }
