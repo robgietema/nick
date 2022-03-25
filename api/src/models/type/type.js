@@ -46,8 +46,8 @@ export const Type = BaseModel.extend({
     const behaviorSchemas = await getBehaviorSchemas(this.get('behaviors'));
     return mergeSchemas(...behaviorSchemas, this.get('schema'));
   },
-  getFactoryFields(factory) {
-    const properties = this.getSchema().properties;
+  async getFactoryFields(factory) {
+    const properties = (await this.getSchema()).properties;
 
     // Get file fields
     const fileFields = map(keys(properties), (property) =>

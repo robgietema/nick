@@ -59,14 +59,15 @@ app.use((req, res, next) => {
 
 // i18n
 app.use((req, res, next) => {
-  req.i18n = (id, ...rest) =>
-    intl.nl.formatMessage({ id, defaultMessage: id }, ...rest);
-  /*
-    intl[
+  req.i18n = (id, ...rest) => {
+    if (!id) {
+      return id;
+    }
+    return intl[
       req.acceptsLanguages(...config.supportedLanguages) ||
         config.defaultLanguage
-    ].formatMessage({ id, defaultMessage: id}, ...rest);
-  */
+    ].formatMessage({ id, defaultMessage: id }, ...rest);
+  };
   next();
 });
 

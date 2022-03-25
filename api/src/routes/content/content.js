@@ -43,12 +43,12 @@ const omitProperties = ['@type', 'id', 'changeNote'];
  * @param {Object} type Type object.
  * @returns {Object} Fields with uuid info.
  */
-function handleFiles(json, type) {
+async function handleFiles(json, type) {
   // Make a copy of the json data
   const fields = { ...json };
 
   // Get file fields
-  const fileFields = type.getFactoryFields('File');
+  const fileFields = await type.getFactoryFields('File');
 
   mapSync(fileFields, (field) => {
     // Check if new data is uploaded
@@ -126,7 +126,7 @@ async function documentToJson(document, req) {
   const json = document.get('json');
 
   // Loop through file fields
-  const fileFields = type.getFactoryFields('File');
+  const fileFields = await type.getFactoryFields('File');
   mapSync(fileFields, (field) => {
     // Set data
     json[field] = {
@@ -140,7 +140,7 @@ async function documentToJson(document, req) {
   });
 
   // Loop through image fields
-  const imageFields = type.getFactoryFields('Image');
+  const imageFields = await type.getFactoryFields('Image');
   mapSync(imageFields, (field) => {
     // Set data
     json[field] = {
@@ -383,13 +383,13 @@ export default [
         );
 
         // Get json data
-        const properties = type.get('schema').properties;
+        const properties = (await type.getSchema()).properties;
 
         // Handle file uploads
         let json = {
           ...omit(pick(req.body, keys(properties)), omitProperties),
         };
-        json = handleFiles(json, type);
+        json = await handleFiles(json, type);
         json = await handleImages(json, type);
 
         // Insert document in database
@@ -512,11 +512,11 @@ export default [
         let json = {
           ...req.document.get('json'),
           ...omit(
-            pick(req.body, keys(type.get('schema').properties)),
+            pick(req.body, keys((await type.getSchema()).properties)),
             omitProperties,
           ),
         };
-        json = handleFiles(json, type);
+        json = await handleFiles(json, type);
         json = await handleImages(json, type);
 
         // Create new version
@@ -571,8 +571,8 @@ export default [
         const type = await typeRepository.findOne({
           id: req.document.get('type'),
         });
-        const fileFields = type.getFactoryFields('File');
-        const imageFields = type.getFactoryFields('Image');
+        const fileFields = await type.getFactoryFields('File');
+        const imageFields = await type.getFactoryFields('Image');
 
         // If file fields exist
         if (fileFields.length > 0 || imageFields.length > 0) {
