@@ -16,23 +16,26 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
-#: src/profiles/types.js:73
-#: src/profiles/types.js:185
-#: src/profiles/types.js:205
+#: src/profiles/behaviors/categorization.json:36
 #: src/profiles/groups.json:7
 #: src/profiles/groups.json:14
-#: src/profiles/types.js:40
+#: src/profiles/types/file.json:17
+#: src/profiles/types/folder.json:4
+#: src/profiles/types/image.json:17
+#: src/profiles/types/page.json:4
+#: src/profiles/types/site.json:4
+#: src/profiles/behaviors/basic.json:15
 # defaultMessage:
 # defaultMessage: A description of this item.
 msgid "A description of this item."
 msgstr ""
 
-#: src/profiles/types.js:109
+#: src/profiles/behaviors/basic.json:21
 # defaultMessage: A name given to this item.
 msgid "A name given to this item."
 msgstr ""
 
-#: src/profiles/types.js:92
+#: src/profiles/behaviors/ownership.json:25
 # defaultMessage: A related item from which this item is derived.
 msgid "A related item from which this item is derived."
 msgstr ""
@@ -47,6 +50,31 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
+#: src/profiles/behaviors/dates.json:4
+# defaultMessage: Adds effective and expiration dates.
+msgid "Adds effective and expiration dates."
+msgstr ""
+
+#: src/profiles/behaviors/categorization.json:4
+# defaultMessage: Adds keywords and language fields.
+msgid "Adds keywords and language fields."
+msgstr ""
+
+#: src/profiles/behaviors/ownership.json:4
+# defaultMessage: Adds ownership and rights fields.
+msgid "Adds ownership and rights fields."
+msgstr ""
+
+#: src/profiles/behaviors/dublin_core.json:4
+# defaultMessage: Adds standard metadatafields
+msgid "Adds standard metadatafields"
+msgstr ""
+
+#: src/profiles/behaviors/basic.json:4
+# defaultMessage: Adds title and description fields.
+msgid "Adds title and description fields."
+msgstr ""
+
 #: src/profiles/roles.json:26
 # defaultMessage: Administrator
 msgid "Administrator"
@@ -57,7 +85,7 @@ msgstr ""
 msgid "Already locked"
 msgstr ""
 
-#: src/profiles/types.js:63
+#: src/profiles/behaviors/ownership.json:15
 # defaultMessage: An entity responsible for making this item available.
 msgid "An entity responsible for making this item available."
 msgstr ""
@@ -67,12 +95,18 @@ msgstr ""
 msgid "Authenticated"
 msgstr ""
 
-#: src/profiles/types.js:130
+#: src/profiles/behaviors/basic.json:3
+# defaultMessage: Basic metadata
+msgid "Basic metadata"
+msgstr ""
+
+#: src/profiles/behaviors/blocks.json:3
+#: src/profiles/behaviors/blocks.json:17
 # defaultMessage: Blocks
 msgid "Blocks"
 msgstr ""
 
-#: src/profiles/types.js:140
+#: src/profiles/behaviors/blocks.json:26
 # defaultMessage: Blocks Layout
 msgid "Blocks Layout"
 msgstr ""
@@ -82,12 +116,13 @@ msgstr ""
 msgid "Can only be seen and edited by the owner."
 msgstr ""
 
-#: src/profiles/types.js:18
+#: src/profiles/behaviors/categorization.json:3
+#: src/profiles/behaviors/categorization.json:10
 # defaultMessage: Categorization
 msgid "Categorization"
 msgstr ""
 
-#: src/profiles/types.js:30
+#: src/profiles/behaviors/versioning.json:16
 # defaultMessage: Change Note
 msgid "Change Note"
 msgstr ""
@@ -107,7 +142,7 @@ msgstr ""
 msgid "Contributer"
 msgstr ""
 
-#: src/profiles/types.js:36
+#: src/profiles/behaviors/categorization.json:16
 # defaultMessage: Coverage
 msgid "Coverage"
 msgstr ""
@@ -117,24 +152,26 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: src/profiles/types.js:153
+#: src/profiles/behaviors/dates.json:3
+#: src/profiles/behaviors/dates.json:10
 # defaultMessage: Dates
 msgid "Dates"
 msgstr ""
 
-#: src/profiles/types.js:8
-#: src/profiles/types.js:180
-#: src/profiles/types.js:200
+#: src/profiles/behaviors/basic.json:10
+#: src/profiles/behaviors/versioning.json:10
+#: src/profiles/types/file.json:12
+#: src/profiles/types/image.json:12
 # defaultMessage: Default
 msgid "Default"
 msgstr ""
 
-#: src/routes/users/users.js:166
+#: src/routes/users/users.js:165
 # defaultMessage: Delete User
 msgid "Delete User"
 msgstr ""
 
-#: src/profiles/types.js:41
+#: src/profiles/behaviors/basic.json:16
 # defaultMessage: Description
 msgid "Description"
 msgstr ""
@@ -143,6 +180,11 @@ msgstr ""
 #: src/routes/history/history.js:69
 # defaultMessage: Document locked
 msgid "Document locked"
+msgstr ""
+
+#: src/profiles/behaviors/dublin_core.json:3
+# defaultMessage: Dublin Core metadata
+msgid "Dublin Core metadata"
 msgstr ""
 
 #: src/routes/actions/actions.js:24
@@ -155,25 +197,35 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-#: src/profiles/types.js:28
+#: src/profiles/behaviors/blocks.json:4
+# defaultMessage: Enables Volto Blocks support
+msgid "Enables Volto Blocks support"
+msgstr ""
+
+#: src/profiles/behaviors/versioning.json:15
 # defaultMessage: Enter a comment that describes the changes you made.
 msgid "Enter a comment that describes the changes you made."
 msgstr ""
 
-#: src/profiles/types.js:167
+#: src/profiles/behaviors/dates.json:22
 # defaultMessage: Expiration Date
 msgid "Expiration Date"
 msgstr ""
 
-#: src/profiles/types.js:206
-#: src/profiles/types.js:248
+#: src/profiles/types/file.json:3
+#: src/profiles/types/file.json:18
 # defaultMessage: File
 msgid "File"
 msgstr ""
 
-#: src/profiles/types.js:227
+#: src/profiles/types/folder.json:3
 # defaultMessage: Folder
 msgid "Folder"
+msgstr ""
+
+#: src/profiles/behaviors/short_name.json:4
+# defaultMessage: Gives the ability to rename an item from its edit form.
+msgid "Gives the ability to rename an item from its edit form."
 msgstr ""
 
 #: src/routes/actions/actions.js:34
@@ -181,41 +233,58 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: src/profiles/types.js:47
+#: src/profiles/behaviors/short_name.json:16
 # defaultMessage: Identifier
 msgid "Identifier"
 msgstr ""
 
-#: src/profiles/types.js:158
+#: src/profiles/behaviors/dates.json:15
 # defaultMessage: If this date is in the future, the content will not show up in listings and searches until this date.
 msgid "If this date is in the future, the content will not show up in listings and searches until this date."
 msgstr ""
 
-#: src/profiles/types.js:186
-#: src/profiles/types.js:241
+#: src/profiles/types/image.json:3
+#: src/profiles/types/image.json:18
 # defaultMessage: Image
 msgid "Image"
 msgstr ""
 
-#: src/profiles/types.js:86
+#: src/profiles/types/image.json:4
+# defaultMessage: Images can be referenced in pages or displayed in an album.
+msgid "Images can be referenced in pages or displayed in an album."
+msgstr ""
+
+#: src/profiles/behaviors/ownership.json:20
 # defaultMessage: Information about rights held in and over this item.
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/routes/login/login.js:45
-#: src/routes/login/login.js:53
+#: src/app.js:85
+#: src/app.js:203
+#: src/app.js:263
+# defaultMessage: Internal server error
+msgid "Internal server error"
+msgstr ""
+
+#: src/routes/login/login.js:33
+#: src/routes/login/login.js:58
 # defaultMessage: Invalid credentials
 msgid "Invalid credentials"
 msgstr ""
 
-#: src/profiles/types.js:59
+#: src/profiles/behaviors/categorization.json:28
 # defaultMessage: Language
 msgid "Language"
 msgstr ""
 
-#: src/profiles/types.js:122
+#: src/profiles/behaviors/blocks.json:10
 # defaultMessage: Layout
 msgid "Layout"
+msgstr ""
+
+#: src/profiles/types/file.json:4
+# defaultMessage: Lets you upload a file to the site.
+msgid "Lets you upload a file to the site."
 msgstr ""
 
 #: src/routes/actions/actions.js:78
@@ -243,8 +312,9 @@ msgstr ""
 msgid "Modify"
 msgstr ""
 
+#: src/app.js:242
 #: src/routes/groups/groups.js:42
-#: src/routes/types/types.js:39
+#: src/routes/types/types.js:58
 # defaultMessage: Not Found
 msgid "Not Found"
 msgstr ""
@@ -259,12 +329,13 @@ msgstr ""
 msgid "Owner"
 msgstr ""
 
-#: src/profiles/types.js:23
+#: src/profiles/behaviors/ownership.json:3
+#: src/profiles/behaviors/ownership.json:10
 # defaultMessage: Ownership
 msgid "Ownership"
 msgstr ""
 
-#: src/profiles/types.js:234
+#: src/profiles/types/page.json:3
 # defaultMessage: Page
 msgid "Page"
 msgstr ""
@@ -294,12 +365,12 @@ msgstr ""
 msgid "Published"
 msgstr ""
 
-#: src/profiles/types.js:65
+#: src/profiles/behaviors/ownership.json:16
 # defaultMessage: Publisher
 msgid "Publisher"
 msgstr ""
 
-#: src/profiles/types.js:160
+#: src/profiles/behaviors/dates.json:16
 # defaultMessage: Publishing Date
 msgid "Publishing Date"
 msgstr ""
@@ -309,17 +380,17 @@ msgstr ""
 msgid "Reader"
 msgstr ""
 
-#: src/profiles/types.js:74
+#: src/profiles/behaviors/categorization.json:37
 # defaultMessage: Related
 msgid "Related"
 msgstr ""
 
-#: src/profiles/types.js:80
+#: src/profiles/behaviors/categorization.json:43
 # defaultMessage: Related Items
 msgid "Related Items"
 msgstr ""
 
-#: src/profiles/types.js:71
+#: src/profiles/behaviors/categorization.json:34
 # defaultMessage: Related resources.
 msgid "Related resources."
 msgstr ""
@@ -339,7 +410,7 @@ msgstr ""
 msgid "Reviewer"
 msgstr ""
 
-#: src/profiles/types.js:88
+#: src/profiles/behaviors/ownership.json:21
 # defaultMessage: Rights
 msgid "Rights"
 msgstr ""
@@ -349,7 +420,7 @@ msgstr ""
 msgid "Send back"
 msgstr ""
 
-#: src/profiles/types.js:13
+#: src/profiles/behaviors/short_name.json:10
 # defaultMessage: Settings
 msgid "Settings"
 msgstr ""
@@ -357,6 +428,11 @@ msgstr ""
 #: src/routes/actions/actions.js:39
 # defaultMessage: Sharing
 msgid "Sharing"
+msgstr ""
+
+#: src/profiles/behaviors/short_name.json:3
+# defaultMessage: Short name
+msgid "Short name"
 msgstr ""
 
 #: src/profiles/workflows.json:6
@@ -369,7 +445,7 @@ msgstr ""
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 msgstr ""
 
-#: src/profiles/types.js:220
+#: src/profiles/types/site.json:3
 # defaultMessage: Site
 msgid "Site"
 msgstr ""
@@ -384,7 +460,7 @@ msgstr ""
 msgid "Site Setup"
 msgstr ""
 
-#: src/profiles/types.js:93
+#: src/profiles/behaviors/ownership.json:26
 # defaultMessage: Source
 msgid "Source"
 msgstr ""
@@ -400,37 +476,37 @@ msgid "Submit for publication"
 msgstr ""
 
 #: src/routes/groups/groups.js:144
-#: src/routes/users/users.js:175
+#: src/routes/users/users.js:174
 # defaultMessage: System group
 msgid "System group"
 msgstr ""
 
-#: src/profiles/types.js:104
+#: src/profiles/behaviors/categorization.json:56
 # defaultMessage: Tags
 msgid "Tags"
 msgstr ""
 
-#: src/profiles/types.js:128
+#: src/profiles/behaviors/blocks.json:16
 # defaultMessage: The JSON representation of the object blocks information. Must be a JSON object.
 msgid "The JSON representation of the object blocks information. Must be a JSON object."
 msgstr ""
 
-#: src/profiles/types.js:138
+#: src/profiles/behaviors/blocks.json:25
 # defaultMessage: The JSON representation of the object blocks layout. Must be a JSON array.
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr ""
 
-#: src/profiles/types.js:56
+#: src/profiles/behaviors/categorization.json:25
 # defaultMessage: The language of this item.
 msgid "The language of this item."
 msgstr ""
 
-#: src/profiles/types.js:34
+#: src/profiles/behaviors/categorization.json:15
 # defaultMessage: The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant.
 msgid "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
 msgstr ""
 
-#: src/profiles/types.js:101
+#: src/profiles/behaviors/categorization.json:53
 # defaultMessage: The topic of this item.
 msgid "The topic of this item."
 msgstr ""
@@ -440,19 +516,29 @@ msgstr ""
 msgid "This document is already locked by another user."
 msgstr ""
 
-#: src/profiles/types.js:46
+#: src/profiles/behaviors/short_name.json:15
 # defaultMessage: This name will be displayed in the URL.
 msgid "This name will be displayed in the URL."
 msgstr ""
 
-#: src/profiles/types.js:110
+#: src/profiles/behaviors/basic.json:22
 # defaultMessage: Title
 msgid "Title"
 msgstr ""
 
-#: src/routes/users/users.js:163
+#: src/routes/users/users.js:162
 # defaultMessage: Unable to remove user, most likely this user is still owner of documents.
 msgid "Unable to remove user, most likely this user is still owner of documents."
+msgstr ""
+
+#: src/profiles/behaviors/versioning.json:3
+# defaultMessage: Versioning
+msgid "Versioning"
+msgstr ""
+
+#: src/profiles/behaviors/versioning.json:4
+# defaultMessage: Versioning support
+msgid "Versioning support"
 msgstr ""
 
 #: src/routes/actions/actions.js:19
@@ -471,19 +557,19 @@ msgstr ""
 msgid "Waiting to be reviewed, not editable by the owner."
 msgstr ""
 
-#: src/profiles/types.js:165
+#: src/profiles/behaviors/dates.json:21
 # defaultMessage: When this date is reached, the content will no longer be visible in listings and searches.
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
 msgstr ""
 
-#: src/routes/login/login.js:46
-#: src/routes/login/login.js:54
+#: src/routes/login/login.js:34
+#: src/routes/login/login.js:59
 # defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
 msgstr ""
 
 #: src/routes/groups/groups.js:143
-#: src/routes/users/users.js:174
+#: src/routes/users/users.js:173
 # defaultMessage: You can't delete system groups.
 msgid "You can't delete system groups."
 msgstr ""
