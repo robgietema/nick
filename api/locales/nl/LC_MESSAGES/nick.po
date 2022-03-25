@@ -18,7 +18,6 @@ msgstr ""
 
 #: src/profiles/behaviors/categorization.json:36
 #: src/profiles/groups.json:7
-#: src/profiles/groups.json:14
 #: src/profiles/types/file.json:17
 #: src/profiles/types/folder.json:4
 #: src/profiles/types/image.json:17
@@ -40,7 +39,7 @@ msgstr "Een naam gegeven aan dit item."
 msgid "A related item from which this item is derived."
 msgstr "Een gerelateerd item waarvan deze is afgeleid."
 
-#: src/routes/actions/actions.js:51
+#: src/profiles/actions.json:44
 # defaultMessage: Accessibility
 msgid "Accessibility"
 msgstr "Toegankelijkheid"
@@ -75,7 +74,7 @@ msgstr "Voegt standaard metadatavelden toe"
 msgid "Adds title and description fields."
 msgstr "Voegt titel- en beschrijvingsvelden toe."
 
-#: src/profiles/roles.json:26
+#: src/profiles/roles.json:36
 # defaultMessage: Administrator
 msgid "Administrator"
 msgstr "Beheerder"
@@ -90,7 +89,12 @@ msgstr "Al op slot"
 msgid "An entity responsible for making this item available."
 msgstr "Een entiteit die verantwoordelijk is voor het beschikbaar maken van dit item."
 
-#: src/profiles/groups.json:6
+#: src/profiles/roles.json:6
+# defaultMessage: Anonymous
+msgid "Anonymous"
+msgstr "Anoniem"
+
+#: src/profiles/roles.json:11
 # defaultMessage: Authenticated
 msgid "Authenticated"
 msgstr "Geauthenticeerd"
@@ -127,30 +131,35 @@ msgstr "Categorisatie"
 msgid "Change Note"
 msgstr "Wijzig Notitie"
 
-#: src/routes/actions/actions.js:56
+#: src/profiles/actions.json:49
 # defaultMessage: Contact
 msgid "Contact"
 msgstr "Contact"
 
-#: src/routes/actions/actions.js:29
+#: src/profiles/actions.json:17
 # defaultMessage: Contents
 msgid "Contents"
 msgstr "Inhoud"
 
-#: src/profiles/roles.json:11
+#: src/profiles/roles.json:21
 # defaultMessage: Contributer
 msgid "Contributer"
 msgstr "Bijdrager"
+
+#: src/profiles/actions.json:61
+# defaultMessage: Copy
+msgid "Copy"
+msgstr "Kopiëren"
 
 #: src/profiles/behaviors/categorization.json:16
 # defaultMessage: Coverage
 msgid "Coverage"
 msgstr "Dekking"
 
-#: src/routes/actions/actions.js:68
-# defaultMessage: Dashboard
-msgid "Dashboard"
-msgstr "Dashboard"
+#: src/profiles/actions.json:56
+# defaultMessage: Cut
+msgid "Cut"
+msgstr "Knippen"
 
 #: src/profiles/behaviors/dates.json:3
 #: src/profiles/behaviors/dates.json:10
@@ -165,6 +174,11 @@ msgstr "Data"
 # defaultMessage: Default
 msgid "Default"
 msgstr "Standaard"
+
+#: src/profiles/actions.json:71
+# defaultMessage: Delete
+msgid "Delete"
+msgstr "Verwijderen"
 
 #: src/routes/users/users.js:165
 # defaultMessage: Delete User
@@ -187,12 +201,12 @@ msgstr "Document vergrendeld"
 msgid "Dublin Core metadata"
 msgstr "Dublin Core metadata"
 
-#: src/routes/actions/actions.js:24
+#: src/profiles/actions.json:12
 # defaultMessage: Edit
 msgid "Edit"
 msgstr "Wijzigen"
 
-#: src/profiles/roles.json:16
+#: src/profiles/roles.json:26
 # defaultMessage: Editor
 msgid "Editor"
 msgstr "Redacteur"
@@ -228,7 +242,7 @@ msgstr "Map"
 msgid "Gives the ability to rename an item from its edit form."
 msgstr "Geeft de mogelijkheid om een item te hernoemen vanuit het bewerkingsformulier."
 
-#: src/routes/actions/actions.js:34
+#: src/profiles/actions.json:22
 # defaultMessage: History
 msgid "History"
 msgstr "Geschiedenis"
@@ -259,9 +273,9 @@ msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
-#: src/app.js:85
-#: src/app.js:203
-#: src/app.js:263
+#: src/app.js:86
+#: src/app.js:204
+#: src/app.js:265
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
@@ -287,15 +301,40 @@ msgstr "Layout"
 msgid "Lets you upload a file to the site."
 msgstr "Hiermee kunt u een bestand uploaden naar de site."
 
-#: src/routes/actions/actions.js:78
+#: src/profiles/actions.json:93
+# defaultMessage: Log in
+msgid "Log in"
+msgstr "Log in"
+
+#: src/profiles/actions.json:98
 # defaultMessage: Log out
 msgid "Log out"
 msgstr "Logout"
+
+#: src/profiles/permissions.json:14
+# defaultMessage: Login
+msgid "Login"
+msgstr "Log in"
 
 #: src/routes/login/login.js:21
 # defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
 msgstr "Login en wachtwoord moeten in de body worden opgegeven."
+
+#: src/profiles/permissions.json:18
+# defaultMessage: Logout
+msgid "Logout"
+msgstr "Uitloggen"
+
+#: src/profiles/permissions.json:22
+# defaultMessage: Manage Preferences
+msgid "Manage Preferences"
+msgstr "Voorkeuren beheren"
+
+#: src/profiles/permissions.json:30
+# defaultMessage: Manage Site
+msgid "Manage Site"
+msgstr "Site beheren"
 
 #: src/profiles/permissions.json:26
 # defaultMessage: Manage Users
@@ -307,12 +346,12 @@ msgstr "Gebruikers Beheren"
 msgid "Missing credentials"
 msgstr "Ontbrekende inloggegevens"
 
-#: src/profiles/permissions.json:14
+#: src/profiles/permissions.json:34
 # defaultMessage: Modify
 msgid "Modify"
 msgstr "Wijzigen"
 
-#: src/app.js:242
+#: src/app.js:244
 #: src/routes/groups/groups.js:42
 #: src/routes/types/types.js:58
 # defaultMessage: Not Found
@@ -324,7 +363,7 @@ msgstr "Niet Gevonden"
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
-#: src/profiles/groups.json:13
+#: src/profiles/groups.json:6
 # defaultMessage: Owner
 msgid "Owner"
 msgstr "Eigenaar"
@@ -340,12 +379,17 @@ msgstr "Eigenaarschap"
 msgid "Page"
 msgstr "Pagina"
 
-#: src/profiles/workflows.json:24
+#: src/profiles/actions.json:66
+# defaultMessage: Paste
+msgid "Paste"
+msgstr "Plakken"
+
+#: src/profiles/workflows.json:22
 # defaultMessage: Pending review
 msgid "Pending review"
 msgstr "Wacht op review"
 
-#: src/routes/actions/actions.js:63
+#: src/profiles/actions.json:83
 # defaultMessage: Preferences
 msgid "Preferences"
 msgstr "Voorkeuren"
@@ -355,12 +399,12 @@ msgstr "Voorkeuren"
 msgid "Private"
 msgstr "Privé"
 
-#: src/profiles/workflows.json:51
+#: src/profiles/workflows.json:47
 # defaultMessage: Publish
 msgid "Publish"
 msgstr "Publiceren"
 
-#: src/profiles/workflows.json:37
+#: src/profiles/workflows.json:33
 # defaultMessage: Published
 msgid "Published"
 msgstr "Gepubliceerd"
@@ -375,10 +419,16 @@ msgstr "Uitgever"
 msgid "Publishing Date"
 msgstr "Publicatiedatum"
 
-#: src/profiles/roles.json:6
+#: src/profiles/roles.json:16
 # defaultMessage: Reader
 msgid "Reader"
 msgstr "Lezer"
+
+#: src/profiles/actions.json:103
+#: src/profiles/permissions.json:38
+# defaultMessage: Register
+msgid "Register"
+msgstr "Registreren"
 
 #: src/profiles/behaviors/categorization.json:37
 # defaultMessage: Related
@@ -395,17 +445,22 @@ msgstr "Gerelateerde Items"
 msgid "Related resources."
 msgstr "Gerelateerde resources"
 
-#: src/profiles/workflows.json:61
+#: src/profiles/actions.json:76
+# defaultMessage: Rename
+msgid "Rename"
+msgstr "Hernoemen"
+
+#: src/profiles/workflows.json:57
 # defaultMessage: Retract
 msgid "Retract"
 msgstr "Intrekken"
 
-#: src/profiles/permissions.json:18
+#: src/profiles/permissions.json:42
 # defaultMessage: Review
 msgid "Review"
 msgstr "Review"
 
-#: src/profiles/roles.json:21
+#: src/profiles/roles.json:31
 # defaultMessage: Reviewer
 msgid "Reviewer"
 msgstr "Reviewer"
@@ -415,7 +470,12 @@ msgstr "Reviewer"
 msgid "Rights"
 msgstr "Rechten"
 
-#: src/profiles/workflows.json:56
+#: src/profiles/actions.json:32
+# defaultMessage: Rules
+msgid "Rules"
+msgstr "Regels"
+
+#: src/profiles/workflows.json:52
 # defaultMessage: Send back
 msgid "Send back"
 msgstr "Terugsturen"
@@ -425,7 +485,7 @@ msgstr "Terugsturen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: src/routes/actions/actions.js:39
+#: src/profiles/actions.json:27
 # defaultMessage: Sharing
 msgid "Sharing"
 msgstr "Delen"
@@ -450,27 +510,27 @@ msgstr "Eenvoudige workflow die handig is voor eenvoudige websites. Dingen begin
 msgid "Site"
 msgstr "Site"
 
-#: src/routes/actions/actions.js:46
-# defaultMessage: Site Map
-msgid "Site Map"
-msgstr "Sitemap"
-
-#: src/routes/actions/actions.js:73
+#: src/profiles/actions.json:88
 # defaultMessage: Site Setup
 msgid "Site Setup"
 msgstr "Site Instellingen"
+
+#: src/profiles/actions.json:39
+# defaultMessage: Sitemap
+msgid "Sitemap"
+msgstr "Sitemap"
 
 #: src/profiles/behaviors/ownership.json:26
 # defaultMessage: Source
 msgid "Source"
 msgstr "Bron"
 
-#: src/profiles/permissions.json:22
+#: src/profiles/permissions.json:46
 # defaultMessage: Submit
 msgid "Submit"
 msgstr "Indienen"
 
-#: src/profiles/workflows.json:66
+#: src/profiles/workflows.json:62
 # defaultMessage: Submit for publication
 msgid "Submit for publication"
 msgstr "Indienen ter publicatie"
@@ -541,18 +601,18 @@ msgstr "Versiebeheer"
 msgid "Versioning support"
 msgstr "Versiebeheer ondersteuning"
 
-#: src/routes/actions/actions.js:19
+#: src/profiles/actions.json:7
 #: src/profiles/permissions.json:6
 # defaultMessage: View
 msgid "View"
 msgstr "Bekijken"
 
-#: src/profiles/workflows.json:38
+#: src/profiles/workflows.json:34
 # defaultMessage: Visible to everyone, editable by the owner.
 msgid "Visible to everyone, editable by the owner."
 msgstr "Voor iedereen zichtbaar, bewerkbaar door de eigenaar."
 
-#: src/profiles/workflows.json:25
+#: src/profiles/workflows.json:23
 # defaultMessage: Waiting to be reviewed, not editable by the owner.
 msgid "Waiting to be reviewed, not editable by the owner."
 msgstr "Wachten om te worden beoordeeld, kan niet worden bewerkt door de eigenaar."

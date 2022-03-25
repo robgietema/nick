@@ -18,7 +18,6 @@ msgstr ""
 
 #: src/profiles/behaviors/categorization.json:36
 #: src/profiles/groups.json:7
-#: src/profiles/groups.json:14
 #: src/profiles/types/file.json:17
 #: src/profiles/types/folder.json:4
 #: src/profiles/types/image.json:17
@@ -40,7 +39,7 @@ msgstr ""
 msgid "A related item from which this item is derived."
 msgstr ""
 
-#: src/routes/actions/actions.js:51
+#: src/profiles/actions.json:44
 # defaultMessage: Accessibility
 msgid "Accessibility"
 msgstr ""
@@ -75,7 +74,7 @@ msgstr ""
 msgid "Adds title and description fields."
 msgstr ""
 
-#: src/profiles/roles.json:26
+#: src/profiles/roles.json:36
 # defaultMessage: Administrator
 msgid "Administrator"
 msgstr ""
@@ -90,7 +89,12 @@ msgstr ""
 msgid "An entity responsible for making this item available."
 msgstr ""
 
-#: src/profiles/groups.json:6
+#: src/profiles/roles.json:6
+# defaultMessage: Anonymous
+msgid "Anonymous"
+msgstr ""
+
+#: src/profiles/roles.json:11
 # defaultMessage: Authenticated
 msgid "Authenticated"
 msgstr ""
@@ -127,19 +131,24 @@ msgstr ""
 msgid "Change Note"
 msgstr ""
 
-#: src/routes/actions/actions.js:56
+#: src/profiles/actions.json:49
 # defaultMessage: Contact
 msgid "Contact"
 msgstr ""
 
-#: src/routes/actions/actions.js:29
+#: src/profiles/actions.json:17
 # defaultMessage: Contents
 msgid "Contents"
 msgstr ""
 
-#: src/profiles/roles.json:11
+#: src/profiles/roles.json:21
 # defaultMessage: Contributer
 msgid "Contributer"
+msgstr ""
+
+#: src/profiles/actions.json:61
+# defaultMessage: Copy
+msgid "Copy"
 msgstr ""
 
 #: src/profiles/behaviors/categorization.json:16
@@ -147,9 +156,9 @@ msgstr ""
 msgid "Coverage"
 msgstr ""
 
-#: src/routes/actions/actions.js:68
-# defaultMessage: Dashboard
-msgid "Dashboard"
+#: src/profiles/actions.json:56
+# defaultMessage: Cut
+msgid "Cut"
 msgstr ""
 
 #: src/profiles/behaviors/dates.json:3
@@ -164,6 +173,11 @@ msgstr ""
 #: src/profiles/types/image.json:12
 # defaultMessage: Default
 msgid "Default"
+msgstr ""
+
+#: src/profiles/actions.json:71
+# defaultMessage: Delete
+msgid "Delete"
 msgstr ""
 
 #: src/routes/users/users.js:165
@@ -187,12 +201,12 @@ msgstr ""
 msgid "Dublin Core metadata"
 msgstr ""
 
-#: src/routes/actions/actions.js:24
+#: src/profiles/actions.json:12
 # defaultMessage: Edit
 msgid "Edit"
 msgstr ""
 
-#: src/profiles/roles.json:16
+#: src/profiles/roles.json:26
 # defaultMessage: Editor
 msgid "Editor"
 msgstr ""
@@ -228,7 +242,7 @@ msgstr ""
 msgid "Gives the ability to rename an item from its edit form."
 msgstr ""
 
-#: src/routes/actions/actions.js:34
+#: src/profiles/actions.json:22
 # defaultMessage: History
 msgid "History"
 msgstr ""
@@ -259,9 +273,9 @@ msgstr ""
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:85
-#: src/app.js:203
-#: src/app.js:263
+#: src/app.js:86
+#: src/app.js:204
+#: src/app.js:265
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
@@ -287,14 +301,39 @@ msgstr ""
 msgid "Lets you upload a file to the site."
 msgstr ""
 
-#: src/routes/actions/actions.js:78
+#: src/profiles/actions.json:93
+# defaultMessage: Log in
+msgid "Log in"
+msgstr ""
+
+#: src/profiles/actions.json:98
 # defaultMessage: Log out
 msgid "Log out"
+msgstr ""
+
+#: src/profiles/permissions.json:14
+# defaultMessage: Login
+msgid "Login"
 msgstr ""
 
 #: src/routes/login/login.js:21
 # defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
+msgstr ""
+
+#: src/profiles/permissions.json:18
+# defaultMessage: Logout
+msgid "Logout"
+msgstr ""
+
+#: src/profiles/permissions.json:22
+# defaultMessage: Manage Preferences
+msgid "Manage Preferences"
+msgstr ""
+
+#: src/profiles/permissions.json:30
+# defaultMessage: Manage Site
+msgid "Manage Site"
 msgstr ""
 
 #: src/profiles/permissions.json:26
@@ -307,12 +346,12 @@ msgstr ""
 msgid "Missing credentials"
 msgstr ""
 
-#: src/profiles/permissions.json:14
+#: src/profiles/permissions.json:34
 # defaultMessage: Modify
 msgid "Modify"
 msgstr ""
 
-#: src/app.js:242
+#: src/app.js:244
 #: src/routes/groups/groups.js:42
 #: src/routes/types/types.js:58
 # defaultMessage: Not Found
@@ -324,7 +363,7 @@ msgstr ""
 msgid "Not allowed"
 msgstr ""
 
-#: src/profiles/groups.json:13
+#: src/profiles/groups.json:6
 # defaultMessage: Owner
 msgid "Owner"
 msgstr ""
@@ -340,12 +379,17 @@ msgstr ""
 msgid "Page"
 msgstr ""
 
-#: src/profiles/workflows.json:24
+#: src/profiles/actions.json:66
+# defaultMessage: Paste
+msgid "Paste"
+msgstr ""
+
+#: src/profiles/workflows.json:22
 # defaultMessage: Pending review
 msgid "Pending review"
 msgstr ""
 
-#: src/routes/actions/actions.js:63
+#: src/profiles/actions.json:83
 # defaultMessage: Preferences
 msgid "Preferences"
 msgstr ""
@@ -355,12 +399,12 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
-#: src/profiles/workflows.json:51
+#: src/profiles/workflows.json:47
 # defaultMessage: Publish
 msgid "Publish"
 msgstr ""
 
-#: src/profiles/workflows.json:37
+#: src/profiles/workflows.json:33
 # defaultMessage: Published
 msgid "Published"
 msgstr ""
@@ -375,9 +419,15 @@ msgstr ""
 msgid "Publishing Date"
 msgstr ""
 
-#: src/profiles/roles.json:6
+#: src/profiles/roles.json:16
 # defaultMessage: Reader
 msgid "Reader"
+msgstr ""
+
+#: src/profiles/actions.json:103
+#: src/profiles/permissions.json:38
+# defaultMessage: Register
+msgid "Register"
 msgstr ""
 
 #: src/profiles/behaviors/categorization.json:37
@@ -395,17 +445,22 @@ msgstr ""
 msgid "Related resources."
 msgstr ""
 
-#: src/profiles/workflows.json:61
+#: src/profiles/actions.json:76
+# defaultMessage: Rename
+msgid "Rename"
+msgstr ""
+
+#: src/profiles/workflows.json:57
 # defaultMessage: Retract
 msgid "Retract"
 msgstr ""
 
-#: src/profiles/permissions.json:18
+#: src/profiles/permissions.json:42
 # defaultMessage: Review
 msgid "Review"
 msgstr ""
 
-#: src/profiles/roles.json:21
+#: src/profiles/roles.json:31
 # defaultMessage: Reviewer
 msgid "Reviewer"
 msgstr ""
@@ -415,7 +470,12 @@ msgstr ""
 msgid "Rights"
 msgstr ""
 
-#: src/profiles/workflows.json:56
+#: src/profiles/actions.json:32
+# defaultMessage: Rules
+msgid "Rules"
+msgstr ""
+
+#: src/profiles/workflows.json:52
 # defaultMessage: Send back
 msgid "Send back"
 msgstr ""
@@ -425,7 +485,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: src/routes/actions/actions.js:39
+#: src/profiles/actions.json:27
 # defaultMessage: Sharing
 msgid "Sharing"
 msgstr ""
@@ -450,14 +510,14 @@ msgstr ""
 msgid "Site"
 msgstr ""
 
-#: src/routes/actions/actions.js:46
-# defaultMessage: Site Map
-msgid "Site Map"
-msgstr ""
-
-#: src/routes/actions/actions.js:73
+#: src/profiles/actions.json:88
 # defaultMessage: Site Setup
 msgid "Site Setup"
+msgstr ""
+
+#: src/profiles/actions.json:39
+# defaultMessage: Sitemap
+msgid "Sitemap"
 msgstr ""
 
 #: src/profiles/behaviors/ownership.json:26
@@ -465,12 +525,12 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
-#: src/profiles/permissions.json:22
+#: src/profiles/permissions.json:46
 # defaultMessage: Submit
 msgid "Submit"
 msgstr ""
 
-#: src/profiles/workflows.json:66
+#: src/profiles/workflows.json:62
 # defaultMessage: Submit for publication
 msgid "Submit for publication"
 msgstr ""
@@ -541,18 +601,18 @@ msgstr ""
 msgid "Versioning support"
 msgstr ""
 
-#: src/routes/actions/actions.js:19
+#: src/profiles/actions.json:7
 #: src/profiles/permissions.json:6
 # defaultMessage: View
 msgid "View"
 msgstr ""
 
-#: src/profiles/workflows.json:38
+#: src/profiles/workflows.json:34
 # defaultMessage: Visible to everyone, editable by the owner.
 msgid "Visible to everyone, editable by the owner."
 msgstr ""
 
-#: src/profiles/workflows.json:25
+#: src/profiles/workflows.json:23
 # defaultMessage: Waiting to be reviewed, not editable by the owner.
 msgid "Waiting to be reviewed, not editable by the owner."
 msgstr ""
