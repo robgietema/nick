@@ -128,7 +128,9 @@ export default [
         const items = await documentRepository.findAll();
         res.send({
           '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@search`,
-          items: items.map((item) => documentToJson(item, req)),
+          items: await Promise.all(
+            items.map(async (item) => await documentToJson(item, req)),
+          ),
           items_total: items.length,
         });
       }),
