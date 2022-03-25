@@ -38,12 +38,11 @@ export default [
     view: '/@users/:id',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        try {
-          const user = await userRepository.findOne({ id: req.params.id });
-          res.send(userToJson(user, req));
-        } catch (e) {
-          res.status(404).send({ error: 'Not Found' });
+        const user = await userRepository.findOne({ id: req.params.id });
+        if (!user) {
+          return res.status(404).send({ error: 'Not Found' });
         }
+        res.send(userToJson(user, req));
       }),
   },
   {

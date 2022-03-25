@@ -1,0 +1,33 @@
+{
+  "id": "blocks",
+  "title:i18n": "Blocks",
+  "description:i18n": "Enables Volto Blocks support",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["blocks", "blocks_layout"],
+        "id": "layout",
+        "title:i18n": "Layout"
+      }
+    ],
+    "properties": {
+      "blocks": {
+        "default": {},
+        "description:i18n": "The JSON representation of the object blocks information. Must be a JSON object.",
+        "title:i18n": "Blocks",
+        "type": "dict",
+        "widget": "json"
+      },
+      "blocks_layout": {
+        "default": {
+          "items": []
+        },
+        "description:i18n": "The JSON representation of the object blocks layout. Must be a JSON array.",
+        "title:i18n": "Blocks Layout",
+        "type": "dict",
+        "widget": "json"
+      }
+    },
+    "required": []
+  }
+}

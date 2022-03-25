@@ -1,0 +1,27 @@
+{
+  "id": "File",
+  "title:i18n": "File",
+  "description:i18n": "Lets you upload a file to the site.",
+  "addable": true,
+  "behaviors": ["dublin_core", "dates", "versioning", "short_name"],
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["file"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "file": {
+        "description:i18n": "",
+        "title:i18n": "File",
+        "type": "object",
+        "widget": "file",
+        "factory": "File"
+      }
+    },
+    "required": ["file"]
+  },
+  "workflow": "simple_publication_workflow"
+}

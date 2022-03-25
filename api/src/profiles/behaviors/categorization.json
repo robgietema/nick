@@ -1,0 +1,62 @@
+{
+  "id": "categorization",
+  "title:i18n": "Categorization",
+  "description:i18n": "Adds keywords and language fields.",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["subjects", "language", "relatedItems", "coverage"],
+        "id": "categorization",
+        "title:i18n": "Categorization"
+      }
+    ],
+    "properties": {
+      "coverage": {
+        "description:i18n": "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant.",
+        "title:i18n": "Coverage",
+        "type": "string"
+      },
+      "language": {
+        "choices": [
+          ["nl", "Dutch"],
+          ["en-US", "English (United States)"]
+        ],
+        "default": "en-US",
+        "description:i18n": "The language of this item.",
+        "enum": ["nl", "en-US"],
+        "enumNames": ["Dutch", "English (United States)"],
+        "title:i18n": "Language",
+        "type": "string"
+      },
+      "relatedItems": {
+        "additionalItems": true,
+        "default": [],
+        "description:i18n": "Related resources.",
+        "items": {
+          "description:i18n": "",
+          "title:i18n": "Related",
+          "type": "string"
+        },
+        "pattern_options": {
+          "recentlyUsed": true
+        },
+        "title:i18n": "Related Items",
+        "type": "array",
+        "uniqueItems": true,
+        "vocabulary": "plone.app.vocabularies.Catalog"
+      },
+      "subjects": {
+        "choices": [
+          ["Plone", "Plone"],
+          ["Tokyo", "Tokyo"]
+        ],
+        "description:i18n": "The topic of this item.",
+        "enum": ["Plone", "Tokyo"],
+        "enumNames": ["Plone", "Tokyo"],
+        "title:i18n": "Tags",
+        "type": "string",
+        "vocabulary": "plone.app.vocabularies.Keywords"
+      }
+    }
+  }
+}

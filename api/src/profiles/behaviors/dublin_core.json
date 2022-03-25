@@ -1,0 +1,6 @@
+{
+  "id": "dublin_core",
+  "title:i18n": "Dublin Core metadata",
+  "description:i18n": "Adds standard metadatafields",
+  "behaviors": ["basic", "categorization", "ownership"]
+}

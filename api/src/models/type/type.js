@@ -5,8 +5,36 @@
 
 import { compact, keys, map } from 'lodash';
 
-import { BaseModel } from '../../helpers';
+import { mergeSchemas, BaseModel } from '../../helpers';
 import { Workflow } from '../../models';
+import { behaviorRepository } from '../../repositories';
+
+async function getBehaviorSchemas(ids) {
+  // Return empty list if no ids specified
+  if (ids.length === 0) {
+    return [];
+  }
+
+  // Fetch behaviors
+  const behaviors = compact(
+    await Promise.all(
+      map(ids, async (id) => await behaviorRepository.findOne({ id })),
+    ),
+  );
+
+  // Recursively fetch child behaviors
+  const schemas = await Promise.all(
+    behaviors.map(async (behavior) =>
+      mergeSchemas(
+        behavior.get('schema'),
+        ...(await getBehaviorSchemas(behavior.get('behaviors'))),
+      ),
+    ),
+  );
+
+  // Return schemas
+  return schemas;
+}
 
 export const Type = BaseModel.extend({
   tableName: 'type',
@@ -14,8 +42,12 @@ export const Type = BaseModel.extend({
   workflow() {
     return this.belongsTo(Workflow, 'workflow', 'id');
   },
+  async getSchema() {
+    const behaviorSchemas = await getBehaviorSchemas(this.get('behaviors'));
+    return mergeSchemas(...behaviorSchemas, this.get('schema'));
+  },
   getFactoryFields(factory) {
-    const properties = this.get('schema').properties;
+    const properties = this.getSchema().properties;
 
     // Get file fields
     const fileFields = map(keys(properties), (property) =>

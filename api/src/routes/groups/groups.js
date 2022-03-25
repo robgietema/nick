@@ -35,10 +35,10 @@ export default [
     view: '/@groups/:id',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        try {
-          const group = await groupRepository.findOne({ id: req.params.id });
+        const group = await groupRepository.findOne({ id: req.params.id });
+        if (group) {
           res.send(groupToJson(group, req));
-        } catch (e) {
+        } else {
           res.status(404).send({ error: req.i18n('Not Found') });
         }
       }),

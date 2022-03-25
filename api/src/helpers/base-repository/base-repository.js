@@ -54,7 +54,7 @@ export class BaseRepository {
    */
   findOne(where, options = {}) {
     return this.Model.where(where).fetch({
-      require: true,
+      require: false,
       ...options,
     });
   }

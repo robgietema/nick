@@ -1,0 +1,28 @@
+{
+  "id": "basic",
+  "title:i18n": "Basic metadata",
+  "description:i18n": "Adds title and description fields.",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["title", "description"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "description": {
+        "description:i18n": "A description of this item.",
+        "title:i18n": "Description",
+        "type": "string",
+        "widget": "textarea"
+      },
+      "title": {
+        "description:i18n": "A name given to this item.",
+        "title:i18n": "Title",
+        "type": "string"
+      }
+    },
+    "required": ["title"]
+  }
+}

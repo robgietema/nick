@@ -3,8 +3,7 @@
  * @module helpers/schema/schema
  */
 
-import merge from 'deepmerge';
-import { findIndex, map } from 'lodash';
+import { concat, findIndex, map } from 'lodash';
 
 /**
  * Merge schemas
@@ -13,27 +12,38 @@ import { findIndex, map } from 'lodash';
  * @returns {Object} Merged schemas.
  */
 export function mergeSchemas(...schemas) {
-  const schema = merge.all(schemas);
-  let fieldsets = [];
-  map(schema.fieldsets, (fieldset) => {
-    // Find fieldset
-    const index = findIndex(fieldsets, (entry) => entry.id === fieldset.id);
+  const fieldsets = [];
+  let properties = {};
+  let required = [];
+  map(schemas, (schema) => {
+    map(schema.fieldsets, (fieldset) => {
+      // Find fieldset
+      const index = findIndex(fieldsets, (entry) => entry.id === fieldset.id);
 
-    // Check if already exists
-    if (index !== -1) {
-      // Append fields
-      fieldsets[index].fields = [
-        ...fieldsets[index].fields,
-        ...fieldset.fields,
-      ];
-    } else {
-      // Add new fieldset
-      fieldsets.push(fieldset);
+      // Check if already exists
+      if (index !== -1) {
+        // Append fields
+        fieldsets[index].fields = [
+          ...fieldsets[index].fields,
+          ...fieldset.fields,
+        ];
+      } else {
+        // Add new fieldset
+        fieldsets.push(fieldset);
+      }
+    });
+    properties = {
+      ...properties,
+      ...schema.properties,
+    };
+    if (schema.required) {
+      required = concat(required, schema.required);
     }
   });
 
   return {
-    ...schema,
     fieldsets,
+    properties,
+    required,
   };
 }

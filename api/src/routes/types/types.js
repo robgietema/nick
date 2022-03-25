@@ -53,15 +53,14 @@ export default [
     view: '/@types/:type',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        try {
-          const type = await typeRepository.findOne({ id: req.params.type });
-          res.send({
-            ...translateSchema(type.get('schema'), req),
-            title: req.i18n(type.get('title')),
-          });
-        } catch (e) {
-          res.status(404).send({ error: req.i18n('Not Found') });
+        const type = await typeRepository.findOne({ id: req.params.type });
+        if (!type) {
+          return res.status(404).send({ error: req.i18n('Not Found') });
         }
+        res.send({
+          ...translateSchema(await type.getSchema(), req),
+          title: req.i18n(type.get('title')),
+        });
       }),
   },
 ];

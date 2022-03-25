@@ -1,0 +1,31 @@
+{
+  "id": "ownership",
+  "title:i18n": "Ownership",
+  "description:i18n": "Adds ownership and rights fields.",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["rights", "source", "publisher"],
+        "id": "ownership",
+        "title:i18n": "Ownership"
+      }
+    ],
+    "properties": {
+      "publisher": {
+        "description:i18n": "An entity responsible for making this item available.",
+        "title:i18n": "Publisher",
+        "type": "string"
+      },
+      "rights": {
+        "description:i18n": "Information about rights held in and over this item.",
+        "title:i18n": "Rights",
+        "type": "string"
+      },
+      "source": {
+        "description:i18n": "A related item from which this item is derived.",
+        "title:i18n": "Source",
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "versioning",
+  "title:i18n": "Versioning",
+  "description:i18n": "Versioning support",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["changeNote"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "changeNote": {
+        "description:i18n": "Enter a comment that describes the changes you made.",
+        "title:i18n": "Change Note",
+        "type": "string"
+      }
+    }
+  }
+}

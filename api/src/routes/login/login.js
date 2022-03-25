@@ -22,32 +22,37 @@ export default [
           },
         });
       }
-      try {
-        const user = await userRepository.findOne({ id: req.body.login });
-        const same = await bcrypt.compare(
-          req.body.password,
-          user.get('password'),
-        );
-        if (same) {
-          res.send({
-            token: jwt.sign(
-              {
-                sub: user.get('id'),
-                fullname: user.get('fullname'),
-              },
-              config.secret,
-              { expiresIn: '12h' },
-            ),
-          });
-        } else {
-          res.status(401).send({
-            error: {
-              type: req.i18n('Invalid credentials'),
-              message: req.i18n('Wrong login and/or password.'),
+
+      // Find user
+      const user = await userRepository.findOne({ id: req.body.login });
+
+      // If user not found
+      if (!user) {
+        return res.status(401).send({
+          error: {
+            type: req.i18n('Invalid credentials'),
+            message: req.i18n('Wrong login and/or password.'),
+          },
+        });
+      }
+
+      // Check password
+      const same = await bcrypt.compare(
+        req.body.password,
+        user.get('password'),
+      );
+      if (same) {
+        res.send({
+          token: jwt.sign(
+            {
+              sub: user.get('id'),
+              fullname: user.get('fullname'),
             },
-          });
-        }
-      } catch (e) {
+            config.secret,
+            { expiresIn: '12h' },
+          ),
+        });
+      } else {
         res.status(401).send({
           error: {
             type: req.i18n('Invalid credentials'),

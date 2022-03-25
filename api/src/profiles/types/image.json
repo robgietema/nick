@@ -1,0 +1,27 @@
+{
+  "id": "Image",
+  "title:i18n": "Image",
+  "description:i18n": "Images can be referenced in pages or displayed in an album.",
+  "addable": true,
+  "behaviors": ["dublin_core", "dates", "versioning", "short_name"],
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["image"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "image": {
+        "description:i18n": "",
+        "title:i18n": "Image",
+        "type": "object",
+        "widget": "file",
+        "factory": "Image"
+      }
+    },
+    "required": ["image"]
+  },
+  "workflow": "simple_publication_workflow"
+}

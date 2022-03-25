@@ -1,0 +1,29 @@
+{
+  "id": "dates",
+  "title:i18n": "Dates",
+  "description:i18n": "Adds effective and expiration dates.",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["effective", "expires"],
+        "id": "dates",
+        "title:i18n": "Dates"
+      }
+    ],
+    "properties": {
+      "effective": {
+        "description:i18n": "If this date is in the future, the content will not show up in listings and searches until this date.",
+        "title:i18n": "Publishing Date",
+        "type": "string",
+        "widget": "datetime"
+      },
+      "expires": {
+        "description:i18n": "When this date is reached, the content will no longer be visible in listings and searches.",
+        "title:i18n": "Expiration Date",
+        "type": "string",
+        "widget": "datetime"
+      }
+    },
+    "required": []
+  }
+}

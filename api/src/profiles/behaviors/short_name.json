@@ -1,0 +1,21 @@
+{
+  "id": "short_name",
+  "title:i18n": "Short name",
+  "description:i18n": "Gives the ability to rename an item from its edit form.",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["id"],
+        "id": "settings",
+        "title:i18n": "Settings"
+      }
+    ],
+    "properties": {
+      "id": {
+        "description:i18n": "This name will be displayed in the URL.",
+        "title:i18n": "Identifier",
+        "type": "string"
+      }
+    }
+  }
+}

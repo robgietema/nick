@@ -1,0 +1,8 @@
+{
+  "id": "Folder",
+  "title:i18n": "Folder",
+  "description:i18n": "",
+  "addable": true,
+  "behaviors": ["dublin_core", "dates", "blocks", "versioning", "short_name"],
+  "workflow": "simple_publication_workflow"
+}

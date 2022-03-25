@@ -80,37 +80,43 @@ app.use(async (req, res, next) => {
   // Get anonymous user object
   const anonymous = await userRepository.findOne({ id: 'anonymous' });
 
+  // If system user anonymous not found
+  if (!anonymous) {
+    return res.status(500).send({ error: req.i18n('Internal server error') });
+  }
+
   // Check if auth token
-  if (token) {
-    jwt.verify(token[1], config.secret, async (err, decoded) => {
-      // If not valid token or expired
-      if (err || new Date().getTime() / 1000 > decoded.exp) {
+  if (!token) {
+    req.user = anonymous;
+    req.groups = await userGroupRepository.getGroups(anonymous);
+    return next();
+  }
+
+  jwt.verify(token[1], config.secret, async (err, decoded) => {
+    // If not valid token or expired
+    if (err || new Date().getTime() / 1000 > decoded.exp) {
+      req.user = anonymous;
+      req.groups = await userGroupRepository.getGroups(anonymous);
+      next();
+    } else {
+      // Find user object
+      req.user = await userRepository.findOne({ id: decoded.sub });
+
+      // Check if user exists
+      if (req.user) {
+        // Get global groups of user
+        const globalGroups = await userGroupRepository.getGroups(req.user);
+
+        // Combine groups
+        req.groups = [...globalGroups, 'Authenticated'];
+        next();
+      } else {
         req.user = anonymous;
         req.groups = await userGroupRepository.getGroups(anonymous);
         next();
-      } else {
-        try {
-          // Find user object
-          req.user = await userRepository.findOne({ id: decoded.sub });
-
-          // Get global groups of user
-          const globalGroups = await userGroupRepository.getGroups(req.user);
-
-          // Combine groups
-          req.groups = [...globalGroups, 'Authenticated'];
-          next();
-        } catch (e) {
-          req.user = anonymous;
-          req.groups = await userGroupRepository.getGroups(anonymous);
-          next();
-        }
       }
-    });
-  } else {
-    req.user = anonymous;
-    req.groups = await userGroupRepository.getGroups(anonymous);
-    next();
-  }
+    }
+  });
 });
 
 /**
@@ -157,6 +163,11 @@ async function traverse(document, slugs, user, groups, roles) {
       id: head(slugs),
     });
 
+    // Check if child not found
+    if (!child) {
+      return false;
+    }
+
     // Get roles based on user and group from child
     const childUserRoles = await userRoleDocumentRepository.getRoles(
       child,
@@ -186,8 +197,13 @@ map(routes, (route) => {
     const globalUserRoles = await userRoleRepository.getRoles(req.user);
     const globalGroupRoles = await groupRoleRepository.getRoles(req.groups);
 
-    // Get roles based on root location
+    // Check if root exists
     const root = await documentRepository.findOne({ parent: null });
+    if (!root) {
+      return res.status(500).send({ error: req.i18n('Internal server error') });
+    }
+
+    // Get roles based on root location
     const rootUserRoles = await userRoleDocumentRepository.getRoles(
       root,
       req.user,
@@ -197,57 +213,74 @@ map(routes, (route) => {
       req.groups,
     );
 
-    try {
-      const { document, permissions, groups, roles } = await traverse(
-        root,
-        compact(slugs),
-        req.user,
-        req.groups,
-        uniq([
-          ...rootUserRoles,
-          ...rootGroupRoles,
-          ...globalUserRoles,
-          ...globalGroupRoles,
-        ]),
+    // Traverse to document
+    const result = await traverse(
+      root,
+      compact(slugs),
+      req.user,
+      req.groups,
+      uniq([
+        ...rootUserRoles,
+        ...rootGroupRoles,
+        ...globalUserRoles,
+        ...globalGroupRoles,
+      ]),
+    );
+
+    // If result not found
+    if (!result) {
+      // Find redirect
+      const redirect = await redirectRepository.findOne(
+        {
+          path: req.params[0],
+        },
+        { withRelated: ['document'] },
       );
 
-      const type = await typeRepository.findOne(
-        { id: document.get('type') },
-        { withRelated: ['workflow'] },
-      );
-      req.document = document;
-      req.type = type;
-      req.permissions = uniq([
-        ...permissions,
-        ...flatten(
-          map(
-            roles,
-            (role) =>
-              type.related('workflow').get('json').states[
-                document.get('workflow_state')
-              ].permissions[role] || [],
-          ),
-        ),
-      ]);
-      req.groups = groups;
-      req.roles = roles;
-      route.handler(req, res);
-    } catch (e) {
-      try {
-        const redirect = await redirectRepository.findOne(
-          {
-            path: req.params[0],
-          },
-          { withRelated: ['document'] },
-        );
-        res.redirect(
-          301,
-          `${redirect.related('document').get('path')}${route.view}`,
-        );
-      } catch (e) {
-        res.status(404).send({ error: 'Not Found' });
+      // If no redirect found
+      if (!redirect) {
+        return res.status(404).send({ error: req.i18n('Not Found') });
       }
+
+      // Send redirect
+      res.redirect(
+        301,
+        `${redirect.related('document').get('path')}${route.view}`,
+      );
     }
+
+    // Get results
+    const { document, permissions, groups, roles } = result;
+
+    // Find type
+    const type = await typeRepository.findOne(
+      { id: document.get('type') },
+      { withRelated: ['workflow'] },
+    );
+
+    // Check if type found
+    if (!type) {
+      return res.status(500).send({ error: req.i18n('Internal server error') });
+    }
+
+    // Call handler
+    req.document = document;
+    req.type = type;
+    req.permissions = uniq([
+      ...permissions,
+      ...flatten(
+        map(
+          roles,
+          (role) =>
+            type.related('workflow').get('json').states[
+              document.get('workflow_state')
+            ].permissions[role] || [],
+        ),
+      ),
+    ]);
+    req.groups = groups;
+    req.roles = roles;
+    route.handler(req, res);
   });
 });
 

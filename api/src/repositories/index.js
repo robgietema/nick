@@ -4,6 +4,7 @@
  * @example import { DocumentRepository } from './repositories';
  */
 
+export { behaviorRepository } from './behavior/behavior';
 export { documentRepository } from './document/document';
 export { groupRepository } from './group/group';
 export { groupRoleDocumentRepository } from './group-role-document/group-role-document';
