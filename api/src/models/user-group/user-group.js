@@ -3,9 +3,9 @@
  * @module models/user-group/user-group
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const UserGroup = BaseModel.extend({
+export const UserGroup = BookshelfModel.extend({
   tableName: 'user_group',
   idAttribute: 'id',
 });

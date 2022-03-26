@@ -3,10 +3,10 @@
  * @module models/document/document
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 import { User } from '../../models';
 
-export const Document = BaseModel.extend({
+export const Document = BookshelfModel.extend({
   tableName: 'document',
   idAttribute: 'uuid',
   owner() {

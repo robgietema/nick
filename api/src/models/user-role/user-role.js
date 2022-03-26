@@ -3,9 +3,9 @@
  * @module models/user-role/user-role
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const UserRole = BaseModel.extend({
+export const UserRole = BookshelfModel.extend({
   tableName: 'user_role',
   idAttribute: 'id',
 });

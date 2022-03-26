@@ -3,9 +3,9 @@
  * @module models/group-role-document/group-role-document
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const GroupRoleDocument = BaseModel.extend({
+export const GroupRoleDocument = BookshelfModel.extend({
   tableName: 'group_role_document',
   idAttribute: 'id',
 });

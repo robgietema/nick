@@ -3,10 +3,10 @@
  * @module models/user/user
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 import { Role } from '../../models';
 
-export const User = BaseModel.extend({
+export const User = BookshelfModel.extend({
   tableName: 'user',
   idAttribute: 'id',
   roles() {

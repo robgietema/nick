@@ -3,10 +3,10 @@
  * @module models/group/group
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 import { Role } from '../../models';
 
-export const Group = BaseModel.extend({
+export const Group = BookshelfModel.extend({
   tableName: 'group',
   idAttribute: 'id',
   roles() {

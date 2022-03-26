@@ -3,9 +3,9 @@
  * @module models/workflow/workflow
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const Workflow = BaseModel.extend({
+export const Workflow = BookshelfModel.extend({
   tableName: 'workflow',
   idAttribute: 'id',
 });

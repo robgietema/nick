@@ -3,9 +3,9 @@
  * @module models/action/action
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const Action = BaseModel.extend({
+export const Action = BookshelfModel.extend({
   tableName: 'action',
   idAttribute: 'id',
 });

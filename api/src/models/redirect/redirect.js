@@ -3,10 +3,10 @@
  * @module models/redirect/redirect
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 import { Document } from '../../models';
 
-export const Redirect = BaseModel.extend({
+export const Redirect = BookshelfModel.extend({
   tableName: 'redirect',
   idAttribute: 'uuid',
   document() {

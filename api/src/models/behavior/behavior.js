@@ -3,9 +3,9 @@
  * @module models/behavior/behavior
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const Behavior = BaseModel.extend({
+export const Behavior = BookshelfModel.extend({
   tableName: 'behavior',
   idAttribute: 'id',
 });

@@ -7,6 +7,7 @@
 export { getAdminHeader, requirePermission } from './auth/auth';
 export { BaseModel } from './base-model/base-model';
 export { BaseRepository } from './base-repository/base-repository';
+export { BookshelfModel } from './base-model/bookshelf-model';
 export { formatSize } from './format/format';
 export {
   getHeight,

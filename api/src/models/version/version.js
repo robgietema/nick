@@ -3,10 +3,10 @@
  * @module models/version/version
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 import { User } from '../../models';
 
-export const Version = BaseModel.extend({
+export const Version = BookshelfModel.extend({
   tableName: 'version',
   idAttribute: 'uuid',
   actor() {

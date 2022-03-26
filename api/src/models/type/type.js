@@ -5,7 +5,7 @@
 
 import { compact, keys, map } from 'lodash';
 
-import { mergeSchemas, BaseModel } from '../../helpers';
+import { mergeSchemas, BookshelfModel } from '../../helpers';
 import { Workflow } from '../../models';
 import { behaviorRepository } from '../../repositories';
 
@@ -36,7 +36,7 @@ async function getBehaviorSchemas(ids) {
   return schemas;
 }
 
-export const Type = BaseModel.extend({
+export const Type = BookshelfModel.extend({
   tableName: 'type',
   idAttribute: 'id',
   workflow() {

@@ -3,9 +3,9 @@
  * @module models/permission/permission
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const Permission = BaseModel.extend({
+export const Permission = BookshelfModel.extend({
   tableName: 'permission',
   idAttribute: 'id',
 });

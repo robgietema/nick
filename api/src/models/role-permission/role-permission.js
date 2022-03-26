@@ -3,9 +3,9 @@
  * @module models/role-permission/role-permission
  */
 
-import { BaseModel } from '../../helpers';
+import { BookshelfModel } from '../../helpers';
 
-export const RolePermission = BaseModel.extend({
+export const RolePermission = BookshelfModel.extend({
   tableName: 'role_permission',
   idAttribute: 'id',
 });
