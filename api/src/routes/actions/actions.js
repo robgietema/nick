@@ -3,7 +3,6 @@
  * @module routes/actions/actions
  */
 
-import { actionRepository } from '../../repositories';
 import { requirePermission } from '../../helpers';
 import { Action } from '../../models';
 
