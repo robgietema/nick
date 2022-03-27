@@ -5,4 +5,7 @@
 
 import { BookshelfModel } from '../../helpers';
 
-export const Role = BookshelfModel.extend({ tableName: 'role', idAttribute: 'id' });
+export const Role = BookshelfModel.extend({
+  tableName: 'role',
+  idAttribute: 'id',
+});
