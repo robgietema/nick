@@ -1,6 +1,6 @@
 /**
- * BaseCollection.
- * @module helpers/base-collection/base-collection
+ * ActionCollection.
+ * @module collection/action/action
  */
 
 import { BaseCollection } from '../../helpers';

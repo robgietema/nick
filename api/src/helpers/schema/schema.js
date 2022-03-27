@@ -3,7 +3,7 @@
  * @module helpers/schema/schema
  */
 
-import { concat, findIndex, map } from 'lodash';
+import { concat, findIndex, map, mapValues } from 'lodash';
 
 /**
  * Merge schemas
@@ -15,6 +15,7 @@ export function mergeSchemas(...schemas) {
   const fieldsets = [];
   let properties = {};
   let required = [];
+  let behaviors = [];
   map(schemas, (schema) => {
     map(schema.fieldsets, (fieldset) => {
       // Find fieldset
@@ -39,11 +40,37 @@ export function mergeSchemas(...schemas) {
     if (schema.required) {
       required = concat(required, schema.required);
     }
+    if (schema.behaviors) {
+      behaviors = concat(behaviors, schema.behaviors);
+    }
   });
 
   return {
     fieldsets,
     properties,
     required,
+    behaviors,
+  };
+}
+
+/**
+ * Translate the schema
+ * @method translateSchema
+ * @param {Object} schema Schema object.
+ * @param {Object} req Request object.
+ * @returns {Object} Translated schema.
+ */
+export function translateSchema(schema, req) {
+  return {
+    ...schema,
+    fieldsets: map(schema.fieldsets, (fieldset) => ({
+      ...fieldset,
+      title: req.i18n(fieldset.title),
+    })),
+    properties: mapValues(schema.properties, (property) => ({
+      ...property,
+      title: req.i18n(property.title),
+      description: req.i18n(property.description),
+    })),
   };
 }

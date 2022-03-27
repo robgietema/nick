@@ -16,14 +16,13 @@ import {
   groupRoleRepository,
   redirectRepository,
   rolePermissionRepository,
-  typeRepository,
   userGroupRepository,
   userRepository,
   userRoleDocumentRepository,
   userRoleRepository,
 } from './repositories';
 import { config } from '../config';
-import { Workflow } from './models';
+import { Type, Workflow } from './models';
 
 const app = express();
 
@@ -256,14 +255,14 @@ map(routes, (route) => {
     const { document, permissions, groups, roles } = result;
 
     // Find type
-    const type = await typeRepository.findOne({ id: document.get('type') });
+    const type = await Type.findById(document.get('type'));
 
     // Check if type found
     if (!type) {
       return res.status(500).send({ error: req.i18n('Internal server error') });
     }
 
-    const workflow = await Workflow.findById(type.get('workflow'));
+    const workflow = await Workflow.findById(type.workflow);
 
     // Call handler
     req.document = document;

@@ -5,3 +5,5 @@
  */
 
 export { ActionCollection } from './action/action';
+export { BehaviorCollection } from './behavior/behavior';
+export { TypeCollection } from './type/type';

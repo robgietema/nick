@@ -16,11 +16,7 @@ import {
   uniq,
 } from 'lodash';
 
-import {
-  documentRepository,
-  typeRepository,
-  versionRepository,
-} from '../../repositories';
+import { documentRepository, versionRepository } from '../../repositories';
 import {
   lockExpired,
   mapAsync,
@@ -32,7 +28,7 @@ import {
   writeFile,
   writeImage,
 } from '../../helpers';
-import { Workflow } from '../../models';
+import { Type, Workflow } from '../../models';
 import { config } from '../../../config';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
@@ -86,7 +82,7 @@ async function handleImages(json, type) {
   const fields = { ...json };
 
   // Get file fields
-  const fileFields = type.getFactoryFields('Image');
+  const fileFields = await type.getFactoryFields('Image');
 
   await mapAsync(fileFields, async (field) => {
     // Check if new data is uploaded
@@ -123,7 +119,7 @@ async function handleImages(json, type) {
  */
 async function documentToJson(document, req) {
   // Get file fields
-  const type = await typeRepository.findOne({ id: document.get('type') });
+  const type = await Type.findById(document.get('type'));
   const json = document.get('json');
 
   // Loop through file fields
@@ -176,7 +172,7 @@ async function documentToJson(document, req) {
     created: document.get('created'),
     modified: document.get('modified'),
     UID: document.get('uuid'),
-    is_folderish: type.get('behaviors').indexOf('folderish') !== -1,
+    is_folderish: type.schema?.behaviors?.indexOf('folderish') !== -1,
     review_state: document.get('workflow_state'),
     lock: document.get('lock'),
   };
@@ -361,8 +357,8 @@ export default [
     handler: (req, res) =>
       requirePermission('Add', req, res, async () => {
         // Get content type date
-        const type = await typeRepository.findOne({ id: req.body['@type'] });
-        const workflow = await Workflow.findById(type.get('workflow'));
+        const type = await Type.findById(req.body['@type']);
+        const workflow = await Workflow.findById(type.workflow);
 
         // Set creation time
         const created = moment.utc().format();
@@ -503,20 +499,16 @@ export default [
             : id;
         const newPath = path === '/' ? path : `${parent}/${newId}`;
 
-        const type = await typeRepository.findOne({
-          id: req.document.get('type'),
-        });
-
         // Handle file uploads
         let json = {
           ...req.document.get('json'),
           ...omit(
-            pick(req.body, keys((await type.getSchema()).properties)),
+            pick(req.body, keys((await req.type.getSchema()).properties)),
             omitProperties,
           ),
         };
-        json = await handleFiles(json, type);
-        json = await handleImages(json, type);
+        json = await handleFiles(json, req.type);
+        json = await handleImages(json, req.type);
 
         // Create new version
         const modified = moment.utc().format();
@@ -567,11 +559,8 @@ export default [
         const parent = req.document.get('parent');
 
         // Get file and image fields
-        const type = await typeRepository.findOne({
-          id: req.document.get('type'),
-        });
-        const fileFields = await type.getFactoryFields('File');
-        const imageFields = await type.getFactoryFields('Image');
+        const fileFields = await req.type.getFactoryFields('File');
+        const imageFields = await req.type.getFactoryFields('Image');
 
         // If file fields exist
         if (fileFields.length > 0 || imageFields.length > 0) {

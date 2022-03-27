@@ -3,32 +3,10 @@
  * @module routes/types/types
  */
 
-import { map, mapValues } from 'lodash';
+import { omit } from 'lodash';
 
-import { typeRepository } from '../../repositories';
-import { requirePermission } from '../../helpers';
-
-/**
- * Translate the schema
- * @method translateSchema
- * @param {Object} schema Schema object.
- * @param {Object} req Request object.
- * @returns {Object} Translated schema.
- */
-function translateSchema(schema, req) {
-  return {
-    ...schema,
-    fieldsets: map(schema.fieldsets, (fieldset) => ({
-      ...fieldset,
-      title: req.i18n(fieldset.title),
-    })),
-    properties: mapValues(schema.properties, (property) => ({
-      ...property,
-      title: req.i18n(property.title),
-      description: req.i18n(property.description),
-    })),
-  };
-}
+import { Type } from '../../models';
+import { requirePermission, translateSchema } from '../../helpers';
 
 export default [
   {
@@ -36,16 +14,8 @@ export default [
     view: '/@types',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const types = await typeRepository.findAll();
-        res.send(
-          types.map((type) => ({
-            '@id': `${req.protocol}://${req.headers.host}/@types/${type.get(
-              'id',
-            )}`,
-            addable: type.get('addable'),
-            title: req.i18n(type.get('title')),
-          })),
-        );
+        const types = await Type.findAll();
+        res.send(types.toJSON(req));
       }),
   },
   {
@@ -53,13 +23,13 @@ export default [
     view: '/@types/:type',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const type = await typeRepository.findOne({ id: req.params.type });
+        const type = await Type.findById(req.params.type);
         if (!type) {
           return res.status(404).send({ error: req.i18n('Not Found') });
         }
         res.send({
-          ...translateSchema(await type.getSchema(), req),
-          title: req.i18n(type.get('title')),
+          ...translateSchema(omit(await type.getSchema(), ['behaviors']), req),
+          title: req.i18n(type.title),
         });
       }),
   },

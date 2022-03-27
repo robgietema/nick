@@ -3,6 +3,8 @@
  * @module helpers/format/format
  */
 
+import { includes } from 'lodash';
+
 /**
  * Format size
  * @method formatSize
@@ -14,4 +16,14 @@ export function formatSize(bytes) {
   return (
     (bytes / Math.pow(1024, e)).toFixed(0) + ' ' + ' KMGTP'.charAt(e) + 'B'
   );
+}
+
+/**
+ * Format attribute
+ * @method formatAttribute
+ * @param {string} attribute Input attribute name.
+ * @returns {string} Formatted attribute.
+ */
+export function formatAttribute(attribute) {
+  return includes(attribute, '->>') ? attribute : `"${attribute}"`;
 }

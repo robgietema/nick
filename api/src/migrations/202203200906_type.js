@@ -4,7 +4,6 @@ export const up = async (knex) => {
     table.string('title').notNull();
     table.string('description');
     table.jsonb('schema').notNull();
-    table.jsonb('behaviors').notNull();
   });
   await knex.schema.createTable('type', (table) => {
     table.string('id').primary().notNull();
@@ -12,7 +11,6 @@ export const up = async (knex) => {
     table.string('description');
     table.boolean('addable');
     table.jsonb('schema').notNull();
-    table.jsonb('behaviors').notNull();
     table
       .string('workflow')
       .references('workflow.id')

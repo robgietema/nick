@@ -13,7 +13,7 @@ export default [
     op: 'post',
     view: '/@workflow/:transition',
     handler: async (req, res) => {
-      const workflow = await Workflow.findById(req.type.get('workflow'));
+      const workflow = await Workflow.findById(req.type.workflow);
 
       requirePermission(
         workflow.json.transitions[req.params.transition].permission,
@@ -49,7 +49,7 @@ export default [
     view: '/@workflow',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const workflow = await Workflow.findById(req.type.get('workflow'));
+        const workflow = await Workflow.findById(req.type.workflow);
         res.send(workflow.toJSON(req));
       }),
   },

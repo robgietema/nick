@@ -6,7 +6,8 @@
 import moment from 'moment';
 import { endsWith, mapKeys, repeat } from 'lodash';
 import { formatSize, requirePermission } from '../../helpers';
-import { documentRepository, typeRepository } from '../../repositories';
+import { documentRepository } from '../../repositories';
+import { Type } from '../../models';
 
 /**
  * Convert document to json.
@@ -16,7 +17,8 @@ import { documentRepository, typeRepository } from '../../repositories';
  * @returns {Object} Json representation of the document.
  */
 async function documentToJson(document, req) {
-  const type = await typeRepository.findOne({ id: document.get('type') });
+  const type = await Type.findById(document.get('type'));
+  const schema = await type.getSchema();
   const json = document.get('json');
   return {
     '@id': `${req.protocol}://${req.headers.host}${document.get('path')}`,
@@ -31,7 +33,7 @@ async function documentToJson(document, req) {
     EffectiveDate: 'None',
     ExpirationDate: 'None',
     id: document.get('id'),
-    is_folderish: type.get('behaviors').indexOf('folderish') !== -1,
+    is_folderish: schema.behaviors.indexOf('folderish') !== -1,
     Subject: json.subjects,
     getObjSize: formatSize(JSON.stringify(json).length),
     start: null,

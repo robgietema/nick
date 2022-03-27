@@ -15,5 +15,5 @@ export const knex = Knex({
 
 // Debug
 knex.on('query', (query) => {
-  console.log(query);
+  // console.log(query);
 });

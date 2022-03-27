@@ -3,7 +3,6 @@
   "title:i18n": "Image",
   "description:i18n": "Images can be referenced in pages or displayed in an album.",
   "addable": true,
-  "behaviors": ["dublin_core", "dates", "versioning", "short_name"],
   "schema": {
     "fieldsets": [
       {
@@ -21,7 +20,8 @@
         "factory": "Image"
       }
     },
-    "required": ["image"]
+    "required": ["image"],
+    "behaviors": ["dublin_core", "dates", "versioning", "short_name"]
   },
   "workflow": "simple_publication_workflow"
 }

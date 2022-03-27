@@ -16,7 +16,6 @@ export const seed = async (knex) => {
       const data = stripI18n(require(`../profiles/behaviors/${behavior}`));
       await knex('behavior').insert({
         ...data,
-        behaviors: data.behaviors ? JSON.stringify(data.behaviors) : '[]',
         schema: data.schema ? JSON.stringify(data.schema) : '{}',
       });
     });
@@ -32,7 +31,6 @@ export const seed = async (knex) => {
       const data = stripI18n(require(`../profiles/types/${type}`));
       await knex('type').insert({
         ...data,
-        behaviors: data.behaviors ? JSON.stringify(data.behaviors) : '[]',
         schema: data.schema ? JSON.stringify(data.schema) : '{}',
       });
     });

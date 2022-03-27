@@ -9,7 +9,7 @@ export { BaseCollection } from './base-collection/base-collection';
 export { BaseModel } from './base-model/base-model';
 export { BaseRepository } from './base-repository/base-repository';
 export { BookshelfModel } from './base-model/bookshelf-model';
-export { formatSize } from './format/format';
+export { formatSize, formatAttribute } from './format/format';
 export {
   getHeight,
   getWidth,
@@ -20,6 +20,6 @@ export {
 } from './fs/fs';
 export { stripI18n } from './i18n/i18n';
 export { lockExpired } from './lock/lock';
-export { mergeSchemas } from './schema/schema';
+export { mergeSchemas, translateSchema } from './schema/schema';
 export { getUrl } from './url/url';
 export { mapAsync, mapSync, uniqueId } from './utils/utils';

@@ -3,46 +3,36 @@
  * @module models/type/type
  */
 
-import { compact, keys, map } from 'lodash';
+import { map, keys, compact } from 'lodash';
 
-import { mergeSchemas, BookshelfModel } from '../../helpers';
-import { Workflow } from '../../models';
-import { behaviorRepository } from '../../repositories';
+import { mergeSchemas, BaseModel } from '../../helpers';
+import { TypeCollection } from '../../collections';
+import { Behavior } from '../../models';
 
-async function getBehaviorSchemas(ids) {
-  // Return empty list if no ids specified
-  if (ids.length === 0) {
-    return [];
-  }
-
-  // Fetch behaviors
-  const behaviors = compact(
-    await Promise.all(
-      map(ids, async (id) => await behaviorRepository.findOne({ id })),
-    ),
-  );
-
-  // Recursively fetch child behaviors
-  const schemas = await Promise.all(
-    behaviors.map(async (behavior) =>
-      mergeSchemas(
-        behavior.get('schema'),
-        ...(await getBehaviorSchemas(behavior.get('behaviors'))),
-      ),
-    ),
-  );
-
-  // Return schemas
-  return schemas;
-}
-
-export const Type = BookshelfModel.extend({
-  tableName: 'type',
-  idAttribute: 'id',
+/**
+ * A model for Type.
+ * @class Type
+ * @extends BaseModel
+ */
+export class Type extends BaseModel {
+  static collection = TypeCollection;
   async getSchema() {
-    const behaviorSchemas = await getBehaviorSchemas(this.get('behaviors'));
-    return mergeSchemas(...behaviorSchemas, this.get('schema'));
-  },
+    if (this.schema.behaviors) {
+      const behaviors = await Behavior.findAll(
+        {
+          id: ['=', this.schema.behaviors],
+        },
+        {
+          order: {
+            column: 'id',
+            values: this.schema.behaviors,
+          },
+        },
+      );
+      return mergeSchemas(await behaviors.toJSON(), this.schema);
+    }
+    return this.schema;
+  }
   async getFactoryFields(factory) {
     const properties = (await this.getSchema()).properties;
 
@@ -51,5 +41,5 @@ export const Type = BookshelfModel.extend({
       properties[property].factory === factory ? property : false,
     );
     return compact(fileFields);
-  },
-});
+  }
+}

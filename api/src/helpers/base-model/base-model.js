@@ -5,8 +5,9 @@
 
 import { mixin, Model } from 'objection';
 import TableName from 'objection-table-name';
-import { includes, snakeCase } from 'lodash';
+import _, { isArray, isString, mapKeys, snakeCase } from 'lodash';
 
+import { formatAttribute } from '../../helpers';
 import { BaseCollection } from '../../collections';
 import { knex } from '../../knex';
 
@@ -28,21 +29,62 @@ export class BaseModel extends mixin(Model, [
    * @method where
    * @static
    * @param {Object} where Where clause.
-   * @param {Object} options Ooptions for the query.
+   * @param {Object} options Options for the query.
    * @param {Object} trx Transaction object.
    * @returns {Array} JSON object.
    */
   static where(where, options, trx) {
     let query = this.query(trx);
+
+    /**
+     * Add where
+     * Possible options are:
+     * { id: 0 }                              // Search by field
+     * { "json->>'title'": 'News'}            // Search in json field
+     * { title: ['like', 'News'] }            // Override operator
+     * { roles: ['=', ['Reader', 'Editor']] } // Search by values
+     */
     if (where) {
-      query = query.where(where);
+      mapKeys(where, (value, key) => {
+        // user and group are reserved words so need to be wrapper in quotes
+        const attribute = formatAttribute(key);
+        const operator = isArray(value) ? value[0] : '=';
+        const values = isArray(value) ? value[1] : value;
+        query = query.whereRaw(
+          `${attribute} ${operator} ${isArray(values) ? 'any(?)' : '?'}`,
+          [values],
+        );
+      });
     }
+
+    /**
+     * Add order by
+     * Possible options are:
+     * 'title'                            // Sort by title column
+     * { column: 'title' }                // Sort by title column
+     * { column: 'title', reverse: true } // Reverse sort
+     * { column: 'title', values: [...] } // Sort by fixed values
+     */
     if (options.order) {
-      query = query.orderByRaw(
-        `${
-          includes(options.order, '->>') ? options.order : `"${options.order}"`
-        }${options.reverse ? ' DESC' : ''}`,
-      );
+      // Check if default order
+      if (isString(options.order)) {
+        query = query.orderByRaw(formatAttribute(options.order));
+      } else {
+        let order = '';
+        // Check if values are defined
+        if (options.order.values) {
+          order = `case ${_(options.order.values)
+            .map(
+              (value, index) =>
+                `when ${options.order.column} = '${value}' then ${index}`,
+            )
+            .join(' ')} end`;
+        } else {
+          // Order by column
+          order = formatAttribute(options.order);
+        }
+        query = query.orderByRaw(`${order}${options.reverse ? ' DESC' : ''}`);
+      }
     }
     if (options.limit) {
       query = query.limit(options.limit);
