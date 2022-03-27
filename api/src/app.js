@@ -23,6 +23,7 @@ import {
   userRoleRepository,
 } from './repositories';
 import { config } from '../config';
+import { Workflow } from './models';
 
 const app = express();
 
@@ -255,15 +256,14 @@ map(routes, (route) => {
     const { document, permissions, groups, roles } = result;
 
     // Find type
-    const type = await typeRepository.findOne(
-      { id: document.get('type') },
-      { withRelated: ['workflow'] },
-    );
+    const type = await typeRepository.findOne({ id: document.get('type') });
 
     // Check if type found
     if (!type) {
       return res.status(500).send({ error: req.i18n('Internal server error') });
     }
+
+    const workflow = await Workflow.findById(type.get('workflow'));
 
     // Call handler
     req.document = document;
@@ -274,9 +274,9 @@ map(routes, (route) => {
         map(
           roles,
           (role) =>
-            type.related('workflow').get('json').states[
-              document.get('workflow_state')
-            ].permissions[role] || [],
+            workflow.json.states[document.get('workflow_state')].permissions[
+              role
+            ] || [],
         ),
       ),
     ]);

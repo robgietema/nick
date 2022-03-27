@@ -39,9 +39,6 @@ async function getBehaviorSchemas(ids) {
 export const Type = BookshelfModel.extend({
   tableName: 'type',
   idAttribute: 'id',
-  workflow() {
-    return this.belongsTo(Workflow, 'workflow', 'id');
-  },
   async getSchema() {
     const behaviorSchemas = await getBehaviorSchemas(this.get('behaviors'));
     return mergeSchemas(...behaviorSchemas, this.get('schema'));

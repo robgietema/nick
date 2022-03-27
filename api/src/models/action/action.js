@@ -3,9 +3,14 @@
  * @module models/action/action
  */
 
-import { BookshelfModel } from '../../helpers';
+import { BaseModel } from '../../helpers';
+import { ActionCollection } from '../../collections';
 
-export const Action = BookshelfModel.extend({
-  tableName: 'action',
-  idAttribute: 'id',
-});
+/**
+ * A model for Action.
+ * @class Action
+ * @extends BaseModel
+ */
+export class Action extends BaseModel {
+  static collection = ActionCollection;
+}

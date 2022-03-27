@@ -32,6 +32,7 @@ import {
   writeFile,
   writeImage,
 } from '../../helpers';
+import { Workflow } from '../../models';
 import { config } from '../../../config';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
@@ -360,10 +361,8 @@ export default [
     handler: (req, res) =>
       requirePermission('Add', req, res, async () => {
         // Get content type date
-        const type = await typeRepository.findOne(
-          { id: req.body['@type'] },
-          { withRelated: ['workflow'] },
-        );
+        const type = await typeRepository.findOne({ id: req.body['@type'] });
+        const workflow = await Workflow.findById(type.get('workflow'));
 
         // Set creation time
         const created = moment.utc().format();
@@ -406,7 +405,7 @@ export default [
             version: 0,
             position_in_parent: items.length,
             lock: { locked: false, stealable: true },
-            workflow_state: type.related('workflow').get('json').initial_state,
+            workflow_state: workflow.json.initial_state,
             owner: req.user.get('id'),
             json,
           },

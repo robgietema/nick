@@ -5,6 +5,7 @@
  */
 
 export { getAdminHeader, requirePermission } from './auth/auth';
+export { BaseCollection } from './base-collection/base-collection';
 export { BaseModel } from './base-model/base-model';
 export { BaseRepository } from './base-repository/base-repository';
 export { BookshelfModel } from './base-model/bookshelf-model';
@@ -20,4 +21,5 @@ export {
 export { stripI18n } from './i18n/i18n';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas } from './schema/schema';
+export { getUrl } from './url/url';
 export { mapAsync, mapSync, uniqueId } from './utils/utils';

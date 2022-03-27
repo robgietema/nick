@@ -38,6 +38,11 @@
     "trailingComma": "all",
     "singleQuote": true
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
+  },
   "engines": {
     "node": "~16.13.0"
   },

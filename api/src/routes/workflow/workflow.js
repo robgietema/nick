@@ -4,22 +4,24 @@
  */
 
 import moment from 'moment';
-import { remove, map, toPairs } from 'lodash';
+
 import { requirePermission } from '../../helpers';
+import { Workflow } from '../../models';
 
 export default [
   {
     op: 'post',
     view: '/@workflow/:transition',
-    handler: (req, res) => {
-      const json = req.type.related('workflow').get('json');
+    handler: async (req, res) => {
+      const workflow = await Workflow.findById(req.type.get('workflow'));
 
       requirePermission(
-        json.transitions[req.params.transition].permission,
+        workflow.json.transitions[req.params.transition].permission,
         req,
         res,
         async () => {
-          const new_state = json.transitions[req.params.transition].new_state;
+          const new_state =
+            workflow.json.transitions[req.params.transition].new_state;
           const modified = moment.utc().format();
 
           await req.document.save(
@@ -36,7 +38,7 @@ export default [
             comments: '',
             review_state: new_state,
             time: modified,
-            title: json.states[new_state].title,
+            title: workflow.json.states[new_state].title,
           });
         },
       );
@@ -46,48 +48,9 @@ export default [
     op: 'get',
     view: '/@workflow',
     handler: (req, res) =>
-      requirePermission('View', req, res, () => {
-        const json = req.type.related('workflow').get('json');
-
-        // Get transitions
-        const transitions = toPairs(json.transitions);
-
-        // Remove transitions without permissions
-        remove(
-          transitions,
-          (transition) =>
-            req.permissions.indexOf(transition[1].permission) === -1,
-        );
-
-        // Remove transitions not applicable for the current state
-        remove(
-          transitions,
-          (transition) =>
-            json.states[req.document.get('workflow_state')].transitions.indexOf(
-              transition[0],
-            ) === -1,
-        );
-
-        res.send({
-          '@id': `${req.protocol || 'http'}://${
-            req.headers.host
-          }${req.document.get('path')}/@workflow`,
-          history: [],
-          state: {
-            id: req.document.get('workflow_state'),
-            title: req.i18n(
-              req.type.related('workflow').get('json').states[
-                req.document.get('workflow_state')
-              ].title,
-            ),
-          },
-          transitions: map(transitions, (item) => ({
-            '@id': `${req.protocol || 'http'}://${
-              req.headers.host
-            }${req.document.get('path')}/@workflow/${item[0]}`,
-            title: req.i18n(item[1].title),
-          })),
-        });
+      requirePermission('View', req, res, async () => {
+        const workflow = await Workflow.findById(req.type.get('workflow'));
+        res.send(workflow.toJSON(req));
       }),
   },
 ];
