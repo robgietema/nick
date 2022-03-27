@@ -15,7 +15,8 @@ import { config } from '../../../config';
  * @param {Object} req Request object.
  * @returns {Object} Json representation of the user.
  */
-function groupToJson(group, req) {
+async function groupToJson(group, req) {
+  const roles = await groupRoleRepository.findAll({ group: group.get('id') });
   return {
     '@id': `${req.protocol}://${req.headers.host}${
       req.params[0]
@@ -25,7 +26,7 @@ function groupToJson(group, req) {
     title: req.i18n(group.get('title')),
     description: req.i18n(group.get('description')),
     email: group.get('email'),
-    roles: group.related('roles').map((role) => role.get('id')),
+    roles: roles.map((role) => role.get('role')),
   };
 }
 
@@ -37,7 +38,7 @@ export default [
       requirePermission('Manage Users', req, res, async () => {
         const group = await groupRepository.findOne({ id: req.params.id });
         if (group) {
-          res.send(groupToJson(group, req));
+          res.send(await groupToJson(group, req));
         } else {
           res.status(404).send({ error: req.i18n('Not Found') });
         }
@@ -51,9 +52,12 @@ export default [
         const users = await groupRepository.findAll(
           req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
           'title',
-          { withRelated: ['roles'] },
         );
-        res.send(users.map((user) => groupToJson(user, req)));
+        res.send(
+          await Promise.all(
+            await users.map(async (user) => await groupToJson(user, req)),
+          ),
+        );
       }),
   },
   {

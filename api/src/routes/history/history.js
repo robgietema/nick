@@ -5,7 +5,11 @@
 
 import moment from 'moment';
 import { dropRight, omit } from 'lodash';
-import { documentRepository, versionRepository } from '../../repositories';
+import {
+  documentRepository,
+  versionRepository,
+  userRepository,
+} from '../../repositories';
 import { lockExpired, requirePermission, uniqueId } from '../../helpers';
 
 export default [
@@ -17,29 +21,35 @@ export default [
         const items = await versionRepository.findAll(
           { document: req.document.get('uuid') },
           'version desc',
-          { withRelated: ['actor'] },
         );
         res.send(
-          items.map((item) => ({
-            '@id': `${req.protocol}://${req.headers.host}${req.document.get(
-              'path',
-            )}/@history/${item.get('version')}`,
-            action: 'Edited',
-            actor: {
-              '@id': `${req.protocol}://${req.headers.host}/@users/${item
-                .related('actor')
-                .get('id')}`,
-              fullname: item.related('actor').get('fullname'),
-              id: item.related('actor').get('id'),
-              username: item.related('actor').get('id'),
-            },
-            comments: item.get('json').changeNote,
-            may_revert: true,
-            time: item.get('created'),
-            transition_title: 'Edited',
-            type: 'versioning',
-            version: item.get('version'),
-          })),
+          await Promise.all(
+            items.map(async (item) => {
+              const actor = await userRepository.findOne({
+                id: item.get('actor'),
+              });
+              return {
+                '@id': `${req.protocol}://${req.headers.host}${req.document.get(
+                  'path',
+                )}/@history/${item.get('version')}`,
+                action: 'Edited',
+                actor: {
+                  '@id': `${req.protocol}://${
+                    req.headers.host
+                  }/@users/${actor.get('id')}`,
+                  fullname: actor.get('fullname'),
+                  id: actor.get('id'),
+                  username: actor.get('id'),
+                },
+                comments: item.get('json').changeNote,
+                may_revert: true,
+                time: item.get('created'),
+                transition_title: 'Edited',
+                type: 'versioning',
+                version: item.get('version'),
+              };
+            }),
+          ),
         );
       }),
   },

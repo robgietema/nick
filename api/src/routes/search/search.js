@@ -6,7 +6,7 @@
 import moment from 'moment';
 import { endsWith, mapKeys, repeat } from 'lodash';
 import { formatSize, requirePermission } from '../../helpers';
-import { documentRepository } from '../../repositories';
+import { documentRepository, userRepository } from '../../repositories';
 import { Type } from '../../models';
 
 /**
@@ -19,12 +19,13 @@ import { Type } from '../../models';
 async function documentToJson(document, req) {
   const type = await Type.findById(document.get('type'));
   const schema = await type.getSchema();
+  const owner = await userRepository.findOne({ id: document.get('owner') });
   const json = document.get('json');
   return {
     '@id': `${req.protocol}://${req.headers.host}${document.get('path')}`,
     '@type': document.get('type'),
     UID: document.get('uuid'),
-    Creator: document.related('owner').get('fullname'),
+    Creator: owner.get('fullname'),
     Description: json.description,
     title: json.title,
     review_state: document.get('workflow_state'),
@@ -60,7 +61,6 @@ function querystringToQuery(querystring, path = '/') {
   const options = {
     offset: 0,
     limit: 100,
-    withRelated: ['owner'],
   };
   mapKeys(querystring, (value, key) => {
     switch (key) {

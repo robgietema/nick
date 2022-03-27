@@ -20,7 +20,8 @@ import { requirePermission } from '../../helpers';
  * @param {Object} req Request object.
  * @returns {Object} Json representation of the user.
  */
-function userToJson(user, req) {
+async function userToJson(user, req) {
+  const roles = await userRoleRepository.findAll({ user: user.get('id') });
   return {
     '@id': `${req.protocol}://${req.headers.host}${
       req.params[0]
@@ -28,7 +29,7 @@ function userToJson(user, req) {
     id: user.get('id'),
     username: user.get('username'),
     fullname: user.get('fullname'),
-    roles: user.related('roles').map((role) => role.get('id')),
+    roles: roles.map((role) => role.get('role')),
   };
 }
 
@@ -42,7 +43,7 @@ export default [
         if (!user) {
           return res.status(404).send({ error: 'Not Found' });
         }
-        res.send(userToJson(user, req));
+        res.send(await userToJson(user, req));
       }),
   },
   {
@@ -53,9 +54,12 @@ export default [
         const users = await userRepository.findAll(
           req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
           'fullname',
-          { withRelated: ['roles'] },
         );
-        res.send(users.map((user) => userToJson(user, req)));
+        res.send(
+          await Promise.all(
+            users.map(async (user) => await userToJson(user, req)),
+          ),
+        );
       }),
   },
   {

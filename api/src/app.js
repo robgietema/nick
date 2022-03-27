@@ -232,23 +232,22 @@ map(routes, (route) => {
     // If result not found
     if (!result) {
       // Find redirect
-      const redirect = await redirectRepository.findOne(
-        {
-          path: req.params[0],
-        },
-        { withRelated: ['document'] },
-      );
+      const redirect = await redirectRepository.findOne({
+        path: req.params[0],
+      });
 
       // If no redirect found
       if (!redirect) {
         return res.status(404).send({ error: req.i18n('Not Found') });
       }
 
+      // Get document
+      const redirectDocument = documentRepository.findOne({
+        uuid: redirect.get('document'),
+      });
+
       // Send redirect
-      res.redirect(
-        301,
-        `${redirect.related('document').get('path')}${route.view}`,
-      );
+      res.redirect(301, `${redirectDocument.get('path')}${route.view}`);
     }
 
     // Get results
