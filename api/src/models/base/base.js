@@ -5,7 +5,15 @@
 
 import { mixin, Model } from 'objection';
 import TableName from 'objection-table-name';
-import _, { isArray, isString, mapKeys, snakeCase } from 'lodash';
+import _, {
+  isArray,
+  isString,
+  keys,
+  map,
+  mapKeys,
+  omit,
+  snakeCase,
+} from 'lodash';
 
 import { formatAttribute } from '../../helpers';
 import { BaseCollection } from '../../collections';
@@ -99,14 +107,14 @@ export class BaseModel extends mixin(Model, [
 
   /**
    * Add related items to the result.
-   * @method withRelated
+   * @method findRelated
    * @static
    * @param {Object|Array} models Current models.
    * @param {Object} options Ooptions for the query.
    * @param {Object} trx Transaction object.
    * @returns {Array} JSON object.
    */
-  static async withRelated(models, options, trx) {
+  static async findRelated(models, options, trx) {
     let result = models;
     if (models && options.related) {
       if (isArray(models)) {
@@ -137,7 +145,7 @@ export class BaseModel extends mixin(Model, [
    */
   static async findAll(where = {}, options = {}, trx) {
     let models = await this.where(where, options, trx);
-    models = await this.withRelated(models, options, trx);
+    models = await this.findRelated(models, options, trx);
     return new this.collection(models);
   }
 
@@ -152,7 +160,7 @@ export class BaseModel extends mixin(Model, [
    */
   static async findOne(where = {}, options = {}, trx) {
     let model = await this.where(where, options, trx).first();
-    model = await this.withRelated(model, options, trx);
+    model = await this.findRelated(model, options, trx);
     return model;
   }
 
@@ -161,13 +169,96 @@ export class BaseModel extends mixin(Model, [
    * @method findById
    * @static
    * @param {string} id Id to be searched for
-   * @param {Object} options Ooptions for the query.
+   * @param {Object} options Options for the query.
    * @param {Object} trx Transaction object.
    * @returns {Object} Model of the item.
    */
   static async findById(id, options = {}, trx) {
     let model = await this.query(trx).findById(id);
-    model = await this.withRelated(model, options, trx);
+    model = await this.findRelated(model, options, trx);
     return model;
+  }
+
+  /**
+   * Delete by where.
+   * @method delete
+   * @static
+   * @param {Object} where Where clause.
+   * @param {Object} trx Transaction object.
+   * @returns {number} Amount deleted
+   */
+  static async delete(where, trx) {
+    return await this.query(trx).delete().where(where);
+  }
+
+  /**
+   * Delete by id.
+   * @method deleteById
+   * @static
+   * @param {string} id Id to be deleted
+   * @param {Object} trx Transaction object.
+   * @returns {boolean} True if model deleted.
+   */
+  static async deleteById(id, trx) {
+    const numDeleted = await this.query(trx).deleteById(id);
+    return numDeleted > 0;
+  }
+
+  /**
+   * Create new model.
+   * @method create
+   * @static
+   * @param {Object} data Model data.
+   * @param {Object} options Options for the query.
+   * @param {Object} trx Transaction object.
+   * @returns {Object} Model of the inserted record
+   */
+  static async create(data, options, trx) {
+    const relations = keys(this.getRelations());
+    let own = omit(data, relations);
+    let model = await this.query(trx).insert(own);
+    await Promise.all(
+      map(relations, async (related) => {
+        if (data[related]) {
+          await Promise.all(
+            map(
+              data[related],
+              async (item) =>
+                await model.$relatedQuery(related, trx).relate(item),
+            ),
+          );
+        }
+      }),
+    );
+    model = await this.findRelated(model, options, trx);
+    return model;
+  }
+
+  /**
+   * Update model.
+   * @method update
+   * @static
+   * @param {string} id Id of the model.
+   * @param {Object} data Model data.
+   * @param {Object} trx Transaction object.
+   */
+  static async update(id, data, trx) {
+    const relations = keys(this.getRelations());
+    let own = omit(data, relations);
+    const model = await this.query(trx).updateAndFetchById(id, own);
+    await Promise.all(
+      map(relations, async (related) => {
+        if (isArray(data[related])) {
+          await model.$relatedQuery(related, trx).unrelate();
+          await Promise.all(
+            map(
+              data[related],
+              async (item) =>
+                await model.$relatedQuery(related, trx).relate(item),
+            ),
+          );
+        }
+      }),
+    );
   }
 }

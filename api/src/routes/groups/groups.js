@@ -3,10 +3,10 @@
  * @module routes/groups/groups
  */
 
-import { map } from 'lodash';
+import { includes } from 'lodash';
 import { requirePermission } from '../../helpers';
 import { config } from '../../../config';
-import { Group, GroupRole } from '../../models';
+import { Group } from '../../models';
 
 export default [
   {
@@ -39,27 +39,15 @@ export default [
     view: '/@groups',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        const newGroup = await Group.create(
+        const group = await Group.create(
           {
             id: req.body.groupname,
             title: req.body.title,
             description: req.body.description,
             email: req.body.email,
+            roles: req.body.roles || [],
           },
-          { method: 'insert' },
-        );
-        const group = await newGroup.fetch();
-
-        // Create roles
-        const roles = req.body.roles || [];
-        await Promise.all(
-          roles.map(
-            async (role) =>
-              await GroupRole.create({
-                group: group.get('id'),
-                role,
-              }),
-          ),
+          { related: 'roles' },
         );
 
         // Send created
@@ -71,37 +59,13 @@ export default [
     view: '/@groups/:id',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        // Get group
-        const group = await Group.findOne({ id: req.params.id });
-
-        // Save document with new values
-        await group.save(
-          {
-            id: req.body.id || group.get('id'),
-            title: req.body.title || group.get('title'),
-            description: req.body.description || group.get('description'),
-            email: req.body.email || group.get('email'),
-          },
-          { patch: true },
-        );
-
-        // Loop through roles
-        if (req.body.roles) {
-          // Delete current roles
-          await GroupRole.delete({
-            group: group.get('id'),
-          });
-
-          // Add new roles
-          await Promise.all(
-            map(req.body.roles, async (role) => {
-              await GroupRole.create({
-                group: group.get('id'),
-                role,
-              });
-            }),
-          );
-        }
+        Group.update(req.params.id, {
+          id: req.body.groupname,
+          title: req.body.title,
+          description: req.body.description,
+          email: req.body.email,
+          roles: req.body.roles,
+        });
 
         // Send ok
         res.status(204).send();
@@ -112,7 +76,7 @@ export default [
     view: '/@groups/:id',
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
-        if (config.systemGroups.indexOf(req.params.id) === -1) {
+        if (!includes(config.systemGroups, req.params.id)) {
           await Group.delete({ id: req.params.id });
           res.status(204).send();
         } else {
