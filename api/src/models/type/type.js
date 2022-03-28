@@ -5,9 +5,9 @@
 
 import { map, keys, compact } from 'lodash';
 
-import { mergeSchemas, BaseModel } from '../../helpers';
+import { mergeSchemas } from '../../helpers';
 import { TypeCollection } from '../../collections';
-import { Behavior } from '../../models';
+import { Behavior, BaseModel } from '../../models';
 
 /**
  * A model for Type.

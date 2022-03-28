@@ -3,8 +3,9 @@
  * @module models/behavior/behavior
  */
 
-import { mergeSchemas, BaseModel } from '../../helpers';
+import { mergeSchemas } from '../../helpers';
 import { BehaviorCollection } from '../../collections';
+import { BaseModel } from '../../models';
 
 /**
  * A model for Behavior.
@@ -17,8 +18,7 @@ export class Behavior extends BaseModel {
   /**
    * Returns JSON data.
    * @method toJSON
-   * @param {Object} req Request object.
-   * @returns {Array} JSON object.
+   * @returns {Object} JSON object.
    */
   async toJSON() {
     if (this.schema.behaviors) {

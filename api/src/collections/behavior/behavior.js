@@ -3,7 +3,8 @@
  * @module collection/behavior/behavior
  */
 
-import { mergeSchemas, BaseCollection } from '../../helpers';
+import { mergeSchemas } from '../../helpers';
+import { BaseCollection } from '../../collections';
 
 /**
  * Behavior Collection

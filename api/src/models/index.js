@@ -4,6 +4,8 @@
  * @example import { Document } from './models';
  */
 
+export { BaseModel } from './base/base';
+
 export { Action } from './action/action';
 export { Behavior } from './behavior/behavior';
 export { Document } from './document/document';

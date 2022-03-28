@@ -86,6 +86,8 @@ export class BaseModel extends mixin(Model, [
         query = query.orderByRaw(`${order}${options.reverse ? ' DESC' : ''}`);
       }
     }
+
+    // Add paging options
     if (options.limit) {
       query = query.limit(options.limit);
     }
@@ -93,6 +95,35 @@ export class BaseModel extends mixin(Model, [
       query = query.offset(options.offset);
     }
     return query;
+  }
+
+  /**
+   * Add related items to the result.
+   * @method withRelated
+   * @static
+   * @param {Object|Array} models Current models.
+   * @param {Object} options Ooptions for the query.
+   * @param {Object} trx Transaction object.
+   * @returns {Array} JSON object.
+   */
+  static async withRelated(models, options, trx) {
+    let result = models;
+    if (models && options.related) {
+      if (isArray(models)) {
+        await Promise.all(
+          result.map(async (item, index) => {
+            result[index][options.related] = await this.relatedQuery(
+              options.related,
+            ).for(item[item.constructor.idColumn]);
+          }),
+        );
+      } else {
+        result[options.related] = await this.relatedQuery(options.related).for(
+          result[result.constructor.idColumn],
+        );
+      }
+    }
+    return result;
   }
 
   /**
@@ -105,7 +136,9 @@ export class BaseModel extends mixin(Model, [
    * @returns {Array} JSON object.
    */
   static async findAll(where = {}, options = {}, trx) {
-    return new this.collection(await this.where(where, options, trx));
+    let models = await this.where(where, options, trx);
+    models = await this.withRelated(models, options, trx);
+    return new this.collection(models);
   }
 
   /**
@@ -118,7 +151,9 @@ export class BaseModel extends mixin(Model, [
    * @returns {Object} Model of the item.
    */
   static async findOne(where = {}, options = {}, trx) {
-    return await this.where(where, options, trx).first();
+    let model = await this.where(where, options, trx).first();
+    model = await this.withRelated(model, options, trx);
+    return model;
   }
 
   /**
@@ -126,10 +161,13 @@ export class BaseModel extends mixin(Model, [
    * @method findById
    * @static
    * @param {string} id Id to be searched for
+   * @param {Object} options Ooptions for the query.
    * @param {Object} trx Transaction object.
    * @returns {Object} Model of the item.
    */
-  static async findById(id, trx) {
-    return await this.query(trx).findById(id);
+  static async findById(id, options = {}, trx) {
+    let model = await this.query(trx).findById(id);
+    model = await this.withRelated(model, options, trx);
+    return model;
   }
 }

@@ -4,7 +4,8 @@
  */
 
 import _, { includes } from 'lodash';
-import { getUrl, BaseModel } from '../../helpers';
+import { getUrl } from '../../helpers';
+import { BaseModel } from '../../models';
 
 /**
  * A model for Workflow.

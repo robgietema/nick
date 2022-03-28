@@ -12,17 +12,14 @@ import { createIntl, createIntlCache } from '@formatjs/intl';
 import routes from './routes';
 import {
   documentRepository,
-  groupRoleDocumentRepository,
-  groupRoleRepository,
   redirectRepository,
   rolePermissionRepository,
   userGroupRepository,
   userRepository,
-  userRoleDocumentRepository,
   userRoleRepository,
 } from './repositories';
 import { config } from '../config';
-import { Type, Workflow } from './models';
+import { GroupRoleDocument, Type, UserRoleDocument, Workflow } from './models';
 
 const app = express();
 
@@ -140,7 +137,7 @@ async function traverse(document, slugs, user, groups, roles) {
     ];
 
     // Get all roles from groups
-    const groupRoles = await groupRoleRepository.getRoles(extendedGroups);
+    const groupRoles = []; // await groupRoleRepository.getRoles(extendedGroups);
 
     // Combine all roles
     const extendedRoles = uniq([...roles, ...groupRoles]);
@@ -170,12 +167,12 @@ async function traverse(document, slugs, user, groups, roles) {
     }
 
     // Get roles based on user and group from child
-    const childUserRoles = await userRoleDocumentRepository.getRoles(
-      child,
-      user,
+    const childUserRoles = await UserRoleDocument.getRoles(
+      child.get('uuid'),
+      user.get('id'),
     );
-    const childGroupRoles = await groupRoleDocumentRepository.getRoles(
-      child,
+    const childGroupRoles = await GroupRoleDocument.getRoles(
+      child.get('uuid'),
       groups,
     );
 
@@ -196,7 +193,7 @@ map(routes, (route) => {
 
     // Get global roles based on user and groups
     const globalUserRoles = await userRoleRepository.getRoles(req.user);
-    const globalGroupRoles = await groupRoleRepository.getRoles(req.groups);
+    const globalGroupRoles = []; // await groupRoleRepository.getRoles(req.groups);
 
     // Check if root exists
     const root = await documentRepository.findOne({ parent: null });
@@ -205,12 +202,12 @@ map(routes, (route) => {
     }
 
     // Get roles based on root location
-    const rootUserRoles = await userRoleDocumentRepository.getRoles(
-      root,
-      req.user,
+    const rootUserRoles = await UserRoleDocument.getRoles(
+      root.get('uuid'),
+      req.user.get('id'),
     );
-    const rootGroupRoles = await groupRoleDocumentRepository.getRoles(
-      root,
+    const rootGroupRoles = await GroupRoleDocument.getRoles(
+      root.get('uuid'),
       req.groups,
     );
 

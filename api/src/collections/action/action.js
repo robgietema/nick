@@ -3,7 +3,7 @@
  * @module collection/action/action
  */
 
-import { BaseCollection } from '../../helpers';
+import { BaseCollection } from '../../collections';
 import _, { includes, map, omit } from 'lodash';
 
 /**

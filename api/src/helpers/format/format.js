@@ -3,7 +3,7 @@
  * @module helpers/format/format
  */
 
-import { includes } from 'lodash';
+import { includes, map } from 'lodash';
 
 /**
  * Format size
@@ -25,5 +25,7 @@ export function formatSize(bytes) {
  * @returns {string} Formatted attribute.
  */
 export function formatAttribute(attribute) {
-  return includes(attribute, '->>') ? attribute : `"${attribute}"`;
+  return includes(attribute, '->>')
+    ? attribute
+    : map(attribute.split('.'), (part) => `"${part}"`).join('.');
 }

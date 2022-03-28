@@ -3,7 +3,8 @@
  * @module collections/type/type
  */
 
-import { getUrl, BaseCollection } from '../../helpers';
+import { getUrl } from '../../helpers';
+import { BaseCollection } from '../../collections';
 import _ from 'lodash';
 
 /**

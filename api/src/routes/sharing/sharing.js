@@ -3,7 +3,7 @@
  * @module routes/sharing/sharing
  */
 
-import { roleRepository } from '../../repositories';
+import { Role } from '../../models';
 import { requirePermission } from '../../helpers';
 
 export default [
@@ -12,11 +12,11 @@ export default [
     view: '/@sharing',
     handler: (req, res) =>
       requirePermission('View', req, res, async () => {
-        const roles = await roleRepository.findAll({}, 'order');
+        const roles = await Role.findAll({}, 'order');
         res.send({
           available_roles: roles.map((role) => ({
-            id: role.get('id'),
-            title: role.get('id'),
+            id: role.id,
+            title: role.title,
           })),
           entries: [
             {

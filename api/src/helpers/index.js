@@ -5,8 +5,6 @@
  */
 
 export { getAdminHeader, requirePermission } from './auth/auth';
-export { BaseCollection } from './base-collection/base-collection';
-export { BaseModel } from './base-model/base-model';
 export { BaseRepository } from './base-repository/base-repository';
 export { BookshelfModel } from './base-model/bookshelf-model';
 export { formatSize, formatAttribute } from './format/format';
