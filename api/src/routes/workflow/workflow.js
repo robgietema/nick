@@ -34,7 +34,7 @@ export default [
 
           res.send({
             action: req.params.transition,
-            actor: req.user.get('id'),
+            actor: req.user.id,
             comments: '',
             review_state: new_state,
             time: modified,

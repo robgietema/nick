@@ -7,6 +7,8 @@ import { mixin, Model } from 'objection';
 import TableName from 'objection-table-name';
 import _, {
   isArray,
+  isEmpty,
+  isObject,
   isString,
   keys,
   map,
@@ -15,7 +17,7 @@ import _, {
   snakeCase,
 } from 'lodash';
 
-import { formatAttribute } from '../../helpers';
+import { formatAttribute, removeUndefined } from '../../helpers';
 import { BaseCollection } from '../../collections';
 import { knex } from '../../knex';
 
@@ -117,19 +119,26 @@ export class BaseModel extends mixin(Model, [
   static async findRelated(models, options, trx) {
     let result = models;
     if (models && options.related) {
-      if (isArray(models)) {
-        await Promise.all(
-          result.map(async (item, index) => {
-            result[index][options.related] = await this.relatedQuery(
-              options.related,
-            ).for(item[item.constructor.idColumn]);
-          }),
-        );
-      } else {
-        result[options.related] = await this.relatedQuery(options.related).for(
-          result[result.constructor.idColumn],
-        );
-      }
+      const related = isArray(options.related)
+        ? options.related
+        : [options.related];
+      await Promise.all(
+        map(related, async (attribute) => {
+          if (isArray(models)) {
+            await Promise.all(
+              result.map(async (item, index) => {
+                result[index][attribute] = await this.relatedQuery(
+                  attribute,
+                ).for(item[item.constructor.idColumn]);
+              }),
+            );
+          } else {
+            result[attribute] = await this.relatedQuery(attribute).for(
+              result[result.constructor.idColumn],
+            );
+          }
+        }),
+      );
     }
     return result;
   }
@@ -243,19 +252,45 @@ export class BaseModel extends mixin(Model, [
    * @param {Object} trx Transaction object.
    */
   static async update(id, data, trx) {
-    const relations = keys(this.getRelations());
-    let own = omit(data, relations);
-    const model = await this.query(trx).updateAndFetchById(id, own);
+    const relationObjects = this.getRelations();
+    const relations = keys(relationObjects);
+    let own = removeUndefined(omit(data, relations));
+    let model;
+    if (isEmpty(own)) {
+      model = await this.findById(id, {}, trx);
+    } else {
+      model = await this.query(trx).updateAndFetchById(id, own);
+    }
     await Promise.all(
       map(relations, async (related) => {
         if (isArray(data[related])) {
           await model.$relatedQuery(related, trx).unrelate();
           await Promise.all(
-            map(
-              data[related],
-              async (item) =>
-                await model.$relatedQuery(related, trx).relate(item),
-            ),
+            map(data[related], async (item) => {
+              // Ignore insert related errors
+              try {
+                await model.$relatedQuery(related, trx).relate(item);
+              } catch (e) {}
+            }),
+          );
+        } else if (isObject(data[related])) {
+          await Promise.all(
+            map(keys(data[related]), async (key) => {
+              if (data[related][key]) {
+                // Ignore insert related errors
+                try {
+                  await model.$relatedQuery(related, trx).relate(key);
+                } catch (e) {}
+              } else {
+                await model
+                  .$relatedQuery(related, trx)
+                  .unrelate()
+                  .where({
+                    [`${relationObjects[related].relatedModelClass.tableName}.${relationObjects[related].relatedProp.cols[0]}`]:
+                      key,
+                  });
+              }
+            }),
           );
         }
       }),

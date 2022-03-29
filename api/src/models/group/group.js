@@ -5,7 +5,6 @@
 
 import { getUrl } from '../../helpers';
 import { BaseModel } from '../../models';
-import { Role } from '../../models/role/role'; // Prevent circular imports
 import { GroupCollection } from '../../collections';
 
 /**
@@ -18,20 +17,38 @@ export class Group extends BaseModel {
   static collection = GroupCollection;
 
   // Set relation mappings
-  static relationMappings = {
-    roles: {
-      relation: BaseModel.ManyToManyRelation,
-      modelClass: Role,
-      join: {
-        from: 'group.id',
-        through: {
-          from: 'group_role.group',
-          to: 'group_role.role',
+  static get relationMappings() {
+    // Prevent circular imports
+    const { Role } = require('../../models/role/role');
+    const { User } = require('../../models/user/user');
+
+    return {
+      roles: {
+        relation: BaseModel.ManyToManyRelation,
+        modelClass: Role,
+        join: {
+          from: 'group.id',
+          through: {
+            from: 'group_role.group',
+            to: 'group_role.role',
+          },
+          to: 'role.id',
         },
-        to: 'role.id',
       },
-    },
-  };
+      users: {
+        relation: BaseModel.ManyToManyRelation,
+        modelClass: User,
+        join: {
+          from: 'group.id',
+          through: {
+            from: 'user_group.group',
+            to: 'user_group.user',
+          },
+          to: 'user.id',
+        },
+      },
+    };
+  }
 
   /**
    * Returns JSON data.

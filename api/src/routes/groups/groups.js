@@ -29,7 +29,7 @@ export default [
       requirePermission('Manage Users', req, res, async () => {
         const groups = await Group.findAll(
           req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
-          { order: 'group.title', related: 'roles' },
+          { order: 'title', related: 'roles' },
         );
         res.send(groups.toJSON(req));
       }),
@@ -45,7 +45,8 @@ export default [
             title: req.body.title,
             description: req.body.description,
             email: req.body.email,
-            roles: req.body.roles || [],
+            roles: req.body.roles,
+            users: req.body.users,
           },
           { related: 'roles' },
         );
@@ -65,6 +66,7 @@ export default [
           description: req.body.description,
           email: req.body.email,
           roles: req.body.roles,
+          users: req.body.users,
         });
 
         // Send ok
@@ -77,7 +79,7 @@ export default [
     handler: (req, res) =>
       requirePermission('Manage Users', req, res, async () => {
         if (!includes(config.systemGroups, req.params.id)) {
-          await Group.delete({ id: req.params.id });
+          await Group.deleteById(req.params.id);
           res.status(204).send();
         } else {
           res.status(401).send({

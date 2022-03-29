@@ -19,6 +19,7 @@ export const up = async (knex) => {
       .references('role.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    table.unique(['user', 'role']);
   });
   await knex.schema.createTable('user_group', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
@@ -34,6 +35,7 @@ export const up = async (knex) => {
       .references('group.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    table.unique(['user', 'group']);
   });
 };
 

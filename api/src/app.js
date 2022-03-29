@@ -12,14 +12,20 @@ import { createIntl, createIntlCache } from '@formatjs/intl';
 import routes from './routes';
 import {
   documentRepository,
+  groupRoleRepository,
   redirectRepository,
   rolePermissionRepository,
   userGroupRepository,
-  userRepository,
   userRoleRepository,
 } from './repositories';
 import { config } from '../config';
-import { GroupRoleDocument, Type, UserRoleDocument, Workflow } from './models';
+import {
+  GroupRoleDocument,
+  Type,
+  User,
+  UserRoleDocument,
+  Workflow,
+} from './models';
 
 const app = express();
 
@@ -76,7 +82,7 @@ app.use(async (req, res, next) => {
     req.headers.authorization.match(/^Bearer (.*)$/);
 
   // Get anonymous user object
-  const anonymous = await userRepository.findOne({ id: 'anonymous' });
+  const anonymous = await User.findById('anonymous');
 
   // If system user anonymous not found
   if (!anonymous) {
@@ -87,7 +93,7 @@ app.use(async (req, res, next) => {
   if (!token) {
     req.user = anonymous;
     req.roles = ['Anonymous'];
-    req.groups = await userGroupRepository.getGroups(anonymous);
+    req.groups = await userGroupRepository.getGroups(anonymous.id);
     return next();
   }
 
@@ -96,21 +102,21 @@ app.use(async (req, res, next) => {
     if (err || new Date().getTime() / 1000 > decoded.exp) {
       req.user = anonymous;
       req.roles = ['Anonymous'];
-      req.groups = await userGroupRepository.getGroups(anonymous);
+      req.groups = await userGroupRepository.getGroups(anonymous.id);
       next();
     } else {
       // Find user object
-      req.user = await userRepository.findOne({ id: decoded.sub });
+      req.user = await User.findById(decoded.sub);
 
       // Check if user exists
       if (req.user) {
-        req.groups = await userGroupRepository.getGroups(req.user);
+        req.groups = await userGroupRepository.getGroups(req.user.id);
         req.roles = ['Authenticated'];
         next();
       } else {
         req.user = anonymous;
         req.roles = ['Anonymous'];
-        req.groups = await userGroupRepository.getGroups(anonymous);
+        req.groups = await userGroupRepository.getGroups(anonymous.id);
         next();
       }
     }
@@ -133,7 +139,7 @@ async function traverse(document, slugs, user, groups, roles) {
     // Add owner to groups if current document owned by user
     const extendedGroups = [
       ...groups,
-      ...(user.get('id') === document.get('owner') ? ['Owner'] : []),
+      ...(user.id === document.get('owner') ? ['Owner'] : []),
     ];
 
     // Get all roles from groups
@@ -169,7 +175,7 @@ async function traverse(document, slugs, user, groups, roles) {
     // Get roles based on user and group from child
     const childUserRoles = await UserRoleDocument.getRoles(
       child.get('uuid'),
-      user.get('id'),
+      user.id,
     );
     const childGroupRoles = await GroupRoleDocument.getRoles(
       child.get('uuid'),
@@ -192,8 +198,8 @@ map(routes, (route) => {
     const slugs = req.params[0].split('/');
 
     // Get global roles based on user and groups
-    const globalUserRoles = await userRoleRepository.getRoles(req.user);
-    const globalGroupRoles = []; // await groupRoleRepository.getRoles(req.groups);
+    const globalUserRoles = await userRoleRepository.getRoles(req.user.id);
+    const globalGroupRoles = await groupRoleRepository.getRoles(req.groups);
 
     // Check if root exists
     const root = await documentRepository.findOne({ parent: null });
@@ -204,7 +210,7 @@ map(routes, (route) => {
     // Get roles based on root location
     const rootUserRoles = await UserRoleDocument.getRoles(
       root.get('uuid'),
-      req.user.get('id'),
+      req.user.id,
     );
     const rootGroupRoles = await GroupRoleDocument.getRoles(
       root.get('uuid'),

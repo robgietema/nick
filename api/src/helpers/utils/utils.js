@@ -3,6 +3,8 @@
  * @module helpers/utils/utils
  */
 
+import { omitBy } from 'lodash';
+
 /**
  * Map asynchronous but in order through array
  * @method mapAsync
@@ -39,4 +41,14 @@ export function mapSync(array, callback) {
 export function uniqueId(id, ids, counter = 0) {
   const newId = counter === 0 ? id : `${id}-${counter}`;
   return ids.indexOf(newId) === -1 ? newId : uniqueId(id, ids, counter + 1);
+}
+
+/**
+ * Remove undefined
+ * @method removeUndefined
+ * @param {Object} object Object to remove undefined values from.
+ * @returns {Object} Cleaned up object.
+ */
+export function removeUndefined(object) {
+  return omitBy(object, (value) => typeof value === 'undefined');
 }

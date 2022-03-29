@@ -6,8 +6,8 @@
 import moment from 'moment';
 import { endsWith, mapKeys, repeat } from 'lodash';
 import { formatSize, requirePermission } from '../../helpers';
-import { documentRepository, userRepository } from '../../repositories';
-import { Type } from '../../models';
+import { documentRepository } from '../../repositories';
+import { Type, User } from '../../models';
 
 /**
  * Convert document to json.
@@ -19,7 +19,7 @@ import { Type } from '../../models';
 async function documentToJson(document, req) {
   const type = await Type.findById(document.get('type'));
   const schema = await type.getSchema();
-  const owner = await userRepository.findOne({ id: document.get('owner') });
+  const owner = await User.findOne({ id: document.get('owner') });
   const json = document.get('json');
   return {
     '@id': `${req.protocol}://${req.headers.host}${document.get('path')}`,

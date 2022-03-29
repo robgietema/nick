@@ -1,13 +1,11 @@
 /**
- * Group Role Model.
+ * GroupRole Model.
  * @module models/group-role/group-role
  */
 
-import { BaseModel } from '../../models';
+import { BookshelfModel } from '../../helpers';
 
-/**
- * A model for Group Role.
- * @class GroupRole
- * @extends BaseModel
- */
-export class GroupRole extends BaseModel {}
+export const GroupRole = BookshelfModel.extend({
+  tableName: 'group_role',
+  idAttribute: 'id',
+});

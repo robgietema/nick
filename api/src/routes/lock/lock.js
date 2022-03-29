@@ -32,7 +32,7 @@ export default [
         // Check if lock already exists
         if (lock.locked && !lockExpired(req.document)) {
           // Check if lock from current user
-          if (req.user.get('id') === lock.creator) {
+          if (req.user.id === lock.creator) {
             // Send current lock info
             res.send(req.document.get('lock'));
           } else {
@@ -49,11 +49,9 @@ export default [
         } else {
           const newLock = {
             created: moment.utc(),
-            creator: req.user.get('id'),
-            creator_name: req.user.get('fullname'),
-            creator_url: `${req.protocol}://${
-              req.headers.host
-            }/@users/${req.user.get('id')}`,
+            creator: req.user.id,
+            creator_name: req.user.fullname,
+            creator_url: `${req.protocol}://${req.headers.host}/@users/${req.user.id}`,
             locked: true,
             stealable:
               typeof req.body?.stealable === 'undefined'
@@ -86,7 +84,7 @@ export default [
           res.send(lock);
         } else if (
           // Check if permission to unlock
-          lock.creator === req.user.get('id') ||
+          lock.creator === req.user.id ||
           (req.body?.force && lock.stealable === true)
         ) {
           // Delete lock and send new status

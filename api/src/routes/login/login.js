@@ -6,7 +6,7 @@
 import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
 
-import { userRepository } from '../../repositories';
+import { User } from '../../models';
 import { config } from '../../../config';
 
 export default [
@@ -24,7 +24,7 @@ export default [
       }
 
       // Find user
-      const user = await userRepository.findOne({ id: req.body.login });
+      const user = await User.findById(req.body.login);
 
       // If user not found
       if (!user) {
@@ -37,16 +37,13 @@ export default [
       }
 
       // Check password
-      const same = await bcrypt.compare(
-        req.body.password,
-        user.get('password'),
-      );
+      const same = await bcrypt.compare(req.body.password, user.password);
       if (same) {
         res.send({
           token: jwt.sign(
             {
-              sub: user.get('id'),
-              fullname: user.get('fullname'),
+              sub: user.id,
+              fullname: user.fullname,
             },
             config.secret,
             { expiresIn: '12h' },
@@ -69,8 +66,8 @@ export default [
       res.send({
         token: jwt.sign(
           {
-            sub: req.user.get('id'),
-            fullname: req.user.get('fullname'),
+            sub: req.user.id,
+            fullname: req.user.fullname,
           },
           config.secret,
           { expiresIn: '12h' },

@@ -19,6 +19,7 @@ export const up = async (knex) => {
       .references('role.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    table.unique(['group', 'role']);
   });
 };
 

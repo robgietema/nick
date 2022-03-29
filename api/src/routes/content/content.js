@@ -402,7 +402,7 @@ export default [
             position_in_parent: items.length,
             lock: { locked: false, stealable: true },
             workflow_state: workflow.json.initial_state,
-            owner: req.user.get('id'),
+            owner: req.user.id,
             json,
           },
           { method: 'insert' },
@@ -417,7 +417,7 @@ export default [
           id,
           version: 0,
           created,
-          actor: req.user.get('id'),
+          actor: req.user.id,
           json: {
             ...document.get('json'),
             changeNote: req.body.changeNote || 'Initial version',
@@ -517,7 +517,7 @@ export default [
           document: req.document.get('uuid'),
           id: newId,
           created: modified,
-          actor: req.user.get('id'),
+          actor: req.user.id,
           version,
           json: {
             ...json,

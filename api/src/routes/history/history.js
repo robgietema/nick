@@ -5,12 +5,9 @@
 
 import moment from 'moment';
 import { dropRight, omit } from 'lodash';
-import {
-  documentRepository,
-  versionRepository,
-  userRepository,
-} from '../../repositories';
+import { documentRepository, versionRepository } from '../../repositories';
 import { lockExpired, requirePermission, uniqueId } from '../../helpers';
+import { User } from '../../models';
 
 export default [
   {
@@ -25,7 +22,7 @@ export default [
         res.send(
           await Promise.all(
             items.map(async (item) => {
-              const actor = await userRepository.findOne({
+              const actor = await User.findOne({
                 id: item.get('actor'),
               });
               return {
@@ -34,12 +31,10 @@ export default [
                 )}/@history/${item.get('version')}`,
                 action: 'Edited',
                 actor: {
-                  '@id': `${req.protocol}://${
-                    req.headers.host
-                  }/@users/${actor.get('id')}`,
-                  fullname: actor.get('fullname'),
-                  id: actor.get('id'),
-                  username: actor.get('id'),
+                  '@id': `${req.protocol}://${req.headers.host}/@users/${actor.id}`,
+                  fullname: actor.fullname,
+                  id: actor.id,
+                  username: actor.id,
                 },
                 comments: item.get('json').changeNote,
                 may_revert: true,
@@ -108,7 +103,7 @@ export default [
           document: req.document.get('uuid'),
           id: newId,
           created: modified,
-          actor: req.user.get('id'),
+          actor: req.user.id,
           version: versionNumber,
           json: {
             ...json,

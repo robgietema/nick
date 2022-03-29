@@ -23,14 +23,14 @@ export class UserGroupRepository extends BaseRepository {
   /**
    * Get groups
    * @method getGroups
-   * @param {Object} user User object
+   * @param {string} user User id
    * @param {Object} [options] Bookshelf options to pass on to destroy.
    * @returns {Promise} A Promise that resolves to an array of groups.
    */
   async getGroups(user, options = {}) {
     const groupObjects = await this.findAll(
       {
-        user: user.get('id'),
+        user: user,
       },
       'id',
       options,

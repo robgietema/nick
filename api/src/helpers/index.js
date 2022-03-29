@@ -20,4 +20,4 @@ export { stripI18n } from './i18n/i18n';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas, translateSchema } from './schema/schema';
 export { getUrl } from './url/url';
-export { mapAsync, mapSync, uniqueId } from './utils/utils';
+export { mapAsync, mapSync, removeUndefined, uniqueId } from './utils/utils';
