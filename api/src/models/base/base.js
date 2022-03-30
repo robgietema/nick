@@ -119,22 +119,70 @@ export class BaseModel extends mixin(Model, [
   static async findRelated(models, options, trx) {
     let result = models;
     if (models && options.related) {
-      const related = isArray(options.related)
-        ? options.related
-        : [options.related];
+      let related;
+      if (isArray(options.related)) {
+        related = options.related.map((field) => ({
+          field,
+          related: [],
+        }));
+      } else if (isObject(options.related)) {
+        related = map(keys(options.related), (field) => {
+          const entry = {
+            field,
+            related: [],
+          };
+          if (isArray(options.related[field])) {
+            entry.related = options.related[field];
+          } else if (isString(options.related[field])) {
+            entry.related = [options.related[field]];
+          }
+          return entry;
+        });
+      } else {
+        related = [{ field: options.related, related: [] }];
+      }
       await Promise.all(
         map(related, async (attribute) => {
           if (isArray(models)) {
             await Promise.all(
               result.map(async (item, index) => {
-                result[index][attribute] = await this.relatedQuery(
-                  attribute,
-                ).for(item[item.constructor.idColumn]);
+                result[index][attribute.field] = await result[
+                  index
+                ].$relatedQuery(attribute.field, trx);
+                await Promise.all(
+                  map(
+                    attribute.related,
+                    async (childRelated) =>
+                      await Promise.all(
+                        map(result[index][attribute.field], async (child) => {
+                          child[childRelated] = await child.$relatedQuery(
+                            childRelated,
+                            trx,
+                          );
+                        }),
+                      ),
+                  ),
+                );
               }),
             );
           } else {
-            result[attribute] = await this.relatedQuery(attribute).for(
-              result[result.constructor.idColumn],
+            result[attribute.field] = await result.$relatedQuery(
+              attribute.field,
+              trx,
+            );
+            await Promise.all(
+              map(
+                attribute.related,
+                async (childRelated) =>
+                  await Promise.all(
+                    map(result[attribute.field], async (child) => {
+                      child[childRelated] = await child.$relatedQuery(
+                        childRelated,
+                        trx,
+                      );
+                    }),
+                  ),
+              ),
             );
           }
         }),

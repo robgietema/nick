@@ -12,6 +12,11 @@
       "permissions": ["Logout", "Manage Preferences"]
     },
     {
+      "id": "Owner",
+      "title:i18n": "Owner",
+      "permissions": ["Add", "Submit"]
+    },
+    {
       "id": "Reader",
       "title:i18n": "Reader",
       "permissions": ["View"]

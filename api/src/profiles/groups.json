@@ -2,11 +2,11 @@
   "purge": true,
   "groups": [
     {
-      "id": "Owner",
-      "title:i18n": "Owner",
+      "id": "Administrators",
+      "title:i18n": "Administrators",
       "description:i18n": "",
       "email": "",
-      "roles": ["Contributer", "Editor"]
+      "roles": ["Administrator"]
     }
   ]
 }

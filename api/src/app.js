@@ -10,22 +10,9 @@ import jwt from 'jsonwebtoken';
 import { createIntl, createIntlCache } from '@formatjs/intl';
 
 import routes from './routes';
-import {
-  documentRepository,
-  groupRoleRepository,
-  redirectRepository,
-  rolePermissionRepository,
-  userGroupRepository,
-  userRoleRepository,
-} from './repositories';
+import { documentRepository, redirectRepository } from './repositories';
 import { config } from '../config';
-import {
-  GroupRoleDocument,
-  Type,
-  User,
-  UserRoleDocument,
-  Workflow,
-} from './models';
+import { Role, Type, User, Workflow } from './models';
 
 const app = express();
 
@@ -82,7 +69,9 @@ app.use(async (req, res, next) => {
     req.headers.authorization.match(/^Bearer (.*)$/);
 
   // Get anonymous user object
-  const anonymous = await User.findById('anonymous');
+  const anonymous = await User.findById('anonymous', {
+    related: { roles: true, groups: 'roles' },
+  });
 
   // If system user anonymous not found
   if (!anonymous) {
@@ -92,8 +81,6 @@ app.use(async (req, res, next) => {
   // Check if auth token
   if (!token) {
     req.user = anonymous;
-    req.roles = ['Anonymous'];
-    req.groups = await userGroupRepository.getGroups(anonymous.id);
     return next();
   }
 
@@ -101,22 +88,18 @@ app.use(async (req, res, next) => {
     // If not valid token or expired
     if (err || new Date().getTime() / 1000 > decoded.exp) {
       req.user = anonymous;
-      req.roles = ['Anonymous'];
-      req.groups = await userGroupRepository.getGroups(anonymous.id);
       next();
     } else {
       // Find user object
-      req.user = await User.findById(decoded.sub);
+      req.user = await User.findById(decoded.sub, {
+        related: { roles: true, groups: 'roles' },
+      });
 
       // Check if user exists
       if (req.user) {
-        req.groups = await userGroupRepository.getGroups(req.user.id);
-        req.roles = ['Authenticated'];
         next();
       } else {
         req.user = anonymous;
-        req.roles = ['Anonymous'];
-        req.groups = await userGroupRepository.getGroups(anonymous.id);
         next();
       }
     }
@@ -129,36 +112,26 @@ app.use(async (req, res, next) => {
  * @param {Object} document Current document object.
  * @param {Array} slugs Array of slugs.
  * @param {Object} user Current user object.
- * @param {Array} groups Array of groups.
  * @param {Array} roles Array of roles.
  * @returns {Promise<Object>} A Promise that resolves to an object.
  */
-async function traverse(document, slugs, user, groups, roles) {
+async function traverse(document, slugs, user, roles) {
   // Check if at leaf node
   if (slugs.length === 0) {
-    // Add owner to groups if current document owned by user
-    const extendedGroups = [
-      ...groups,
+    // Add owner to roles if current document owned by user
+    const extendedRoles = uniq([
+      ...roles,
       ...(user.id === document.get('owner') ? ['Owner'] : []),
-    ];
-
-    // Get all roles from groups
-    const groupRoles = []; // await groupRoleRepository.getRoles(extendedGroups);
-
-    // Combine all roles
-    const extendedRoles = uniq([...roles, ...groupRoles]);
+    ]);
 
     // Get all permissions from roles
-    const permissions = await rolePermissionRepository.getPermissions(
-      extendedRoles,
-    );
+    const permissions = await Role.findPermissions(extendedRoles);
 
     // Return document and authorization data
     return {
       document,
-      permissions: permissions,
-      groups: extendedGroups,
       roles: extendedRoles,
+      permissions,
     };
   } else {
     // Fetch child matching the id
@@ -173,23 +146,10 @@ async function traverse(document, slugs, user, groups, roles) {
     }
 
     // Get roles based on user and group from child
-    const childUserRoles = await UserRoleDocument.getRoles(
-      child.get('uuid'),
-      user.id,
-    );
-    const childGroupRoles = await GroupRoleDocument.getRoles(
-      child.get('uuid'),
-      groups,
-    );
+    const childRoles = await user.findRolesByDocument(child.get('uuid'));
 
     // Recursively call the traverse on child
-    return traverse(
-      child,
-      drop(slugs),
-      user,
-      groups,
-      uniq([...roles, ...childUserRoles, ...childGroupRoles]),
-    );
+    return traverse(child, drop(slugs), user, uniq([...roles, ...childRoles]));
   }
 }
 
@@ -198,8 +158,7 @@ map(routes, (route) => {
     const slugs = req.params[0].split('/');
 
     // Get global roles based on user and groups
-    const globalUserRoles = await userRoleRepository.getRoles(req.user.id);
-    const globalGroupRoles = await groupRoleRepository.getRoles(req.groups);
+    const globalRoles = req.user.getRoles();
 
     // Check if root exists
     const root = await documentRepository.findOne({ parent: null });
@@ -208,28 +167,14 @@ map(routes, (route) => {
     }
 
     // Get roles based on root location
-    const rootUserRoles = await UserRoleDocument.getRoles(
-      root.get('uuid'),
-      req.user.id,
-    );
-    const rootGroupRoles = await GroupRoleDocument.getRoles(
-      root.get('uuid'),
-      req.groups,
-    );
+    const rootRoles = await req.user.findRolesByDocument(root.get('uuid'));
 
     // Traverse to document
     const result = await traverse(
       root,
       compact(slugs),
       req.user,
-      req.groups,
-      uniq([
-        ...rootUserRoles,
-        ...rootGroupRoles,
-        ...globalUserRoles,
-        ...globalGroupRoles,
-        ...req.roles,
-      ]),
+      uniq([...rootRoles, ...globalRoles]),
     );
 
     // If result not found
@@ -254,7 +199,7 @@ map(routes, (route) => {
     }
 
     // Get results
-    const { document, permissions, groups, roles } = result;
+    const { document, permissions, roles } = result;
 
     // Find type
     const type = await Type.findById(document.get('type'));
@@ -264,6 +209,7 @@ map(routes, (route) => {
       return res.status(500).send({ error: req.i18n('Internal server error') });
     }
 
+    // Get workflow
     const workflow = await Workflow.findById(type.workflow);
 
     // Call handler
@@ -281,8 +227,6 @@ map(routes, (route) => {
         ),
       ),
     ]);
-    req.groups = groups;
-    req.roles = roles;
     route.handler(req, res);
   });
 });

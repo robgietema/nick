@@ -3,6 +3,8 @@
  * @module models/group/group
  */
 
+import { map, uniq } from 'lodash';
+
 import { getUrl } from '../../helpers';
 import { BaseModel } from '../../models';
 import { GroupCollection } from '../../collections';
@@ -47,6 +49,18 @@ export class Group extends BaseModel {
           to: 'user.id',
         },
       },
+      documentRoles: {
+        relation: BaseModel.ManyToManyRelation,
+        modelClass: Role,
+        join: {
+          from: 'group.id',
+          through: {
+            from: 'group_role_document.group',
+            to: 'group_role_document.role',
+          },
+          to: 'role.id',
+        },
+      },
     };
   }
 
@@ -66,5 +80,24 @@ export class Group extends BaseModel {
       email: this.email,
       roles: this.roles ? this.roles.map((role) => role.id) : [],
     };
+  }
+
+  /**
+   * Find roles by document.
+   * @method findRolesByDocument
+   * @param {Array} groups Array of groups
+   * @param {string} document Uuid of the document
+   * @param {Object} trx Transaction object.
+   * @returns {Array} Array of roles.
+   */
+  static async findRolesByDocument(groups, document, trx) {
+    return uniq(
+      map(
+        await this.relatedQuery('documentRoles', trx).for(groups).where({
+          'group_role_document.document': document,
+        }),
+        (role) => role.id,
+      ),
+    );
   }
 }

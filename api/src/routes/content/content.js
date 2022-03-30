@@ -45,7 +45,7 @@ async function handleFiles(json, type) {
   const fields = { ...json };
 
   // Get file fields
-  const fileFields = await type.getFactoryFields('File');
+  const fileFields = await type.findFactoryFields('File');
 
   mapSync(fileFields, (field) => {
     // Check if new data is uploaded
@@ -82,7 +82,7 @@ async function handleImages(json, type) {
   const fields = { ...json };
 
   // Get file fields
-  const fileFields = await type.getFactoryFields('Image');
+  const fileFields = await type.findFactoryFields('Image');
 
   await mapAsync(fileFields, async (field) => {
     // Check if new data is uploaded
@@ -123,7 +123,7 @@ async function documentToJson(document, req) {
   const json = document.get('json');
 
   // Loop through file fields
-  const fileFields = await type.getFactoryFields('File');
+  const fileFields = await type.findFactoryFields('File');
   mapSync(fileFields, (field) => {
     // Set data
     json[field] = {
@@ -137,7 +137,7 @@ async function documentToJson(document, req) {
   });
 
   // Loop through image fields
-  const imageFields = await type.getFactoryFields('Image');
+  const imageFields = await type.findFactoryFields('Image');
   mapSync(imageFields, (field) => {
     // Set data
     json[field] = {
@@ -378,7 +378,7 @@ export default [
         );
 
         // Get json data
-        const properties = (await type.getSchema()).properties;
+        const properties = (await type.findSchema()).properties;
 
         // Handle file uploads
         let json = {
@@ -503,7 +503,7 @@ export default [
         let json = {
           ...req.document.get('json'),
           ...omit(
-            pick(req.body, keys((await req.type.getSchema()).properties)),
+            pick(req.body, keys((await req.type.findSchema()).properties)),
             omitProperties,
           ),
         };
@@ -559,8 +559,8 @@ export default [
         const parent = req.document.get('parent');
 
         // Get file and image fields
-        const fileFields = await req.type.getFactoryFields('File');
-        const imageFields = await req.type.getFactoryFields('Image');
+        const fileFields = await req.type.findFactoryFields('File');
+        const imageFields = await req.type.findFactoryFields('Image');
 
         // If file fields exist
         if (fileFields.length > 0 || imageFields.length > 0) {

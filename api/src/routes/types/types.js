@@ -28,7 +28,7 @@ export default [
           return res.status(404).send({ error: req.i18n('Not Found') });
         }
         res.send({
-          ...translateSchema(omit(await type.getSchema(), ['behaviors']), req),
+          ...translateSchema(omit(await type.findSchema(), ['behaviors']), req),
           title: req.i18n(type.title),
         });
       }),

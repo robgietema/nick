@@ -18,7 +18,7 @@ import { Type, User } from '../../models';
  */
 async function documentToJson(document, req) {
   const type = await Type.findById(document.get('type'));
-  const schema = await type.getSchema();
+  const schema = await type.findSchema();
   const owner = await User.findOne({ id: document.get('owner') });
   const json = document.get('json');
   return {
