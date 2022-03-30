@@ -7,7 +7,6 @@ import { concat, map, uniq } from 'lodash';
 
 import { getUrl } from '../../helpers';
 import { BaseModel, Group } from '../../models';
-import { UserCollection } from '../../collections';
 
 /**
  * A model for User.
@@ -15,9 +14,6 @@ import { UserCollection } from '../../collections';
  * @extends BaseModel
  */
 export class User extends BaseModel {
-  // Set collection
-  static collection = UserCollection;
-
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports

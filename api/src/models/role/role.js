@@ -6,7 +6,6 @@
 import { map, uniq } from 'lodash';
 
 import { getUrl } from '../../helpers';
-import { RoleCollection } from '../../collections';
 import { BaseModel } from '../../models';
 
 /**
@@ -15,8 +14,6 @@ import { BaseModel } from '../../models';
  * @extends BaseModel
  */
 export class Role extends BaseModel {
-  static collection = RoleCollection;
-
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports

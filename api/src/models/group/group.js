@@ -7,7 +7,6 @@ import { map, uniq } from 'lodash';
 
 import { getUrl } from '../../helpers';
 import { BaseModel } from '../../models';
-import { GroupCollection } from '../../collections';
 
 /**
  * A model for Group.
@@ -15,9 +14,6 @@ import { GroupCollection } from '../../collections';
  * @extends BaseModel
  */
 export class Group extends BaseModel {
-  // Set collection
-  static collection = GroupCollection;
-
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports

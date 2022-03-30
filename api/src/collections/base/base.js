@@ -31,9 +31,10 @@ export class BaseCollection {
   /**
    * Returns JSON data.
    * @method toJSON
+   * @param {Object} req Request object.
    * @returns {Array} JSON object.
    */
-  toJSON() {
-    return this.map((model) => model.toJSON());
+  toJSON(req) {
+    return this.map((model) => model.toJSON(req));
   }
 }
