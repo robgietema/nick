@@ -16,6 +16,7 @@ export function mergeSchemas(...schemas) {
   let properties = {};
   let required = [];
   let behaviors = [];
+
   map(schemas, (schema) => {
     map(schema.fieldsets, (fieldset) => {
       // Find fieldset
@@ -44,7 +45,6 @@ export function mergeSchemas(...schemas) {
       behaviors = concat(behaviors, schema.behaviors);
     }
   });
-
   return {
     fieldsets,
     properties,

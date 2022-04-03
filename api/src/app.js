@@ -3,16 +3,16 @@
  * @module app
  */
 
-import express from 'express';
-import bodyParser from 'body-parser';
-import { compact, drop, flatten, head, map, uniq, zipObject } from 'lodash';
-import jwt from 'jsonwebtoken';
 import { createIntl, createIntlCache } from '@formatjs/intl';
+import bodyParser from 'body-parser';
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import { compact, drop, flatten, head, map, uniq, zipObject } from 'lodash';
 
-import routes from './routes';
-import { documentRepository, redirectRepository } from './repositories';
 import { config } from '../config';
-import { Role, Type, User, Workflow } from './models';
+import { requirePermission } from './helpers';
+import { Document, Role, Redirect, Type, User, Workflow } from './models';
+import routes from './routes';
 
 const app = express();
 
@@ -69,8 +69,8 @@ app.use(async (req, res, next) => {
     req.headers.authorization.match(/^Bearer (.*)$/);
 
   // Get anonymous user object
-  const anonymous = await User.findById('anonymous', {
-    related: { roles: true, groups: 'roles' },
+  const anonymous = await User.fetchById('anonymous', {
+    related: '[_roles, _groups._roles]',
   });
 
   // If system user anonymous not found
@@ -91,8 +91,8 @@ app.use(async (req, res, next) => {
       next();
     } else {
       // Find user object
-      req.user = await User.findById(decoded.sub, {
-        related: { roles: true, groups: 'roles' },
+      req.user = await User.fetchById(decoded.sub, {
+        related: '[_roles, _groups._roles]',
       });
 
       // Check if user exists
@@ -121,7 +121,7 @@ async function traverse(document, slugs, user, roles) {
     // Add owner to roles if current document owned by user
     const extendedRoles = uniq([
       ...roles,
-      ...(user.id === document.get('owner') ? ['Owner'] : []),
+      ...(user.id === document.owner ? ['Owner'] : []),
     ]);
 
     // Get all permissions from roles
@@ -135,8 +135,8 @@ async function traverse(document, slugs, user, roles) {
     };
   } else {
     // Fetch child matching the id
-    const child = await documentRepository.findOne({
-      parent: document.get('uuid'),
+    const child = await Document.fetchOne({
+      parent: document.uuid,
       id: head(slugs),
     });
 
@@ -146,13 +146,14 @@ async function traverse(document, slugs, user, roles) {
     }
 
     // Get roles based on user and group from child
-    const childRoles = await user.findRolesByDocument(child.get('uuid'));
+    const childRoles = await user.findRolesByDocument(child.uuid);
 
     // Recursively call the traverse on child
     return traverse(child, drop(slugs), user, uniq([...roles, ...childRoles]));
   }
 }
 
+// Add routes
 map(routes, (route) => {
   app[route.op](`*${route.view}`, async (req, res) => {
     const slugs = req.params[0].split('/');
@@ -161,13 +162,13 @@ map(routes, (route) => {
     const globalRoles = req.user.getRoles();
 
     // Check if root exists
-    const root = await documentRepository.findOne({ parent: null });
+    const root = await Document.fetchOne({ parent: null });
     if (!root) {
       return res.status(500).send({ error: req.i18n('Internal server error') });
     }
 
     // Get roles based on root location
-    const rootRoles = await req.user.findRolesByDocument(root.get('uuid'));
+    const rootRoles = await req.user.findRolesByDocument(root.uuid);
 
     // Traverse to document
     const result = await traverse(
@@ -180,29 +181,27 @@ map(routes, (route) => {
     // If result not found
     if (!result) {
       // Find redirect
-      const redirect = await redirectRepository.findOne({
-        path: req.params[0],
-      });
+      const redirect = await Redirect.fetchOne(
+        {
+          path: req.params[0],
+        },
+        { related: '_document' },
+      );
 
       // If no redirect found
       if (!redirect) {
         return res.status(404).send({ error: req.i18n('Not Found') });
       }
 
-      // Get document
-      const redirectDocument = documentRepository.findOne({
-        uuid: redirect.get('document'),
-      });
-
       // Send redirect
-      res.redirect(301, `${redirectDocument.get('path')}${route.view}`);
+      res.redirect(301, `${redirect._document.path}${route.view}`);
     }
 
     // Get results
     const { document, permissions, roles } = result;
 
     // Find type
-    const type = await Type.findById(document.get('type'));
+    const type = await Type.fetchById(document.type);
 
     // Check if type found
     if (!type) {
@@ -210,7 +209,7 @@ map(routes, (route) => {
     }
 
     // Get workflow
-    const workflow = await Workflow.findById(type.workflow);
+    const workflow = await Workflow.fetchById(type.workflow);
 
     // Call handler
     req.document = document;
@@ -221,13 +220,17 @@ map(routes, (route) => {
         map(
           roles,
           (role) =>
-            workflow.json.states[document.get('workflow_state')].permissions[
-              role
-            ] || [],
+            workflow.json.states[document.workflow_state].permissions[role] ||
+            [],
         ),
       ),
     ]);
-    route.handler(req, res);
+
+    // Check permission
+    requirePermission(route.permission, req, res, () =>
+      // Call view
+      route.handler(req, res),
+    );
   });
 });
 

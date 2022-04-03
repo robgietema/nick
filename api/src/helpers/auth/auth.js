@@ -3,7 +3,7 @@
  * @module helpers/auth/auth
  */
 
-import { indexOf } from 'lodash';
+import { includes, isUndefined } from 'lodash';
 import jwt from 'jsonwebtoken';
 
 import { config } from '../../../config';
@@ -18,7 +18,7 @@ import { config } from '../../../config';
  * @returns {Promise<Object>} A Promise that resolves to an object.
  */
 export function requirePermission(permission, req, res, callback) {
-  if (indexOf(req.permissions, permission) !== -1) {
+  if (isUndefined(permission) || includes(req.permissions, permission)) {
     return callback();
   } else {
     return res.status(401).send({

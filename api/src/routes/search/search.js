@@ -4,10 +4,9 @@
  */
 
 import moment from 'moment';
-import { endsWith, mapKeys, repeat } from 'lodash';
-import { formatSize, requirePermission } from '../../helpers';
-import { documentRepository } from '../../repositories';
-import { Type, User } from '../../models';
+import { endsWith, includes, mapKeys, repeat } from 'lodash';
+import { formatSize, getRootUrl, getUrl } from '../../helpers';
+import { Document } from '../../models';
 
 /**
  * Convert document to json.
@@ -17,24 +16,23 @@ import { Type, User } from '../../models';
  * @returns {Object} Json representation of the document.
  */
 async function documentToJson(document, req) {
-  const type = await Type.findById(document.get('type'));
-  const schema = await type.findSchema();
-  const owner = await User.findOne({ id: document.get('owner') });
-  const json = document.get('json');
+  await document.fetchRelated('[_type, _owner]');
+  await document._type.fetchSchema();
+  const json = document.json;
   return {
-    '@id': `${req.protocol}://${req.headers.host}${document.get('path')}`,
-    '@type': document.get('type'),
-    UID: document.get('uuid'),
-    Creator: owner.get('fullname'),
+    '@id': `${getRootUrl(req)}${document.path}`,
+    '@type': document.type,
+    UID: document.uuid,
+    Creator: document._owner.fullname,
     Description: json.description,
     title: json.title,
-    review_state: document.get('workflow_state'),
-    ModificationDate: moment(document.get('modified')).format(),
-    CreationDate: moment(document.get('created')).format(),
+    review_state: document.workflow_state,
+    ModificationDate: moment(document.modified).format(),
+    CreationDate: moment(document.created).format(),
     EffectiveDate: 'None',
     ExpirationDate: 'None',
-    id: document.get('id'),
-    is_folderish: schema.behaviors.indexOf('folderish') !== -1,
+    id: document.id,
+    is_folderish: includes(document._type._schema.behaviors, 'folderish'),
     Subject: json.subjects,
     getObjSize: formatSize(JSON.stringify(json).length),
     start: null,
@@ -51,42 +49,42 @@ async function documentToJson(document, req) {
  */
 function querystringToQuery(querystring, path = '/') {
   const root = endsWith(path, '/') ? path : `${path}/`;
-  const fields = {
+  const where = {
     path: ['~', `^${path}`],
-  };
-  const sort = {
-    field: 'uuid',
-    order: 'ASC',
   };
   const options = {
     offset: 0,
     limit: 100,
+    order: {
+      column: 'uuid',
+      reverse: false,
+    },
   };
   mapKeys(querystring, (value, key) => {
     switch (key) {
       case 'SearchableText':
-        fields["json->>'title'"] = ['~*', value.replace(/\*/g, '')];
+        where["json->>'title'"] = ['~*', value.replace(/\*/g, '')];
         break;
       case 'sort_on':
         switch (value) {
           case 'sortable_title':
-            sort.field = "json->>'title'";
+            options.order.column = "json->>'title'";
             break;
           case 'effective':
-            sort.field = "json->>'effective'";
+            options.order.column = "json->>'effective'";
             break;
           case 'getObjPositionInParent':
-            sort.field = 'position_in_parent';
+            options.order.column = 'position_in_parent';
             break;
           default:
             break;
         }
         break;
       case 'sort_order':
-        sort.order = value === 'ascending' ? 'ASC' : 'DESC';
+        options.order.reverse = value !== 'ascending';
         break;
       case 'path.depth':
-        fields['path'] = [
+        where['path'] = [
           '~',
           `^${root}[^/]+${repeat('(/[^/]+)?', value - 1)}$`,
         ];
@@ -101,40 +99,40 @@ function querystringToQuery(querystring, path = '/') {
         break;
     }
   });
-  return [fields, `${sort.field} ${sort.order}`, options];
+  return [where, options];
 }
 
 export default [
   {
     op: 'get',
     view: '/@search',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const items = await documentRepository.findAll(
-          ...querystringToQuery(req.query, req.document.get('path')),
-        );
-        res.send({
-          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@search`,
-          items: await Promise.all(
-            items.map(async (item) => await documentToJson(item, req)),
-          ),
-          items_total: items.pagination?.rowCount || items.length,
-        });
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const items = await Document.fetchAll(
+        ...querystringToQuery(req.query, req.document.path),
+      );
+      res.send({
+        '@id': `${getUrl(req)}/@search`,
+        items: await Promise.all(
+          items.map(async (item) => await documentToJson(item, req)),
+        ),
+        items_total: items.pagination?.rowCount || items.length,
+      });
+    },
   },
   {
     op: 'post',
     view: '/@querystring-search',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const items = await documentRepository.findAll();
-        res.send({
-          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@search`,
-          items: await Promise.all(
-            items.map(async (item) => await documentToJson(item, req)),
-          ),
-          items_total: items.length,
-        });
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const items = await Document.fetchAll();
+      res.send({
+        '@id': `${getUrl(req)}/@search`,
+        items: await Promise.all(
+          items.map(async (item) => await documentToJson(item, req)),
+        ),
+        items_total: items.length,
+      });
+    },
   },
 ];

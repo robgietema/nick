@@ -5,24 +5,25 @@
 
 import { mergeSchemas } from '../../helpers';
 import { BehaviorCollection } from '../../collections';
-import { BaseModel } from '../../models';
+import { Model } from '../../models';
 
 /**
  * A model for Behavior.
  * @class Behavior
- * @extends BaseModel
+ * @extends Model
  */
-export class Behavior extends BaseModel {
+export class Behavior extends Model {
   static collection = BehaviorCollection;
 
   /**
-   * Returns JSON data.
-   * @method toJSON
-   * @returns {Object} JSON object.
+   * Fetch schema.
+   * @method fetchSchema
+   * @param {Object} trx Transaction object.
+   * @returns {Object} Schema.
    */
-  async toJSON() {
+  async fetchSchema(trx) {
     if (this.schema.behaviors) {
-      const behaviors = await Behavior.findAll(
+      const behaviors = await Behavior.fetchAll(
         {
           id: ['=', this.schema.behaviors],
         },
@@ -33,7 +34,7 @@ export class Behavior extends BaseModel {
           },
         },
       );
-      return mergeSchemas(await behaviors.toJSON(), this.schema);
+      return mergeSchemas(await behaviors.fetchSchema(trx), this.schema);
     }
     return this.schema;
   }

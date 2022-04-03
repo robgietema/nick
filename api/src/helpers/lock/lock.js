@@ -12,7 +12,7 @@ import moment from 'moment';
  * @returns {Boolean} True if document lock is expired
  */
 export function lockExpired(document) {
-  const lock = document.get('lock');
+  const lock = document.lock;
   const created = moment(lock.created).unix();
 
   return moment.utc().unix() > created + lock.timeout;

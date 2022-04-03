@@ -5,8 +5,7 @@
 
 import { compact, drop, head, last } from 'lodash';
 
-import { documentRepository } from '../../repositories';
-import { requirePermission } from '../../helpers';
+import { Document } from '../../models';
 
 /**
  * Traverse path.
@@ -20,15 +19,15 @@ async function traverse(document, slugs, items) {
   if (slugs.length === 0) {
     return items;
   } else {
-    const parent = await documentRepository.findOne({
-      parent: document.get('uuid'),
+    const parent = await Document.fetchOne({
+      parent: document.uuid,
       id: head(slugs),
     });
     return traverse(parent, drop(slugs), [
       ...items,
       {
-        '@id': `${last(items)['@id']}/${parent.get('id')}`,
-        title: parent.get('json').title,
+        '@id': `${last(items)['@id']}/${parent.id}`,
+        title: parent.json.title,
       },
     ]);
   }
@@ -38,20 +37,20 @@ export default [
   {
     op: 'get',
     view: '/@breadcrumbs',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const slugs = req.params[0].split('/');
-        const document = await documentRepository.findOne({ parent: null });
-        const items = await traverse(document, compact(slugs), [
-          {
-            '@id': `${req.protocol}://${req.headers.host}`,
-            title: document.get('json').title,
-          },
-        ]);
-        res.send({
-          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@breadcrumbs`,
-          items: drop(items),
-        });
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const slugs = req.params[0].split('/');
+      const document = await Document.fetchOne({ parent: null });
+      const items = await traverse(document, compact(slugs), [
+        {
+          '@id': `${req.protocol}://${req.headers.host}`,
+          title: document.json.title,
+        },
+      ]);
+      res.send({
+        '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@breadcrumbs`,
+        items: drop(items),
+      });
+    },
   },
 ];

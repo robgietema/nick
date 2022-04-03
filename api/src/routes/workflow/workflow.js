@@ -13,24 +13,22 @@ export default [
     op: 'post',
     view: '/@workflow/:transition',
     handler: async (req, res) => {
-      const workflow = await Workflow.findById(req.type.workflow);
+      await req.type.fetchRelated('_workflow');
 
       requirePermission(
-        workflow.json.transitions[req.params.transition].permission,
+        req.type._workflow.json.transitions[req.params.transition].permission,
         req,
         res,
         async () => {
           const new_state =
-            workflow.json.transitions[req.params.transition].new_state;
+            req.type._workflow.json.transitions[req.params.transition]
+              .new_state;
           const modified = moment.utc().format();
 
-          await req.document.save(
-            {
-              modified: modified,
-              workflow_state: new_state,
-            },
-            { patch: true },
-          );
+          await req.document.update({
+            modified: modified,
+            workflow_state: new_state,
+          });
 
           res.send({
             action: req.params.transition,
@@ -38,7 +36,7 @@ export default [
             comments: '',
             review_state: new_state,
             time: modified,
-            title: workflow.json.states[new_state].title,
+            title: req.type._workflow.json.states[new_state].title,
           });
         },
       );
@@ -47,10 +45,10 @@ export default [
   {
     op: 'get',
     view: '/@workflow',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const workflow = await Workflow.findById(req.type.workflow);
-        res.send(workflow.toJSON(req));
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      await req.type.fetchRelated('_workflow');
+      res.send(req.type._workflow.toJSON(req));
+    },
   },
 ];

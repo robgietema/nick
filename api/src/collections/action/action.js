@@ -3,15 +3,15 @@
  * @module collection/action/action
  */
 
-import { BaseCollection } from '../../collections';
+import { Collection } from '../../collections';
 import _, { includes, map, omit } from 'lodash';
 
 /**
  * Action Collection
  * @class ActionCollection
- * @extends BaseCollection
+ * @extends Collection
  */
-export class ActionCollection extends BaseCollection {
+export class ActionCollection extends Collection {
   /**
    * Returns JSON data.
    * @method toJSON

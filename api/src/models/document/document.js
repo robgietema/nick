@@ -3,9 +3,265 @@
  * @module models/document/document
  */
 
-import { BookshelfModel } from '../../helpers';
+import { findIndex, includes, map, mapValues, omit } from 'lodash';
 
-export const Document = BookshelfModel.extend({
-  tableName: 'document',
-  idAttribute: 'uuid',
-});
+import { Model, Redirect } from '../../models';
+import { lockExpired, mapSync } from '../../helpers';
+import { DocumentCollection } from '../../collections';
+
+/**
+ * A model for Document.
+ * @class Document
+ * @extends Model
+ */
+export class Document extends Model {
+  static collection = DocumentCollection;
+
+  // Set relation mappings
+  static get relationMappings() {
+    // Prevent circular imports
+    const { Type } = require('../../models/type/type');
+    const { User } = require('../../models/user/user');
+    const { Version } = require('../../models/version/version');
+
+    return {
+      _owner: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: 'document.owner',
+          to: 'user.id',
+        },
+      },
+      _parent: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Document,
+        join: {
+          from: 'document.parent',
+          to: 'document.uuid',
+        },
+      },
+      _children: {
+        relation: Model.HasManyRelation,
+        modelClass: Document,
+        join: {
+          from: 'document.uuid',
+          to: 'document.parent',
+        },
+      },
+      _versions: {
+        relation: Model.HasManyRelation,
+        modelClass: Version,
+        join: {
+          from: 'document.uuid',
+          to: 'version.document',
+        },
+      },
+      _type: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Type,
+        join: {
+          from: 'document.type',
+          to: 'type.id',
+        },
+      },
+    };
+  }
+
+  // Modifiers
+  static modifiers = {
+    order(query) {
+      query.orderBy('position_in_parent');
+    },
+  };
+
+  /**
+   * Fetch version
+   * @method fetchVersion
+   * @param {string} document Uuid of the document
+   * @param {Object} trx Transaction object.
+   * @returns {Array} Array of roles.
+   */
+  async fetchVersion(version, trx) {
+    this._version = await this.$relatedQuery('_versions', trx)
+      .where({ version })
+      .first();
+  }
+
+  /**
+   * Get url
+   * @method getUrl
+   * @param {Object} req Request object
+   * @returns {string} Url
+   */
+  getUrl(req) {
+    return `${req.protocol}://${req.headers.host}${
+      this.path === '/' ? '' : this.path
+    }`;
+  }
+
+  /**
+   * Replace old path with new path
+   * @method replacePath
+   * @param {String} oldPath Old path.
+   * @param {String} newPath New path.
+   * @param {Object} trx Transaction object.
+   * @returns {Promise} A Promise that resolves when replace is done.
+   */
+  async replacePath(oldPath, newPath, trx) {
+    const documents = await this.fetchAll(
+      { path: ['~', `^${oldPath}`] },
+      {},
+      trx,
+    );
+    await Promise.all(
+      documents.map(async (document) => {
+        await Redirect.create(
+          {
+            document: document.uuid,
+            path: document.path,
+          },
+          {},
+          trx,
+        );
+      }),
+    );
+    const knex = Document.knex();
+    await knex
+      .raw(
+        `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
+      )
+      .transacting(trx);
+  }
+
+  /**
+   * Reorder
+   * @method reorder
+   * @param {string} id Id of item to order.
+   * @param {number|string} delta 'top', 'bottom' or numerical offset.
+   * @param {Object} trx Transaction object.
+   * @returns {Promise} A Promise that resolves when the ordering has been done.
+   */
+  async reorder(id, delta) {
+    let to;
+    const from = findIndex(this._children, { id });
+
+    // Set to based on delta
+    if (delta === 'top') {
+      to = 0;
+    } else if (delta === 'bottom') {
+      to = this._children.length - 1;
+    } else {
+      to = from + delta;
+    }
+
+    // Reorder and save to db
+    this._children.splice(to, 0, this._chilren.splice(from, 1)[0]);
+    await this.fixOrder();
+  }
+
+  /**
+   * Fix order
+   * @method fixOrder
+   * @param {Object} trx Transaction object.
+   * @returns {Promise} A Promise that resolves when the ordering has been done.
+   */
+  async fixOrder() {
+    return await Promise.all(
+      this._children.map(
+        async (child, index) =>
+          await child.update({ position_in_parent: index }),
+      ),
+    );
+  }
+
+  /**
+   * Returns JSON data.
+   * @method toJSON
+   * @param {Object} req Request object.
+   * @returns {Object} JSON object.
+   */
+  async toJSON(req) {
+    // Get file fields
+    const json = this.json;
+
+    // Check if type available
+    if (this._type) {
+      await this._type.fetchSchema();
+
+      // Loop through file fields
+      const fileFields = this._type.getFactoryFields('File');
+      mapSync(fileFields, (field) => {
+        // Set data
+        json[field] = {
+          'content-type': json[field]['content-type'],
+          download: `${this.getUrl(req)}/@@download/file`,
+          filename: json[field].filename,
+          size: json[field].size,
+        };
+      });
+
+      // Loop through image fields
+      const imageFields = this._type.getFactoryFields('Image');
+      mapSync(imageFields, (field) => {
+        // Set data
+        json[field] = {
+          'content-type': json[field]['content-type'],
+          download: `${this.getUrl(req)}/@@images/${json[field].uuid}.${
+            json[field]['content-type'].split('/')[1]
+          }`,
+          filename: json[field].filename,
+          size: json[field].size,
+          width: json[field].width,
+          height: json[field].height,
+          scales: mapValues(json[field].scales, (scale) => ({
+            width: scale.width,
+            height: scale.height,
+            download: `${this.getUrl(req)}/@@images/${scale.uuid}.${
+              json[field]['content-type'].split('/')[1]
+            }`,
+          })),
+        };
+      });
+    }
+
+    // Add children if available
+    if (this._children) {
+      json.items = await Promise.all(
+        map(this._children, async (child) => await child.toJSON(req)),
+      );
+    }
+
+    // Check if version data
+    const version = this._version
+      ? {
+          ...omit(this._version.json, ['changeNote']),
+          id: this._version.id,
+          modified: this._version.created,
+        }
+      : {};
+
+    // Return data
+    return {
+      ...this.json,
+      '@id': this.getUrl(req),
+      '@type': this.type,
+      id: this.id,
+      created: this.created,
+      modified: this.modified,
+      UID: this.uuid,
+      is_folderish: this._type
+        ? includes(this._type._schema.behaviors, 'folderish')
+        : true,
+      review_state: this.workflow_state,
+      lock:
+        this.lock.locked && lockExpired(this)
+          ? {
+              locked: false,
+              stealable: true,
+            }
+          : this.lock,
+      ...version,
+    };
+  }
+}

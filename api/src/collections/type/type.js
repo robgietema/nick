@@ -4,15 +4,15 @@
  */
 
 import { getUrl } from '../../helpers';
-import { BaseCollection } from '../../collections';
+import { Collection } from '../../collections';
 import _ from 'lodash';
 
 /**
  * Type Collection
  * @class TypeCollection
- * @extends TypeCollection
+ * @extends Collection
  */
-export class TypeCollection extends BaseCollection {
+export class TypeCollection extends Collection {
   /**
    * Returns JSON data.
    * @method toJSON

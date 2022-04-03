@@ -1,13 +1,10 @@
 import request from 'supertest';
 
 import app from '../../app';
-import bookshelf from '../../bookshelf';
 
 import { getAdminHeader } from '../../helpers';
 
 describe('Actions', () => {
-  afterAll(() => bookshelf.knex.destroy());
-
   it('should get actions', () =>
     request(app)
       .get('/@actions')

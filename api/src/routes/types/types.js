@@ -5,32 +5,33 @@
 
 import { omit } from 'lodash';
 
+import { translateSchema } from '../../helpers';
 import { Type } from '../../models';
-import { requirePermission, translateSchema } from '../../helpers';
 
 export default [
   {
     op: 'get',
     view: '/@types',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const types = await Type.findAll();
-        res.send(types.toJSON(req));
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const types = await Type.fetchAll();
+      res.send(types.toJSON(req));
+    },
   },
   {
     op: 'get',
     view: '/@types/:type',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const type = await Type.findById(req.params.type);
-        if (!type) {
-          return res.status(404).send({ error: req.i18n('Not Found') });
-        }
-        res.send({
-          ...translateSchema(omit(await type.findSchema(), ['behaviors']), req),
-          title: req.i18n(type.title),
-        });
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const type = await Type.fetchById(req.params.type);
+      if (!type) {
+        return res.status(404).send({ error: req.i18n('Not Found') });
+      }
+      await type.fetchSchema();
+      res.send({
+        ...translateSchema(omit(type._schema, ['behaviors']), req),
+        title: req.i18n(type.title),
+      });
+    },
   },
 ];

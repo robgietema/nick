@@ -1,18 +1,18 @@
 /**
- * BaseCollection.
- * @module helpers/base-collection/base-collection
+ * Collection.
+ * @module collection/_collection/_collection
  */
 
 import { map } from 'lodash';
 
 /**
  * Base collection used to extend collections from.
- * @class BaseCollection
+ * @class Collection
  */
-export class BaseCollection {
+export class Collection {
   /**
-   * Construct a Base Collection.
-   * @constructs BaseCollection
+   * Construct a Collection.
+   * @constructs Collection
    */
   constructor(models) {
     this.models = models;

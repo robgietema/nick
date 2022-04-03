@@ -1,12 +1,9 @@
 import request from 'supertest';
 
 import app from '../../app';
-import bookshelf from '../../bookshelf';
 import { getAdminHeader } from '../../helpers';
 
 describe('History', () => {
-  afterAll(() => bookshelf.knex.destroy());
-
   it('should return the navigation', () =>
     request(app)
       .get('/news/@history')

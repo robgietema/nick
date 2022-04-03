@@ -1,12 +1,9 @@
 import request from 'supertest';
 
 import app from '../../app';
-import bookshelf from '../../bookshelf';
 import { getAdminHeader } from '../../helpers';
 
 describe('Types', () => {
-  afterAll(() => bookshelf.knex.destroy());
-
   it('should return a list of types', () =>
     request(app)
       .get('/@types')

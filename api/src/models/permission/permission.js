@@ -3,11 +3,11 @@
  * @module models/permission/permission
  */
 
-import { BaseModel } from '../../models';
+import { Model } from '../../models';
 
 /**
  * A model for Permission.
  * @class Permission
- * @extends BaseModel
+ * @extends Model
  */
-export class Permission extends BaseModel {}
+export class Permission extends Model {}

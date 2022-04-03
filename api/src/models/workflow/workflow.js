@@ -5,14 +5,14 @@
 
 import _, { includes } from 'lodash';
 import { getUrl } from '../../helpers';
-import { BaseModel } from '../../models';
+import { Model } from '../../models';
 
 /**
  * A model for Workflow.
  * @class Workflow
- * @extends BaseModel
+ * @extends Model
  */
-export class Workflow extends BaseModel {
+export class Workflow extends Model {
   /**
    * Returns JSON data.
    * @method toJSON
@@ -20,7 +20,7 @@ export class Workflow extends BaseModel {
    * @returns {Array} JSON object.
    */
   toJSON(req) {
-    const current_state_id = req.document.get('workflow_state');
+    const current_state_id = req.document.workflow_state;
     const current_state = this.json.states[current_state_id];
 
     return {

@@ -5,139 +5,103 @@
 
 import moment from 'moment';
 import { dropRight, omit } from 'lodash';
-import { documentRepository, versionRepository } from '../../repositories';
-import { lockExpired, requirePermission, uniqueId } from '../../helpers';
-import { User } from '../../models';
+import { lockExpired, uniqueId } from '../../helpers';
+import { Collection } from '../../collections';
+import { Version } from '../../models';
 
 export default [
   {
     op: 'get',
     view: '/@history',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const items = await versionRepository.findAll(
-          { document: req.document.get('uuid') },
-          'version desc',
-        );
-        res.send(
-          await Promise.all(
-            items.map(async (item) => {
-              const actor = await User.findOne({
-                id: item.get('actor'),
-              });
-              return {
-                '@id': `${req.protocol}://${req.headers.host}${req.document.get(
-                  'path',
-                )}/@history/${item.get('version')}`,
-                action: 'Edited',
-                actor: {
-                  '@id': `${req.protocol}://${req.headers.host}/@users/${actor.id}`,
-                  fullname: actor.fullname,
-                  id: actor.id,
-                  username: actor.id,
-                },
-                comments: item.get('json').changeNote,
-                may_revert: true,
-                time: item.get('created'),
-                transition_title: 'Edited',
-                type: 'versioning',
-                version: item.get('version'),
-              };
-            }),
-          ),
-        );
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      await req.document.fetchRelated('_versions(order)._actor');
+      const versions = new Collection(req.document._versions);
+      res.send(versions.toJSON(req));
+    },
   },
   {
     op: 'patch',
     view: '/@history',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        // Get version
-        const version = await versionRepository.findOne({
-          document: req.document.get('uuid'),
-          version: req.body.version,
-        });
-
-        // Check if locked
-        const lock = req.document.get('lock');
-        if (
-          lock.locked &&
-          !lockExpired(req.document) &&
-          req.headers['lock-token'] !== lock.token
-        ) {
-          return res.status(401).send({
-            error: {
-              message: req.i18n(
-                "You don't have permission to save this document because it is locked by another user.",
-              ),
-              type: req.i18n('Document locked'),
-            },
-          });
-        }
-
-        // Get id and path variables of document, parent and siblings
-        const id = version.get('id');
-        const path = req.document.get('path');
-        const slugs = path.split('/');
-        const parent = dropRight(slugs).join('/');
-        const siblings = await documentRepository.findAll({
-          parent: req.document.get('parent'),
-        });
-
-        // Get unique id if id has changed
-        const newId =
-          req.body.id && req.body.id !== req.document.get('id')
-            ? uniqueId(
-                id,
-                siblings.map((sibling) => sibling.get('id')),
-              )
-            : id;
-        const newPath = path === '/' ? path : `${parent}/${newId}`;
-
-        // Create new version
-        const json = omit(version.get('json'), ['changeNote']);
-        const modified = moment.utc().format();
-        const versionNumber = req.document.get('version') + 1;
-        await versionRepository.create({
-          document: req.document.get('uuid'),
-          id: newId,
-          created: modified,
-          actor: req.user.id,
-          version: versionNumber,
-          json: {
-            ...json,
-            changeNote: `Reverted to version ${version.get('version')}`,
+    permission: 'View',
+    handler: async (req, res) => {
+      // Check if locked
+      const lock = req.document.lock;
+      if (
+        lock.locked &&
+        !lockExpired(req.document) &&
+        req.headers['lock-token'] !== lock.token
+      ) {
+        return res.status(401).send({
+          error: {
+            message: req.i18n(
+              "You don't have permission to save this document because it is locked by another user.",
+            ),
+            type: req.i18n('Document locked'),
           },
         });
+      }
 
-        // If path has changed change path of document and children
-        if (path !== newPath) {
-          await documentRepository.replacePath(path, newPath);
-        }
+      // Get version
+      const version = await Version.fetchOne({
+        document: req.document.uuid,
+        version: req.body.version,
+      });
 
-        // Save document with new values
-        await req.document.save(
-          {
-            id: newId,
-            path: newPath,
-            version: versionNumber,
-            modified,
-            json,
-            lock: {
-              locked: false,
-              stealable: true,
-            },
-          },
-          { patch: true },
-        );
+      // Get id and path variables of document, parent and siblings
+      await req.document.fetchRelated('_parent._children');
+      const id = version.id;
+      const path = req.document.path;
 
-        // Send ok message
-        res.send({
-          message: `${
-            req.document.get('json').title
-          } has been reverted to revision ${version.get('version')}`,
-        });
-      }),
+      // Get unique id if id has changed
+      const newId =
+        req.body.id && req.body.id !== req.document.id
+          ? uniqueId(
+              id,
+              req.document._parent._children.map((sibling) => sibling.id),
+            )
+          : id;
+      const newPath =
+        path === '/' ? path : `${req.document._parent.path}/${newId}`;
+
+      // Create new version
+      const json = omit(version.json, ['changeNote']);
+      const modified = moment.utc().format();
+      const versionNumber = req.document.version + 1;
+      await req.document.createRelated('_versions', {
+        document: req.document.uuid,
+        id: newId,
+        created: modified,
+        actor: req.user.id,
+        version: versionNumber,
+        json: {
+          ...json,
+          changeNote: `Reverted to version ${version.version}`,
+        },
+      });
+
+      // If path has changed change path of document and children
+      if (path !== newPath) {
+        await Document.replacePath(path, newPath);
+      }
+
+      // Save document with new values
+      await req.document.update({
+        id: newId,
+        path: newPath,
+        version: versionNumber,
+        modified,
+        json,
+        lock: {
+          locked: false,
+          stealable: true,
+        },
+      });
+
+      // Send ok message
+      res.send({
+        message: `${req.document.json.title} has been reverted to revision ${version.version}`,
+      });
+    },
   },
 ];

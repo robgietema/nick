@@ -4,16 +4,15 @@
  */
 
 import { Role } from '../../models';
-import { requirePermission } from '../../helpers';
 
 export default [
   {
     op: 'get',
     view: '/@roles',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const roles = await Role.findAll({}, 'order');
-        res.send(roles.toJSON(req));
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const roles = await Role.fetchAll({}, 'order');
+      res.send(roles.toJSON(req));
+    },
   },
 ];

@@ -24,7 +24,7 @@ export default [
       }
 
       // Find user
-      const user = await User.findById(req.body.login);
+      const user = await User.fetchById(req.body.login);
 
       // If user not found
       if (!user) {

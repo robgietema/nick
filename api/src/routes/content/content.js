@@ -5,30 +5,20 @@
 
 import slugify from 'slugify';
 import moment from 'moment';
-import {
-  dropRight,
-  flattenDeep,
-  keys,
-  map,
-  mapValues,
-  omit,
-  pick,
-  uniq,
-} from 'lodash';
+import { flattenDeep, includes, keys, map, omit, pick, uniq } from 'lodash';
 
-import { documentRepository, versionRepository } from '../../repositories';
 import {
+  getRootUrl,
   lockExpired,
   mapAsync,
   mapSync,
   readFile,
   removeFile,
-  requirePermission,
   uniqueId,
   writeFile,
   writeImage,
 } from '../../helpers';
-import { Type, Workflow } from '../../models';
+import { Type } from '../../models';
 import { config } from '../../../config';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
@@ -45,7 +35,7 @@ async function handleFiles(json, type) {
   const fields = { ...json };
 
   // Get file fields
-  const fileFields = await type.findFactoryFields('File');
+  const fileFields = await type.getFactoryFields('File');
 
   mapSync(fileFields, (field) => {
     // Check if new data is uploaded
@@ -82,7 +72,7 @@ async function handleImages(json, type) {
   const fields = { ...json };
 
   // Get file fields
-  const fileFields = await type.findFactoryFields('Image');
+  const fileFields = await type.getFactoryFields('Image');
 
   await mapAsync(fileFields, async (field) => {
     // Check if new data is uploaded
@@ -110,491 +100,373 @@ async function handleImages(json, type) {
   return fields;
 }
 
-/**
- * Convert document to json.
- * @method documentToJson
- * @param {Object} document Current document object.
- * @param {Object} req Request object.
- * @returns {Object} Json representation of the document.
- */
-async function documentToJson(document, req) {
-  // Get file fields
-  const type = await Type.findById(document.get('type'));
-  const json = document.get('json');
-
-  // Loop through file fields
-  const fileFields = await type.findFactoryFields('File');
-  mapSync(fileFields, (field) => {
-    // Set data
-    json[field] = {
-      'content-type': json[field]['content-type'],
-      download: `${req.protocol}://${req.headers.host}${document.get(
-        'path',
-      )}/@@download/file`,
-      filename: json[field].filename,
-      size: json[field].size,
-    };
-  });
-
-  // Loop through image fields
-  const imageFields = await type.findFactoryFields('Image');
-  mapSync(imageFields, (field) => {
-    // Set data
-    json[field] = {
-      'content-type': json[field]['content-type'],
-      download: `${req.protocol}://${req.headers.host}${document.get(
-        'path',
-      )}/@@images/${json[field].uuid}.${
-        json[field]['content-type'].split('/')[1]
-      }`,
-      filename: json[field].filename,
-      size: json[field].size,
-      width: json[field].width,
-      height: json[field].height,
-      scales: mapValues(json[field].scales, (scale) => ({
-        width: scale.width,
-        height: scale.height,
-        download: `${req.protocol}://${req.headers.host}${document.get(
-          'path',
-        )}/@@images/${scale.uuid}.${json[field]['content-type'].split('/')[1]}`,
-      })),
-    };
-  });
-
-  // Return data
-  return {
-    ...document.get('json'),
-    '@id': `${req.protocol || 'http'}://${req.headers.host}${document.get(
-      'path',
-    )}`,
-    '@type': document.get('type'),
-    id: document.get('id'),
-    created: document.get('created'),
-    modified: document.get('modified'),
-    UID: document.get('uuid'),
-    is_folderish: type.schema?.behaviors?.indexOf('folderish') !== -1,
-    review_state: document.get('workflow_state'),
-    lock: document.get('lock'),
-  };
-}
-
 export default [
   {
     op: 'post',
     view: '/@move',
-    handler: (req, res) =>
-      requirePermission('Add', req, res, async () => {
-        // Get Siblings
-        const siblings = await documentRepository.findAll({
-          parent: req.document.get('uuid'),
-        });
+    permission: 'Add',
+    handler: async (req, res) => {
+      // Get children
+      await req.document.fetchRelated('_children');
+      const childIds = req.document._children.map((child) => child.id);
 
-        let items = [];
-        let parent;
-        let path;
+      // Return items
+      const items = [];
 
-        // Loop through source objects to be moved
-        await mapAsync(req.body.source, async (source) => {
-          // Get item to be moved
-          const document = await documentRepository.findOne({ path: source });
+      // Loop through source objects to be moved
+      await mapAsync(req.body.source, async (source) => {
+        // Get item to be moved
+        const document = await Document.fetchOne({ path: source });
 
-          // If moved to same folder or subfolder do nothing
-          if (
-            req.document.get('uuid') === document.get('parent') ||
-            req.document.get('path').indexOf(document.get('path')) !== -1
-          ) {
-            items.push({
-              source,
-              target: source,
-            });
-          } else {
-            parent = document.get('parent');
-            path = req.document.get('path');
-            const newPath = `${path}${path === '/' ? '' : '/'}${uniqueId(
-              document.get('id'),
-              siblings.map((sibling) => sibling.get('id')),
-            )}`;
-            await documentRepository.replacePath(source, newPath);
-            await document.save({
-              parent: req.document.get('uuid'),
-              position_in_parent: 32767,
-              path: newPath,
-            });
-            await documentRepository.fixOrder(parent);
-            items.push({
-              source,
-              target: newPath,
-            });
-          }
-        });
-        await documentRepository.fixOrder(req.document.get('uuid'));
+        // If moved to same folder or subfolder do nothing
+        if (
+          req.document.uuid === document.parent ||
+          includes(req.document.path, document.path)
+        ) {
+          items.push({
+            source,
+            target: source,
+          });
+        } else {
+          // Get current (previous) parent of document to be moved
+          const parent = Document.fetchById(document.parent);
 
-        res.send(
-          items.map((item) => ({
-            source: `${req.protocol || 'http'}://${req.headers.host}${
-              item.source
-            }`,
-            target: `${req.protocol || 'http'}://${req.headers.host}${
-              item.target
-            }`,
-          })),
-        );
-      }),
+          // Calculate new id and path
+          const path = req.document.path;
+          const newId = uniqueId(document.id, childIds);
+          const newPath = `${path}${path === '/' ? '' : '/'}${newId}`;
+
+          // Add new id to list of taken ids
+          childIds.push(newId);
+
+          // Replace path of moved object and children
+          await Document.replacePath(source, newPath);
+
+          // Save document in new location
+          await document.update({
+            parent: req.document.uuid,
+            position_in_parent: 32767,
+            path: newPath,
+          });
+
+          // Fetch children of previous parent
+          await parent.fetchRelated('_children');
+          await parent.fixOrder();
+
+          // Add items to return array
+          items.push({
+            source,
+            target: newPath,
+          });
+        }
+      });
+
+      // Fetch new children and fix order
+      await req.document.fetchRelated('_children');
+      await req.document.fixOrder();
+
+      res.send(
+        items.map((item) => ({
+          source: `${getRootUrl(req)}${item.source}`,
+          target: `${getRootUrl(req)}${item.target}`,
+        })),
+      );
+    },
   },
   {
     op: 'get',
     view: '/@history/:version',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        let document = req.document;
-        if (document.get('lock').locked && lockExpired(document)) {
-          document = await documentRepository.deleteLock(req.document);
-        }
-        const items = await documentRepository.findAll(
-          { parent: document.get('uuid') },
-          'position_in_parent',
-        );
-        const version = await versionRepository.findOne({
-          document: document.get('uuid'),
-          version: parseInt(req.params.version, 10),
-        });
-        res.send({
-          ...{
-            ...(await documentToJson(document, req)),
-            ...omit(version.get('json'), ['changeNote']),
-            id: version.get('id'),
-            modified: version.get('created'),
-          },
-          items: await Promise.all(
-            items.map(async (item) => await documentToJson(item, req)),
-          ),
-        });
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      await req.document.fetchRelated('[_children._type, _type]');
+      await req.document.fetchVersion(parseInt(req.params.version, 10));
+      res.send(await req.document.toJSON(req));
+    },
   },
   {
     op: 'get',
     view: '/@@download/:field',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const field = req.document.get('json')[req.params.field];
-        res.setHeader('Content-Type', field['content-type']);
-        res.setHeader(
-          'Content-Disposition',
-          `attachment; filename="${field.filename}"`,
-        );
-        const buffer = readFile(field.uuid);
-        res.write(buffer, 'binary');
-        res.end(undefined, 'binary');
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const field = req.document.json[req.params.field];
+      res.setHeader('Content-Type', field['content-type']);
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="${field.filename}"`,
+      );
+      const buffer = readFile(field.uuid);
+      res.write(buffer, 'binary');
+      res.end(undefined, 'binary');
+    },
   },
   {
     op: 'get',
     view: '/@@images/:uuid.:ext',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        res.setHeader('Content-Type', `image/${req.params.ext}`);
-        const buffer = readFile(req.params.uuid);
-        res.write(buffer, 'binary');
-        res.end(undefined, 'binary');
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      res.setHeader('Content-Type', `image/${req.params.ext}`);
+      const buffer = readFile(req.params.uuid);
+      res.write(buffer, 'binary');
+      res.end(undefined, 'binary');
+    },
   },
   {
     op: 'get',
     view: '/@@images/:field',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const field = req.document.get('json')[req.params.field];
-        res.setHeader('Content-Type', field['content-type']);
-        res.setHeader(
-          'Content-Disposition',
-          `attachment; filename="${field.filename}"`,
-        );
-        const buffer = readFile(field.uuid);
-        res.write(buffer, 'binary');
-        res.end(undefined, 'binary');
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const field = req.document.json[req.params.field];
+      res.setHeader('Content-Type', field['content-type']);
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="${field.filename}"`,
+      );
+      const buffer = readFile(field.uuid);
+      res.write(buffer, 'binary');
+      res.end(undefined, 'binary');
+    },
   },
   {
     op: 'get',
     view: '/@@images/:field/:scale',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const field = req.document.get('json')[req.params.field];
-        res.setHeader('Content-Type', field['content-type']);
-        res.setHeader(
-          'Content-Disposition',
-          `attachment; filename="${field.filename}"`,
-        );
-        const buffer = readFile(field.scales[req.params.scale].uuid);
-        res.write(buffer, 'binary');
-        res.end(undefined, 'binary');
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      const field = req.document.json[req.params.field];
+      res.setHeader('Content-Type', field['content-type']);
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="${field.filename}"`,
+      );
+      const buffer = readFile(field.scales[req.params.scale].uuid);
+      res.write(buffer, 'binary');
+      res.end(undefined, 'binary');
+    },
   },
   {
     op: 'get',
     view: '',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        let document = req.document;
-        if (document.get('lock').locked && lockExpired(document)) {
-          document = await documentRepository.deleteLock(req.document);
-        }
-        const items = await documentRepository.findAll(
-          { parent: document.get('uuid') },
-          'position_in_parent',
-        );
-        res.send({
-          ...(await documentToJson(document, req)),
-          items: await Promise.all(
-            items.map(async (item) => documentToJson(item, req)),
-          ),
-        });
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      await req.document.fetchRelated('[_children(order)._type, _type]');
+      res.send(await req.document.toJSON(req));
+    },
   },
   {
     op: 'post',
     view: '',
-    handler: (req, res) =>
-      requirePermission('Add', req, res, async () => {
-        // Get content type date
-        const type = await Type.findById(req.body['@type']);
-        const workflow = await Workflow.findById(type.workflow);
+    permission: 'Add',
+    handler: async (req, res) => {
+      // Get content type date
+      const type = await Type.fetchById(req.body['@type'], {
+        related: '_workflow',
+      });
 
-        // Set creation time
-        const created = moment.utc().format();
+      // Set creation time
+      const created = moment.utc().format();
 
-        // Get child nodes
-        const items = await documentRepository.findAll({
-          parent: req.document.get('uuid'),
-        });
+      // Get child nodes
+      await req.document.fetchRelated('_children');
 
-        // Set unique id
-        let id =
-          req.body.id ||
-          slugify(req.body.title, { lower: true, remove: /[*+~.()'"!:@]/g });
-        id = uniqueId(
-          id,
-          items.map((item) => item.get('id')),
-        );
+      // Set unique id
+      let id =
+        req.body.id ||
+        slugify(req.body.title, { lower: true, remove: /[*+~.()'"!:@]/g });
+      id = uniqueId(
+        id,
+        req.document._children.map((item) => item.id),
+      );
 
-        // Get json data
-        const properties = (await type.findSchema()).properties;
+      // Get json data
+      await type.fetchSchema();
+      const properties = type._schema.properties;
 
-        // Handle file uploads
-        let json = {
-          ...omit(pick(req.body, keys(properties)), omitProperties),
-        };
-        json = await handleFiles(json, type);
-        json = await handleImages(json, type);
+      // Handle file uploads
+      let json = {
+        ...omit(pick(req.body, keys(properties)), omitProperties),
+      };
+      json = await handleFiles(json, type);
+      json = await handleImages(json, type);
 
-        // Insert document in database
-        const newDocument = await documentRepository.create(
-          {
-            parent: req.document.get('uuid'),
-            id,
-            path: `${
-              req.document.get('path') === '/' ? '' : req.document.get('path')
-            }/${id}`,
-            type: req.body['@type'],
-            created,
-            modified: created,
-            version: 0,
-            position_in_parent: items.length,
-            lock: { locked: false, stealable: true },
-            workflow_state: workflow.json.initial_state,
-            owner: req.user.id,
-            json,
-          },
-          { method: 'insert' },
-        );
+      // Insert document in database
+      const document = await req.document.createRelatedAndFetch('_children', {
+        id,
+        path: `${req.document.path === '/' ? '' : req.document.path}/${id}`,
+        type: req.body['@type'],
+        created,
+        modified: created,
+        version: 0,
+        position_in_parent: req.document._children.length,
+        lock: { locked: false, stealable: true },
+        workflow_state: type._workflow.json.initial_state,
+        owner: req.user.id,
+        json,
+      });
 
-        // Fetch inserted data
-        const document = await newDocument.fetch();
+      // Create initial version
+      await document.createRelated('_versions', {
+        id,
+        version: 0,
+        created,
+        actor: req.user.id,
+        json: {
+          ...document.json,
+          changeNote: req.body.changeNote || 'Initial version',
+        },
+      });
 
-        // Create initial version
-        await versionRepository.create({
-          document: document.get('uuid'),
-          id,
-          version: 0,
-          created,
-          actor: req.user.id,
-          json: {
-            ...document.get('json'),
-            changeNote: req.body.changeNote || 'Initial version',
-          },
-        });
+      // Fetch type
+      await document.fetchRelated('_type');
 
-        // Send data back to client
-        res.status(201).send(await documentToJson(document, req));
-      }),
+      // Send data back to client
+      res.status(201).send(await document.toJSON(req));
+    },
   },
   {
     op: 'patch',
     view: '',
-    handler: (req, res) =>
-      requirePermission('Modify', req, res, async () => {
-        // Check if ordering request
-        if (typeof req.body?.ordering !== 'undefined') {
-          // Get document to be ordered
-          const id = req.body.ordering.obj_id;
-          const delta = req.body.ordering.delta;
-          const document = await documentRepository.findOne({
-            parent: req.document.get('uuid'),
-            id,
-          });
-
-          // Check ordering method
-          if (delta === 'top') {
-            await document.save({ position_in_parent: -1 }, { patch: true });
-          } else if (delta === 'bottom') {
-            await document.save({ position_in_parent: 32767 }, { patch: true });
-          } else {
-            await documentRepository.reorder(
-              req.document.get('uuid'),
-              id,
-              delta,
-            );
-          }
-
-          // Fix order
-          await documentRepository.fixOrder(req.document.get('uuid'));
-
-          // Send ok
-          return res.status(204).send();
-        }
-
-        // Check if locked
-        const lock = req.document.get('lock');
-        if (
-          lock.locked &&
-          !lockExpired(req.document) &&
-          req.headers['lock-token'] !== lock.token
-        ) {
-          return res.status(401).send({
-            error: {
-              message: req.i18n(
-                "You don't have permission to save this document because it is locked by another user.",
-              ),
-              type: req.i18n('Document locked'),
-            },
-          });
-        }
-
-        // Get id and path variables of document, parent and siblings
-        const id = req.body.id || req.document.get('id');
-        const path = req.document.get('path');
-        const slugs = path.split('/');
-        const parent = dropRight(slugs).join('/');
-        const siblings = await documentRepository.findAll({
-          parent: req.document.get('parent'),
-        });
-
-        // Get unique id if id has changed
-        const newId =
-          req.body.id && req.body.id !== req.document.get('id')
-            ? uniqueId(
-                id,
-                siblings.map((sibling) => sibling.get('id')),
-              )
-            : id;
-        const newPath = path === '/' ? path : `${parent}/${newId}`;
-
-        // Handle file uploads
-        let json = {
-          ...req.document.get('json'),
-          ...omit(
-            pick(req.body, keys((await req.type.findSchema()).properties)),
-            omitProperties,
-          ),
-        };
-        json = await handleFiles(json, req.type);
-        json = await handleImages(json, req.type);
-
-        // Create new version
-        const modified = moment.utc().format();
-        const version = req.document.get('version') + 1;
-        await versionRepository.create({
-          document: req.document.get('uuid'),
-          id: newId,
-          created: modified,
-          actor: req.user.id,
-          version,
-          json: {
-            ...json,
-            changeNote: req.body.changeNote,
-          },
-        });
-
-        // If path has changed change path of document and children
-        if (path !== newPath) {
-          await documentRepository.replacePath(path, newPath);
-        }
-
-        // Save document with new values
-        await req.document.save(
-          {
-            id: newId,
-            path: newPath,
-            version,
-            modified,
-            json,
-            lock: {
-              locked: false,
-              stealable: true,
-            },
-          },
-          { patch: true },
+    permission: 'Modify',
+    handler: async (req, res) => {
+      // Check if ordering request
+      if (typeof req.body?.ordering !== 'undefined') {
+        // Get children and reorder
+        await req.document.fetchRelated('_children(order)');
+        this.document.reorder(
+          req.body.ordering.obj_id,
+          req.body.ordering.delta,
         );
 
         // Send ok
-        res.status(204).send();
-      }),
+        return res.status(204).send();
+      }
+
+      // Check if locked
+      const lock = req.document.lock;
+      if (
+        lock.locked &&
+        !lockExpired(req.document) &&
+        req.headers['lock-token'] !== lock.token
+      ) {
+        return res.status(401).send({
+          error: {
+            message: req.i18n(
+              "You don't have permission to save this document because it is locked by another user.",
+            ),
+            type: req.i18n('Document locked'),
+          },
+        });
+      }
+
+      // Get id and path variables of document, parent and siblings
+      await req.document.fetchRelated('_parent._children');
+      const id = req.body.id || req.document.id;
+      const path = req.document.path;
+
+      // Get unique id if id has changed
+      const newId =
+        req.body.id && req.body.id !== req.document.id
+          ? uniqueId(
+              id,
+              req.document._parent._children.map((sibling) => sibling.id),
+            )
+          : id;
+      const newPath =
+        path === '/' ? path : `${req.document._parent.path}/${newId}`;
+
+      // Handle file uploads
+      await req.type.fetchSchema();
+      let json = {
+        ...req.document.json,
+        ...omit(
+          pick(req.body, keys(req.type._schema.properties)),
+          omitProperties,
+        ),
+      };
+      json = await handleFiles(json, req.type);
+      json = await handleImages(json, req.type);
+
+      // Create new version
+      const modified = moment.utc().format();
+      const version = req.document.version + 1;
+      await req.document.createRelated('_versions', {
+        document: req.document.uuid,
+        id: newId,
+        created: modified,
+        actor: req.user.id,
+        version,
+        json: {
+          ...json,
+          changeNote: req.body.changeNote,
+        },
+      });
+
+      // If path has changed change path of document and children
+      if (path !== newPath) {
+        await Document.replacePath(path, newPath);
+      }
+
+      // Save document with new values
+      await req.document.update({
+        id: newId,
+        path: newPath,
+        version,
+        modified,
+        json,
+        lock: {
+          locked: false,
+          stealable: true,
+        },
+      });
+
+      // Send ok
+      res.status(204).send();
+    },
   },
   {
     op: 'delete',
     view: '',
-    handler: (req, res) =>
-      requirePermission('Modify', req, res, async () => {
-        // Get parent id
-        const parent = req.document.get('parent');
+    permission: 'Modify',
+    handler: async (req, res) => {
+      // Get file and image fields
+      await req.type.fetchSchema();
+      const fileFields = req.type.getFactoryFields('File');
+      const imageFields = req.type.getFactoryFields('Image');
 
-        // Get file and image fields
-        const fileFields = await req.type.findFactoryFields('File');
-        const imageFields = await req.type.findFactoryFields('Image');
+      // If file fields exist
+      if (fileFields.length > 0 || imageFields.length > 0) {
+        // Get versions
+        await req.document.fetchRelated('_versions');
 
-        // If file fields exist
-        if (fileFields.length > 0 || imageFields.length > 0) {
-          // Find all version
-          const versions = await versionRepository.findAll({
-            document: req.document.get('uuid'),
-          });
-
-          // Get all file uuids from all versions and all fields
-          const files = uniq(
-            flattenDeep(
-              versions.map((version) => [
-                ...fileFields.map((field) => version.get('json')[field].uuid),
-                ...imageFields.map((field) => [
-                  version.get('json')[field].uuid,
-                  ...map(
-                    keys(config.imageScales),
-                    (scale) => version.get('json')[field].scales[scale].uuid,
-                  ),
-                ]),
+        // Get all file uuids from all versions and all fields
+        const files = uniq(
+          flattenDeep(
+            req.document._versions.map((version) => [
+              ...fileFields.map((field) => version.get('json')[field].uuid),
+              ...imageFields.map((field) => [
+                version.get('json')[field].uuid,
+                ...map(
+                  keys(config.imageScales),
+                  (scale) => version.get('json')[field].scales[scale].uuid,
+                ),
               ]),
-            ),
-          );
+            ]),
+          ),
+        );
 
-          // Remove files
-          files.map((file) => removeFile(file));
-        }
+        // Remove files
+        files.map((file) => removeFile(file));
+      }
 
-        // Remove document (versions will be cascaded)
-        await documentRepository.delete({ uuid: req.document.get('uuid') });
+      // Get parent
+      await req.document.fetchRelated('_parent');
+      const parent = req.document._parent;
 
-        // Fix order in parent
-        await documentRepository.fixOrder(parent);
-        res.status(204).send();
-      }),
+      // Remove document (versions will be cascaded)
+      await req.document.delete();
+
+      // Fix order in parent
+      await parent.fetchRelated('_children(order)');
+      await parent.fixOrder();
+      res.status(204).send();
+    },
   },
 ];

@@ -4,23 +4,25 @@
  */
 
 import { mergeSchemas } from '../../helpers';
-import { BaseCollection } from '../../collections';
+import { Collection } from '../../collections';
 
 /**
  * Behavior Collection
  * @class BehaviorCollection
- * @extends BaseCollection
+ * @extends Collection
  */
-export class BehaviorCollection extends BaseCollection {
+export class BehaviorCollection extends Collection {
   /**
-   * Returns JSON data.
-   * @method toJSON
-   * @param {Object} req Request object.
-   * @returns {Array} JSON object.
+   * Fetch schema.
+   * @method fetchSchema
+   * @param {Object} trx Transaction object.
+   * @returns {Object} Schema.
    */
-  async toJSON(req) {
+  async fetchSchema(trx) {
     return mergeSchemas(
-      ...(await Promise.all(this.map(async (model) => await model.toJSON()))),
+      ...(await Promise.all(
+        this.map(async (model) => await model.fetchSchema(trx)),
+      )),
     );
   }
 }

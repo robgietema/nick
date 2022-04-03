@@ -5,8 +5,6 @@
  */
 
 export { getAdminHeader, requirePermission } from './auth/auth';
-export { BaseRepository } from './base-repository/base-repository';
-export { BookshelfModel } from './base-model/bookshelf-model';
 export { formatSize, formatAttribute } from './format/format';
 export {
   getHeight,
@@ -19,5 +17,5 @@ export {
 export { stripI18n } from './i18n/i18n';
 export { lockExpired } from './lock/lock';
 export { mergeSchemas, translateSchema } from './schema/schema';
-export { getUrl } from './url/url';
+export { getUrl, getRootUrl } from './url/url';
 export { mapAsync, mapSync, removeUndefined, uniqueId } from './utils/utils';

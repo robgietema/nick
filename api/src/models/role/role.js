@@ -6,22 +6,22 @@
 import { map, uniq } from 'lodash';
 
 import { getUrl } from '../../helpers';
-import { BaseModel } from '../../models';
+import { Model } from '../../models';
 
 /**
  * A model for Role.
  * @class Role
- * @extends BaseModel
+ * @extends Model
  */
-export class Role extends BaseModel {
+export class Role extends Model {
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports
     const { Permission } = require('../../models/permission/permission');
 
     return {
-      permissions: {
-        relation: BaseModel.ManyToManyRelation,
+      _permissions: {
+        relation: Model.ManyToManyRelation,
         modelClass: Permission,
         join: {
           from: 'role.id',
@@ -61,7 +61,7 @@ export class Role extends BaseModel {
   static async findPermissions(roles, trx) {
     return uniq(
       map(
-        await this.relatedQuery('permissions', trx).for(roles),
+        await this.relatedQuery('_permissions', trx).for(roles),
         (permission) => permission.id,
       ),
     );

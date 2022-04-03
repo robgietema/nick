@@ -3,14 +3,14 @@
  * @module models/action/action
  */
 
-import { BaseModel } from '../../models';
+import { Model } from '../../models';
 import { ActionCollection } from '../../collections';
 
 /**
  * A model for Action.
  * @class Action
- * @extends BaseModel
+ * @extends Model
  */
-export class Action extends BaseModel {
+export class Action extends Model {
   static collection = ActionCollection;
 }

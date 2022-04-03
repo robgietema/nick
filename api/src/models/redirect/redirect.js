@@ -3,13 +3,28 @@
  * @module models/redirect/redirect
  */
 
-import { BookshelfModel } from '../../helpers';
-import { Document } from '../../models';
+import { Model } from '../../models';
 
-export const Redirect = BookshelfModel.extend({
-  tableName: 'redirect',
-  idAttribute: 'uuid',
-  document() {
-    return this.belongsTo(Document, 'document', 'uuid');
-  },
-});
+/**
+ * A model for Redirect.
+ * @class Redirect
+ * @extends Model
+ */
+export class Redirect extends Model {
+  // Set relation mappings
+  static get relationMappings() {
+    // Prevent circular imports
+    const { Document } = require('../../models/document/document');
+
+    return {
+      _document: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Document,
+        join: {
+          from: 'redirect.document',
+          to: 'document.uuid',
+        },
+      },
+    };
+  }
+}

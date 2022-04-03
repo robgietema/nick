@@ -1,22 +1,15 @@
 import request from 'supertest';
 
 import app from '../../app';
-import bookshelf from '../../bookshelf';
-import { documentRepository } from '../../repositories';
+import { Document } from '../../models';
 import { getAdminHeader } from '../../helpers';
 
 describe('Content', () => {
   afterEach(() =>
-    documentRepository.delete(
-      {
-        id: 'my-news-item',
-      },
-      {
-        require: false,
-      },
-    ),
+    Document.delete({
+      id: 'my-news-item',
+    }),
   );
-  afterAll(() => bookshelf.knex.destroy());
 
   it('should return a content object', () =>
     request(app)

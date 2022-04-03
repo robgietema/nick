@@ -1,12 +1,9 @@
 import request from 'supertest';
 
 import app from '../../app';
-import bookshelf from '../../bookshelf';
 import { getAdminHeader } from '../../helpers';
 
 describe('Querystring', () => {
-  afterAll(() => bookshelf.knex.destroy());
-
   it('should return the querystring options', () =>
     request(app)
       .get('/@querystring')

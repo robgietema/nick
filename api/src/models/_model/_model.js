@@ -1,11 +1,12 @@
 /**
- * Objection BaseModel.
+ * Objection Model.
  * @module helpers/base-model/base-model
  */
 
-import { mixin, Model } from 'objection';
+import { mixin, Model as ObjectionModel } from 'objection';
 import TableName from 'objection-table-name';
 import _, {
+  difference,
   isArray,
   isEmpty,
   isObject,
@@ -18,32 +19,32 @@ import _, {
 } from 'lodash';
 
 import { formatAttribute, removeUndefined } from '../../helpers';
-import { BaseCollection } from '../../collections';
+import { Collection } from '../../collections';
 import { knex } from '../../knex';
 
 // Give the knex instance to objection.
-Model.knex(knex);
+ObjectionModel.knex(knex);
 
 /**
  * Base model used to extend models from.
- * @class BaseModel
+ * @class Model
  * @extends Model
  */
-export class BaseModel extends mixin(Model, [
+export class Model extends mixin(ObjectionModel, [
   TableName({ caseMapper: snakeCase }),
 ]) {
-  static collection = BaseCollection;
+  static collection = Collection;
 
   /**
-   * Create a where query object
-   * @method where
+   * Build a query
+   * @method buildQuery
    * @static
    * @param {Object} where Where clause.
    * @param {Object} options Options for the query.
    * @param {Object} trx Transaction object.
    * @returns {Array} JSON object.
    */
-  static where(where, options, trx) {
+  static buildQuery(where, options, trx) {
     let query = this.query(trx);
 
     /**
@@ -60,10 +61,14 @@ export class BaseModel extends mixin(Model, [
         const attribute = formatAttribute(key);
         const operator = isArray(value) ? value[0] : '=';
         const values = isArray(value) ? value[1] : value;
-        query = query.whereRaw(
-          `${attribute} ${operator} ${isArray(values) ? 'any(?)' : '?'}`,
-          [values],
-        );
+        if (values === null) {
+          query = query.whereNull(key);
+        } else {
+          query = query.whereRaw(
+            `${attribute} ${operator} ${isArray(values) ? 'any(?)' : '?'}`,
+            [values],
+          );
+        }
       });
     }
 
@@ -91,9 +96,11 @@ export class BaseModel extends mixin(Model, [
             .join(' ')} end`;
         } else {
           // Order by column
-          order = formatAttribute(options.order);
+          order = formatAttribute(options.order.column);
         }
-        query = query.orderByRaw(`${order}${options.reverse ? ' DESC' : ''}`);
+        query = query.orderByRaw(
+          `${order}${options.order.reverse ? ' DESC' : ''}`,
+        );
       }
     }
 
@@ -104,136 +111,85 @@ export class BaseModel extends mixin(Model, [
     if (options.offset) {
       query = query.offset(options.offset);
     }
+
+    // Add related
+    if (options.related) {
+      query = query.withGraphFetched(options.related);
+    }
+
+    // Return query
     return query;
   }
 
   /**
-   * Add related items to the result.
-   * @method findRelated
-   * @static
-   * @param {Object|Array} models Current models.
-   * @param {Object} options Ooptions for the query.
+   * Add related items to the model.
+   * @method fetchRelated
+   * @param {string} graph Related graph.
    * @param {Object} trx Transaction object.
-   * @returns {Array} JSON object.
    */
-  static async findRelated(models, options, trx) {
-    let result = models;
-    if (models && options.related) {
-      let related;
-      if (isArray(options.related)) {
-        related = options.related.map((field) => ({
-          field,
-          related: [],
-        }));
-      } else if (isObject(options.related)) {
-        related = map(keys(options.related), (field) => {
-          const entry = {
-            field,
-            related: [],
-          };
-          if (isArray(options.related[field])) {
-            entry.related = options.related[field];
-          } else if (isString(options.related[field])) {
-            entry.related = [options.related[field]];
-          }
-          return entry;
-        });
-      } else {
-        related = [{ field: options.related, related: [] }];
-      }
-      await Promise.all(
-        map(related, async (attribute) => {
-          if (isArray(models)) {
-            await Promise.all(
-              result.map(async (item, index) => {
-                result[index][attribute.field] = await result[
-                  index
-                ].$relatedQuery(attribute.field, trx);
-                await Promise.all(
-                  map(
-                    attribute.related,
-                    async (childRelated) =>
-                      await Promise.all(
-                        map(result[index][attribute.field], async (child) => {
-                          child[childRelated] = await child.$relatedQuery(
-                            childRelated,
-                            trx,
-                          );
-                        }),
-                      ),
-                  ),
-                );
-              }),
-            );
-          } else {
-            result[attribute.field] = await result.$relatedQuery(
-              attribute.field,
-              trx,
-            );
-            await Promise.all(
-              map(
-                attribute.related,
-                async (childRelated) =>
-                  await Promise.all(
-                    map(result[attribute.field], async (child) => {
-                      child[childRelated] = await child.$relatedQuery(
-                        childRelated,
-                        trx,
-                      );
-                    }),
-                  ),
-              ),
-            );
-          }
-        }),
-      );
-    }
-    return result;
+  async fetchRelated(graph, trx) {
+    // Get current keys
+    const curKeys = keys(this);
+
+    // Fetch related
+    const related = await this.$fetchGraph(graph, { transasction: trx });
+
+    // Get new keys
+    const newKeys = difference(keys(related), curKeys);
+
+    // Assign new props
+    map(newKeys, (key) => (this[key] = related[key]));
   }
 
   /**
-   * Find all items.
-   * @method findAll
+   * Fetch all items.
+   * @method fetchAll
    * @static
    * @param {Object} where Where clause.
    * @param {Object} options Ooptions for the query.
    * @param {Object} trx Transaction object.
    * @returns {Array} JSON object.
    */
-  static async findAll(where = {}, options = {}, trx) {
-    let models = await this.where(where, options, trx);
-    models = await this.findRelated(models, options, trx);
+  static async fetchAll(where = {}, options = {}, trx) {
+    let models = await this.buildQuery(where, options, trx);
     return new this.collection(models);
   }
 
   /**
-   * Find one item.
-   * @method findOne
+   * Fetch one item.
+   * @method fetchOne
    * @static
    * @param {Object} where Where clause.
    * @param {Object} options Ooptions for the query.
    * @param {Object} trx Transaction object.
    * @returns {Object} Model of the item.
    */
-  static async findOne(where = {}, options = {}, trx) {
-    let model = await this.where(where, options, trx).first();
-    model = await this.findRelated(model, options, trx);
-    return model;
+  static async fetchOne(where = {}, options = {}, trx) {
+    return await this.buildQuery(where, options, trx).first();
   }
 
   /**
-   * Find by id.
-   * @method findById
+   * Fetch by id.
+   * @method fetchById
    * @static
    * @param {string} id Id to be searched for
    * @param {Object} options Options for the query.
    * @param {Object} trx Transaction object.
    * @returns {Object} Model of the item.
    */
-  static async findById(id, options = {}, trx) {
-    let model = await this.query(trx).findById(id);
-    model = await this.findRelated(model, options, trx);
-    return model;
+  static async fetchById(id, options = {}, trx) {
+    return await this.buildQuery({}, options, trx).findById(id);
+  }
+
+  /**
+   * Delete model
+   * @method delete
+   * @static
+   * @param {Object} trx Transaction object.
+   * @returns {Promise} Promise resolved when model deleted.
+   */
+  async delete(trx) {
+    return await this.$query(trx).delete();
   }
 
   /**
@@ -273,7 +229,7 @@ export class BaseModel extends mixin(Model, [
   static async create(data, options, trx) {
     const relations = keys(this.getRelations());
     let own = omit(data, relations);
-    let model = await this.query(trx).insert(own);
+    let model = await this.query(trx).insertAndFetch(own);
     await Promise.all(
       map(relations, async (related) => {
         if (data[related]) {
@@ -287,8 +243,56 @@ export class BaseModel extends mixin(Model, [
         }
       }),
     );
-    model = await this.findRelated(model, options, trx);
+    /*
+    if (options.related) {
+      await model.fetchRelated(options.related, trx);
+    }
+    */
     return model;
+  }
+
+  /**
+   * Create related in model.
+   * @method createRelated
+   * @param {string} related Related field.
+   * @param {Object} data Model data.
+   * @param {Object} trx Transaction object.
+   * @returns {Object} Model of the inserted record
+   */
+  async createRelated(related, data, trx) {
+    return await this.$relatedQuery(related, trx).insertGraph(data);
+  }
+
+  /**
+   * Create related in model and fetch it.
+   * @method createRelatedAndFetch
+   * @param {string} related Related field.
+   * @param {Object} data Model data.
+   * @param {Object} trx Transaction object.
+   * @returns {Object} Model of the inserted record
+   */
+  async createRelatedAndFetch(related, data, trx) {
+    return await this.$relatedQuery(related, trx).insertGraphAndFetch(data);
+  }
+
+  /**
+   * Update model.
+   * @method update
+   * @param {Object} data Model data.
+   * @param {Object} trx Transaction object.
+   */
+  async update(data, trx) {
+    await this.$query(trx).patch(data);
+  }
+
+  /**
+   * Update and fetch model.
+   * @method updateAndFetch
+   * @param {Object} data Model data.
+   * @param {Object} trx Transaction object.
+   */
+  async updateAndFetch(data, trx) {
+    await this.$query(trx).patchAndFetch(data);
   }
 
   /**
@@ -305,7 +309,7 @@ export class BaseModel extends mixin(Model, [
     let own = removeUndefined(omit(data, relations));
     let model;
     if (isEmpty(own)) {
-      model = await this.findById(id, {}, trx);
+      model = await this.fetchById(id, {}, trx);
     } else {
       model = await this.query(trx).updateAndFetchById(id, own);
     }

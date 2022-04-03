@@ -6,14 +6,14 @@
 import { concat, map, uniq } from 'lodash';
 
 import { getUrl } from '../../helpers';
-import { BaseModel, Group } from '../../models';
+import { Model, Group } from '../../models';
 
 /**
  * A model for User.
  * @class User
- * @extends BaseModel
+ * @extends Model
  */
-export class User extends BaseModel {
+export class User extends Model {
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports
@@ -21,8 +21,8 @@ export class User extends BaseModel {
     const { Role } = require('../../models/role/role');
 
     return {
-      roles: {
-        relation: BaseModel.ManyToManyRelation,
+      _roles: {
+        relation: Model.ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'user.id',
@@ -33,8 +33,8 @@ export class User extends BaseModel {
           to: 'role.id',
         },
       },
-      groups: {
-        relation: BaseModel.ManyToManyRelation,
+      _groups: {
+        relation: Model.ManyToManyRelation,
         modelClass: Group,
         join: {
           from: 'user.id',
@@ -45,8 +45,8 @@ export class User extends BaseModel {
           to: 'group.id',
         },
       },
-      documentRoles: {
-        relation: BaseModel.ManyToManyRelation,
+      _documentRoles: {
+        relation: Model.ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'user.id',
@@ -72,8 +72,8 @@ export class User extends BaseModel {
       id: this.id,
       fullname: this.fullname,
       email: this.email,
-      roles: this.roles ? this.roles.map((role) => role.id) : [],
-      groups: this.groups ? this.groups.map((group) => group.id) : [],
+      roles: this._roles ? this._roles.map((role) => role.id) : [],
+      groups: this._groups ? this._groups.map((group) => group.id) : [],
     };
   }
 
@@ -83,7 +83,7 @@ export class User extends BaseModel {
    * @returns {Array} Array of groups.
    */
   getGroups() {
-    return this.groups ? this.groups.map((group) => group.id) : [];
+    return this._groups ? this._groups.map((group) => group.id) : [];
   }
 
   /**
@@ -96,20 +96,20 @@ export class User extends BaseModel {
     let roles = this.id === 'anonymous' ? ['Anonymous'] : ['Authenticated'];
 
     // Add roles of the user
-    if (this.roles) {
+    if (this._roles) {
       roles = concat(
         roles,
-        this.roles.map((role) => role.id),
+        this._roles.map((role) => role.id),
       );
     }
 
     // Add roles of the groups of the users
-    if (this.groups) {
-      map(this.groups, (group) => {
-        if (group.roles) {
+    if (this._groups) {
+      map(this._groups, (group) => {
+        if (group._roles) {
           roles = concat(
             roles,
-            group.roles.map((role) => role.id),
+            group._roles.map((role) => role.id),
           );
         }
       });
@@ -129,7 +129,7 @@ export class User extends BaseModel {
   async findRolesByDocument(document, trx) {
     return uniq([
       ...map(
-        await this.$relatedQuery('documentRoles', trx).where({
+        await this.$relatedQuery('_documentRoles', trx).where({
           'user_role_document.document': document,
         }),
         (role) => role.id,

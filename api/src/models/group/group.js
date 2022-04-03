@@ -6,14 +6,14 @@
 import { map, uniq } from 'lodash';
 
 import { getUrl } from '../../helpers';
-import { BaseModel } from '../../models';
+import { Model } from '../../models';
 
 /**
  * A model for Group.
  * @class Group
- * @extends BaseModel
+ * @extends Model
  */
-export class Group extends BaseModel {
+export class Group extends Model {
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports
@@ -21,8 +21,8 @@ export class Group extends BaseModel {
     const { User } = require('../../models/user/user');
 
     return {
-      roles: {
-        relation: BaseModel.ManyToManyRelation,
+      _roles: {
+        relation: Model.ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'group.id',
@@ -33,8 +33,8 @@ export class Group extends BaseModel {
           to: 'role.id',
         },
       },
-      users: {
-        relation: BaseModel.ManyToManyRelation,
+      _users: {
+        relation: Model.ManyToManyRelation,
         modelClass: User,
         join: {
           from: 'group.id',
@@ -45,8 +45,8 @@ export class Group extends BaseModel {
           to: 'user.id',
         },
       },
-      documentRoles: {
-        relation: BaseModel.ManyToManyRelation,
+      _documentRoles: {
+        relation: Model.ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'group.id',
@@ -74,7 +74,7 @@ export class Group extends BaseModel {
       title: req.i18n(this.title),
       description: req.i18n(this.description),
       email: this.email,
-      roles: this.roles ? this.roles.map((role) => role.id) : [],
+      roles: this._roles ? this._roles.map((role) => role.id) : [],
     };
   }
 
@@ -89,7 +89,7 @@ export class Group extends BaseModel {
   static async findRolesByDocument(groups, document, trx) {
     return uniq(
       map(
-        await this.relatedQuery('documentRoles', trx).for(groups).where({
+        await this.relatedQuery('_documentRoles', trx).for(groups).where({
           'group_role_document.document': document,
         }),
         (role) => role.id,

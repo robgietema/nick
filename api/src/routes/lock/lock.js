@@ -5,102 +5,99 @@
 
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
-import { lockExpired, requirePermission } from '../../helpers';
-import { documentRepository } from '../../repositories';
+import { getRootUrl, lockExpired } from '../../helpers';
 
 export default [
   {
     op: 'get',
     view: '/@lock',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        if (req.document.get('lock').locked && lockExpired(req.document)) {
-          const document = await documentRepository.deleteLock(req.document);
-          res.send(document.get('lock'));
-        } else {
-          res.send(req.document.get('lock'));
-        }
-      }),
+    permission: 'View',
+    handler: async (req, res) => {
+      if (req.document.lock.locked && lockExpired(req.document)) {
+        res.send({
+          locked: false,
+          stealable: true,
+        });
+      } else {
+        res.send(req.document.lock);
+      }
+    },
   },
   {
     op: 'post',
     view: '/@lock',
-    handler: (req, res) =>
-      requirePermission('View', req, res, async () => {
-        const lock = req.document.get('lock');
+    permission: 'View',
+    handler: async (req, res) => {
+      const lock = req.document.lock;
 
-        // Check if lock already exists
-        if (lock.locked && !lockExpired(req.document)) {
-          // Check if lock from current user
-          if (req.user.id === lock.creator) {
-            // Send current lock info
-            res.send(req.document.get('lock'));
-          } else {
-            // Send error
-            res.status(401).send({
-              error: {
-                message: req.i18n(
-                  'This document is already locked by another user.',
-                ),
-                type: req.i18n('Already locked'),
-              },
-            });
-          }
-        } else {
-          const newLock = {
-            created: moment.utc(),
-            creator: req.user.id,
-            creator_name: req.user.fullname,
-            creator_url: `${req.protocol}://${req.headers.host}/@users/${req.user.id}`,
-            locked: true,
-            stealable:
-              typeof req.body?.stealable === 'undefined'
-                ? true
-                : req.body.stealable,
-            time: 807211800.0,
-            timeout: req.body?.timeout || 600,
-            token: uuid(),
-          };
-          // Create new lock
-          await req.document.save(
-            {
-              lock: newLock,
-            },
-            { patch: true },
-          );
-          res.send(newLock);
-        }
-      }),
-  },
-  {
-    op: 'delete',
-    view: '/@lock',
-    handler: (req, res) =>
-      requirePermission('Modify', req, res, async () => {
-        const lock = req.document.get('lock');
-
-        // If not locked just send lock status
-        if (!lock.locked) {
+      // Check if lock already exists
+      if (lock.locked && !lockExpired(req.document)) {
+        // Check if lock from current user
+        if (req.user.id === lock.creator) {
+          // Send current lock info
           res.send(lock);
-        } else if (
-          // Check if permission to unlock
-          lock.creator === req.user.id ||
-          (req.body?.force && lock.stealable === true)
-        ) {
-          // Delete lock and send new status
-          const document = await documentRepository.deleteLock(req.document);
-          res.send(document.get('lock'));
         } else {
           // Send error
           res.status(401).send({
             error: {
               message: req.i18n(
-                "You don't have permission to unlock this document.",
+                'This document is already locked by another user.',
               ),
-              type: req.i18n('Not allowed'),
+              type: req.i18n('Already locked'),
             },
           });
         }
-      }),
+      } else {
+        const newLock = {
+          created: moment.utc(),
+          creator: req.user.id,
+          creator_name: req.user.fullname,
+          creator_url: `${getRootUrl(req)}/@users/${req.user.id}`,
+          locked: true,
+          stealable:
+            typeof req.body?.stealable === 'undefined'
+              ? true
+              : req.body.stealable,
+          time: 807211800.0,
+          timeout: req.body?.timeout || 600,
+          token: uuid(),
+        };
+        // Create new lock
+        await req.document.update({
+          lock: newLock,
+        });
+        res.send(newLock);
+      }
+    },
+  },
+  {
+    op: 'delete',
+    view: '/@lock',
+    permission: 'Modify',
+    handler: async (req, res) => {
+      const lock = req.document.lock;
+
+      // If not locked just send lock status
+      if (
+        !lock.locked ||
+        lock.creator === req.user.id ||
+        (req.body?.force && lock.stealable === true)
+      ) {
+        res.send({
+          locked: false,
+          stealable: true,
+        });
+      } else {
+        // Send error
+        res.status(401).send({
+          error: {
+            message: req.i18n(
+              "You don't have permission to unlock this document.",
+            ),
+            type: req.i18n('Not allowed'),
+          },
+        });
+      }
+    },
   },
 ];
