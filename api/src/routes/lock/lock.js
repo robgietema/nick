@@ -5,7 +5,7 @@
 
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
-import { getRootUrl, lockExpired } from '../../helpers';
+import { getRootUrl, lockExpired, RequestException } from '../../helpers';
 
 export default [
   {
@@ -14,12 +14,16 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       if (req.document.lock.locked && lockExpired(req.document)) {
-        res.send({
-          locked: false,
-          stealable: true,
-        });
+        return {
+          json: {
+            locked: false,
+            stealable: true,
+          },
+        };
       } else {
-        res.send(req.document.lock);
+        return {
+          json: req.document.lock,
+        };
       }
     },
   },
@@ -35,10 +39,12 @@ export default [
         // Check if lock from current user
         if (req.user.id === lock.creator) {
           // Send current lock info
-          res.send(lock);
+          return {
+            json: lock,
+          };
         } else {
           // Send error
-          res.status(401).send({
+          throw new RequestException(401, {
             error: {
               message: req.i18n(
                 'This document is already locked by another user.',
@@ -66,7 +72,9 @@ export default [
         await req.document.update({
           lock: newLock,
         });
-        res.send(newLock);
+        return {
+          json: newLock,
+        };
       }
     },
   },
@@ -79,17 +87,11 @@ export default [
 
       // If not locked just send lock status
       if (
-        !lock.locked ||
-        lock.creator === req.user.id ||
-        (req.body?.force && lock.stealable === true)
+        (lock.locked && lock.creator !== req.user.id) ||
+        (req.body?.force && lock.stealable === false)
       ) {
-        res.send({
-          locked: false,
-          stealable: true,
-        });
-      } else {
         // Send error
-        res.status(401).send({
+        throw new RequestException(401, {
           error: {
             message: req.i18n(
               "You don't have permission to unlock this document.",
@@ -98,6 +100,12 @@ export default [
           },
         });
       }
+      return {
+        json: {
+          locked: false,
+          stealable: true,
+        },
+      };
     },
   },
 ];

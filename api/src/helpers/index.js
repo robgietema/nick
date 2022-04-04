@@ -5,6 +5,7 @@
  */
 
 export { getAdminHeader, getUserId, hasPermission } from './auth/auth';
+export { RequestException } from './error/error';
 export { formatSize, formatAttribute } from './format/format';
 export {
   getHeight,

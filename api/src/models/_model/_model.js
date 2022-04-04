@@ -18,7 +18,7 @@ import _, {
   snakeCase,
 } from 'lodash';
 
-import { formatAttribute, removeUndefined } from '../../helpers';
+import { formatAttribute, log, removeUndefined } from '../../helpers';
 import { Collection } from '../../collections';
 import { knex } from '../../helpers';
 
@@ -322,7 +322,9 @@ export class Model extends mixin(ObjectionModel, [
               // Ignore insert related errors
               try {
                 await model.$relatedQuery(related, trx).relate(item);
-              } catch (e) {}
+              } catch (e) {
+                log.warn(`Can not relate ${item} to ${id}`);
+              }
             }),
           );
         } else if (isObject(data[related])) {
@@ -332,7 +334,9 @@ export class Model extends mixin(ObjectionModel, [
                 // Ignore insert related errors
                 try {
                   await model.$relatedQuery(related, trx).relate(key);
-                } catch (e) {}
+                } catch (e) {
+                  log.warn(`Can not relate ${key} to ${id}`);
+                }
               } else {
                 await model
                   .$relatedQuery(related, trx)

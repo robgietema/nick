@@ -5,7 +5,7 @@
 
 import { omit } from 'lodash';
 
-import { translateSchema } from '../../helpers';
+import { RequestException, translateSchema } from '../../helpers';
 import { Type } from '../../models';
 
 export default [
@@ -15,7 +15,9 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const types = await Type.fetchAll();
-      res.send(types.toJSON(req));
+      return {
+        json: types.toJSON(req),
+      };
     },
   },
   {
@@ -25,13 +27,15 @@ export default [
     handler: async (req, res) => {
       const type = await Type.fetchById(req.params.type);
       if (!type) {
-        return res.status(404).send({ error: req.i18n('Not Found') });
+        throw new RequestException(404, { error: req.i18n('Not found.') });
       }
       await type.fetchSchema();
-      res.send({
-        ...translateSchema(omit(type._schema, ['behaviors']), req),
-        title: req.i18n(type.title),
-      });
+      return {
+        json: {
+          ...translateSchema(omit(type._schema, ['behaviors']), req),
+          title: req.i18n(type.title),
+        },
+      };
     },
   },
 ];

@@ -12,28 +12,30 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const roles = await Role.fetchAll({}, 'order');
-      res.send({
-        available_roles: roles.map((role) => ({
-          id: role.id,
-          title: role.title,
-        })),
-        entries: [
-          {
-            id: 'Administrators',
-            login: null,
-            roles: {
-              Contributer: false,
-              Editor: false,
-              Reader: false,
-              Reviewer: false,
-              Administrator: false,
+      return {
+        json: {
+          available_roles: roles.map((role) => ({
+            id: role.id,
+            title: role.title,
+          })),
+          entries: [
+            {
+              id: 'Administrators',
+              login: null,
+              roles: {
+                Contributer: false,
+                Editor: false,
+                Reader: false,
+                Reviewer: false,
+                Administrator: false,
+              },
+              title: 'Administrators',
+              type: 'group',
             },
-            title: 'Administrators',
-            type: 'group',
-          },
-        ],
-        inherit: true,
-      });
+          ],
+          inherit: true,
+        },
+      };
     },
   },
 ];

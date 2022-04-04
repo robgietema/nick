@@ -47,10 +47,12 @@ export default [
           title: document.json.title,
         },
       ]);
-      res.send({
-        '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@breadcrumbs`,
-        items: drop(items),
-      });
+      return {
+        json: {
+          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@breadcrumbs`,
+          items: drop(items),
+        },
+      };
     },
   },
 ];

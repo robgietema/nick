@@ -6,6 +6,7 @@
 import { includes } from 'lodash';
 import { config } from '../../../config';
 import { Group } from '../../models';
+import { RequestException } from '../../helpers';
 
 export default [
   {
@@ -16,11 +17,12 @@ export default [
       const group = await Group.fetchById(req.params.id, {
         related: '_roles',
       });
-      if (group) {
-        res.send(group.toJSON(req));
-      } else {
-        res.status(404).send({ error: req.i18n('Not Found') });
+      if (!group) {
+        throw new RequestException(404, { error: req.i18n('Not found.') });
       }
+      return {
+        json: group.toJSON(req),
+      };
     },
   },
   {
@@ -32,7 +34,9 @@ export default [
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'title', related: '_roles' },
       );
-      res.send(groups.toJSON(req));
+      return {
+        json: groups.toJSON(req),
+      };
     },
   },
   {
@@ -53,7 +57,10 @@ export default [
       );
 
       // Send created
-      res.status(201).send(group.toJSON(req));
+      return {
+        status: 201,
+        json: group.toJSON(req),
+      };
     },
   },
   {
@@ -71,7 +78,9 @@ export default [
       });
 
       // Send ok
-      res.status(204).send();
+      return {
+        status: 204,
+      };
     },
   },
   {
@@ -79,17 +88,18 @@ export default [
     view: '/@groups/:id',
     permission: 'Manage Users',
     handler: async (req, res) => {
-      if (!includes(config.systemGroups, req.params.id)) {
-        await Group.deleteById(req.params.id);
-        res.status(204).send();
-      } else {
-        res.status(401).send({
+      if (includes(config.systemGroups, req.params.id)) {
+        throw new RequestException(401, {
           error: {
             message: req.i18n("You can't delete system groups."),
             type: req.i18n('System group'),
           },
         });
       }
+      await Group.deleteById(req.params.id);
+      return {
+        status: 204,
+      };
     },
   },
 ];

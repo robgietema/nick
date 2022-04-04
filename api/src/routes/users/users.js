@@ -8,6 +8,7 @@ import { includes } from 'lodash';
 
 import { config } from '../../../config';
 import { User } from '../../models';
+import { RequestException } from '../../helpers';
 
 export default [
   {
@@ -18,11 +19,12 @@ export default [
       const user = await User.fetchById(req.params.id, {
         related: '[_roles, _groups]',
       });
-      if (user) {
-        res.send(user.toJSON(req));
-      } else {
-        res.status(404).send({ error: req.i18n('Not Found') });
+      if (!user) {
+        throw new RequestException(404, { error: req.i18n('Not found.') });
       }
+      return {
+        json: user.toJSON(req),
+      };
     },
   },
   {
@@ -34,7 +36,9 @@ export default [
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'fullname', related: '[_roles, _groups]' },
       );
-      res.send(groups.toJSON(req));
+      return {
+        json: groups.toJSON(req),
+      };
     },
   },
   {
@@ -56,7 +60,10 @@ export default [
       );
 
       // Send created
-      res.status(201).send(user.toJSON(req));
+      return {
+        status: 201,
+        json: user.toJSON(req),
+      };
     },
   },
   {
@@ -73,7 +80,9 @@ export default [
       });
 
       // Send ok
-      res.status(204).send();
+      return {
+        status: 204,
+      };
     },
   },
   {
@@ -81,17 +90,18 @@ export default [
     view: '/@users/:id',
     permission: 'Manage Users',
     handler: async (req, res) => {
-      if (!includes(config.systemUsers, req.params.id)) {
-        await User.deleteById(req.params.id);
-        res.status(204).send();
-      } else {
-        res.status(401).send({
+      if (includes(config.systemUsers, req.params.id)) {
+        throw new RequestException(401, {
           error: {
             message: req.i18n("You can't delete system users."),
             type: req.i18n('System users'),
           },
         });
       }
+      await User.deleteById(req.params.id);
+      return {
+        status: 204,
+      };
     },
   },
 ];

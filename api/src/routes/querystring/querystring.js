@@ -10,8 +10,8 @@ export default [
     op: 'get',
     view: '/@querystring',
     permission: 'View',
-    handler: async (req, res) => {
-      res.send({
+    handler: async (req, res) => ({
+      json: {
         '@id': `${getUrl(req)}${req.document.path}/@querystring`,
         indexes: {
           Creator: {
@@ -1668,7 +1668,7 @@ export default [
             vocabulary: null,
           },
         },
-      });
-    },
+      },
+    }),
   },
 ];

@@ -17,10 +17,12 @@ export default [
         { parent: root.uuid },
         { order: 'position_in_parent' },
       );
-      res.send({
-        '@id': `${getUrl(req)}/@navigation`,
-        items: await items.toJSON(req),
-      });
+      return {
+        json: {
+          '@id': `${getUrl(req)}/@navigation`,
+          items: await items.toJSON(req),
+        },
+      };
     },
   },
 ];

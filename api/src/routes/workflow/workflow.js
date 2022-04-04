@@ -5,8 +5,7 @@
 
 import moment from 'moment';
 
-import { requirePermission } from '../../helpers';
-import { Workflow } from '../../models';
+import { hasPermission, RequestException } from '../../helpers';
 
 export default [
   {
@@ -15,31 +14,39 @@ export default [
     handler: async (req, res) => {
       await req.type.fetchRelated('_workflow');
 
-      requirePermission(
-        req.type._workflow.json.transitions[req.params.transition].permission,
-        req,
-        res,
-        async () => {
-          const new_state =
-            req.type._workflow.json.transitions[req.params.transition]
-              .new_state;
-          const modified = moment.utc().format();
+      // Check permission
+      if (
+        !hasPermission(
+          req.permissions,
+          req.type._workflow.json.transitions[req.params.transition].permission,
+        )
+      ) {
+        throw new RequestException(401, {
+          message: req.i18n(
+            'You are not authorization to access this resource.',
+          ),
+        });
+      }
 
-          await req.document.update({
-            modified: modified,
-            workflow_state: new_state,
-          });
+      const new_state =
+        req.type._workflow.json.transitions[req.params.transition].new_state;
+      const modified = moment.utc().format();
 
-          res.send({
-            action: req.params.transition,
-            actor: req.user.id,
-            comments: '',
-            review_state: new_state,
-            time: modified,
-            title: req.type._workflow.json.states[new_state].title,
-          });
+      await req.document.update({
+        modified: modified,
+        workflow_state: new_state,
+      });
+
+      return {
+        json: {
+          action: req.params.transition,
+          actor: req.user.id,
+          comments: '',
+          review_state: new_state,
+          time: modified,
+          title: req.type._workflow.json.states[new_state].title,
         },
-      );
+      };
     },
   },
   {
@@ -48,7 +55,9 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       await req.type.fetchRelated('_workflow');
-      res.send(req.type._workflow.toJSON(req));
+      return {
+        json: req.type._workflow.toJSON(req),
+      };
     },
   },
 ];

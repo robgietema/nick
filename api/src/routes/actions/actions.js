@@ -12,7 +12,9 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const actions = await Action.fetchAll({}, { order: 'order' });
-      res.send(actions.toJSON(req));
+      return {
+        json: actions.toJSON(req),
+      };
     },
   },
 ];

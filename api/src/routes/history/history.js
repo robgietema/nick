@@ -4,8 +4,8 @@
  */
 
 import moment from 'moment';
-import { dropRight, omit } from 'lodash';
-import { lockExpired, uniqueId } from '../../helpers';
+import { omit } from 'lodash';
+import { lockExpired, RequestException, uniqueId } from '../../helpers';
 import { Collection } from '../../collections';
 import { Version } from '../../models';
 
@@ -17,7 +17,9 @@ export default [
     handler: async (req, res) => {
       await req.document.fetchRelated('_versions(order)._actor');
       const versions = new Collection(req.document._versions);
-      res.send(versions.toJSON(req));
+      return {
+        json: versions.toJSON(req),
+      };
     },
   },
   {
@@ -32,7 +34,7 @@ export default [
         !lockExpired(req.document) &&
         req.headers['lock-token'] !== lock.token
       ) {
-        return res.status(401).send({
+        throw new RequestException(401, {
           error: {
             message: req.i18n(
               "You don't have permission to save this document because it is locked by another user.",
@@ -99,9 +101,11 @@ export default [
       });
 
       // Send ok message
-      res.send({
-        message: `${req.document.json.title} has been reverted to revision ${version.version}`,
-      });
+      return {
+        json: {
+          message: `${req.document.json.title} has been reverted to revision ${version.version}`,
+        },
+      };
     },
   },
 ];

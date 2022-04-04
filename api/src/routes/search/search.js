@@ -111,13 +111,15 @@ export default [
       const items = await Document.fetchAll(
         ...querystringToQuery(req.query, req.document.path),
       );
-      res.send({
-        '@id': `${getUrl(req)}/@search`,
-        items: await Promise.all(
-          items.map(async (item) => await documentToJson(item, req)),
-        ),
-        items_total: items.pagination?.rowCount || items.length,
-      });
+      return {
+        json: {
+          '@id': `${getUrl(req)}/@search`,
+          items: await Promise.all(
+            items.map(async (item) => await documentToJson(item, req)),
+          ),
+          items_total: items.pagination?.rowCount || items.length,
+        },
+      };
     },
   },
   {
@@ -126,13 +128,15 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const items = await Document.fetchAll();
-      res.send({
-        '@id': `${getUrl(req)}/@search`,
-        items: await Promise.all(
-          items.map(async (item) => await documentToJson(item, req)),
-        ),
-        items_total: items.length,
-      });
+      return {
+        json: {
+          '@id': `${getUrl(req)}/@search`,
+          items: await Promise.all(
+            items.map(async (item) => await documentToJson(item, req)),
+          ),
+          items_total: items.length,
+        },
+      };
     },
   },
 ];

@@ -14,6 +14,7 @@ import {
   mapSync,
   readFile,
   removeFile,
+  RequestException,
   uniqueId,
   writeFile,
   writeImage,
@@ -165,12 +166,12 @@ export default [
       await req.document.fetchRelated('_children');
       await req.document.fixOrder();
 
-      res.send(
-        items.map((item) => ({
+      return {
+        json: items.map((item) => ({
           source: `${getRootUrl(req)}${item.source}`,
           target: `${getRootUrl(req)}${item.target}`,
         })),
-      );
+      };
     },
   },
   {
@@ -180,7 +181,9 @@ export default [
     handler: async (req, res) => {
       await req.document.fetchRelated('[_children._type, _type]');
       await req.document.fetchVersion(parseInt(req.params.version, 10));
-      res.send(await req.document.toJSON(req));
+      return {
+        json: await req.document.toJSON(req),
+      };
     },
   },
   {
@@ -189,14 +192,14 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const field = req.document.json[req.params.field];
-      res.setHeader('Content-Type', field['content-type']);
-      res.setHeader(
-        'Content-Disposition',
-        `attachment; filename="${field.filename}"`,
-      );
       const buffer = readFile(field.uuid);
-      res.write(buffer, 'binary');
-      res.end(undefined, 'binary');
+      return {
+        headers: {
+          'Content-Type': field['content-type'],
+          'Content-Disposition': `attachment; filename="${field.filename}"`,
+        },
+        binary: buffer,
+      };
     },
   },
   {
@@ -204,10 +207,11 @@ export default [
     view: '/@@images/:uuid.:ext',
     permission: 'View',
     handler: async (req, res) => {
-      res.setHeader('Content-Type', `image/${req.params.ext}`);
       const buffer = readFile(req.params.uuid);
-      res.write(buffer, 'binary');
-      res.end(undefined, 'binary');
+      return {
+        headers: { 'Content-Type': `image/${req.params.ext}` },
+        binary: buffer,
+      };
     },
   },
   {
@@ -216,14 +220,14 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const field = req.document.json[req.params.field];
-      res.setHeader('Content-Type', field['content-type']);
-      res.setHeader(
-        'Content-Disposition',
-        `attachment; filename="${field.filename}"`,
-      );
       const buffer = readFile(field.uuid);
-      res.write(buffer, 'binary');
-      res.end(undefined, 'binary');
+      return {
+        headers: {
+          'Content-Type': field['content-type'],
+          'Content-Disposition': `attachment; filename="${field.filename}"`,
+        },
+        binary: buffer,
+      };
     },
   },
   {
@@ -232,14 +236,14 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const field = req.document.json[req.params.field];
-      res.setHeader('Content-Type', field['content-type']);
-      res.setHeader(
-        'Content-Disposition',
-        `attachment; filename="${field.filename}"`,
-      );
       const buffer = readFile(field.scales[req.params.scale].uuid);
-      res.write(buffer, 'binary');
-      res.end(undefined, 'binary');
+      return {
+        headers: {
+          'Content-Type': field['content-type'],
+          'Content-Disposition': `attachment; filename="${field.filename}"`,
+        },
+        binary: buffer,
+      };
     },
   },
   {
@@ -248,7 +252,9 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       await req.document.fetchRelated('[_children(order)._type, _type]');
-      res.send(await req.document.toJSON(req));
+      return {
+        json: await req.document.toJSON(req),
+      };
     },
   },
   {
@@ -318,7 +324,10 @@ export default [
       await document.fetchRelated('_type');
 
       // Send data back to client
-      res.status(201).send(await document.toJSON(req));
+      return {
+        status: 201,
+        json: await document.toJSON(req),
+      };
     },
   },
   {
@@ -336,7 +345,9 @@ export default [
         );
 
         // Send ok
-        return res.status(204).send();
+        return {
+          status: 204,
+        };
       }
 
       // Check if locked
@@ -346,7 +357,7 @@ export default [
         !lockExpired(req.document) &&
         req.headers['lock-token'] !== lock.token
       ) {
-        return res.status(401).send({
+        throw new RequestException(401, {
           error: {
             message: req.i18n(
               "You don't have permission to save this document because it is locked by another user.",
@@ -418,7 +429,9 @@ export default [
       });
 
       // Send ok
-      res.status(204).send();
+      return {
+        status: 204,
+      };
     },
   },
   {
@@ -466,7 +479,9 @@ export default [
       // Fix order in parent
       await parent.fetchRelated('_children(order)');
       await parent.fixOrder();
-      res.status(204).send();
+      return {
+        status: 204,
+      };
     },
   },
 ];

@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 
 import { User } from '../../models';
 import { config } from '../../../config';
+import { RequestException } from '../../helpers';
 
 export default [
   {
@@ -15,7 +16,7 @@ export default [
     view: '/@login',
     handler: async (req, res) => {
       if (!req.body.login || !req.body.password) {
-        return res.status(400).send({
+        throw new RequestException(400, {
           error: {
             type: req.i18n('Missing credentials'),
             message: req.i18n('Login and password must be provided in body.'),
@@ -28,7 +29,7 @@ export default [
 
       // If user not found
       if (!user) {
-        return res.status(401).send({
+        throw new RequestException(401, {
           error: {
             type: req.i18n('Invalid credentials'),
             message: req.i18n('Wrong login and/or password.'),
@@ -38,8 +39,18 @@ export default [
 
       // Check password
       const same = await bcrypt.compare(req.body.password, user.password);
-      if (same) {
-        res.send({
+      if (!same) {
+        throw new RequestException(401, {
+          error: {
+            type: req.i18n('Invalid credentials'),
+            message: req.i18n('Wrong login and/or password.'),
+          },
+        });
+      }
+
+      // Return ok
+      return {
+        json: {
           token: jwt.sign(
             {
               sub: user.id,
@@ -48,22 +59,15 @@ export default [
             config.secret,
             { expiresIn: '12h' },
           ),
-        });
-      } else {
-        res.status(401).send({
-          error: {
-            type: req.i18n('Invalid credentials'),
-            message: req.i18n('Wrong login and/or password.'),
-          },
-        });
-      }
+        },
+      };
     },
   },
   {
     op: 'post',
     view: '/@login-renew',
-    handler: (req, res) =>
-      res.send({
+    handler: async (req, res) => ({
+      json: {
         token: jwt.sign(
           {
             sub: req.user.id,
@@ -72,11 +76,14 @@ export default [
           config.secret,
           { expiresIn: '12h' },
         ),
-      }),
+      },
+    }),
   },
   {
     op: 'post',
     view: '/@logout',
-    handler: (req, res) => res.status(204).send(),
+    handler: async (req, res) => ({
+      status: 204,
+    }),
   },
 ];

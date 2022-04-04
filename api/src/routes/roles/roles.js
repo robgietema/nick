@@ -12,7 +12,9 @@ export default [
     permission: 'View',
     handler: async (req, res) => {
       const roles = await Role.fetchAll({}, 'order');
-      res.send(roles.toJSON(req));
+      return {
+        json: roles.toJSON(req),
+      };
     },
   },
 ];
