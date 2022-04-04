@@ -27,4 +27,20 @@ export class Redirect extends Model {
       },
     };
   }
+
+  /**
+   * Fetch by path
+   * @method fetchByPath
+   * @static
+   * @param {string} path Path to check
+   * @returns {Object} Document model or false.
+   */
+  static fetchByPath(path) {
+    return this.fetchOne(
+      {
+        path,
+      },
+      { related: '_document' },
+    );
+  }
 }

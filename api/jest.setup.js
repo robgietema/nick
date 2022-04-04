@@ -1,8 +1,8 @@
 import objection from 'objection';
-import { knex } from './src/knex';
+import { Model } from './src/models';
 
 global.afterAll(async () => {
-  knex.destroy();
+  Model.knex().destroy();
 });
 
 /*

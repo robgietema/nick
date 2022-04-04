@@ -3,108 +3,29 @@
  * @module app
  */
 
-import { createIntl, createIntlCache } from '@formatjs/intl';
 import bodyParser from 'body-parser';
 import express from 'express';
-import jwt from 'jsonwebtoken';
-import { compact, drop, flatten, head, map, uniq, zipObject } from 'lodash';
+import fs from 'fs';
+import { compact, drop, head, map, uniq } from 'lodash';
 
 import { config } from '../config';
-import { requirePermission } from './helpers';
-import { Document, Role, Redirect, Type, User, Workflow } from './models';
+import { getUserId, hasPermission } from './helpers';
+import { Document, Role, Redirect, Type, User } from './models';
 import routes from './routes';
+import { accessLogger, cors, i18n } from './middleware';
+
+// Create blob dir if it doesn't exist
+if (!fs.existsSync(config.blobsDir)) {
+  fs.mkdirSync(config.blobsDir);
+}
 
 const app = express();
 
-// Create i18n cache
-const intlCache = zipObject(
-  config.supportedLanguages,
-  map(config.supportedLanguages, () => createIntlCache()),
-);
-
-// Load i18n files
-const intl = zipObject(
-  config.supportedLanguages,
-  map(config.supportedLanguages, (language) =>
-    createIntl(
-      {
-        locale: language,
-        messages: require(`../locales/${language}.json`),
-      },
-      intlCache[language],
-    ),
-  ),
-);
-
-// Parse JSON
-app.use(bodyParser.json({ limit: '64mb' }));
-
-// CORS
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  res.header('Access-Control-Allow-Methods', '*');
-  next();
-});
-
-// i18n
-app.use((req, res, next) => {
-  req.i18n = (id, ...rest) => {
-    if (!id) {
-      return id;
-    }
-    return intl[
-      req.acceptsLanguages(...config.supportedLanguages) ||
-        config.defaultLanguage
-    ].formatMessage({ id, defaultMessage: id }, ...rest);
-  };
-  next();
-});
-
-// Add JWT authentication
-app.use(async (req, res, next) => {
-  // Get token
-  const token =
-    req.headers.authorization &&
-    req.headers.authorization.match(/^Bearer (.*)$/);
-
-  // Get anonymous user object
-  const anonymous = await User.fetchById('anonymous', {
-    related: '[_roles, _groups._roles]',
-  });
-
-  // If system user anonymous not found
-  if (!anonymous) {
-    return res.status(500).send({ error: req.i18n('Internal server error') });
-  }
-
-  // Check if auth token
-  if (!token) {
-    req.user = anonymous;
-    return next();
-  }
-
-  jwt.verify(token[1], config.secret, async (err, decoded) => {
-    // If not valid token or expired
-    if (err || new Date().getTime() / 1000 > decoded.exp) {
-      req.user = anonymous;
-      next();
-    } else {
-      // Find user object
-      req.user = await User.fetchById(decoded.sub, {
-        related: '[_roles, _groups._roles]',
-      });
-
-      // Check if user exists
-      if (req.user) {
-        next();
-      } else {
-        req.user = anonymous;
-        next();
-      }
-    }
-  });
-});
+// Add middleware
+app.use(bodyParser.json({ limit: config.clientMaxSize }));
+app.use(accessLogger);
+app.use(i18n);
+app.use(cors);
 
 /**
  * Traverse path.
@@ -156,37 +77,27 @@ async function traverse(document, slugs, user, roles) {
 // Add routes
 map(routes, (route) => {
   app[route.op](`*${route.view}`, async (req, res) => {
-    const slugs = req.params[0].split('/');
-
-    // Get global roles based on user and groups
-    const globalRoles = req.user.getRoles();
-
-    // Check if root exists
-    const root = await Document.fetchOne({ parent: null });
-    if (!root) {
-      return res.status(500).send({ error: req.i18n('Internal server error') });
-    }
-
-    // Get roles based on root location
-    const rootRoles = await req.user.findRolesByDocument(root.uuid);
+    // Get user
+    req.user = await User.fetchById(getUserId(req), {
+      related: '[_roles, _groups._roles]',
+    });
 
     // Traverse to document
+    const root = await Document.fetchOne({ parent: null });
     const result = await traverse(
       root,
-      compact(slugs),
+      compact(req.params[0].split('/')), // Slugs
       req.user,
-      uniq([...rootRoles, ...globalRoles]),
+      uniq([
+        ...(await req.user.findRolesByDocument(root.uuid)), // Root roles
+        ...req.user.getRoles(), // Global roles
+      ]),
     );
 
     // If result not found
     if (!result) {
       // Find redirect
-      const redirect = await Redirect.fetchOne(
-        {
-          path: req.params[0],
-        },
-        { related: '_document' },
-      );
+      const redirect = await Redirect.fetchByPath(req.params[0]);
 
       // If no redirect found
       if (!redirect) {
@@ -194,7 +105,7 @@ map(routes, (route) => {
       }
 
       // Send redirect
-      res.redirect(301, `${redirect._document.path}${route.view}`);
+      return res.redirect(301, `${redirect._document.path}${route.view}`);
     }
 
     // Get results
@@ -209,29 +120,30 @@ map(routes, (route) => {
     }
 
     // Get workflow
-    const workflow = await Workflow.fetchById(type.workflow);
+    await type.fetchRelated('_workflow');
 
     // Call handler
     req.document = document;
     req.type = type;
     req.permissions = uniq([
       ...permissions,
-      ...flatten(
-        map(
-          roles,
-          (role) =>
-            workflow.json.states[document.workflow_state].permissions[role] ||
-            [],
-        ),
-      ),
+      ...type._workflow.getPermissions(document.workflow_state, roles),
     ]);
 
     // Check permission
-    requirePermission(route.permission, req, res, () =>
-      // Call view
-      route.handler(req, res),
-    );
+    if (!hasPermission(req.permissions, route.permission)) {
+      return res.status(401).send({
+        error: {
+          message: 'You are not authorization to access this resource.',
+          type: 'Unauthorized',
+        },
+      });
+    }
+
+    // Call view
+    route.handler(req, res);
   });
 });
 
+// Export app
 export default app;

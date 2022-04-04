@@ -3,15 +3,11 @@
  * @module server
  */
 
-import fs from 'fs';
-
-import app from './app';
+import { log } from './helpers';
 import { config } from '../config';
+import app from './app';
 
-if (!fs.existsSync(config.blobsDir)) {
-  fs.mkdirSync(config.blobsDir);
-}
-
+// Start server
 app.listen(config.port, () =>
-  console.log(`Server listening on port ${config.port}`),
+  log.info(`Server listening on port ${config.port}`),
 );

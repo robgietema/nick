@@ -3,7 +3,7 @@
  * @module models/workflow/workflow
  */
 
-import _, { includes } from 'lodash';
+import _, { flatten, includes, map } from 'lodash';
 import { getUrl } from '../../helpers';
 import { Model } from '../../models';
 
@@ -43,5 +43,18 @@ export class Workflow extends Model {
         }))
         .value(),
     };
+  }
+
+  /**
+   * Get permissions by state and roles
+   * @method getPermissions
+   * @param {string} state Current workflow state
+   * @param {Array} roles Array of roles
+   * @returns {Array} Array of permissions.
+   */
+  getPermissions(state, roles) {
+    return flatten(
+      map(roles, (role) => this.json.states[state].permissions[role] || []),
+    );
   }
 }

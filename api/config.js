@@ -13,6 +13,7 @@ export const config = {
   systemGroups: ['Owner'],
   supportedLanguages: ['en', 'nl'],
   defaultLanguage: 'en',
+  clientMaxSize: '64mb',
   imageScales: {
     large: [768, 768],
     preview: [400, 400],
@@ -21,5 +22,13 @@ export const config = {
     tile: [64, 64],
     icon: [32, 32],
     listing: [16, 16],
+  },
+  cors: {
+    allowOrigin: '*',
+    allowMethods: '*',
+    allowHeaders: '*',
+    allowCredentials: true,
+    exposeHeaders: '*',
+    maxAge: 3660,
   },
 };

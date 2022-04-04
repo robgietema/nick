@@ -20,7 +20,7 @@ import _, {
 
 import { formatAttribute, removeUndefined } from '../../helpers';
 import { Collection } from '../../collections';
-import { knex } from '../../knex';
+import { knex } from '../../helpers';
 
 // Give the knex instance to objection.
 ObjectionModel.knex(knex);

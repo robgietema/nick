@@ -10,24 +10,13 @@ import { config } from '../../../config';
 
 /**
  * Check required permission.
- * @method requirePermission
+ * @method hasPermission
+ * @param {Array} permissions Permissions of the current user.
  * @param {string} permission Permission to check.
- * @param {Object} req Request object.
- * @param {Object} res Response object.
- * @param {function} callback Callback function.
- * @returns {Promise<Object>} A Promise that resolves to an object.
+ * @returns {boolean} True if you have permission.
  */
-export function requirePermission(permission, req, res, callback) {
-  if (isUndefined(permission) || includes(req.permissions, permission)) {
-    return callback();
-  } else {
-    return res.status(401).send({
-      error: {
-        message: 'You are not authorization to access this resource.',
-        type: 'Unauthorized',
-      },
-    });
-  }
+export function hasPermission(permissions, permission) {
+  return isUndefined(permission) || includes(permissions, permission);
 }
 
 /**
@@ -44,4 +33,31 @@ export function getAdminHeader() {
     config.secret,
     { expiresIn: '12h' },
   )}`;
+}
+
+/**
+ * Get user based on token.
+ * @method getUser
+ * @param {Object} req Request object.
+ * @returns {string} User id.
+ */
+export function getUserId(req) {
+  // Get token
+  const token =
+    req.headers.authorization &&
+    req.headers.authorization.match(/^Bearer (.*)$/);
+
+  // Check if auth token
+  if (!token) {
+    return 'anonymous';
+  } else {
+    const decoded = jwt.verify(token[1], config.secret);
+
+    // If token expired
+    if (new Date().getTime() / 1000 > decoded.exp) {
+      return 'anonymous';
+    } else {
+      return decoded.sub;
+    }
+  }
 }
