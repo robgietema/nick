@@ -6,11 +6,11 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import fs from 'fs';
-import { compact, drop, head, map, uniq } from 'lodash';
+import { compact, map, uniq } from 'lodash';
 
 import { config } from '../config';
 import { getUserId, hasPermission } from './helpers';
-import { Document, Role, Redirect, Type, User } from './models';
+import { Document, Redirect, Type, User } from './models';
 import routes from './routes';
 import { accessLogger, cors, i18n } from './middleware';
 
@@ -19,6 +19,7 @@ if (!fs.existsSync(config.blobsDir)) {
   fs.mkdirSync(config.blobsDir);
 }
 
+// Create app
 const app = express();
 
 // Add middleware
@@ -26,53 +27,6 @@ app.use(bodyParser.json({ limit: config.clientMaxSize }));
 app.use(accessLogger);
 app.use(i18n);
 app.use(cors);
-
-/**
- * Traverse path.
- * @method traverse
- * @param {Object} document Current document object.
- * @param {Array} slugs Array of slugs.
- * @param {Object} user Current user object.
- * @param {Array} roles Array of roles.
- * @returns {Promise<Object>} A Promise that resolves to an object.
- */
-async function traverse(document, slugs, user, roles) {
-  // Check if at leaf node
-  if (slugs.length === 0) {
-    // Add owner to roles if current document owned by user
-    const extendedRoles = uniq([
-      ...roles,
-      ...(user.id === document.owner ? ['Owner'] : []),
-    ]);
-
-    // Get all permissions from roles
-    const permissions = await Role.findPermissions(extendedRoles);
-
-    // Return document and authorization data
-    return {
-      document,
-      roles: extendedRoles,
-      permissions,
-    };
-  } else {
-    // Fetch child matching the id
-    const child = await Document.fetchOne({
-      parent: document.uuid,
-      id: head(slugs),
-    });
-
-    // Check if child not found
-    if (!child) {
-      return false;
-    }
-
-    // Get roles based on user and group from child
-    const childRoles = await user.findRolesByDocument(child.uuid);
-
-    // Recursively call the traverse on child
-    return traverse(child, drop(slugs), user, uniq([...roles, ...childRoles]));
-  }
-}
 
 // Add routes
 map(routes, (route) => {
@@ -84,8 +38,7 @@ map(routes, (route) => {
 
     // Traverse to document
     const root = await Document.fetchOne({ parent: null });
-    const result = await traverse(
-      root,
+    const result = await root.traverse(
       compact(req.params[0].split('/')), // Slugs
       req.user,
       uniq([

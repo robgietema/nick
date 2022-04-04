@@ -3,9 +3,18 @@
  * @module models/document/document
  */
 
-import { findIndex, includes, map, mapValues, omit } from 'lodash';
+import {
+  drop,
+  findIndex,
+  head,
+  includes,
+  map,
+  mapValues,
+  omit,
+  uniq,
+} from 'lodash';
 
-import { Model, Redirect } from '../../models';
+import { Model, Redirect, Role } from '../../models';
 import { lockExpired, mapSync } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
@@ -263,5 +272,51 @@ export class Document extends Model {
           : this.lock,
       ...version,
     };
+  }
+
+  /**
+   * Traverse path.
+   * @method traverse
+   * @param {Array} slugs Array of slugs.
+   * @param {Object} user Current user object.
+   * @param {Array} roles Array of roles.
+   * @returns {Promise<Object>} A Promise that resolves to an object.
+   */
+  async traverse(slugs, user, roles) {
+    // Check if at leaf node
+    if (slugs.length === 0) {
+      // Add owner to roles if current document owned by user
+      const extendedRoles = uniq([
+        ...roles,
+        ...(user.id === this.owner ? ['Owner'] : []),
+      ]);
+
+      // Get all permissions from roles
+      const permissions = await Role.findPermissions(extendedRoles);
+
+      // Return document and authorization data
+      return {
+        document: this,
+        roles: extendedRoles,
+        permissions,
+      };
+    } else {
+      // Fetch child matching the id
+      const child = await Document.fetchOne({
+        parent: this.uuid,
+        id: head(slugs),
+      });
+
+      // Check if child not found
+      if (!child) {
+        return false;
+      }
+
+      // Get roles based on user and group from child
+      const childRoles = await user.findRolesByDocument(child.uuid);
+
+      // Recursively call the traverse on child
+      return child.traverse(drop(slugs), user, uniq([...roles, ...childRoles]));
+    }
   }
 }

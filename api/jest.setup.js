@@ -1,4 +1,4 @@
-import objection from 'objection';
+// import objection from 'objection';
 import { Model } from './src/models';
 
 global.afterAll(async () => {
