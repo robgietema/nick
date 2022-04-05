@@ -51,13 +51,14 @@ export function getUserId(req) {
   if (!token) {
     return 'anonymous';
   } else {
-    const decoded = jwt.verify(token[1], config.secret);
-
-    // If token expired
-    if (new Date().getTime() / 1000 > decoded.exp) {
+    let decoded;
+    try {
+      decoded = jwt.verify(token[1], config.secret);
+    } catch (err) {
       return 'anonymous';
-    } else {
-      return decoded.sub;
     }
+
+    // Return user id
+    return decoded.sub;
   }
 }

@@ -13,11 +13,11 @@ const access = logger.getLogger('access');
 export function accessLogger(req, res, next) {
   function onResFinished() {
     access.info(
-      `${req.hostname} - ${req.user.id} [${req.timestamp}] "${req.method} ${
-        req.originalUrl
-      } HTTP/${req.httpVersion}" ${res.statusCode} ${
-        res._contentLength || '-'
-      } "-" "${req.get('User-Agent')}"`,
+      `${req.hostname} - ${(req.user && req.user.id) || 'anonymous'} [${
+        req.timestamp
+      }] "${req.method} ${req.originalUrl} HTTP/${req.httpVersion}" ${
+        res.statusCode
+      } ${res._contentLength || '-'} "-" "${req.get('User-Agent')}"`,
     );
   }
   req.timestamp = moment.utc().format();
