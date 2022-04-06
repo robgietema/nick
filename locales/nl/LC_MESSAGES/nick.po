@@ -82,7 +82,7 @@ msgstr "Beheerder"
 #: src/profiles/groups.json:6
 # defaultMessage: Administrators
 msgid "Administrators"
-msgstr ""
+msgstr "Beheerders"
 
 #: src/routes/lock/lock.js:52
 # defaultMessage: Already locked
@@ -360,7 +360,7 @@ msgstr "Niet toegestaan"
 #: src/routes/users/users.js:27
 # defaultMessage: Not found.
 msgid "Not found."
-msgstr ""
+msgstr "Niet gevonden."
 
 #: src/profiles/roles.json:16
 # defaultMessage: Owner
@@ -542,7 +542,7 @@ msgstr "Systeem groep"
 #: src/routes/users/users.js:107
 # defaultMessage: System users
 msgid "System users"
-msgstr ""
+msgstr "Systeem gebruikers"
 
 #: src/profiles/behaviors/categorization.json:56
 # defaultMessage: Tags
@@ -592,12 +592,12 @@ msgstr "Titel"
 #: src/app.js:117
 # defaultMessage: Transaction error.
 msgid "Transaction error."
-msgstr ""
+msgstr "Transactiefout"
 
 #: src/app.js:85
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
-msgstr ""
+msgstr "Type van het huidige document is niet gevonden."
 
 #: src/profiles/behaviors/versioning.json:3
 # defaultMessage: Versioning
@@ -640,7 +640,7 @@ msgstr "Verkeerde login en/of wachtwoord."
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
-msgstr ""
+msgstr "U heeft geen rechten om tot deze resource."
 
 #: src/routes/groups/groups.js:104
 # defaultMessage: You can't delete system groups.
@@ -650,7 +650,7 @@ msgstr "U kunt geen systeemgroepen verwijderen."
 #: src/routes/users/users.js:106
 # defaultMessage: You can't delete system users.
 msgid "You can't delete system users."
-msgstr ""
+msgstr "U kunt geen systeem gebruikers verwijderen."
 
 #: src/routes/content/content.js:378
 #: src/routes/history/history.js:39
