@@ -29,7 +29,6 @@ export default [
       if (!type) {
         throw new RequestException(404, { error: req.i18n('Not found.') });
       }
-      await type.fetchSchema(trx);
       return {
         json: {
           ...translateSchema(omit(type._schema, ['behaviors']), req),

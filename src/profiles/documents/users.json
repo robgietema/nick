@@ -20,7 +20,7 @@
     ],
     "groups": [
       {
-        "id": "Authenticated",
+        "id": "Administrators",
         "roles": ["Editor"]
       }
     ]

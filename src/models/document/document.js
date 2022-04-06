@@ -196,8 +196,6 @@ export class Document extends Model {
 
     // Check if type available
     if (this._type) {
-      await this._type.fetchSchema();
-
       // Loop through file fields
       const fileFields = this._type.getFactoryFields('File');
       mapSync(fileFields, (field) => {

@@ -11,6 +11,7 @@ export const up = async (knex) => {
     table.string('description');
     table.boolean('addable');
     table.jsonb('schema').notNull();
+    table.jsonb('_schema');
     table
       .string('workflow')
       .references('workflow.id')

@@ -1,7 +1,8 @@
 import { dropRight, map } from 'lodash';
 import { promises as fs } from 'fs';
 
-import { mapAsync, stripI18n } from '../helpers';
+import { log, mapAsync, stripI18n } from '../helpers';
+import { Behavior, Type } from '../models';
 
 export const seed = async (knex) => {
   try {
@@ -14,10 +15,7 @@ export const seed = async (knex) => {
     // Import behaviors
     await mapAsync(behaviors, async (behavior) => {
       const data = stripI18n(require(`../profiles/behaviors/${behavior}`));
-      await knex('behavior').insert({
-        ...data,
-        schema: data.schema ? JSON.stringify(data.schema) : '{}',
-      });
+      await Behavior.create(data, {}, knex);
     });
 
     // Get type profiles
@@ -29,12 +27,11 @@ export const seed = async (knex) => {
     // Import types
     await mapAsync(types, async (type) => {
       const data = stripI18n(require(`../profiles/types/${type}`));
-      await knex('type').insert({
-        ...data,
-        schema: data.schema ? JSON.stringify(data.schema) : '{}',
-      });
+      const typeModel = await Type.create(data);
+      await typeModel.cacheSchema();
     });
-  } catch (e) {
-    // No data to be imported
+    log.info('Types imported');
+  } catch (err) {
+    log.error(err);
   }
 };

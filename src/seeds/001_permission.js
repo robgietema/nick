@@ -1,13 +1,22 @@
-import { stripI18n } from '../helpers';
+import { map } from 'lodash';
+
+import { log, stripI18n } from '../helpers';
+import { Permission } from '../models';
 
 export const seed = async (knex) => {
   try {
     const profile = stripI18n(require('../profiles/permissions'));
     if (profile.purge) {
-      await knex('permission').del();
+      await Permission.delete(knex);
     }
-    await knex('permission').insert(profile.permissions);
-  } catch (e) {
-    // No data to be imported
+    await Promise.all(
+      map(
+        profile.permissions,
+        async (permission) => await Permission.create(permission, {}, knex),
+      ),
+    );
+    log.info('Permissions imported');
+  } catch (err) {
+    log.error(err);
   }
 };

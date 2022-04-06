@@ -1,13 +1,22 @@
-import { stripI18n } from '../helpers';
+import { map } from 'lodash';
+
+import { log, stripI18n } from '../helpers';
+import { Workflow } from '../models';
 
 export const seed = async (knex) => {
   try {
     const profile = stripI18n(require('../profiles/workflows'));
     if (profile.purge) {
-      await knex('workflow').del();
+      await Workflow.delete(knex);
     }
-    await knex('workflow').insert(profile.workflows);
-  } catch (e) {
-    // No data to be imported
+    await Promise.all(
+      map(
+        profile.workflows,
+        async (workflow) => await Workflow.create(workflow, {}, knex),
+      ),
+    );
+    log.info('Workflows imported');
+  } catch (err) {
+    log.error(err);
   }
 };

@@ -2,7 +2,8 @@ import { dropRight, last, map, omit } from 'lodash';
 import { promises as fs } from 'fs';
 import moment from 'moment';
 
-import { mapAsync, stripI18n } from '../helpers';
+import { log, mapAsync, stripI18n } from '../helpers';
+import { Document } from '../models';
 
 const documentFields = [
   'uuid',
@@ -39,10 +40,14 @@ export const seed = async (knex) => {
         last(slugs) === '_root'
           ? undefined
           : (
-              await knex('document').where({
-                path: `/${dropRight(slugs).join('/')}`,
-              })
-            )[0].uuid;
+              await Document.fetchOne(
+                {
+                  path: `/${dropRight(slugs).join('/')}`,
+                },
+                {},
+                knex,
+              )
+            ).uuid;
       const position_in_parent = parent ? children[parent] || 0 : 0;
       if (parent) {
         children[parent] = parent in children ? children[parent] + 1 : 1;
@@ -52,8 +57,8 @@ export const seed = async (knex) => {
         'versions' in document ? document.versions.length : 1;
 
       // Insert document
-      const insert = await knex('document')
-        .insert({
+      const insert = await Document.create(
+        {
           version: 'version' in document ? document.version : versionCount - 1,
           id,
           path,
@@ -69,9 +74,11 @@ export const seed = async (knex) => {
           created: document.created || moment.utc().format(),
           modified: document.modified || moment.utc().format(),
           json: omit(document, documentFields),
-        })
-        .returning('uuid');
-      const uuid = insert[0].uuid;
+        },
+        {},
+        knex,
+      );
+      const uuid = insert.uuid;
 
       // Create versions
       const versions =
@@ -80,7 +87,6 @@ export const seed = async (knex) => {
               version: version.version || index,
               created: version.created || moment.utc().format(),
               actor: version.actor || 'admin',
-              document: uuid,
               id: version.id || id,
               json: omit(version, versionFields),
             }))
@@ -89,14 +95,15 @@ export const seed = async (knex) => {
                 version: 0,
                 created: document.created || moment.utc().format(),
                 actor: document.owner || 'admin',
-                document: uuid,
                 id,
                 json: omit(document, documentFields),
               },
             ];
 
       // Insert versions
-      await knex('version').insert(versions);
+      await mapAsync(versions, async (version) => {
+        await insert.createRelated('_versions', version, knex);
+      });
 
       // Insert sharing data for users
       const sharingUsers = document.sharing?.users || [];
@@ -118,7 +125,8 @@ export const seed = async (knex) => {
         );
       });
     });
-  } catch (e) {
-    // No data to be imported
+    log.info('Documents imported');
+  } catch (err) {
+    log.error(err);
   }
 };

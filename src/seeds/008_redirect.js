@@ -1,13 +1,22 @@
-import { stripI18n } from '../helpers';
+import { map } from 'lodash';
+
+import { log, stripI18n } from '../helpers';
+import { Redirect } from '../models';
 
 export const seed = async (knex) => {
   try {
     const profile = stripI18n(require('../profiles/redirects'));
     if (profile.purge) {
-      await knex('redirect').del();
+      await Redirect.delete(knex);
     }
-    await knex('redirect').insert(profile.redirects);
-  } catch (e) {
-    // No data to be imported
+    await Promise.all(
+      map(
+        profile.redirects,
+        async (redirect) => await Redirect.create(redirects, {}, knex),
+      ),
+    );
+    log.info('Redirects imported');
+  } catch (err) {
+    log.error(err);
   }
 };

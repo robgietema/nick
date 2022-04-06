@@ -18,7 +18,6 @@ import { Document } from '../../models';
  */
 async function documentToJson(document, req, trx) {
   await document.fetchRelated('[_type, _owner]', trx);
-  await document._type.fetchSchema(trx);
   const json = document.json;
   return {
     '@id': `${getRootUrl(req)}${document.path}`,

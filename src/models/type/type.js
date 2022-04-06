@@ -35,34 +35,31 @@ export class Type extends Model {
   }
 
   /**
-   * Fetch schema.
-   * @method fetchSchema
+   * Cache schema.
+   * @method cacheSchema
    * @static
    * @param {Object} trx Transaction object.
    */
-  async fetchSchema(trx) {
-    if (!this._schema) {
-      if (this.schema.behaviors) {
-        const behaviors = await Behavior.fetchAll(
-          {
-            id: ['=', this.schema.behaviors],
+  async cacheSchema(trx) {
+    let schema;
+    if (this.schema.behaviors) {
+      const behaviors = await Behavior.fetchAll(
+        {
+          id: ['=', this.schema.behaviors],
+        },
+        {
+          order: {
+            column: 'id',
+            values: this.schema.behaviors,
           },
-          {
-            order: {
-              column: 'id',
-              values: this.schema.behaviors,
-            },
-          },
-          trx,
-        );
-        this._schema = mergeSchemas(
-          await behaviors.fetchSchema(trx),
-          this.schema,
-        );
-      } else {
-        this._schema = this.schema;
-      }
+        },
+        trx,
+      );
+      schema = mergeSchemas(await behaviors.fetchSchema(trx), this.schema);
+    } else {
+      schema = this.schema;
     }
+    await this.update({ _schema: schema });
   }
 
   /**

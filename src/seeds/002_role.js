@@ -1,28 +1,27 @@
 import { map, omit } from 'lodash';
 
-import { mapAsync, stripI18n } from '../helpers';
+import { log, mapAsync, stripI18n } from '../helpers';
+import { Role } from '../models';
 
 export const seed = async (knex) => {
   try {
     const profile = stripI18n(require('../profiles/roles'));
     if (profile.purge) {
-      await knex('role').del();
-      await knex('role_permission').del();
+      await Role.delete(knex);
     }
     await mapAsync(profile.roles, async (role, index) => {
-      await knex('role').insert({
-        ...omit(role, ['permissions']),
-        order: role.order || index,
-      });
-      const rolePermissions = map(role.permissions, (permission) => ({
-        role: role.id,
-        permission,
-      }));
-      if (rolePermissions.length > 0) {
-        await knex('role_permission').insert(rolePermissions);
-      }
+      await Role.create(
+        {
+          ...omit(role, ['permissions']),
+          _permissions: role.permissions,
+          order: role.order || index,
+        },
+        {},
+        knex,
+      );
     });
-  } catch (e) {
-    // No data to be imported
+    log.info('Roles imported');
+  } catch (err) {
+    log.error(err);
   }
 };

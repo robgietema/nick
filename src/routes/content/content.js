@@ -290,7 +290,6 @@ export default [
       );
 
       // Get json data
-      await type.fetchSchema(trx);
       const properties = type._schema.properties;
 
       // Handle file uploads
@@ -400,7 +399,6 @@ export default [
         path === '/' ? path : `${req.document._parent.path}/${newId}`;
 
       // Handle file uploads
-      await req.type.fetchSchema(trx);
       let json = {
         ...req.document.json,
         ...omit(
@@ -463,7 +461,6 @@ export default [
     permission: 'Modify',
     handler: async (req, trx) => {
       // Get file and image fields
-      await req.type.fetchSchema(trx);
       const fileFields = req.type.getFactoryFields('File');
       const imageFields = req.type.getFactoryFields('Image');
 
