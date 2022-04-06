@@ -13,11 +13,12 @@ import { Document } from '../../models';
  * @method documentToJson
  * @param {Object} document Current document object.
  * @param {Object} req Request object.
+ * @param {Object} trx Transaction object.
  * @returns {Object} Json representation of the document.
  */
-async function documentToJson(document, req) {
-  await document.fetchRelated('[_type, _owner]');
-  await document._type.fetchSchema();
+async function documentToJson(document, req, trx) {
+  await document.fetchRelated('[_type, _owner]', trx);
+  await document._type.fetchSchema(trx);
   const json = document.json;
   return {
     '@id': `${getRootUrl(req)}${document.path}`,
@@ -107,15 +108,16 @@ export default [
     op: 'get',
     view: '/@search',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const items = await Document.fetchAll(
         ...querystringToQuery(req.query, req.document.path),
+        trx,
       );
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
           items: await Promise.all(
-            items.map(async (item) => await documentToJson(item, req)),
+            items.map(async (item) => await documentToJson(item, req, trx)),
           ),
           items_total: items.pagination?.rowCount || items.length,
         },
@@ -126,13 +128,13 @@ export default [
     op: 'post',
     view: '/@querystring-search',
     permission: 'View',
-    handler: async (req) => {
-      const items = await Document.fetchAll();
+    handler: async (req, trx) => {
+      const items = await Document.fetchAll({}, {}, trx);
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
           items: await Promise.all(
-            items.map(async (item) => await documentToJson(item, req)),
+            items.map(async (item) => await documentToJson(item, req, trx)),
           ),
           items_total: items.length,
         },

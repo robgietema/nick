@@ -14,8 +14,8 @@ export default [
     op: 'get',
     view: '/@history',
     permission: 'View',
-    handler: async (req) => {
-      await req.document.fetchRelated('_versions(order)._actor');
+    handler: async (req, trx) => {
+      await req.document.fetchRelated('_versions(order)._actor', trx);
       const versions = new Collection(req.document._versions);
       return {
         json: versions.toJSON(req),
@@ -26,7 +26,7 @@ export default [
     op: 'patch',
     view: '/@history',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       // Check if locked
       const lock = req.document.lock;
       if (
@@ -45,13 +45,17 @@ export default [
       }
 
       // Get version
-      const version = await Version.fetchOne({
-        document: req.document.uuid,
-        version: req.body.version,
-      });
+      const version = await Version.fetchOne(
+        {
+          document: req.document.uuid,
+          version: req.body.version,
+        },
+        {},
+        trx,
+      );
 
       // Get id and path variables of document, parent and siblings
-      await req.document.fetchRelated('_parent._children');
+      await req.document.fetchRelated('_parent._children', trx);
       const id = version.id;
       const path = req.document.path;
 
@@ -70,35 +74,42 @@ export default [
       const json = omit(version.json, ['changeNote']);
       const modified = moment.utc().format();
       const versionNumber = req.document.version + 1;
-      await req.document.createRelated('_versions', {
-        document: req.document.uuid,
-        id: newId,
-        created: modified,
-        actor: req.user.id,
-        version: versionNumber,
-        json: {
-          ...json,
-          changeNote: `Reverted to version ${version.version}`,
+      await req.document.createRelated(
+        '_versions',
+        {
+          document: req.document.uuid,
+          id: newId,
+          created: modified,
+          actor: req.user.id,
+          version: versionNumber,
+          json: {
+            ...json,
+            changeNote: `Reverted to version ${version.version}`,
+          },
         },
-      });
+        trx,
+      );
 
       // If path has changed change path of document and children
       if (path !== newPath) {
-        await Document.replacePath(path, newPath);
+        await Document.replacePath(path, newPath, trx);
       }
 
       // Save document with new values
-      await req.document.update({
-        id: newId,
-        path: newPath,
-        version: versionNumber,
-        modified,
-        json,
-        lock: {
-          locked: false,
-          stealable: true,
+      await req.document.update(
+        {
+          id: newId,
+          path: newPath,
+          version: versionNumber,
+          modified,
+          json,
+          lock: {
+            locked: false,
+            stealable: true,
+          },
         },
-      });
+        trx,
+      );
 
       // Send ok message
       return {

@@ -15,10 +15,14 @@ export default [
     op: 'get',
     view: '/@users/:id',
     permission: 'Manage Users',
-    handler: async (req) => {
-      const user = await User.fetchById(req.params.id, {
-        related: '[_roles, _groups]',
-      });
+    handler: async (req, trx) => {
+      const user = await User.fetchById(
+        req.params.id,
+        {
+          related: '[_roles, _groups]',
+        },
+        trx,
+      );
       if (!user) {
         throw new RequestException(404, { error: req.i18n('Not found.') });
       }
@@ -31,10 +35,11 @@ export default [
     op: 'get',
     view: '/@users',
     permission: 'Manage Users',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const groups = await User.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'fullname', related: '[_roles, _groups]' },
+        trx,
       );
       return {
         json: groups.toJSON(req),
@@ -45,7 +50,7 @@ export default [
     op: 'post',
     view: '/@users',
     permission: 'Manage Users',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const password = await bcrypt.hash(req.body.password, 10);
       const user = await User.create(
         {
@@ -57,6 +62,7 @@ export default [
           _groups: req.body.groups || [],
         },
         { related: ['_roles', '_groups'] },
+        trx,
       );
 
       // Send created
@@ -70,14 +76,18 @@ export default [
     op: 'patch',
     view: '/@users/:id',
     permission: 'Manage Users',
-    handler: async (req) => {
-      await User.update(req.params.id, {
-        id: req.body.username,
-        fullname: req.body.fullname,
-        email: req.body.email,
-        _roles: req.body.roles,
-        _groups: req.body.groups,
-      });
+    handler: async (req, trx) => {
+      await User.update(
+        req.params.id,
+        {
+          id: req.body.username,
+          fullname: req.body.fullname,
+          email: req.body.email,
+          _roles: req.body.roles,
+          _groups: req.body.groups,
+        },
+        trx,
+      );
 
       // Send ok
       return {
@@ -89,7 +99,7 @@ export default [
     op: 'delete',
     view: '/@users/:id',
     permission: 'Manage Users',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       if (includes(config.systemUsers, req.params.id)) {
         throw new RequestException(401, {
           error: {
@@ -98,7 +108,7 @@ export default [
           },
         });
       }
-      await User.deleteById(req.params.id);
+      await User.deleteById(req.params.id, trx);
       return {
         status: 204,
       };

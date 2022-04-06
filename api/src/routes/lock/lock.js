@@ -12,7 +12,7 @@ export default [
     op: 'get',
     view: '/@lock',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       if (req.document.lock.locked && lockExpired(req.document)) {
         return {
           json: {
@@ -31,7 +31,7 @@ export default [
     op: 'post',
     view: '/@lock',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const lock = req.document.lock;
 
       // Check if lock already exists
@@ -69,9 +69,12 @@ export default [
           token: uuid(),
         };
         // Create new lock
-        await req.document.update({
-          lock: newLock,
-        });
+        await req.document.update(
+          {
+            lock: newLock,
+          },
+          trx,
+        );
         return {
           json: newLock,
         };
@@ -82,7 +85,7 @@ export default [
     op: 'delete',
     view: '/@lock',
     permission: 'Modify',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const lock = req.document.lock;
 
       // If not locked just send lock status

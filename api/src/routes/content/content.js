@@ -106,9 +106,9 @@ export default [
     op: 'post',
     view: '/@move',
     permission: 'Add',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       // Get children
-      await req.document.fetchRelated('_children');
+      await req.document.fetchRelated('_children', trx);
       const childIds = req.document._children.map((child) => child.id);
 
       // Return items
@@ -117,7 +117,7 @@ export default [
       // Loop through source objects to be moved
       await mapAsync(req.body.source, async (source) => {
         // Get item to be moved
-        const document = await Document.fetchOne({ path: source });
+        const document = await Document.fetchOne({ path: source }, {}, trx);
 
         // If moved to same folder or subfolder do nothing
         if (
@@ -130,7 +130,7 @@ export default [
           });
         } else {
           // Get current (previous) parent of document to be moved
-          const parent = Document.fetchById(document.parent);
+          const parent = Document.fetchById(document.parent, {}, trx);
 
           // Calculate new id and path
           const path = req.document.path;
@@ -141,18 +141,21 @@ export default [
           childIds.push(newId);
 
           // Replace path of moved object and children
-          await Document.replacePath(source, newPath);
+          await Document.replacePath(source, newPath, trx);
 
           // Save document in new location
-          await document.update({
-            parent: req.document.uuid,
-            position_in_parent: 32767,
-            path: newPath,
-          });
+          await document.update(
+            {
+              parent: req.document.uuid,
+              position_in_parent: 32767,
+              path: newPath,
+            },
+            trx,
+          );
 
           // Fetch children of previous parent
-          await parent.fetchRelated('_children');
-          await parent.fixOrder();
+          await parent.fetchRelated('_children', trx);
+          await parent.fixOrder(trx);
 
           // Add items to return array
           items.push({
@@ -163,8 +166,8 @@ export default [
       });
 
       // Fetch new children and fix order
-      await req.document.fetchRelated('_children');
-      await req.document.fixOrder();
+      await req.document.fetchRelated('_children', trx);
+      await req.document.fixOrder(trx);
 
       return {
         json: items.map((item) => ({
@@ -178,9 +181,9 @@ export default [
     op: 'get',
     view: '/@history/:version',
     permission: 'View',
-    handler: async (req) => {
-      await req.document.fetchRelated('[_children._type, _type]');
-      await req.document.fetchVersion(parseInt(req.params.version, 10));
+    handler: async (req, trx) => {
+      await req.document.fetchRelated('[_children._type, _type]', trx);
+      await req.document.fetchVersion(parseInt(req.params.version, 10), trx);
       return {
         json: await req.document.toJSON(req),
       };
@@ -190,7 +193,7 @@ export default [
     op: 'get',
     view: '/@@download/:field',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const field = req.document.json[req.params.field];
       const buffer = readFile(field.uuid);
       return {
@@ -206,7 +209,7 @@ export default [
     op: 'get',
     view: '/@@images/:uuid.:ext',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const buffer = readFile(req.params.uuid);
       return {
         headers: { 'Content-Type': `image/${req.params.ext}` },
@@ -218,7 +221,7 @@ export default [
     op: 'get',
     view: '/@@images/:field',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const field = req.document.json[req.params.field];
       const buffer = readFile(field.uuid);
       return {
@@ -234,7 +237,7 @@ export default [
     op: 'get',
     view: '/@@images/:field/:scale',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const field = req.document.json[req.params.field];
       const buffer = readFile(field.scales[req.params.scale].uuid);
       return {
@@ -250,8 +253,8 @@ export default [
     op: 'get',
     view: '',
     permission: 'View',
-    handler: async (req) => {
-      await req.document.fetchRelated('[_children(order)._type, _type]');
+    handler: async (req, trx) => {
+      await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       return {
         json: await req.document.toJSON(req),
       };
@@ -261,17 +264,21 @@ export default [
     op: 'post',
     view: '',
     permission: 'Add',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       // Get content type date
-      const type = await Type.fetchById(req.body['@type'], {
-        related: '_workflow',
-      });
+      const type = await Type.fetchById(
+        req.body['@type'],
+        {
+          related: '_workflow',
+        },
+        trx,
+      );
 
       // Set creation time
       const created = moment.utc().format();
 
       // Get child nodes
-      await req.document.fetchRelated('_children');
+      await req.document.fetchRelated('_children', trx);
 
       // Set unique id
       let id =
@@ -283,7 +290,7 @@ export default [
       );
 
       // Get json data
-      await type.fetchSchema();
+      await type.fetchSchema(trx);
       const properties = type._schema.properties;
 
       // Handle file uploads
@@ -294,34 +301,42 @@ export default [
       json = await handleImages(json, type);
 
       // Insert document in database
-      const document = await req.document.createRelatedAndFetch('_children', {
-        id,
-        path: `${req.document.path === '/' ? '' : req.document.path}/${id}`,
-        type: req.body['@type'],
-        created,
-        modified: created,
-        version: 0,
-        position_in_parent: req.document._children.length,
-        lock: { locked: false, stealable: true },
-        workflow_state: type._workflow.json.initial_state,
-        owner: req.user.id,
-        json,
-      });
+      const document = await req.document.createRelatedAndFetch(
+        '_children',
+        {
+          id,
+          path: `${req.document.path === '/' ? '' : req.document.path}/${id}`,
+          type: req.body['@type'],
+          created,
+          modified: created,
+          version: 0,
+          position_in_parent: req.document._children.length,
+          lock: { locked: false, stealable: true },
+          workflow_state: type._workflow.json.initial_state,
+          owner: req.user.id,
+          json,
+        },
+        trx,
+      );
 
       // Create initial version
-      await document.createRelated('_versions', {
-        id,
-        version: 0,
-        created,
-        actor: req.user.id,
-        json: {
-          ...document.json,
-          changeNote: req.body.changeNote || 'Initial version',
+      await document.createRelated(
+        '_versions',
+        {
+          id,
+          version: 0,
+          created,
+          actor: req.user.id,
+          json: {
+            ...document.json,
+            changeNote: req.body.changeNote || 'Initial version',
+          },
         },
-      });
+        trx,
+      );
 
       // Fetch type
-      await document.fetchRelated('_type');
+      await document.fetchRelated('_type', trx);
 
       // Send data back to client
       return {
@@ -334,14 +349,15 @@ export default [
     op: 'patch',
     view: '',
     permission: 'Modify',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       // Check if ordering request
       if (typeof req.body?.ordering !== 'undefined') {
         // Get children and reorder
-        await req.document.fetchRelated('_children(order)');
+        await req.document.fetchRelated('_children(order)', trx);
         this.document.reorder(
           req.body.ordering.obj_id,
           req.body.ordering.delta,
+          trx,
         );
 
         // Send ok
@@ -368,7 +384,7 @@ export default [
       }
 
       // Get id and path variables of document, parent and siblings
-      await req.document.fetchRelated('_parent._children');
+      await req.document.fetchRelated('_parent._children', trx);
       const id = req.body.id || req.document.id;
       const path = req.document.path;
 
@@ -384,7 +400,7 @@ export default [
         path === '/' ? path : `${req.document._parent.path}/${newId}`;
 
       // Handle file uploads
-      await req.type.fetchSchema();
+      await req.type.fetchSchema(trx);
       let json = {
         ...req.document.json,
         ...omit(
@@ -398,35 +414,42 @@ export default [
       // Create new version
       const modified = moment.utc().format();
       const version = req.document.version + 1;
-      await req.document.createRelated('_versions', {
-        document: req.document.uuid,
-        id: newId,
-        created: modified,
-        actor: req.user.id,
-        version,
-        json: {
-          ...json,
-          changeNote: req.body.changeNote,
+      await req.document.createRelated(
+        '_versions',
+        {
+          document: req.document.uuid,
+          id: newId,
+          created: modified,
+          actor: req.user.id,
+          version,
+          json: {
+            ...json,
+            changeNote: req.body.changeNote,
+          },
         },
-      });
+        trx,
+      );
 
       // If path has changed change path of document and children
       if (path !== newPath) {
-        await Document.replacePath(path, newPath);
+        await Document.replacePath(path, newPath, trx);
       }
 
       // Save document with new values
-      await req.document.update({
-        id: newId,
-        path: newPath,
-        version,
-        modified,
-        json,
-        lock: {
-          locked: false,
-          stealable: true,
+      await req.document.update(
+        {
+          id: newId,
+          path: newPath,
+          version,
+          modified,
+          json,
+          lock: {
+            locked: false,
+            stealable: true,
+          },
         },
-      });
+        trx,
+      );
 
       // Send ok
       return {
@@ -438,27 +461,27 @@ export default [
     op: 'delete',
     view: '',
     permission: 'Modify',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       // Get file and image fields
-      await req.type.fetchSchema();
+      await req.type.fetchSchema(trx);
       const fileFields = req.type.getFactoryFields('File');
       const imageFields = req.type.getFactoryFields('Image');
 
       // If file fields exist
       if (fileFields.length > 0 || imageFields.length > 0) {
         // Get versions
-        await req.document.fetchRelated('_versions');
+        await req.document.fetchRelated('_versions', trx);
 
         // Get all file uuids from all versions and all fields
         const files = uniq(
           flattenDeep(
             req.document._versions.map((version) => [
-              ...fileFields.map((field) => version.get('json')[field].uuid),
+              ...fileFields.map((field) => version.json[field].uuid),
               ...imageFields.map((field) => [
-                version.get('json')[field].uuid,
+                version.json[field].uuid,
                 ...map(
                   keys(config.imageScales),
-                  (scale) => version.get('json')[field].scales[scale].uuid,
+                  (scale) => version.json[field].scales[scale].uuid,
                 ),
               ]),
             ]),
@@ -470,15 +493,17 @@ export default [
       }
 
       // Get parent
-      await req.document.fetchRelated('_parent');
+      await req.document.fetchRelated('_parent', trx);
       const parent = req.document._parent;
 
       // Remove document (versions will be cascaded)
-      await req.document.delete();
+      await req.document.delete(trx);
 
       // Fix order in parent
-      await parent.fetchRelated('_children(order)');
-      await parent.fixOrder();
+      await parent.fetchRelated('_children(order)', trx);
+      await parent.fixOrder(trx);
+
+      // Return deleted
       return {
         status: 204,
       };

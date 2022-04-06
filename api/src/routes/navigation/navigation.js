@@ -11,11 +11,12 @@ export default [
     op: 'get',
     view: '/@navigation',
     permission: 'View',
-    handler: async (req) => {
-      const root = await Document.fetchOne({ parent: null });
+    handler: async (req, trx) => {
+      const root = await Document.fetchOne({ parent: null }, {}, trx);
       const items = await Document.fetchAll(
         { parent: root.uuid },
         { order: 'position_in_parent' },
+        trx,
       );
       return {
         json: {

@@ -151,7 +151,7 @@ export class Document extends Model {
    * @param {Object} trx Transaction object.
    * @returns {Promise} A Promise that resolves when the ordering has been done.
    */
-  async reorder(id, delta) {
+  async reorder(id, delta, trx) {
     let to;
     const from = findIndex(this._children, { id });
 
@@ -175,11 +175,11 @@ export class Document extends Model {
    * @param {Object} trx Transaction object.
    * @returns {Promise} A Promise that resolves when the ordering has been done.
    */
-  async fixOrder() {
+  async fixOrder(trx) {
     return await Promise.all(
       this._children.map(
         async (child, index) =>
-          await child.update({ position_in_parent: index }),
+          await child.update({ position_in_parent: index }, trx),
       ),
     );
   }
@@ -280,9 +280,10 @@ export class Document extends Model {
    * @param {Array} slugs Array of slugs.
    * @param {Object} user Current user object.
    * @param {Array} roles Array of roles.
+   * @param {Object} trx Transaction object.
    * @returns {Promise<Object>} A Promise that resolves to an object.
    */
-  async traverse(slugs, user, roles) {
+  async traverse(slugs, user, roles, trx) {
     // Check if at leaf node
     if (slugs.length === 0) {
       // Add owner to roles if current document owned by user
@@ -291,8 +292,8 @@ export class Document extends Model {
         ...(user.id === this.owner ? ['Owner'] : []),
       ]);
 
-      // Get all permissions from roles
-      const permissions = await Role.findPermissions(extendedRoles);
+      // Fetch all permissions from roles
+      const permissions = await Role.fetchPermissions(extendedRoles, trx);
 
       // Return document and authorization data
       return {
@@ -302,21 +303,30 @@ export class Document extends Model {
       };
     } else {
       // Fetch child matching the id
-      const child = await Document.fetchOne({
-        parent: this.uuid,
-        id: head(slugs),
-      });
+      const child = await Document.fetchOne(
+        {
+          parent: this.uuid,
+          id: head(slugs),
+        },
+        {},
+        trx,
+      );
 
       // Check if child not found
       if (!child) {
         return false;
       }
 
-      // Get roles based on user and group from child
-      const childRoles = await user.findRolesByDocument(child.uuid);
+      // Fetch roles based on user and group from child
+      const childRoles = await user.fetchRolesByDocument(child.uuid, trx);
 
       // Recursively call the traverse on child
-      return child.traverse(drop(slugs), user, uniq([...roles, ...childRoles]));
+      return child.traverse(
+        drop(slugs),
+        user,
+        uniq([...roles, ...childRoles]),
+        trx,
+      );
     }
   }
 }

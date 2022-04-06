@@ -132,7 +132,7 @@ export class Model extends mixin(ObjectionModel, [
     const curKeys = keys(this);
 
     // Fetch related
-    const related = await this.$fetchGraph(graph, { transasction: trx });
+    const related = await this.$fetchGraph(graph, { transaction: trx });
 
     // Get new keys
     const newKeys = difference(keys(related), curKeys);

@@ -10,8 +10,8 @@ export default [
     op: 'get',
     view: '/@sharing',
     permission: 'View',
-    handler: async (req) => {
-      const roles = await Role.fetchAll({}, 'order');
+    handler: async (req, trx) => {
+      const roles = await Role.fetchAll({}, 'order', trx);
       return {
         json: {
           available_roles: roles.map((role) => ({

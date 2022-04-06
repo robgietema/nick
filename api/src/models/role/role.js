@@ -51,14 +51,14 @@ export class Role extends Model {
   }
 
   /**
-   * Find permissions.
-   * @method findByRoles
+   * Fetch permissions.
+   * @method fetchPermission
    * @static
    * @param {Array} roles Array of roles
    * @param {Object} trx Transaction object.
    * @returns {Array} Array of roles.
    */
-  static async findPermissions(roles, trx) {
+  static async fetchPermissions(roles, trx) {
     return uniq(
       map(
         await this.relatedQuery('_permissions', trx).for(roles),

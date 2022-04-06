@@ -10,8 +10,8 @@ export default [
     op: 'get',
     view: '/@roles',
     permission: 'View',
-    handler: async (req) => {
-      const roles = await Role.fetchAll({}, 'order');
+    handler: async (req, trx) => {
+      const roles = await Role.fetchAll({}, { order: 'order' }, trx);
       return {
         json: roles.toJSON(req),
       };

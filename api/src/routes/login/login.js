@@ -14,7 +14,7 @@ export default [
   {
     op: 'post',
     view: '/@login',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       if (!req.body.login || !req.body.password) {
         throw new RequestException(400, {
           error: {
@@ -25,7 +25,7 @@ export default [
       }
 
       // Find user
-      const user = await User.fetchById(req.body.login);
+      const user = await User.fetchById(req.body.login, {}, trx);
 
       // If user not found
       if (!user) {
@@ -66,7 +66,7 @@ export default [
   {
     op: 'post',
     view: '/@login-renew',
-    handler: async (req) => ({
+    handler: async (req, trx) => ({
       json: {
         token: jwt.sign(
           {

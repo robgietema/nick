@@ -13,10 +13,14 @@ export default [
     op: 'get',
     view: '/@groups/:id',
     permission: 'Manage User',
-    handler: async (req) => {
-      const group = await Group.fetchById(req.params.id, {
-        related: '_roles',
-      });
+    handler: async (req, trx) => {
+      const group = await Group.fetchById(
+        req.params.id,
+        {
+          related: '_roles',
+        },
+        trx,
+      );
       if (!group) {
         throw new RequestException(404, { error: req.i18n('Not found.') });
       }
@@ -29,10 +33,11 @@ export default [
     op: 'get',
     view: '/@groups',
     permission: 'Manage Users',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const groups = await Group.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'title', related: '_roles' },
+        trx,
       );
       return {
         json: groups.toJSON(req),
@@ -43,7 +48,7 @@ export default [
     op: 'post',
     view: '/@groups',
     permission: 'Manage Users',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const group = await Group.create(
         {
           id: req.body.groupname,
@@ -54,6 +59,7 @@ export default [
           _users: req.body.users,
         },
         { related: 'roles' },
+        trx,
       );
 
       // Send created
@@ -67,15 +73,19 @@ export default [
     op: 'patch',
     view: '/@groups/:id',
     permission: 'Manage Users',
-    handler: async (req) => {
-      await Group.update(req.params.id, {
-        id: req.body.groupname,
-        title: req.body.title,
-        description: req.body.description,
-        email: req.body.email,
-        _roles: req.body.roles,
-        _users: req.body.users,
-      });
+    handler: async (req, trx) => {
+      await Group.update(
+        req.params.id,
+        {
+          id: req.body.groupname,
+          title: req.body.title,
+          description: req.body.description,
+          email: req.body.email,
+          _roles: req.body.roles,
+          _users: req.body.users,
+        },
+        trx,
+      );
 
       // Send ok
       return {
@@ -87,7 +97,7 @@ export default [
     op: 'delete',
     view: '/@groups/:id',
     permission: 'Manage Users',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       if (includes(config.systemGroups, req.params.id)) {
         throw new RequestException(401, {
           error: {
@@ -96,7 +106,7 @@ export default [
           },
         });
       }
-      await Group.deleteById(req.params.id);
+      await Group.deleteById(req.params.id, trx);
       return {
         status: 204,
       };

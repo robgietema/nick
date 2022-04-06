@@ -11,8 +11,8 @@ export default [
   {
     op: 'post',
     view: '/@workflow/:transition',
-    handler: async (req) => {
-      await req.type.fetchRelated('_workflow');
+    handler: async (req, trx) => {
+      await req.type.fetchRelated('_workflow', trx);
 
       // Check permission
       if (
@@ -32,10 +32,13 @@ export default [
         req.type._workflow.json.transitions[req.params.transition].new_state;
       const modified = moment.utc().format();
 
-      await req.document.update({
-        modified: modified,
-        workflow_state: new_state,
-      });
+      await req.document.update(
+        {
+          modified: modified,
+          workflow_state: new_state,
+        },
+        trx,
+      );
 
       return {
         json: {
@@ -53,8 +56,8 @@ export default [
     op: 'get',
     view: '/@workflow',
     permission: 'View',
-    handler: async (req) => {
-      await req.type.fetchRelated('_workflow');
+    handler: async (req, trx) => {
+      await req.type.fetchRelated('_workflow', trx);
       return {
         json: req.type._workflow.toJSON(req),
       };

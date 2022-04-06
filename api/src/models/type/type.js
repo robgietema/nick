@@ -70,10 +70,9 @@ export class Type extends Model {
    * @method getFactoryFields
    * @static
    * @param {string} factory Factory field.
-   * @param {Object} trx Transaction object.
    * @returns {Array} Array of fields with given factory.
    */
-  getFactoryFields(factory, trx) {
+  getFactoryFields(factory) {
     const properties = this._schema.properties;
 
     // Get file fields

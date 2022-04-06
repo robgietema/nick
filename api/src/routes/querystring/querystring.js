@@ -10,7 +10,7 @@ export default [
     op: 'get',
     view: '/@querystring',
     permission: 'View',
-    handler: async (req) => ({
+    handler: async (req, trx) => ({
       json: {
         '@id': `${getUrl(req)}${req.document.path}/@querystring`,
         indexes: {

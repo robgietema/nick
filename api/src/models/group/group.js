@@ -79,14 +79,14 @@ export class Group extends Model {
   }
 
   /**
-   * Find roles by document.
-   * @method findRolesByDocument
+   * Fetch roles by document.
+   * @method fetchRolesByDocument
    * @param {Array} groups Array of groups
    * @param {string} document Uuid of the document
    * @param {Object} trx Transaction object.
    * @returns {Array} Array of roles.
    */
-  static async findRolesByDocument(groups, document, trx) {
+  static async fetchRolesByDocument(groups, document, trx) {
     return uniq(
       map(
         await this.relatedQuery('_documentRoles', trx).for(groups).where({

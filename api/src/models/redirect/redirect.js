@@ -33,14 +33,16 @@ export class Redirect extends Model {
    * @method fetchByPath
    * @static
    * @param {string} path Path to check
+   * @param {Object} trx Transaction object.
    * @returns {Object} Document model or false.
    */
-  static fetchByPath(path) {
+  static fetchByPath(path, trx) {
     return this.fetchOne(
       {
         path,
       },
       { related: '_document' },
+      trx,
     );
   }
 }

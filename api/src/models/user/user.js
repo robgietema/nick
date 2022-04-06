@@ -120,13 +120,13 @@ export class User extends Model {
   }
 
   /**
-   * Find roles by document.
-   * @method findRolesByDocument
+   * Fetch roles by document.
+   * @method fetchRolesByDocument
    * @param {string} document Uuid of the document
    * @param {Object} trx Transaction object.
    * @returns {Array} Array of roles.
    */
-  async findRolesByDocument(document, trx) {
+  async fetchRolesByDocument(document, trx) {
     return uniq([
       ...map(
         await this.$relatedQuery('_documentRoles', trx).where({
@@ -134,7 +134,7 @@ export class User extends Model {
         }),
         (role) => role.id,
       ),
-      ...(await Group.findRolesByDocument(this.getGroups(), document, trx)),
+      ...(await Group.fetchRolesByDocument(this.getGroups(), document, trx)),
     ]);
   }
 }

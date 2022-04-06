@@ -31,27 +31,35 @@ app.use(cors);
 // Add routes
 map(routes, (route) => {
   app[route.op](`*${route.view}`, async (req, res) => {
+    // Start transaction
+    const trx = await Document.startTransaction();
+
     try {
       // Get user
-      req.user = await User.fetchById(getUserId(req), {
-        related: '[_roles, _groups._roles]',
-      });
+      req.user = await User.fetchById(
+        getUserId(req),
+        {
+          related: '[_roles, _groups._roles]',
+        },
+        trx,
+      );
 
       // Traverse to document
-      const root = await Document.fetchOne({ parent: null });
+      const root = await Document.fetchOne({ parent: null }, {}, trx);
       const result = await root.traverse(
         compact(req.params[0].split('/')), // Slugs
         req.user,
         uniq([
-          ...(await req.user.findRolesByDocument(root.uuid)), // Root roles
+          ...(await req.user.fetchRolesByDocument(root.uuid)), // Root roles
           ...req.user.getRoles(), // Global roles
         ]),
+        trx,
       );
 
       // If result not found
       if (!result) {
         // Find redirect
-        const redirect = await Redirect.fetchByPath(req.params[0]);
+        const redirect = await Redirect.fetchByPath(req.params[0], trx);
 
         // If no redirect found
         if (!redirect) {
@@ -69,7 +77,7 @@ map(routes, (route) => {
       const { document, permissions, roles } = result;
 
       // Find type
-      const type = await Type.fetchById(document.type);
+      const type = await Type.fetchById(document.type, {}, trx);
 
       // Check if type found
       if (!type) {
@@ -79,7 +87,7 @@ map(routes, (route) => {
       }
 
       // Get workflow
-      await type.fetchRelated('_workflow');
+      await type.fetchRelated('_workflow', trx);
 
       // Call handler
       req.document = document;
@@ -99,7 +107,16 @@ map(routes, (route) => {
       }
 
       // Call view
-      const view = await route.handler(req, res);
+      const view = await route.handler(req, trx);
+
+      // Try to commit the transaction
+      try {
+        await trx.commit();
+      } catch (err) {
+        throw new RequestException(500, {
+          message: req.i18n('Transaction error.'),
+        });
+      }
 
       // Add headers if specified
       if (view && view.headers) {
@@ -118,6 +135,9 @@ map(routes, (route) => {
         res.end(undefined, 'binary');
       }
     } catch (err) {
+      // Rollback transaction
+      await trx.rollback();
+
       // Check if request exception
       if (err instanceof RequestException) {
         // Log error

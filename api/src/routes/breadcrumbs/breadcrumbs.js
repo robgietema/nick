@@ -13,23 +13,36 @@ import { Document } from '../../models';
  * @param {Object} document Current document object.
  * @param {Array} slugs Array of slugs.
  * @param {Array} items Current array of items.
+ * @param {Object} trx Transaction object.
  * @returns {Promise<Array>} A Promise that resolves to an array of items.
  */
-async function traverse(document, slugs, items) {
+async function traverse(document, slugs, items, trx) {
   if (slugs.length === 0) {
     return items;
   } else {
-    const parent = await Document.fetchOne({
-      parent: document.uuid,
-      id: head(slugs),
-    });
-    return traverse(parent, drop(slugs), [
-      ...items,
+    // Get parent
+    const parent = await Document.fetchOne(
       {
-        '@id': `${last(items)['@id']}/${parent.id}`,
-        title: parent.json.title,
+        parent: document.uuid,
+        id: head(slugs),
       },
-    ]);
+      {},
+      trx,
+    );
+
+    // Traverse up
+    return traverse(
+      parent,
+      drop(slugs),
+      [
+        ...items,
+        {
+          '@id': `${last(items)['@id']}/${parent.id}`,
+          title: parent.json.title,
+        },
+      ],
+      trx,
+    );
   }
 }
 
@@ -38,15 +51,20 @@ export default [
     op: 'get',
     view: '/@breadcrumbs',
     permission: 'View',
-    handler: async (req) => {
+    handler: async (req, trx) => {
       const slugs = req.params[0].split('/');
-      const document = await Document.fetchOne({ parent: null });
-      const items = await traverse(document, compact(slugs), [
-        {
-          '@id': `${req.protocol}://${req.headers.host}`,
-          title: document.json.title,
-        },
-      ]);
+      const document = await Document.fetchOne({ parent: null }, {}, trx);
+      const items = await traverse(
+        document,
+        compact(slugs),
+        [
+          {
+            '@id': `${req.protocol}://${req.headers.host}`,
+            title: document.json.title,
+          },
+        ],
+        trx,
+      );
       return {
         json: {
           '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@breadcrumbs`,
