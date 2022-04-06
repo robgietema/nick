@@ -26,7 +26,7 @@ Make sure the nick user has the privileges to run the last command.
 
     $ yarn migrate
 
-### Import dummy content
+### Import initial content
 
     $ yarn seed
 
