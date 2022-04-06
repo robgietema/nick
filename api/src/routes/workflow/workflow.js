@@ -11,7 +11,7 @@ export default [
   {
     op: 'post',
     view: '/@workflow/:transition',
-    handler: async (req, res) => {
+    handler: async (req) => {
       await req.type.fetchRelated('_workflow');
 
       // Check permission
@@ -53,7 +53,7 @@ export default [
     op: 'get',
     view: '/@workflow',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       await req.type.fetchRelated('_workflow');
       return {
         json: req.type._workflow.toJSON(req),

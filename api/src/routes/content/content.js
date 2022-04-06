@@ -106,7 +106,7 @@ export default [
     op: 'post',
     view: '/@move',
     permission: 'Add',
-    handler: async (req, res) => {
+    handler: async (req) => {
       // Get children
       await req.document.fetchRelated('_children');
       const childIds = req.document._children.map((child) => child.id);
@@ -178,7 +178,7 @@ export default [
     op: 'get',
     view: '/@history/:version',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       await req.document.fetchRelated('[_children._type, _type]');
       await req.document.fetchVersion(parseInt(req.params.version, 10));
       return {
@@ -190,7 +190,7 @@ export default [
     op: 'get',
     view: '/@@download/:field',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const field = req.document.json[req.params.field];
       const buffer = readFile(field.uuid);
       return {
@@ -206,7 +206,7 @@ export default [
     op: 'get',
     view: '/@@images/:uuid.:ext',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const buffer = readFile(req.params.uuid);
       return {
         headers: { 'Content-Type': `image/${req.params.ext}` },
@@ -218,7 +218,7 @@ export default [
     op: 'get',
     view: '/@@images/:field',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const field = req.document.json[req.params.field];
       const buffer = readFile(field.uuid);
       return {
@@ -234,7 +234,7 @@ export default [
     op: 'get',
     view: '/@@images/:field/:scale',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const field = req.document.json[req.params.field];
       const buffer = readFile(field.scales[req.params.scale].uuid);
       return {
@@ -250,7 +250,7 @@ export default [
     op: 'get',
     view: '',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       await req.document.fetchRelated('[_children(order)._type, _type]');
       return {
         json: await req.document.toJSON(req),
@@ -261,7 +261,7 @@ export default [
     op: 'post',
     view: '',
     permission: 'Add',
-    handler: async (req, res) => {
+    handler: async (req) => {
       // Get content type date
       const type = await Type.fetchById(req.body['@type'], {
         related: '_workflow',
@@ -334,7 +334,7 @@ export default [
     op: 'patch',
     view: '',
     permission: 'Modify',
-    handler: async (req, res) => {
+    handler: async (req) => {
       // Check if ordering request
       if (typeof req.body?.ordering !== 'undefined') {
         // Get children and reorder
@@ -438,7 +438,7 @@ export default [
     op: 'delete',
     view: '',
     permission: 'Modify',
-    handler: async (req, res) => {
+    handler: async (req) => {
       // Get file and image fields
       await req.type.fetchSchema();
       const fileFields = req.type.getFactoryFields('File');

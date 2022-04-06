@@ -8,6 +8,6 @@ export default [
     op: 'get',
     view: '/@controlpanels',
     permission: 'View',
-    handler: async (req, res) => ({ json: [] }),
+    handler: async (req) => ({ json: [] }),
   },
 ];

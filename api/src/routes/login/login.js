@@ -14,7 +14,7 @@ export default [
   {
     op: 'post',
     view: '/@login',
-    handler: async (req, res) => {
+    handler: async (req) => {
       if (!req.body.login || !req.body.password) {
         throw new RequestException(400, {
           error: {
@@ -66,7 +66,7 @@ export default [
   {
     op: 'post',
     view: '/@login-renew',
-    handler: async (req, res) => ({
+    handler: async (req) => ({
       json: {
         token: jwt.sign(
           {
@@ -82,7 +82,7 @@ export default [
   {
     op: 'post',
     view: '/@logout',
-    handler: async (req, res) => ({
+    handler: async (req) => ({
       status: 204,
     }),
   },

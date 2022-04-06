@@ -13,7 +13,7 @@ export default [
     op: 'get',
     view: '/@types',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const types = await Type.fetchAll();
       return {
         json: types.toJSON(req),
@@ -24,7 +24,7 @@ export default [
     op: 'get',
     view: '/@types/:type',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const type = await Type.fetchById(req.params.type);
       if (!type) {
         throw new RequestException(404, { error: req.i18n('Not found.') });

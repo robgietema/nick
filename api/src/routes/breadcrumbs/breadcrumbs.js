@@ -38,7 +38,7 @@ export default [
     op: 'get',
     view: '/@breadcrumbs',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const slugs = req.params[0].split('/');
       const document = await Document.fetchOne({ parent: null });
       const items = await traverse(document, compact(slugs), [

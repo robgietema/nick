@@ -107,7 +107,7 @@ export default [
     op: 'get',
     view: '/@search',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const items = await Document.fetchAll(
         ...querystringToQuery(req.query, req.document.path),
       );
@@ -126,7 +126,7 @@ export default [
     op: 'post',
     view: '/@querystring-search',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const items = await Document.fetchAll();
       return {
         json: {

@@ -10,7 +10,7 @@ export default [
     op: 'get',
     view: '/@actions',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const actions = await Action.fetchAll({}, { order: 'order' });
       return {
         json: actions.toJSON(req),

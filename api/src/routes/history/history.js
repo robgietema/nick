@@ -14,7 +14,7 @@ export default [
     op: 'get',
     view: '/@history',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       await req.document.fetchRelated('_versions(order)._actor');
       const versions = new Collection(req.document._versions);
       return {
@@ -26,7 +26,7 @@ export default [
     op: 'patch',
     view: '/@history',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       // Check if locked
       const lock = req.document.lock;
       if (

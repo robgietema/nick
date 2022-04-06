@@ -13,7 +13,7 @@ export default [
     op: 'get',
     view: '/@groups/:id',
     permission: 'Manage User',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const group = await Group.fetchById(req.params.id, {
         related: '_roles',
       });
@@ -29,7 +29,7 @@ export default [
     op: 'get',
     view: '/@groups',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const groups = await Group.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'title', related: '_roles' },
@@ -43,7 +43,7 @@ export default [
     op: 'post',
     view: '/@groups',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const group = await Group.create(
         {
           id: req.body.groupname,
@@ -67,7 +67,7 @@ export default [
     op: 'patch',
     view: '/@groups/:id',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       await Group.update(req.params.id, {
         id: req.body.groupname,
         title: req.body.title,
@@ -87,7 +87,7 @@ export default [
     op: 'delete',
     view: '/@groups/:id',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       if (includes(config.systemGroups, req.params.id)) {
         throw new RequestException(401, {
           error: {

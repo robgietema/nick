@@ -15,7 +15,7 @@ export default [
     op: 'get',
     view: '/@users/:id',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const user = await User.fetchById(req.params.id, {
         related: '[_roles, _groups]',
       });
@@ -31,7 +31,7 @@ export default [
     op: 'get',
     view: '/@users',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const groups = await User.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'fullname', related: '[_roles, _groups]' },
@@ -45,7 +45,7 @@ export default [
     op: 'post',
     view: '/@users',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const password = await bcrypt.hash(req.body.password, 10);
       const user = await User.create(
         {
@@ -70,7 +70,7 @@ export default [
     op: 'patch',
     view: '/@users/:id',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       await User.update(req.params.id, {
         id: req.body.username,
         fullname: req.body.fullname,
@@ -89,7 +89,7 @@ export default [
     op: 'delete',
     view: '/@users/:id',
     permission: 'Manage Users',
-    handler: async (req, res) => {
+    handler: async (req) => {
       if (includes(config.systemUsers, req.params.id)) {
         throw new RequestException(401, {
           error: {

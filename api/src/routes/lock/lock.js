@@ -12,7 +12,7 @@ export default [
     op: 'get',
     view: '/@lock',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       if (req.document.lock.locked && lockExpired(req.document)) {
         return {
           json: {
@@ -31,7 +31,7 @@ export default [
     op: 'post',
     view: '/@lock',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const lock = req.document.lock;
 
       // Check if lock already exists
@@ -82,7 +82,7 @@ export default [
     op: 'delete',
     view: '/@lock',
     permission: 'Modify',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const lock = req.document.lock;
 
       // If not locked just send lock status

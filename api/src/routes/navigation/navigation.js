@@ -11,7 +11,7 @@ export default [
     op: 'get',
     view: '/@navigation',
     permission: 'View',
-    handler: async (req, res) => {
+    handler: async (req) => {
       const root = await Document.fetchOne({ parent: null });
       const items = await Document.fetchAll(
         { parent: root.uuid },
