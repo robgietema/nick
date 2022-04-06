@@ -190,7 +190,7 @@ msgstr "Verwijderen"
 msgid "Description"
 msgstr "Omschrijving"
 
-#: src/routes/content/content.js:365
+#: src/routes/content/content.js:381
 #: src/routes/history/history.js:42
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -273,7 +273,7 @@ msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
-#: src/app.js:139
+#: src/app.js:159
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
@@ -349,15 +349,15 @@ msgstr "Ontbrekende inloggegevens"
 msgid "Modify"
 msgstr "Wijzigen"
 
-#: src/routes/lock/lock.js:99
+#: src/routes/lock/lock.js:102
 # defaultMessage: Not allowed
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
-#: src/app.js:58
-#: src/routes/groups/groups.js:21
+#: src/app.js:66
+#: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
-#: src/routes/users/users.js:23
+#: src/routes/users/users.js:27
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr ""
@@ -534,12 +534,12 @@ msgstr "Indienen"
 msgid "Submit for publication"
 msgstr "Indienen ter publicatie"
 
-#: src/routes/groups/groups.js:95
+#: src/routes/groups/groups.js:105
 # defaultMessage: System group
 msgid "System group"
 msgstr "Systeem groep"
 
-#: src/routes/users/users.js:97
+#: src/routes/users/users.js:107
 # defaultMessage: System users
 msgid "System users"
 msgstr ""
@@ -589,7 +589,12 @@ msgstr "Deze naam wordt weergegeven in de URL."
 msgid "Title"
 msgstr "Titel"
 
-#: src/app.js:77
+#: src/app.js:117
+# defaultMessage: Transaction error.
+msgid "Transaction error."
+msgstr ""
+
+#: src/app.js:85
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
@@ -631,29 +636,29 @@ msgstr "Wanneer deze datum is bereikt, is de inhoud niet langer zichtbaar in ver
 msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
 
-#: src/app.js:95
+#: src/app.js:103
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
 msgstr ""
 
-#: src/routes/groups/groups.js:94
+#: src/routes/groups/groups.js:104
 # defaultMessage: You can't delete system groups.
 msgid "You can't delete system groups."
 msgstr "U kunt geen systeemgroepen verwijderen."
 
-#: src/routes/users/users.js:96
+#: src/routes/users/users.js:106
 # defaultMessage: You can't delete system users.
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:362
+#: src/routes/content/content.js:378
 #: src/routes/history/history.js:39
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
 
-#: src/routes/lock/lock.js:96
+#: src/routes/lock/lock.js:99
 # defaultMessage: You don't have permission to unlock this document.
 msgid "You don't have permission to unlock this document."
 msgstr "U heeft geen toestemming om dit document te ontgrendelen."
