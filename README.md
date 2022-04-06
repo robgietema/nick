@@ -1,4 +1,4 @@
-# Nick Nearly Headless CMS
+# Nick: Nearly Headless CMS
 
 ## Installation
 
