@@ -1,57 +1,44 @@
-## Documentation
+# Nick Nearly Headless CMS
 
-A training on how to create your own website using Volto is available as part of the Plone training at [https://training.plone.org/5/volto/index.html](https://training.plone.org/5/volto/index.html).
+## Installation
 
-## Quick Start
+### Prerequisites
 
-Below is a list of commands you will probably find useful.
+- [Node.js==16.x.x](https://nodejs.org/)
+- [PostgreSQL](https://www.postgresql.org/)
 
-### `yarn start`
+### Create Database
 
-Runs the project in development mode.
-You can view your application at `http://localhost:3000`
+    $ CREATE DATABASE nick;
+    $ CREATE USER nick WITH ENCRYPTED PASSWORD 'nick';
+    $ GRANT ALL PRIVILEGES ON DATABASE nick TO nick;
+    $ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-The page will reload if you make edits.
+Make sure the nick user has the privileges to run the last command.
 
-### `yarn build`
+### Install Dependencies
 
-Builds the app for production to the build folder.
+    $ yarn
 
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
+## Development
 
-### `yarn start:prod`
+### Create DB structure
 
-Runs the compiled app in production.
+    $ yarn migrate
 
-You can again view your application at `http://localhost:3000`
+### Import dummy content
 
-### `yarn test`
+    $ yarn seed
 
-Runs the test watcher (Jest) in an interactive mode.
-By default, runs tests related to files changed since the last commit.
+### Run backend
 
-### `yarn i18n`
+    $ yarn start
 
-Runs the test i18n runner which extracts all the translation strings and
-generates the needed files.
+### Testing
 
+    $ yarn test
 
-### mrs-developer
+## License
 
-[mrs-developer](https://github.com/collective/mrs-developer) is a great tool
-for developing multiple packages at the same time.
-
-mrs-developer should work with this project by running the configured shortcut script:
-
-```bash
-yarn develop
-```
-
-Volto's latest razzle config will pay attention to your tsconfig.json (or jsconfig.json) file for any customizations.
-
-In case you don't want (or can't) install mrs-developer globally, you can install it in this project by running:
-
-```bash
-yarn add -W mrs-developer
-```
+MIT License. Copyrights hold Rob Gietema.
+See [LICENSE.md](LICENSE.md) for details.
