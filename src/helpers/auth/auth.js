@@ -31,7 +31,6 @@ export function getAdminHeader() {
       fullname: 'Admin',
     },
     config.secret,
-    { expiresIn: '12h' },
   )}`;
 }
 

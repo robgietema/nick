@@ -52,3 +52,26 @@ export function uniqueId(id, ids, counter = 0) {
 export function removeUndefined(object) {
   return omitBy(object, (value) => typeof value === 'undefined');
 }
+
+/**
+ * Stringify and fix uuid fields
+ * @method stringify
+ * @param {Object} object Object to stringify
+ * @returns {string} Stringified object
+ */
+export function stringify(object) {
+  return JSON.stringify(
+    object,
+    (key, value) => {
+      if (
+        value.match(
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+        )
+      ) {
+        return '<UUID>';
+      }
+      return value;
+    },
+    '  ',
+  );
+}

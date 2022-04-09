@@ -1,6 +1,7 @@
 import { dropRight, last, map, omit } from 'lodash';
 import { promises as fs } from 'fs';
 import moment from 'moment';
+import { v4 as uuid } from 'uuid';
 
 import { log, mapAsync, stripI18n } from '../helpers';
 import { Document } from '../models';
@@ -59,6 +60,7 @@ export const seed = async (knex) => {
       // Insert document
       const insert = await Document.create(
         {
+          uuid: document.uuid || uuid(),
           version: 'version' in document ? document.version : versionCount - 1,
           id,
           path,
@@ -78,7 +80,6 @@ export const seed = async (knex) => {
         {},
         knex,
       );
-      const uuid = insert.uuid;
 
       // Create versions
       const versions =
@@ -109,7 +110,11 @@ export const seed = async (knex) => {
       const sharingUsers = document.sharing?.users || [];
       await mapAsync(sharingUsers, async (user) => {
         await knex('user_role_document').insert(
-          map(user.roles, (role) => ({ user: user.id, role, document: uuid })),
+          map(user.roles, (role) => ({
+            user: user.id,
+            role,
+            document: insert.uuid,
+          })),
         );
       });
 
@@ -120,7 +125,7 @@ export const seed = async (knex) => {
           map(group.roles, (role) => ({
             group: group.id,
             role,
-            document: uuid,
+            document: insert.uuid,
           })),
         );
       });

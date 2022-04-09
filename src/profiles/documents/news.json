@@ -1,9 +1,12 @@
 {
+  "uuid": "32215c67-86de-462a-8cc0-eabcd2b39c26",
   "type": "Folder",
   "title": "News",
   "description": "News Items",
   "owner": "admin",
   "workflow_state": "published",
+  "created": "2022-04-02T20:22:00.000Z",
+  "modified": "2022-04-02T20:22:00.000Z",
   "blocks": {
     "79ba8858-1dd3-4719-b731-5951e32fbf79": {
       "@type": "title"
@@ -14,7 +17,7 @@
   },
   "versions": [
     {
-      "created": "2022-02-27T15:00:00+00:00",
+      "created": "2022-04-02T20:22:00.000Z",
       "actor": "admin",
       "title": "Old News",
       "changeNote": "Initial version",
@@ -28,7 +31,7 @@
       }
     },
     {
-      "created": "2022-02-27T16:00:00+00:00",
+      "created": "2022-04-02T20:22:00.000Z",
       "actor": "admin",
       "title": "News",
       "changeNote": "Changed title",

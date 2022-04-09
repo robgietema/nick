@@ -4,13 +4,13 @@
  */
 
 import actions from './actions/actions';
+import authentication from './authentication/authentication';
 import breadcrumbs from './breadcrumbs/breadcrumbs';
 import content from './content/content';
 import controlpanels from './controlpanels/controlpanels';
 import groups from './groups/groups';
 import history from './history/history';
 import lock from './lock/lock';
-import login from './login/login';
 import navigation from './navigation/navigation';
 import querystring from './querystring/querystring';
 import roles from './roles/roles';
@@ -22,12 +22,12 @@ import workflow from './workflow/workflow';
 
 export default [
   ...actions,
+  ...authentication,
   ...breadcrumbs,
   ...controlpanels,
   ...groups,
   ...history,
   ...lock,
-  ...login,
   ...navigation,
   ...querystring,
   ...roles,

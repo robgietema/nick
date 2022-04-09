@@ -5,7 +5,17 @@
 
 import slugify from 'slugify';
 import moment from 'moment';
-import { flattenDeep, includes, keys, map, omit, pick, uniq } from 'lodash';
+import {
+  flattenDeep,
+  includes,
+  intersection,
+  keys,
+  map,
+  omit,
+  pick,
+  uniq,
+} from 'lodash';
+import { v4 as uuid } from 'uuid';
 
 import {
   getRootUrl,
@@ -274,6 +284,15 @@ export default [
         trx,
       );
 
+      // Check required fields
+      const required = type._schema.required;
+      const requiredPosted = intersection(required, keys(req.body));
+      if (required.length !== requiredPosted.length) {
+        throw new RequestException(400, {
+          message: req.i18n('Required field(s) missing.'),
+        });
+      }
+
       // Set creation time
       const created = moment.utc().format();
 
@@ -303,6 +322,7 @@ export default [
       const document = await req.document.createRelatedAndFetch(
         '_children',
         {
+          uuid: req.body.uuid || uuid(),
           id,
           path: `${req.document.path === '/' ? '' : req.document.path}/${id}`,
           type: req.body['@type'],
@@ -353,7 +373,7 @@ export default [
       if (typeof req.body?.ordering !== 'undefined') {
         // Get children and reorder
         await req.document.fetchRelated('_children(order)', trx);
-        this.document.reorder(
+        req.document.reorder(
           req.body.ordering.obj_id,
           req.body.ordering.delta,
           trx,

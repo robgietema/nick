@@ -165,7 +165,7 @@ export class Document extends Model {
     }
 
     // Reorder and save to db
-    this._children.splice(to, 0, this._chilren.splice(from, 1)[0]);
+    this._children.splice(to, 0, this._children.splice(from, 1)[0]);
     await this.fixOrder();
   }
 

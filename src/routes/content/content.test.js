@@ -1,8 +1,17 @@
-import request from 'supertest';
+import { v4 as uuid } from 'uuid';
+import moment from 'moment';
 
 import app from '../../app';
 import { Document } from '../../models';
-import { getAdminHeader } from '../../helpers';
+import { testRequest } from '../../helpers';
+
+jest.mock('moment');
+moment.utc.mockReturnValue({
+  format: () => '2022-04-08T16:00:00.000Z',
+});
+
+jest.mock('uuid');
+uuid.mockReturnValue('a95388f2-e4b3-4292-98aa-62656cbd5b9c');
 
 describe('Content', () => {
   afterEach(() =>
@@ -11,94 +20,38 @@ describe('Content', () => {
     }),
   );
 
-  it('should return a content object', () =>
-    request(app)
-      .get('/news')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/news/),
-          expect(res.body['@type']).toBe('Folder'),
-          expect(res.body.title).toBe('News'),
-          expect(res.body.id).toBe('news'),
-          expect(res.body.UID).toBeDefined(),
-          expect(res.body.items).toBeDefined(),
-          expect(res.body.is_folderish).toBe(true),
-        ]),
-      ));
-  it('should return a content object of a specific version', () =>
-    request(app)
-      .get('/news/@history/0')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/news/),
-          expect(res.body['@type']).toBe('Folder'),
-          expect(res.body.title).toBe('Old News'),
-          expect(res.body.id).toBe('news'),
-          expect(res.body.UID).toBeDefined(),
-          expect(res.body.items).toBeDefined(),
-          expect(res.body.is_folderish).toBe(true),
-        ]),
-      ));
-  it('should add a content object', () =>
-    request(app)
-      .post('/news')
-      .set('Authorization', getAdminHeader())
-      .send({
-        '@type': 'Page',
-        title: 'My News Item',
-        description: 'News Description',
-      })
-      .expect(201)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body['@id']).toMatch(
-            /http:\/\/127.0.0.1:.*\/news\/my-news-item/,
-          ),
-          expect(res.body['@type']).toBe('Page'),
-          expect(res.body.title).toBe('My News Item'),
-          expect(res.body.description).toBe('News Description'),
-          expect(res.body.id).toBe('my-news-item'),
-          expect(res.body.UID).toBeDefined(),
-        ]),
-      ));
+  it('should return a content object', () => {
+    jest
+      .spyOn(Document.prototype, 'getUrl')
+      .mockReturnValue('http://localhost:8000/news');
+    return testRequest(app, 'content/content_get');
+  });
+
+  it('should add a content object', () => {
+    jest
+      .spyOn(Document.prototype, 'getUrl')
+      .mockReturnValue('http://localhost:8000/news/my-news-item');
+    return testRequest(app, 'content/content_post');
+  });
+
   it('should update a content object', async () => {
-    await request(app)
-      .post('/news')
-      .set('Authorization', getAdminHeader())
-      .send({
-        '@type': 'Page',
-        title: 'My News Item',
-        description: 'News Description',
-      });
-    return request(app)
-      .patch('/news/my-news-item')
-      .set('Authorization', getAdminHeader())
-      .send({
-        title: 'My New News Item',
-      })
-      .expect(204);
+    await testRequest(app, 'content/content_post');
+    return testRequest(app, 'content/content_patch');
   });
+
   it('should delete a content object', async () => {
-    await request(app)
-      .post('/news')
-      .set('Authorization', getAdminHeader())
-      .send({
-        '@type': 'Page',
-        title: 'My News Item',
-        description: 'News Description',
-      });
-    return request(app)
-      .delete('/news/my-news-item')
-      .set('Authorization', getAdminHeader())
-      .expect(204);
+    await testRequest(app, 'content/content_post');
+    return testRequest(app, 'content/content_delete');
   });
+
   it('should return not found when content not found', () =>
-    request(app)
-      .get('/random')
-      .set('Authorization', getAdminHeader())
-      .expect(404));
+    testRequest(app, 'content/content_get_notfound'));
+
+  it('should return bad request when required field is missing', () =>
+    testRequest(app, 'content/content_post_badrequest'));
+
+  it('should be able to handle reordering of content', async () => {
+    await testRequest(app, 'content/content_post');
+    return testRequest(app, 'content/content_patch_reorder');
+  });
 });

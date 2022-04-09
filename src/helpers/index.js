@@ -20,5 +20,12 @@ export { knex } from './knex/knex';
 export { lockExpired } from './lock/lock';
 export { log, logger } from './log/log';
 export { mergeSchemas, translateSchema } from './schema/schema';
+export { testRequest } from './tests/tests';
 export { getUrl, getRootUrl } from './url/url';
-export { mapAsync, mapSync, removeUndefined, uniqueId } from './utils/utils';
+export {
+  mapAsync,
+  mapSync,
+  removeUndefined,
+  stringify,
+  uniqueId,
+} from './utils/utils';

@@ -1,9 +1,12 @@
 {
+  "uuid": "92a80817-f5b7-400d-8f58-b08126f0f09b",
   "type": "Site",
   "title": "Welcome to Volto",
   "description": "Congratulations! You have successfully installed Volto.",
   "owner": "admin",
   "workflow_state": "published",
+  "created": "2022-04-02T20:00:00.000Z",
+  "modified": "2022-04-02T20:00:00.000Z",
   "blocks": {
     "79ba8858-1dd3-4719-b731-5951e32fbf79": {
       "@type": "title"

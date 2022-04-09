@@ -78,3 +78,9 @@ omelette
 
 public/critical.css
 src/addons/*
+
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor

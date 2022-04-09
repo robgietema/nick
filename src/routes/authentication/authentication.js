@@ -1,6 +1,6 @@
 /**
- * Login routes.
- * @module routes/login/login
+ * Authentication routes.
+ * @module routes/authentication/authentication
  */
 
 import bcrypt from 'bcrypt-promise';
@@ -66,18 +66,28 @@ export default [
   {
     op: 'post',
     view: '/@login-renew',
-    handler: async (req, trx) => ({
-      json: {
-        token: jwt.sign(
-          {
-            sub: req.user.id,
-            fullname: req.user.fullname,
+    handler: async (req, trx) => {
+      if (req.user.id === 'anonymous') {
+        throw new RequestException(401, {
+          error: {
+            type: req.i18n('Invalid session'),
+            message: req.i18n('User is not logged in.'),
           },
-          config.secret,
-          { expiresIn: '12h' },
-        ),
-      },
-    }),
+        });
+      }
+      return {
+        json: {
+          token: jwt.sign(
+            {
+              sub: req.user.id,
+              fullname: req.user.fullname,
+            },
+            config.secret,
+            { expiresIn: '12h' },
+          ),
+        },
+      };
+    },
   },
   {
     op: 'post',

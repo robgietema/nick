@@ -114,7 +114,7 @@ export default [
       // Send ok message
       return {
         json: {
-          message: `${req.document.json.title} has been reverted to revision ${version.version}`,
+          message: `${req.document.json.title} has been reverted to revision ${version.version}.`,
         },
       };
     },

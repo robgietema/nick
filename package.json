@@ -32,7 +32,8 @@
     "migrate": "yarn knex migrate:latest",
     "seed": "yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
-    "reset": "yarn knex migrate:rollback --all && yarn knex migrate:latest && yarn knex seed:run"
+    "reset": "yarn knex migrate:rollback --all && yarn knex migrate:latest && yarn knex seed:run",
+    "docs": "cd docs && bundle exec jekyll serve"
   },
   "prettier": {
     "trailingComma": "all",

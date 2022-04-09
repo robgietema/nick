@@ -1,14 +1,10 @@
-import request from 'supertest';
-
 import app from '../../app';
-
-import { getAdminHeader } from '../../helpers';
+import { testRequest } from '../../helpers';
 
 describe('Actions', () => {
-  it('should get actions', () =>
-    request(app)
-      .get('/@actions')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) => expect(res.body.object).toBeDefined()));
+  it('should get actions as anonymous', () =>
+    testRequest(app, 'actions/actions_get_anonymous'));
+
+  it('should get actions as authenticated', () =>
+    testRequest(app, 'actions/actions_get_authenticated'));
 });
