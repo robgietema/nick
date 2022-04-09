@@ -22,8 +22,8 @@
       "permissions": ["View"]
     },
     {
-      "id": "Contributer",
-      "title:i18n": "Contributer",
+      "id": "Contributor",
+      "title:i18n": "Contributor",
       "permissions": ["Add"]
     },
     {

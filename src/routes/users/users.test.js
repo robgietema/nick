@@ -1,51 +1,43 @@
-import request from 'supertest';
-
 import app from '../../app';
+import * as url from '../../helpers/url/url';
 
-import { getAdminHeader } from '../../helpers';
+import { testRequest } from '../../helpers';
+
+jest
+  .spyOn(url, 'getRootUrl')
+  .mockImplementation((req) => 'http://localhost:8000');
 
 describe('User', () => {
-  it('should get the specified user', () =>
-    request(app)
-      .get('/@users/admin')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body['@id']).toMatch(
-            /http:\/\/127.0.0.1:.*\/@users\/admin/,
-          ),
-          expect(res.body.fullname).toBe('Admin'),
-          expect(res.body.id).toBe('admin'),
-        ]),
-      ));
-  it('should return an error on invalid user', () =>
-    request(app)
-      .get('/@users/nonexisting')
-      .set('Authorization', getAdminHeader())
-      .expect(404));
-  it('should get a list of users', () =>
-    request(app)
-      .get('/@users')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body.length).toBe(2),
-          expect(res.body[0].id).toBe('admin'),
-        ]),
-      ));
+  afterEach(async () => {
+    await testRequest(app, 'users/users_delete');
+  });
+
+  it('should get a list of users', () => testRequest(app, 'users/users_list'));
+
   it('should get a list of users by query', () =>
-    request(app)
-      .get('/@users?query=admin')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body.length).toBe(1),
-          expect(res.body[0].id).toBe('admin'),
-        ]),
-      ));
+    testRequest(app, 'users/users_list_query'));
+
   it('should get an error when not logged in', () =>
-    request(app).get('/@users/admin').expect(401));
+    testRequest(app, 'users/users_list_anonymous'));
+
+  it('should get an individual user', () =>
+    testRequest(app, 'users/users_get'));
+
+  it('should not get a user when not logged in', () =>
+    testRequest(app, 'users/users_get_anonymous'));
+
+  it('should not get a user when not found', () =>
+    testRequest(app, 'users/users_get_notfound'));
+
+  it('should add a new user', () => testRequest(app, 'users/users_post'));
+
+  it('should update a user', async () => {
+    await testRequest(app, 'users/users_post');
+    return testRequest(app, 'users/users_patch');
+  });
+
+  it('should delete a user', async () => {
+    await testRequest(app, 'users/users_post');
+    return testRequest(app, 'users/users_delete');
+  });
 });

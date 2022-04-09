@@ -226,7 +226,7 @@ export class Model extends mixin(ObjectionModel, [
    * @param {Object} trx Transaction object.
    * @returns {Object} Model of the inserted record
    */
-  static async create(data, options, trx) {
+  static async create(data, options = {}, trx) {
     const relations = keys(this.getRelations());
     let own = omit(data, relations);
     let model = await this.query(trx).insertAndFetch(own);

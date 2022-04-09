@@ -3,7 +3,7 @@
  * @module collections/type/type
  */
 
-import { getUrl } from '../../helpers';
+import { getRootUrl } from '../../helpers';
 import { Collection } from '../../collections';
 import _ from 'lodash';
 
@@ -22,7 +22,7 @@ export class TypeCollection extends Collection {
   toJSON(req) {
     return _(super.toJSON())
       .map((model) => ({
-        '@id': `${getUrl(req)}/@types/${model.id}`,
+        '@id': `${getRootUrl(req)}/@types/${model.id}`,
         addable: model.addable,
         title: req.i18n(model.title),
       }))

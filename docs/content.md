@@ -9,12 +9,12 @@ The restapi does not only expose content objects via a RESTful API. The API cons
 
 Manipulating resources across the network by using HTTP as an application protocol is one of core principles of the REST architectural pattern. This allows us to interact with a specific resource in a standardized way:
 
-| Verb   | URL                   | Action                                    |
-| ------ | --------------------- | ----------------------------------------- |
-| POST   | /folder               | Creates a new document within the folder  |
-| GET    | /folder/{document-id} | Request the current state of the document |
-| PATCH  | /folder/{document-id} | Update the document details               |
-| DELETE | /folder/{document-id} | Remove the document                       |
+| Verb   | URL                     | Action                                    |
+| ------ | ----------------------- | ----------------------------------------- |
+| POST   | `/folder`               | Creates a new document within the folder  |
+| GET    | `/folder/{document-id}` | Request the current state of the document |
+| PATCH  | `/folder/{document-id}` | Update the document details               |
+| DELETE | `/folder/{document-id}` | Remove the document                       |
 
 ## Creating a Resource with POST
 

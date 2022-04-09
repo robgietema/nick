@@ -5,7 +5,7 @@
 
 import { concat, map, uniq } from 'lodash';
 
-import { getUrl } from '../../helpers';
+import { getRootUrl } from '../../helpers';
 import { Model, Group } from '../../models';
 
 /**
@@ -68,7 +68,7 @@ export class User extends Model {
    */
   toJSON(req) {
     return {
-      '@id': `${getUrl(req)}/@users/${this.id}`,
+      '@id': `${getRootUrl(req)}/@users/${this.id}`,
       id: this.id,
       fullname: this.fullname,
       email: this.email,

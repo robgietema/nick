@@ -30,7 +30,7 @@ export default [
   {
     op: 'post',
     view: '/@lock',
-    permission: 'View',
+    permission: 'Modify',
     handler: async (req, trx) => {
       const lock = req.document.lock;
 
@@ -55,7 +55,7 @@ export default [
         }
       } else {
         const newLock = {
-          created: moment.utc(),
+          created: moment.utc().format(),
           creator: req.user.id,
           creator_name: req.user.fullname,
           creator_url: `${getRootUrl(req)}/@users/${req.user.id}`,
@@ -64,7 +64,57 @@ export default [
             typeof req.body?.stealable === 'undefined'
               ? true
               : req.body.stealable,
-          time: 807211800.0,
+          time: moment.utc().format(),
+          timeout: req.body?.timeout || 600,
+          token: uuid(),
+        };
+        // Create new lock
+        await req.document.update(
+          {
+            lock: newLock,
+          },
+          trx,
+        );
+        return {
+          json: newLock,
+        };
+      }
+    },
+  },
+  {
+    op: 'patch',
+    view: '/@lock',
+    permission: 'Modify',
+    handler: async (req, trx) => {
+      const lock = req.document.lock;
+
+      // Check if lock already exists
+      if (
+        lock.locked &&
+        !lockExpired(req.document) &&
+        req.user.id !== lock.creator
+      ) {
+        // Send error
+        throw new RequestException(401, {
+          error: {
+            message: req.i18n(
+              'This document is already locked by another user.',
+            ),
+            type: req.i18n('Already locked'),
+          },
+        });
+      } else {
+        const newLock = {
+          created: moment.utc().format(),
+          creator: req.user.id,
+          creator_name: req.user.fullname,
+          creator_url: `${getRootUrl(req)}/@users/${req.user.id}`,
+          locked: true,
+          stealable:
+            typeof req.body?.stealable === 'undefined'
+              ? true
+              : req.body.stealable,
+          time: moment.utc().format(),
           timeout: req.body?.timeout || 600,
           token: uuid(),
         };

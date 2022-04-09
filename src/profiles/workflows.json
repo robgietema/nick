@@ -13,7 +13,7 @@
             "description:i18n": "Can only be seen and edited by the owner.",
             "transitions": ["publish", "submit"],
             "permissions": {
-              "Contributer": ["View"],
+              "Contributor": ["View"],
               "Editor": ["View", "Modify"],
               "Administrator": ["View", "Modify"]
             }
@@ -23,7 +23,7 @@
             "description:i18n": "Waiting to be reviewed, not editable by the owner.",
             "transitions": ["publish", "reject", "retract"],
             "permissions": {
-              "Contributer": ["View"],
+              "Contributor": ["View"],
               "Editor": ["View"],
               "Reviewer": ["View", "Modify"],
               "Administrator": ["View", "Modify"]
