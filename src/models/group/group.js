@@ -5,7 +5,7 @@
 
 import { map, uniq } from 'lodash';
 
-import { getUrl } from '../../helpers';
+import { getRootUrl } from '../../helpers';
 import { Model } from '../../models';
 
 /**
@@ -68,7 +68,7 @@ export class Group extends Model {
    */
   toJSON(req) {
     return {
-      '@id': `${getUrl(req)}/@groups/${this.id}`,
+      '@id': `${getRootUrl(req)}/@groups/${this.id}`,
       id: this.id,
       groupname: this.id,
       title: req.i18n(this.title),

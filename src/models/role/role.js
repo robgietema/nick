@@ -5,7 +5,7 @@
 
 import { map, uniq } from 'lodash';
 
-import { getUrl } from '../../helpers';
+import { getRootUrl } from '../../helpers';
 import { Model } from '../../models';
 
 /**
@@ -43,7 +43,7 @@ export class Role extends Model {
    */
   toJSON(req) {
     return {
-      '@id': `${getUrl(req)}/@roles/${this.id}`,
+      '@id': `${getRootUrl(req)}/@roles/${this.id}`,
       '@type': 'role',
       id: this.id,
       title: req.i18n(this.title),

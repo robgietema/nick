@@ -12,7 +12,7 @@ export default [
   {
     op: 'get',
     view: '/@groups/:id',
-    permission: 'Manage User',
+    permission: 'Manage Users',
     handler: async (req, trx) => {
       const group = await Group.fetchById(
         req.params.id,
