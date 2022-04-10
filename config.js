@@ -31,4 +31,14 @@ export const config = {
     exposeHeaders: '*',
     maxAge: 3660,
   },
+  mailServer: {
+    host: 'localhost',
+    port: 587,
+    secure: false,
+    auth: {
+      user: 'someuser',
+      pass: 'somepadd',
+    },
+  },
+  mailDebug: true,
 };

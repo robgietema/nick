@@ -8,6 +8,7 @@ import authentication from './authentication/authentication';
 import breadcrumbs from './breadcrumbs/breadcrumbs';
 import content from './content/content';
 import controlpanels from './controlpanels/controlpanels';
+import email from './email/email';
 import groups from './groups/groups';
 import history from './history/history';
 import lock from './lock/lock';
@@ -26,6 +27,7 @@ export default [
   ...authentication,
   ...breadcrumbs,
   ...controlpanels,
+  ...email,
   ...groups,
   ...history,
   ...lock,

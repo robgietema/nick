@@ -24,6 +24,7 @@ export {
 } from './knex/knex';
 export { lockExpired } from './lock/lock';
 export { log, logger } from './log/log';
+export { sendMail } from './mail/mail';
 export { mergeSchemas, translateSchema } from './schema/schema';
 export { testRequest } from './tests/tests';
 export { getUrl, getRootUrl } from './url/url';

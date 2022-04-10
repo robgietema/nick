@@ -1,3 +1,8 @@
+/**
+ * Vocabularies.
+ * @module vocabularies
+ */
+
 import { actions } from './actions/actions';
 import { behaviors } from './behaviors/behaviors';
 import { groups } from './groups/groups';
