@@ -10,7 +10,7 @@ import { compact, isObject, map, uniq } from 'lodash';
 
 import { config } from '../config';
 import { RequestException, getUserId, hasPermission, log } from './helpers';
-import { Document, Redirect, Type, User } from './models';
+import { Document, Model, Redirect, Type, User } from './models';
 import routes from './routes';
 import { accessLogger, cors, i18n } from './middleware';
 
@@ -32,7 +32,7 @@ app.use(cors);
 map(routes, (route) => {
   app[route.op](`*${route.view}`, async (req, res) => {
     // Start transaction
-    const trx = await Document.startTransaction();
+    const trx = await Model.startTransaction();
 
     try {
       // Get user

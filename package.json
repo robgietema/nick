@@ -25,8 +25,8 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
     "extract": "nodemon --exec babel-node scripts/extract.js",
-    "test": "jest --runInBand",
-    "coverage": "jest --coverage --runInBand",
+    "test": "jest",
+    "coverage": "jest --coverage",
     "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",
     "i18n": "babel-node scripts/i18n.js",
     "migrate": "yarn knex migrate:latest",

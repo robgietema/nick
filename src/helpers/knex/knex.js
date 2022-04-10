@@ -17,3 +17,15 @@ export const knex = Knex({
 knex.on('query', (query) => {
   // console.log(query);
 });
+
+export function startTransaction() {
+  return knex.transaction();
+}
+
+export function rollbackTransaction(trx) {
+  return trx.rollback();
+}
+
+export function commitTransaction(trx) {
+  return trx.commit();
+}

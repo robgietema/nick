@@ -1,10 +1,5 @@
 import app from '../../app';
 import { testRequest } from '../../helpers';
-import * as url from '../../helpers/url/url';
-
-jest
-  .spyOn(url, 'getRootUrl')
-  .mockImplementation((req) => 'http://localhost:8000');
 
 describe('Groups', () => {
   afterEach(async () => {

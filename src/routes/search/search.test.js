@@ -1,21 +1,5 @@
 import app from '../../app';
-import * as url from '../../helpers/url/url';
 import { testRequest } from '../../helpers';
-
-// Mock get url
-jest
-  .spyOn(url, 'getUrl')
-  .mockImplementation(
-    (req) =>
-      `http://localhost:8000${
-        req.document.path === '/' ? '' : req.document.path
-      }`,
-  );
-
-// Mock root url
-jest
-  .spyOn(url, 'getRootUrl')
-  .mockImplementation((req) => 'http://localhost:8000');
 
 describe('Search', () => {
   it('should return all items', () => testRequest(app, 'search/search_get'));
