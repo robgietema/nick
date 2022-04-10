@@ -3,7 +3,7 @@
  * @module helpers/utils/utils
  */
 
-import { omitBy } from 'lodash';
+import { map, omitBy } from 'lodash';
 
 /**
  * Map asynchronous but in order through array
@@ -74,4 +74,17 @@ export function stringify(object) {
     },
     '  ',
   );
+}
+
+/**
+ * Convert array to vocabulary
+ * @method arrayToVocabulary
+ * @param {Array} items Items to be converted
+ * @returns {Array} Array of terms
+ */
+export function arrayToVocabulary(items) {
+  return map(items, (item) => ({
+    title: item,
+    token: item,
+  }));
 }

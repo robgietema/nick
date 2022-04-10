@@ -18,6 +18,7 @@ import search from './search/search';
 import sharing from './sharing/sharing';
 import types from './types/types';
 import users from './users/users';
+import vocabularies from './vocabularies/vocabularies';
 import workflow from './workflow/workflow';
 
 export default [
@@ -35,6 +36,7 @@ export default [
   ...sharing,
   ...types,
   ...users,
+  ...vocabularies,
   ...workflow,
   ...content, // Always keep the content routes last since this is the fallback
 ];

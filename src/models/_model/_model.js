@@ -352,4 +352,17 @@ export class Model extends mixin(ObjectionModel, [
       }),
     );
   }
+
+  /**
+   * Returns vocabulary data.
+   * @method getVocabulary
+   * @param {Object} req Request object.
+   * @returns {Object} JSON object.
+   */
+  getVocabulary(req) {
+    return {
+      title: req.i18n(this.title),
+      token: this.id,
+    };
+  }
 }

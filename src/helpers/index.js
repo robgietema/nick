@@ -28,6 +28,7 @@ export { mergeSchemas, translateSchema } from './schema/schema';
 export { testRequest } from './tests/tests';
 export { getUrl, getRootUrl } from './url/url';
 export {
+  arrayToVocabulary,
   mapAsync,
   mapSync,
   removeUndefined,

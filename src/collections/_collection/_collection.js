@@ -37,4 +37,14 @@ export class Collection {
   toJSON(req) {
     return this.map((model) => model.toJSON(req));
   }
+
+  /**
+   * Returns vocabulary data.
+   * @method getVocabulary
+   * @param {Object} req Request object.
+   * @returns {Object} JSON object.
+   */
+  getVocabulary(req) {
+    return this.map((model) => model.getVocabulary(req));
+  }
 }

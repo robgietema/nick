@@ -137,4 +137,17 @@ export class User extends Model {
       ...(await Group.fetchRolesByDocument(this.getGroups(), document, trx)),
     ]);
   }
+
+  /**
+   * Returns vocabulary data.
+   * @method getVocabulary
+   * @param {Object} req Request object.
+   * @returns {Object} JSON object.
+   */
+  getVocabulary(req) {
+    return {
+      title: req.i18n(this.fullname),
+      token: this.id,
+    };
+  }
 }
