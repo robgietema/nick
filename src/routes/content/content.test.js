@@ -4,6 +4,7 @@ import moment from 'moment';
 import app from '../../app';
 import { Document } from '../../models';
 import { testRequest } from '../../helpers';
+import * as url from '../../helpers/url/url';
 
 jest.mock('moment');
 moment.utc.mockReturnValue({
@@ -13,6 +14,11 @@ moment.utc.mockReturnValue({
 jest.mock('uuid');
 uuid.mockReturnValue('a95388f2-e4b3-4292-98aa-62656cbd5b9c');
 
+// Mock get url
+jest
+  .spyOn(url, 'getRootUrl')
+  .mockImplementation((req) => 'http://localhost:8000');
+
 describe('Content', () => {
   afterEach(() =>
     Document.delete({
@@ -20,19 +26,11 @@ describe('Content', () => {
     }),
   );
 
-  it('should return a content object', () => {
-    jest
-      .spyOn(Document.prototype, 'getUrl')
-      .mockReturnValue('http://localhost:8000/news');
-    return testRequest(app, 'content/content_get');
-  });
+  it('should return a content object', () =>
+    testRequest(app, 'content/content_get'));
 
-  it('should add a content object', () => {
-    jest
-      .spyOn(Document.prototype, 'getUrl')
-      .mockReturnValue('http://localhost:8000/news/my-news-item');
-    return testRequest(app, 'content/content_post');
-  });
+  it('should add a content object', () =>
+    testRequest(app, 'content/content_post'));
 
   it('should update a content object', async () => {
     await testRequest(app, 'content/content_post');

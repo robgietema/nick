@@ -6,6 +6,7 @@
 import { compact, drop, head, last } from 'lodash';
 
 import { Document } from '../../models';
+import { getUrl, getRootUrl } from '../../helpers';
 
 /**
  * Traverse path.
@@ -59,7 +60,7 @@ export default [
         compact(slugs),
         [
           {
-            '@id': `${req.protocol}://${req.headers.host}`,
+            '@id': getRootUrl(req),
             title: document.json.title,
           },
         ],
@@ -67,7 +68,7 @@ export default [
       );
       return {
         json: {
-          '@id': `${req.protocol}://${req.headers.host}${req.params[0]}/@breadcrumbs`,
+          '@id': `${getUrl(req)}/@breadcrumbs`,
           items: drop(items),
         },
       };

@@ -1,20 +1,18 @@
-import request from 'supertest';
-
 import app from '../../app';
-import { getAdminHeader } from '../../helpers';
+import { testRequest } from '../../helpers';
+import * as url from '../../helpers/url/url';
+
+// Mock get url
+jest
+  .spyOn(url, 'getUrl')
+  .mockImplementation(
+    (req) =>
+      `http://localhost:8000${
+        req.document.path === '/' ? '' : req.document.path
+      }`,
+  );
 
 describe('Querystring', () => {
-  it('should return the querystring options', () =>
-    request(app)
-      .get('/@querystring')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body['@id']).toMatch(
-            /http:\/\/127.0.0.1:.*\/@querystring/,
-          ),
-          expect(res.body.indexes.length).toBeDefined,
-        ]),
-      ));
+  it('should return the querystring', () =>
+    testRequest(app, 'querystring/querystring_get'));
 });

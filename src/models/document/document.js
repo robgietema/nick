@@ -15,7 +15,7 @@ import {
 } from 'lodash';
 
 import { Model, Redirect, Role } from '../../models';
-import { lockExpired, mapSync } from '../../helpers';
+import { getRootUrl, ockExpired, mapSync } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
 /**
@@ -104,9 +104,7 @@ export class Document extends Model {
    * @returns {string} Url
    */
   getUrl(req) {
-    return `${req.protocol}://${req.headers.host}${
-      this.path === '/' ? '' : this.path
-    }`;
+    return `${getRootUrl(req)}${this.path === '/' ? '' : this.path}`;
   }
 
   /**

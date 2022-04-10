@@ -1,94 +1,52 @@
-import request from 'supertest';
-
 import app from '../../app';
-import { getAdminHeader } from '../../helpers';
+import * as url from '../../helpers/url/url';
+import { testRequest } from '../../helpers';
+
+// Mock get url
+jest
+  .spyOn(url, 'getUrl')
+  .mockImplementation(
+    (req) =>
+      `http://localhost:8000${
+        req.document.path === '/' ? '' : req.document.path
+      }`,
+  );
+
+// Mock root url
+jest
+  .spyOn(url, 'getRootUrl')
+  .mockImplementation((req) => 'http://localhost:8000');
 
 describe('Search', () => {
-  it('should return all items', () =>
-    request(app)
-      .get('/@search')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/@search/),
-          expect(res.body.items.length).toBe(5),
-        ]),
-      ));
+  it('should return all items', () => testRequest(app, 'search/search_get'));
+
   it('should find the news folder', () =>
-    request(app)
-      .get('/@search?SearchableText=news*')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([
-          expect(res.body['@id']).toMatch(/http:\/\/127.0.0.1:.*\/@search/),
-          expect(res.body.items.length).toBe(1),
-          expect(res.body.items[0]['@id']).toMatch(
-            /http:\/\/127.0.0.1:.*\/news/,
-          ),
-          expect(res.body.items[0]['@type']).toBe('Folder'),
-          expect(res.body.items[0].title).toBe('News'),
-        ]),
-      ));
+    testRequest(app, 'search/search_get_news'));
+
   it('should be able to sort results on title', () =>
-    request(app)
-      .get('/@search?sort_on=sortable_title')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([expect(res.body.items[0].title).toBe('Event 1')]),
-      ));
+    testRequest(app, 'search/search_get_sort_title'));
+
   it('should be able to sort results on date', () =>
-    request(app)
-      .get('/@search?sort_on=effective')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([expect(res.body.items[0].title).toBeDefined()]),
-      ));
+    testRequest(app, 'search/search_get_sort_date'));
+
   it('should ignore sort when unknown sort is specified', () =>
-    request(app)
-      .get('/@search?sort_on=nonexisting')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(5)])));
+    testRequest(app, 'search/search_get_sort_unknown'));
+
   it('should be able to sort results reverse', () =>
-    request(app)
-      .get('/@search?sort_on=sortable_title&sort_order=descending')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) =>
-        Promise.all([expect(res.body.items[0].title).toBe('Welcome to Volto')]),
-      ));
+    testRequest(app, 'search/search_get_sort_reverse'));
+
   it('should be able to filter on depth', () =>
-    request(app)
-      .get('/@search?path.depth=1')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(3)])));
+    testRequest(app, 'search/search_get_depth'));
+
   it('should be able to set batch size', () =>
-    request(app)
-      .get('/@search?b_size=2')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(2)])));
+    testRequest(app, 'search/search_get_batch'));
+
   it('should be able to set offset', () =>
-    request(app)
-      .get('/@search?b_size=3&b_start=2')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(3)])));
+    testRequest(app, 'search/search_get_offset'));
+
   it('should ignore unknown parameters', () =>
-    request(app)
-      .get('/@search?nonexisting')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(5)])));
+    testRequest(app, 'search/search_get_unknown'));
+
   it('should be able to do a querystring search', () =>
-    request(app)
-      .post('/@querystring-search')
-      .set('Authorization', getAdminHeader())
-      .expect(200)
-      .expect((res) => Promise.all([expect(res.body.items.length).toBe(5)])));
+    testRequest(app, 'search/querystring_search'));
 });

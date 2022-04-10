@@ -12,10 +12,10 @@ import { includes, map } from 'lodash';
  * @returns {string} Formatted size.
  */
 export function formatSize(bytes) {
-  const e = Math.floor(Math.log(bytes) / Math.log(1024));
-  return (
-    (bytes / Math.pow(1024, e)).toFixed(0) + ' ' + ' KMGTP'.charAt(e) + 'B'
-  );
+  const exponent = Math.floor(Math.log(bytes) / Math.log(1024));
+  return `${(bytes / Math.pow(1024, exponent)).toFixed(0)}${
+    exponent === 0 ? '' : ' '
+  }${' KMGTP'.charAt(exponent)}B`;
 }
 
 /**

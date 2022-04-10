@@ -12,7 +12,7 @@ export default [
     permission: 'View',
     handler: async (req, trx) => ({
       json: {
-        '@id': `${getUrl(req)}${req.document.path}/@querystring`,
+        '@id': `${getUrl(req)}/@querystring`,
         indexes: {
           Creator: {
             description: 'The person that created an item',

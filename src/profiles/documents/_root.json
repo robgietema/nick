@@ -7,6 +7,7 @@
   "workflow_state": "published",
   "created": "2022-04-02T20:00:00.000Z",
   "modified": "2022-04-02T20:00:00.000Z",
+  "effective": "2022-04-02T20:00:00.000Z",
   "blocks": {
     "79ba8858-1dd3-4719-b731-5951e32fbf79": {
       "@type": "title"
