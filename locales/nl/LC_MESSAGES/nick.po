@@ -18,9 +18,9 @@ msgstr ""
 
 #: src/profiles/behaviors/categorization.json:36
 #: src/profiles/groups.json:7
-#: src/profiles/types/file.json:16
+#: src/profiles/types/file.json:18
 #: src/profiles/types/folder.json:4
-#: src/profiles/types/image.json:16
+#: src/profiles/types/image.json:18
 #: src/profiles/types/page.json:4
 #: src/profiles/types/site.json:4
 #: src/profiles/behaviors/basic.json:15
@@ -85,6 +85,7 @@ msgid "Administrators"
 msgstr "Beheerders"
 
 #: src/routes/lock/lock.js:52
+#: src/routes/lock/lock.js:103
 # defaultMessage: Already locked
 msgid "Already locked"
 msgstr "Al op slot"
@@ -147,8 +148,8 @@ msgid "Contents"
 msgstr "Inhoud"
 
 #: src/profiles/roles.json:26
-# defaultMessage: Contributer
-msgid "Contributer"
+# defaultMessage: Contributor
+msgid "Contributor"
 msgstr "Bijdrager"
 
 #: src/profiles/actions.json:61
@@ -174,8 +175,8 @@ msgstr "Data"
 
 #: src/profiles/behaviors/basic.json:10
 #: src/profiles/behaviors/versioning.json:10
-#: src/profiles/types/file.json:11
-#: src/profiles/types/image.json:11
+#: src/profiles/types/file.json:13
+#: src/profiles/types/image.json:13
 # defaultMessage: Default
 msgid "Default"
 msgstr "Standaard"
@@ -190,8 +191,8 @@ msgstr "Verwijderen"
 msgid "Description"
 msgstr "Omschrijving"
 
-#: src/routes/content/content.js:381
-#: src/routes/history/history.js:42
+#: src/routes/content/content.js:401
+#: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
 msgstr "Document vergrendeld"
@@ -227,7 +228,7 @@ msgid "Expiration Date"
 msgstr "Vervaldatum"
 
 #: src/profiles/types/file.json:3
-#: src/profiles/types/file.json:17
+#: src/profiles/types/file.json:19
 # defaultMessage: File
 msgid "File"
 msgstr "Bestand"
@@ -258,7 +259,7 @@ msgid "If this date is in the future, the content will not show up in listings a
 msgstr "Als deze datum in de toekomst ligt, wordt de inhoud tot deze datum niet weergegeven in vermeldingen en zoekopdrachten."
 
 #: src/profiles/types/image.json:3
-#: src/profiles/types/image.json:17
+#: src/profiles/types/image.json:19
 # defaultMessage: Image
 msgid "Image"
 msgstr "Afbeelding"
@@ -278,11 +279,16 @@ msgstr "Informatie over rechten op en over dit item."
 msgid "Internal server error"
 msgstr "Interne server fout"
 
-#: src/routes/login/login.js:34
-#: src/routes/login/login.js:45
+#: src/routes/authentication/authentication.js:34
+#: src/routes/authentication/authentication.js:45
 # defaultMessage: Invalid credentials
 msgid "Invalid credentials"
 msgstr "Ongeldige inloggegevens"
+
+#: src/routes/authentication/authentication.js:73
+# defaultMessage: Invalid session
+msgid "Invalid session"
+msgstr "Ongeldige sessie"
 
 #: src/profiles/behaviors/categorization.json:28
 # defaultMessage: Language
@@ -314,7 +320,7 @@ msgstr "Logout"
 msgid "Login"
 msgstr "Log in"
 
-#: src/routes/login/login.js:22
+#: src/routes/authentication/authentication.js:22
 # defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
 msgstr "Login en wachtwoord moeten in de body worden opgegeven."
@@ -339,7 +345,7 @@ msgstr "Site beheren"
 msgid "Manage Users"
 msgstr "Gebruikers Beheren"
 
-#: src/routes/login/login.js:21
+#: src/routes/authentication/authentication.js:21
 # defaultMessage: Missing credentials
 msgid "Missing credentials"
 msgstr "Ontbrekende inloggegevens"
@@ -349,7 +355,7 @@ msgstr "Ontbrekende inloggegevens"
 msgid "Modify"
 msgstr "Wijzigen"
 
-#: src/routes/lock/lock.js:102
+#: src/routes/lock/lock.js:152
 # defaultMessage: Not allowed
 msgid "Not allowed"
 msgstr "Niet toegestaan"
@@ -357,7 +363,8 @@ msgstr "Niet toegestaan"
 #: src/app.js:66
 #: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
-#: src/routes/users/users.js:27
+#: src/routes/users/users.js:99
+#: src/routes/vocabularies/vocabularies.js:30
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr "Niet gevonden."
@@ -377,6 +384,12 @@ msgstr "Eigenaarschap"
 # defaultMessage: Page
 msgid "Page"
 msgstr "Pagina"
+
+#: src/routes/users/users.js:72
+#: src/routes/users/users.js:168
+# defaultMessage: Password reset request
+msgid "Password reset request"
+msgstr "Wachtwoord herstel verzoek"
 
 #: src/profiles/actions.json:66
 # defaultMessage: Paste
@@ -448,6 +461,11 @@ msgstr "Gerelateerde resources"
 # defaultMessage: Rename
 msgid "Rename"
 msgstr "Hernoemen"
+
+#: src/routes/content/content.js:292
+# defaultMessage: Required field(s) missing.
+msgid "Required field(s) missing."
+msgstr "Verplichte velden ontbreken."
 
 #: src/profiles/workflows.json:57
 # defaultMessage: Retract
@@ -539,7 +557,7 @@ msgstr "Indienen ter publicatie"
 msgid "System group"
 msgstr "Systeem groep"
 
-#: src/routes/users/users.js:107
+#: src/routes/users/users.js:215
 # defaultMessage: System users
 msgid "System users"
 msgstr "Systeem gebruikers"
@@ -559,6 +577,12 @@ msgstr "De JSON-representatie van het object blokkeert informatie. Moet een JSON
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr "De JSON-weergave van de lay-out van objectblokken. Moet een JSON-array zijn."
 
+#: src/routes/users/users.js:73
+#: src/routes/users/users.js:169
+# defaultMessage: undefined
+msgid "The following link takes you to a page where you can reset your password: {url}"
+msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw kunt instellen: {url}"
+
 #: src/profiles/behaviors/categorization.json:25
 # defaultMessage: The language of this item.
 msgid "The language of this item."
@@ -575,6 +599,7 @@ msgid "The topic of this item."
 msgstr "Het onderwerp van dit item."
 
 #: src/routes/lock/lock.js:49
+#: src/routes/lock/lock.js:100
 # defaultMessage: This document is already locked by another user.
 msgid "This document is already locked by another user."
 msgstr "Dit document is al vergrendeld door een andere gebruiker."
@@ -589,6 +614,11 @@ msgstr "Deze naam wordt weergegeven in de URL."
 msgid "Title"
 msgstr "Titel"
 
+#: src/routes/email/email.js:17
+# defaultMessage: To, from and message are required fields.
+msgid "To, from and message are required fields."
+msgstr "Aan, van en bericht zijn verplichte velden."
+
 #: src/app.js:117
 # defaultMessage: Transaction error.
 msgid "Transaction error."
@@ -598,6 +628,16 @@ msgstr "Transactiefout"
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
+
+#: src/routes/users/users.js:42
+# defaultMessage: User doesn't exist or invalid credentials.
+msgid "User doesn't exist or invalid credentials."
+msgstr "Gebruiker bestaat niet of ongeldige inloggegevens."
+
+#: src/routes/authentication/authentication.js:74
+# defaultMessage: User is not logged in.
+msgid "User is not logged in."
+msgstr "Gebruiker is niet ingelogd."
 
 #: src/profiles/behaviors/versioning.json:3
 # defaultMessage: Versioning
@@ -630,8 +670,8 @@ msgstr "Wachten om te worden beoordeeld, kan niet worden bewerkt door de eigenaa
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
 msgstr "Wanneer deze datum is bereikt, is de inhoud niet langer zichtbaar in vermeldingen en zoekopdrachten."
 
-#: src/routes/login/login.js:35
-#: src/routes/login/login.js:46
+#: src/routes/authentication/authentication.js:35
+#: src/routes/authentication/authentication.js:46
 # defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
@@ -647,18 +687,23 @@ msgstr "U heeft geen rechten om tot deze resource."
 msgid "You can't delete system groups."
 msgstr "U kunt geen systeemgroepen verwijderen."
 
-#: src/routes/users/users.js:106
+#: src/routes/users/users.js:214
 # defaultMessage: You can't delete system users.
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
-#: src/routes/content/content.js:378
-#: src/routes/history/history.js:39
+#: src/routes/content/content.js:398
+#: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
 
-#: src/routes/lock/lock.js:99
+#: src/routes/lock/lock.js:149
 # defaultMessage: You don't have permission to unlock this document.
 msgid "You don't have permission to unlock this document."
 msgstr "U heeft geen toestemming om dit document te ontgrendelen."
+
+#: src/routes/users/users.js:129
+# defaultMessage: You don't have permissions to add a user.
+msgid "You don't have permissions to add a user."
+msgstr "U heeft geen rechten om een gebruiker toe te voegen."

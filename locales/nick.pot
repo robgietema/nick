@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-04-06T16:00:49.355Z\n"
+"POT-Creation-Date: 2022-04-11T19:38:52.092Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -15,9 +15,9 @@ msgstr ""
 
 #: src/profiles/behaviors/categorization.json:36
 #: src/profiles/groups.json:7
-#: src/profiles/types/file.json:16
+#: src/profiles/types/file.json:18
 #: src/profiles/types/folder.json:4
-#: src/profiles/types/image.json:16
+#: src/profiles/types/image.json:18
 #: src/profiles/types/page.json:4
 #: src/profiles/types/site.json:4
 # defaultMessage: 
@@ -85,6 +85,7 @@ msgid "Administrators"
 msgstr ""
 
 #: src/routes/lock/lock.js:52
+#: src/routes/lock/lock.js:103
 # defaultMessage: Already locked
 msgid "Already locked"
 msgstr ""
@@ -147,8 +148,8 @@ msgid "Contents"
 msgstr ""
 
 #: src/profiles/roles.json:26
-# defaultMessage: Contributer
-msgid "Contributer"
+# defaultMessage: Contributor
+msgid "Contributor"
 msgstr ""
 
 #: src/profiles/actions.json:61
@@ -174,8 +175,8 @@ msgstr ""
 
 #: src/profiles/behaviors/basic.json:10
 #: src/profiles/behaviors/versioning.json:10
-#: src/profiles/types/file.json:11
-#: src/profiles/types/image.json:11
+#: src/profiles/types/file.json:13
+#: src/profiles/types/image.json:13
 # defaultMessage: Default
 msgid "Default"
 msgstr ""
@@ -190,8 +191,8 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/routes/content/content.js:381
-#: src/routes/history/history.js:42
+#: src/routes/content/content.js:401
+#: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
 msgstr ""
@@ -227,7 +228,7 @@ msgid "Expiration Date"
 msgstr ""
 
 #: src/profiles/types/file.json:3
-#: src/profiles/types/file.json:17
+#: src/profiles/types/file.json:19
 # defaultMessage: File
 msgid "File"
 msgstr ""
@@ -258,7 +259,7 @@ msgid "If this date is in the future, the content will not show up in listings a
 msgstr ""
 
 #: src/profiles/types/image.json:3
-#: src/profiles/types/image.json:17
+#: src/profiles/types/image.json:19
 # defaultMessage: Image
 msgid "Image"
 msgstr ""
@@ -278,10 +279,15 @@ msgstr ""
 msgid "Internal server error"
 msgstr ""
 
-#: src/routes/login/login.js:34
-#: src/routes/login/login.js:45
+#: src/routes/authentication/authentication.js:34
+#: src/routes/authentication/authentication.js:45
 # defaultMessage: Invalid credentials
 msgid "Invalid credentials"
+msgstr ""
+
+#: src/routes/authentication/authentication.js:73
+# defaultMessage: Invalid session
+msgid "Invalid session"
 msgstr ""
 
 #: src/profiles/behaviors/categorization.json:28
@@ -314,7 +320,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: src/routes/login/login.js:22
+#: src/routes/authentication/authentication.js:22
 # defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
 msgstr ""
@@ -339,7 +345,7 @@ msgstr ""
 msgid "Manage Users"
 msgstr ""
 
-#: src/routes/login/login.js:21
+#: src/routes/authentication/authentication.js:21
 # defaultMessage: Missing credentials
 msgid "Missing credentials"
 msgstr ""
@@ -349,7 +355,7 @@ msgstr ""
 msgid "Modify"
 msgstr ""
 
-#: src/routes/lock/lock.js:102
+#: src/routes/lock/lock.js:152
 # defaultMessage: Not allowed
 msgid "Not allowed"
 msgstr ""
@@ -357,7 +363,8 @@ msgstr ""
 #: src/app.js:66
 #: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
-#: src/routes/users/users.js:27
+#: src/routes/users/users.js:99
+#: src/routes/vocabularies/vocabularies.js:30
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr ""
@@ -376,6 +383,12 @@ msgstr ""
 #: src/profiles/types/page.json:3
 # defaultMessage: Page
 msgid "Page"
+msgstr ""
+
+#: src/routes/users/users.js:72
+#: src/routes/users/users.js:168
+# defaultMessage: Password reset request
+msgid "Password reset request"
 msgstr ""
 
 #: src/profiles/actions.json:66
@@ -447,6 +460,11 @@ msgstr ""
 #: src/profiles/actions.json:76
 # defaultMessage: Rename
 msgid "Rename"
+msgstr ""
+
+#: src/routes/content/content.js:292
+# defaultMessage: Required field(s) missing.
+msgid "Required field(s) missing."
 msgstr ""
 
 #: src/profiles/workflows.json:57
@@ -539,7 +557,7 @@ msgstr ""
 msgid "System group"
 msgstr ""
 
-#: src/routes/users/users.js:107
+#: src/routes/users/users.js:215
 # defaultMessage: System users
 msgid "System users"
 msgstr ""
@@ -559,6 +577,14 @@ msgstr ""
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr ""
 
+#: src/routes/users/users.js:73
+#: src/routes/users/users.js:169
+# defaultMessage: undefined
+msgid "The following link takes you to a page where you can reset your password: {url}
+
+(This link will expire in 7 days)"
+msgstr ""
+
 #: src/profiles/behaviors/categorization.json:25
 # defaultMessage: The language of this item.
 msgid "The language of this item."
@@ -575,6 +601,7 @@ msgid "The topic of this item."
 msgstr ""
 
 #: src/routes/lock/lock.js:49
+#: src/routes/lock/lock.js:100
 # defaultMessage: This document is already locked by another user.
 msgid "This document is already locked by another user."
 msgstr ""
@@ -589,6 +616,11 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: src/routes/email/email.js:17
+# defaultMessage: To, from and message are required fields.
+msgid "To, from and message are required fields."
+msgstr ""
+
 #: src/app.js:117
 # defaultMessage: Transaction error.
 msgid "Transaction error."
@@ -597,6 +629,16 @@ msgstr ""
 #: src/app.js:85
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
+msgstr ""
+
+#: src/routes/users/users.js:42
+# defaultMessage: User doesn't exist or invalid credentials.
+msgid "User doesn't exist or invalid credentials."
+msgstr ""
+
+#: src/routes/authentication/authentication.js:74
+# defaultMessage: User is not logged in.
+msgid "User is not logged in."
 msgstr ""
 
 #: src/profiles/behaviors/versioning.json:3
@@ -630,8 +672,8 @@ msgstr ""
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
 msgstr ""
 
-#: src/routes/login/login.js:35
-#: src/routes/login/login.js:46
+#: src/routes/authentication/authentication.js:35
+#: src/routes/authentication/authentication.js:46
 # defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
 msgstr ""
@@ -647,18 +689,23 @@ msgstr ""
 msgid "You can't delete system groups."
 msgstr ""
 
-#: src/routes/users/users.js:106
+#: src/routes/users/users.js:214
 # defaultMessage: You can't delete system users.
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:378
-#: src/routes/history/history.js:39
+#: src/routes/content/content.js:398
+#: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr ""
 
-#: src/routes/lock/lock.js:99
+#: src/routes/lock/lock.js:149
 # defaultMessage: You don't have permission to unlock this document.
 msgid "You don't have permission to unlock this document."
+msgstr ""
+
+#: src/routes/users/users.js:129
+# defaultMessage: You don't have permissions to add a user.
+msgid "You don't have permissions to add a user."
 msgstr ""
