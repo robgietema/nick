@@ -62,6 +62,7 @@ export default [
             fullname: user.fullname,
           },
           config.secret,
+          { expiresIn: '7d' },
         );
 
         // Send mail
@@ -120,21 +121,57 @@ export default [
   {
     op: 'post',
     view: '/@users',
-    permission: 'Manage Users',
     handler: async (req, trx) => {
-      const password = await bcrypt.hash(req.body.password, 10);
+      // Check permissions
+      const manageUsers = includes(req.permissions, 'Manage Users');
+      if (!config.userRegistration && !manageUsers) {
+        throw new RequestException(401, {
+          message: req.i18n("You don't have permissions to add a user."),
+        });
+      }
+
+      // Encrypt password
+      const password = req.body.password
+        ? await bcrypt.hash(req.body.password, 10)
+        : '';
+
+      // Add user
       const user = await User.create(
         {
           id: req.body.username,
           fullname: req.body.fullname,
           email: req.body.email,
-          password,
-          _roles: req.body.roles || [],
-          _groups: req.body.groups || [],
+          password: manageUsers ? password : '',
+          _roles: manageUsers ? req.body.roles || [] : [],
+          _groups: manageUsers ? req.body.groups || [] : [],
         },
         { related: ['_roles', '_groups'] },
         trx,
       );
+
+      // Check if password reset
+      if (req.body.sendPasswordReset) {
+        // Create token
+        const token = jwt.sign(
+          {
+            sub: user.id,
+            fullname: user.fullname,
+          },
+          config.secret,
+          { expiresIn: '7d' },
+        );
+
+        // Send mail
+        await sendMail({
+          to: `${user.fullname} <${user.email}>`,
+          from: `${config.emailFrom.name} <${config.emailFrom.address}>`,
+          subject: req.i18n('Password reset request'),
+          text: req.i18n(
+            'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
+            { url: `${config.frontendUrl}/password-reset/${token}` },
+          ),
+        });
+      }
 
       // Send created
       return {

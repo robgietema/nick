@@ -46,4 +46,5 @@ export const config = {
     address: 'nick@example.com',
   },
   frontendUrl: 'http://localhost:3000',
+  userRegistration: true,
 };

@@ -125,6 +125,24 @@ A successful response will be indicated by a `204 No Content` response:
 {% include_relative examples/users/users_delete.res %}
 ```
 
+## User Registration
+
+If user registration it is enabled, then an anonymous user can register a new user using the user creation endpoint.
+
+To create a new user send a `POST` request to the `@users` endpoint:
+
+```
+{% include_relative examples/users/users_post_registration.req %}
+```
+
+If the user should receive an email to set her password, you should pass `"sendPasswordReset": true` in the JSON body of the request. Keep in mind that Plone will send a URL that points to the URL of the Plone site, which might just be your API endpoint.
+
+If the user has been created, the server will respond with a `201 Created` response:
+
+```
+{% include_relative examples/users/users_post_registration.res %}
+```
+
 ## Reset User Password
 
 Plone allows to reset a password for a user by sending a `POST` request to the user resource and appending `/reset-password` to the URL:

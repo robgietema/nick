@@ -35,6 +35,9 @@ describe('User', () => {
     return testRequest(app, 'users/users_delete');
   });
 
+  it('should register a new user', () =>
+    testRequest(app, 'users/users_post_registration'));
+
   it('should send a reset password mail', async () => {
     await testRequest(app, 'users/users_post');
     return testRequest(app, 'users/users_reset_password_mail');
