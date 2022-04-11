@@ -6,7 +6,7 @@ export const config = {
     user: 'nick',
     password: 'nick',
   },
-  blobsDir: `${__dirname}/blobs`,
+  blobsDir: `${__dirname}/var/blobstorage`,
   port: 8000,
   secret: 'secret',
   systemUsers: ['admin', 'anonymous'],

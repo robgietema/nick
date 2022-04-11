@@ -25,31 +25,7 @@ lighthouse-report.html
 .#*
 *~
 
-# Python
-/api/.installed.cfg
-/api/.mr.developer.cfg
-/api/bin/
-/api/develop-eggs/
-/api/eggs/
-/api/include/
-/api/lib/
-/api/lib64/
-/api/notebook/env/
-/api/parts/
-/api/share/python-wheels/
-/api/var/
-/api/venv/
-/api/blobs/
-/bin/
-/lib/
-.Python
-include
-pip-selfcheck.json
-pyvenv.cfg
-share
-
-# locales
-locales/*.json
+/var/blobstorage
 
 # Tests
 /tests/bin
