@@ -6,7 +6,7 @@ Content-Type: application/json
     "@id": "http://localhost:8000/@users/admin",
     "id": "admin",
     "fullname": "Admin",
-    "email": "",
+    "email": "admin@example.com",
     "roles": [
       "Administrator"
     ],

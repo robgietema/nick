@@ -3,7 +3,7 @@
  * @module routes/lock/lock
  */
 
-import { RequestException, log, sendMail } from '../../helpers';
+import { RequestException, sendMail } from '../../helpers';
 
 export default [
   {

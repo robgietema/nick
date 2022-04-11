@@ -41,4 +41,9 @@ export const config = {
     },
   },
   mailDebug: true,
+  emailFrom: {
+    name: 'Nick',
+    address: 'nick@example.com',
+  },
+  frontendUrl: 'http://localhost:3000',
 };

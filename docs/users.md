@@ -124,3 +124,41 @@ A successful response will be indicated by a `204 No Content` response:
 ```
 {% include_relative examples/users/users_delete.res %}
 ```
+
+## Reset User Password
+
+Plone allows to reset a password for a user by sending a `POST` request to the user resource and appending `/reset-password` to the URL:
+
+```
+{% include_relative examples/users/users_reset_password_mail.req %}
+```
+
+The server will respond with a `200 OK` response and send an email to the user to reset her password.
+
+```
+{% include_relative examples/users/users_reset_password_mail.res %}
+```
+
+The token that is part of the reset url in the email can be used to authorize setting a new password:
+
+```
+{% include_relative examples/users/users_reset_password_set.req %}
+```
+
+```
+{% include_relative examples/users/users_reset_password_set.res %}
+```
+
+### Reset Own Password
+
+Users can also reset their own password directly without sending an email. The endpoint and the request is the same as above, but now the user can send the old password and the new password as payload:
+
+```
+{% include_relative examples/users/users_reset_password_own.req %}
+```
+
+The server will respond with a 200 OK response without sending an email.
+
+```
+{% include_relative examples/users/users_reset_password_own.res %}
+```

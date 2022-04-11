@@ -34,4 +34,19 @@ describe('User', () => {
     await testRequest(app, 'users/users_post');
     return testRequest(app, 'users/users_delete');
   });
+
+  it('should send a reset password mail', async () => {
+    await testRequest(app, 'users/users_post');
+    return testRequest(app, 'users/users_reset_password_mail');
+  });
+
+  it('should reset a password', async () => {
+    await testRequest(app, 'users/users_post');
+    return testRequest(app, 'users/users_reset_password_set');
+  });
+
+  it('should set own password', async () => {
+    await testRequest(app, 'users/users_post');
+    return testRequest(app, 'users/users_reset_password_own');
+  });
 });
