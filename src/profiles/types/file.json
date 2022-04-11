@@ -2,7 +2,9 @@
   "id": "File",
   "title:i18n": "File",
   "description:i18n": "Lets you upload a file to the site.",
-  "addable": true,
+  "global_allow": true,
+  "filter_content_types": true,
+  "allowed_content_types": [],
   "schema": {
     "fieldsets": [
       {

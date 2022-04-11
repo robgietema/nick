@@ -3,6 +3,8 @@
  * @module collections/type/type
  */
 
+import { includes } from 'lodash';
+
 import { getRootUrl } from '../../helpers';
 import { Collection } from '../../collections';
 import _ from 'lodash';
@@ -23,7 +25,9 @@ export class TypeCollection extends Collection {
     return _(super.toJSON())
       .map((model) => ({
         '@id': `${getRootUrl(req)}/@types/${model.id}`,
-        addable: model.addable,
+        addable: req.type.filter_content_types
+          ? includes(req.type.allowed_content_types, model.id)
+          : model.global_allow,
         title: req.i18n(model.title),
       }))
       .value();

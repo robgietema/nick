@@ -2,7 +2,9 @@
   "id": "Page",
   "title:i18n": "Page",
   "description:i18n": "",
-  "addable": true,
+  "global_allow": true,
+  "filter_content_types": false,
+  "allowed_content_types": [],
   "schema": {
     "behaviors": [
       "dublin_core",

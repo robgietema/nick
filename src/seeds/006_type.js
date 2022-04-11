@@ -27,7 +27,14 @@ export const seed = async (knex) => {
     // Import types
     await mapAsync(types, async (type) => {
       const data = stripI18n(require(`../profiles/types/${type}`));
-      const typeModel = await Type.create(data);
+      const typeModel = await Type.create({
+        global_allow: true,
+        filter_content_types: false,
+        ...data,
+        allowed_content_types: data.allowed_content_types
+          ? JSON.stringify(data.allowed_content_types)
+          : '[]',
+      });
       await typeModel.cacheSchema();
     });
     log.info('Types imported');

@@ -2,7 +2,9 @@
   "id": "Image",
   "title:i18n": "Image",
   "description:i18n": "Images can be referenced in pages or displayed in an album.",
-  "addable": true,
+  "global_allow": true,
+  "filter_content_types": true,
+  "allowed_content_types": [],
   "schema": {
     "fieldsets": [
       {

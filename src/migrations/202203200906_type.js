@@ -9,7 +9,9 @@ export const up = async (knex) => {
     table.string('id').primary().notNull();
     table.string('title').notNull();
     table.string('description');
-    table.boolean('addable');
+    table.boolean('global_allow');
+    table.boolean('filter_content_types');
+    table.jsonb('allowed_content_types').notNull();
     table.jsonb('schema').notNull();
     table.jsonb('_schema');
     table
