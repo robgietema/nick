@@ -4,7 +4,7 @@
  */
 
 import moment from 'moment';
-import { omit } from 'lodash';
+import { concat, omit } from 'lodash';
 import { lockExpired, RequestException, uniqueId } from '../../helpers';
 import { Collection } from '../../collections';
 import { Version } from '../../models';
@@ -16,9 +16,15 @@ export default [
     permission: 'View',
     handler: async (req, trx) => {
       await req.document.fetchRelated('_versions(order)._actor', trx);
+      const workflow_history = await req.document.fetchWorkflowHistory(
+        req,
+        trx,
+      );
       const versions = new Collection(req.document._versions);
       return {
-        json: versions.toJSON(req),
+        json: concat(versions.toJSON(req), workflow_history).sort((a, b) =>
+          a.time > b.time ? -1 : 1,
+        ),
       };
     },
   },

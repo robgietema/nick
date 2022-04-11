@@ -14,7 +14,7 @@ import {
   uniq,
 } from 'lodash';
 
-import { Model, Redirect, Role } from '../../models';
+import { Model, Redirect, Role, User } from '../../models';
 import { getRootUrl, ockExpired, mapSync } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
@@ -324,5 +324,31 @@ export class Document extends Model {
         trx,
       );
     }
+  }
+
+  /**
+   * Fetch workflow history
+   * @method fetchWorkflowHistory
+   * @param {Object} req Request object.
+   * @param {Object} trx Transaction object.
+   * @returns {Array} Array of workflow history.
+   */
+  async fetchWorkflowHistory(req, trx) {
+    return await Promise.all(
+      map(this.workflow_history, async (item) => {
+        const user = await User.fetchById(item.actor);
+        return {
+          ...item,
+          actor: {
+            '@id': `${getRootUrl(req)}/@users/${user.id}`,
+            fullname: user.fullname,
+            id: user.id,
+            username: user.id,
+          },
+          comments: '',
+          type: 'workflow',
+        };
+      }),
+    );
   }
 }

@@ -28,18 +28,34 @@ export default [
         });
       }
 
+      // Get new state and modified timestamp
       const new_state =
         req.type._workflow.json.transitions[req.params.transition].new_state;
       const modified = moment.utc().format();
 
+      // Add to workflow history
+      const workflow_history = req.document.workflow_history;
+      workflow_history.push({
+        time: modified,
+        actor: req.user.id,
+        action: req.params.transition,
+        state_title: req.type._workflow.json.states[new_state].title,
+        review_state: new_state,
+        transition_title:
+          req.type._workflow.json.transitions[req.params.transition].title,
+      });
+
+      // Update document
       await req.document.update(
         {
           modified: modified,
           workflow_state: new_state,
+          workflow_history: JSON.stringify(workflow_history),
         },
         trx,
       );
 
+      // Return workflow state
       return {
         json: {
           action: req.params.transition,

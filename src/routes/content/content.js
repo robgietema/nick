@@ -332,6 +332,7 @@ export default [
           position_in_parent: req.document._children.length,
           lock: { locked: false, stealable: true },
           workflow_state: type._workflow.json.initial_state,
+          workflow_history: JSON.stringify(req.body.workflow_history || []),
           owner: req.user.id,
           json,
         },

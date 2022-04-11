@@ -16,6 +16,16 @@
   "blocks_layout": {
     "items": ["79ba8858-1dd3-4719-b731-5951e32fbf79"]
   },
+  "workflow_history": [
+    {
+      "action": "publish",
+      "actor": "admin",
+      "review_state": "published",
+      "state_title": "Published",
+      "time": "2022-04-03T20:22:00.000Z",
+      "transition_title": "Publish"
+    }
+  ],
   "versions": [
     {
       "created": "2022-04-02T20:22:00.000Z",
@@ -32,7 +42,7 @@
       }
     },
     {
-      "created": "2022-04-02T20:22:00.000Z",
+      "created": "2022-04-04T20:22:00.000Z",
       "actor": "admin",
       "title": "News",
       "changeNote": "Changed title",

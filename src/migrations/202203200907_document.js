@@ -25,6 +25,7 @@ export const up = async (knex) => {
     table.jsonb('json').notNull();
     table.jsonb('lock').notNull();
     table.string('workflow_state').notNull();
+    table.jsonb('workflow_history').notNull();
   });
   await knex.schema.createTable('version', (table) => {
     table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));

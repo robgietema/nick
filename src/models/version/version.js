@@ -3,8 +3,10 @@
  * @module models/version/version
  */
 
+import moment from 'moment';
+
 import { Model } from '../../models';
-import { getUrl } from '../../helpers';
+import { getRootUrl, getUrl } from '../../helpers';
 
 /**
  * A model for Version.
@@ -47,14 +49,14 @@ export class Version extends Model {
       '@id': `${getUrl(req)}/@history/${this.version}`,
       action: 'Edited',
       actor: {
-        '@id': `${getUrl(req)}/@users/${this._actor.id}`,
+        '@id': `${getRootUrl(req)}/@users/${this._actor.id}`,
         fullname: this._actor.fullname,
         id: this._actor.id,
         username: this._actor.id,
       },
       comments: this.json.changeNote,
       may_revert: true,
-      time: this.created,
+      time: moment(this.created).format(),
       transition_title: 'Edited',
       type: 'versioning',
       version: this.version,

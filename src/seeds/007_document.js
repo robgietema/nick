@@ -20,6 +20,7 @@ const documentFields = [
   'owner',
   'lock',
   'workflow_state',
+  'workflow_history',
   'sharing',
 ];
 
@@ -72,6 +73,7 @@ export const seed = async (knex) => {
           },
           owner: document.owner || 'admin',
           workflow_state: document.workflow_state || 'published',
+          workflow_history: JSON.stringify(document.workflow_history || []),
           type: document.type || 'Page',
           created: document.created || moment.utc().format(),
           modified: document.modified || moment.utc().format(),
