@@ -149,7 +149,7 @@ export default [
               if (entry.roles[role] === true) {
                 try {
                   await principal
-                    .$relatedQuery('_documentRoles')
+                    .$relatedQuery('_documentRoles', trx)
                     .relate({ id: role, document: req.document.uuid });
                 } catch (err) {
                   // Already related
@@ -157,7 +157,7 @@ export default [
               } else if (entry.roles[role] === false) {
                 // Unrelate
                 await principal
-                  .$relatedQuery('_documentRoles')
+                  .$relatedQuery('_documentRoles', trx)
                   .unrelate()
                   .where({ role, document: req.document.uuid });
               }

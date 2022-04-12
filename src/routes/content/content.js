@@ -9,6 +9,7 @@ import {
   flattenDeep,
   includes,
   intersection,
+  isArray,
   keys,
   map,
   omit,
@@ -29,7 +30,7 @@ import {
   writeFile,
   writeImage,
 } from '../../helpers';
-import { Type } from '../../models';
+import { Document, Type } from '../../models';
 import { config } from '../../../config';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
@@ -125,7 +126,10 @@ export default [
       const items = [];
 
       // Loop through source objects to be moved
-      await mapAsync(req.body.source, async (source) => {
+      const sources = isArray(req.body.source)
+        ? req.body.source
+        : [req.body.source];
+      await mapAsync(sources, async (source) => {
         // Get item to be moved
         const document = await Document.fetchOne({ path: source }, {}, trx);
 
@@ -140,7 +144,7 @@ export default [
           });
         } else {
           // Get current (previous) parent of document to be moved
-          const parent = Document.fetchById(document.parent, {}, trx);
+          const parent = await Document.fetchById(document.parent, {}, trx);
 
           // Calculate new id and path
           const path = req.document.path;
@@ -173,6 +177,56 @@ export default [
             target: newPath,
           });
         }
+      });
+
+      // Fetch new children and fix order
+      await req.document.fetchRelated('_children', trx);
+      await req.document.fixOrder(trx);
+
+      return {
+        json: items.map((item) => ({
+          source: `${getRootUrl(req)}${item.source}`,
+          target: `${getRootUrl(req)}${item.target}`,
+        })),
+      };
+    },
+  },
+  {
+    op: 'post',
+    view: '/@copy',
+    permission: 'Add',
+    handler: async (req, trx) => {
+      // Get children
+      await req.document.fetchRelated('_children', trx);
+      const childIds = req.document._children.map((child) => child.id);
+
+      // Return items
+      const items = [];
+
+      // Loop through source objects to be copied
+      const sources = isArray(req.body.source)
+        ? req.body.source
+        : [req.body.source];
+      await mapAsync(sources, async (source) => {
+        // Get item to be moved
+        const document = await Document.fetchOne({ path: source }, {}, trx);
+
+        // Calculate new id and path
+        const path = req.document.path;
+        const newId = uniqueId(document.id, childIds);
+        const newPath = `${path}${path === '/' ? '' : '/'}${newId}`;
+
+        // Add new id to list of taken ids
+        childIds.push(newId);
+
+        // Copy object
+        await document.copy(req.document.uuid, newPath, newId, trx);
+
+        // Add items to return array
+        items.push({
+          source,
+          target: newPath,
+        });
       });
 
       // Fetch new children and fix order

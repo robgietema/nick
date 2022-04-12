@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import app from '../../app';
 import { testRequest } from '../../helpers';
 
@@ -27,5 +29,23 @@ describe('Content', () => {
   it('should be able to handle reordering of content', async () => {
     await testRequest(app, 'content/content_post');
     return testRequest(app, 'content/content_patch_reorder');
+  });
+
+  it('should copy a content object', () =>
+    testRequest(app, 'copymove/copymove_copy'));
+
+  it('should move a content object', () =>
+    testRequest(app, 'copymove/copymove_move'));
+
+  it('should copy multiple content objects', () => {
+    // Mock uuid
+    let i = 0;
+    jest.mock('uuid');
+    uuid.mockImplementation(() => {
+      i = i + 1;
+      return `a95388f2-e4b3-4292-98aa-62656cbd5b9${i}`;
+    });
+
+    return testRequest(app, 'copymove/copymove_copy_multiple');
   });
 });

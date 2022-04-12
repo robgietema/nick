@@ -13,6 +13,7 @@ import {
   omit,
   uniq,
 } from 'lodash';
+import { v4 as uuid } from 'uuid';
 
 import { Model, Redirect, Role, User } from '../../models';
 import { getRootUrl, ockExpired, mapSync } from '../../helpers';
@@ -76,6 +77,32 @@ export class Document extends Model {
           to: 'type.id',
         },
       },
+      _userRoles: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Role,
+        join: {
+          from: 'document.uuid',
+          through: {
+            from: 'user_role_document.document',
+            to: 'user_role_document.role',
+            extra: ['user'],
+          },
+          to: 'role.id',
+        },
+      },
+      _groupRoles: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Role,
+        join: {
+          from: 'document.uuid',
+          through: {
+            from: 'group_role_document.document',
+            to: 'group_role_document.role',
+            extra: ['group'],
+          },
+          to: 'role.id',
+        },
+      },
     };
   }
 
@@ -112,12 +139,13 @@ export class Document extends Model {
   /**
    * Replace old path with new path
    * @method replacePath
+   * @static
    * @param {String} oldPath Old path.
    * @param {String} newPath New path.
    * @param {Object} trx Transaction object.
    * @returns {Promise} A Promise that resolves when replace is done.
    */
-  async replacePath(oldPath, newPath, trx) {
+  static async replacePath(oldPath, newPath, trx) {
     const documents = await this.fetchAll(
       { path: ['~', `^${oldPath}`] },
       {},
@@ -349,6 +377,73 @@ export class Document extends Model {
           comments: '',
           type: 'workflow',
         };
+      }),
+    );
+  }
+
+  /**
+   * Copy object
+   * @method copy
+   * @param {string} parent Parent to copy to.
+   * @param {string} path New path.
+   * @param {string} id New id.
+   * @param {Object} trx Transaction object.
+   */
+  async copy(parent, path, id, trx) {
+    // Copy document
+    const document = await Document.create(
+      {
+        ...this,
+        parent,
+        path,
+        id,
+        uuid: uuid(),
+        workflow_history: JSON.stringify(this.workflow_history),
+      },
+      {},
+      trx,
+    );
+
+    // Copy versions
+    await this.fetchRelated('_versions', trx);
+    await Promise.all(
+      this._versions.map(async (version) => {
+        await document.createRelated(
+          '_versions',
+          {
+            ...version,
+            uuid: uuid(),
+          },
+          trx,
+        );
+      }),
+    );
+
+    // Copy user roles
+    await this.fetchRelated('_userRoles', trx);
+    await Promise.all(
+      this._userRoles.map(async (userRole) => {
+        await document
+          .$relatedQuery('_userRoles', trx)
+          .relate({ id: userRole.id, user: userRole.user });
+      }),
+    );
+
+    // Copy group roles
+    await this.fetchRelated('_groupRoles', trx);
+    await Promise.all(
+      this._groupRoles.map(async (groupRole) => {
+        await document
+          .$relatedQuery('_groupRoles', trx)
+          .relate({ id: groupRole.id, group: groupRole.group });
+      }),
+    );
+
+    // Copy children
+    await this.fetchRelated('_children', trx);
+    await Promise.all(
+      this._children.map(async (child) => {
+        await child.copy(document.uuid, `${path}/${child.id}`, child.id, trx);
       }),
     );
   }
