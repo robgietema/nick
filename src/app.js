@@ -10,7 +10,7 @@ import { compact, isObject, map, uniq } from 'lodash';
 
 import { config } from '../config';
 import { RequestException, getUserId, hasPermission, log } from './helpers';
-import { Document, Model, Redirect, Type, User } from './models';
+import { Document, Model, Redirect, Role, Type, User } from './models';
 import routes from './routes';
 import { accessLogger, cors, i18n } from './middleware';
 
@@ -49,10 +49,7 @@ map(routes, (route) => {
       const result = await root.traverse(
         compact(req.params[0].split('/')), // Slugs
         req.user,
-        uniq([
-          ...(await req.user.fetchUserGroupRolesByDocument(root.uuid)), // Root roles
-          ...req.user.getRoles(), // Global roles
-        ]),
+        await req.user.fetchUserGroupRolesByDocument(root.uuid), // Root roles
         trx,
       );
 
@@ -74,7 +71,9 @@ map(routes, (route) => {
       }
 
       // Get results
-      const { document, permissions, roles } = result;
+      const { document, localRoles } = result;
+      const mergedRoles = uniq([...localRoles, ...req.user.getRoles()]);
+      const permissions = await Role.fetchPermissions(mergedRoles, trx);
 
       // Find type
       const type = await Type.fetchById(document.type, {}, trx);
@@ -94,7 +93,7 @@ map(routes, (route) => {
       req.type = type;
       req.permissions = uniq([
         ...permissions,
-        ...type._workflow.getPermissions(document.workflow_state, roles),
+        ...type._workflow.getPermissions(document.workflow_state, mergedRoles),
       ]);
 
       // Check permission

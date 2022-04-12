@@ -48,7 +48,7 @@ async function fetchPrincipals(
       // Get acquired roles
       let acquiredRoles = [];
       let traverse = document;
-      while (traverse.parent) {
+      while (traverse.parent && traverse.inherit_roles) {
         traverse = await Document.fetchById(traverse.parent, {}, trx);
         acquiredRoles = concat(
           acquiredRoles,
@@ -121,7 +121,7 @@ export default [
           entries: concat(users, groups).sort((a, b) =>
             a.title > b.title ? 1 : -1,
           ),
-          inherit: true,
+          inherit: req.document.inherit_roles,
         },
       };
     },
@@ -131,6 +131,14 @@ export default [
     view: '/@sharing',
     permission: 'Modify',
     handler: async (req, trx) => {
+      // Update inherit
+      if (req.document.inherit_roles !== req.body.inherit) {
+        await req.document.update({
+          inherit_roles: req.body.inherit,
+        });
+      }
+
+      // Update local roles
       await Promise.all(
         map(req.body.entries, async (entry) => {
           const Model = entry.type === 'user' ? User : Group;

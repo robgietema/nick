@@ -290,14 +290,10 @@ export class Document extends Model {
         ...(user.id === this.owner ? ['Owner'] : []),
       ]);
 
-      // Fetch all permissions from roles
-      const permissions = await Role.fetchPermissions(extendedRoles, trx);
-
       // Return document and authorization data
       return {
         document: this,
-        roles: extendedRoles,
-        permissions,
+        localRoles: extendedRoles,
       };
     } else {
       // Fetch child matching the id
@@ -325,7 +321,7 @@ export class Document extends Model {
       return child.traverse(
         drop(slugs),
         user,
-        uniq([...roles, ...childRoles]),
+        child.inherit_roles ? uniq([...roles, ...childRoles]) : childRoles,
         trx,
       );
     }
