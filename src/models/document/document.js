@@ -26,6 +26,8 @@ import { DocumentCollection } from '../../collections';
 export class Document extends Model {
   static collection = DocumentCollection;
 
+  static idColumn = 'uuid';
+
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports
@@ -314,7 +316,10 @@ export class Document extends Model {
       }
 
       // Fetch roles based on user and group from child
-      const childRoles = await user.fetchRolesByDocument(child.uuid, trx);
+      const childRoles = await user.fetchUserGroupRolesByDocument(
+        child.uuid,
+        trx,
+      );
 
       // Recursively call the traverse on child
       return child.traverse(

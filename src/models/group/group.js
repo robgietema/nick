@@ -53,6 +53,7 @@ export class Group extends Model {
           through: {
             from: 'group_role_document.group',
             to: 'group_role_document.role',
+            extra: ['document'],
           },
           to: 'role.id',
         },
@@ -94,6 +95,22 @@ export class Group extends Model {
         }),
         (role) => role.id,
       ),
+    );
+  }
+
+  /**
+   * Fetch group roles by document.
+   * @method fetchRolesByDocument
+   * @param {string} document Uuid of the document
+   * @param {Object} trx Transaction object.
+   * @returns {Array} Array of roles.
+   */
+  async fetchRolesByDocument(document, trx) {
+    return map(
+      await this.$relatedQuery('_documentRoles', trx).where({
+        'group_role_document.document': document,
+      }),
+      (role) => role.id,
     );
   }
 }

@@ -50,7 +50,7 @@ map(routes, (route) => {
         compact(req.params[0].split('/')), // Slugs
         req.user,
         uniq([
-          ...(await req.user.fetchRolesByDocument(root.uuid)), // Root roles
+          ...(await req.user.fetchUserGroupRolesByDocument(root.uuid)), // Root roles
           ...req.user.getRoles(), // Global roles
         ]),
         trx,

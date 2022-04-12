@@ -25,7 +25,7 @@ export function formatSize(bytes) {
  * @returns {string} Formatted attribute.
  */
 export function formatAttribute(attribute) {
-  return includes(attribute, '->>')
+  return includes(attribute, '->>') || includes(attribute, '(')
     ? attribute
     : map(attribute.split('.'), (part) => `"${part}"`).join('.');
 }

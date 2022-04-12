@@ -53,6 +53,7 @@ export class User extends Model {
           through: {
             from: 'user_role_document.user',
             to: 'user_role_document.role',
+            extra: ['document'],
           },
           to: 'role.id',
         },
@@ -120,20 +121,31 @@ export class User extends Model {
   }
 
   /**
-   * Fetch roles by document.
+   * Fetch user roles by document.
    * @method fetchRolesByDocument
    * @param {string} document Uuid of the document
    * @param {Object} trx Transaction object.
    * @returns {Array} Array of roles.
    */
   async fetchRolesByDocument(document, trx) {
+    return map(
+      await this.$relatedQuery('_documentRoles', trx).where({
+        'user_role_document.document': document,
+      }),
+      (role) => role.id,
+    );
+  }
+
+  /**
+   * Fetch user and group roles by document.
+   * @method fetchUserGroupRolesByDocument
+   * @param {string} document Uuid of the document
+   * @param {Object} trx Transaction object.
+   * @returns {Array} Array of roles.
+   */
+  async fetchUserGroupRolesByDocument(document, trx) {
     return uniq([
-      ...map(
-        await this.$relatedQuery('_documentRoles', trx).where({
-          'user_role_document.document': document,
-        }),
-        (role) => role.id,
-      ),
+      ...(await this.fetchRolesByDocument(document, trx)),
       ...(await Group.fetchRolesByDocument(this.getGroups(), document, trx)),
     ]);
   }
