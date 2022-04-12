@@ -191,7 +191,7 @@ msgstr "Verwijderen"
 msgid "Description"
 msgstr "Omschrijving"
 
-#: src/routes/content/content.js:401
+#: src/routes/content/content.js:455
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -274,7 +274,7 @@ msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
-#: src/app.js:159
+#: src/app.js:158
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
@@ -360,7 +360,7 @@ msgstr "Wijzigen"
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
-#: src/app.js:66
+#: src/app.js:63
 #: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
 #: src/routes/users/users.js:99
@@ -462,7 +462,7 @@ msgstr "Gerelateerde resources"
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: src/routes/content/content.js:292
+#: src/routes/content/content.js:346
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
@@ -619,12 +619,12 @@ msgstr "Titel"
 msgid "To, from and message are required fields."
 msgstr "Aan, van en bericht zijn verplichte velden."
 
-#: src/app.js:117
+#: src/app.js:116
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr "Transactiefout"
 
-#: src/app.js:85
+#: src/app.js:84
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
@@ -676,7 +676,7 @@ msgstr "Wanneer deze datum is bereikt, is de inhoud niet langer zichtbaar in ver
 msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
 
-#: src/app.js:103
+#: src/app.js:102
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
@@ -692,7 +692,7 @@ msgstr "U kunt geen systeemgroepen verwijderen."
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
-#: src/routes/content/content.js:398
+#: src/routes/content/content.js:452
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-04-11T19:38:52.092Z\n"
+"POT-Creation-Date: 2022-04-12T20:31:26.947Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +191,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/routes/content/content.js:401
+#: src/routes/content/content.js:455
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -274,7 +274,7 @@ msgstr ""
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:159
+#: src/app.js:158
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
@@ -360,7 +360,7 @@ msgstr ""
 msgid "Not allowed"
 msgstr ""
 
-#: src/app.js:66
+#: src/app.js:63
 #: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
 #: src/routes/users/users.js:99
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: src/routes/content/content.js:292
+#: src/routes/content/content.js:346
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr ""
@@ -621,12 +621,12 @@ msgstr ""
 msgid "To, from and message are required fields."
 msgstr ""
 
-#: src/app.js:117
+#: src/app.js:116
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr ""
 
-#: src/app.js:85
+#: src/app.js:84
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
@@ -678,7 +678,7 @@ msgstr ""
 msgid "Wrong login and/or password."
 msgstr ""
 
-#: src/app.js:103
+#: src/app.js:102
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
@@ -694,7 +694,7 @@ msgstr ""
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:398
+#: src/routes/content/content.js:452
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
