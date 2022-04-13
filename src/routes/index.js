@@ -17,6 +17,7 @@ import querystring from './querystring/querystring';
 import roles from './roles/roles';
 import search from './search/search';
 import sharing from './sharing/sharing';
+import system from './system/system';
 import types from './types/types';
 import users from './users/users';
 import vocabularies from './vocabularies/vocabularies';
@@ -36,6 +37,7 @@ export default [
   ...roles,
   ...search,
   ...sharing,
+  ...system,
   ...types,
   ...users,
   ...vocabularies,
