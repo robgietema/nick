@@ -8,5 +8,3 @@
  *   Footer,
  * };
  */
-
-export Structure from './Structure/Structure';

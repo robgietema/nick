@@ -16,7 +16,7 @@ import {
 import { v4 as uuid } from 'uuid';
 
 import { Model, Redirect, Role, User } from '../../models';
-import { getRootUrl, ockExpired, mapSync } from '../../helpers';
+import { getRootUrl, lockExpired, mapSync } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
 /**

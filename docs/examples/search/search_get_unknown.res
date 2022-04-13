@@ -78,8 +78,8 @@ Content-Type: application/json
       "@type": "Site",
       "UID": "92a80817-f5b7-400d-8f58-b08126f0f09b",
       "Creator": "Admin",
-      "Description": "Congratulations! You have successfully installed Volto.",
-      "title": "Welcome to Volto",
+      "Description": "Congratulations! You have successfully installed Nick.",
+      "title": "Welcome to Nick!",
       "review_state": "published",
       "ModificationDate": "2022-04-02T22:00:00+02:00",
       "CreationDate": "2022-04-02T22:00:00+02:00",
@@ -87,7 +87,7 @@ Content-Type: application/json
       "ExpirationDate": "None",
       "id": "root",
       "is_folderish": true,
-      "getObjSize": "563 B",
+      "getObjSize": "2 KB",
       "start": null,
       "end": null
     }

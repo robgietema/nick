@@ -137,7 +137,8 @@
     "node": "^12 || ^14 || ^16"
   },
   "dependencies": {
-    "@plone/volto": "15.0.0"
+    "@plone/volto": "15.0.0",
+    "react-helmet": "6.1.0"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "3.1.3",
