@@ -38,6 +38,10 @@ Example `GET` request on the portal root
 
 Make sure the nick user has the privileges to run the last command.
 
+### Install Dependencies
+
+    $ yarn
+
 ### Create DB structure
 
     $ yarn migrate
@@ -45,10 +49,6 @@ Make sure the nick user has the privileges to run the last command.
 ### Import initial content
 
     $ yarn seed
-
-### Install Dependencies
-
-    $ yarn
 
 ## Development
 

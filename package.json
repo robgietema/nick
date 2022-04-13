@@ -30,6 +30,7 @@
     "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",
     "i18n": "babel-node scripts/i18n.js",
     "migrate": "yarn knex migrate:latest",
+    "bootstrap": "yarn && yarn knex migrate:latest && yarn knex seed:run",
     "seed": "yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
     "reset": "yarn knex migrate:rollback --all && yarn knex migrate:latest && yarn knex seed:run",
