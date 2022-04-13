@@ -63,6 +63,7 @@
     "bcrypt-promise": "2.0.0",
     "body-parser": "1.20.0",
     "deepmerge": "4.2.2",
+    "du": "1.0.0",
     "express": "4.17.3",
     "jest": "27.5.1",
     "jsonwebtoken": "8.5.1",

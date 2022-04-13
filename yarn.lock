@@ -2593,6 +2593,13 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
+du@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/du/-/du-1.0.0.tgz#f33b8d0c3944f7db78bdd6f2105c637a91f25b03"
+  integrity sha512-w00+6XpIq924IvDLyOOx5HFO4KwH6YV6buqFx6og/ErTaJ34kVOyI+Q2f+X8pvZkDoEgT6xspA4iYSN99mqPDA==
+  dependencies:
+    map-async "~0.1.1"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -4315,6 +4322,11 @@ makeerror@1.0.12:
   integrity sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==
   dependencies:
     tmpl "1.0.5"
+
+map-async@~0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/map-async/-/map-async-0.1.1.tgz#c897c0449f85864c74b5a3f196edb42156431745"
+  integrity sha1-yJfARJ+Fhkx0taPxlu20IVZDF0U=
 
 media-typer@0.3.0:
   version "0.3.0"

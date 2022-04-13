@@ -5,7 +5,7 @@ permalink: /system
 
 # System
 
-The `@system` endpoint exposes system information about the Plone backend.
+The `@system` endpoint exposes system information about the Nick backend.
 
 Send a `GET` request to the `@system` endpoint:
 
