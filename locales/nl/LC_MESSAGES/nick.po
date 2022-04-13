@@ -238,6 +238,12 @@ msgstr "Bestand"
 msgid "Folder"
 msgstr "Map"
 
+#: src/routes/email/email.js:46
+#: src/routes/email/email.js:79
+# defaultMessage: From and message are required fields.
+msgid "From and message are required fields."
+msgstr "Afzender en bericht zijn verplichte velden."
+
 #: src/profiles/behaviors/short_name.json:4
 # defaultMessage: Gives the ability to rename an item from its edit form.
 msgid "Gives the ability to rename an item from its edit form."
@@ -361,6 +367,7 @@ msgid "Not allowed"
 msgstr "Niet toegestaan"
 
 #: src/app.js:63
+#: src/routes/email/email.js:53
 #: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
 #: src/routes/users/users.js:99
@@ -614,7 +621,7 @@ msgstr "Deze naam wordt weergegeven in de URL."
 msgid "Title"
 msgstr "Titel"
 
-#: src/routes/email/email.js:17
+#: src/routes/email/email.js:19
 # defaultMessage: To, from and message are required fields.
 msgid "To, from and message are required fields."
 msgstr "Aan, van en bericht zijn verplichte velden."
