@@ -8,11 +8,11 @@ permalink: /breadcrumbs
 Getting the breadcrumbs for the current page:
 
 ```
-{% include_relative examples/breadcrumbs/breadcrumbs_get.req %}
+{% include_relative examples/breadcrumbs/get.req %}
 ```
 
 Example response:
 
 ```
-{% include_relative examples/breadcrumbs/breadcrumbs_get.res %}
+{% include_relative examples/breadcrumbs/get.res %}
 ```

@@ -20,21 +20,6 @@ export function hasPermission(permissions, permission) {
 }
 
 /**
- * Get admin header.
- * @method getAdminHeader
- * @returns {String} Admin header.
- */
-export function getAdminHeader() {
-  return `Bearer ${jwt.sign(
-    {
-      sub: 'admin',
-      fullname: 'Admin',
-    },
-    config.secret,
-  )}`;
-}
-
-/**
  * Get user based on token.
  * @method getUser
  * @param {Object} req Request object.

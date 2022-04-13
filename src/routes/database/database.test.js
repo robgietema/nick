@@ -13,5 +13,5 @@ jest.mock('../../helpers', () => {
 
 describe('Database', () => {
   it('should get the database information', () =>
-    testRequest(app, 'database/database_get'));
+    testRequest(app, 'database/get'));
 });

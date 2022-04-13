@@ -8,9 +8,9 @@ permalink: /searching
 Content can be searched for by invoking the `/@search` endpoint on any context:
 
 ```
-{% include_relative examples/search/search_get.req %}
+{% include_relative examples/search/get.req %}
 ```
 
 ```
-{% include_relative examples/search/search_get.res %}
+{% include_relative examples/search/get.res %}
 ```

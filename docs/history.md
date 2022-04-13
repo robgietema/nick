@@ -12,11 +12,11 @@ The `@history` endpoint exposes history and versioning information on previous v
 Listing versions and history of a resource:
 
 ```
-{% include_relative examples/history/history_get.req %}
+{% include_relative examples/history/get.req %}
 ```
 
 ```
-{% include_relative examples/history/history_get.res %}
+{% include_relative examples/history/get.res %}
 ```
 
 This following fields are returned:
@@ -36,7 +36,7 @@ This following fields are returned:
 Older versions of a resource can be retrieved by appending version to the `@history` endpoint url.
 
 ```
-{% include_relative examples/history/history_get_version.req %}
+{% include_relative examples/history/get_version.req %}
 ```
 
 ## Revert to a Historical Version
@@ -44,9 +44,9 @@ Older versions of a resource can be retrieved by appending version to the `@hist
 Reverting to an older versions of a resource can be done by sending a PATCH request to the `@history` endpoint and appending the version you want to revert to.
 
 ```
-{% include_relative examples/history/history_patch.req %}
+{% include_relative examples/history/patch.req %}
 ```
 
 ```
-{% include_relative examples/history/history_patch.res %}
+{% include_relative examples/history/patch.res %}
 ```

@@ -3,36 +3,34 @@ import { testRequest } from '../../helpers';
 
 describe('Groups', () => {
   afterEach(async () => {
-    await testRequest(app, 'groups/groups_delete');
+    await testRequest(app, 'groups/delete');
   });
 
-  it('should get a list of groups', () =>
-    testRequest(app, 'groups/groups_list'));
+  it('should get a list of groups', () => testRequest(app, 'groups/list'));
 
   it('should get a list of groups by query', () =>
-    testRequest(app, 'groups/groups_list_query'));
+    testRequest(app, 'groups/list_query'));
 
   it('should get an error when not logged in', () =>
-    testRequest(app, 'groups/groups_list_anonymous'));
+    testRequest(app, 'groups/list_anonymous'));
 
-  it('should get an individual group', () =>
-    testRequest(app, 'groups/groups_get'));
+  it('should get an individual group', () => testRequest(app, 'groups/get'));
 
   it('should not get a group when not logged in', () =>
-    testRequest(app, 'groups/groups_get_anonymous'));
+    testRequest(app, 'groups/get_anonymous'));
 
   it('should not get a group when not found', () =>
-    testRequest(app, 'groups/groups_get_notfound'));
+    testRequest(app, 'groups/get_notfound'));
 
-  it('should add a new group', () => testRequest(app, 'groups/groups_post'));
+  it('should add a new group', () => testRequest(app, 'groups/post'));
 
   it('should update a group', async () => {
-    await testRequest(app, 'groups/groups_post');
-    return testRequest(app, 'groups/groups_patch');
+    await testRequest(app, 'groups/post');
+    return testRequest(app, 'groups/patch');
   });
 
   it('should delete a group', async () => {
-    await testRequest(app, 'groups/groups_post');
-    return testRequest(app, 'groups/groups_delete');
+    await testRequest(app, 'groups/post');
+    return testRequest(app, 'groups/delete');
   });
 });

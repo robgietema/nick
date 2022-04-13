@@ -1,0 +1,41 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "@id": "http://localhost:8000/@vocabularies/behaviors",
+  "items": [
+    {
+      "title": "Basic metadata",
+      "token": "basic"
+    },
+    {
+      "title": "Blocks",
+      "token": "blocks"
+    },
+    {
+      "title": "Categorization",
+      "token": "categorization"
+    },
+    {
+      "title": "Dates",
+      "token": "dates"
+    },
+    {
+      "title": "Dublin Core metadata",
+      "token": "dublin_core"
+    },
+    {
+      "title": "Ownership",
+      "token": "ownership"
+    },
+    {
+      "title": "Short name",
+      "token": "short_name"
+    },
+    {
+      "title": "Versioning",
+      "token": "versioning"
+    }
+  ],
+  "items_total": 8
+}

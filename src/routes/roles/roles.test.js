@@ -2,5 +2,5 @@ import app from '../../app';
 import { testRequest } from '../../helpers';
 
 describe('Roles', () => {
-  it('should get a list of roles', () => testRequest(app, 'roles/roles_get'));
+  it('should get a list of roles', () => testRequest(app, 'roles/get'));
 });

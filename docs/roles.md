@@ -12,13 +12,13 @@ Available roles in a Plone site can be queried by interacting with the `/@roles`
 To retrieve a list of all roles in the portal, call the `/@roles` endpoint with a `GET` request:
 
 ```
-{% include_relative examples/roles/roles_get.req %}
+{% include_relative examples/roles/get.req %}
 ```
 
 The server will respond with a list of all roles in the site:
 
 ```
-{% include_relative examples/roles/roles_get.res %}
+{% include_relative examples/roles/get.res %}
 ```
 
 The role `title` is the translated role title.

@@ -10,7 +10,7 @@ permalink: /email
 To send an email to an arbitrary e-mail address, send a POST request to the `@email-send`endpoint that is available on the site root:
 
 ```
-{% include_relative examples/mail/mail_post.req %}
+{% include_relative examples/mail/post.req %}
 ```
 
 The `to`, `from` and `message` fields are required. The `subject` and `name` fields are optional.
@@ -18,7 +18,7 @@ The `to`, `from` and `message` fields are required. The `subject` and `name` fie
 The server will respond with status 204 No Content when the email has been sent successfully:
 
 ```
-{% include_relative examples/mail/mail_post.res %}
+{% include_relative examples/mail/post.res %}
 ```
 
 ## Contact Site Owner aka Contact Form
@@ -28,7 +28,7 @@ Nick allows the user to contact the site owner via a form on the website. This m
 To send an email notification to the site owner, send a `POST` request to the `/@email-notification` endpoint that is available on the site root:
 
 ```
-{% include_relative examples/mail/mail_post_webmaster.req %}
+{% include_relative examples/mail/post_webmaster.req %}
 ```
 
 The _from_ and _message_ fields are required. The _subject_ and _name_ fields are optional.
@@ -36,7 +36,7 @@ The _from_ and _message_ fields are required. The _subject_ and _name_ fields ar
 The server will respond with status `204 No Content` when the email has been sent successfully:
 
 ```
-{% include_relative examples/mail/mail_post_webmaster.res %}
+{% include_relative examples/mail/post_webmaster.res %}
 ```
 
 ## Contact Users
@@ -44,11 +44,11 @@ The server will respond with status `204 No Content` when the email has been sen
 To send an email notification to another user of the portal, send a `POST` request to the `/@email-notification` endpoint on a particular user (e.g. the admin user):
 
 ```
-{% include_relative examples/mail/mail_post_user.req %}
+{% include_relative examples/mail/post_user.req %}
 ```
 
 The server will respond with status `204 No Content` when the email has been sent successfully:
 
 ```
-{% include_relative examples/mail/mail_post_user.res %}
+{% include_relative examples/mail/post_user.res %}
 ```

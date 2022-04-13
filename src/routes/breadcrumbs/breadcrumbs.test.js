@@ -3,5 +3,5 @@ import { testRequest } from '../../helpers';
 
 describe('Breadcrumbs', () => {
   it('should return the breadcrumbs', () =>
-    testRequest(app, 'breadcrumbs/breadcrumbs_get'));
+    testRequest(app, 'breadcrumbs/get'));
 });

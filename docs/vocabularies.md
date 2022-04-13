@@ -20,13 +20,13 @@ Vocabularies can be context-sensitive, meaning that they take the context into a
 To retrieve a list of all the available vocabularies, send a `GET` request to the `@vocabularies` endpoint:
 
 ```
-{% include_relative examples/vocabularies/vocabularies_list.req %}
+{% include_relative examples/vocabularies/list.req %}
 ```
 
 The response will include a list with the URL (`@id`) and the names (`title`) of all the available vocabularies:
 
 ```
-{% include_relative examples/vocabularies/vocabularies_list.res %}
+{% include_relative examples/vocabularies/list.res %}
 ```
 
 ## Get a vocabulary
@@ -34,11 +34,11 @@ The response will include a list with the URL (`@id`) and the names (`title`) of
 To enumerate the terms of a particular vocabulary, use the `@vocabularies` endpoint with the name of the vocabulary, e.g. `/@vocabularies/roles`. The endpoint can be used with the site root and content objects.
 
 ```
-{% include_relative examples/vocabularies/vocabularies_get.req %}
+{% include_relative examples/vocabularies/get.req %}
 ```
 
 The server will respond with a list of terms. The title is purely for display purposes. The token is what should be sent to the server to address that term.
 
 ```
-{% include_relative examples/vocabularies/vocabularies_get.res %}
+{% include_relative examples/vocabularies/get.res %}
 ```

@@ -21,7 +21,7 @@ Manipulating resources across the network by using HTTP as an application protoc
 To create a new resource, we send a `POST` request to the resource container. If we want to create a new document within an existing folder, we send a `POST` request to that folder:
 
 ```
-{% include_relative examples/content/content_post.req %}
+{% include_relative examples/content/post.req %}
 ```
 
 By setting the 'Accept' header, we tell the server that we would like to receive the response in the 'application/json' representation format.
@@ -35,7 +35,7 @@ The request body contains the minimal necessary information needed to create a d
 If a resource has been created, the server responds with the `201 Created` status code. The 'Location' header contains the URL of the newly created resource and the resource representation in the payload:
 
 ```
-{% include_relative examples/content/content_post.res %}
+{% include_relative examples/content/post.res %}
 ```
 
 ### Unsuccessful Response (400 Bad Request)
@@ -43,7 +43,7 @@ If a resource has been created, the server responds with the `201 Created` statu
 If the resource could not be created, for instance because the title was missing in the request, the server responds with `400 Bad Request`:
 
 ```
-{% include_relative examples/content/content_post_badrequest.res %}
+{% include_relative examples/content/post_badrequest.res %}
 ```
 
 The response body can contain information about why the request failed.
@@ -53,7 +53,7 @@ The response body can contain information about why the request failed.
 After a successful POST, we can access the resource by sending a GET request to the resource URL:
 
 ```
-{% include_relative examples/content/content_get.req %}
+{% include_relative examples/content/get.req %}
 ```
 
 ### Successful Response (200 OK)
@@ -61,7 +61,7 @@ After a successful POST, we can access the resource by sending a GET request to 
 If a resource has been retrieved successfully, the server responds with `200 OK`:
 
 ```
-{% include_relative examples/content/content_get.res %}
+{% include_relative examples/content/get.res %}
 ```
 
 For folderish types, their childrens are automatically included in the response as items.
@@ -71,7 +71,7 @@ For folderish types, their childrens are automatically included in the response 
 If a resource could not be found, the server will respond with `404 Not Found`:
 
 ```
-{% include_relative examples/content/content_get_notfound.res %}
+{% include_relative examples/content/get_notfound.res %}
 ```
 
 ### GET Responses
@@ -89,7 +89,7 @@ To update an existing resource we send a `PATCH` request to the server. `PATCH` 
 If you send the value `null` for a field, the field's content will be deleted. Note that this is not possible if the field is required.
 
 ```
-{% include_relative examples/content/content_patch.req %}
+{% include_relative examples/content/patch.req %}
 ```
 
 ### Successful Response (204 No Content)
@@ -97,7 +97,7 @@ If you send the value `null` for a field, the field's content will be deleted. N
 A successful response to a PATCH request will be indicated by a `204 No Content` response by default:
 
 ```
-{% include_relative examples/content/content_patch.res %}
+{% include_relative examples/content/patch.res %}
 ```
 
 ## Removing a Resource with DELETE
@@ -105,13 +105,13 @@ A successful response to a PATCH request will be indicated by a `204 No Content`
 We can delete an existing resource by sending a DELETE request:
 
 ```
-{% include_relative examples/content/content_delete.req %}
+{% include_relative examples/content/delete.req %}
 ```
 
 A successful response will be indicated by a `204 No Content` response:
 
 ```
-{% include_relative examples/content/content_delete.res %}
+{% include_relative examples/content/delete.res %}
 ```
 
 ### DELETE Repsonses
@@ -128,5 +128,5 @@ The resources contained within a resource can be reordered using the `ordering` 
 Use the `obj_id` subkey to specify which resource to reorder. The subkey `delta` can be 'top', 'bottom', or a negative or positive integer for moving up or down.
 
 ```
-{% include_relative examples/content/content_patch_reorder.req %}
+{% include_relative examples/content/patch_reorder.req %}
 ```

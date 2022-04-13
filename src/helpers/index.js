@@ -4,7 +4,7 @@
  * @example import { BaseModel } from './helpers';
  */
 
-export { getAdminHeader, getUserId, hasPermission } from './auth/auth';
+export { getUserId, hasPermission } from './auth/auth';
 export { RequestException } from './error/error';
 export { formatSize, formatAttribute } from './format/format';
 export {

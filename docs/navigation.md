@@ -10,11 +10,11 @@ permalink: /navigation
 Getting the top navigation items:
 
 ```
-{% include_relative examples/navigation/navigation_get.req %}
+{% include_relative examples/navigation/get.req %}
 ```
 
 Example response:
 
 ```
-{% include_relative examples/navigation/navigation_get.res %}
+{% include_relative examples/navigation/get.res %}
 ```

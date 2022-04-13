@@ -14,11 +14,11 @@ Available options for the querystring can be queried by interacting with the `/@
 To retrieve all querystring options in the portal, call the `/@querystring` endpoint with a `GET` request:
 
 ```
-{% include_relative examples/querystring/querystring_get.req %}
+{% include_relative examples/querystring/get.req %}
 ```
 
 The server will respond with all querystring options in the portal:
 
 ```
-{% include_relative examples/querystring/querystring_get.res %}
+{% include_relative examples/querystring/get.res %}
 ```
