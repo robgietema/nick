@@ -3,7 +3,7 @@ sort: 20
 permalink: /email
 ---
 
-# Email Send
+# Email
 
 ## Send Mail to Arbitrary Addresses
 
@@ -19,4 +19,36 @@ The server will respond with status 204 No Content when the email has been sent 
 
 ```
 {% include_relative examples/mail/mail_post.res %}
+```
+
+## Contact Site Owner aka Contact Form
+
+Nick allows the user to contact the site owner via a form on the website. This makes sure the site owner does not have to expose their email addresses publicly and at the same time allow the users to reach out to the site owners.
+
+To send an email notification to the site owner, send a `POST` request to the `/@email-notification` endpoint that is available on the site root:
+
+```
+{% include_relative examples/mail/mail_post_webmaster.req %}
+```
+
+The _from_ and _message_ fields are required. The _subject_ and _name_ fields are optional.
+
+The server will respond with status `204 No Content` when the email has been sent successfully:
+
+```
+{% include_relative examples/mail/mail_post_webmaster.res %}
+```
+
+## Contact Users
+
+To send an email notification to another user of the portal, send a `POST` request to the `/@email-notification` endpoint on a particular user (e.g. the admin user):
+
+```
+{% include_relative examples/mail/mail_post_user.req %}
+```
+
+The server will respond with status `204 No Content` when the email has been sent successfully:
+
+```
+{% include_relative examples/mail/mail_post_user.res %}
 ```

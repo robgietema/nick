@@ -128,7 +128,7 @@ export default [
     view: '/@querystring-search',
     permission: 'View',
     handler: async (req, trx) => {
-      const items = await Document.fetchAll({}, {}, trx);
+      const items = await Document.fetchAll({}, { order: 'uuid' }, trx);
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
