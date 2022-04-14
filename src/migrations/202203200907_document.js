@@ -7,11 +7,12 @@ export const up = async (knex) => {
     table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
       .uuid('parent')
+      .index()
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table.string('id').notNull();
-    table.string('path').notNull();
+    table.string('path').notNull().index();
     table.dateTime('created');
     table.dateTime('modified');
     table
@@ -27,6 +28,7 @@ export const up = async (knex) => {
     table.boolean('inherit_roles').notNull().defaultTo(true);
     table.string('workflow_state').notNull();
     table.jsonb('workflow_history').notNull();
+    table.index(['parent', 'id']);
   });
   await knex.schema.createTable('version', (table) => {
     table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
@@ -35,14 +37,15 @@ export const up = async (knex) => {
     table.string('actor').references('user.id');
     table
       .uuid('document')
+      .index()
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table.string('id').notNull();
     table.jsonb('json').notNull();
+    table.index(['document', 'version']);
   });
   await knex.schema.createTable('user_role_document', (table) => {
-    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
       .string('user')
       .notNull()
@@ -61,10 +64,9 @@ export const up = async (knex) => {
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
-    table.unique(['user', 'role', 'document']);
+    table.primary(['user', 'role', 'document']);
   });
   await knex.schema.createTable('group_role_document', (table) => {
-    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
       .string('group')
       .notNull()
@@ -83,7 +85,7 @@ export const up = async (knex) => {
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
-    table.unique(['group', 'role', 'document']);
+    table.primary(['group', 'role', 'document']);
   });
 };
 

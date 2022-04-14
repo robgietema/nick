@@ -5,7 +5,6 @@ export const up = async (knex) => {
     table.integer('order');
   });
   await knex.schema.createTable('role_permission', (table) => {
-    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table
       .string('role')
       .notNull()
@@ -18,7 +17,7 @@ export const up = async (knex) => {
       .references('permission.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
-    table.unique(['role', 'permission']);
+    table.primary(['role', 'permission']);
   });
 };
 
