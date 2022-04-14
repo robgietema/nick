@@ -8,6 +8,7 @@ import {
   findIndex,
   head,
   includes,
+  keys,
   map,
   mapValues,
   omit,
@@ -15,8 +16,9 @@ import {
 } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
+import { config } from '../../../config';
 import { Model, Redirect, Role, User } from '../../models';
-import { getRootUrl, lockExpired, mapSync } from '../../helpers';
+import { getRootUrl, lockExpired, mapSync, copyFile } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
 /**
@@ -390,10 +392,61 @@ export class Document extends Model {
    * @param {Object} trx Transaction object.
    */
   async copy(parent, path, id, trx) {
+    // Get json
+    let json = this.json;
+
+    // Get type information
+    await this.fetchRelated('_type', trx);
+
+    // Store used uuids
+    let fileUuid = {};
+    const fileFields = this._type.getFactoryFields('File');
+    const imageFields = this._type.getFactoryFields('Image');
+
+    // Copy files
+    const copyFiles = () =>
+      map(fileFields, (field) => {
+        if (json[field].uuid in fileUuid) {
+          json[field].uuid = fileUuid[json[field].uuid];
+        } else {
+          const newUuid = uuid();
+          copyFile(json[field].uuid, newUuid);
+          fileUuid[json[field].uuid] = newUuid;
+          json[field].uuid = newUuid;
+        }
+      });
+    copyFiles();
+
+    // Copy images
+    const copyImages = () =>
+      map(imageFields, (field) => {
+        if (json[field].uuid in fileUuid) {
+          json[field].uuid = fileUuid[json[field].uuid];
+        } else {
+          const newUuid = uuid();
+          copyFile(json[field].uuid, newUuid);
+          fileUuid[json[field].uuid] = newUuid;
+          json[field].uuid = newUuid;
+        }
+        map(keys(config.imageScales), (scale) => {
+          if (json[field].scales[scale].uuid in fileUuid) {
+            json[field].scales[scale].uuid =
+              fileUuid[json[field].scales[scale].uuid];
+          } else {
+            const newScaleUuid = uuid();
+            copyFile(this.json[field].scales[scale].uuid, newScaleUuid);
+            fileUuid[json[field].scales[scale].uuid] = newScaleUuid;
+            json[field].scales[scale].uuid = newScaleUuid;
+          }
+        });
+      });
+    copyImages();
+
     // Copy document
     const document = await Document.create(
       {
-        ...this,
+        ...omit(this, ['_type']),
+        json,
         parent,
         path,
         id,
@@ -408,10 +461,19 @@ export class Document extends Model {
     await this.fetchRelated('_versions', trx);
     await Promise.all(
       this._versions.map(async (version) => {
+        // Get current json
+        json = version.json;
+
+        // Copy images/files
+        copyFiles();
+        copyImages();
+
+        // Copy version
         await document.createRelated(
           '_versions',
           {
             ...version,
+            json,
             uuid: uuid(),
           },
           trx,

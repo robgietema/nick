@@ -471,7 +471,11 @@ export default [
             )
           : id;
       const newPath =
-        path === '/' ? path : `${req.document._parent.path}/${newId}`;
+        path === '/'
+          ? path
+          : `${
+              req.document._parent.path === '/' ? '' : req.document._parent.path
+            }/${newId}`;
 
       // Handle file uploads
       let json = {

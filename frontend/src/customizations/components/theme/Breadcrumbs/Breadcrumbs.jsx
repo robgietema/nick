@@ -113,11 +113,11 @@ export class BreadcrumbsComponent extends Component {
             width="100%"
             height="80"
           >
-            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <g
                 transform="translate(-2.000000, 44.000000)"
                 fill="#FFFFFF"
-                fill-rule="nonzero"
+                fillRule="nonzero"
               >
                 <path
                   d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"

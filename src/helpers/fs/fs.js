@@ -4,7 +4,7 @@
  */
 
 import { keys, max, round } from 'lodash';
-import { rmSync, readFileSync, writeFileSync } from 'fs';
+import { copyFileSync, rmSync, readFileSync, writeFileSync } from 'fs';
 import { v4 as uuid } from 'uuid';
 import sharp from 'sharp';
 
@@ -128,8 +128,17 @@ export async function writeImage(data, encoding) {
  * Remove file
  * @method removeFile
  * @param {string} uuid Uuid of the file to remove.
- * @returns {undefined} File buffer.
  */
 export function removeFile(uuid) {
   rmSync(`${config.blobsDir}/${uuid}`);
+}
+
+/**
+ * Copy file
+ * @method copyFile
+ * @param {string} source Uuid of the source file.
+ * @param {string} target Uuid of the target file.
+ */
+export function copyFile(source, target) {
+  copyFileSync(`${config.blobsDir}/${source}`, `${config.blobsDir}/${target}`);
 }
