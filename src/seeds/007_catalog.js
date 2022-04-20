@@ -27,7 +27,7 @@ export const seed = async (knex) => {
               table.boolean(field).index();
               break;
             case 'date':
-              table.date(field).index();
+              table.dateTime(field).index();
               break;
             case 'string[]':
               table.specificType(field, 'character varying(255)[]').index();
@@ -58,7 +58,7 @@ export const seed = async (knex) => {
               table.string(metadata.name);
               break;
             case 'date':
-              table.date(metadata.name);
+              table.dateTime(metadata.name);
               break;
             case 'integer':
               table.integer(metadata.name);
