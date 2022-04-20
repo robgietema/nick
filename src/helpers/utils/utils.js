@@ -88,3 +88,13 @@ export function arrayToVocabulary(items) {
     token: item,
   }));
 }
+
+/**
+ * Checks if variable is a promise
+ * @method isPromise
+ * @param {*} variable Variable to be checked
+ * @returns {boolean} True if variable is a promise
+ */
+export function isPromise(variable) {
+  return typeof variable === 'object' && typeof variable.then === 'function';
+}

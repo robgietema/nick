@@ -11,7 +11,7 @@ export const up = async (knex) => {
     table.string('description');
     table.boolean('global_allow');
     table.boolean('filter_content_types');
-    table.jsonb('allowed_content_types').notNull();
+    table.specificType('allowed_content_types', 'character varying(255)[]');
     table.jsonb('schema').notNull();
     table.jsonb('_schema');
     table

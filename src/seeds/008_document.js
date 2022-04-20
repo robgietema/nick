@@ -131,6 +131,9 @@ export const seed = async (knex) => {
           })),
         );
       });
+
+      // Index object
+      await insert.index();
     });
     log.info('Documents imported');
   } catch (err) {

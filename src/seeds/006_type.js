@@ -31,9 +31,6 @@ export const seed = async (knex) => {
         global_allow: true,
         filter_content_types: false,
         ...data,
-        allowed_content_types: data.allowed_content_types
-          ? JSON.stringify(data.allowed_content_types)
-          : '[]',
       });
       await typeModel.cacheSchema();
     });

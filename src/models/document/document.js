@@ -4,6 +4,7 @@
  */
 
 import {
+  compact,
   drop,
   findIndex,
   head,
@@ -17,9 +18,18 @@ import {
 import { v4 as uuid } from 'uuid';
 
 import { config } from '../../../config';
-import { Model, Redirect, Role, User } from '../../models';
-import { getRootUrl, lockExpired, mapSync, copyFile } from '../../helpers';
+import { Catalog, Model, Redirect, Role, User } from '../../models';
+import {
+  formatSize,
+  getRootUrl,
+  lockExpired,
+  log,
+  mapSync,
+  copyFile,
+} from '../../helpers';
 import { DocumentCollection } from '../../collections';
+
+import profile from '../../profiles/catalog';
 
 /**
  * A model for Document.
@@ -61,6 +71,14 @@ export class Document extends Model {
         join: {
           from: 'document.uuid',
           to: 'document.parent',
+        },
+      },
+      _catalog: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Catalog,
+        join: {
+          from: 'document.uuid',
+          to: 'catalog.document',
         },
       },
       _versions: {
@@ -169,6 +187,11 @@ export class Document extends Model {
     await knex
       .raw(
         `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
+      )
+      .transacting(trx);
+    await knex
+      .raw(
+        `update catalog set _path = regexp_replace(_path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where _path ~ '^${oldPath}/.*$'`,
       )
       .transacting(trx);
   }
@@ -457,6 +480,9 @@ export class Document extends Model {
       trx,
     );
 
+    // Index document
+    document.index(trx);
+
     // Copy versions
     await this.fetchRelated('_versions', trx);
     await Promise.all(
@@ -508,5 +534,143 @@ export class Document extends Model {
         await child.copy(document.uuid, `${path}/${child.id}`, child.id, trx);
       }),
     );
+  }
+
+  /**
+   * Is folderish
+   * @method isFolderish
+   * @return {boolean} True if folderish
+   */
+  isFolderish() {
+    return includes(this._type._schema.behaviors, 'folderish');
+  }
+
+  /**
+   * Searchable text
+   * @method searchableText
+   * @return {string} Searchable text
+   */
+  searchableText() {
+    return compact([this.json.title, this.json.description]).join(' ');
+  }
+
+  /**
+   * Get object size
+   * @method getObjSize
+   * @return {number} Object size
+   */
+  getObjSize() {
+    return JSON.stringify(this.json).length;
+  }
+
+  /**
+   * Get mime type
+   * @method mimeType
+   * @return {string} Mime type of the object
+   */
+  mimeType() {
+    const imageFields = this._type.getFactoryFields('Image');
+    if (imageFields.length > 0) {
+      return this.json[imageFields[0]]['content-type'];
+    }
+    const fileFields = this._type.getFactoryFields('File');
+    if (fileFields.length > 0) {
+      return this.json[fileFields[0]]['content-type'];
+    }
+    return undefined;
+  }
+
+  /**
+   * List of creators
+   * @method listCreators
+   * @return {Array} List of creators
+   */
+  listCreators() {
+    return [this.owner];
+  }
+
+  /**
+   * Re index children
+   * @method reindexChildren
+   * @param {Object} trx Transaction object.
+   */
+  async reindexChildren(trx) {
+    return Promise.all(
+      map(this._children, async (child) => await child.index(trx, false)),
+    );
+  }
+
+  /**
+   * Index children
+   * @method indexChildren
+   * @param {Object} trx Transaction object.
+   */
+  async indexChildren(trx) {
+    return Promise.all(
+      map(this._children, async (child) => await child.index(trx)),
+    );
+  }
+
+  /**
+   * Re index object
+   * @method reindex
+   * @param {Object} trx Transaction object.
+   */
+  async reindex(trx) {
+    return this.index(trx, false);
+  }
+
+  /**
+   * Index object
+   * @method index
+   * @param {Object} trx Transaction object.
+   * @param {boolean} insert Insert or update.
+   */
+  async index(trx, insert = true) {
+    let fields = {};
+
+    // If type not found fetch type
+    if (!this._type) {
+      await this.fetchRelated('_type', trx);
+    }
+
+    // Loop indexes
+    await Promise.all(
+      map(profile.indexes, async (index) => {
+        if (index.attr in this) {
+          fields[`_${index.name}`] =
+            typeof this[index.attr] === 'function'
+              ? this[index.attr]()
+              : this[index.attr];
+        } else if (index.attr in this._type._schema.properties) {
+          fields[`_${index.name}`] = this.json[index.attr];
+        } else {
+          fields[`_${index.name}`] = undefined;
+        }
+      }),
+    );
+
+    // Loop metadata
+    await Promise.all(
+      map(profile.metadata, async (metadata) => {
+        if (metadata.attr in this) {
+          fields[metadata.name] =
+            typeof this[metadata.attr] === 'function'
+              ? this[metadata.attr]()
+              : this[metadata.attr];
+        } else if (metadata.attr in this._type._schema.properties) {
+          fields[metadata.name] = this.json[metadata.attr];
+        } else {
+          fields[metadata.name] = undefined;
+        }
+      }),
+    );
+
+    // Create catalog entry
+    if (insert) {
+      return Catalog.create({ ...fields, document: this.uuid }, {}, trx);
+    } else {
+      return Catalog.update(this.uuid, fields, trx);
+    }
   }
 }

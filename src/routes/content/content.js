@@ -171,6 +171,9 @@ export default [
           await parent.fetchRelated('_children', trx);
           await parent.fixOrder(trx);
 
+          // Reindex siblings
+          await parent.reindexChildren(trx);
+
           // Add items to return array
           items.push({
             source,
@@ -182,6 +185,9 @@ export default [
       // Fetch new children and fix order
       await req.document.fetchRelated('_children', trx);
       await req.document.fixOrder(trx);
+
+      // Reindex children
+      await req.document.reindexChildren(trx);
 
       return {
         json: items.map((item) => ({
@@ -232,6 +238,9 @@ export default [
       // Fetch new children and fix order
       await req.document.fetchRelated('_children', trx);
       await req.document.fixOrder(trx);
+
+      // Reindex children
+      await req.document.reindexChildren(trx);
 
       return {
         json: items.map((item) => ({
@@ -412,6 +421,9 @@ export default [
       // Fetch type
       await document.fetchRelated('_type', trx);
 
+      // Index new document
+      await document.index(trx);
+
       // Send data back to client
       return {
         status: 201,
@@ -428,11 +440,14 @@ export default [
       if (typeof req.body?.ordering !== 'undefined') {
         // Get children and reorder
         await req.document.fetchRelated('_children(order)', trx);
-        req.document.reorder(
+        await req.document.reorder(
           req.body.ordering.obj_id,
           req.body.ordering.delta,
           trx,
         );
+
+        // Reindex children
+        await req.document.reindexChildren(trx);
 
         // Send ok
         return {
@@ -528,6 +543,9 @@ export default [
         trx,
       );
 
+      // Reindex document
+      await req.document.reindex(trx);
+
       // Send ok
       return {
         status: 204,
@@ -578,6 +596,9 @@ export default [
       // Fix order in parent
       await parent.fetchRelated('_children(order)', trx);
       await parent.fixOrder(trx);
+
+      // Reindex children
+      await parent.reindexChildren(trx);
 
       // Return deleted
       return {

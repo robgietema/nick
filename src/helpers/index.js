@@ -31,6 +31,7 @@ export { testRequest } from './tests/tests';
 export { getUrl, getRootUrl } from './url/url';
 export {
   arrayToVocabulary,
+  isPromise,
   mapAsync,
   mapSync,
   removeUndefined,

@@ -1,0 +1,236 @@
+{
+  "indexes": [
+    {
+      "name": "path",
+      "type": "path",
+      "attr": "path"
+    },
+    {
+      "name": "UID",
+      "type": "uuid",
+      "attr": "uuid"
+    },
+    {
+      "name": "getObjPositionInParent",
+      "type": "integer",
+      "attr": "position_in_parent"
+    },
+    {
+      "name": "Description",
+      "type": "text",
+      "attr": "description"
+    },
+    {
+      "name": "SearchableText",
+      "type": "text",
+      "attr": "searchableText"
+    },
+    {
+      "name": "Title",
+      "type": "text",
+      "attr": "title"
+    },
+    {
+      "name": "Subject",
+      "type": "string[]",
+      "attr": "subjects"
+    },
+    {
+      "name": "getRawRelatedItems",
+      "type": "uuid[]",
+      "attr": "relatedItems"
+    },
+    {
+      "name": "is_folderish",
+      "type": "boolean",
+      "attr": "isFolderish"
+    },
+    {
+      "name": "exclude_from_nav",
+      "type": "boolean",
+      "attr": "exclude_from_nav"
+    },
+    {
+      "name": "Type",
+      "type": "string",
+      "attr": "type"
+    },
+    {
+      "name": "getId",
+      "type": "string",
+      "attr": "id"
+    },
+    {
+      "name": "Creator",
+      "type": "string",
+      "attr": "owner"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "attr": "id"
+    },
+    {
+      "name": "portal_type",
+      "type": "string",
+      "attr": "type"
+    },
+    {
+      "name": "review_state",
+      "type": "string",
+      "attr": "workflow_state"
+    },
+    {
+      "name": "sortable_title",
+      "type": "string",
+      "attr": "title"
+    },
+    {
+      "name": "modified",
+      "type": "date",
+      "attr": "modified"
+    },
+    {
+      "name": "Date",
+      "type": "date",
+      "attr": "created"
+    },
+    {
+      "name": "expires",
+      "type": "date",
+      "attr": "expires"
+    },
+    {
+      "name": "created",
+      "type": "date",
+      "attr": "created"
+    },
+    {
+      "name": "effective",
+      "type": "date",
+      "attr": "effective"
+    }
+  ],
+  "metadata": [
+    {
+      "name": "UID",
+      "type": "uuid",
+      "attr": "uuid"
+    },
+    {
+      "name": "Description",
+      "type": "string",
+      "attr": "description"
+    },
+    {
+      "name": "Title",
+      "type": "string",
+      "attr": "title"
+    },
+    {
+      "name": "Subject",
+      "type": "string[]",
+      "attr": "subjects"
+    },
+    {
+      "name": "is_folderish",
+      "type": "boolean",
+      "attr": "isFolderish"
+    },
+    {
+      "name": "exclude_from_nav",
+      "type": "boolean",
+      "attr": "exclude_from_nav"
+    },
+    {
+      "name": "Type",
+      "type": "string",
+      "attr": "type"
+    },
+    {
+      "name": "getId",
+      "type": "string",
+      "attr": "id"
+    },
+    {
+      "name": "Creator",
+      "type": "string",
+      "attr": "owner"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "attr": "id"
+    },
+    {
+      "name": "portal_type",
+      "type": "string",
+      "attr": "type"
+    },
+    {
+      "name": "review_state",
+      "type": "string",
+      "attr": "workflow_state"
+    },
+    {
+      "name": "modified",
+      "type": "date",
+      "attr": "modified"
+    },
+    {
+      "name": "Date",
+      "type": "date",
+      "attr": "created"
+    },
+    {
+      "name": "expires",
+      "type": "date",
+      "attr": "expires"
+    },
+    {
+      "name": "created",
+      "type": "date",
+      "attr": "created"
+    },
+    {
+      "name": "effective",
+      "type": "date",
+      "attr": "effective"
+    },
+    {
+      "name": "getObjSize",
+      "type": "integer",
+      "attr": "getObjSize"
+    },
+    {
+      "name": "listCreators",
+      "type": "string[]",
+      "attr": "listCreators"
+    },
+    {
+      "name": "mime_type",
+      "type": "string",
+      "attr": "mimeType"
+    },
+    {
+      "name": "CreationDate",
+      "type": "date",
+      "attr": "created"
+    },
+    {
+      "name": "EffectiveDate",
+      "type": "date",
+      "attr": "effective"
+    },
+    {
+      "name": "ExpirationDate",
+      "type": "date",
+      "attr": "expires"
+    },
+    {
+      "name": "ModificationDate",
+      "type": "date",
+      "attr": "modified"
+    }
+  ]
+}

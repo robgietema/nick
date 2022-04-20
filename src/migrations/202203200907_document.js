@@ -25,6 +25,7 @@ export const up = async (knex) => {
     table.string('owner').references('user.id');
     table.jsonb('json').notNull();
     table.jsonb('lock').notNull();
+    table.boolean('exclude_from_nav').notNull().defaultTo(false);
     table.boolean('inherit_roles').notNull().defaultTo(true);
     table.string('workflow_state').notNull();
     table.jsonb('workflow_history').notNull();
