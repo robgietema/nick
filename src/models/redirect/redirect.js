@@ -11,6 +11,11 @@ import { Model } from '../../models';
  * @extends Model
  */
 export class Redirect extends Model {
+  // Id column
+  static get idColumn() {
+    return ['document', 'path'];
+  }
+
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports

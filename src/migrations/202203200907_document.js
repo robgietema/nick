@@ -4,7 +4,7 @@ import { config } from '../../config';
 
 export const up = async (knex) => {
   await knex.schema.createTable('document', (table) => {
-    table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
+    table.uuid('uuid').primary();
     table
       .uuid('parent')
       .index()
