@@ -32,7 +32,6 @@ export const up = async (knex) => {
     table.index(['parent', 'id']);
   });
   await knex.schema.createTable('version', (table) => {
-    table.uuid('uuid').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.integer('version');
     table.dateTime('created');
     table.string('actor').references('user.id');
@@ -44,7 +43,7 @@ export const up = async (knex) => {
       .onDelete('CASCADE');
     table.string('id').notNull();
     table.jsonb('json').notNull();
-    table.index(['document', 'version']);
+    table.primary(['document', 'version']);
   });
   await knex.schema.createTable('user_role_document', (table) => {
     table

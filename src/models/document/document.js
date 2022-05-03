@@ -503,7 +503,6 @@ export class Document extends Model {
           {
             ...version,
             json,
-            uuid: uuid(),
           },
           trx,
         );
