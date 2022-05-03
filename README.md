@@ -30,9 +30,6 @@ Example `GET` request on the portal root
     $ CREATE DATABASE nick;
     $ CREATE USER nick WITH ENCRYPTED PASSWORD 'nick';
     $ GRANT ALL PRIVILEGES ON DATABASE nick TO nick;
-    $ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-Make sure the nick user has the privileges to run the last command.
 
 ### Install Dependencies
 
