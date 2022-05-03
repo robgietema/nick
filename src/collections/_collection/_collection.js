@@ -47,4 +47,13 @@ export class Collection {
   getVocabulary(req) {
     return this.map((model) => model.getVocabulary(req));
   }
+
+  /**
+   * Returns length of the collection.
+   * @method getLength
+   * @returns {Number} Length of the collection.
+   */
+  getLength() {
+    return this.models.length;
+  }
 }

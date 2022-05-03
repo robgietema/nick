@@ -1,6 +1,8 @@
 import app from '../../app';
 import { testRequest } from '../../helpers';
 
+jest.setTimeout(30000);
+
 describe('User', () => {
   afterEach(async () => {
     await testRequest(app, 'users/delete');

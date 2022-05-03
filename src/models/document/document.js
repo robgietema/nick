@@ -9,11 +9,14 @@ import {
   findIndex,
   head,
   includes,
+  isUndefined,
   keys,
   map,
   mapValues,
   omit,
+  omitBy,
   uniq,
+  values,
 } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
@@ -640,12 +643,13 @@ export class Document extends Model {
         if (index.attr in this) {
           fields[`_${index.name}`] =
             typeof this[index.attr] === 'function'
-              ? this[index.attr]()
-              : this[index.attr];
+              ? { type: index.type, value: this[index.attr]() }
+              : { type: index.type, value: this[index.attr] };
         } else if (index.attr in this._type._schema.properties) {
-          fields[`_${index.name}`] = this.json[index.attr];
-        } else {
-          fields[`_${index.name}`] = undefined;
+          fields[`_${index.name}`] = {
+            type: index.type,
+            value: this.json[index.attr],
+          };
         }
       }),
     );
@@ -656,21 +660,52 @@ export class Document extends Model {
         if (metadata.attr in this) {
           fields[metadata.name] =
             typeof this[metadata.attr] === 'function'
-              ? this[metadata.attr]()
-              : this[metadata.attr];
+              ? { type: metadata.type, value: this[metadata.attr]() }
+              : { type: metadata.type, value: this[metadata.attr] };
         } else if (metadata.attr in this._type._schema.properties) {
-          fields[metadata.name] = this.json[metadata.attr];
-        } else {
-          fields[metadata.name] = undefined;
+          fields[metadata.name] = {
+            type: metadata.type,
+            value: this.json[metadata.attr],
+          };
         }
       }),
     );
 
+    // Get knex
+    const knex = Document.knex();
+
+    // Remove undefined
+    fields = omitBy(fields, (field) => isUndefined(field.value));
+
     // Create catalog entry
     if (insert) {
-      return Catalog.create({ ...fields, document: this.uuid }, {}, trx);
+      // Add document
+      fields['document'] = { type: 'uuid', value: this.uuid };
+
+      // Insert into catalog
+      await knex
+        .raw(
+          `INSERT INTO catalog ("${keys(fields).join('", "')}") VALUES (${map(
+            keys(fields),
+            (field) => (fields[field].type === 'text' ? 'to_tsvector(?)' : '?'),
+          ).join(', ')});`,
+          map(values(fields), (field) => field.value),
+        )
+        .transacting(trx);
     } else {
-      return Catalog.update(this.uuid, fields, trx);
+      // Insert into catalog
+      await knex
+        .raw(
+          `UPDATE catalog SET ${map(
+            keys(fields),
+            (key) =>
+              `"${key}" = ${
+                fields[key].type === 'text' ? 'to_tsvector(?)' : '?'
+              }`,
+          ).join(', ')} WHERE document = '${this.uuid}';`,
+          map(values(fields), (field) => field.value),
+        )
+        .transacting(trx);
     }
   }
 }

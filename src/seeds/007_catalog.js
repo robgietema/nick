@@ -36,9 +36,7 @@ export const seed = async (knex) => {
               table.specificType(field, 'uuid[]').index();
               break;
             case 'text':
-              await knex.schema.raw(
-                `ALTER TABLE catalog ADD "${field}" tsvector;`,
-              );
+              table.specificType(field, 'tsvector').index(null, 'GIN');
               break;
             default:
               log.warn(`Unhandled index type: ${index.type}`);

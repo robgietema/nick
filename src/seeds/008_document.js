@@ -4,7 +4,7 @@ import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 
 import { log, mapAsync, stripI18n } from '../helpers';
-import { Document } from '../models';
+import { Document, Model } from '../models';
 
 const documentFields = [
   'uuid',
@@ -27,6 +27,8 @@ const documentFields = [
 const versionFields = ['uuid', 'version', 'id', 'created', 'actor', 'document'];
 
 export const seed = async (knex) => {
+  const trx = await knex.transaction();
+
   try {
     const children = {};
     const files = map(
@@ -47,7 +49,7 @@ export const seed = async (knex) => {
                   path: `/${dropRight(slugs).join('/')}`,
                 },
                 {},
-                knex,
+                trx,
               )
             ).uuid;
       const position_in_parent = parent ? children[parent] || 0 : 0;
@@ -80,7 +82,7 @@ export const seed = async (knex) => {
           json: omit(document, documentFields),
         },
         {},
-        knex,
+        trx,
       );
 
       // Create versions
@@ -105,38 +107,40 @@ export const seed = async (knex) => {
 
       // Insert versions
       await mapAsync(versions, async (version) => {
-        await insert.createRelated('_versions', version, knex);
+        await insert.createRelated('_versions', version, trx);
       });
 
       // Insert sharing data for users
       const sharingUsers = document.sharing?.users || [];
-      await mapAsync(sharingUsers, async (user) => {
-        await knex('user_role_document').insert(
-          map(user.roles, (role) => ({
-            user: user.id,
-            role,
-            document: insert.uuid,
-          })),
-        );
-      });
+      await mapAsync(sharingUsers, async (user) =>
+        mapAsync(
+          user.roles,
+          async (role) =>
+            await insert
+              .$relatedQuery('_userRoles', trx)
+              .relate({ id: role, user: user.id }),
+        ),
+      );
 
       // Insert sharing data for groups
       const sharingGroups = document.sharing?.groups || [];
-      await mapAsync(sharingGroups, async (group) => {
-        await knex('group_role_document').insert(
-          map(group.roles, (role) => ({
-            group: group.id,
-            role,
-            document: insert.uuid,
-          })),
-        );
-      });
+      await mapAsync(sharingGroups, async (group) =>
+        mapAsync(
+          group.roles,
+          async (role) =>
+            await insert
+              .$relatedQuery('_groupRoles', trx)
+              .relate({ id: role, group: group.id }),
+        ),
+      );
 
       // Index object
-      await insert.index();
+      await insert.index(trx);
     });
+    await trx.commit();
     log.info('Documents imported');
   } catch (err) {
+    await trx.rollback();
     log.error(err);
   }
 };

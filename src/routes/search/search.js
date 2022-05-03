@@ -4,9 +4,12 @@
  */
 
 import moment from 'moment';
-import { endsWith, includes, mapKeys, repeat } from 'lodash';
+import { endsWith, find, includes, map, mapKeys, repeat } from 'lodash';
+
 import { formatSize, getRootUrl, getUrl } from '../../helpers';
-import { Document } from '../../models';
+import { Catalog } from '../../models';
+
+import profile from '../../profiles/catalog';
 
 /**
  * Convert document to json.
@@ -48,43 +51,40 @@ async function documentToJson(document, req, trx) {
  * @returns {Object} Query.
  */
 function querystringToQuery(querystring, path = '/') {
+  // Get root url
   const root = endsWith(path, '/') ? path : `${path}/`;
+
+  // Set path search
   const where = {
-    path: ['~', `^${path}`],
+    _path: ['~', `^${path}`],
   };
+
+  // Default options
   const options = {
     offset: 0,
     limit: 100,
     order: {
-      column: 'uuid',
+      column: 'UID',
       reverse: false,
     },
   };
   mapKeys(querystring, (value, key) => {
     switch (key) {
-      case 'SearchableText':
-        where["json->>'title'"] = ['~*', value.replace(/\*/g, '')];
-        break;
       case 'sort_on':
-        switch (value) {
-          case 'sortable_title':
-            options.order.column = "json->>'title'";
-            break;
-          case 'effective':
-            options.order.column = "json->>'effective'";
-            break;
-          case 'getObjPositionInParent':
-            options.order.column = 'position_in_parent';
-            break;
-          default:
-            break;
+        if (
+          includes(
+            map(profile.indexes, (index) => index.name),
+            value,
+          )
+        ) {
+          options.order.column = `_${value}`;
         }
         break;
       case 'sort_order':
         options.order.reverse = value !== 'ascending';
         break;
       case 'path.depth':
-        where['path'] = [
+        where['_path'] = [
           '~',
           `^${root}[^/]+${repeat('(/[^/]+)?', value - 1)}$`,
         ];
@@ -95,8 +95,37 @@ function querystringToQuery(querystring, path = '/') {
       case 'b_start':
         options.offset = value;
         break;
+      case 'metadata_fields':
+        if (value === '_all') {
+          options.select = map(profile.metadata, (metadata) => metadata.name);
+        }
+        break;
       default:
         break;
+    }
+
+    // Check if key in indexes
+    const index = find(profile.indexes, (index) => index.name === key);
+    if (index) {
+      const field = `_${index.name}`;
+      switch (index.type) {
+        case 'string':
+        case 'integer':
+        case 'path':
+        case 'uuid':
+        case 'boolean':
+        case 'date':
+          where[field] = value;
+          break;
+        case 'string[]':
+        case 'uuid[]':
+          break;
+        case 'text':
+          where[field] = ['@@', value.replace(/\*/g, '')];
+          break;
+        default:
+          break;
+      }
     }
   });
   return [where, options];
@@ -108,17 +137,15 @@ export default [
     view: '/@search',
     permission: 'View',
     handler: async (req, trx) => {
-      const items = await Document.fetchAll(
+      const items = await Catalog.fetchAll(
         ...querystringToQuery(req.query, req.document.path),
         trx,
       );
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
-          items: await Promise.all(
-            items.map(async (item) => await documentToJson(item, req, trx)),
-          ),
-          items_total: items.pagination?.rowCount || items.length,
+          items: items.map((item) => item.toJSON(req)),
+          items_total: items.getLength(),
         },
       };
     },
@@ -128,14 +155,12 @@ export default [
     view: '/@querystring-search',
     permission: 'View',
     handler: async (req, trx) => {
-      const items = await Document.fetchAll({}, { order: 'uuid' }, trx);
+      const items = await Catalog.fetchAll({}, { order: 'UID' }, trx);
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
-          items: await Promise.all(
-            items.map(async (item) => await documentToJson(item, req, trx)),
-          ),
-          items_total: items.length,
+          items: items.map((item) => item.toJSON(req)),
+          items_total: items.getLength(),
         },
       };
     },

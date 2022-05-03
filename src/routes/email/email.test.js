@@ -1,6 +1,8 @@
 import app from '../../app';
 import { testRequest } from '../../helpers';
 
+jest.setTimeout(30000);
+
 describe('Email', () => {
   it('should send an email', () => testRequest(app, 'mail/post'));
 

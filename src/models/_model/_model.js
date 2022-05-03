@@ -61,13 +61,16 @@ export class Model extends mixin(ObjectionModel, [
         const attribute = formatAttribute(key);
         const operator = isArray(value) ? value[0] : '=';
         const values = isArray(value) ? value[1] : value;
+        let valueWrapper = isArray(values) ? 'any(?)' : '?';
+        if (operator === '@@') {
+          valueWrapper = 'to_tsquery(?)';
+        }
         if (values === null) {
           query = query.whereNull(key);
         } else {
-          query = query.whereRaw(
-            `${attribute} ${operator} ${isArray(values) ? 'any(?)' : '?'}`,
-            [values],
-          );
+          query = query.whereRaw(`${attribute} ${operator} ${valueWrapper}`, [
+            values,
+          ]);
         }
       });
     }
@@ -115,6 +118,11 @@ export class Model extends mixin(ObjectionModel, [
     // Add related
     if (options.related) {
       query = query.withGraphFetched(options.related);
+    }
+
+    // Add select
+    if (options.select) {
+      query = query.select(...options.select);
     }
 
     // Return query
