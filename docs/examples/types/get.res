@@ -54,7 +54,8 @@ Content-Type: application/json
       "id": "settings",
       "title": "Settings",
       "fields": [
-        "id"
+        "id",
+        "exclude_from_nav"
       ]
     }
   ],
@@ -91,6 +92,11 @@ Content-Type: application/json
       "title": "Expiration Date",
       "widget": "datetime",
       "description": "When this date is reached, the content will no longer be visible in listings and searches."
+    },
+    "exclude_from_nav": {
+      "type": "boolean",
+      "title": "Exclude from navigation",
+      "description": "If selected, this item will not appear in the navigation tree."
     },
     "coverage": {
       "type": "string",

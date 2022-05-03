@@ -18,6 +18,11 @@ export default [
         { order: 'position_in_parent' },
         trx,
       );
+
+      // Omit exclude from nav items
+      items.omitBy((item) => item.json?.exclude_from_nav);
+
+      // Return navigation
       return {
         json: {
           '@id': `${getUrl(req)}/@navigation`,

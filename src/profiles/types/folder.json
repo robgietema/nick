@@ -12,7 +12,8 @@
       "blocks",
       "versioning",
       "short_name",
-      "folderish"
+      "folderish",
+      "exclude_from_nav"
     ]
   },
   "workflow": "simple_publication_workflow"

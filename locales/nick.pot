@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-05-03T12:40:40.386Z\n"
+"POT-Creation-Date: 2022-05-03T14:53:53.688Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -222,6 +222,12 @@ msgstr ""
 msgid "Enter a comment that describes the changes you made."
 msgstr ""
 
+#: src/profiles/behaviors/exclude_from_nav.json:3
+#: src/profiles/behaviors/exclude_from_nav.json:15
+# defaultMessage: Exclude from navigation
+msgid "Exclude from navigation"
+msgstr ""
+
 #: src/profiles/behaviors/dates.json:22
 # defaultMessage: Expiration Date
 msgid "Expiration Date"
@@ -257,6 +263,12 @@ msgstr ""
 #: src/profiles/behaviors/short_name.json:16
 # defaultMessage: Identifier
 msgid "Identifier"
+msgstr ""
+
+#: src/profiles/behaviors/exclude_from_nav.json:4
+#: src/profiles/behaviors/exclude_from_nav.json:16
+# defaultMessage: If selected, this item will not appear in the navigation tree.
+msgid "If selected, this item will not appear in the navigation tree."
 msgstr ""
 
 #: src/profiles/behaviors/dates.json:15
@@ -504,6 +516,7 @@ msgstr ""
 msgid "Send back"
 msgstr ""
 
+#: src/profiles/behaviors/exclude_from_nav.json:10
 #: src/profiles/behaviors/short_name.json:10
 # defaultMessage: Settings
 msgid "Settings"

@@ -222,6 +222,12 @@ msgstr "Schakelt Volto Blocks-ondersteuning in""
 msgid "Enter a comment that describes the changes you made."
 msgstr "Voer een opmerking in die de aangebrachte wijzigingen beschrijft."
 
+#: src/profiles/behaviors/exclude_from_nav.json:3
+#: src/profiles/behaviors/exclude_from_nav.json:15
+# defaultMessage: Exclude from navigation
+msgid "Exclude from navigation"
+msgstr "Uitsluiten van de navigatie"
+
 #: src/profiles/behaviors/dates.json:22
 # defaultMessage: Expiration Date
 msgid "Expiration Date"
@@ -258,6 +264,12 @@ msgstr "Geschiedenis"
 # defaultMessage: Identifier
 msgid "Identifier"
 msgstr "ID"
+
+#: src/profiles/behaviors/exclude_from_nav.json:4
+#: src/profiles/behaviors/exclude_from_nav.json:16
+# defaultMessage: If selected, this item will not appear in the navigation tree.
+msgid "If selected, this item will not appear in the navigation tree."
+msgstr "Indien geselecteerd, verschijnt dit item niet in de navigatiestructuur."
 
 #: src/profiles/behaviors/dates.json:15
 # defaultMessage: If this date is in the future, the content will not show up in listings and searches until this date.
@@ -504,6 +516,7 @@ msgstr "Regels"
 msgid "Send back"
 msgstr "Terugsturen"
 
+#: src/profiles/behaviors/exclude_from_nav.json:10
 #: src/profiles/behaviors/short_name.json:10
 # defaultMessage: Settings
 msgid "Settings"

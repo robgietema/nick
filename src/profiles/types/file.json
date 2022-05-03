@@ -23,7 +23,13 @@
       }
     },
     "required": ["file"],
-    "behaviors": ["dublin_core", "dates", "versioning", "short_name"]
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "versioning",
+      "short_name",
+      "exclude_from_nav"
+    ]
   },
   "workflow": "simple_publication_workflow"
 }

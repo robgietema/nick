@@ -25,6 +25,10 @@ Content-Type: application/json
       "token": "dublin_core"
     },
     {
+      "title": "Exclude from navigation",
+      "token": "exclude_from_nav"
+    },
+    {
       "title": "Ownership",
       "token": "ownership"
     },
@@ -37,5 +41,5 @@ Content-Type: application/json
       "token": "versioning"
     }
   ],
-  "items_total": 8
+  "items_total": 9
 }

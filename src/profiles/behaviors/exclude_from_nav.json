@@ -1,0 +1,21 @@
+{
+  "id": "exclude_from_nav",
+  "title:i18n": "Exclude from navigation",
+  "description:i18n": "If selected, this item will not appear in the navigation tree.",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["exclude_from_nav"],
+        "id": "settings",
+        "title:i18n": "Settings"
+      }
+    ],
+    "properties": {
+      "exclude_from_nav": {
+        "title:i18n": "Exclude from navigation",
+        "description:i18n": "If selected, this item will not appear in the navigation tree.",
+        "type": "boolean"
+      }
+    }
+  }
+}

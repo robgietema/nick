@@ -3,7 +3,7 @@
  * @module collection/_collection/_collection
  */
 
-import { map } from 'lodash';
+import { map, omitBy } from 'lodash';
 
 /**
  * Base collection used to extend collections from.
@@ -26,6 +26,16 @@ export class Collection {
    */
   map(callback) {
     return map(this.models, callback);
+  }
+
+  /**
+   * Maps over models.
+   * @method map
+   * @param {function} callback Callback function.
+   * @returns {Array} Array of models.
+   */
+  omitBy(callback) {
+    this.models = omitBy(this.models, callback);
   }
 
   /**
