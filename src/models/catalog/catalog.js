@@ -26,8 +26,8 @@ export class Catalog extends Model {
    */
   toJSON(req) {
     return {
-      '@id': `${getRootUrl(req)}${this._path}`,
-      '@type': this.type,
+      '@id': `${getRootUrl(req)}${this.path}`,
+      '@type': this.Type,
       title: this.Title,
       ...pick(
         this,

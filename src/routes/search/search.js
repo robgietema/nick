@@ -12,38 +12,6 @@ import { Catalog } from '../../models';
 import profile from '../../profiles/catalog';
 
 /**
- * Convert document to json.
- * @method documentToJson
- * @param {Object} document Current document object.
- * @param {Object} req Request object.
- * @param {Object} trx Transaction object.
- * @returns {Object} Json representation of the document.
- */
-async function documentToJson(document, req, trx) {
-  await document.fetchRelated('[_type, _owner]', trx);
-  const json = document.json;
-  return {
-    '@id': `${getRootUrl(req)}${document.path}`,
-    '@type': document.type,
-    UID: document.uuid,
-    Creator: document._owner.fullname,
-    Description: json.description,
-    title: json.title,
-    review_state: document.workflow_state,
-    ModificationDate: moment(document.modified).format(),
-    CreationDate: moment(document.created).format(),
-    EffectiveDate: json.effective ? moment(json.effective).format() : 'None',
-    ExpirationDate: json.expires ? moment(json.expires).format() : 'None',
-    id: document.id,
-    is_folderish: includes(document._type._schema.behaviors, 'folderish'),
-    Subject: json.subjects,
-    getObjSize: formatSize(JSON.stringify(json).length),
-    start: null,
-    end: null,
-  };
-}
-
-/**
  * Convert querystring to query.
  * @method querystringToQuery
  * @param {Object} querystring Querystring

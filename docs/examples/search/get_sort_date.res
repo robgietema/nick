@@ -6,8 +6,10 @@ Content-Type: application/json
   "items": [
     {
       "@id": "http://localhost:8000/",
+      "@type": "Site",
       "title": "Welcome to Nick!",
       "UID": "92a80817-f5b7-400d-8f58-b08126f0f09b",
+      "path": "/",
       "Description": "Congratulations! You have successfully installed Nick.",
       "Title": "Welcome to Nick!",
       "Subject": null,
@@ -34,8 +36,10 @@ Content-Type: application/json
     },
     {
       "@id": "http://localhost:8000/events/event-1",
+      "@type": "Page",
       "title": "Event 1",
       "UID": "405ca717-0c68-43a0-88ac-629a82658675",
+      "path": "/events/event-1",
       "Description": null,
       "Title": "Event 1",
       "Subject": null,
@@ -62,8 +66,10 @@ Content-Type: application/json
     },
     {
       "@id": "http://localhost:8000/news",
+      "@type": "Folder",
       "title": "News",
       "UID": "32215c67-86de-462a-8cc0-eabcd2b39c26",
+      "path": "/news",
       "Description": "News Items",
       "Title": "News",
       "Subject": null,
@@ -90,8 +96,10 @@ Content-Type: application/json
     },
     {
       "@id": "http://localhost:8000/users",
+      "@type": "Folder",
       "title": "Users",
       "UID": "80994493-74ca-4b94-9a7c-145a33a6dd80",
+      "path": "/users",
       "Description": null,
       "Title": "Users",
       "Subject": null,
@@ -118,8 +126,10 @@ Content-Type: application/json
     },
     {
       "@id": "http://localhost:8000/events",
+      "@type": "Folder",
       "title": "Events",
       "UID": "1a2123ba-14e8-4910-8e6b-c04a40d72a41",
+      "path": "/events",
       "Description": null,
       "Title": "Events",
       "Subject": null,

@@ -118,6 +118,11 @@
       "attr": "uuid"
     },
     {
+      "name": "path",
+      "type": "string",
+      "attr": "path"
+    },
+    {
       "name": "Description",
       "type": "string",
       "attr": "description"

@@ -6,8 +6,10 @@ Content-Type: application/json
   "items": [
     {
       "@id": "http://localhost:8000/news",
+      "@type": "Folder",
       "title": "News",
       "UID": "32215c67-86de-462a-8cc0-eabcd2b39c26",
+      "path": "/news",
       "Description": "News Items",
       "Title": "News",
       "Subject": null,
