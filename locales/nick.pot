@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-04-13T18:12:14.466Z\n"
+"POT-Creation-Date: 2022-05-03T12:40:40.386Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +191,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/routes/content/content.js:455
+#: src/routes/content/content.js:470
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -469,7 +469,7 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: src/routes/content/content.js:346
+#: src/routes/content/content.js:355
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr ""
@@ -701,7 +701,7 @@ msgstr ""
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:452
+#: src/routes/content/content.js:467
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."

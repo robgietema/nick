@@ -191,7 +191,7 @@ msgstr "Verwijderen"
 msgid "Description"
 msgstr "Omschrijving"
 
-#: src/routes/content/content.js:455
+#: src/routes/content/content.js:470
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -469,7 +469,7 @@ msgstr "Gerelateerde resources"
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: src/routes/content/content.js:346
+#: src/routes/content/content.js:355
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
@@ -699,7 +699,7 @@ msgstr "U kunt geen systeemgroepen verwijderen."
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
-#: src/routes/content/content.js:452
+#: src/routes/content/content.js:467
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
