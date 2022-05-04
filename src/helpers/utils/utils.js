@@ -3,7 +3,7 @@
  * @module helpers/utils/utils
  */
 
-import { map, omitBy } from 'lodash';
+import { keys, map, omitBy } from 'lodash';
 
 /**
  * Map asynchronous but in order through array
@@ -86,6 +86,19 @@ export function arrayToVocabulary(items) {
   return map(items, (item) => ({
     title: item,
     token: item,
+  }));
+}
+
+/**
+ * Convert object to vocabulary
+ * @method objectToVocabulary
+ * @param {Object} items Items to be converted
+ * @returns {Array} Array of terms
+ */
+export function objectToVocabulary(items) {
+  return map(keys(items), (key) => ({
+    title: items[key],
+    token: key,
   }));
 }
 

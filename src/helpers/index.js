@@ -34,6 +34,7 @@ export {
   isPromise,
   mapAsync,
   mapSync,
+  objectToVocabulary,
   removeUndefined,
   stringify,
   uniqueId,

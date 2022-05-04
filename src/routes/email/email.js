@@ -4,8 +4,7 @@
  */
 
 import { RequestException, sendMail } from '../../helpers';
-import { User } from '../../models';
-import { config } from '../../../config';
+import { Controlpanel, User } from '../../models';
 
 export default [
   {
@@ -80,9 +79,13 @@ export default [
         });
       }
 
+      // Fetch settings
+      const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
+      const settings = controlpanel.data;
+
       // Send mail
       await sendMail({
-        to: `"${config.emailFrom.name}" <${config.emailFrom.address}>`,
+        to: `"${settings.email_from_name}" <${settings.email_from_address}>`,
         from: req.body.name
           ? `"${req.body.name}" <${req.body.from}>`
           : req.body.from,

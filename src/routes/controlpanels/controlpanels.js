@@ -35,4 +35,27 @@ export default [
       };
     },
   },
+  {
+    op: 'patch',
+    view: '/@controlpanels/:id',
+    permission: 'Manage Site',
+    handler: async (req, trx) => {
+      const controlpanel = await Controlpanel.fetchById(req.params.id, {}, trx);
+      await Controlpanel.update(
+        req.params.id,
+        {
+          data: {
+            ...controlpanel.data,
+            ...req.body,
+          },
+        },
+        trx,
+      );
+
+      // Send ok
+      return {
+        status: 204,
+      };
+    },
+  },
 ];

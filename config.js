@@ -11,8 +11,6 @@ export const config = {
   secret: 'secret',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Owner'],
-  supportedLanguages: ['en', 'nl'],
-  defaultLanguage: 'en',
   clientMaxSize: '64mb',
   imageScales: {
     large: [768, 768],
@@ -30,20 +28,6 @@ export const config = {
     allowCredentials: true,
     exposeHeaders: '*',
     maxAge: 3660,
-  },
-  mailServer: {
-    host: 'localhost',
-    port: 587,
-    secure: false,
-    auth: {
-      user: 'someuser',
-      pass: 'somepass',
-    },
-  },
-  mailDebug: true,
-  emailFrom: {
-    name: 'Nick',
-    address: 'webmaster@nickcms.org',
   },
   frontendUrl: 'http://localhost:3000',
   userRegistration: true,

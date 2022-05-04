@@ -3,8 +3,8 @@
  * @module vocabularies/supported-languages/supported-languages
  */
 
-import { config } from '../../../config';
-import { arrayToVocabulary } from '../../helpers';
+import languages from '../../constants/languages';
+import { objectToVocabulary } from '../../helpers';
 
 /**
  * Returns the supported languages vocabulary.
@@ -12,5 +12,5 @@ import { arrayToVocabulary } from '../../helpers';
  * @returns {Array} Array of terms.
  */
 export async function supportedLanguages(req, trx) {
-  return arrayToVocabulary(config.supportedLanguages);
+  return objectToVocabulary(languages);
 }

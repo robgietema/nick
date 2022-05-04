@@ -6,7 +6,7 @@
 import nodemailer from 'nodemailer';
 
 import { log } from '../../helpers';
-import { config } from '../../../config';
+import { Controlpanel } from '../../models';
 
 /**
  * Send mail
@@ -16,8 +16,12 @@ import { config } from '../../../config';
 export async function sendMail(data) {
   let transporter;
 
+  // Fetch settings
+  const controlpanel = await Controlpanel.fetchById('mail');
+  const config = controlpanel.data;
+
   // If debug
-  if (config.mailDebug) {
+  if (config.debug) {
     // Set test mailserver
     const testAccount = await nodemailer.createTestAccount();
     transporter = nodemailer.createTransport({
@@ -31,7 +35,15 @@ export async function sendMail(data) {
     });
   } else {
     // Set mailserver
-    transporter = nodemailer.createTransport(config.mailServer);
+    transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.user,
+        pass: config.pass,
+      },
+    });
   }
 
   // Send mail

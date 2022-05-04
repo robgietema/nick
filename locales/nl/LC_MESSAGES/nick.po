@@ -105,6 +105,11 @@ msgstr "Anoniem"
 msgid "Authenticated"
 msgstr "Geauthenticeerd"
 
+#: src/profiles/controlpanels/language.json:27
+# defaultMessage: Available languages
+msgid "Available languages"
+msgstr "Beschikbare talen"
+
 #: src/profiles/behaviors/basic.json:3
 # defaultMessage: Basic metadata
 msgid "Basic metadata"
@@ -173,7 +178,7 @@ msgstr "Knippen"
 msgid "Dates"
 msgstr "Data"
 
-#: src/profiles/controlpanels.json:61
+#: src/profiles/controlpanels/mail.json:58
 # defaultMessage: Debug
 msgid "Debug"
 msgstr "Debug"
@@ -207,12 +212,12 @@ msgstr "Document vergrendeld"
 msgid "Dublin Core metadata"
 msgstr "Dublin Core metadata"
 
-#: src/profiles/controlpanels.json:44
+#: src/profiles/controlpanels/mail.json:41
 # defaultMessage: ESMTP password
 msgid "ESMTP password"
 msgstr "ESMTP wachtwoord"
 
-#: src/profiles/controlpanels.json:56
+#: src/profiles/controlpanels/mail.json:53
 # defaultMessage: ESMTP username
 msgid "ESMTP username"
 msgstr "ESMTP gebruikersnaam"
@@ -259,8 +264,8 @@ msgstr "Bestand"
 msgid "Folder"
 msgstr "Map"
 
-#: src/routes/email/email.js:46
-#: src/routes/email/email.js:79
+#: src/routes/email/email.js:45
+#: src/routes/email/email.js:78
 # defaultMessage: From and message are required fields.
 msgid "From and message are required fields."
 msgstr "Afzender en bericht zijn verplichte velden."
@@ -280,12 +285,12 @@ msgstr "Geschiedenis"
 msgid "Identifier"
 msgstr "ID"
 
-#: src/profiles/controlpanels.json:62
+#: src/profiles/controlpanels/mail.json:59
 # defaultMessage: If enabled the mail is send to a test server.
 msgid "If enabled the mail is send to a test server."
 msgstr "Indien ingeschakeld wordt de mail naar een testserver gestuurd."
 
-#: src/profiles/controlpanels.json:67
+#: src/profiles/controlpanels/mail.json:64
 # defaultMessage: If enabled the mail is send using a secure connection.
 msgid "If enabled the mail is send using a secure connection."
 msgstr "Indien ingeschakeld, wordt de e-mail verzonden via een beveiligde verbinding."
@@ -334,6 +339,7 @@ msgid "Invalid session"
 msgstr "Ongeldige sessie"
 
 #: src/profiles/behaviors/categorization.json:28
+#: src/profiles/controlpanels/language.json:3
 # defaultMessage: Language
 msgid "Language"
 msgstr "Taal"
@@ -373,7 +379,7 @@ msgstr "Login en wachtwoord moeten in de body worden opgegeven."
 msgid "Logout"
 msgstr "Uitloggen"
 
-#: src/profiles/controlpanels.json:6
+#: src/profiles/controlpanels/mail.json:3
 # defaultMessage: Mail
 msgid "Mail"
 msgstr "Mail"
@@ -410,10 +416,10 @@ msgstr "Niet toegestaan"
 
 #: src/app.js:63
 #: src/routes/controlpanels/controlpanels.js:31
-#: src/routes/email/email.js:53
+#: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
-#: src/routes/users/users.js:99
+#: src/routes/users/users.js:103
 #: src/routes/vocabularies/vocabularies.js:30
 # defaultMessage: Not found.
 msgid "Not found."
@@ -435,8 +441,8 @@ msgstr "Eigenaarschap"
 msgid "Page"
 msgstr "Pagina"
 
-#: src/routes/users/users.js:72
-#: src/routes/users/users.js:168
+#: src/routes/users/users.js:76
+#: src/routes/users/users.js:176
 # defaultMessage: Password reset request
 msgid "Password reset request"
 msgstr "Wachtwoord herstel verzoek"
@@ -451,12 +457,12 @@ msgstr "Plakken"
 msgid "Pending review"
 msgstr "Wacht op review"
 
-#: src/profiles/controlpanels.json:29
+#: src/profiles/controlpanels/mail.json:26
 # defaultMessage: Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature.
 msgid "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
 msgstr "Plone genereert e-mail met dit adres als het e-mailretouradres. Het wordt ook gebruikt als bestemmingsadres voor het contactformulier voor de hele site en de functie 'Test-e-mail verzenden'."
 
-#: src/profiles/controlpanels.json:34
+#: src/profiles/controlpanels/mail.json:31
 # defaultMessage: Plone generates e-mail using this name as the e-mail sender.
 msgid "Plone generates e-mail using this name as the e-mail sender."
 msgstr "Plone genereert e-mail met deze naam als afzender van de e-mail."
@@ -552,17 +558,17 @@ msgstr "Rechten"
 msgid "Rules"
 msgstr "Regels"
 
-#: src/profiles/controlpanels.json:50
+#: src/profiles/controlpanels/mail.json:47
 # defaultMessage: SMTP port
 msgid "SMTP port"
 msgstr "SMTP poort"
 
-#: src/profiles/controlpanels.json:38
+#: src/profiles/controlpanels/mail.json:35
 # defaultMessage: SMTP server
 msgid "SMTP server"
 msgstr "SMTP server"
 
-#: src/profiles/controlpanels.json:66
+#: src/profiles/controlpanels/mail.json:63
 # defaultMessage: Secure
 msgid "Secure"
 msgstr "Beveiligd"
@@ -603,12 +609,12 @@ msgstr "Eenvoudige workflow die handig is voor eenvoudige websites. Dingen begin
 msgid "Site"
 msgstr "Site"
 
-#: src/profiles/controlpanels.json:28
+#: src/profiles/controlpanels/mail.json:25
 # defaultMessage: Site 'From' address
 msgid "Site 'From' address"
 msgstr "Site 'Van'-adres"
 
-#: src/profiles/controlpanels.json:33
+#: src/profiles/controlpanels/mail.json:30
 # defaultMessage: Site 'From' name
 msgid "Site 'From' name"
 msgstr "Site 'Van' naam"
@@ -617,6 +623,11 @@ msgstr "Site 'Van' naam"
 # defaultMessage: Site Setup
 msgid "Site Setup"
 msgstr "Site Instellingen"
+
+#: src/profiles/controlpanels/language.json:34
+# defaultMessage: Site language
+msgid "Site language"
+msgstr "Website taal"
 
 #: src/profiles/actions.json:39
 # defaultMessage: Sitemap
@@ -643,7 +654,7 @@ msgstr "Indienen ter publicatie"
 msgid "System group"
 msgstr "Systeem groep"
 
-#: src/routes/users/users.js:215
+#: src/routes/users/users.js:223
 # defaultMessage: System users
 msgid "System users"
 msgstr "Systeem gebruikers"
@@ -663,13 +674,13 @@ msgstr "De JSON-representatie van het object blokkeert informatie. Moet een JSON
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr "De JSON-weergave van de lay-out van objectblokken. Moet een JSON-array zijn."
 
-#: src/profiles/controlpanels.json:39
+#: src/profiles/controlpanels/mail.json:36
 # defaultMessage: The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail.
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 msgstr "Het adres van uw lokale SMTP-server (uitgaande e-mail). Meestal 'localhost', tenzij je een externe server gebruikt om e-mail te versturen."
 
-#: src/routes/users/users.js:73
-#: src/routes/users/users.js:169
+#: src/routes/users/users.js:77
+#: src/routes/users/users.js:177
 # defaultMessage: undefined
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw kunt instellen: {url}"
@@ -679,12 +690,22 @@ msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw k
 msgid "The language of this item."
 msgstr "De taal van dit item"
 
-#: src/profiles/controlpanels.json:45
+#: src/profiles/controlpanels/language.json:33
+# defaultMessage: The language used for the content and the UI of this site.
+msgid "The language used for the content and the UI of this site."
+msgstr "De taal die wordt gebruikt voor de inhoud en de gebruikersinterface van deze site."
+
+#: src/profiles/controlpanels/language.json:17
+# defaultMessage: The languages in which the site should be translatable.
+msgid "The languages in which the site should be translatable."
+msgstr "De talen waarin de site vertaalbaar moet zijn."
+
+#: src/profiles/controlpanels/mail.json:42
 # defaultMessage: The password for the ESMTP user account.
 msgid "The password for the ESMTP user account."
 msgstr "Het wachtwoord voor het ESMTP-gebruikersaccount."
 
-#: src/profiles/controlpanels.json:51
+#: src/profiles/controlpanels/mail.json:48
 # defaultMessage: The port of your local SMTP (outgoing e-mail) server. Usually '25'.
 msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 msgstr "De poort van uw lokale SMTP-server (uitgaande e-mail). Meestal '25'."
@@ -715,7 +736,7 @@ msgstr "Deze naam wordt weergegeven in de URL."
 msgid "Title"
 msgstr "Titel"
 
-#: src/routes/email/email.js:19
+#: src/routes/email/email.js:18
 # defaultMessage: To, from and message are required fields.
 msgid "To, from and message are required fields."
 msgstr "Aan, van en bericht zijn verplichte velden."
@@ -740,7 +761,7 @@ msgstr "Gebruiker bestaat niet of ongeldige inloggegevens."
 msgid "User is not logged in."
 msgstr "Gebruiker is niet ingelogd."
 
-#: src/profiles/controlpanels.json:57
+#: src/profiles/controlpanels/mail.json:54
 # defaultMessage: Username for authentication to your e-mail server. Not required unless you are using ESMTP.
 msgid "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 msgstr "Gebruikersnaam voor authenticatie naar uw e-mailserver. Niet vereist, tenzij u ESMTP gebruikt."
@@ -793,7 +814,7 @@ msgstr "U heeft geen rechten om tot deze resource."
 msgid "You can't delete system groups."
 msgstr "U kunt geen systeemgroepen verwijderen."
 
-#: src/routes/users/users.js:214
+#: src/routes/users/users.js:222
 # defaultMessage: You can't delete system users.
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
@@ -809,7 +830,7 @@ msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergre
 msgid "You don't have permission to unlock this document."
 msgstr "U heeft geen toestemming om dit document te ontgrendelen."
 
-#: src/routes/users/users.js:129
+#: src/routes/users/users.js:133
 # defaultMessage: You don't have permissions to add a user.
 msgid "You don't have permissions to add a user."
 msgstr "U heeft geen rechten om een gebruiker toe te voegen."

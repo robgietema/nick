@@ -8,7 +8,7 @@ import { includes } from 'lodash';
 import jwt from 'jsonwebtoken';
 
 import { config } from '../../../config';
-import { User } from '../../models';
+import { Controlpanel, User } from '../../models';
 import { RequestException, sendMail } from '../../helpers';
 
 export default [
@@ -65,10 +65,14 @@ export default [
           { expiresIn: '7d' },
         );
 
+        // Fetch settings
+        const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
+        const settings = controlpanel.data;
+
         // Send mail
         await sendMail({
           to: `${user.fullname} <${user.email}>`,
-          from: `${config.emailFrom.name} <${config.emailFrom.address}>`,
+          from: `${settings.email_from_name} <${settings.email_from_address}>`,
           subject: req.i18n('Password reset request'),
           text: req.i18n(
             'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
@@ -161,10 +165,14 @@ export default [
           { expiresIn: '7d' },
         );
 
+        // Fetch settings
+        const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
+        const settings = controlpanel.data;
+
         // Send mail
         await sendMail({
           to: `${user.fullname} <${user.email}>`,
-          from: `${config.emailFrom.name} <${config.emailFrom.address}>`,
+          from: `${settings.email_from_name} <${settings.email_from_address}>`,
           subject: req.i18n('Password reset request'),
           text: req.i18n(
             'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',

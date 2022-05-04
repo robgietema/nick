@@ -1,0 +1,47 @@
+{
+  "id": "language",
+  "title:i18n": "Language",
+  "group": "General",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["default_language", "available_languages"],
+        "id": "general",
+        "title": "General"
+      }
+    ],
+    "properties": {
+      "available_languages": {
+        "additionalItems": true,
+        "default": ["en"],
+        "description:i18n": "The languages in which the site should be translatable.",
+        "items": {
+          "description": "",
+          "factory": "Choice",
+          "title": "",
+          "type": "string",
+          "vocabulary": {
+            "@id": "supportedLanguages"
+          }
+        },
+        "title:i18n": "Available languages",
+        "type": "array",
+        "uniqueItems": true
+      },
+      "default_language": {
+        "default": "en",
+        "description:i18n": "The language used for the content and the UI of this site.",
+        "title:i18n": "Site language",
+        "type": "string",
+        "vocabulary": {
+          "@id": "supportedLanguages"
+        }
+      }
+    },
+    "required": ["default_language", "available_languages"]
+  },
+  "data": {
+    "default_language": "en",
+    "available_languages": ["en", "nl"]
+  }
+}
