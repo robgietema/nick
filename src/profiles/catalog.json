@@ -36,6 +36,11 @@
       "attr": "subjects"
     },
     {
+      "name": "allowedUsersGroupsRoles",
+      "type": "string[]",
+      "attr": "allowedUsersGroupsRoles"
+    },
+    {
       "name": "getRawRelatedItems",
       "type": "uuid[]",
       "attr": "relatedItems"

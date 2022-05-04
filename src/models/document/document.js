@@ -3,12 +3,14 @@
  * @module models/document/document
  */
 
-import {
+import _, {
   compact,
+  concat,
   drop,
   findIndex,
   head,
   includes,
+  isFunction,
   isUndefined,
   keys,
   map,
@@ -21,7 +23,7 @@ import {
 import { v4 as uuid } from 'uuid';
 
 import { config } from '../../../config';
-import { Catalog, Model, Redirect, Role, User } from '../../models';
+import { Catalog, Model, Permission, Redirect, Role, User } from '../../models';
 import {
   formatSize,
   getRootUrl,
@@ -29,6 +31,8 @@ import {
   log,
   mapSync,
   copyFile,
+  isAsyncFunction,
+  isPromise,
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
@@ -592,6 +596,74 @@ export class Document extends Model {
   }
 
   /**
+   * List of allowed users, groups and roles
+   * @method allowedUsersGroupsRoles
+   * @param {Object} trx Transaction object.
+   * @return {Array} List of allowed users, groups and roles
+   */
+  async allowedUsersGroupsRoles(trx) {
+    // Get global roles
+    const view = await Permission.fetchById('View');
+    await view.fetchRelated('_roles', trx);
+    const globalRoles = view._roles.map((role) => role.id);
+
+    // Get workflow roles
+    const workflowRoles = _(
+      this._type._workflow.json.states[this.workflow_state].permissions,
+    )
+      .pickBy((value) => includes('View', value))
+      .keys()
+      .value();
+
+    // Get users and groups from local roles with 'View' permission
+    const localUsersGroups = await this.fetchLocalUsersGroups(globalRoles, trx);
+
+    // Return allowed
+    return uniq(concat(globalRoles, workflowRoles, localUsersGroups));
+  }
+
+  /**
+   * Re index children
+   * @method reindexChildren
+   * @param {Array} viewRoles List of roles with the view permission.
+   * @param {Object} trx Transaction object.
+   * @return {Array} List of allowed users and groups.
+   */
+  async fetchLocalUsersGroups(viewRoles, trx) {
+    let localUsersGroups = [];
+
+    // Fetch local user and group roles
+    await this.fetchRelated('[_userRoles, _groupRoles]', trx);
+
+    // Append user roles
+    this._userRoles.map((role) => {
+      if (includes(viewRoles, role.id)) {
+        localUsersGroups.push(role.user);
+      }
+    });
+
+    // Append group roles
+    this._groupRoles.map((role) => {
+      if (includes(viewRoles, role.id)) {
+        localUsersGroups.push(role.group);
+      }
+    });
+
+    // Check if we should traverse up
+    if (this.parent && this.inherit_roles) {
+      // Fetch parent
+      await this.fetchRelated('_parent', trx);
+
+      // Append parent users and groups
+      localUsersGroups = concat(
+        localUsersGroups,
+        await this._parent.fetchLocalUsersGroups(viewRoles, trx),
+      );
+    }
+    return uniq(localUsersGroups);
+  }
+
+  /**
    * Re index children
    * @method reindexChildren
    * @param {Object} trx Transaction object.
@@ -636,14 +708,24 @@ export class Document extends Model {
       await this.fetchRelated('_type', trx);
     }
 
+    // If workflow not found fetch workflow
+    if (!this._type._workflow) {
+      await this._type.fetchRelated('_workflow', trx);
+    }
+
     // Loop indexes
     await Promise.all(
       map(profile.indexes, async (index) => {
         if (index.attr in this) {
-          fields[`_${index.name}`] =
-            typeof this[index.attr] === 'function'
-              ? { type: index.type, value: this[index.attr]() }
-              : { type: index.type, value: this[index.attr] };
+          fields[`_${index.name}`] = { type: index.type };
+          if (isFunction(this[index.attr])) {
+            const value = this[index.attr](trx);
+            fields[`_${index.name}`].value = isPromise(value)
+              ? await value
+              : value;
+          } else {
+            fields[`_${index.name}`].value = this[index.attr];
+          }
         } else if (index.attr in this._type._schema.properties) {
           fields[`_${index.name}`] = {
             type: index.type,
