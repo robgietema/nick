@@ -9,9 +9,9 @@ export const config = {
   blobsDir: `${__dirname}/var/blobstorage`,
   port: 8000,
   secret: 'secret',
+  clientMaxSize: '64mb',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Owner'],
-  clientMaxSize: '64mb',
   imageScales: {
     large: [768, 768],
     preview: [400, 400],
