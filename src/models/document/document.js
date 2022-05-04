@@ -611,7 +611,7 @@ export class Document extends Model {
     const workflowRoles = _(
       this._type._workflow.json.states[this.workflow_state].permissions,
     )
-      .pickBy((value) => includes('View', value))
+      .pickBy((value) => includes(value, 'View'))
       .keys()
       .value();
 

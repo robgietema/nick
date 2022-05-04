@@ -3,7 +3,7 @@
  * @module routes/navigation/navigation
  */
 
-import { Document } from '../../models';
+import { Catalog, Document } from '../../models';
 import { getUrl } from '../../helpers';
 
 export default [
@@ -13,10 +13,11 @@ export default [
     permission: 'View',
     handler: async (req, trx) => {
       const root = await Document.fetchOne({ parent: null }, {}, trx);
-      const items = await Document.fetchAll(
-        { parent: root.uuid },
-        { order: 'position_in_parent' },
+      const items = await Catalog.fetchAllRestricted(
+        { _parent: root.uuid },
+        { order: '_getObjPositionInParent' },
         trx,
+        req,
       );
 
       // Omit exclude from nav items

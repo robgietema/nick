@@ -105,9 +105,10 @@ export default [
     view: '/@search',
     permission: 'View',
     handler: async (req, trx) => {
-      const items = await Catalog.fetchAll(
+      const items = await Catalog.fetchAllRestricted(
         ...querystringToQuery(req.query, req.document.path),
         trx,
+        req,
       );
       return {
         json: {

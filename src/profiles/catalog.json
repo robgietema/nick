@@ -11,6 +11,11 @@
       "attr": "uuid"
     },
     {
+      "name": "parent",
+      "type": "uuid",
+      "attr": "parent"
+    },
+    {
       "name": "getObjPositionInParent",
       "type": "integer",
       "attr": "position_in_parent"

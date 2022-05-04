@@ -61,7 +61,8 @@ export class Model extends mixin(ObjectionModel, [
         const attribute = formatAttribute(key);
         const operator = isArray(value) ? value[0] : '=';
         const values = isArray(value) ? value[1] : value;
-        let valueWrapper = isArray(values) ? 'any(?)' : '?';
+        let valueWrapper =
+          isArray(values) && operator !== '&&' ? 'any(?)' : '?';
         if (operator === '@@') {
           valueWrapper = 'to_tsquery(?)';
         }

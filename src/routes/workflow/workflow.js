@@ -55,6 +55,9 @@ export default [
         trx,
       );
 
+      // Reindex document
+      await req.document.reindex(trx);
+
       // Return workflow state
       return {
         json: {

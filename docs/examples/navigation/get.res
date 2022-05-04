@@ -5,83 +5,94 @@ Content-Type: application/json
   "@id": "http://localhost:8000/news/@navigation",
   "items": [
     {
-      "title": "Events",
-      "blocks": {
-        "79ba8858-1dd3-4719-b731-5951e32fbf79": {
-          "@type": "title"
-        }
-      },
-      "blocks_layout": {
-        "items": [
-          "79ba8858-1dd3-4719-b731-5951e32fbf79"
-        ]
-      },
       "@id": "http://localhost:8000/events",
       "@type": "Folder",
-      "id": "events",
-      "created": "2022-04-02T20:30:00.000Z",
-      "modified": "2022-04-02T20:30:00.000Z",
-      "effective": "2022-04-02T20:30:00.000Z",
+      "title": "Events",
       "UID": "1a2123ba-14e8-4910-8e6b-c04a40d72a41",
+      "path": "/events",
+      "Description": null,
+      "Title": "Events",
+      "Subject": null,
       "is_folderish": true,
+      "exclude_from_nav": false,
+      "Type": "Folder",
+      "getId": "events",
+      "Creator": "admin",
+      "id": "events",
+      "portal_type": "Folder",
       "review_state": "published",
-      "lock": {
-        "locked": false,
-        "stealable": true
-      }
+      "modified": "2022-04-02T20:30:00.000Z",
+      "Date": "2022-04-02T20:30:00.000Z",
+      "expires": null,
+      "created": "2022-04-02T20:30:00.000Z",
+      "effective": "2022-04-02T20:30:00.000Z",
+      "getObjSize": 192,
+      "listCreators": ["admin"],
+      "mime_type": null,
+      "CreationDate": "2022-04-02T20:30:00.000Z",
+      "EffectiveDate": "2022-04-02T20:30:00.000Z",
+      "ExpirationDate": null,
+      "ModificationDate": "2022-04-02T20:30:00.000Z"
     },
     {
-      "title": "News",
-      "blocks": {
-        "79ba8858-1dd3-4719-b731-5951e32fbf79": {
-          "@type": "title"
-        }
-      },
-      "description": "News Items",
-      "blocks_layout": {
-        "items": [
-          "79ba8858-1dd3-4719-b731-5951e32fbf79"
-        ]
-      },
       "@id": "http://localhost:8000/news",
       "@type": "Folder",
-      "id": "news",
-      "created": "2022-04-02T20:22:00.000Z",
-      "modified": "2022-04-02T20:22:00.000Z",
-      "effective": "2022-04-02T20:22:00.000Z",
+      "title": "News",
       "UID": "32215c67-86de-462a-8cc0-eabcd2b39c26",
+      "path": "/news",
+      "Description": "News Items",
+      "Title": "News",
+      "Subject": null,
       "is_folderish": true,
+      "exclude_from_nav": false,
+      "Type": "Folder",
+      "getId": "news",
+      "Creator": "admin",
+      "id": "news",
+      "portal_type": "Folder",
       "review_state": "published",
-      "lock": {
-        "locked": false,
-        "stealable": true
-      }
+      "modified": "2022-04-02T20:22:00.000Z",
+      "Date": "2022-04-02T20:22:00.000Z",
+      "expires": null,
+      "created": "2022-04-02T20:22:00.000Z",
+      "effective": "2022-04-02T20:22:00.000Z",
+      "getObjSize": 217,
+      "listCreators": ["admin"],
+      "mime_type": null,
+      "CreationDate": "2022-04-02T20:22:00.000Z",
+      "EffectiveDate": "2022-04-02T20:22:00.000Z",
+      "ExpirationDate": null,
+      "ModificationDate": "2022-04-02T20:22:00.000Z"
     },
     {
-      "title": "Users",
-      "blocks": {
-        "79ba8858-1dd3-4719-b731-5951e32fbf79": {
-          "@type": "title"
-        }
-      },
-      "blocks_layout": {
-        "items": [
-          "79ba8858-1dd3-4719-b731-5951e32fbf79"
-        ]
-      },
       "@id": "http://localhost:8000/users",
       "@type": "Folder",
-      "id": "users",
-      "created": "2022-04-02T20:24:00.000Z",
-      "modified": "2022-04-02T20:24:00.000Z",
-      "effective": "2022-04-02T20:24:00.000Z",
+      "title": "Users",
       "UID": "80994493-74ca-4b94-9a7c-145a33a6dd80",
+      "path": "/users",
+      "Description": null,
+      "Title": "Users",
+      "Subject": null,
       "is_folderish": true,
+      "exclude_from_nav": false,
+      "Type": "Folder",
+      "getId": "users",
+      "Creator": "admin",
+      "id": "users",
+      "portal_type": "Folder",
       "review_state": "published",
-      "lock": {
-        "locked": false,
-        "stealable": true
-      }
+      "modified": "2022-04-02T20:24:00.000Z",
+      "Date": "2022-04-02T20:24:00.000Z",
+      "expires": null,
+      "created": "2022-04-02T20:24:00.000Z",
+      "effective": "2022-04-02T20:24:00.000Z",
+      "getObjSize": 191,
+      "listCreators": ["admin"],
+      "mime_type": null,
+      "CreationDate": "2022-04-02T20:24:00.000Z",
+      "EffectiveDate": "2022-04-02T20:24:00.000Z",
+      "ExpirationDate": null,
+      "ModificationDate": "2022-04-02T20:24:00.000Z"
     }
   ]
 }
