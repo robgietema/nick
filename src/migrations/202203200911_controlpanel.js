@@ -4,6 +4,7 @@ export const up = async (knex) => {
     table.string('title');
     table.string('group');
     table.jsonb('schema').notNull();
+    table.jsonb('data').notNull();
   });
 };
 

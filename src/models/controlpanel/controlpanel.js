@@ -29,7 +29,7 @@ export class Controlpanel extends Model {
 
     // Return extended or basic data
     return extend
-      ? { ...json, data: {}, schema: translateSchema(this.schema, req) }
+      ? { ...json, data: this.data, schema: translateSchema(this.schema, req) }
       : json;
   }
 }
