@@ -37,13 +37,13 @@ export const config = {
     secure: false,
     auth: {
       user: 'someuser',
-      pass: 'somepadd',
+      pass: 'somepass',
     },
   },
   mailDebug: true,
   emailFrom: {
     name: 'Nick',
-    address: 'nick@example.com',
+    address: 'webmaster@nickcms.org',
   },
   frontendUrl: 'http://localhost:3000',
   userRegistration: true,
