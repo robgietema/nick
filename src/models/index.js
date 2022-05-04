@@ -9,6 +9,7 @@ export { Model } from './_model/_model';
 export { Action } from './action/action';
 export { Behavior } from './behavior/behavior';
 export { Catalog } from './catalog/catalog';
+export { Controlpanel } from './controlpanel/controlpanel';
 export { Document } from './document/document';
 export { Group } from './group/group';
 export { Permission } from './permission/permission';

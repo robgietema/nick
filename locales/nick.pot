@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-05-03T14:53:53.688Z\n"
+"POT-Creation-Date: 2022-05-04T16:53:28.922Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -173,6 +173,11 @@ msgstr ""
 msgid "Dates"
 msgstr ""
 
+#: src/profiles/controlpanels.json:61
+# defaultMessage: Debug
+msgid "Debug"
+msgstr ""
+
 #: src/profiles/behaviors/basic.json:10
 #: src/profiles/behaviors/versioning.json:10
 #: src/profiles/types/file.json:13
@@ -200,6 +205,16 @@ msgstr ""
 #: src/profiles/behaviors/dublin_core.json:3
 # defaultMessage: Dublin Core metadata
 msgid "Dublin Core metadata"
+msgstr ""
+
+#: src/profiles/controlpanels.json:44
+# defaultMessage: ESMTP password
+msgid "ESMTP password"
+msgstr ""
+
+#: src/profiles/controlpanels.json:56
+# defaultMessage: ESMTP username
+msgid "ESMTP username"
 msgstr ""
 
 #: src/profiles/actions.json:12
@@ -263,6 +278,16 @@ msgstr ""
 #: src/profiles/behaviors/short_name.json:16
 # defaultMessage: Identifier
 msgid "Identifier"
+msgstr ""
+
+#: src/profiles/controlpanels.json:62
+# defaultMessage: If enabled the mail is send to a test server.
+msgid "If enabled the mail is send to a test server."
+msgstr ""
+
+#: src/profiles/controlpanels.json:67
+# defaultMessage: If enabled the mail is send using a secure connection.
+msgid "If enabled the mail is send using a secure connection."
 msgstr ""
 
 #: src/profiles/behaviors/exclude_from_nav.json:4
@@ -348,6 +373,11 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
+#: src/profiles/controlpanels.json:6
+# defaultMessage: Mail
+msgid "Mail"
+msgstr ""
+
 #: src/profiles/permissions.json:22
 # defaultMessage: Manage Preferences
 msgid "Manage Preferences"
@@ -379,6 +409,7 @@ msgid "Not allowed"
 msgstr ""
 
 #: src/app.js:63
+#: src/routes/controlpanels/controlpanels.js:31
 #: src/routes/email/email.js:53
 #: src/routes/groups/groups.js:25
 #: src/routes/types/types.js:30
@@ -418,6 +449,16 @@ msgstr ""
 #: src/profiles/workflows.json:22
 # defaultMessage: Pending review
 msgid "Pending review"
+msgstr ""
+
+#: src/profiles/controlpanels.json:29
+# defaultMessage: Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature.
+msgid "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
+msgstr ""
+
+#: src/profiles/controlpanels.json:34
+# defaultMessage: Plone generates e-mail using this name as the e-mail sender.
+msgid "Plone generates e-mail using this name as the e-mail sender."
 msgstr ""
 
 #: src/profiles/actions.json:83
@@ -511,6 +552,21 @@ msgstr ""
 msgid "Rules"
 msgstr ""
 
+#: src/profiles/controlpanels.json:50
+# defaultMessage: SMTP port
+msgid "SMTP port"
+msgstr ""
+
+#: src/profiles/controlpanels.json:38
+# defaultMessage: SMTP server
+msgid "SMTP server"
+msgstr ""
+
+#: src/profiles/controlpanels.json:66
+# defaultMessage: Secure
+msgid "Secure"
+msgstr ""
+
 #: src/profiles/workflows.json:52
 # defaultMessage: Send back
 msgid "Send back"
@@ -545,6 +601,16 @@ msgstr ""
 #: src/profiles/types/site.json:3
 # defaultMessage: Site
 msgid "Site"
+msgstr ""
+
+#: src/profiles/controlpanels.json:28
+# defaultMessage: Site 'From' address
+msgid "Site 'From' address"
+msgstr ""
+
+#: src/profiles/controlpanels.json:33
+# defaultMessage: Site 'From' name
+msgid "Site 'From' name"
 msgstr ""
 
 #: src/profiles/actions.json:88
@@ -597,6 +663,11 @@ msgstr ""
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr ""
 
+#: src/profiles/controlpanels.json:39
+# defaultMessage: The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail.
+msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
+msgstr ""
+
 #: src/routes/users/users.js:73
 #: src/routes/users/users.js:169
 # defaultMessage: undefined
@@ -608,6 +679,16 @@ msgstr ""
 #: src/profiles/behaviors/categorization.json:25
 # defaultMessage: The language of this item.
 msgid "The language of this item."
+msgstr ""
+
+#: src/profiles/controlpanels.json:45
+# defaultMessage: The password for the ESMTP user account.
+msgid "The password for the ESMTP user account."
+msgstr ""
+
+#: src/profiles/controlpanels.json:51
+# defaultMessage: The port of your local SMTP (outgoing e-mail) server. Usually '25'.
+msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 msgstr ""
 
 #: src/profiles/behaviors/categorization.json:15
@@ -659,6 +740,11 @@ msgstr ""
 #: src/routes/authentication/authentication.js:74
 # defaultMessage: User is not logged in.
 msgid "User is not logged in."
+msgstr ""
+
+#: src/profiles/controlpanels.json:57
+# defaultMessage: Username for authentication to your e-mail server. Not required unless you are using ESMTP.
+msgid "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 msgstr ""
 
 #: src/profiles/behaviors/versioning.json:3
