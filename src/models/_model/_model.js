@@ -67,7 +67,10 @@ export class Model extends mixin(ObjectionModel, [
           valueWrapper = 'to_tsquery(?)';
         }
         if (values === null) {
-          query = query.whereNull(key);
+          query =
+            operator === 'is not'
+              ? query.whereNotNull(key)
+              : query.whereNull(key);
         } else {
           query = query.whereRaw(`${attribute} ${operator} ${valueWrapper}`, [
             values,

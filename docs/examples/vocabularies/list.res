@@ -27,6 +27,10 @@ Content-Type: application/json
     "title": "roles"
   },
   {
+    "@id": "http://localhost:8000/@vocabularies/subjects",
+    "title": "subjects"
+  },
+  {
     "@id": "http://localhost:8000/@vocabularies/supportedLanguages",
     "title": "supportedLanguages"
   },

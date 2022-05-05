@@ -23,6 +23,9 @@ describe('Vocabularies', () => {
   it('should return a permissions vocabulary', () =>
     testRequest(app, 'vocabularies/get_permissions'));
 
+  it('should return a subjects vocabulary', () =>
+    testRequest(app, 'vocabularies/get_subjects'));
+
   it('should return a supported languages vocabulary', () =>
     testRequest(app, 'vocabularies/get_supported_languages'));
 

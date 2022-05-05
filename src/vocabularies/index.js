@@ -9,6 +9,7 @@ import { groups } from './groups/groups';
 import { imageScales } from './image-scales/image-scales';
 import { permissions } from './permissions/permissions';
 import { roles } from './roles/roles';
+import { subjects } from './subjects/subjects';
 import { supportedLanguages } from './supported-languages/supported-languages';
 import { systemGroups } from './system-groups/system-groups';
 import { systemUsers } from './system-users/system-users';
@@ -23,6 +24,7 @@ export const vocabularies = {
   imageScales,
   permissions,
   roles,
+  subjects,
   supportedLanguages,
   systemGroups,
   systemUsers,
