@@ -53,5 +53,9 @@ Content-Type: application/json
   {
     "@id": "http://localhost:8000/@vocabularies/workflows",
     "title": "workflows"
+  },
+  {
+    "@id": "http://localhost:8000/@vocabularies/workflowStates",
+    "title": "workflowStates"
   }
 ]

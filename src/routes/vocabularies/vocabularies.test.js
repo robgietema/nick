@@ -41,6 +41,9 @@ describe('Vocabularies', () => {
   it('should return a system users vocabulary', () =>
     testRequest(app, 'vocabularies/get_users'));
 
+  it('should return a workflow states vocabulary', () =>
+    testRequest(app, 'vocabularies/get_workflow_states'));
+
   it('should return a workflows vocabulary', () =>
     testRequest(app, 'vocabularies/get_workflows'));
 });

@@ -16,6 +16,7 @@ import { systemUsers } from './system-users/system-users';
 import { types } from './types/types';
 import { users } from './users/users';
 import { workflows } from './workflows/workflows';
+import { workflowStates } from './workflow-states/workflow-states';
 
 export const vocabularies = {
   actions,
@@ -31,4 +32,5 @@ export const vocabularies = {
   types,
   users,
   workflows,
+  workflowStates,
 };
