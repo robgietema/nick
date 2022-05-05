@@ -31,17 +31,9 @@ Example `GET` request on the portal root
     $ CREATE USER nick WITH ENCRYPTED PASSWORD 'nick';
     $ GRANT ALL PRIVILEGES ON DATABASE nick TO nick;
 
-### Install Dependencies
+### Bootstrap Project
 
-    $ yarn
-
-### Create DB structure
-
-    $ yarn migrate
-
-### Import initial content
-
-    $ yarn seed
+    $ yarn bootstrap
 
 ## Development
 

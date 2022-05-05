@@ -16,24 +16,23 @@
   },
   "bugs": {
     "url": "https://github.com/robgietema/nick/issues",
-    "email": "plone-developers@lists.sourceforge.net"
+    "email": "info@nickcms.org"
   },
-  "homepage": "https://plone.org",
+  "homepage": "https://nickcms.org",
   "keywords": [
-    "react"
+    "cms"
   ],
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
-    "extract": "nodemon --exec babel-node scripts/extract.js",
     "test": "jest",
     "coverage": "jest --coverage",
     "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",
     "i18n": "babel-node scripts/i18n.js",
     "migrate": "yarn knex migrate:latest",
-    "bootstrap": "yarn && yarn knex migrate:latest && yarn knex seed:run",
     "seed": "yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
-    "reset": "yarn knex migrate:rollback --all && yarn knex migrate:latest && yarn knex seed:run",
+    "reset": "yarn rollback && yarn migrate && yarn seed",
+    "bootstrap": "yarn && yarn migrate && yarn seed",
     "docs": "cd docs && bundle exec jekyll serve"
   },
   "prettier": {
@@ -48,40 +47,40 @@
   "engines": {
     "node": "~16.13.0"
   },
+  "devDependencies": {
+    "babel-jest": "28.0.3",
+    "jest": "28.0.3",
+    "pofile": "1.1.3",
+    "prettier": "2.6.2",
+    "supertest": "6.2.3"
+  },
   "dependencies": {
-    "@babel/core": "7.17.9",
-    "@babel/node": "7.16.8",
+    "@babel/core": "7.17.10",
+    "@babel/node": "7.17.10",
     "@babel/plugin-proposal-export-default-from": "7.16.7",
-    "@babel/plugin-transform-runtime": "7.17.0",
-    "@babel/preset-env": "7.16.11",
-    "@formatjs/cli": "4.8.3",
-    "@formatjs/intl": "2.1.1",
+    "@babel/plugin-transform-runtime": "7.17.10",
+    "@babel/preset-env": "7.17.10",
+    "@formatjs/cli": "4.8.4",
+    "@formatjs/intl": "2.2.1",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "27.5.1",
-    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-plugin-add-module-exports": "1.0.4",
     "bcrypt": "5.0.1",
     "bcrypt-promise": "2.0.0",
     "body-parser": "1.20.0",
-    "deepmerge": "4.2.2",
     "du": "1.0.0",
-    "express": "4.17.3",
-    "jest": "27.5.1",
+    "express": "4.18.1",
     "jsonwebtoken": "8.5.1",
-    "knex": "1.0.6",
+    "knex": "2.0.0",
     "lodash": "4.17.21",
-    "log4js": "6.4.4",
-    "moment": "2.29.2",
-    "nodemailer": "6.7.3",
-    "nodemon": "2.0.15",
+    "log4js": "6.4.6",
+    "moment": "2.29.3",
+    "nodemailer": "6.7.5",
+    "nodemon": "2.0.16",
     "objection": "3.0.1",
     "objection-table-name": "2.0.2",
     "pg": "8.7.3",
-    "pofile": "1.1.3",
-    "prettier": "2.6.2",
-    "sharp": "0.30.3",
+    "sharp": "0.30.4",
     "slugify": "1.6.5",
-    "supertest": "6.2.2",
-    "supertest-as-promised": "4.0.2",
     "uuid": "8.3.2"
   }
 }
