@@ -1,13 +1,31 @@
 import { map } from 'lodash';
 
 import { log, stripI18n } from '../helpers';
-import { Catalog } from '../models';
+import { Catalog, Index } from '../models';
 
 export const seed = async (knex) => {
   try {
     const profile = stripI18n(require('../profiles/catalog'));
     await Promise.all(
       map(profile.indexes, async (index) => {
+        // Add index
+        if (index.enabled) {
+          await Index.create(
+            {
+              id: index.name,
+              title: index.title,
+              description: index.description,
+              group: index.group,
+              enabled: index.enabled,
+              sortable: index.sortable,
+              operators: index.operators,
+              vocabulary: index.vocabulary,
+            },
+            {},
+            knex,
+          );
+        }
+        // Update catalog table
         await knex.schema.alterTable('catalog', async (table) => {
           const field = `_${index.name}`;
           switch (index.type) {

@@ -12,6 +12,7 @@ export { Catalog } from './catalog/catalog';
 export { Controlpanel } from './controlpanel/controlpanel';
 export { Document } from './document/document';
 export { Group } from './group/group';
+export { Index } from './index/index';
 export { Permission } from './permission/permission';
 export { Redirect } from './redirect/redirect';
 export { Role } from './role/role';

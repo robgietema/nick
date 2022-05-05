@@ -9,4 +9,5 @@ export { Collection } from './_collection/_collection';
 export { ActionCollection } from './action/action';
 export { BehaviorCollection } from './behavior/behavior';
 export { DocumentCollection } from './document/document';
+export { IndexCollection } from './index/index';
 export { TypeCollection } from './type/type';

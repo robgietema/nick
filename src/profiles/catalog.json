@@ -3,122 +3,777 @@
     {
       "name": "path",
       "type": "path",
-      "attr": "path"
+      "attr": "path",
+      "title:i18n": "Location",
+      "description:i18n": "The location of an item",
+      "group": "Metadata",
+      "enabled": true,
+      "sortable": false,
+      "operators": {
+        "string.absolutePath": {
+          "title:i18n": "Absolute path",
+          "description:i18n": "Location in the site structure",
+          "operation": "absolutePath",
+          "widget": "ReferenceWidget"
+        },
+        "string.path": {
+          "title:i18n": "Navigation path",
+          "description:i18n": "Location in the navigation structure",
+          "operation": "navigationPath",
+          "widget": "ReferenceWidget"
+        },
+        "string.relativePath": {
+          "title:i18n": "Relative path",
+          "description:i18n": "Use '../' to navigate to parent objects.",
+          "operation": "relativePath",
+          "widget": "RelativePathWidget"
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "UID",
       "type": "uuid",
-      "attr": "uuid"
+      "attr": "uuid",
+      "enabled": false
     },
     {
       "name": "parent",
       "type": "uuid",
-      "attr": "parent"
+      "attr": "parent",
+      "enabled": false
     },
     {
       "name": "getObjPositionInParent",
       "type": "integer",
-      "attr": "position_in_parent"
+      "attr": "position_in_parent",
+      "title:i18n": "Order in folder",
+      "description:i18n": "The order of an item in its parent folder",
+      "group": "Metadata",
+      "enabled": false,
+      "sortable": true,
+      "operators": {
+        "int.is": {
+          "title:i18n": "Equals",
+          "description:i18n": "",
+          "operation": "intEqual",
+          "widget": "StringWidget"
+        },
+        "int.largerThan": {
+          "title:i18n": "Larger than",
+          "description:i18n": "",
+          "operation": "intLargerThan",
+          "widget": "StringWidget"
+        },
+        "int.lessThan": {
+          "title:i18n": "Less than",
+          "description:i18n": "",
+          "operation": "intLessThan",
+          "widget": "StringWidget"
+        }
+      },
+      "vocabulary": null
+    },
+    {
+      "name": "start",
+      "type": "date",
+      "attr": "start",
+      "title:i18n": "Event start date",
+      "description:i18n": "The start date and time of an event",
+      "group": "Dates",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "date.afterRelativeDate": {
+          "title:i18n": "After relative Date",
+          "description:i18n": "After N days in the future",
+          "operation": "afterRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.afterToday": {
+          "title:i18n": "After today",
+          "description:i18n": "After the current day",
+          "operation": "afterToday",
+          "widget": null
+        },
+        "date.beforeRelativeDate": {
+          "title:i18n": "Before relative Date",
+          "description:i18n": "Before N days in the past",
+          "operation": "beforeRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.beforeToday": {
+          "title:i18n": "Before today",
+          "description:i18n": "Before the current day",
+          "operation": "beforeToday",
+          "widget": null
+        },
+        "date.between": {
+          "title:i18n": "Between dates",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "between",
+          "widget": "DateRangeWidget"
+        },
+        "date.largerThan": {
+          "title:i18n": "After date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "largerThan",
+          "widget": "DateWidget"
+        },
+        "date.largerThanRelativeDate": {
+          "title:i18n": "Within last",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "moreThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.lessThan": {
+          "title:i18n": "Before date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "lessThan",
+          "widget": "DateWidget"
+        },
+        "date.lessThanRelativeDate": {
+          "title:i18n": "Within next",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "lessThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.today": {
+          "title:i18n": "Today",
+          "description:i18n": "The current day",
+          "operation": "today",
+          "widget": null
+        }
+      },
+      "vocabulary": null
+    },
+    {
+      "name": "end",
+      "type": "date",
+      "attr": "end",
+      "title:i18n": "Event end date",
+      "description:i18n": "The end date and time of an event",
+      "group": "Dates",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "date.afterRelativeDate": {
+          "title:i18n": "After relative Date",
+          "description:i18n": "After N days in the future",
+          "operation": "afterRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.afterToday": {
+          "title:i18n": "After today",
+          "description:i18n": "After the current day",
+          "operation": "afterToday",
+          "widget": null
+        },
+        "date.beforeRelativeDate": {
+          "title:i18n": "Before relative Date",
+          "description:i18n": "Before N days in the past",
+          "operation": "beforeRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.beforeToday": {
+          "title:i18n": "Before today",
+          "description:i18n": "Before the current day",
+          "operation": "beforeToday",
+          "widget": null
+        },
+        "date.between": {
+          "title:i18n": "Between dates",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "between",
+          "widget": "DateRangeWidget"
+        },
+        "date.largerThan": {
+          "title:i18n": "After date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "largerThan",
+          "widget": "DateWidget"
+        },
+        "date.largerThanRelativeDate": {
+          "title:i18n": "Within last",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "moreThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.lessThan": {
+          "title:i18n": "Before date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "lessThan",
+          "widget": "DateWidget"
+        },
+        "date.lessThanRelativeDate": {
+          "title:i18n": "Within next",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "lessThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.today": {
+          "title:i18n": "Today",
+          "description:i18n": "The current day",
+          "operation": "today",
+          "widget": null
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "Description",
       "type": "text",
-      "attr": "description"
+      "attr": "description",
+      "title:i18n": "Description",
+      "description:i18n": "An item's description",
+      "group": "Text",
+      "enabled": true,
+      "sortable": false,
+      "operators": {
+        "string.contains": {
+          "title:i18n": "Contains",
+          "description:i18n": "",
+          "operation": "contains",
+          "widget": "StringWidget"
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "SearchableText",
       "type": "text",
-      "attr": "searchableText"
+      "attr": "searchableText",
+      "title:i18n": "Searchable text",
+      "description:i18n": "Text search of an item's contents",
+      "group": "Text",
+      "enabled": true,
+      "sortable": false,
+      "operators": {
+        "string.contains": {
+          "title:i18n": "Contains",
+          "description:i18n": "",
+          "operation": "contains",
+          "widget": "StringWidget"
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "Title",
       "type": "text",
-      "attr": "title"
+      "attr": "title",
+      "title:i18n": "Title",
+      "description:i18n": "Text search of an item's title",
+      "group": "Text",
+      "enabled": true,
+      "sortable": false,
+      "operators": {
+        "string.contains": {
+          "title:i18n": "Contains",
+          "description:i18n": "",
+          "operation": "contains",
+          "widget": "StringWidget"
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "Subject",
       "type": "string[]",
-      "attr": "subjects"
+      "attr": "subjects",
+      "title:i18n": "Tag",
+      "description:i18n": "Tags are used for organization of content",
+      "group": "Text",
+      "enabled": true,
+      "sortable": false,
+      "operators": {
+        "selection.all": {
+          "description:i18n": "Tip: you can use * to autocomplete.",
+          "operation": "all",
+          "title:i18n": "Matches all of",
+          "widget": "MultipleSelectionWidget"
+        },
+        "selection.any": {
+          "description:i18n": "Tip: you can use * to autocomplete.",
+          "operation": "contains",
+          "title:i18n": "Matches any of",
+          "widget": "MultipleSelectionWidget"
+        }
+      },
+      "vocabulary": "subjects"
     },
     {
       "name": "allowedUsersGroupsRoles",
       "type": "string[]",
-      "attr": "allowedUsersGroupsRoles"
+      "attr": "allowedUsersGroupsRoles",
+      "enabled": false
     },
     {
       "name": "getRawRelatedItems",
       "type": "uuid[]",
-      "attr": "relatedItems"
+      "attr": "relatedItems",
+      "title:i18n": "Related To",
+      "description:i18n": "Find items related to the selected items",
+      "group": "Metadata",
+      "enabled": false,
+      "sortable": false,
+      "operators": {
+        "reference.is": {
+          "title:i18n": "Equals",
+          "description:i18n": "",
+          "operation": "referenceIs",
+          "widget": "ReferenceWidget"
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "is_folderish",
       "type": "boolean",
-      "attr": "isFolderish"
+      "attr": "isFolderish",
+      "title:i18n": "Folder-like",
+      "description:i18n": "Find items that can contain other objects",
+      "group": "Metadata",
+      "enabled": false,
+      "sortable": false,
+      "operators": {
+        "boolean.isFalse": {
+          "title:i18n": "No",
+          "description:i18n": "",
+          "operation": "isFalse",
+          "widget": null
+        },
+        "boolean.isTrue": {
+          "title:i18n": "Yes",
+          "description:i18n": "",
+          "operation": "isTrue",
+          "widget": null
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "exclude_from_nav",
       "type": "boolean",
-      "attr": "exclude_from_nav"
+      "attr": "exclude_from_nav",
+      "enabled": false
     },
     {
       "name": "Type",
       "type": "string",
-      "attr": "type"
+      "attr": "type",
+      "enabled": false
     },
     {
       "name": "getId",
       "type": "string",
-      "attr": "id"
+      "attr": "id",
+      "title:i18n": "Short name (id)",
+      "description:i18n": "The short name of an item (used in the url)",
+      "group": "Metadata",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "string.is": {
+          "title:i18n": "Is",
+          "description:i18n": "Tip: you can use * to autocomplete.",
+          "operation": "equal",
+          "widget": "StringWidget"
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "Creator",
       "type": "string",
-      "attr": "owner"
+      "attr": "owner",
+      "title:i18n": "Creator",
+      "description:i18n": "The person that created an item",
+      "group": "Metadata",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "selection.any": {
+          "title:i18n": "Matches any of",
+          "description:i18n": "Tip: you can use * to autocomplete.",
+          "operation": "contains",
+          "widget": "MultipleSelectionWidget"
+        },
+        "string.currentUser": {
+          "title:i18n": "Current logged in user",
+          "description:i18n": "The user viewing the querystring results",
+          "operation": "currentUser",
+          "widget": null
+        }
+      },
+      "vocabulary": "users"
     },
     {
       "name": "id",
       "type": "string",
-      "attr": "id"
+      "attr": "id",
+      "enabled": false
     },
     {
       "name": "portal_type",
       "type": "string",
-      "attr": "type"
+      "attr": "type",
+      "title:i18n": "Type",
+      "description:i18n": "An item's type (e.g. Event)",
+      "group": "Metadata",
+      "enabled": true,
+      "sortable": false,
+      "operators": {
+        "selection.any": {
+          "title:i18n": "Matches any of",
+          "description:i18n": "Tip: you can use * to autocomplete.",
+          "operation": "contains",
+          "widget": "MultipleSelectionWidget"
+        }
+      },
+      "vocabulary": "types"
     },
     {
       "name": "review_state",
       "type": "string",
-      "attr": "workflow_state"
+      "attr": "workflow_state",
+      "title:i18n": "Review state",
+      "description:i18n": "An item's workflow state (e.g.published)",
+      "group": "Metadata",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "selection.any": {
+          "title:i18n": "Matches any of",
+          "description:i18n": "Tip: you can use * to autocomplete.",
+          "operation": "contains",
+          "widget": "MultipleSelectionWidget"
+        }
+      },
+      "vocabulary": "workflowStates"
     },
     {
       "name": "sortable_title",
       "type": "string",
-      "attr": "title"
+      "attr": "title",
+      "title:i18n": "Sortable Title",
+      "description:i18n": "The item's title, transformed for sorting",
+      "group": "Text",
+      "enabled": false,
+      "sortable": true,
+      "operators": {
+        "string.contains": {
+          "title:i18n": "Contains",
+          "description:i18n": "",
+          "operation": "contains",
+          "widget": "StringWidget"
+        },
+        "string.is": {
+          "title:i18n": "Is",
+          "description:i18n": "Tip: you can use * to autocomplete.",
+          "operation": "equal",
+          "widget": "StringWidget"
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "modified",
       "type": "date",
-      "attr": "modified"
+      "attr": "modified",
+      "title:i18n": "Modification date",
+      "description:i18n": "The time and date an item was last modified",
+      "group": "Dates",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "date.afterRelativeDate": {
+          "title:i18n": "After relative Date",
+          "description:i18n": "After N days in the future",
+          "operation": "afterRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.afterToday": {
+          "title:i18n": "After today",
+          "description:i18n": "After the current day",
+          "operation": "afterToday",
+          "widget": null
+        },
+        "date.beforeRelativeDate": {
+          "title:i18n": "Before relative Date",
+          "description:i18n": "Before N days in the past",
+          "operation": "beforeRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.beforeToday": {
+          "title:i18n": "Before today",
+          "description:i18n": "Before the current day",
+          "operation": "beforeToday",
+          "widget": null
+        },
+        "date.between": {
+          "title:i18n": "Between dates",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "between",
+          "widget": "DateRangeWidget"
+        },
+        "date.largerThan": {
+          "title:i18n": "After date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "largerThan",
+          "widget": "DateWidget"
+        },
+        "date.largerThanRelativeDate": {
+          "title:i18n": "Within last",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "moreThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.lessThan": {
+          "title:i18n": "Before date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "lessThan",
+          "widget": "DateWidget"
+        },
+        "date.lessThanRelativeDate": {
+          "title:i18n": "Within next",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "lessThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.today": {
+          "title:i18n": "Today",
+          "description:i18n": "The current day",
+          "operation": "today",
+          "widget": null
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "Date",
       "type": "date",
-      "attr": "created"
+      "attr": "created",
+      "enabled": false
     },
     {
       "name": "expires",
       "type": "date",
-      "attr": "expires"
+      "attr": "expires",
+      "title:i18n": "Expiration date",
+      "description:i18n": "The time and date an item was expired",
+      "group": "Dates",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "date.afterRelativeDate": {
+          "title:i18n": "After relative Date",
+          "description:i18n": "After N days in the future",
+          "operation": "afterRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.afterToday": {
+          "title:i18n": "After today",
+          "description:i18n": "After the current day",
+          "operation": "afterToday",
+          "widget": null
+        },
+        "date.beforeRelativeDate": {
+          "title:i18n": "Before relative Date",
+          "description:i18n": "Before N days in the past",
+          "operation": "beforeRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.beforeToday": {
+          "title:i18n": "Before today",
+          "description:i18n": "Before the current day",
+          "operation": "beforeToday",
+          "widget": null
+        },
+        "date.between": {
+          "title:i18n": "Between dates",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "between",
+          "widget": "DateRangeWidget"
+        },
+        "date.largerThan": {
+          "title:i18n": "After date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "largerThan",
+          "widget": "DateWidget"
+        },
+        "date.largerThanRelativeDate": {
+          "title:i18n": "Within last",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "moreThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.lessThan": {
+          "title:i18n": "Before date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "lessThan",
+          "widget": "DateWidget"
+        },
+        "date.lessThanRelativeDate": {
+          "title:i18n": "Within next",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "lessThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.today": {
+          "title:i18n": "Today",
+          "description:i18n": "The current day",
+          "operation": "today",
+          "widget": null
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "created",
       "type": "date",
-      "attr": "created"
+      "attr": "created",
+      "title:i18n": "Creation date",
+      "description:i18n": "The date an item was created",
+      "group": "Dates",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "date.afterRelativeDate": {
+          "title:i18n": "After relative Date",
+          "description:i18n": "After N days in the future",
+          "operation": "afterRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.afterToday": {
+          "title:i18n": "After today",
+          "description:i18n": "After the current day",
+          "operation": "afterToday",
+          "widget": null
+        },
+        "date.beforeRelativeDate": {
+          "title:i18n": "Before relative Date",
+          "description:i18n": "Before N days in the past",
+          "operation": "beforeRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.beforeToday": {
+          "title:i18n": "Before today",
+          "description:i18n": "Before the current day",
+          "operation": "beforeToday",
+          "widget": null
+        },
+        "date.between": {
+          "title:i18n": "Between dates",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "between",
+          "widget": "DateRangeWidget"
+        },
+        "date.largerThan": {
+          "title:i18n": "After date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "largerThan",
+          "widget": "DateWidget"
+        },
+        "date.largerThanRelativeDate": {
+          "title:i18n": "Within last",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "moreThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.lessThan": {
+          "title:i18n": "Before date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "lessThan",
+          "widget": "DateWidget"
+        },
+        "date.lessThanRelativeDate": {
+          "title:i18n": "Within next",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "lessThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.today": {
+          "title:i18n": "Today",
+          "description:i18n": "The current day",
+          "operation": "today",
+          "widget": null
+        }
+      },
+      "vocabulary": null
     },
     {
       "name": "effective",
       "type": "date",
-      "attr": "effective"
+      "attr": "effective",
+      "title:i18n": "Effective date",
+      "description:i18n": "The time and date an item was first published",
+      "group": "Dates",
+      "enabled": true,
+      "sortable": true,
+      "operators": {
+        "date.afterRelativeDate": {
+          "title:i18n": "After relative Date",
+          "description:i18n": "After N days in the future",
+          "operation": "afterRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.afterToday": {
+          "title:i18n": "After today",
+          "description:i18n": "After the current day",
+          "operation": "afterToday",
+          "widget": null
+        },
+        "date.beforeRelativeDate": {
+          "title:i18n": "Before relative Date",
+          "description:i18n": "Before N days in the past",
+          "operation": "beforeRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.beforeToday": {
+          "title:i18n": "Before today",
+          "description:i18n": "Before the current day",
+          "operation": "beforeToday",
+          "widget": null
+        },
+        "date.between": {
+          "title:i18n": "Between dates",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "between",
+          "widget": "DateRangeWidget"
+        },
+        "date.largerThan": {
+          "title:i18n": "After date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "largerThan",
+          "widget": "DateWidget"
+        },
+        "date.largerThanRelativeDate": {
+          "title:i18n": "Within last",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "moreThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.lessThan": {
+          "title:i18n": "Before date",
+          "description:i18n": "Please use YYYY/MM/DD.",
+          "operation": "lessThan",
+          "widget": "DateWidget"
+        },
+        "date.lessThanRelativeDate": {
+          "title:i18n": "Within next",
+          "description:i18n": "Please enter the number in days.",
+          "operation": "lessThanRelativeDate",
+          "widget": "RelativeDateWidget"
+        },
+        "date.today": {
+          "title:i18n": "Today",
+          "description:i18n": "The current day",
+          "operation": "today",
+          "widget": null
+        }
+      },
+      "vocabulary": null
     }
   ],
   "metadata": [
