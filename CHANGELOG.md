@@ -12,6 +12,11 @@
 
 ### Internal
 
+- Added tests for format helpers. @robgietema
+- Added tests for i18n helpers. @robgietema
+- Added tests for url helpers. @robgietema
+- Removed unused stringify method. @robgietema
+
 ### Documentation
 
 ## 2.7.0 (2022-05-05)

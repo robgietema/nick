@@ -54,29 +54,6 @@ export function removeUndefined(object) {
 }
 
 /**
- * Stringify and fix uuid fields
- * @method stringify
- * @param {Object} object Object to stringify
- * @returns {string} Stringified object
- */
-export function stringify(object) {
-  return JSON.stringify(
-    object,
-    (key, value) => {
-      if (
-        value.match(
-          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
-        )
-      ) {
-        return '<UUID>';
-      }
-      return value;
-    },
-    '  ',
-  );
-}
-
-/**
  * Convert array to vocabulary
  * @method arrayToVocabulary
  * @param {Array} items Items to be converted
