@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "@id": "http://localhost:8000/@system",
-  "nick_version": "0.0.1",
+  "nick_version": "2.8.0",
   "node_version": "v16.13.0",
   "express_version": "4.18.1",
   "objection_version": "3.0.1",
