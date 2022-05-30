@@ -16,6 +16,7 @@
 - Added tests for i18n helpers. @robgietema
 - Added tests for url helpers. @robgietema
 - Removed unused stringify method. @robgietema
+- Upgrade packages. @robgietema
 
 ### Documentation
 
