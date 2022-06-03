@@ -668,6 +668,13 @@ msgstr "Wijzigen"
 msgid "Navigation path"
 msgstr "Navigatiepad"
 
+#: src/helpers/i18n/i18n.test.js:5
+#: src/helpers/i18n/i18n.test.js:8
+#: src/helpers/i18n/i18n.test.js:11
+# defaultMessage: News
+msgid "News"
+msgstr "Nieuws"
+
 #: src/profiles/catalog.json:341
 # defaultMessage: No
 msgid "No"

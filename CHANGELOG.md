@@ -17,6 +17,7 @@
 - Added tests for url helpers. @robgietema
 - Removed unused stringify method. @robgietema
 - Upgrade packages. @robgietema
+- Updated translations. @robgietema
 
 ### Documentation
 
