@@ -60,3 +60,5 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+config.js

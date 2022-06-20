@@ -6,6 +6,8 @@
 
 ### Feature
 
+- Add sample config file @robgietema
+
 ### Bugfix
 
 - Fix system test @robgietema

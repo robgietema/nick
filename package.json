@@ -32,7 +32,8 @@
     "seed": "yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
     "reset": "yarn rollback && yarn migrate && yarn seed",
-    "bootstrap": "yarn && yarn migrate && yarn seed",
+    "bootstrap": "yarn && yarn config && yarn migrate && yarn seed",
+    "config": "cp config.js.sample config.js",
     "docs": "cd docs && bundle exec jekyll serve"
   },
   "prettier": {
