@@ -1,5 +1,6 @@
 ---
 sort: 20
+order: 20
 permalink: /email
 ---
 

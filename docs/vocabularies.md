@@ -1,5 +1,6 @@
 ---
 sort: 17
+order: 17
 permalink: /vocabularies
 ---
 

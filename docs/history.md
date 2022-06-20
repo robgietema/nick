@@ -1,5 +1,6 @@
 ---
 sort: 4
+order: 4
 permalink: /history
 ---
 

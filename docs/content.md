@@ -1,5 +1,6 @@
 ---
 sort: 3
+order: 3
 permalink: /content
 ---
 

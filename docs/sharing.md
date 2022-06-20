@@ -1,5 +1,6 @@
 ---
 sort: 9
+order: 9
 permalink: /sharing
 ---
 

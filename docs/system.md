@@ -1,5 +1,6 @@
 ---
 sort: 22
+order: 22
 permalink: /system
 ---
 

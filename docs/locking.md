@@ -1,5 +1,6 @@
 ---
 sort: 8
+order: 8
 permalink: /locking
 ---
 

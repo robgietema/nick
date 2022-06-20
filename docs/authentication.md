@@ -1,5 +1,6 @@
 ---
 sort: 2
+order: 2
 permalink: /authentication
 ---
 

@@ -1,5 +1,6 @@
 ---
 sort: 18
+order: 18
 permalink: /controlpanels
 ---
 

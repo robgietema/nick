@@ -1,5 +1,6 @@
 ---
 sort: 7
+order: 7
 permalink: /workflow
 ---
 
