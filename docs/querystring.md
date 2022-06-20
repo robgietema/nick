@@ -1,6 +1,5 @@
 ---
-sort: 19
-order: 19
+nav_order: 19
 permalink: /querystring
 ---
 

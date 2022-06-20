@@ -1,5 +1,6 @@
 ---
 layout: default
+nav_exclude: true
 ---
 
 # Nick: Nearly Headless CMS

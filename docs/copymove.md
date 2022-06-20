@@ -1,6 +1,5 @@
 ---
-sort: 5
-order: 5
+nav_order: 5
 permalink: /copymove
 ---
 

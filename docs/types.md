@@ -1,6 +1,5 @@
 ---
-sort: 10
-order: 10
+nav_order: 10
 permalink: /types
 ---
 

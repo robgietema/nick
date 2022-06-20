@@ -1,6 +1,5 @@
 ---
-sort: 15
-order: 15
+nav_order: 15
 permalink: /navigation
 ---
 

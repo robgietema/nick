@@ -1,6 +1,5 @@
 ---
-sort: 14
-order: 14
+nav_order: 14
 permalink: /breadcrumbs
 ---
 

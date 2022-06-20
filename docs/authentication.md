@@ -1,6 +1,5 @@
 ---
-sort: 2
-order: 2
+nav_order: 2
 permalink: /authentication
 ---
 

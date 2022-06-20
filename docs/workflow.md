@@ -1,6 +1,5 @@
 ---
-sort: 7
-nav-order: 7
+nav_order: 7
 permalink: /workflow
 ---
 

@@ -1,6 +1,5 @@
 ---
-sort: 11
-nav-order: 11
+nav_order: 11
 permalink: /users
 ---
 

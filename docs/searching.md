@@ -1,6 +1,5 @@
 ---
-sort: 16
-order: 16
+nav_order: 16
 permalink: /searching
 ---
 
