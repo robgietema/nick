@@ -23,18 +23,18 @@
     "cms"
   ],
   "scripts": {
-    "start": "nodemon --exec babel-node src/server.js",
-    "test": "jest",
+    "bootstrap": "yarn && yarn create-config && yarn migrate && yarn seed",
     "coverage": "jest --coverage",
-    "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",
+    "create-config": "cp config.js.sample config.js",
+    "docs": "cd docs && bundle exec jekyll serve",
     "i18n": "babel-node scripts/i18n.js",
+    "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",
     "migrate": "yarn knex migrate:latest",
     "seed": "yarn knex seed:run",
+    "start": "nodemon --exec babel-node src/server.js",
     "rollback": "yarn knex migrate:rollback --all",
     "reset": "yarn rollback && yarn migrate && yarn seed",
-    "bootstrap": "yarn && yarn create-config && yarn migrate && yarn seed",
-    "create-config": "cp config.js.sample config.js",
-    "docs": "cd docs && bundle exec jekyll serve"
+    "test": "jest"
   },
   "prettier": {
     "trailingComma": "all",
