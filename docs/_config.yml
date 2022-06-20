@@ -1,16 +1,3 @@
 title: 'Nick: Nearly Headless CMS'
 
 remote_theme: carlosperate/jekyll-theme-rtd
-
-readme_index:
-  with_frontmatter: true
-
-plugins:
-  - github-pages
-  - jekyll-default-layout
-  - jekyll-readme-index
-  - jekyll-github-metadata
-  - jekyll-titles-from-headings
-  - jemoji
-  - jekyll-avatar
-  - jekyll-mentions
