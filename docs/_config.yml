@@ -1,7 +1,6 @@
 title: 'Nick: Nearly Headless CMS'
 
-theme: jekyll-rtd-theme
-# remote_theme: just-the-docs/just-the-docs
+remote_theme: carlosperate/jekyll-theme-rtd
 
 readme_index:
   with_frontmatter: true
