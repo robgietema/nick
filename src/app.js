@@ -9,7 +9,13 @@ import fs from 'fs';
 import { compact, isObject, map, uniq } from 'lodash';
 
 import { config } from '../config';
-import { RequestException, getUserId, hasPermission, log } from './helpers';
+import {
+  RequestException,
+  getPath,
+  getUserId,
+  hasPermission,
+  log,
+} from './helpers';
 import { Document, Model, Redirect, Role, Type, User } from './models';
 import routes from './routes';
 import { accessLogger, cors, i18n } from './middleware';
@@ -30,7 +36,7 @@ app.use(cors);
 
 // Add routes
 map(routes, (route) => {
-  app[route.op](`*${route.view}`, async (req, res) => {
+  app[route.op](`${config.prefix}*${route.view}`, async (req, res) => {
     // Start transaction
     const trx = await Model.startTransaction();
 
@@ -47,7 +53,7 @@ map(routes, (route) => {
       // Traverse to document
       const root = await Document.fetchOne({ parent: null }, {}, trx);
       const result = await root.traverse(
-        compact(req.params[0].split('/')), // Slugs
+        compact(getPath(req).split('/')), // Slugs
         req.user,
         await req.user.fetchUserGroupRolesByDocument(root.uuid), // Root roles
         trx,
@@ -56,7 +62,7 @@ map(routes, (route) => {
       // If result not found
       if (!result) {
         // Find redirect
-        const redirect = await Redirect.fetchByPath(req.params[0], trx);
+        const redirect = await Redirect.fetchByPath(getPath(req), trx);
 
         // If no redirect found
         if (!redirect) {

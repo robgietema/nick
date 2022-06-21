@@ -30,5 +30,6 @@ export const config = {
     listing: [16, 16],
   },
   frontendUrl: 'http://localhost:3000',
+  prefix: '',
   userRegistration: true,
 };

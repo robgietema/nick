@@ -6,7 +6,7 @@
 import { compact, drop, head, last } from 'lodash';
 
 import { Document } from '../../models';
-import { getUrl, getRootUrl } from '../../helpers';
+import { getUrl, getRootUrl, getPath } from '../../helpers';
 
 /**
  * Traverse path.
@@ -53,7 +53,7 @@ export default [
     view: '/@breadcrumbs',
     permission: 'View',
     handler: async (req, trx) => {
-      const slugs = req.params[0].split('/');
+      const slugs = getPath(req).split('/');
       const document = await Document.fetchOne({ parent: null }, {}, trx);
       const items = await traverse(
         document,
