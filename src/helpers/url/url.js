@@ -3,7 +3,7 @@
  * @module helpers/url/url
  */
 
-import { config } from '../config';
+import { config } from '../../config';
 
 /**
  * Get url
