@@ -6,11 +6,12 @@
 
 ### Feature
 
-- Add sample config file @robgietema
+- Add sample config file for frontend and backend @robgietema
 
 ### Bugfix
 
 - Fix system test @robgietema
+- Fix production build @robgietema
 
 ### Internal
 

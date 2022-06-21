@@ -61,4 +61,5 @@ _site
 .jekyll-metadata
 vendor
 
-config.js
+/config.js
+/frontend/src/config.js
