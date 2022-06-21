@@ -25,7 +25,7 @@
   "scripts": {
     "bootstrap": "yarn && yarn create-config && yarn migrate && yarn seed",
     "coverage": "jest --coverage",
-    "create-config": "cp config.js.sample config.js && cp frontend/src/config.js.sample frontend/src/config.js",
+    "create-config": "cp -n config.js.sample config.js && cp -n frontend/src/config.js.sample frontend/src/config.js",
     "docs": "cd docs && bundle exec jekyll serve",
     "i18n": "babel-node scripts/i18n.js",
     "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",
