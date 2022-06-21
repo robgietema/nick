@@ -88,3 +88,13 @@ export function objectToVocabulary(items) {
 export function isPromise(variable) {
   return typeof variable === 'object' && typeof variable.then === 'function';
 }
+
+/**
+ * Escape string to be usable for regexps
+ * @method regExpEscape
+ * @param {String} string Input string
+ * @returns {String} Escaped string
+ */
+export function regExpEscape(string) {
+  return string.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}

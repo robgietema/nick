@@ -38,4 +38,5 @@ export {
   removeUndefined,
   stringify,
   uniqueId,
+  regExpEscape,
 } from './utils/utils';
