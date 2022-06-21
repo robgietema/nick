@@ -35,6 +35,8 @@ app.use(accessLogger);
 app.use(i18n);
 app.use(cors);
 
+app.enable('trust proxy');
+
 // Add routes
 map(routes, (route) => {
   app[route.op](

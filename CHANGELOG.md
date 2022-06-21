@@ -13,6 +13,7 @@
 
 - Fix system test @robgietema
 - Fix production build @robgietema
+- Fix https passthrough for proxy servers @robgietema
 
 ### Internal
 
