@@ -8,6 +8,7 @@
 
 - Add sample config file for frontend and backend @robgietema
 - Add backend prefix option @robgietema
+- Fix frontend favicons @robgietema
 
 ### Bugfix
 
