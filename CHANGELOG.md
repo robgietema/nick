@@ -28,6 +28,7 @@
 - Add eslint @robgietema
 - Add github actions @robgietema
 - Rename branch to main @robgietema
+- Added tests to github actions @robgietema
 
 ### Documentation
 
