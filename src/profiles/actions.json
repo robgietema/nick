@@ -33,23 +33,6 @@
       "permission": "Modify"
     }
   ],
-  "site_actions": [
-    {
-      "id": "sitemap",
-      "title:i18n": "Sitemap",
-      "permission": "View"
-    },
-    {
-      "id": "accessibility",
-      "title:i18n": "Accessibility",
-      "permission": "View"
-    },
-    {
-      "id": "contact",
-      "title:i18n": "Contact",
-      "permission": "View"
-    }
-  ],
   "object_buttons": [
     {
       "id": "cut",
@@ -75,6 +58,23 @@
       "id": "rename",
       "title:i18n": "Rename",
       "permission": "Modify"
+    }
+  ],
+  "site_actions": [
+    {
+      "id": "sitemap",
+      "title:i18n": "Sitemap",
+      "permission": "View"
+    },
+    {
+      "id": "accessibility",
+      "title:i18n": "Accessibility",
+      "permission": "View"
+    },
+    {
+      "id": "contact",
+      "title:i18n": "Contact",
+      "permission": "View"
     }
   ],
   "user": [

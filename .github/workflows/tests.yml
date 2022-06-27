@@ -2,11 +2,6 @@ name: Tests
 
 on: [push]
 
-env:
-  LANG: 'en_US.UTF-8'
-  LC_ALL: 'en_US.UTF-8'
-  LC_CTYPE: 'UTF-8'
-
 jobs:
   tests:
     runs-on: ubuntu-latest
