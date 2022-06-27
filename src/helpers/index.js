@@ -19,6 +19,7 @@ export {
 export { stripI18n } from './i18n/i18n';
 export {
   commitTransaction,
+  getPostgresVersion,
   knex,
   rollbackTransaction,
   startTransaction,
@@ -39,4 +40,5 @@ export {
   stringify,
   uniqueId,
   regExpEscape,
+  getNodeVersion,
 } from './utils/utils';
