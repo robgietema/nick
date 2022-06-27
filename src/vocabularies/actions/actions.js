@@ -11,6 +11,10 @@ import { Action } from '../../models';
  * @returns {Array} Array of terms.
  */
 export async function actions(req, trx) {
-  const actions = await Action.fetchAll({}, { order: 'title' }, trx);
+  const actions = await Action.fetchAll(
+    {},
+    { order: ['category', 'order'] },
+    trx,
+  );
   return actions.getVocabulary(req);
 }

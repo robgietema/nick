@@ -3,8 +3,6 @@
  * @module models/version/version
  */
 
-import moment from 'moment';
-
 import { Model } from '../../models';
 import { getRootUrl, getUrl } from '../../helpers';
 
@@ -56,7 +54,7 @@ export class Version extends Model {
       },
       comments: this.json.changeNote,
       may_revert: true,
-      time: moment(this.created).format(),
+      time: this.created,
       transition_title: 'Edited',
       type: 'versioning',
       version: this.version,

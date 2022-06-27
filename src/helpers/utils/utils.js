@@ -98,3 +98,12 @@ export function isPromise(variable) {
 export function regExpEscape(string) {
   return string.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
+
+/**
+ * Get the node version
+ * @method getNodeVersion
+ * @returns {String} Node version
+ */
+export function getNodeVersion() {
+  return process.version;
+}

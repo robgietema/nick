@@ -91,6 +91,12 @@ export class Model extends mixin(ObjectionModel, [
       // Check if default order
       if (isString(options.order)) {
         query = query.orderByRaw(formatAttribute(options.order));
+      } else if (isArray(options.order)) {
+        query = query.orderBy(
+          map(options.order, (order) => ({
+            column: order,
+          })),
+        );
       } else {
         let order = '';
         // Check if values are defined

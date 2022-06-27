@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-06-27T17:29:55.910Z\n"
+"POT-Creation-Date: 2022-06-27T21:37:40.404Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Absolute path"
 msgstr ""
 
-#: src/profiles/actions.json:44
+#: src/profiles/actions.json:71
 # defaultMessage: Accessibility
 msgid "Accessibility"
 msgstr ""
@@ -282,7 +282,7 @@ msgstr ""
 msgid "Change Note"
 msgstr ""
 
-#: src/profiles/actions.json:49
+#: src/profiles/actions.json:76
 # defaultMessage: Contact
 msgid "Contact"
 msgstr ""
@@ -305,7 +305,7 @@ msgstr ""
 msgid "Contributor"
 msgstr ""
 
-#: src/profiles/actions.json:61
+#: src/profiles/actions.json:44
 # defaultMessage: Copy
 msgid "Copy"
 msgstr ""
@@ -330,7 +330,7 @@ msgstr ""
 msgid "Current logged in user"
 msgstr ""
 
-#: src/profiles/actions.json:56
+#: src/profiles/actions.json:39
 # defaultMessage: Cut
 msgid "Cut"
 msgstr ""
@@ -354,7 +354,7 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: src/profiles/actions.json:71
+#: src/profiles/actions.json:54
 # defaultMessage: Delete
 msgid "Delete"
 msgstr ""
@@ -723,7 +723,7 @@ msgstr ""
 msgid "Password reset request"
 msgstr ""
 
-#: src/profiles/actions.json:66
+#: src/profiles/actions.json:49
 # defaultMessage: Paste
 msgid "Paste"
 msgstr ""
@@ -847,7 +847,7 @@ msgstr ""
 msgid "Relative path"
 msgstr ""
 
-#: src/profiles/actions.json:76
+#: src/profiles/actions.json:59
 # defaultMessage: Rename
 msgid "Rename"
 msgstr ""
@@ -968,7 +968,7 @@ msgstr ""
 msgid "Site language"
 msgstr ""
 
-#: src/profiles/actions.json:39
+#: src/profiles/actions.json:66
 # defaultMessage: Sitemap
 msgid "Sitemap"
 msgstr ""

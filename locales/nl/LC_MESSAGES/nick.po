@@ -54,7 +54,7 @@ msgstr "Een gerelateerd item waarvan deze is afgeleid."
 msgid "Absolute path"
 msgstr "Absoluut pad"
 
-#: src/profiles/actions.json:44
+#: src/profiles/actions.json:71
 # defaultMessage: Accessibility
 msgid "Accessibility"
 msgstr "Toegankelijkheid"
@@ -282,7 +282,7 @@ msgstr "Categorisatie"
 msgid "Change Note"
 msgstr "Wijzig Notitie"
 
-#: src/profiles/actions.json:49
+#: src/profiles/actions.json:76
 # defaultMessage: Contact
 msgid "Contact"
 msgstr "Contact"
@@ -305,7 +305,7 @@ msgstr "Inhoud"
 msgid "Contributor"
 msgstr "Bijdrager"
 
-#: src/profiles/actions.json:61
+#: src/profiles/actions.json:44
 # defaultMessage: Copy
 msgid "Copy"
 msgstr "Kopiëren"
@@ -330,7 +330,7 @@ msgstr "Auteur"
 msgid "Current logged in user"
 msgstr "Huidige ingelogde gebruiker"
 
-#: src/profiles/actions.json:56
+#: src/profiles/actions.json:39
 # defaultMessage: Cut
 msgid "Cut"
 msgstr "Knippen"
@@ -354,7 +354,7 @@ msgstr "Debug"
 msgid "Default"
 msgstr "Standaard"
 
-#: src/profiles/actions.json:71
+#: src/profiles/actions.json:54
 # defaultMessage: Delete
 msgid "Delete"
 msgstr "Verwijderen"
@@ -723,7 +723,7 @@ msgstr "Pagina"
 msgid "Password reset request"
 msgstr "Wachtwoord herstel verzoek"
 
-#: src/profiles/actions.json:66
+#: src/profiles/actions.json:49
 # defaultMessage: Paste
 msgid "Paste"
 msgstr "Plakken"
@@ -847,7 +847,7 @@ msgstr "Gerelateerde resources"
 msgid "Relative path"
 msgstr "Relatief pad"
 
-#: src/profiles/actions.json:76
+#: src/profiles/actions.json:59
 # defaultMessage: Rename
 msgid "Rename"
 msgstr "Hernoemen"
@@ -968,7 +968,7 @@ msgstr "Site Instellingen"
 msgid "Site language"
 msgstr "Website taal"
 
-#: src/profiles/actions.json:39
+#: src/profiles/actions.json:66
 # defaultMessage: Sitemap
 msgid "Sitemap"
 msgstr "Sitemap"

@@ -14,7 +14,7 @@ Content-Type: application/json
     },
     "comments": "Changed title",
     "may_revert": true,
-    "time": "2022-04-04T22:22:00+02:00",
+    "time": "2022-04-04T20:22:00.000Z",
     "transition_title": "Edited",
     "type": "versioning",
     "version": 1
@@ -45,7 +45,7 @@ Content-Type: application/json
     },
     "comments": "Initial version",
     "may_revert": true,
-    "time": "2022-04-02T22:22:00+02:00",
+    "time": "2022-04-02T20:22:00.000Z",
     "transition_title": "Edited",
     "type": "versioning",
     "version": 0
