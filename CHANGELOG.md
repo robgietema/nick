@@ -25,6 +25,8 @@
 - Upgrade packages. @robgietema
 - Updated translations. @robgietema
 - Update i18n @robgietema
+- Add eslint @robgietema
+- Add github actions @robgietema
 
 ### Documentation
 
