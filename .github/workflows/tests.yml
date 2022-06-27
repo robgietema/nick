@@ -1,11 +1,20 @@
 name: Tests
+
 on: [push]
+
+env:
+  LANG: 'en_US.UTF-8'
+  LC_ALL: 'en_US.UTF-8'
+  LC_CTYPE: 'UTF-8'
+
 jobs:
   tests:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [16.x]
+
     services:
       postgres:
         image: postgres:14
@@ -16,6 +25,7 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
       - uses: actions/checkout@v2
 
