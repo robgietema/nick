@@ -8,5 +8,5 @@ Content-Type: application/json
   "express_version": "4.18.1",
   "objection_version": "3.0.1",
   "knex_version": "2.1.0",
-  "postgres_version": "14.3"
+  "postgres_version": "14.4"
 }
