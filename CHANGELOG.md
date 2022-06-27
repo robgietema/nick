@@ -24,6 +24,7 @@
 - Removed unused stringify method. @robgietema
 - Upgrade packages. @robgietema
 - Updated translations. @robgietema
+- Update i18n @robgietema
 
 ### Documentation
 
