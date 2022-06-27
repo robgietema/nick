@@ -27,6 +27,7 @@
 - Update i18n @robgietema
 - Add eslint @robgietema
 - Add github actions @robgietema
+- Rename branch to main @robgietema
 
 ### Documentation
 
