@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-06-03T21:35:33.122Z\n"
+"POT-Creation-Date: 2022-06-27T17:29:55.910Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -527,7 +527,7 @@ msgstr ""
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:158
+#: src/app.js:172
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
@@ -685,7 +685,7 @@ msgstr ""
 msgid "Not allowed"
 msgstr ""
 
-#: src/app.js:63
+#: src/app.js:74
 #: src/routes/controlpanels/controlpanels.js:31
 #: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:25
@@ -1199,7 +1199,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: src/app.js:116
+#: src/app.js:130
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr ""
@@ -1209,7 +1209,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/app.js:84
+#: src/app.js:95
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
@@ -1296,7 +1296,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: src/app.js:102
+#: src/app.js:116
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
