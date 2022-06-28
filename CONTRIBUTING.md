@@ -1,5 +1,10 @@
 # How to contribute
 
+> 👉 **Note**: before participating in our community, please read our
+> [code of conduct](https://github.com/robgietema/nick/blob/main/CODE_OF_CONDUCT.md).
+> By interacting with this repository or community you agree to abide by its
+> terms.
+
 I'm really glad you're reading this, because we could use some volunteers to
 help this project forward!
 

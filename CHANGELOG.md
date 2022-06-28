@@ -32,6 +32,7 @@
 - Add Code of Conduct @robgietema
 - Added contributing information @robgietema
 - Add security policy @robgietema
+- Add support information @robgietema
 
 ### Documentation
 
