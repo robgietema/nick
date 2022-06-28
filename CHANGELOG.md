@@ -30,6 +30,7 @@
 - Rename branch to main @robgietema
 - Added tests to github actions @robgietema
 - Add Code of Conduct @robgietema
+- Added contributing information @robgietema
 
 ### Documentation
 
