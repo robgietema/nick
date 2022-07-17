@@ -1,14 +1,26 @@
 # Change Log
 
-## 2.8.0 (unreleased)
+## 2.9.0 (unreleased)
 
 ### Breaking
+
+### Feature
+
+### Bugfix
+
+### Internal
+
+### Documentation
+
+## 2.8.0 (2022-07-17)
 
 ### Feature
 
 - Add sample config file for frontend and backend @robgietema
 - Add backend prefix option @robgietema
 - Fix frontend favicons @robgietema
+- Add support for behavior mixins for documents @robgietema
+- Add id from title behavior @robgietema
 
 ### Bugfix
 
@@ -33,8 +45,6 @@
 - Added contributing information @robgietema
 - Add security policy @robgietema
 - Add support information @robgietema
-
-### Documentation
 
 ## 2.7.0 (2022-05-05)
 

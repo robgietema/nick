@@ -33,6 +33,7 @@ import {
   copyFile,
   isAsyncFunction,
   isPromise,
+  uniqueId,
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
@@ -161,6 +162,16 @@ export class Document extends Model {
    */
   getUrl(req) {
     return `${getRootUrl(req)}${this.path === '/' ? '' : this.path}`;
+  }
+  /**
+   * Set id
+   * @method getId
+   * @param {string} id Provided id (can be empty)
+   * @param {Array} blacklist Blacklist ids
+   * @returns {string} Id
+   */
+  setId(id, blacklist) {
+    this.id = uniqueId(id, blacklist);
   }
 
   /**

@@ -3,7 +3,6 @@
  * @module routes/content/content
  */
 
-import slugify from 'slugify';
 import moment from 'moment';
 import {
   flattenDeep,
@@ -31,6 +30,7 @@ import {
   writeImage,
 } from '../../helpers';
 import { Document, Type } from '../../models';
+import { applyBehaviors } from '../../behaviors';
 import { config } from '../../../config';
 
 const omitProperties = ['@type', 'id', 'changeNote'];
@@ -362,15 +362,6 @@ export default [
       // Get child nodes
       await req.document.fetchRelated('_children', trx);
 
-      // Set unique id
-      let id =
-        req.body.id ||
-        slugify(req.body.title, { lower: true, remove: /[*+~.()'"!:@]/g });
-      id = uniqueId(
-        id,
-        req.document._children.map((item) => item.id),
-      );
-
       // Get json data
       const properties = type._schema.properties;
 
@@ -381,24 +372,39 @@ export default [
       json = await handleFiles(json, type);
       json = await handleImages(json, type);
 
+      // Create new document
+      let document = Document.fromJson({
+        uuid: req.body.uuid || uuid(),
+        type: req.body['@type'],
+        created,
+        modified: created,
+        version: 0,
+        position_in_parent: req.document._children.length,
+        lock: { locked: false, stealable: true },
+        workflow_state: type._workflow.json.initial_state,
+        workflow_history: JSON.stringify(req.body.workflow_history || []),
+        owner: req.user.id,
+        json,
+      });
+
+      // Apply behaviors
+      document = applyBehaviors(document, type.schema.behaviors);
+
+      // Set id
+      document.setId(
+        req.body.id,
+        req.document._children.map((item) => item.id),
+      );
+
+      // Set path
+      document.path = `${req.document.path === '/' ? '' : req.document.path}/${
+        document.id
+      }`;
+
       // Insert document in database
-      const document = await req.document.createRelatedAndFetch(
+      document = await req.document.createRelatedAndFetch(
         '_children',
-        {
-          uuid: req.body.uuid || uuid(),
-          id,
-          path: `${req.document.path === '/' ? '' : req.document.path}/${id}`,
-          type: req.body['@type'],
-          created,
-          modified: created,
-          version: 0,
-          position_in_parent: req.document._children.length,
-          lock: { locked: false, stealable: true },
-          workflow_state: type._workflow.json.initial_state,
-          workflow_history: JSON.stringify(req.body.workflow_history || []),
-          owner: req.user.id,
-          json,
-        },
+        document.$toDatabaseJson(),
         trx,
       );
 
@@ -406,7 +412,7 @@ export default [
       await document.createRelated(
         '_versions',
         {
-          id,
+          id: document.id,
           version: 0,
           created,
           actor: req.user.id,

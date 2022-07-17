@@ -12,6 +12,7 @@
       "blocks",
       "versioning",
       "short_name",
+      "id_from_title",
       "folderish",
       "exclude_from_nav"
     ]

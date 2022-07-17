@@ -20,6 +20,7 @@ import {
 import { Document, Model, Redirect, Role, Type, User } from './models';
 import routes from './routes';
 import { accessLogger, cors, i18n } from './middleware';
+import { applyBehaviors } from './behaviors';
 
 // Create blob dir if it doesn't exist
 if (!fs.existsSync(config.blobsDir)) {
@@ -100,7 +101,7 @@ map(routes, (route) => {
         await type.fetchRelated('_workflow', trx);
 
         // Call handler
-        req.document = document;
+        req.document = applyBehaviors(document, type.schema.behaviors);
         req.type = type;
         req.permissions = uniq([
           ...permissions,

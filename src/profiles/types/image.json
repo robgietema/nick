@@ -28,6 +28,7 @@
       "dates",
       "versioning",
       "short_name",
+      "id_from_title",
       "exclude_from_nav"
     ]
   },
