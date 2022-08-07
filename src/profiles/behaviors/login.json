@@ -1,0 +1,38 @@
+{
+  "id": "login",
+  "title:i18n": "Login",
+  "description:i18n": "Adds login functionality.",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["username", "password", "fullname", "email"],
+        "id": "login",
+        "title:i18n": "Login"
+      }
+    ],
+    "properties": {
+      "username": {
+        "description:i18n": "Name used to login.",
+        "title:i18n": "Username",
+        "type": "string"
+      },
+      "password": {
+        "description:i18n": "Password used to login.",
+        "title:i18n": "Password",
+        "type": "string",
+        "widget": "password"
+      },
+      "fullname": {
+        "description:i18n": "Fullname of the user.",
+        "title:i18n": "Fullname",
+        "type": "string"
+      },
+      "email": {
+        "description:i18n": "Email of the user.",
+        "title:i18n": "Email",
+        "type": "string"
+      }
+    },
+    "required": ["username", "email"]
+  }
+}

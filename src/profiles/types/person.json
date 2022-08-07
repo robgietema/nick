@@ -1,0 +1,20 @@
+{
+  "id": "Person",
+  "title:i18n": "Person",
+  "description:i18n": "",
+  "global_allow": true,
+  "filter_content_types": false,
+  "allowed_content_types": [],
+  "schema": {
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "versioning",
+      "short_name",
+      "id_from_title",
+      "exclude_from_nav",
+      "login"
+    ]
+  },
+  "workflow": "simple_publication_workflow"
+}
