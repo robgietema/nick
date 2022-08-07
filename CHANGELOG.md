@@ -27,6 +27,7 @@
 - Fix system test @robgietema
 - Fix production build @robgietema
 - Fix https passthrough for proxy servers @robgietema
+- Change behavior to snake case @robgietema
 
 ### Internal
 

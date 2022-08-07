@@ -9,9 +9,9 @@ import { uniqueId } from '../../helpers';
 
 /**
  * Id from title behavior.
- * @class IdFromTitle
+ * @constant id_from_title
  */
-export const IdFromTitle = {
+export const id_from_title = {
   /**
    * Set id
    * @method getId

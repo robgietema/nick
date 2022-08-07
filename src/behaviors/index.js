@@ -6,10 +6,10 @@
 
 import { assign, pick, values } from 'lodash';
 
-import { IdFromTitle } from './id_from_title/id_from_title';
+import { id_from_title } from './id_from_title/id_from_title';
 
 const behaviors = {
-  id_from_title: IdFromTitle,
+  id_from_title,
 };
 
 /**
