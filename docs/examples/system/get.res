@@ -7,6 +7,6 @@ Content-Type: application/json
   "node_version": "v16.15.0",
   "express_version": "4.18.1",
   "objection_version": "3.0.1",
-  "knex_version": "2.1.0",
+  "knex_version": "2.2.0",
   "postgres_version": "14.4"
 }
