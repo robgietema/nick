@@ -365,7 +365,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/routes/content/content.js:470
+#: src/routes/content/content.js:476
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -527,7 +527,7 @@ msgstr ""
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:172
+#: src/app.js:173
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
@@ -685,7 +685,7 @@ msgstr ""
 msgid "Not allowed"
 msgstr ""
 
-#: src/app.js:74
+#: src/app.js:75
 #: src/routes/controlpanels/controlpanels.js:31
 #: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:25
@@ -1197,7 +1197,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: src/app.js:130
+#: src/app.js:131
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr ""
@@ -1207,7 +1207,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/app.js:95
+#: src/app.js:96
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
@@ -1294,7 +1294,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: src/app.js:116
+#: src/app.js:117
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
@@ -1310,7 +1310,7 @@ msgstr ""
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:467
+#: src/routes/content/content.js:473
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
