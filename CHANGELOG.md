@@ -9,6 +9,7 @@
 ### Bugfix
 
 - Change behavior to snake case @robgietema
+- Remove authentication header from breadcrumbs call in docs @robgietema
 
 ### Internal
 
