@@ -17,6 +17,7 @@
 ### Internal
 
 - Upgraded dependencies @robgietema
+- Update node dependency requirement @robgietema
 
 ### Documentation
 
