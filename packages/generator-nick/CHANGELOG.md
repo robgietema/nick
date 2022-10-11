@@ -1,13 +1,7 @@
 # Change Log
 
-## 0.0.1 (unreleased)
-
-### Breaking
+## 0.0.1 (2022-10-11)
 
 ### Feature
 
-### Bugfix
-
-### Internal
-
-### Documentation
+- Initial release @robgietema
