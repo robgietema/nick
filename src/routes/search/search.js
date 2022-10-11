@@ -9,7 +9,7 @@ import { endsWith, find, includes, map, mapKeys, repeat } from 'lodash';
 import { formatSize, getRootUrl, getUrl } from '../../helpers';
 import { Catalog } from '../../models';
 
-import profile from '../../profiles/catalog';
+import profile from '../../profiles/core/catalog';
 
 /**
  * Convert querystring to query.
