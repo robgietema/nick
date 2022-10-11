@@ -5,10 +5,9 @@
 
 import bodyParser from 'body-parser';
 import express from 'express';
-import fs from 'fs';
+import { existsSync, mkdirSync } from 'fs';
 import { compact, isObject, map, uniq } from 'lodash';
 
-import { config } from '../config';
 import {
   RequestException,
   getPath,
@@ -22,9 +21,11 @@ import routes from './routes';
 import { accessLogger, cors, i18n } from './middleware';
 import { applyBehaviors } from './behaviors';
 
+const { config } = require(`${process.cwd()}/config`);
+
 // Create blob dir if it doesn't exist
-if (!fs.existsSync(config.blobsDir)) {
-  fs.mkdirSync(config.blobsDir);
+if (!existsSync(config.blobsDir)) {
+  mkdirSync(config.blobsDir, { recursive: true });
 }
 
 // Create app

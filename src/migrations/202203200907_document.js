@@ -1,8 +1,12 @@
-import { readdirSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, readdirSync, rmSync } from 'fs';
 
-import { config } from '../../config';
+const { config } = require(`${process.cwd()}/config`);
 
 export const up = async (knex) => {
+  // Create blob dir if it doesn't exist
+  if (!existsSync(config.blobsDir)) {
+    mkdirSync(config.blobsDir, { recursive: true });
+  }
   await knex.schema.createTable('document', (table) => {
     table.uuid('uuid').primary();
     table

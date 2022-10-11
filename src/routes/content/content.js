@@ -31,7 +31,8 @@ import {
 } from '../../helpers';
 import { Document, Type } from '../../models';
 import { applyBehaviors } from '../../behaviors';
-import { config } from '../../../config';
+
+const { config } = require(`${process.cwd()}/config`);
 
 const omitProperties = ['@type', 'id', 'changeNote'];
 

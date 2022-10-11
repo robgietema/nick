@@ -4,8 +4,9 @@
  */
 
 import { log } from './helpers';
-import { config } from '../config';
 import app from './app';
+
+const { config } = require(`${process.cwd()}/config`);
 
 // Start server
 app.listen(config.port, () =>

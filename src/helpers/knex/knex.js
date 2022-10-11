@@ -5,7 +5,7 @@
 
 import Knex from 'knex';
 
-import { config } from '../../../config';
+const { config } = require(`${process.cwd()}/config`);
 
 // Initialize knex.
 export const knex = Knex({

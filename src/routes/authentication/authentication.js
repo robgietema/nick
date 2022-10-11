@@ -7,8 +7,9 @@ import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../../models';
-import { config } from '../../../config';
 import { RequestException } from '../../helpers';
+
+const { config } = require(`${process.cwd()}/config`);
 
 export default [
   {

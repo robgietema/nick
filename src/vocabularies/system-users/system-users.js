@@ -3,8 +3,9 @@
  * @module vocabularies/system-users/system-users
  */
 
-import { config } from '../../../config';
 import { arrayToVocabulary } from '../../helpers';
+
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * Returns the system users vocabulary.

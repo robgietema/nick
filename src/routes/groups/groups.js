@@ -4,9 +4,10 @@
  */
 
 import { includes } from 'lodash';
-import { config } from '../../../config';
 import { Group } from '../../models';
 import { RequestException } from '../../helpers';
+
+const { config } = require(`${process.cwd()}/config`);
 
 export default [
   {

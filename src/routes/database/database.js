@@ -7,8 +7,9 @@ import du from 'du';
 
 import { Model } from '../../models';
 import { formatSize, getRootUrl } from '../../helpers';
-import { config } from '../../../config';
 import knexfile from '../../../knexfile';
+
+const { config } = require(`${process.cwd()}/config`);
 
 export default [
   {

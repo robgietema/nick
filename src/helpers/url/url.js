@@ -3,7 +3,7 @@
  * @module helpers/url/url
  */
 
-import { config } from '../../../config';
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * Get url

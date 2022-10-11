@@ -3,7 +3,7 @@
  * @module cors
  */
 
-import { config } from '../../../config';
+const { config } = require(`${process.cwd()}/config`);
 
 // Export middleware
 export function cors(req, res, next) {

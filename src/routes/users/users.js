@@ -7,9 +7,10 @@ import bcrypt from 'bcrypt-promise';
 import { includes } from 'lodash';
 import jwt from 'jsonwebtoken';
 
-import { config } from '../../../config';
 import { Controlpanel, User } from '../../models';
 import { RequestException, sendMail } from '../../helpers';
+
+const { config } = require(`${process.cwd()}/config`);
 
 export default [
   {

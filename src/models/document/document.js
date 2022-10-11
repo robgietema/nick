@@ -22,7 +22,6 @@ import _, {
 } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
-import { config } from '../../../config';
 import { Catalog, Model, Permission, Redirect, Role, User } from '../../models';
 import {
   formatSize,
@@ -38,6 +37,8 @@ import {
 import { DocumentCollection } from '../../collections';
 
 import profile from '../../profiles/catalog';
+
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * A model for Document.

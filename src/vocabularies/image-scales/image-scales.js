@@ -5,8 +5,9 @@
 
 import { keys } from 'lodash';
 
-import { config } from '../../../config';
 import { arrayToVocabulary } from '../../helpers';
+
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * Returns the image scales vocabulary.

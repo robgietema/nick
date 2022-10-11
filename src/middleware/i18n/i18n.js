@@ -7,8 +7,9 @@ import _, { endsWith, includes, map, zipObject } from 'lodash';
 import { createIntl, createIntlCache } from '@formatjs/intl';
 import fs from 'fs';
 
-import { config } from '../../../config';
 import { Controlpanel } from '../../models';
+
+const { config } = require(`${process.cwd()}/config`);
 
 // Get available language files
 const languages = _(fs.readdirSync(`${__dirname}/../../../locales`))

@@ -6,7 +6,7 @@
 import { includes, isUndefined } from 'lodash';
 import jwt from 'jsonwebtoken';
 
-import { config } from '../../../config';
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * Check required permission.

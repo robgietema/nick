@@ -3,8 +3,9 @@
  * @module vocabularies/system-groups/system-groups
  */
 
-import { config } from '../../../config';
 import { arrayToVocabulary } from '../../helpers';
+
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * Returns the system groups vocabulary.
