@@ -50,6 +50,31 @@ Example `GET` request on the portal root
 
     $ yarn test
 
+## Yeoman Generator
+
+If you want to create your own project and use Nick as a dependency you can use the Yeoman generator package for that. This way you are able to customize your project without making changes to the core of Nick.
+
+### Installation
+
+First, install [Yeoman](http://yeoman.io) and @robgietema/generator-nick using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+
+    $ npm install -g yo
+    $ npm install -g @robgietema/generator-nick
+
+### Creating a new project
+
+    $ yo @robgietema/nick my-nick-project
+
+This will bootstrap a new Nick project inside the current folder.
+
+### Boostrap the project
+
+Create a database and a user with the correct permissions for your project (see above for details) and then bootstrap Nick with:
+
+    $ cd my-nick-project
+    $ yarn bootstrap
+    $ yarn start
+
 ## Contribute
 
 - Issue tracker: [https://github.com/robgietema/nick/issues](https://github.com/robgietema/nick/issues)
