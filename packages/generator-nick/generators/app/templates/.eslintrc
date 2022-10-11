@@ -1,0 +1,9 @@
+{
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "extends": ["prettier"],
+  "plugins": ["json", "prettier"]
+}

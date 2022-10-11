@@ -1,0 +1,36 @@
+{
+  "name": "@robgietema/generator-nick",
+  "description": "Generator for Nick",
+  "maintainers": [
+    {
+      "name": "Rob Gietema",
+      "email": "rob.gietema@gmail.com",
+      "url": "https://robgietema.nl"
+    }
+  ],
+  "license": "MIT",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:robgietema/nick.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robgietema/nick/issues",
+    "email": "info@nickcms.org"
+  },
+  "homepage": "https://nickcms.org",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "cms"
+  ],
+  "engines": {
+    "node": "^16.15.0"
+  },
+  "dependencies": {
+    "update-notifier": "^5.0.1",
+    "yeoman-generator": "^1.0.0"
+  }
+}

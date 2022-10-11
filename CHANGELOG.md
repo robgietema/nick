@@ -7,6 +7,7 @@
 ### Feature
 
 - Add support for multiple profiles @robgietema
+- Add yeoman generator to create a Nick project @robgietema
 
 ### Bugfix
 

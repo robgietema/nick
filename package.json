@@ -43,6 +43,9 @@
     "singleQuote": true
   },
   "jest": {
+    "modulePathIgnorePatterns": [
+      "packages"
+    ],
     "setupFilesAfterEnv": [
       "./jest.setup.js"
     ]
