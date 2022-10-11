@@ -9,6 +9,8 @@ export { RequestException } from './error/error';
 export { formatSize, formatAttribute } from './format/format';
 export {
   copyFile,
+  dirExists,
+  fileExists,
   getHeight,
   getWidth,
   readFile,

@@ -6,6 +6,8 @@
 
 ### Feature
 
+- Add support for multiple profiles @robgietema
+
 ### Bugfix
 
 - Change behavior to snake case @robgietema

@@ -4,7 +4,13 @@
  */
 
 import { keys, max, round } from 'lodash';
-import { copyFileSync, rmSync, readFileSync, writeFileSync } from 'fs';
+import {
+  copyFileSync,
+  rmSync,
+  readFileSync,
+  writeFileSync,
+  existsSync,
+} from 'fs';
 import { v4 as uuid } from 'uuid';
 import sharp from 'sharp';
 
@@ -142,4 +148,22 @@ export function removeFile(uuid) {
  */
 export function copyFile(source, target) {
   copyFileSync(`${config.blobsDir}/${source}`, `${config.blobsDir}/${target}`);
+}
+
+/**
+ * Check if file exists
+ * @method fileExists
+ * @param {string} file Path of the file to check.
+ */
+export function fileExists(file) {
+  return existsSync(`${file}.js`) || existsSync(`${file}.json`);
+}
+
+/**
+ * Check if directory exists
+ * @method dirExists
+ * @param {string} directory Path of the directory to check.
+ */
+export function dirExists(dir) {
+  return existsSync(dir);
 }

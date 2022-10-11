@@ -36,7 +36,7 @@ import {
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 
-import profile from '../../profiles/catalog';
+import profile from '../../profiles/default/catalog';
 
 const { config } = require(`${process.cwd()}/config`);
 
