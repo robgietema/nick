@@ -11,6 +11,7 @@
 - Change behavior to snake case @robgietema
 - Remove authentication header from breadcrumbs call in docs @robgietema
 - Read config file from working directory @robgietema
+- Read knex file from working directory @robgietema
 - Create subfolders when blobstorage folders don't exist @robgietema
 
 ### Internal
