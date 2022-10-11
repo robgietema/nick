@@ -1,0 +1,12 @@
+{
+  "purge": true,
+  "users": [
+    {
+      "id": "anonymous",
+      "password": "anonymous",
+      "fullname": "Anonymous",
+      "email": "anonymous@example.com",
+      "roles": ["Anonymous"]
+    }
+  ]
+}

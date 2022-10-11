@@ -20,6 +20,7 @@
 
 - Upgraded dependencies @robgietema
 - Update node dependency requirement @robgietema
+- Split profiles in core and default @robgietema
 
 ### Documentation
 
