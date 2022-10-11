@@ -32,6 +32,8 @@ export const config = {
   frontendUrl: 'http://localhost:3000',
   prefix: '',
   userRegistration: true,
-  profiles: [`${__dirname}/src/profiles/core`],
-  profiles: [`${__dirname}/src/profiles/default`],
+  profiles: [
+    `${__dirname}/src/profiles/core`,
+    `${__dirname}/src/profiles/default`,
+  ],
 };
