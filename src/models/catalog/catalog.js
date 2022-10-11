@@ -8,7 +8,7 @@ import { concat, map, pick, uniq } from 'lodash';
 import { getRootUrl } from '../../helpers';
 import { Model } from '../../models';
 
-import profile from '../../profiles/default/catalog';
+import profile from '../../profiles/core/catalog';
 
 /**
  * A model for Catalog.

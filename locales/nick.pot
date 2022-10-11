@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2022-10-10T07:52:03.553Z\n"
+"POT-Creation-Date: 2022-10-11T13:47:07.985Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -13,138 +13,138 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
-#: src/profiles/behaviors/categorization.json:36
-#: src/profiles/catalog.json:58
-#: src/profiles/catalog.json:64
-#: src/profiles/catalog.json:70
-#: src/profiles/catalog.json:235
-#: src/profiles/catalog.json:254
-#: src/profiles/catalog.json:273
-#: src/profiles/catalog.json:323
-#: src/profiles/catalog.json:342
-#: src/profiles/catalog.json:348
-#: src/profiles/catalog.json:467
-#: src/profiles/groups.json:7
-#: src/profiles/types/file.json:18
-#: src/profiles/types/folder.json:4
-#: src/profiles/types/image.json:18
-#: src/profiles/types/page.json:4
-#: src/profiles/types/site.json:4
+#: src/profiles/core/behaviors/categorization.json:36
+#: src/profiles/core/catalog.json:58
+#: src/profiles/core/catalog.json:64
+#: src/profiles/core/catalog.json:70
+#: src/profiles/core/catalog.json:235
+#: src/profiles/core/catalog.json:254
+#: src/profiles/core/catalog.json:273
+#: src/profiles/core/catalog.json:323
+#: src/profiles/core/catalog.json:342
+#: src/profiles/core/catalog.json:348
+#: src/profiles/core/catalog.json:467
+#: src/profiles/core/types/file.json:18
+#: src/profiles/core/types/folder.json:4
+#: src/profiles/core/types/image.json:18
+#: src/profiles/core/types/page.json:4
+#: src/profiles/core/types/site.json:4
+#: src/profiles/default/groups.json:7
 # defaultMessage: 
 msgid ""
 msgstr ""
 
-#: src/profiles/behaviors/basic.json:15
+#: src/profiles/core/behaviors/basic.json:15
 # defaultMessage: A description of this item.
 msgid "A description of this item."
 msgstr ""
 
-#: src/profiles/behaviors/basic.json:21
+#: src/profiles/core/behaviors/basic.json:21
 # defaultMessage: A name given to this item.
 msgid "A name given to this item."
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:25
+#: src/profiles/core/behaviors/ownership.json:25
 # defaultMessage: A related item from which this item is derived.
 msgid "A related item from which this item is derived."
 msgstr ""
 
-#: src/profiles/catalog.json:14
+#: src/profiles/core/catalog.json:14
 # defaultMessage: Absolute path
 msgid "Absolute path"
 msgstr ""
 
-#: src/profiles/actions.json:71
+#: src/profiles/core/actions.json:71
 # defaultMessage: Accessibility
 msgid "Accessibility"
 msgstr ""
 
-#: src/profiles/permissions.json:10
+#: src/profiles/core/permissions.json:10
 # defaultMessage: Add
 msgid "Add"
 msgstr ""
 
-#: src/profiles/behaviors/dates.json:4
+#: src/profiles/core/behaviors/dates.json:4
 # defaultMessage: Adds effective and expiration dates.
 msgid "Adds effective and expiration dates."
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:4
+#: src/profiles/core/behaviors/categorization.json:4
 # defaultMessage: Adds keywords and language fields.
 msgid "Adds keywords and language fields."
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:4
+#: src/profiles/core/behaviors/ownership.json:4
 # defaultMessage: Adds ownership and rights fields.
 msgid "Adds ownership and rights fields."
 msgstr ""
 
-#: src/profiles/behaviors/dublin_core.json:4
+#: src/profiles/core/behaviors/dublin_core.json:4
 # defaultMessage: Adds standard metadatafields
 msgid "Adds standard metadatafields"
 msgstr ""
 
-#: src/profiles/behaviors/basic.json:4
+#: src/profiles/core/behaviors/basic.json:4
 # defaultMessage: Adds title and description fields.
 msgid "Adds title and description fields."
 msgstr ""
 
-#: src/profiles/roles.json:41
+#: src/profiles/core/roles.json:41
 # defaultMessage: Administrator
 msgid "Administrator"
 msgstr ""
 
-#: src/profiles/groups.json:6
+#: src/profiles/default/groups.json:6
 # defaultMessage: Administrators
 msgid "Administrators"
 msgstr ""
 
-#: src/profiles/catalog.json:89
-#: src/profiles/catalog.json:162
-#: src/profiles/catalog.json:492
-#: src/profiles/catalog.json:571
-#: src/profiles/catalog.json:644
-#: src/profiles/catalog.json:717
+#: src/profiles/core/catalog.json:89
+#: src/profiles/core/catalog.json:162
+#: src/profiles/core/catalog.json:492
+#: src/profiles/core/catalog.json:571
+#: src/profiles/core/catalog.json:644
+#: src/profiles/core/catalog.json:717
 # defaultMessage: After N days in the future
 msgid "After N days in the future"
 msgstr ""
 
-#: src/profiles/catalog.json:118
-#: src/profiles/catalog.json:191
-#: src/profiles/catalog.json:521
-#: src/profiles/catalog.json:600
-#: src/profiles/catalog.json:673
-#: src/profiles/catalog.json:746
+#: src/profiles/core/catalog.json:118
+#: src/profiles/core/catalog.json:191
+#: src/profiles/core/catalog.json:521
+#: src/profiles/core/catalog.json:600
+#: src/profiles/core/catalog.json:673
+#: src/profiles/core/catalog.json:746
 # defaultMessage: After date
 msgid "After date"
 msgstr ""
 
-#: src/profiles/catalog.json:88
-#: src/profiles/catalog.json:161
-#: src/profiles/catalog.json:491
-#: src/profiles/catalog.json:570
-#: src/profiles/catalog.json:643
-#: src/profiles/catalog.json:716
+#: src/profiles/core/catalog.json:88
+#: src/profiles/core/catalog.json:161
+#: src/profiles/core/catalog.json:491
+#: src/profiles/core/catalog.json:570
+#: src/profiles/core/catalog.json:643
+#: src/profiles/core/catalog.json:716
 # defaultMessage: After relative Date
 msgid "After relative Date"
 msgstr ""
 
-#: src/profiles/catalog.json:95
-#: src/profiles/catalog.json:168
-#: src/profiles/catalog.json:498
-#: src/profiles/catalog.json:577
-#: src/profiles/catalog.json:650
-#: src/profiles/catalog.json:723
+#: src/profiles/core/catalog.json:95
+#: src/profiles/core/catalog.json:168
+#: src/profiles/core/catalog.json:498
+#: src/profiles/core/catalog.json:577
+#: src/profiles/core/catalog.json:650
+#: src/profiles/core/catalog.json:723
 # defaultMessage: After the current day
 msgid "After the current day"
 msgstr ""
 
-#: src/profiles/catalog.json:94
-#: src/profiles/catalog.json:167
-#: src/profiles/catalog.json:497
-#: src/profiles/catalog.json:576
-#: src/profiles/catalog.json:649
-#: src/profiles/catalog.json:722
+#: src/profiles/core/catalog.json:94
+#: src/profiles/core/catalog.json:167
+#: src/profiles/core/catalog.json:497
+#: src/profiles/core/catalog.json:576
+#: src/profiles/core/catalog.json:649
+#: src/profiles/core/catalog.json:722
 # defaultMessage: After today
 msgid "After today"
 msgstr ""
@@ -155,316 +155,316 @@ msgstr ""
 msgid "Already locked"
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:15
+#: src/profiles/core/behaviors/ownership.json:15
 # defaultMessage: An entity responsible for making this item available.
 msgid "An entity responsible for making this item available."
 msgstr ""
 
-#: src/profiles/catalog.json:228
+#: src/profiles/core/catalog.json:228
 # defaultMessage: An item's description
 msgid "An item's description"
 msgstr ""
 
-#: src/profiles/catalog.json:422
+#: src/profiles/core/catalog.json:422
 # defaultMessage: An item's type (e.g. Event)
 msgid "An item's type (e.g. Event)"
 msgstr ""
 
-#: src/profiles/catalog.json:441
+#: src/profiles/core/catalog.json:441
 # defaultMessage: An item's workflow state (e.g.published)
 msgid "An item's workflow state (e.g.published)"
 msgstr ""
 
-#: src/profiles/roles.json:6
+#: src/profiles/core/roles.json:6
 # defaultMessage: Anonymous
 msgid "Anonymous"
 msgstr ""
 
-#: src/profiles/roles.json:11
+#: src/profiles/core/roles.json:11
 # defaultMessage: Authenticated
 msgid "Authenticated"
 msgstr ""
 
-#: src/profiles/controlpanels/language.json:27
+#: src/profiles/core/controlpanels/language.json:27
 # defaultMessage: Available languages
 msgid "Available languages"
 msgstr ""
 
-#: src/profiles/behaviors/basic.json:3
+#: src/profiles/core/behaviors/basic.json:3
 # defaultMessage: Basic metadata
 msgid "Basic metadata"
 msgstr ""
 
-#: src/profiles/catalog.json:101
-#: src/profiles/catalog.json:174
-#: src/profiles/catalog.json:504
-#: src/profiles/catalog.json:583
-#: src/profiles/catalog.json:656
-#: src/profiles/catalog.json:729
+#: src/profiles/core/catalog.json:101
+#: src/profiles/core/catalog.json:174
+#: src/profiles/core/catalog.json:504
+#: src/profiles/core/catalog.json:583
+#: src/profiles/core/catalog.json:656
+#: src/profiles/core/catalog.json:729
 # defaultMessage: Before N days in the past
 msgid "Before N days in the past"
 msgstr ""
 
-#: src/profiles/catalog.json:130
-#: src/profiles/catalog.json:203
-#: src/profiles/catalog.json:533
-#: src/profiles/catalog.json:612
-#: src/profiles/catalog.json:685
-#: src/profiles/catalog.json:758
+#: src/profiles/core/catalog.json:130
+#: src/profiles/core/catalog.json:203
+#: src/profiles/core/catalog.json:533
+#: src/profiles/core/catalog.json:612
+#: src/profiles/core/catalog.json:685
+#: src/profiles/core/catalog.json:758
 # defaultMessage: Before date
 msgid "Before date"
 msgstr ""
 
-#: src/profiles/catalog.json:100
-#: src/profiles/catalog.json:173
-#: src/profiles/catalog.json:503
-#: src/profiles/catalog.json:582
-#: src/profiles/catalog.json:655
-#: src/profiles/catalog.json:728
+#: src/profiles/core/catalog.json:100
+#: src/profiles/core/catalog.json:173
+#: src/profiles/core/catalog.json:503
+#: src/profiles/core/catalog.json:582
+#: src/profiles/core/catalog.json:655
+#: src/profiles/core/catalog.json:728
 # defaultMessage: Before relative Date
 msgid "Before relative Date"
 msgstr ""
 
-#: src/profiles/catalog.json:107
-#: src/profiles/catalog.json:180
-#: src/profiles/catalog.json:510
-#: src/profiles/catalog.json:589
-#: src/profiles/catalog.json:662
-#: src/profiles/catalog.json:735
+#: src/profiles/core/catalog.json:107
+#: src/profiles/core/catalog.json:180
+#: src/profiles/core/catalog.json:510
+#: src/profiles/core/catalog.json:589
+#: src/profiles/core/catalog.json:662
+#: src/profiles/core/catalog.json:735
 # defaultMessage: Before the current day
 msgid "Before the current day"
 msgstr ""
 
-#: src/profiles/catalog.json:106
-#: src/profiles/catalog.json:179
-#: src/profiles/catalog.json:509
-#: src/profiles/catalog.json:588
-#: src/profiles/catalog.json:661
-#: src/profiles/catalog.json:734
+#: src/profiles/core/catalog.json:106
+#: src/profiles/core/catalog.json:179
+#: src/profiles/core/catalog.json:509
+#: src/profiles/core/catalog.json:588
+#: src/profiles/core/catalog.json:661
+#: src/profiles/core/catalog.json:734
 # defaultMessage: Before today
 msgid "Before today"
 msgstr ""
 
-#: src/profiles/catalog.json:112
-#: src/profiles/catalog.json:185
-#: src/profiles/catalog.json:515
-#: src/profiles/catalog.json:594
-#: src/profiles/catalog.json:667
-#: src/profiles/catalog.json:740
+#: src/profiles/core/catalog.json:112
+#: src/profiles/core/catalog.json:185
+#: src/profiles/core/catalog.json:515
+#: src/profiles/core/catalog.json:594
+#: src/profiles/core/catalog.json:667
+#: src/profiles/core/catalog.json:740
 # defaultMessage: Between dates
 msgid "Between dates"
 msgstr ""
 
-#: src/profiles/behaviors/blocks.json:3
-#: src/profiles/behaviors/blocks.json:17
+#: src/profiles/core/behaviors/blocks.json:3
+#: src/profiles/core/behaviors/blocks.json:17
 # defaultMessage: Blocks
 msgid "Blocks"
 msgstr ""
 
-#: src/profiles/behaviors/blocks.json:26
+#: src/profiles/core/behaviors/blocks.json:26
 # defaultMessage: Blocks Layout
 msgid "Blocks Layout"
 msgstr ""
 
-#: src/profiles/workflows.json:13
+#: src/profiles/core/workflows.json:13
 # defaultMessage: Can only be seen and edited by the owner.
 msgid "Can only be seen and edited by the owner."
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:3
-#: src/profiles/behaviors/categorization.json:10
+#: src/profiles/core/behaviors/categorization.json:3
+#: src/profiles/core/behaviors/categorization.json:10
 # defaultMessage: Categorization
 msgid "Categorization"
 msgstr ""
 
-#: src/profiles/behaviors/versioning.json:16
+#: src/profiles/core/behaviors/versioning.json:16
 # defaultMessage: Change Note
 msgid "Change Note"
 msgstr ""
 
-#: src/profiles/actions.json:76
+#: src/profiles/core/actions.json:76
 # defaultMessage: Contact
 msgid "Contact"
 msgstr ""
 
-#: src/profiles/catalog.json:234
-#: src/profiles/catalog.json:253
-#: src/profiles/catalog.json:272
-#: src/profiles/catalog.json:466
+#: src/profiles/core/catalog.json:234
+#: src/profiles/core/catalog.json:253
+#: src/profiles/core/catalog.json:272
+#: src/profiles/core/catalog.json:466
 # defaultMessage: Contains
 msgid "Contains"
 msgstr ""
 
-#: src/profiles/actions.json:17
+#: src/profiles/core/actions.json:17
 # defaultMessage: Contents
 msgid "Contents"
 msgstr ""
 
-#: src/profiles/roles.json:26
+#: src/profiles/core/roles.json:26
 # defaultMessage: Contributor
 msgid "Contributor"
 msgstr ""
 
-#: src/profiles/actions.json:44
+#: src/profiles/core/actions.json:44
 # defaultMessage: Copy
 msgid "Copy"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:16
+#: src/profiles/core/behaviors/categorization.json:16
 # defaultMessage: Coverage
 msgid "Coverage"
 msgstr ""
 
-#: src/profiles/catalog.json:636
+#: src/profiles/core/catalog.json:636
 # defaultMessage: Creation date
 msgid "Creation date"
 msgstr ""
 
-#: src/profiles/catalog.json:390
+#: src/profiles/core/catalog.json:390
 # defaultMessage: Creator
 msgid "Creator"
 msgstr ""
 
-#: src/profiles/catalog.json:403
+#: src/profiles/core/catalog.json:403
 # defaultMessage: Current logged in user
 msgid "Current logged in user"
 msgstr ""
 
-#: src/profiles/actions.json:39
+#: src/profiles/core/actions.json:39
 # defaultMessage: Cut
 msgid "Cut"
 msgstr ""
 
-#: src/profiles/behaviors/dates.json:3
-#: src/profiles/behaviors/dates.json:10
+#: src/profiles/core/behaviors/dates.json:3
+#: src/profiles/core/behaviors/dates.json:10
 # defaultMessage: Dates
 msgid "Dates"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:58
+#: src/profiles/core/controlpanels/mail.json:58
 # defaultMessage: Debug
 msgid "Debug"
 msgstr ""
 
-#: src/profiles/behaviors/basic.json:10
-#: src/profiles/behaviors/versioning.json:10
-#: src/profiles/types/file.json:13
-#: src/profiles/types/image.json:13
+#: src/profiles/core/behaviors/basic.json:10
+#: src/profiles/core/behaviors/versioning.json:10
+#: src/profiles/core/types/file.json:13
+#: src/profiles/core/types/image.json:13
 # defaultMessage: Default
 msgid "Default"
 msgstr ""
 
-#: src/profiles/actions.json:54
+#: src/profiles/core/actions.json:54
 # defaultMessage: Delete
 msgid "Delete"
 msgstr ""
 
-#: src/profiles/behaviors/basic.json:16
-#: src/profiles/catalog.json:227
+#: src/profiles/core/behaviors/basic.json:16
+#: src/profiles/core/catalog.json:227
 # defaultMessage: Description
 msgid "Description"
 msgstr ""
 
-#: src/routes/content/content.js:476
+#: src/routes/content/content.js:477
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
 msgstr ""
 
-#: src/profiles/behaviors/dublin_core.json:3
+#: src/profiles/core/behaviors/dublin_core.json:3
 # defaultMessage: Dublin Core metadata
 msgid "Dublin Core metadata"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:41
+#: src/profiles/core/controlpanels/mail.json:41
 # defaultMessage: ESMTP password
 msgid "ESMTP password"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:53
+#: src/profiles/core/controlpanels/mail.json:53
 # defaultMessage: ESMTP username
 msgid "ESMTP username"
 msgstr ""
 
-#: src/profiles/actions.json:12
+#: src/profiles/core/actions.json:12
 # defaultMessage: Edit
 msgid "Edit"
 msgstr ""
 
-#: src/profiles/roles.json:31
+#: src/profiles/core/roles.json:31
 # defaultMessage: Editor
 msgid "Editor"
 msgstr ""
 
-#: src/profiles/catalog.json:709
+#: src/profiles/core/catalog.json:709
 # defaultMessage: Effective date
 msgid "Effective date"
 msgstr ""
 
-#: src/profiles/behaviors/blocks.json:4
+#: src/profiles/core/behaviors/blocks.json:4
 # defaultMessage: Enables Volto Blocks support
 msgid "Enables Volto Blocks support"
 msgstr ""
 
-#: src/profiles/behaviors/versioning.json:15
+#: src/profiles/core/behaviors/versioning.json:15
 # defaultMessage: Enter a comment that describes the changes you made.
 msgid "Enter a comment that describes the changes you made."
 msgstr ""
 
-#: src/profiles/catalog.json:57
-#: src/profiles/catalog.json:322
+#: src/profiles/core/catalog.json:57
+#: src/profiles/core/catalog.json:322
 # defaultMessage: Equals
 msgid "Equals"
 msgstr ""
 
-#: src/profiles/catalog.json:154
+#: src/profiles/core/catalog.json:154
 # defaultMessage: Event end date
 msgid "Event end date"
 msgstr ""
 
-#: src/profiles/catalog.json:81
+#: src/profiles/core/catalog.json:81
 # defaultMessage: Event start date
 msgid "Event start date"
 msgstr ""
 
-#: src/profiles/behaviors/exclude_from_nav.json:3
-#: src/profiles/behaviors/exclude_from_nav.json:15
+#: src/profiles/core/behaviors/exclude_from_nav.json:3
+#: src/profiles/core/behaviors/exclude_from_nav.json:15
 # defaultMessage: Exclude from navigation
 msgid "Exclude from navigation"
 msgstr ""
 
-#: src/profiles/behaviors/dates.json:22
+#: src/profiles/core/behaviors/dates.json:22
 # defaultMessage: Expiration Date
 msgid "Expiration Date"
 msgstr ""
 
-#: src/profiles/catalog.json:563
+#: src/profiles/core/catalog.json:563
 # defaultMessage: Expiration date
 msgid "Expiration date"
 msgstr ""
 
-#: src/profiles/types/file.json:3
-#: src/profiles/types/file.json:19
+#: src/profiles/core/types/file.json:3
+#: src/profiles/core/types/file.json:19
 # defaultMessage: File
 msgid "File"
 msgstr ""
 
-#: src/profiles/catalog.json:316
+#: src/profiles/core/catalog.json:316
 # defaultMessage: Find items related to the selected items
 msgid "Find items related to the selected items"
 msgstr ""
 
-#: src/profiles/catalog.json:335
+#: src/profiles/core/catalog.json:335
 # defaultMessage: Find items that can contain other objects
 msgid "Find items that can contain other objects"
 msgstr ""
 
-#: src/profiles/types/folder.json:3
+#: src/profiles/core/types/folder.json:3
 # defaultMessage: Folder
 msgid "Folder"
 msgstr ""
 
-#: src/profiles/catalog.json:334
+#: src/profiles/core/catalog.json:334
 # defaultMessage: Folder-like
 msgid "Folder-like"
 msgstr ""
@@ -475,195 +475,195 @@ msgstr ""
 msgid "From and message are required fields."
 msgstr ""
 
-#: src/profiles/behaviors/short_name.json:4
+#: src/profiles/core/behaviors/short_name.json:4
 # defaultMessage: Gives the ability to rename an item from its edit form.
 msgid "Gives the ability to rename an item from its edit form."
 msgstr ""
 
-#: src/profiles/actions.json:22
+#: src/profiles/core/actions.json:22
 # defaultMessage: History
 msgid "History"
 msgstr ""
 
-#: src/profiles/behaviors/short_name.json:16
+#: src/profiles/core/behaviors/short_name.json:16
 # defaultMessage: Identifier
 msgid "Identifier"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:59
+#: src/profiles/core/controlpanels/mail.json:59
 # defaultMessage: If enabled the mail is send to a test server.
 msgid "If enabled the mail is send to a test server."
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:64
+#: src/profiles/core/controlpanels/mail.json:64
 # defaultMessage: If enabled the mail is send using a secure connection.
 msgid "If enabled the mail is send using a secure connection."
 msgstr ""
 
-#: src/profiles/behaviors/exclude_from_nav.json:4
-#: src/profiles/behaviors/exclude_from_nav.json:16
+#: src/profiles/core/behaviors/exclude_from_nav.json:4
+#: src/profiles/core/behaviors/exclude_from_nav.json:16
 # defaultMessage: If selected, this item will not appear in the navigation tree.
 msgid "If selected, this item will not appear in the navigation tree."
 msgstr ""
 
-#: src/profiles/behaviors/dates.json:15
+#: src/profiles/core/behaviors/dates.json:15
 # defaultMessage: If this date is in the future, the content will not show up in listings and searches until this date.
 msgid "If this date is in the future, the content will not show up in listings and searches until this date."
 msgstr ""
 
-#: src/profiles/types/image.json:3
-#: src/profiles/types/image.json:19
+#: src/profiles/core/types/image.json:3
+#: src/profiles/core/types/image.json:19
 # defaultMessage: Image
 msgid "Image"
 msgstr ""
 
-#: src/profiles/types/image.json:4
+#: src/profiles/core/types/image.json:4
 # defaultMessage: Images can be referenced in pages or displayed in an album.
 msgid "Images can be referenced in pages or displayed in an album."
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:20
+#: src/profiles/core/behaviors/ownership.json:20
 # defaultMessage: Information about rights held in and over this item.
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:173
+#: src/app.js:174
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
 
-#: src/routes/authentication/authentication.js:34
-#: src/routes/authentication/authentication.js:45
+#: src/routes/authentication/authentication.js:35
+#: src/routes/authentication/authentication.js:46
 # defaultMessage: Invalid credentials
 msgid "Invalid credentials"
 msgstr ""
 
-#: src/routes/authentication/authentication.js:73
+#: src/routes/authentication/authentication.js:74
 # defaultMessage: Invalid session
 msgid "Invalid session"
 msgstr ""
 
-#: src/profiles/catalog.json:378
-#: src/profiles/catalog.json:472
+#: src/profiles/core/catalog.json:378
+#: src/profiles/core/catalog.json:472
 # defaultMessage: Is
 msgid "Is"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:28
-#: src/profiles/controlpanels/language.json:3
+#: src/profiles/core/behaviors/categorization.json:28
+#: src/profiles/core/controlpanels/language.json:3
 # defaultMessage: Language
 msgid "Language"
 msgstr ""
 
-#: src/profiles/catalog.json:63
+#: src/profiles/core/catalog.json:63
 # defaultMessage: Larger than
 msgid "Larger than"
 msgstr ""
 
-#: src/profiles/behaviors/blocks.json:10
+#: src/profiles/core/behaviors/blocks.json:10
 # defaultMessage: Layout
 msgid "Layout"
 msgstr ""
 
-#: src/profiles/catalog.json:69
+#: src/profiles/core/catalog.json:69
 # defaultMessage: Less than
 msgid "Less than"
 msgstr ""
 
-#: src/profiles/types/file.json:4
+#: src/profiles/core/types/file.json:4
 # defaultMessage: Lets you upload a file to the site.
 msgid "Lets you upload a file to the site."
 msgstr ""
 
-#: src/profiles/catalog.json:7
+#: src/profiles/core/catalog.json:7
 # defaultMessage: Location
 msgid "Location"
 msgstr ""
 
-#: src/profiles/catalog.json:21
+#: src/profiles/core/catalog.json:21
 # defaultMessage: Location in the navigation structure
 msgid "Location in the navigation structure"
 msgstr ""
 
-#: src/profiles/catalog.json:15
+#: src/profiles/core/catalog.json:15
 # defaultMessage: Location in the site structure
 msgid "Location in the site structure"
 msgstr ""
 
-#: src/profiles/actions.json:93
+#: src/profiles/core/actions.json:93
 # defaultMessage: Log in
 msgid "Log in"
 msgstr ""
 
-#: src/profiles/actions.json:98
+#: src/profiles/core/actions.json:98
 # defaultMessage: Log out
 msgid "Log out"
 msgstr ""
 
-#: src/profiles/permissions.json:14
+#: src/profiles/core/permissions.json:14
 # defaultMessage: Login
 msgid "Login"
 msgstr ""
 
-#: src/routes/authentication/authentication.js:22
+#: src/routes/authentication/authentication.js:23
 # defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
 msgstr ""
 
-#: src/profiles/permissions.json:18
+#: src/profiles/core/permissions.json:18
 # defaultMessage: Logout
 msgid "Logout"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:3
+#: src/profiles/core/controlpanels/mail.json:3
 # defaultMessage: Mail
 msgid "Mail"
 msgstr ""
 
-#: src/profiles/permissions.json:22
+#: src/profiles/core/permissions.json:22
 # defaultMessage: Manage Preferences
 msgid "Manage Preferences"
 msgstr ""
 
-#: src/profiles/permissions.json:30
+#: src/profiles/core/permissions.json:30
 # defaultMessage: Manage Site
 msgid "Manage Site"
 msgstr ""
 
-#: src/profiles/permissions.json:26
+#: src/profiles/core/permissions.json:26
 # defaultMessage: Manage Users
 msgid "Manage Users"
 msgstr ""
 
-#: src/profiles/catalog.json:293
+#: src/profiles/core/catalog.json:293
 # defaultMessage: Matches all of
 msgid "Matches all of"
 msgstr ""
 
-#: src/profiles/catalog.json:299
-#: src/profiles/catalog.json:397
-#: src/profiles/catalog.json:428
-#: src/profiles/catalog.json:447
+#: src/profiles/core/catalog.json:299
+#: src/profiles/core/catalog.json:397
+#: src/profiles/core/catalog.json:428
+#: src/profiles/core/catalog.json:447
 # defaultMessage: Matches any of
 msgid "Matches any of"
 msgstr ""
 
-#: src/routes/authentication/authentication.js:21
+#: src/routes/authentication/authentication.js:22
 # defaultMessage: Missing credentials
 msgid "Missing credentials"
 msgstr ""
 
-#: src/profiles/catalog.json:484
+#: src/profiles/core/catalog.json:484
 # defaultMessage: Modification date
 msgid "Modification date"
 msgstr ""
 
-#: src/profiles/permissions.json:34
+#: src/profiles/core/permissions.json:34
 # defaultMessage: Modify
 msgid "Modify"
 msgstr ""
 
-#: src/profiles/catalog.json:20
+#: src/profiles/core/catalog.json:20
 # defaultMessage: Navigation path
 msgid "Navigation path"
 msgstr ""
@@ -675,7 +675,7 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: src/profiles/catalog.json:341
+#: src/profiles/core/catalog.json:341
 # defaultMessage: No
 msgid "No"
 msgstr ""
@@ -685,473 +685,473 @@ msgstr ""
 msgid "Not allowed"
 msgstr ""
 
-#: src/app.js:75
+#: src/app.js:76
 #: src/routes/controlpanels/controlpanels.js:31
 #: src/routes/email/email.js:52
-#: src/routes/groups/groups.js:25
+#: src/routes/groups/groups.js:26
 #: src/routes/types/types.js:30
-#: src/routes/users/users.js:103
+#: src/routes/users/users.js:104
 #: src/routes/vocabularies/vocabularies.js:30
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr ""
 
-#: src/profiles/catalog.json:50
+#: src/profiles/core/catalog.json:50
 # defaultMessage: Order in folder
 msgid "Order in folder"
 msgstr ""
 
-#: src/profiles/roles.json:16
+#: src/profiles/core/roles.json:16
 # defaultMessage: Owner
 msgid "Owner"
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:3
-#: src/profiles/behaviors/ownership.json:10
+#: src/profiles/core/behaviors/ownership.json:3
+#: src/profiles/core/behaviors/ownership.json:10
 # defaultMessage: Ownership
 msgid "Ownership"
 msgstr ""
 
-#: src/profiles/types/page.json:3
+#: src/profiles/core/types/page.json:3
 # defaultMessage: Page
 msgid "Page"
 msgstr ""
 
-#: src/routes/users/users.js:76
-#: src/routes/users/users.js:176
+#: src/routes/users/users.js:77
+#: src/routes/users/users.js:177
 # defaultMessage: Password reset request
 msgid "Password reset request"
 msgstr ""
 
-#: src/profiles/actions.json:49
+#: src/profiles/core/actions.json:49
 # defaultMessage: Paste
 msgid "Paste"
 msgstr ""
 
-#: src/profiles/workflows.json:22
+#: src/profiles/core/workflows.json:22
 # defaultMessage: Pending review
 msgid "Pending review"
 msgstr ""
 
-#: src/profiles/catalog.json:125
-#: src/profiles/catalog.json:137
-#: src/profiles/catalog.json:198
-#: src/profiles/catalog.json:210
-#: src/profiles/catalog.json:528
-#: src/profiles/catalog.json:540
-#: src/profiles/catalog.json:607
-#: src/profiles/catalog.json:619
-#: src/profiles/catalog.json:680
-#: src/profiles/catalog.json:692
-#: src/profiles/catalog.json:753
-#: src/profiles/catalog.json:765
+#: src/profiles/core/catalog.json:125
+#: src/profiles/core/catalog.json:137
+#: src/profiles/core/catalog.json:198
+#: src/profiles/core/catalog.json:210
+#: src/profiles/core/catalog.json:528
+#: src/profiles/core/catalog.json:540
+#: src/profiles/core/catalog.json:607
+#: src/profiles/core/catalog.json:619
+#: src/profiles/core/catalog.json:680
+#: src/profiles/core/catalog.json:692
+#: src/profiles/core/catalog.json:753
+#: src/profiles/core/catalog.json:765
 # defaultMessage: Please enter the number in days.
 msgid "Please enter the number in days."
 msgstr ""
 
-#: src/profiles/catalog.json:113
-#: src/profiles/catalog.json:119
-#: src/profiles/catalog.json:131
-#: src/profiles/catalog.json:186
-#: src/profiles/catalog.json:192
-#: src/profiles/catalog.json:204
-#: src/profiles/catalog.json:516
-#: src/profiles/catalog.json:522
-#: src/profiles/catalog.json:534
-#: src/profiles/catalog.json:595
-#: src/profiles/catalog.json:601
-#: src/profiles/catalog.json:613
-#: src/profiles/catalog.json:668
-#: src/profiles/catalog.json:674
-#: src/profiles/catalog.json:686
-#: src/profiles/catalog.json:741
-#: src/profiles/catalog.json:747
-#: src/profiles/catalog.json:759
+#: src/profiles/core/catalog.json:113
+#: src/profiles/core/catalog.json:119
+#: src/profiles/core/catalog.json:131
+#: src/profiles/core/catalog.json:186
+#: src/profiles/core/catalog.json:192
+#: src/profiles/core/catalog.json:204
+#: src/profiles/core/catalog.json:516
+#: src/profiles/core/catalog.json:522
+#: src/profiles/core/catalog.json:534
+#: src/profiles/core/catalog.json:595
+#: src/profiles/core/catalog.json:601
+#: src/profiles/core/catalog.json:613
+#: src/profiles/core/catalog.json:668
+#: src/profiles/core/catalog.json:674
+#: src/profiles/core/catalog.json:686
+#: src/profiles/core/catalog.json:741
+#: src/profiles/core/catalog.json:747
+#: src/profiles/core/catalog.json:759
 # defaultMessage: Please use YYYY/MM/DD.
 msgid "Please use YYYY/MM/DD."
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:26
+#: src/profiles/core/controlpanels/mail.json:26
 # defaultMessage: Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature.
 msgid "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:31
+#: src/profiles/core/controlpanels/mail.json:31
 # defaultMessage: Plone generates e-mail using this name as the e-mail sender.
 msgid "Plone generates e-mail using this name as the e-mail sender."
 msgstr ""
 
-#: src/profiles/actions.json:83
+#: src/profiles/core/actions.json:83
 # defaultMessage: Preferences
 msgid "Preferences"
 msgstr ""
 
-#: src/profiles/workflows.json:12
+#: src/profiles/core/workflows.json:12
 # defaultMessage: Private
 msgid "Private"
 msgstr ""
 
-#: src/profiles/workflows.json:47
+#: src/profiles/core/workflows.json:47
 # defaultMessage: Publish
 msgid "Publish"
 msgstr ""
 
-#: src/profiles/workflows.json:33
+#: src/profiles/core/workflows.json:33
 # defaultMessage: Published
 msgid "Published"
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:16
+#: src/profiles/core/behaviors/ownership.json:16
 # defaultMessage: Publisher
 msgid "Publisher"
 msgstr ""
 
-#: src/profiles/behaviors/dates.json:16
+#: src/profiles/core/behaviors/dates.json:16
 # defaultMessage: Publishing Date
 msgid "Publishing Date"
 msgstr ""
 
-#: src/profiles/roles.json:21
+#: src/profiles/core/roles.json:21
 # defaultMessage: Reader
 msgid "Reader"
 msgstr ""
 
-#: src/profiles/actions.json:103
-#: src/profiles/permissions.json:38
+#: src/profiles/core/actions.json:103
+#: src/profiles/core/permissions.json:38
 # defaultMessage: Register
 msgid "Register"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:37
+#: src/profiles/core/behaviors/categorization.json:37
 # defaultMessage: Related
 msgid "Related"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:43
+#: src/profiles/core/behaviors/categorization.json:43
 # defaultMessage: Related Items
 msgid "Related Items"
 msgstr ""
 
-#: src/profiles/catalog.json:315
+#: src/profiles/core/catalog.json:315
 # defaultMessage: Related To
 msgid "Related To"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:34
+#: src/profiles/core/behaviors/categorization.json:34
 # defaultMessage: Related resources.
 msgid "Related resources."
 msgstr ""
 
-#: src/profiles/catalog.json:26
+#: src/profiles/core/catalog.json:26
 # defaultMessage: Relative path
 msgid "Relative path"
 msgstr ""
 
-#: src/profiles/actions.json:59
+#: src/profiles/core/actions.json:59
 # defaultMessage: Rename
 msgid "Rename"
 msgstr ""
 
-#: src/routes/content/content.js:355
+#: src/routes/content/content.js:356
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr ""
 
-#: src/profiles/workflows.json:57
+#: src/profiles/core/workflows.json:57
 # defaultMessage: Retract
 msgid "Retract"
 msgstr ""
 
-#: src/profiles/permissions.json:42
+#: src/profiles/core/permissions.json:42
 # defaultMessage: Review
 msgid "Review"
 msgstr ""
 
-#: src/profiles/catalog.json:440
+#: src/profiles/core/catalog.json:440
 # defaultMessage: Review state
 msgid "Review state"
 msgstr ""
 
-#: src/profiles/roles.json:36
+#: src/profiles/core/roles.json:36
 # defaultMessage: Reviewer
 msgid "Reviewer"
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:21
+#: src/profiles/core/behaviors/ownership.json:21
 # defaultMessage: Rights
 msgid "Rights"
 msgstr ""
 
-#: src/profiles/actions.json:32
+#: src/profiles/core/actions.json:32
 # defaultMessage: Rules
 msgid "Rules"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:47
+#: src/profiles/core/controlpanels/mail.json:47
 # defaultMessage: SMTP port
 msgid "SMTP port"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:35
+#: src/profiles/core/controlpanels/mail.json:35
 # defaultMessage: SMTP server
 msgid "SMTP server"
 msgstr ""
 
-#: src/profiles/catalog.json:246
+#: src/profiles/core/catalog.json:246
 # defaultMessage: Searchable text
 msgid "Searchable text"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:63
+#: src/profiles/core/controlpanels/mail.json:63
 # defaultMessage: Secure
 msgid "Secure"
 msgstr ""
 
-#: src/profiles/workflows.json:52
+#: src/profiles/core/workflows.json:52
 # defaultMessage: Send back
 msgid "Send back"
 msgstr ""
 
-#: src/profiles/behaviors/exclude_from_nav.json:10
-#: src/profiles/behaviors/short_name.json:10
+#: src/profiles/core/behaviors/exclude_from_nav.json:10
+#: src/profiles/core/behaviors/short_name.json:10
 # defaultMessage: Settings
 msgid "Settings"
 msgstr ""
 
-#: src/profiles/actions.json:27
+#: src/profiles/core/actions.json:27
 # defaultMessage: Sharing
 msgid "Sharing"
 msgstr ""
 
-#: src/profiles/behaviors/short_name.json:3
+#: src/profiles/core/behaviors/short_name.json:3
 # defaultMessage: Short name
 msgid "Short name"
 msgstr ""
 
-#: src/profiles/catalog.json:371
+#: src/profiles/core/catalog.json:371
 # defaultMessage: Short name (id)
 msgid "Short name (id)"
 msgstr ""
 
-#: src/profiles/workflows.json:6
+#: src/profiles/core/workflows.json:6
 # defaultMessage: Simple Publication Workflow
 msgid "Simple Publication Workflow"
 msgstr ""
 
-#: src/profiles/workflows.json:7
+#: src/profiles/core/workflows.json:7
 # defaultMessage: Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published.
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 msgstr ""
 
-#: src/profiles/types/site.json:3
+#: src/profiles/core/types/site.json:3
 # defaultMessage: Site
 msgid "Site"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:25
+#: src/profiles/core/controlpanels/mail.json:25
 # defaultMessage: Site 'From' address
 msgid "Site 'From' address"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:30
+#: src/profiles/core/controlpanels/mail.json:30
 # defaultMessage: Site 'From' name
 msgid "Site 'From' name"
 msgstr ""
 
-#: src/profiles/actions.json:88
+#: src/profiles/core/actions.json:88
 # defaultMessage: Site Setup
 msgid "Site Setup"
 msgstr ""
 
-#: src/profiles/controlpanels/language.json:34
+#: src/profiles/core/controlpanels/language.json:34
 # defaultMessage: Site language
 msgid "Site language"
 msgstr ""
 
-#: src/profiles/actions.json:66
+#: src/profiles/core/actions.json:66
 # defaultMessage: Sitemap
 msgid "Sitemap"
 msgstr ""
 
-#: src/profiles/catalog.json:459
+#: src/profiles/core/catalog.json:459
 # defaultMessage: Sortable Title
 msgid "Sortable Title"
 msgstr ""
 
-#: src/profiles/behaviors/ownership.json:26
+#: src/profiles/core/behaviors/ownership.json:26
 # defaultMessage: Source
 msgid "Source"
 msgstr ""
 
-#: src/profiles/permissions.json:46
+#: src/profiles/core/permissions.json:46
 # defaultMessage: Submit
 msgid "Submit"
 msgstr ""
 
-#: src/profiles/workflows.json:62
+#: src/profiles/core/workflows.json:62
 # defaultMessage: Submit for publication
 msgid "Submit for publication"
 msgstr ""
 
-#: src/routes/groups/groups.js:105
+#: src/routes/groups/groups.js:106
 # defaultMessage: System group
 msgid "System group"
 msgstr ""
 
-#: src/routes/users/users.js:223
+#: src/routes/users/users.js:224
 # defaultMessage: System users
 msgid "System users"
 msgstr ""
 
-#: src/profiles/catalog.json:284
+#: src/profiles/core/catalog.json:284
 # defaultMessage: Tag
 msgid "Tag"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:56
+#: src/profiles/core/behaviors/categorization.json:56
 # defaultMessage: Tags
 msgid "Tags"
 msgstr ""
 
-#: src/profiles/catalog.json:285
+#: src/profiles/core/catalog.json:285
 # defaultMessage: Tags are used for organization of content
 msgid "Tags are used for organization of content"
 msgstr ""
 
-#: src/profiles/catalog.json:247
+#: src/profiles/core/catalog.json:247
 # defaultMessage: Text search of an item's contents
 msgid "Text search of an item's contents"
 msgstr ""
 
-#: src/profiles/catalog.json:266
+#: src/profiles/core/catalog.json:266
 # defaultMessage: Text search of an item's title
 msgid "Text search of an item's title"
 msgstr ""
 
-#: src/profiles/behaviors/blocks.json:16
+#: src/profiles/core/behaviors/blocks.json:16
 # defaultMessage: The JSON representation of the object blocks information. Must be a JSON object.
 msgid "The JSON representation of the object blocks information. Must be a JSON object."
 msgstr ""
 
-#: src/profiles/behaviors/blocks.json:25
+#: src/profiles/core/behaviors/blocks.json:25
 # defaultMessage: The JSON representation of the object blocks layout. Must be a JSON array.
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:36
+#: src/profiles/core/controlpanels/mail.json:36
 # defaultMessage: The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail.
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 msgstr ""
 
-#: src/profiles/catalog.json:143
-#: src/profiles/catalog.json:216
-#: src/profiles/catalog.json:546
-#: src/profiles/catalog.json:625
-#: src/profiles/catalog.json:698
-#: src/profiles/catalog.json:771
+#: src/profiles/core/catalog.json:143
+#: src/profiles/core/catalog.json:216
+#: src/profiles/core/catalog.json:546
+#: src/profiles/core/catalog.json:625
+#: src/profiles/core/catalog.json:698
+#: src/profiles/core/catalog.json:771
 # defaultMessage: The current day
 msgid "The current day"
 msgstr ""
 
-#: src/profiles/catalog.json:637
+#: src/profiles/core/catalog.json:637
 # defaultMessage: The date an item was created
 msgid "The date an item was created"
 msgstr ""
 
-#: src/profiles/catalog.json:155
+#: src/profiles/core/catalog.json:155
 # defaultMessage: The end date and time of an event
 msgid "The end date and time of an event"
 msgstr ""
 
-#: src/routes/users/users.js:77
-#: src/routes/users/users.js:177
+#: src/routes/users/users.js:78
+#: src/routes/users/users.js:178
 # defaultMessage: undefined
 msgid "The following link takes you to a page where you can reset your password: {url}
 
 (This link will expire in 7 days)"
 msgstr ""
 
-#: src/profiles/catalog.json:460
+#: src/profiles/core/catalog.json:460
 # defaultMessage: The item's title, transformed for sorting
 msgid "The item's title, transformed for sorting"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:25
+#: src/profiles/core/behaviors/categorization.json:25
 # defaultMessage: The language of this item.
 msgid "The language of this item."
 msgstr ""
 
-#: src/profiles/controlpanels/language.json:33
+#: src/profiles/core/controlpanels/language.json:33
 # defaultMessage: The language used for the content and the UI of this site.
 msgid "The language used for the content and the UI of this site."
 msgstr ""
 
-#: src/profiles/controlpanels/language.json:17
+#: src/profiles/core/controlpanels/language.json:17
 # defaultMessage: The languages in which the site should be translatable.
 msgid "The languages in which the site should be translatable."
 msgstr ""
 
-#: src/profiles/catalog.json:8
+#: src/profiles/core/catalog.json:8
 # defaultMessage: The location of an item
 msgid "The location of an item"
 msgstr ""
 
-#: src/profiles/catalog.json:51
+#: src/profiles/core/catalog.json:51
 # defaultMessage: The order of an item in its parent folder
 msgid "The order of an item in its parent folder"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:42
+#: src/profiles/core/controlpanels/mail.json:42
 # defaultMessage: The password for the ESMTP user account.
 msgid "The password for the ESMTP user account."
 msgstr ""
 
-#: src/profiles/catalog.json:391
+#: src/profiles/core/catalog.json:391
 # defaultMessage: The person that created an item
 msgid "The person that created an item"
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:48
+#: src/profiles/core/controlpanels/mail.json:48
 # defaultMessage: The port of your local SMTP (outgoing e-mail) server. Usually '25'.
 msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 msgstr ""
 
-#: src/profiles/catalog.json:372
+#: src/profiles/core/catalog.json:372
 # defaultMessage: The short name of an item (used in the url)
 msgid "The short name of an item (used in the url)"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:15
+#: src/profiles/core/behaviors/categorization.json:15
 # defaultMessage: The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant.
 msgid "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
 msgstr ""
 
-#: src/profiles/catalog.json:82
+#: src/profiles/core/catalog.json:82
 # defaultMessage: The start date and time of an event
 msgid "The start date and time of an event"
 msgstr ""
 
-#: src/profiles/catalog.json:564
+#: src/profiles/core/catalog.json:564
 # defaultMessage: The time and date an item was expired
 msgid "The time and date an item was expired"
 msgstr ""
 
-#: src/profiles/catalog.json:710
+#: src/profiles/core/catalog.json:710
 # defaultMessage: The time and date an item was first published
 msgid "The time and date an item was first published"
 msgstr ""
 
-#: src/profiles/catalog.json:485
+#: src/profiles/core/catalog.json:485
 # defaultMessage: The time and date an item was last modified
 msgid "The time and date an item was last modified"
 msgstr ""
 
-#: src/profiles/behaviors/categorization.json:53
+#: src/profiles/core/behaviors/categorization.json:53
 # defaultMessage: The topic of this item.
 msgid "The topic of this item."
 msgstr ""
 
-#: src/profiles/catalog.json:404
+#: src/profiles/core/catalog.json:404
 # defaultMessage: The user viewing the querystring results
 msgid "The user viewing the querystring results"
 msgstr ""
@@ -1162,24 +1162,24 @@ msgstr ""
 msgid "This document is already locked by another user."
 msgstr ""
 
-#: src/profiles/behaviors/short_name.json:15
+#: src/profiles/core/behaviors/short_name.json:15
 # defaultMessage: This name will be displayed in the URL.
 msgid "This name will be displayed in the URL."
 msgstr ""
 
-#: src/profiles/catalog.json:291
-#: src/profiles/catalog.json:297
-#: src/profiles/catalog.json:379
-#: src/profiles/catalog.json:398
-#: src/profiles/catalog.json:429
-#: src/profiles/catalog.json:448
-#: src/profiles/catalog.json:473
+#: src/profiles/core/catalog.json:291
+#: src/profiles/core/catalog.json:297
+#: src/profiles/core/catalog.json:379
+#: src/profiles/core/catalog.json:398
+#: src/profiles/core/catalog.json:429
+#: src/profiles/core/catalog.json:448
+#: src/profiles/core/catalog.json:473
 # defaultMessage: Tip: you can use * to autocomplete.
 msgid "Tip: you can use * to autocomplete."
 msgstr ""
 
-#: src/profiles/behaviors/basic.json:22
-#: src/profiles/catalog.json:265
+#: src/profiles/core/behaviors/basic.json:22
+#: src/profiles/core/catalog.json:265
 # defaultMessage: Title
 msgid "Title"
 msgstr ""
@@ -1189,130 +1189,130 @@ msgstr ""
 msgid "To, from and message are required fields."
 msgstr ""
 
-#: src/profiles/catalog.json:142
-#: src/profiles/catalog.json:215
-#: src/profiles/catalog.json:545
-#: src/profiles/catalog.json:624
-#: src/profiles/catalog.json:697
-#: src/profiles/catalog.json:770
+#: src/profiles/core/catalog.json:142
+#: src/profiles/core/catalog.json:215
+#: src/profiles/core/catalog.json:545
+#: src/profiles/core/catalog.json:624
+#: src/profiles/core/catalog.json:697
+#: src/profiles/core/catalog.json:770
 # defaultMessage: Today
 msgid "Today"
 msgstr ""
 
-#: src/app.js:131
+#: src/app.js:132
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr ""
 
-#: src/profiles/catalog.json:421
+#: src/profiles/core/catalog.json:421
 # defaultMessage: Type
 msgid "Type"
 msgstr ""
 
-#: src/app.js:96
+#: src/app.js:97
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
 
-#: src/profiles/catalog.json:27
+#: src/profiles/core/catalog.json:27
 # defaultMessage: Use '../' to navigate to parent objects.
 msgid "Use '../' to navigate to parent objects."
 msgstr ""
 
-#: src/routes/users/users.js:42
+#: src/routes/users/users.js:43
 # defaultMessage: User doesn't exist or invalid credentials.
 msgid "User doesn't exist or invalid credentials."
 msgstr ""
 
-#: src/routes/authentication/authentication.js:74
+#: src/routes/authentication/authentication.js:75
 # defaultMessage: User is not logged in.
 msgid "User is not logged in."
 msgstr ""
 
-#: src/profiles/controlpanels/mail.json:54
+#: src/profiles/core/controlpanels/mail.json:54
 # defaultMessage: Username for authentication to your e-mail server. Not required unless you are using ESMTP.
 msgid "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 msgstr ""
 
-#: src/profiles/behaviors/versioning.json:3
+#: src/profiles/core/behaviors/versioning.json:3
 # defaultMessage: Versioning
 msgid "Versioning"
 msgstr ""
 
-#: src/profiles/behaviors/versioning.json:4
+#: src/profiles/core/behaviors/versioning.json:4
 # defaultMessage: Versioning support
 msgid "Versioning support"
 msgstr ""
 
-#: src/profiles/actions.json:7
-#: src/profiles/permissions.json:6
+#: src/profiles/core/actions.json:7
+#: src/profiles/core/permissions.json:6
 # defaultMessage: View
 msgid "View"
 msgstr ""
 
-#: src/profiles/workflows.json:34
+#: src/profiles/core/workflows.json:34
 # defaultMessage: Visible to everyone, editable by the owner.
 msgid "Visible to everyone, editable by the owner."
 msgstr ""
 
-#: src/profiles/workflows.json:23
+#: src/profiles/core/workflows.json:23
 # defaultMessage: Waiting to be reviewed, not editable by the owner.
 msgid "Waiting to be reviewed, not editable by the owner."
 msgstr ""
 
-#: src/profiles/behaviors/dates.json:21
+#: src/profiles/core/behaviors/dates.json:21
 # defaultMessage: When this date is reached, the content will no longer be visible in listings and searches.
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
 msgstr ""
 
-#: src/profiles/catalog.json:124
-#: src/profiles/catalog.json:197
-#: src/profiles/catalog.json:527
-#: src/profiles/catalog.json:606
-#: src/profiles/catalog.json:679
-#: src/profiles/catalog.json:752
+#: src/profiles/core/catalog.json:124
+#: src/profiles/core/catalog.json:197
+#: src/profiles/core/catalog.json:527
+#: src/profiles/core/catalog.json:606
+#: src/profiles/core/catalog.json:679
+#: src/profiles/core/catalog.json:752
 # defaultMessage: Within last
 msgid "Within last"
 msgstr ""
 
-#: src/profiles/catalog.json:136
-#: src/profiles/catalog.json:209
-#: src/profiles/catalog.json:539
-#: src/profiles/catalog.json:618
-#: src/profiles/catalog.json:691
-#: src/profiles/catalog.json:764
+#: src/profiles/core/catalog.json:136
+#: src/profiles/core/catalog.json:209
+#: src/profiles/core/catalog.json:539
+#: src/profiles/core/catalog.json:618
+#: src/profiles/core/catalog.json:691
+#: src/profiles/core/catalog.json:764
 # defaultMessage: Within next
 msgid "Within next"
 msgstr ""
 
-#: src/routes/authentication/authentication.js:35
-#: src/routes/authentication/authentication.js:46
+#: src/routes/authentication/authentication.js:36
+#: src/routes/authentication/authentication.js:47
 # defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
 msgstr ""
 
-#: src/profiles/catalog.json:347
+#: src/profiles/core/catalog.json:347
 # defaultMessage: Yes
 msgid "Yes"
 msgstr ""
 
-#: src/app.js:117
+#: src/app.js:118
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
 msgstr ""
 
-#: src/routes/groups/groups.js:104
+#: src/routes/groups/groups.js:105
 # defaultMessage: You can't delete system groups.
 msgid "You can't delete system groups."
 msgstr ""
 
-#: src/routes/users/users.js:222
+#: src/routes/users/users.js:223
 # defaultMessage: You can't delete system users.
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:473
+#: src/routes/content/content.js:474
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
@@ -1323,7 +1323,7 @@ msgstr ""
 msgid "You don't have permission to unlock this document."
 msgstr ""
 
-#: src/routes/users/users.js:133
+#: src/routes/users/users.js:134
 # defaultMessage: You don't have permissions to add a user.
 msgid "You don't have permissions to add a user."
 msgstr ""
