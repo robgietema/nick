@@ -49,4 +49,7 @@ describe('Vocabularies', () => {
 
   it('should return a boolean vocabulary', () =>
     testRequest(app, 'vocabularies/get_boolean'));
+
+  it('should return a 404 if the vocabulary does not exist', () =>
+    testRequest(app, 'vocabularies/get_notfound'));
 });
