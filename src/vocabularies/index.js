@@ -18,6 +18,8 @@ import { users } from './users/users';
 import { workflows } from './workflows/workflows';
 import { workflowStates } from './workflow-states/workflow-states';
 
+const { config } = require(`${process.cwd()}/config`);
+
 export const vocabularies = {
   actions,
   behaviors,
@@ -33,4 +35,5 @@ export const vocabularies = {
   users,
   workflows,
   workflowStates,
+  ...('vocabularies' in config ? config.vocabularies : {}),
 };
