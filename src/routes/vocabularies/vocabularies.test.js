@@ -46,4 +46,7 @@ describe('Vocabularies', () => {
 
   it('should return a workflows vocabulary', () =>
     testRequest(app, 'vocabularies/get_workflows'));
+
+  it('should return a boolean vocabulary', () =>
+    testRequest(app, 'vocabularies/get_boolean'));
 });

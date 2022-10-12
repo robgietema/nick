@@ -19,4 +19,5 @@ export { Role } from './role/role';
 export { Type } from './type/type';
 export { User } from './user/user';
 export { Version } from './version/version';
+export { Vocabulary } from './vocabulary/vocabulary';
 export { Workflow } from './workflow/workflow';

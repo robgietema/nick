@@ -11,6 +11,10 @@ Content-Type: application/json
     "title": "behaviors"
   },
   {
+    "@id": "http://localhost:8000/@vocabularies/boolean",
+    "title": "boolean"
+  },
+  {
     "@id": "http://localhost:8000/@vocabularies/groups",
     "title": "groups"
   },
@@ -51,11 +55,11 @@ Content-Type: application/json
     "title": "users"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/workflows",
-    "title": "workflows"
-  },
-  {
     "@id": "http://localhost:8000/@vocabularies/workflowStates",
     "title": "workflowStates"
+  },
+  {
+    "@id": "http://localhost:8000/@vocabularies/workflows",
+    "title": "workflows"
   }
 ]

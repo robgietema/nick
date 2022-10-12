@@ -8,6 +8,7 @@
 
 - Add support for multiple profiles @robgietema
 - Add yeoman generator to create a Nick project @robgietema
+- Add vocabularies based on profiles @robgietema
 
 ### Bugfix
 

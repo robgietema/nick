@@ -3,8 +3,9 @@
  * @module routes/vocabularies/vocabularies
  */
 
-import { includes, keys, map } from 'lodash';
+import { includes, keys, map, sortBy } from 'lodash';
 
+import { Vocabulary } from '../../models';
 import { vocabularies } from '../../vocabularies';
 import { RequestException, getUrl } from '../../helpers';
 
@@ -13,12 +14,24 @@ export default [
     op: 'get',
     view: '/@vocabularies',
     permission: 'View',
-    handler: async (req, trx) => ({
-      json: map(keys(vocabularies), (vocabulary) => ({
-        '@id': `${getUrl(req)}/@vocabularies/${vocabulary}`,
-        title: vocabulary,
-      })),
-    }),
+    handler: async (req, trx) => {
+      const profileVocabularies = await Vocabulary.fetchAll({}, {}, trx);
+      return {
+        json: sortBy(
+          [
+            ...map(keys(vocabularies), (vocabulary) => ({
+              '@id': `${getUrl(req)}/@vocabularies/${vocabulary}`,
+              title: vocabulary,
+            })),
+            ...profileVocabularies.map((vocabulary) => ({
+              '@id': `${getUrl(req)}/@vocabularies/${vocabulary.id}`,
+              title: vocabulary.title,
+            })),
+          ],
+          'title',
+        ),
+      };
+    },
   },
   {
     op: 'get',
@@ -27,7 +40,19 @@ export default [
     handler: async (req, trx) => {
       // Check if vocabulary is available
       if (!includes(keys(vocabularies), req.params.id)) {
-        throw new RequestException(404, { error: req.i18n('Not found.') });
+        const vocabulary = await Vocabulary.fetchById(req.params.id, {}, trx);
+        if (!vocabulary) {
+          throw new RequestException(404, { error: req.i18n('Not found.') });
+        }
+
+        // Return data
+        return {
+          json: {
+            '@id': `${getUrl(req)}/@vocabularies/${req.params.id}`,
+            items: vocabulary.items,
+            items_total: vocabulary.items.length,
+          },
+        };
       }
 
       // Get items

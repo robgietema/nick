@@ -1,0 +1,8 @@
+{
+  "id": "boolean",
+  "title:i18n": "boolean",
+  "items": [
+    { "title:i18n": "Yes", "token": "Yes" },
+    { "title:i18n": "No", "token": "No" }
+  ]
+}
