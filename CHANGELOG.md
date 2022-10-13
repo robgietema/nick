@@ -10,6 +10,7 @@
 - Add yeoman generator to create a Nick project @robgietema
 - Add vocabularies based on profiles @robgietema
 - Make behaviors and vocabularies extendable @robgietema
+- Add Yeoman instructions @robgietema
 
 ### Bugfix
 
