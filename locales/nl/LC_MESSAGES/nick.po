@@ -676,6 +676,7 @@ msgid "News"
 msgstr "Nieuws"
 
 #: src/profiles/core/catalog.json:341
+#: src/profiles/core/vocabularies/boolean.json:6
 # defaultMessage: No
 msgid "No"
 msgstr "Nee"
@@ -691,7 +692,7 @@ msgstr "Niet toegestaan"
 #: src/routes/groups/groups.js:26
 #: src/routes/types/types.js:30
 #: src/routes/users/users.js:104
-#: src/routes/vocabularies/vocabularies.js:30
+#: src/routes/vocabularies/vocabularies.js:45
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr "Niet gevonden."
@@ -1290,6 +1291,7 @@ msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
 
 #: src/profiles/core/catalog.json:347
+#: src/profiles/core/vocabularies/boolean.json:5
 # defaultMessage: Yes
 msgid "Yes"
 msgstr "Ja"
@@ -1325,3 +1327,8 @@ msgstr "U heeft geen toestemming om dit document te ontgrendelen."
 # defaultMessage: You don't have permissions to add a user.
 msgid "You don't have permissions to add a user."
 msgstr "U heeft geen rechten om een gebruiker toe te voegen."
+
+#: src/profiles/core/vocabularies/boolean.json:3
+# defaultMessage: boolean
+msgid "boolean"
+msgstr ""

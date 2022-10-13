@@ -676,6 +676,7 @@ msgid "News"
 msgstr ""
 
 #: src/profiles/core/catalog.json:341
+#: src/profiles/core/vocabularies/boolean.json:6
 # defaultMessage: No
 msgid "No"
 msgstr ""
@@ -691,7 +692,7 @@ msgstr ""
 #: src/routes/groups/groups.js:26
 #: src/routes/types/types.js:30
 #: src/routes/users/users.js:104
-#: src/routes/vocabularies/vocabularies.js:30
+#: src/routes/vocabularies/vocabularies.js:45
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr ""
@@ -1290,6 +1291,7 @@ msgid "Wrong login and/or password."
 msgstr ""
 
 #: src/profiles/core/catalog.json:347
+#: src/profiles/core/vocabularies/boolean.json:5
 # defaultMessage: Yes
 msgid "Yes"
 msgstr ""
@@ -1324,4 +1326,9 @@ msgstr ""
 #: src/routes/users/users.js:134
 # defaultMessage: You don't have permissions to add a user.
 msgid "You don't have permissions to add a user."
+msgstr ""
+
+#: src/profiles/core/vocabularies/boolean.json:3
+# defaultMessage: boolean
+msgid "boolean"
 msgstr ""
