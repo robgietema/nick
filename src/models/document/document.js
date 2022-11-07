@@ -13,6 +13,7 @@ import _, {
   isFunction,
   isUndefined,
   keys,
+  last,
   map,
   mapValues,
   omit,
@@ -30,7 +31,6 @@ import {
   log,
   mapSync,
   copyFile,
-  isAsyncFunction,
   isPromise,
   uniqueId,
 } from '../../helpers';
@@ -286,9 +286,9 @@ export class Document extends Model {
         // Set data
         json[field] = {
           'content-type': json[field]['content-type'],
-          download: `${this.getUrl(req)}/@@images/${json[field].uuid}.${
-            json[field]['content-type'].split('/')[1]
-          }`,
+          download: `${this.getUrl(req)}/@@images/${json[field].uuid}.${last(
+            json[field].filename.split('.'),
+          )}`,
           filename: json[field].filename,
           size: json[field].size,
           width: json[field].width,
@@ -296,9 +296,9 @@ export class Document extends Model {
           scales: mapValues(json[field].scales, (scale) => ({
             width: scale.width,
             height: scale.height,
-            download: `${this.getUrl(req)}/@@images/${scale.uuid}.${
-              json[field]['content-type'].split('/')[1]
-            }`,
+            download: `${this.getUrl(req)}/@@images/${scale.uuid}.${last(
+              json[field].filename.split('.'),
+            )}`,
           })),
         };
       });

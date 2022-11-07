@@ -11,6 +11,7 @@
 - Add vocabularies based on profiles @robgietema
 - Make behaviors and vocabularies extendable @robgietema
 - Add Yeoman instructions @robgietema
+- Add files and images loading in profiles @robgietema
 
 ### Bugfix
 
@@ -19,6 +20,7 @@
 - Read config file from working directory @robgietema
 - Read knex file from working directory @robgietema
 - Create subfolders when blobstorage folders don't exist @robgietema
+- Fix file download extensions @robgietema
 
 ### Internal
 

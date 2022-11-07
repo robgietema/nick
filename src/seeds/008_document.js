@@ -1,10 +1,17 @@
-import { dropRight, last, map, omit } from 'lodash';
+import { dropRight, endsWith, filter, last, map, omit } from 'lodash';
 import { promises as fs } from 'fs';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 
-import { dirExists, log, mapAsync, stripI18n } from '../helpers';
-import { Document, Model } from '../models';
+import {
+  dirExists,
+  handleFiles,
+  handleImages,
+  log,
+  mapAsync,
+  stripI18n,
+} from '../helpers';
+import { Document, Type } from '../models';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -37,11 +44,13 @@ export const seed = async (knex) => {
         if (dirExists(`${profilePath}/documents`)) {
           const children = {};
           const files = map(
-            await fs.readdir(`${profilePath}/documents`),
+            filter(await fs.readdir(`${profilePath}/documents`), (file) =>
+              endsWith(file, '.json'),
+            ),
             (file) => dropRight(file.split('.')).join('.'),
           ).sort();
           await mapAsync(files, async (file) => {
-            const document = stripI18n(
+            let document = stripI18n(
               require(`${profilePath}/documents/${file}`),
             );
             const slugs = file.split('.');
@@ -66,6 +75,11 @@ export const seed = async (knex) => {
 
             const versionCount =
               'versions' in document ? document.versions.length : 1;
+
+            // Handle files and images
+            const type = await Type.fetchById(document.type || 'Page', {}, trx);
+            document = await handleFiles(document, type, profilePath);
+            document = await handleImages(document, type, profilePath);
 
             // Insert document
             const insert = await Document.create(

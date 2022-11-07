@@ -21,13 +21,12 @@ import {
   getRootUrl,
   lockExpired,
   mapAsync,
-  mapSync,
   readFile,
   removeFile,
   RequestException,
   uniqueId,
-  writeFile,
-  writeImage,
+  handleFiles,
+  handleImages,
 } from '../../helpers';
 import { Document, Type } from '../../models';
 import { applyBehaviors } from '../../behaviors';
@@ -35,83 +34,6 @@ import { applyBehaviors } from '../../behaviors';
 const { config } = require(`${process.cwd()}/config`);
 
 const omitProperties = ['@type', 'id', 'changeNote'];
-
-/**
- * Handle file uploads and updates
- * @method handleFiles
- * @param {Object} json Current json object.
- * @param {Object} type Type object.
- * @returns {Object} Fields with uuid info.
- */
-async function handleFiles(json, type) {
-  // Make a copy of the json data
-  const fields = { ...json };
-
-  // Get file fields
-  const fileFields = await type.getFactoryFields('File');
-
-  mapSync(fileFields, (field) => {
-    // Check if new data is uploaded
-    if ('data' in fields[field]) {
-      // Create filestream
-      const { uuid, size } = writeFile(
-        fields[field].data,
-        fields[field].encoding,
-      );
-
-      // Set data
-      fields[field] = {
-        'content-type': fields[field]['content-type'],
-        uuid,
-        filename: fields[field].filename,
-        size,
-      };
-    }
-  });
-
-  // Return new field data
-  return fields;
-}
-
-/**
- * Handle image uploads and updates
- * @method handleImages
- * @param {Object} json Current json object.
- * @param {Object} type Type object.
- * @returns {Object} Fields with uuid info.
- */
-async function handleImages(json, type) {
-  // Make a copy of the json data
-  const fields = { ...json };
-
-  // Get file fields
-  const fileFields = await type.getFactoryFields('Image');
-
-  await mapAsync(fileFields, async (field) => {
-    // Check if new data is uploaded
-    if ('data' in fields[field]) {
-      // Create filestream
-      const { uuid, size, width, height, scales } = await writeImage(
-        fields[field].data,
-        fields[field].encoding,
-      );
-
-      // Set data
-      fields[field] = {
-        'content-type': fields[field]['content-type'],
-        uuid,
-        width,
-        height,
-        scales,
-        filename: fields[field].filename,
-        size,
-      };
-    }
-  });
-
-  // Return new field data
-  return fields;
-}
 
 export default [
   {

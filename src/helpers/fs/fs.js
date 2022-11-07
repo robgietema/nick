@@ -60,6 +60,21 @@ export function readFile(uuid) {
 }
 
 /**
+ * Read profile file
+ * @method readProfileFile
+ * @param {string} profile Profile path
+ * @param {string} path Path of the file
+ * @returns {string} Base64 string of the file
+ */
+export function readProfileFile(profile, path) {
+  const file = `${profile}/documents${path}`;
+  if (!existsSync(file)) {
+    throw `Can not read file: ${file}`;
+  }
+  return readFileSync(file, { encoding: 'base64' });
+}
+
+/**
  * Write file
  * @method writeFile
  * @param {String} data Data of the file

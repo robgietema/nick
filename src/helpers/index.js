@@ -5,6 +5,7 @@
  */
 
 export { getUserId, hasPermission } from './auth/auth';
+export { handleFiles, handleImages } from './content/content';
 export { RequestException } from './error/error';
 export { formatSize, formatAttribute } from './format/format';
 export {
@@ -14,6 +15,7 @@ export {
   getHeight,
   getWidth,
   readFile,
+  readProfileFile,
   removeFile,
   writeFile,
   writeImage,
