@@ -3,7 +3,7 @@
  * @module helpers/content/content
  */
 
-import { isString, last } from 'lodash';
+import { isString, last, map } from 'lodash';
 import mime from 'mime-types';
 
 import {
@@ -107,6 +107,30 @@ export async function handleImages(json, type, profile) {
         size,
       };
     }
+  });
+
+  // Return new field data
+  return fields;
+}
+
+/**
+ * Handle relation lists
+ * @method handleRelationLists
+ * @param {Object} json Current json object.
+ * @param {Object} type Type object.
+ * @param {string} profile Path of the profile.
+ * @returns {Object} Fields with uuid info.
+ */
+export async function handleRelationLists(json, type, profile) {
+  // Make a copy of the json data
+  const fields = { ...json };
+
+  // Get file fields
+  const relationListFields = await type.getFactoryFields('Relation List');
+
+  // Strip all but the UID from the document data
+  await mapAsync(relationListFields, async (field) => {
+    fields[field] = map(fields[field], (document) => document.UID || document);
   });
 
   // Return new field data

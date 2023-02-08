@@ -10,6 +10,7 @@ import _, {
   findIndex,
   head,
   includes,
+  isArray,
   isFunction,
   isUndefined,
   keys,
@@ -29,6 +30,7 @@ import {
   getRootUrl,
   lockExpired,
   log,
+  mapAsync,
   mapSync,
   copyFile,
   isPromise,
@@ -147,12 +149,51 @@ export class Document extends Model {
    * @method fetchVersion
    * @param {string} document Uuid of the document
    * @param {Object} trx Transaction object.
-   * @returns {Array} Array of roles.
    */
   async fetchVersion(version, trx) {
     this._version = await this.$relatedQuery('_versions', trx)
       .where({ version })
       .first();
+  }
+
+  /**
+   * Fetch relation lists
+   * @method fetchRelationLists
+   * @param {Object} trx Transaction object.
+   */
+  async fetchRelationLists(trx) {
+    // Check if version data
+    const version = this._version
+      ? {
+          ...this._version.json,
+        }
+      : {};
+
+    // Get file fields
+    const json = {
+      ...this.json,
+      ...version,
+    };
+
+    // Reset lists
+    this._relationLists = {};
+
+    // Loop through relation list fields
+    const relationListFields = this._type.getFactoryFields('Relation List');
+    await Promise.all(
+      relationListFields.map(async (field) => {
+        // Check if related documents
+        if (isArray(json[field]) && json[field].length > 0) {
+          this._relationLists[field] = await Document.fetchAll(
+            {
+              uuid: ['=', json[field]],
+            },
+            {},
+            trx,
+          );
+        }
+      }),
+    );
   }
 
   /**
@@ -263,8 +304,20 @@ export class Document extends Model {
    * @returns {Object} JSON object.
    */
   async toJSON(req) {
+    // Check if version data
+    const version = this._version
+      ? {
+          ...omit(this._version.json, ['changeNote']),
+          id: this._version.id,
+          modified: this._version.created,
+        }
+      : {};
+
     // Get file fields
-    const json = this.json;
+    const json = {
+      ...this.json,
+      ...version,
+    };
 
     // Check if type available
     if (this._type) {
@@ -302,6 +355,21 @@ export class Document extends Model {
           })),
         };
       });
+
+      // Loop through relation list fields
+      const relationListFields = this._type.getFactoryFields('Relation List');
+      mapSync(relationListFields, async (field) => {
+        // Check if related documents
+        if (isArray(json[field]) && json[field].length > 0) {
+          json[field] = this._relationLists[field].map((document) => ({
+            '@id': document.path,
+            UID: document.uuid,
+            title: document.json.title,
+            description: document.json.description,
+            review_state: document.workflow_state,
+          }));
+        }
+      });
     }
 
     // Add children if available
@@ -311,18 +379,9 @@ export class Document extends Model {
       );
     }
 
-    // Check if version data
-    const version = this._version
-      ? {
-          ...omit(this._version.json, ['changeNote']),
-          id: this._version.id,
-          modified: this._version.created,
-        }
-      : {};
-
     // Return data
     return {
-      ...this.json,
+      ...json,
       '@id': this.getUrl(req),
       '@type': this.type,
       id: this.id,
@@ -340,7 +399,6 @@ export class Document extends Model {
               stealable: true,
             }
           : this.lock,
-      ...version,
     };
   }
 

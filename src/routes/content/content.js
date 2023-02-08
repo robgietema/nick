@@ -27,6 +27,7 @@ import {
   uniqueId,
   handleFiles,
   handleImages,
+  handleRelationLists,
 } from '../../helpers';
 import { Document, Type } from '../../models';
 import { applyBehaviors } from '../../behaviors';
@@ -180,6 +181,7 @@ export default [
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children._type, _type]', trx);
       await req.document.fetchVersion(parseInt(req.params.version, 10), trx);
+      await req.document.fetchRelationLists(trx);
       return {
         json: await req.document.toJSON(req),
       };
@@ -251,6 +253,7 @@ export default [
     permission: 'View',
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
+      await req.document.fetchRelationLists(trx);
       return {
         json: await req.document.toJSON(req),
       };
@@ -294,6 +297,7 @@ export default [
       };
       json = await handleFiles(json, type);
       json = await handleImages(json, type);
+      json = await handleRelationLists(json, req.type);
 
       // Create new document
       let document = Document.fromJson({
@@ -352,6 +356,9 @@ export default [
 
       // Index new document
       await document.index(trx);
+
+      // Fetch related lists
+      await document.fetchRelationLists(trx);
 
       // Send data back to client
       return {
@@ -431,6 +438,7 @@ export default [
       };
       json = await handleFiles(json, req.type);
       json = await handleImages(json, req.type);
+      json = await handleRelationLists(json, req.type);
 
       // Create new version
       const modified = moment.utc().format();

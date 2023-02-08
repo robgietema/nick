@@ -37,13 +37,15 @@
           "title:i18n": "Related",
           "type": "string"
         },
-        "pattern_options": {
-          "recentlyUsed": true
+        "widgetOptions": {
+          "pattern_options": {
+            "recentlyUsed": true
+          }
         },
         "title:i18n": "Related Items",
         "type": "array",
         "uniqueItems": true,
-        "vocabulary": "plone.app.vocabularies.Catalog"
+        "factory": "Relation List"
       },
       "subjects": {
         "choices": [

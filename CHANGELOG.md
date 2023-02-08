@@ -12,6 +12,7 @@
 - Make behaviors and vocabularies extendable @robgietema
 - Add Yeoman instructions @robgietema
 - Add files and images loading in profiles @robgietema
+- Add relation list fields @robgietema
 
 ### Bugfix
 

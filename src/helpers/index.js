@@ -5,7 +5,11 @@
  */
 
 export { getUserId, hasPermission } from './auth/auth';
-export { handleFiles, handleImages } from './content/content';
+export {
+  handleFiles,
+  handleImages,
+  handleRelationLists,
+} from './content/content';
 export { RequestException } from './error/error';
 export { formatSize, formatAttribute } from './format/format';
 export {

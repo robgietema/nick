@@ -33,6 +33,7 @@ export class Behavior extends Model {
             values: this.schema.behaviors,
           },
         },
+        trx,
       );
       return mergeSchemas(await behaviors.fetchSchema(trx), this.schema);
     }
