@@ -365,7 +365,7 @@ msgstr "Verwijderen"
 msgid "Description"
 msgstr "Omschrijving"
 
-#: src/routes/content/content.js:477
+#: src/routes/content/content.js:406
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -828,7 +828,7 @@ msgstr "Registreren"
 msgid "Related"
 msgstr "Gerelateerd"
 
-#: src/profiles/core/behaviors/categorization.json:43
+#: src/profiles/core/behaviors/categorization.json:45
 # defaultMessage: Related Items
 msgid "Related Items"
 msgstr "Gerelateerde Items"
@@ -853,7 +853,7 @@ msgstr "Relatief pad"
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: src/routes/content/content.js:356
+#: src/routes/content/content.js:281
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
@@ -1009,7 +1009,7 @@ msgstr "Systeem gebruikers"
 msgid "Tag"
 msgstr "Tag"
 
-#: src/profiles/core/behaviors/categorization.json:56
+#: src/profiles/core/behaviors/categorization.json:58
 # defaultMessage: Tags
 msgid "Tags"
 msgstr "Tags"
@@ -1145,7 +1145,7 @@ msgstr "De tijd en datum waarop een item voor het eerst is gepubliceerd"
 msgid "The time and date an item was last modified"
 msgstr "De tijd en datum waarop een item voor het laatst is gewijzigd"
 
-#: src/profiles/core/behaviors/categorization.json:53
+#: src/profiles/core/behaviors/categorization.json:55
 # defaultMessage: The topic of this item.
 msgid "The topic of this item."
 msgstr "Het onderwerp van dit item."
@@ -1312,7 +1312,7 @@ msgstr "U kunt geen systeemgroepen verwijderen."
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
-#: src/routes/content/content.js:474
+#: src/routes/content/content.js:403
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
