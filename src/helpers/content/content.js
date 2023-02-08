@@ -130,7 +130,12 @@ export async function handleRelationLists(json, type, profile) {
 
   // Strip all but the UID from the document data
   await mapAsync(relationListFields, async (field) => {
-    fields[field] = map(fields[field], (document) => document.UID || document);
+    if (fields[field]) {
+      fields[field] = map(
+        fields[field],
+        (document) => document.UID || document,
+      );
+    }
   });
 
   // Return new field data

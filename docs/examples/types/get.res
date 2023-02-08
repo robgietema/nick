@@ -182,12 +182,14 @@ Content-Type: application/json
       },
       "title": "Related Items",
       "default": [],
-      "vocabulary": "plone.app.vocabularies.Catalog",
       "description": "Related resources.",
+      "factory": "Relation List",
       "uniqueItems": true,
       "additionalItems": true,
-      "pattern_options": {
-        "recentlyUsed": true
+      "widgetOptions": {
+        "pattern_options": {
+          "recentlyUsed": true
+        }
       }
     },
     "blocks_layout": {
