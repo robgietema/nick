@@ -21,7 +21,7 @@ export default [
       );
 
       // Omit exclude from nav items
-      items.omitBy((item) => item.json?.exclude_from_nav);
+      items.omitBy((item) => item.exclude_from_nav);
 
       // Return navigation
       return {

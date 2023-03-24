@@ -23,6 +23,7 @@
 - Read knex file from working directory @robgietema
 - Create subfolders when blobstorage folders don't exist @robgietema
 - Fix file download extensions @robgietema
+- Fix exclude from nav in navigation call @robgietema
 
 ### Internal
 
