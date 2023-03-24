@@ -5,14 +5,17 @@
 
 import moment from 'moment';
 import {
+  drop,
   flattenDeep,
   includes,
   intersection,
   isArray,
+  join,
   keys,
   map,
   omit,
   pick,
+  split,
   uniq,
 } from 'lodash';
 import { v4 as uuid } from 'uuid';
@@ -244,6 +247,38 @@ export default [
           'Content-Disposition': `attachment; filename="${field.filename}"`,
         },
         binary: buffer,
+      };
+    },
+  },
+  {
+    op: 'get',
+    view: '@export',
+    permission: 'View',
+    handler: async (req, trx) => {
+      const json = await req.document.toJSON(req);
+      return {
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Disposition': `attachment; filename="${
+            req.document.path === '/'
+              ? '_root.json'
+              : `${join(drop(split(req.document.path, '/')), '.')}.json`
+          }"`,
+        },
+        json: {
+          uuid: json['UID'],
+          type: json['@type'],
+          workflow_state: json['review_state'],
+          ...omit(json, [
+            '@id',
+            '@type',
+            'UID',
+            'review_state',
+            'id',
+            'is_folderish',
+            'lock',
+          ]),
+        },
       };
     },
   },

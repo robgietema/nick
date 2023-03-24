@@ -388,6 +388,7 @@ export class Document extends Model {
       created: this.created,
       modified: this.modified,
       UID: this.uuid,
+      owner: this.owner,
       is_folderish: this._type
         ? includes(this._type._schema.behaviors, 'folderish')
         : true,
