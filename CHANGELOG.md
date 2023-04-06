@@ -14,6 +14,7 @@
 - Add files and images loading in profiles @robgietema
 - Add relation list fields @robgietema
 - Add @export view to export current content object data @robgietema
+- Add exclude from nav to type information @robgietema
 
 ### Bugfix
 

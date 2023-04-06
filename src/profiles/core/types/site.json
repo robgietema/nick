@@ -5,6 +5,7 @@
   "global_allow": false,
   "filter_content_types": false,
   "allowed_content_types": [],
+  "exclude_from_nav": false,
   "schema": {
     "behaviors": ["dublin_core", "dates", "blocks", "versioning", "folderish"]
   },

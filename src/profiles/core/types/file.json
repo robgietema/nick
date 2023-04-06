@@ -5,6 +5,7 @@
   "global_allow": true,
   "filter_content_types": true,
   "allowed_content_types": [],
+  "exclude_from_nav": true,
   "schema": {
     "fieldsets": [
       {
