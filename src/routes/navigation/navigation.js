@@ -3,7 +3,7 @@
  * @module routes/navigation/navigation
  */
 
-import { Catalog, Document, Type } from '../../models';
+import { Catalog, Controlpanel, Document } from '../../models';
 import { getUrl } from '../../helpers';
 import { includes } from 'lodash';
 
@@ -24,11 +24,12 @@ export default [
       // Omit exclude from nav items
       items.omitBy((item) => item.exclude_from_nav);
 
+      // Fetch settings
+      const controlpanel = await Controlpanel.fetchById('navigation', {}, trx);
+      const settings = controlpanel.data;
+
       // Omit by type
-      const types = await Type.fetchAll({}, {}, trx);
-      types.omitBy((type) => type.exclude_from_nav === false);
-      const excludedTypes = types.map((type) => type.id);
-      items.omitBy((item) => includes(excludedTypes, item.Type));
+      items.omitBy((item) => !includes(settings.displayed_types, item.Type));
 
       // Return navigation
       return {
