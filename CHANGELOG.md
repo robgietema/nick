@@ -15,7 +15,9 @@
 - Add relation list fields @robgietema
 - Add @export view to export current content object data @robgietema
 - Add exclude from nav to type information @robgietema
-- Move exclude form nav by type to controlpanel @robgietema
+- Move exclude from nav by type to controlpanel @robgietema
+- Add additional items to navigation controlpanel @robgietema
+- Add overwrite settings in controlpanels @robgietema
 
 ### Bugfix
 

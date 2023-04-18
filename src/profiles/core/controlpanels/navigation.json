@@ -5,7 +5,7 @@
   "schema": {
     "fieldsets": [
       {
-        "fields": ["displayed_types"],
+        "fields": ["displayed_types", "additional_items"],
         "id": "general",
         "title": "General"
       }
@@ -27,11 +27,18 @@
         "title:i18n": "Displayed content types",
         "type": "array",
         "uniqueItems": true
+      },
+      "additional_items": {
+        "title:i18n": "Additional items",
+        "description:i18n": "Add additional items to the navigation, one per line. In the format 'title|description|url'.",
+        "type": "string",
+        "widget": "textarea"
       }
     },
     "required": ["displayed_types"]
   },
   "data": {
-    "displayed_types": ["Folder", "Page"]
+    "displayed_types": ["Folder", "Page"],
+    "additional_items": ""
   }
 }

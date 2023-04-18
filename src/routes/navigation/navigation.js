@@ -5,7 +5,7 @@
 
 import { Catalog, Controlpanel, Document } from '../../models';
 import { getUrl } from '../../helpers';
-import { includes } from 'lodash';
+import { compact, includes, map, split } from 'lodash';
 
 export default [
   {
@@ -35,7 +35,17 @@ export default [
       return {
         json: {
           '@id': `${getUrl(req)}/@navigation`,
-          items: await items.toJSON(req),
+          items: [
+            ...map(compact(split(settings.additional_items, '\n')), (item) => {
+              const navitem = item.split('|');
+              return {
+                title: navitem[0],
+                description: navitem[1],
+                '@id': navitem[2],
+              };
+            }),
+            ...(await items.toJSON(req)),
+          ],
         },
       };
     },
