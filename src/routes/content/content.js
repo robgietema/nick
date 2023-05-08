@@ -356,6 +356,7 @@ export default [
       document.setId(
         req.body.id,
         req.document._children.map((item) => item.id),
+        json,
       );
 
       // Set path
@@ -369,6 +370,9 @@ export default [
         document.$toDatabaseJson(),
         trx,
       );
+
+      // Apply behaviors
+      document = applyBehaviors(document, type.schema.behaviors);
 
       // Create initial version
       await document.createRelated(

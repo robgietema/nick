@@ -55,7 +55,19 @@ export class Type extends Model {
         },
         trx,
       );
-      schema = mergeSchemas(await behaviors.fetchSchema(trx), this.schema);
+      schema = mergeSchemas(
+        {
+          fieldsets: [
+            {
+              fields: [],
+              id: 'default',
+              'title:i18n': 'Default',
+            },
+          ],
+        },
+        await behaviors.fetchSchema(trx),
+        this.schema,
+      );
     } else {
       schema = this.schema;
     }

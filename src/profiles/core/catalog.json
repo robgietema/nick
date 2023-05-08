@@ -261,7 +261,7 @@
     {
       "name": "Title",
       "type": "text",
-      "attr": "title",
+      "attr": "getTitle",
       "title:i18n": "Title",
       "description:i18n": "Text search of an item's title",
       "group": "Text",
@@ -455,7 +455,7 @@
     {
       "name": "sortable_title",
       "type": "string",
-      "attr": "title",
+      "attr": "getTitle",
       "title:i18n": "Sortable Title",
       "description:i18n": "The item's title, transformed for sorting",
       "group": "Text",
@@ -795,7 +795,7 @@
     {
       "name": "Title",
       "type": "string",
-      "attr": "title"
+      "attr": "getTitle"
     },
     {
       "name": "Subject",

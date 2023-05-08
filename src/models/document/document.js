@@ -205,15 +205,25 @@ export class Document extends Model {
   getUrl(req) {
     return `${getRootUrl(req)}${this.path === '/' ? '' : this.path}`;
   }
+
   /**
    * Set id
-   * @method getId
+   * @method setId
    * @param {string} id Provided id (can be empty)
    * @param {Array} blacklist Blacklist ids
    * @returns {string} Id
    */
   setId(id, blacklist) {
     this.id = uniqueId(id, blacklist);
+  }
+
+  /**
+   * Get title
+   * @method getTitle
+   * @returns {string} Title
+   */
+  getTitle() {
+    return this.json.title;
   }
 
   /**
@@ -385,6 +395,7 @@ export class Document extends Model {
       '@id': this.getUrl(req),
       '@type': this.type,
       id: this.id,
+      title: this.getTitle(),
       created: this.created,
       modified: this.modified,
       UID: this.uuid,

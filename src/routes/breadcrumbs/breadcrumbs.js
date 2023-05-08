@@ -5,8 +5,9 @@
 
 import { compact, drop, head, last } from 'lodash';
 
-import { Document } from '../../models';
+import { Document, Type } from '../../models';
 import { getUrl, getRootUrl, getPath } from '../../helpers';
+import { applyBehaviors } from '../../behaviors';
 
 /**
  * Traverse path.
@@ -22,7 +23,7 @@ async function traverse(document, slugs, items, trx) {
     return items;
   } else {
     // Get parent
-    const parent = await Document.fetchOne(
+    let parent = await Document.fetchOne(
       {
         parent: document.uuid,
         id: head(slugs),
@@ -30,6 +31,10 @@ async function traverse(document, slugs, items, trx) {
       {},
       trx,
     );
+    const type = await Type.fetchById(parent.type, {}, trx);
+
+    // Apply behaviors
+    parent = applyBehaviors(parent, type.schema.behaviors);
 
     // Traverse up
     return traverse(
@@ -39,7 +44,7 @@ async function traverse(document, slugs, items, trx) {
         ...items,
         {
           '@id': `${last(items)['@id']}/${parent.id}`,
-          title: parent.json.title,
+          title: parent.getTitle(),
         },
       ],
       trx,
@@ -54,14 +59,19 @@ export default [
     permission: 'View',
     handler: async (req, trx) => {
       const slugs = getPath(req).split('/');
-      const document = await Document.fetchOne({ parent: null }, {}, trx);
+      let document = await Document.fetchOne({ parent: null }, {}, trx);
+      const type = await Type.fetchById(document.type, {}, trx);
+
+      // Apply behaviors
+      document = applyBehaviors(document, type.schema.behaviors);
+
       const items = await traverse(
         document,
         compact(slugs),
         [
           {
             '@id': getRootUrl(req),
-            title: document.json.title,
+            title: document.getTitle(),
           },
         ],
         trx,

@@ -12,6 +12,7 @@ import {
   stripI18n,
 } from '../helpers';
 import { Document, Type } from '../models';
+import { applyBehaviors } from '../behaviors';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -82,7 +83,7 @@ export const seed = async (knex) => {
             document = await handleImages(document, type, profilePath);
 
             // Insert document
-            const insert = await Document.create(
+            let insert = await Document.create(
               {
                 uuid: document.uuid || uuid(),
                 version:
@@ -158,6 +159,9 @@ export const seed = async (knex) => {
                     .relate({ id: role, group: group.id }),
               ),
             );
+
+            // Apply behaviors
+            insert = applyBehaviors(insert, type.schema.behaviors);
 
             // Index object
             await insert.index(trx);

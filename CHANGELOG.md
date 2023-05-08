@@ -18,6 +18,7 @@
 - Move exclude from nav by type to controlpanel @robgietema
 - Add additional items to navigation controlpanel @robgietema
 - Add overwrite settings in controlpanels @robgietema
+- Add option to overwrite title via behaviors @robgietema
 
 ### Bugfix
 
