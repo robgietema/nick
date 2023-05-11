@@ -38,6 +38,7 @@ const versionFields = ['uuid', 'version', 'id', 'created', 'actor', 'document'];
 
 export const seed = async (knex) => {
   const trx = await knex.transaction();
+  const uuids = [];
 
   try {
     await Promise.all(
@@ -111,6 +112,9 @@ export const seed = async (knex) => {
               trx,
             );
 
+            // Save uuid
+            uuids.push(insert.uuid);
+
             // Create versions
             const versions =
               'versions' in document
@@ -159,16 +163,27 @@ export const seed = async (knex) => {
                     .relate({ id: role, group: group.id }),
               ),
             );
-
-            // Apply behaviors
-            insert = applyBehaviors(insert, type.schema.behaviors);
-
-            // Index object
-            await insert.index(trx);
           });
         }
       }),
     );
+
+    // Index documents
+    await Promise.all(
+      map(uuids, async (uuid) => {
+        let document = await Document.fetchOne({ uuid }, {}, trx);
+
+        // Fetch type
+        await document.fetchRelated('_type', trx);
+
+        // Apply behaviors
+        document = applyBehaviors(document, document._type.schema.behaviors);
+
+        // Index object
+        await document.index(trx);
+      }),
+    );
+
     await trx.commit();
     log.info('Documents imported');
   } catch (err) {

@@ -26,19 +26,16 @@ import { v4 as uuid } from 'uuid';
 
 import { Catalog, Model, Permission, Redirect, Role, User } from '../../models';
 import {
-  formatSize,
-  getRootUrl,
-  lockExpired,
-  log,
-  mapAsync,
-  mapSync,
   copyFile,
+  fileExists,
+  getRootUrl,
   isPromise,
+  lockExpired,
+  mapSync,
+  stripI18n,
   uniqueId,
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
-
-import profile from '../../profiles/core/catalog';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -795,41 +792,54 @@ export class Document extends Model {
       await this._type.fetchRelated('_workflow', trx);
     }
 
-    // Loop indexes
     await Promise.all(
-      map(profile.indexes, async (index) => {
-        if (index.attr in this) {
-          fields[`_${index.name}`] = { type: index.type };
-          if (isFunction(this[index.attr])) {
-            const value = this[index.attr](trx);
-            fields[`_${index.name}`].value = isPromise(value)
-              ? await value
-              : value;
-          } else {
-            fields[`_${index.name}`].value = this[index.attr];
-          }
-        } else if (index.attr in this._type._schema.properties) {
-          fields[`_${index.name}`] = {
-            type: index.type,
-            value: this.json[index.attr],
-          };
-        }
-      }),
-    );
+      map(config.profiles, async (profilePath) => {
+        if (fileExists(`${profilePath}/catalog`)) {
+          const profile = stripI18n(require(`${profilePath}/catalog`));
 
-    // Loop metadata
-    await Promise.all(
-      map(profile.metadata, async (metadata) => {
-        if (metadata.attr in this) {
-          fields[metadata.name] =
-            typeof this[metadata.attr] === 'function'
-              ? { type: metadata.type, value: this[metadata.attr]() }
-              : { type: metadata.type, value: this[metadata.attr] };
-        } else if (metadata.attr in this._type._schema.properties) {
-          fields[metadata.name] = {
-            type: metadata.type,
-            value: this.json[metadata.attr],
-          };
+          // Loop indexes
+          await Promise.all(
+            map(profile.indexes, async (index) => {
+              if (index.attr in this) {
+                fields[`_${index.name}`] = { type: index.type };
+                if (isFunction(this[index.attr])) {
+                  const value = this[index.attr](trx);
+                  fields[`_${index.name}`].value = isPromise(value)
+                    ? await value
+                    : value;
+                } else {
+                  fields[`_${index.name}`].value = this[index.attr];
+                }
+              } else if (index.attr in this._type._schema.properties) {
+                fields[`_${index.name}`] = {
+                  type: index.type,
+                  value: this.json[index.attr],
+                };
+              }
+            }),
+          );
+
+          // Loop metadata
+          await Promise.all(
+            map(profile.metadata, async (metadata) => {
+              if (metadata.attr in this) {
+                fields[metadata.name] = { type: metadata.type };
+                if (isFunction(this[metadata.attr])) {
+                  const value = this[metadata.attr](trx);
+                  fields[metadata.name].value = isPromise(value)
+                    ? await value
+                    : value;
+                } else {
+                  fields[metadata.name].value = this[metadata.attr];
+                }
+              } else if (metadata.attr in this._type._schema.properties) {
+                fields[metadata.name] = {
+                  type: metadata.type,
+                  value: this.json[metadata.attr],
+                };
+              }
+            }),
+          );
         }
       }),
     );
@@ -870,5 +880,21 @@ export class Document extends Model {
         )
         .transacting(trx);
     }
+  }
+
+  /**
+   * Add reference to the model.
+   * @method fetchReference
+   * @param {string} field Field name.
+   * @param {Object} trx Transaction object.
+   */
+  async fetchReference(field, trx) {
+    this.json[`_${field}`] = await Document.fetchOne(
+      {
+        uuid: this.json[field][0].UID,
+      },
+      {},
+      trx,
+    );
   }
 }

@@ -19,6 +19,7 @@
 - Add additional items to navigation controlpanel @robgietema
 - Add overwrite settings in controlpanels @robgietema
 - Add option to overwrite title via behaviors @robgietema
+- Add fetch reference helper method @robgietema
 
 ### Bugfix
 
@@ -29,6 +30,7 @@
 - Create subfolders when blobstorage folders don't exist @robgietema
 - Fix file download extensions @robgietema
 - Fix exclude from nav in navigation call @robgietema
+- Index documents after all documents have been seeded @robgietema
 
 ### Internal
 
