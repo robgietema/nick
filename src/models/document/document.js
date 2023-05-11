@@ -311,6 +311,8 @@ export class Document extends Model {
    * @returns {Object} JSON object.
    */
   async toJSON(req) {
+    const components = {};
+
     // Check if version data
     const version = this._version
       ? {
@@ -386,9 +388,15 @@ export class Document extends Model {
       );
     }
 
+    // Add catalog if available
+    if (this._catalog) {
+      components.catalog = this._catalog.toJSON(req);
+    }
+
     // Return data
     return {
       ...json,
+      '@components': components,
       '@id': this.getUrl(req),
       '@type': this.type,
       id: this.id,

@@ -20,6 +20,7 @@
 - Add overwrite settings in controlpanels @robgietema
 - Add option to overwrite title via behaviors @robgietema
 - Add fetch reference helper method @robgietema
+- Add expand catalog option to get content call @robgietema
 
 ### Bugfix
 

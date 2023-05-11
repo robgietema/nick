@@ -5,10 +5,10 @@
 
 import { concat, map, pick, uniq } from 'lodash';
 
-import { getRootUrl } from '../../helpers';
+import { fileExists, getRootUrl, stripI18n } from '../../helpers';
 import { Model } from '../../models';
 
-import profile from '../../profiles/core/catalog';
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * A model for Catalog.
@@ -25,13 +25,22 @@ export class Catalog extends Model {
    * @returns {Object} JSON object.
    */
   toJSON(req) {
+    let metadata = [];
+
+    map(config.profiles, (profilePath) => {
+      if (fileExists(`${profilePath}/catalog`)) {
+        const profile = stripI18n(require(`${profilePath}/catalog`));
+        metadata = [...metadata, ...profile.metadata];
+      }
+    });
+
     return {
       '@id': `${getRootUrl(req)}${this.path}`,
       '@type': this.Type,
       title: this.Title,
       ...pick(
         this,
-        map(profile.metadata, (metadata) => metadata.name),
+        map(metadata, (field) => field.name),
       ),
     };
   }

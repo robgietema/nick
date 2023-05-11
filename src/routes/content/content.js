@@ -289,6 +289,17 @@ export default [
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       await req.document.fetchRelationLists(trx);
+      if (req.query?.expand === 'catalog') {
+        await req.document.fetchRelated('_catalog', trx);
+
+        if (req.document._children) {
+          await Promise.all(
+            req.document._children.map(
+              async (child) => await child.fetchRelated('_catalog', trx),
+            ),
+          );
+        }
+      }
       return {
         json: await req.document.toJSON(req),
       };
