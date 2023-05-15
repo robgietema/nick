@@ -21,6 +21,7 @@
 - Add option to overwrite title via behaviors @robgietema
 - Add fetch reference helper method @robgietema
 - Add expand catalog option to get content call @robgietema
+- Add content events @robgietema
 
 ### Bugfix
 

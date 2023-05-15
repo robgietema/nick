@@ -534,6 +534,9 @@ export class Document extends Model {
     // Get type information
     await this.fetchRelated('_type', trx);
 
+    // Trigger on before copy
+    await config.events.trigger('onBeforeCopy', this, trx, json);
+
     // Store used uuids
     let fileUuid = {};
     const fileFields = this._type.getFactoryFields('File');
@@ -593,9 +596,6 @@ export class Document extends Model {
       trx,
     );
 
-    // Index document
-    document.index(trx);
-
     // Copy versions
     await this.fetchRelated('_versions', trx);
     await Promise.all(
@@ -646,6 +646,9 @@ export class Document extends Model {
         await child.copy(document.uuid, `${path}/${child.id}`, child.id, trx);
       }),
     );
+
+    // Index document
+    await document.index(trx);
   }
 
   /**
@@ -812,6 +815,12 @@ export class Document extends Model {
     // If type not found fetch type
     if (!this._type) {
       await this.fetchRelated('_type', trx);
+    }
+
+    // Apply behaviors not applied
+    if (!this._behaviors) {
+      await this.applyBehaviors(trx);
+      this._behaviors = true;
     }
 
     // If workflow not found fetch workflow

@@ -340,6 +340,11 @@ export default [
       let json = {
         ...omit(pick(req.body, keys(properties)), omitProperties),
       };
+
+      // Trigger onBeforeAdd
+      await config.events.trigger('onBeforeAdd', req.document, trx, json);
+
+      // Handle files, images and relation lists
       json = await handleFiles(json, type);
       json = await handleImages(json, type);
       json = await handleRelationLists(json, req.type);
