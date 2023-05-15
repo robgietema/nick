@@ -32,6 +32,7 @@
 - Fix file download extensions @robgietema
 - Fix exclude from nav in navigation call @robgietema
 - Index documents after all documents have been seeded @robgietema
+- Fix get title handler @robgietema
 
 ### Internal
 
