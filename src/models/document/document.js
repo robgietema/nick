@@ -344,6 +344,7 @@ export class Document extends Model {
     // Get file fields
     const json = {
       ...this.json,
+      title: this.getTitle(),
       ...version,
     };
 
@@ -419,7 +420,6 @@ export class Document extends Model {
       '@id': this.getUrl(req),
       '@type': this.type,
       id: this.id,
-      title: this.getTitle(),
       created: this.created,
       modified: this.modified,
       UID: this.uuid,
