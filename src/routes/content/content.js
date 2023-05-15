@@ -33,7 +33,6 @@ import {
   handleRelationLists,
 } from '../../helpers';
 import { Document, Type } from '../../models';
-import { applyBehaviors } from '../../behaviors';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -361,7 +360,7 @@ export default [
       });
 
       // Apply behaviors
-      document = applyBehaviors(document, type.schema.behaviors);
+      await document.applyBehaviors(trx);
 
       // Set id
       document.setId(
@@ -383,7 +382,7 @@ export default [
       );
 
       // Apply behaviors
-      document = applyBehaviors(document, type.schema.behaviors);
+      await document.applyBehaviors(trx);
 
       // Create initial version
       await document.createRelated(

@@ -12,7 +12,6 @@ import {
   stripI18n,
 } from '../helpers';
 import { Document, Type } from '../models';
-import { applyBehaviors } from '../behaviors';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -173,11 +172,8 @@ export const seed = async (knex) => {
       map(uuids, async (uuid) => {
         let document = await Document.fetchOne({ uuid }, {}, trx);
 
-        // Fetch type
-        await document.fetchRelated('_type', trx);
-
         // Apply behaviors
-        document = applyBehaviors(document, document._type.schema.behaviors);
+        await document.applyBehaviors(trx);
 
         // Index object
         await document.index(trx);

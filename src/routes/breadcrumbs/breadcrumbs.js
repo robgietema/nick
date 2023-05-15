@@ -5,9 +5,8 @@
 
 import { compact, drop, head, last } from 'lodash';
 
-import { Document, Type } from '../../models';
+import { Document } from '../../models';
 import { getUrl, getRootUrl, getPath } from '../../helpers';
-import { applyBehaviors } from '../../behaviors';
 
 /**
  * Traverse path.
@@ -31,10 +30,9 @@ async function traverse(document, slugs, items, trx) {
       {},
       trx,
     );
-    const type = await Type.fetchById(parent.type, {}, trx);
 
     // Apply behaviors
-    parent = applyBehaviors(parent, type.schema.behaviors);
+    await parent.applyBehaviors(trx);
 
     // Traverse up
     return traverse(
@@ -60,10 +58,9 @@ export default [
     handler: async (req, trx) => {
       const slugs = getPath(req).split('/');
       let document = await Document.fetchOne({ parent: null }, {}, trx);
-      const type = await Type.fetchById(document.type, {}, trx);
 
       // Apply behaviors
-      document = applyBehaviors(document, type.schema.behaviors);
+      await document.applyBehaviors(trx);
 
       const items = await traverse(
         document,

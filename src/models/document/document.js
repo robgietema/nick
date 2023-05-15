@@ -4,6 +4,7 @@
  */
 
 import _, {
+  assign,
   compact,
   concat,
   drop,
@@ -19,6 +20,7 @@ import _, {
   mapValues,
   omit,
   omitBy,
+  pick,
   uniq,
   values,
 } from 'lodash';
@@ -36,6 +38,7 @@ import {
   uniqueId,
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
+import behaviors from '../../behaviors';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -151,6 +154,21 @@ export class Document extends Model {
     this._version = await this.$relatedQuery('_versions', trx)
       .where({ version })
       .first();
+  }
+
+  /**
+   * Apply behaviors
+   * @param {Object} trx Transaction object.
+   * @method applyBehaviors
+   */
+  async applyBehaviors(trx) {
+    // If type not found fetch type
+    if (!this._type) {
+      await this.fetchRelated('_type', trx);
+    }
+
+    // Assign behaviors
+    assign(this, ...values(pick(behaviors, this._type.schema.behaviors)));
   }
 
   /**

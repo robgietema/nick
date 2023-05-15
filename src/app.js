@@ -101,8 +101,11 @@ map(routes, (route) => {
         // Get workflow
         await type.fetchRelated('_workflow', trx);
 
+        // Apply behaviors
+        await document.applyBehaviors(trx);
+
         // Call handler
-        req.document = applyBehaviors(document, type.schema.behaviors);
+        req.document = document;
         req.type = type;
         req.permissions = uniq([
           ...permissions,
