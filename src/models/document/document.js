@@ -12,6 +12,7 @@ import _, {
   head,
   includes,
   isArray,
+  isEmpty,
   isFunction,
   isUndefined,
   keys,
@@ -414,7 +415,7 @@ export class Document extends Model {
     // Return data
     return {
       ...json,
-      '@components': components,
+      ...(isEmpty(components) ? {} : { '@components': components }),
       '@id': this.getUrl(req),
       '@type': this.type,
       id: this.id,
@@ -839,7 +840,10 @@ export class Document extends Model {
               } else if (index.attr in this._type._schema.properties) {
                 fields[`_${index.name}`] = {
                   type: index.type,
-                  value: this.json[index.attr],
+                  value:
+                    index.type === 'boolean'
+                      ? !!this.json[index.attr]
+                      : this.json[index.attr],
                 };
               }
             }),
@@ -861,7 +865,10 @@ export class Document extends Model {
               } else if (metadata.attr in this._type._schema.properties) {
                 fields[metadata.name] = {
                   type: metadata.type,
-                  value: this.json[metadata.attr],
+                  value:
+                    metadata.type === 'boolean'
+                      ? !!this.json[metadata.attr]
+                      : this.json[metadata.attr],
                 };
               }
             }),

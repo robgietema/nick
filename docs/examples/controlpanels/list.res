@@ -11,5 +11,10 @@ Content-Type: application/json
     "@id": "http://localhost:8000/@controlpanels/mail",
     "group": "General",
     "title": "Mail"
+  },
+  {
+    "@id": "http://localhost:8000/@controlpanels/navigation",
+    "group": "General",
+    "title": "Navigation"
   }
 ]

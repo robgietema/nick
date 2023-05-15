@@ -74,7 +74,7 @@ Content-Type: application/json
       "Title": "Welcome to Nick!",
       "Subject": null,
       "is_folderish": true,
-      "exclude_from_nav": false,
+      "exclude_from_nav": null,
       "Type": "Site",
       "getId": "root",
       "Creator": "admin",

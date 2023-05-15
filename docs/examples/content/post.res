@@ -11,6 +11,7 @@ Content-Type: application/json
   "modified": "2022-04-08T16:00:00.000Z",
   "UID": "a95388f2-e4b3-4292-98aa-62656cbd5b9c",
   "is_folderish": true,
+  "owner": "admin",
   "review_state": "private",
   "lock": {
     "locked": false,
