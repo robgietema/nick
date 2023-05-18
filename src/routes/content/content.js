@@ -414,6 +414,9 @@ export default [
       // Fetch related lists
       await document.fetchRelationLists(trx);
 
+      // Trigger onBeforeAdd
+      await config.events.trigger('onAfterAdd', document, trx);
+
       // Send data back to client
       return {
         status: 201,
@@ -536,6 +539,9 @@ export default [
 
       // Reindex document
       await req.document.reindex(trx);
+
+      // Trigger onAfterModified
+      await config.events.trigger('onAfterModified', req.document, trx);
 
       // Send ok
       return {

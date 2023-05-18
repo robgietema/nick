@@ -6,6 +6,8 @@
 
 import { isArray, mapKeys } from 'lodash';
 
+import { mapAsync } from '../helpers/utils/utils';
+
 const events = {
   register: (plugin, position = 'bottom') => {
     mapKeys(plugin, (handler, event) => {
@@ -19,7 +21,9 @@ const events = {
   },
 
   trigger: async (event, context, trx, ...params) => {
-    events[event]?.map(
+    if (!events[event]) return;
+    await mapAsync(
+      events[event],
       async (handler) => await handler(context, trx, ...params),
     );
   },
