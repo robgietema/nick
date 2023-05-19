@@ -354,35 +354,39 @@ export class Document extends Model {
       const fileFields = this._type.getFactoryFields('File');
       mapSync(fileFields, (field) => {
         // Set data
-        json[field] = {
-          'content-type': json[field]['content-type'],
-          download: `${this.getUrl(req)}/@@download/file`,
-          filename: json[field].filename,
-          size: json[field].size,
-        };
+        if (json[field]) {
+          json[field] = {
+            'content-type': json[field]['content-type'],
+            download: `${this.getUrl(req)}/@@download/file`,
+            filename: json[field].filename,
+            size: json[field].size,
+          };
+        }
       });
 
       // Loop through image fields
       const imageFields = this._type.getFactoryFields('Image');
       mapSync(imageFields, (field) => {
         // Set data
-        json[field] = {
-          'content-type': json[field]['content-type'],
-          download: `${this.getUrl(req)}/@@images/${json[field].uuid}.${last(
-            json[field].filename.split('.'),
-          )}`,
-          filename: json[field].filename,
-          size: json[field].size,
-          width: json[field].width,
-          height: json[field].height,
-          scales: mapValues(json[field].scales, (scale) => ({
-            width: scale.width,
-            height: scale.height,
-            download: `${this.getUrl(req)}/@@images/${scale.uuid}.${last(
+        if (json[field]) {
+          json[field] = {
+            'content-type': json[field]['content-type'],
+            download: `${this.getUrl(req)}/@@images/${json[field].uuid}.${last(
               json[field].filename.split('.'),
             )}`,
-          })),
-        };
+            filename: json[field].filename,
+            size: json[field].size,
+            width: json[field].width,
+            height: json[field].height,
+            scales: mapValues(json[field].scales, (scale) => ({
+              width: scale.width,
+              height: scale.height,
+              download: `${this.getUrl(req)}/@@images/${scale.uuid}.${last(
+                json[field].filename.split('.'),
+              )}`,
+            })),
+          };
+        }
       });
 
       // Loop through relation list fields
