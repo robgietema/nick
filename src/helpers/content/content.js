@@ -89,7 +89,7 @@ export async function handleImages(json, type, profile) {
     }
 
     // Check if new data is uploaded
-    if ('data' in fields[field]) {
+    if (fields[field] && 'data' in fields[field]) {
       // Create filestream
       const { uuid, size, width, height, scales } = await writeImage(
         fields[field].data,

@@ -686,11 +686,11 @@ export class Document extends Model {
   mimeType() {
     const imageFields = this._type.getFactoryFields('Image');
     if (imageFields.length > 0) {
-      return this.json[imageFields[0]]['content-type'];
+      return this.json[imageFields[0]]?.['content-type'];
     }
     const fileFields = this._type.getFactoryFields('File');
     if (fileFields.length > 0) {
-      return this.json[fileFields[0]]['content-type'];
+      return this.json[fileFields[0]]?.['content-type'];
     }
     return undefined;
   }
