@@ -356,7 +356,10 @@ export default [
         created,
         modified: created,
         version: 0,
-        position_in_parent: req.document._children.length,
+        position_in_parent:
+          req.body.position_in_parent !== undefined
+            ? req.body.position_in_parent
+            : req.document._children.length,
         lock: { locked: false, stealable: true },
         workflow_state: type._workflow.json.initial_state,
         workflow_history: JSON.stringify(req.body.workflow_history || []),
@@ -526,6 +529,10 @@ export default [
         {
           id: newId,
           path: newPath,
+          position_in_parent:
+            req.body.position_in_parent !== undefined
+              ? req.body.position_in_parent
+              : req.document.position_in_parent,
           version,
           modified,
           json,

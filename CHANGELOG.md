@@ -35,6 +35,7 @@
 - Index documents after all documents have been seeded @robgietema
 - Fix get title handler @robgietema
 - Fix seeds when image is not provided @robgietema
+- Read position in parent in update content call @robgietema
 
 ### Internal
 
