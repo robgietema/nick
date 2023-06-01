@@ -36,6 +36,7 @@
 - Fix get title handler @robgietema
 - Fix seeds when image is not provided @robgietema
 - Read position in parent in update content call @robgietema
+- Apply behaviors to children in get content call @robgietema
 
 ### Internal
 

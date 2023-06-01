@@ -341,6 +341,12 @@ export class Document extends Model {
         }
       : {};
 
+    // Apply behaviors not applied
+    if (!this._behaviors) {
+      await this.applyBehaviors();
+      this._behaviors = true;
+    }
+
     // Get file fields
     const json = {
       ...this.json,
