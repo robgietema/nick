@@ -604,6 +604,9 @@ export default [
       // Reindex children
       await parent.reindexChildren(trx);
 
+      // Reindex parent
+      await parent.reindex(trx);
+
       // Return deleted
       return {
         status: 204,
