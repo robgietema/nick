@@ -14,6 +14,7 @@ export { Document } from './document/document';
 export { Group } from './group/group';
 export { Index } from './index/index';
 export { Permission } from './permission/permission';
+export { Profile } from './profile/profile';
 export { Redirect } from './redirect/redirect';
 export { Role } from './role/role';
 export { Type } from './type/type';
