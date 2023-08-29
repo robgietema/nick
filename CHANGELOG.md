@@ -39,6 +39,7 @@
 - Read position in parent in update content call @robgietema
 - Apply behaviors to children in get content call @robgietema
 - Reindex parent after delete @robgietema
+- Fix addable in types endpoint @robgietema
 
 ### Internal
 
