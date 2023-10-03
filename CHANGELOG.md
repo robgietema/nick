@@ -40,6 +40,7 @@
 - Apply behaviors to children in get content call @robgietema
 - Reindex parent after delete @robgietema
 - Fix addable in types endpoint @robgietema
+- Fix import order of profiles @robgietema
 
 ### Internal
 

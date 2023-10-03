@@ -8,25 +8,23 @@ const { config } = require(`${process.cwd()}/config`);
 
 export const seed = async (knex) => {
   try {
-    await Promise.all(
-      map(config.profiles, async (profilePath) => {
-        if (dirExists(`${profilePath}/vocabularies`)) {
-          // Get vocabulary profiles
-          const vocabularies = map(
-            await fs.readdir(`${profilePath}/vocabularies`),
-            (file) => dropRight(file.split('.')).join('.'),
-          ).sort();
+    await mapAsync(config.profiles, async (profilePath) => {
+      if (dirExists(`${profilePath}/vocabularies`)) {
+        // Get vocabulary profiles
+        const vocabularies = map(
+          await fs.readdir(`${profilePath}/vocabularies`),
+          (file) => dropRight(file.split('.')).join('.'),
+        ).sort();
 
-          // Import vocabularies
-          await mapAsync(vocabularies, async (vocabulary) => {
-            const data = stripI18n(
-              require(`${profilePath}/vocabularies/${vocabulary}`),
-            );
-            await Vocabulary.create(data, {}, knex);
-          });
-        }
-      }),
-    );
+        // Import vocabularies
+        await mapAsync(vocabularies, async (vocabulary) => {
+          const data = stripI18n(
+            require(`${profilePath}/vocabularies/${vocabulary}`),
+          );
+          await Vocabulary.create(data, {}, knex);
+        });
+      }
+    });
     log.info('Vocabularies imported');
   } catch (err) {
     log.error(err);
