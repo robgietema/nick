@@ -17,7 +17,7 @@ import _, { indexOf, join, slice } from 'lodash';
 function readFile(filename) {
   // Read request file
   const data = fs
-    .readFileSync(path.join(__dirname, `../../../docs/examples/${filename}`))
+    .readFileSync(`${process.cwd()}/docs/examples/${filename}`)
     .toString()
     .split(/\r?\n/);
 
