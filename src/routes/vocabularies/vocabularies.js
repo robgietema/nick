@@ -40,7 +40,6 @@ export default [
     view: '/@vocabularies/:id',
     permission: 'View',
     handler: async (req, trx) => {
-      console.log(config.vocabularies);
       // Check if vocabulary is available
       if (!includes(keys(vocabularies, req.param.id)) &&
           !includes(keys(config.vocabularies), req.params.id)) {
