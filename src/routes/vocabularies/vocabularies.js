@@ -9,6 +9,8 @@ import { Vocabulary } from '../../models';
 import { vocabularies } from '../../vocabularies';
 import { RequestException, getUrl } from '../../helpers';
 
+const { config } = require(`${process.cwd()}/config`);
+
 export default [
   {
     op: 'get',
@@ -38,8 +40,10 @@ export default [
     view: '/@vocabularies/:id',
     permission: 'View',
     handler: async (req, trx) => {
+      console.log(config.vocabularies);
       // Check if vocabulary is available
-      if (!includes(keys(vocabularies), req.params.id)) {
+      if (!includes(keys(vocabularies, req.param.id)) &&
+          !includes(keys(config.vocabularies), req.params.id)) {
         const vocabulary = await Vocabulary.fetchById(req.params.id, {}, trx);
         if (!vocabulary) {
           throw new RequestException(404, { error: req.i18n('Not found.') });
@@ -56,7 +60,9 @@ export default [
       }
 
       // Get items
-      const items = await vocabularies[req.params.id](req);
+      const items = includes(keys(vocabularies), req.param.id) ?
+        await vocabularies[req.params.id](req) :
+        await config.vocabularies[req.params.id](req);
 
       // Return data
       return {

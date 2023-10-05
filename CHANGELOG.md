@@ -42,6 +42,7 @@
 - Fix addable in types endpoint @robgietema
 - Fix import order of profiles @robgietema
 - Fix test runner for projects @robgietema
+- Fix project vocabularies @robgietema
 
 ### Internal
 
