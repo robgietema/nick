@@ -6,7 +6,7 @@ Content-Type: application/json
   "nick_version": "2.8.0",
   "node_version": "v16.15.0",
   "express_version": "4.18.2",
-  "objection_version": "3.0.1",
-  "knex_version": "2.4.2",
+  "objection_version": "3.1.2",
+  "knex_version": "3.0.1",
   "postgres_version": "14.4"
 }
