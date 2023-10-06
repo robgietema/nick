@@ -41,8 +41,10 @@ export default [
     permission: 'View',
     handler: async (req, trx) => {
       // Check if vocabulary is available
-      if (!includes(keys(vocabularies, req.param.id)) &&
-          !includes(keys(config.vocabularies), req.params.id)) {
+      if (
+        !includes(keys(vocabularies), req.params.id) &&
+        !includes(keys(config.vocabularies || {}), req.params.id)
+      ) {
         const vocabulary = await Vocabulary.fetchById(req.params.id, {}, trx);
         if (!vocabulary) {
           throw new RequestException(404, { error: req.i18n('Not found.') });
@@ -59,9 +61,9 @@ export default [
       }
 
       // Get items
-      const items = includes(keys(vocabularies), req.param.id) ?
-        await vocabularies[req.params.id](req) :
-        await config.vocabularies[req.params.id](req);
+      const items = includes(keys(vocabularies), req.params.id)
+        ? await vocabularies[req.params.id](req)
+        : await config.vocabularies[req.params.id](req);
 
       // Return data
       return {
