@@ -73,7 +73,9 @@ map(routes, (route) => {
 
           // If no redirect found
           if (!redirect) {
-            throw new RequestException(404, { error: req.i18n('Not found.') });
+            throw new RequestException(404, {
+              error: req.i18n(`Not found: ${getPath(req)}`),
+            });
           }
 
           // Send redirect
