@@ -23,6 +23,7 @@
 - Add expand catalog option to get content call @robgietema
 - Add content events @robgietema
 - Add profile metadata @robgietema
+- Add @site endpoint @robgietema
 
 ### Bugfix
 

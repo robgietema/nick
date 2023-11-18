@@ -16,5 +16,10 @@ Content-Type: application/json
     "@id": "http://localhost:8000/@controlpanels/navigation",
     "group": "General",
     "title": "Navigation"
+  },
+  {
+    "@id": "http://localhost:8000/@controlpanels/site",
+    "group": "General",
+    "title": "Site"
   }
 ]
