@@ -1331,4 +1331,4 @@ msgstr "U heeft geen rechten om een gebruiker toe te voegen."
 #: src/profiles/core/vocabularies/boolean.json:3
 # defaultMessage: boolean
 msgid "boolean"
-msgstr ""
+msgstr "boolean"
