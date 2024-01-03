@@ -24,6 +24,7 @@
 - Add content events @robgietema
 - Add profile metadata @robgietema
 - Add @site endpoint @robgietema
+- Add upgrade profile functionality @robgietema
 
 ### Bugfix
 
