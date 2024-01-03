@@ -61,7 +61,7 @@ export class Type extends Model {
             {
               fields: [],
               id: 'default',
-              'title:i18n': 'Default',
+              title: 'Default',
             },
           ],
         },

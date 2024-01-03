@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2023-02-08T22:20:21.649Z\n"
+"POT-Creation-Date: 2024-01-03T20:01:35.715Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,16 @@ msgstr ""
 #: src/profiles/core/permissions.json:10
 # defaultMessage: Add
 msgid "Add"
+msgstr ""
+
+#: src/profiles/core/controlpanels/navigation.json:33
+# defaultMessage: Add additional items to the navigation, one per line. In the format 'title|description|url'.
+msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
+msgstr ""
+
+#: src/profiles/core/controlpanels/navigation.json:32
+# defaultMessage: Additional items
+msgid "Additional items"
 msgstr ""
 
 #: src/profiles/core/behaviors/dates.json:4
@@ -365,7 +375,12 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/routes/content/content.js:406
+#: src/profiles/core/controlpanels/navigation.json:27
+# defaultMessage: Displayed content types
+msgid "Displayed content types"
+msgstr ""
+
+#: src/routes/content/content.js:466
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -527,7 +542,7 @@ msgstr ""
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:174
+#: src/app.js:179
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
@@ -663,6 +678,11 @@ msgstr ""
 msgid "Modify"
 msgstr ""
 
+#: src/profiles/core/controlpanels/navigation.json:3
+# defaultMessage: Navigation
+msgid "Navigation"
+msgstr ""
+
 #: src/profiles/core/catalog.json:20
 # defaultMessage: Navigation path
 msgid "Navigation path"
@@ -686,13 +706,12 @@ msgstr ""
 msgid "Not allowed"
 msgstr ""
 
-#: src/app.js:76
 #: src/routes/controlpanels/controlpanels.js:31
 #: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:26
 #: src/routes/types/types.js:30
 #: src/routes/users/users.js:104
-#: src/routes/vocabularies/vocabularies.js:45
+#: src/routes/vocabularies/vocabularies.js:50
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr ""
@@ -853,7 +872,7 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: src/routes/content/content.js:281
+#: src/routes/content/content.js:326
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr ""
@@ -881,6 +900,11 @@ msgstr ""
 #: src/profiles/core/behaviors/ownership.json:21
 # defaultMessage: Rights
 msgid "Rights"
+msgstr ""
+
+#: src/profiles/core/controlpanels/site.json:15
+# defaultMessage: Robots.txt
+msgid "Robots.txt"
 msgstr ""
 
 #: src/profiles/core/actions.json:32
@@ -944,6 +968,7 @@ msgstr ""
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 msgstr ""
 
+#: src/profiles/core/controlpanels/site.json:3
 #: src/profiles/core/types/site.json:3
 # defaultMessage: Site
 msgid "Site"
@@ -959,6 +984,11 @@ msgstr ""
 msgid "Site 'From' name"
 msgstr ""
 
+#: src/profiles/core/controlpanels/site.json:22
+# defaultMessage: Site Logo
+msgid "Site Logo"
+msgstr ""
+
 #: src/profiles/core/actions.json:88
 # defaultMessage: Site Setup
 msgid "Site Setup"
@@ -967,6 +997,11 @@ msgstr ""
 #: src/profiles/core/controlpanels/language.json:34
 # defaultMessage: Site language
 msgid "Site language"
+msgstr ""
+
+#: src/profiles/core/controlpanels/site.json:28
+# defaultMessage: Site title
+msgid "Site title"
 msgstr ""
 
 #: src/profiles/core/actions.json:66
@@ -1042,6 +1077,11 @@ msgstr ""
 #: src/profiles/core/controlpanels/mail.json:36
 # defaultMessage: The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail.
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
+msgstr ""
+
+#: src/profiles/core/controlpanels/navigation.json:17
+# defaultMessage: The content types that should be shown in the navigation and site map.
+msgid "The content types that should be shown in the navigation and site map."
 msgstr ""
 
 #: src/profiles/core/catalog.json:143
@@ -1163,9 +1203,24 @@ msgstr ""
 msgid "This document is already locked by another user."
 msgstr ""
 
+#: src/profiles/core/controlpanels/site.json:16
+# defaultMessage: This is the contents of the robots.txt file.
+msgid "This is the contents of the robots.txt file."
+msgstr ""
+
 #: src/profiles/core/behaviors/short_name.json:15
 # defaultMessage: This name will be displayed in the URL.
 msgid "This name will be displayed in the URL."
+msgstr ""
+
+#: src/profiles/core/controlpanels/site.json:21
+# defaultMessage: This shows a custom logo on your site.
+msgid "This shows a custom logo on your site."
+msgstr ""
+
+#: src/profiles/core/controlpanels/site.json:29
+# defaultMessage: This shows up in the title bar of browsers and in syndication feeds.
+msgid "This shows up in the title bar of browsers and in syndication feeds."
 msgstr ""
 
 #: src/profiles/core/catalog.json:291
@@ -1200,7 +1255,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: src/app.js:132
+#: src/app.js:137
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr ""
@@ -1210,7 +1265,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/app.js:97
+#: src/app.js:99
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
@@ -1298,7 +1353,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: src/app.js:118
+#: src/app.js:123
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
@@ -1314,7 +1369,7 @@ msgstr ""
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:403
+#: src/routes/content/content.js:463
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."

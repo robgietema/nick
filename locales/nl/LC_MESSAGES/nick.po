@@ -64,6 +64,16 @@ msgstr "Toegankelijkheid"
 msgid "Add"
 msgstr "Toevoegen"
 
+#: src/profiles/core/controlpanels/navigation.json:33
+# defaultMessage: Add additional items to the navigation, one per line. In the format 'title|description|url'.
+msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
+msgstr "Voeg items toe aan de navigatie, één per regel. In het formaatl 'titel|omschrijving|url'"
+
+#: src/profiles/core/controlpanels/navigation.json:32
+# defaultMessage: Additional items
+msgid "Additional items"
+msgstr "Additionele items"
+
 #: src/profiles/core/behaviors/dates.json:4
 # defaultMessage: Adds effective and expiration dates.
 msgid "Adds effective and expiration dates."
@@ -365,7 +375,12 @@ msgstr "Verwijderen"
 msgid "Description"
 msgstr "Omschrijving"
 
-#: src/routes/content/content.js:406
+#: src/profiles/core/controlpanels/navigation.json:27
+# defaultMessage: Displayed content types
+msgid "Displayed content types"
+msgstr "Getoonde content types"
+
+#: src/routes/content/content.js:466
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -527,7 +542,7 @@ msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
-#: src/app.js:174
+#: src/app.js:179
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
@@ -663,6 +678,11 @@ msgstr "Wijzigingsdatum:"
 msgid "Modify"
 msgstr "Wijzigen"
 
+#: src/profiles/core/controlpanels/navigation.json:3
+# defaultMessage: Navigation
+msgid "Navigation"
+msgstr "Navigatie"
+
 #: src/profiles/core/catalog.json:20
 # defaultMessage: Navigation path
 msgid "Navigation path"
@@ -686,13 +706,12 @@ msgstr "Nee"
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
-#: src/app.js:76
 #: src/routes/controlpanels/controlpanels.js:31
 #: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:26
 #: src/routes/types/types.js:30
 #: src/routes/users/users.js:104
-#: src/routes/vocabularies/vocabularies.js:45
+#: src/routes/vocabularies/vocabularies.js:50
 # defaultMessage: Not found.
 msgid "Not found."
 msgstr "Niet gevonden."
@@ -853,7 +872,7 @@ msgstr "Relatief pad"
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: src/routes/content/content.js:281
+#: src/routes/content/content.js:326
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
@@ -882,6 +901,11 @@ msgstr "Reviewer"
 # defaultMessage: Rights
 msgid "Rights"
 msgstr "Rechten"
+
+#: src/profiles/core/controlpanels/site.json:15
+# defaultMessage: Robots.txt
+msgid "Robots.txt"
+msgstr "Robots.txt"
 
 #: src/profiles/core/actions.json:32
 # defaultMessage: Rules
@@ -944,6 +968,7 @@ msgstr "Simpele Publicatie Workflow"
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 msgstr "Eenvoudige workflow die handig is voor eenvoudige websites. Dingen beginnen als privé en kunnen ter beoordeling worden ingediend of rechtstreeks worden gepubliceerd. De maker van een inhoudsitem kan het item bewerken, zelfs nadat het is gepubliceerd."
 
+#: src/profiles/core/controlpanels/site.json:3
 #: src/profiles/core/types/site.json:3
 # defaultMessage: Site
 msgid "Site"
@@ -959,6 +984,11 @@ msgstr "Site 'Van'-adres"
 msgid "Site 'From' name"
 msgstr "Site 'Van' naam"
 
+#: src/profiles/core/controlpanels/site.json:22
+# defaultMessage: Site Logo
+msgid "Site Logo"
+msgstr "Site Logo"
+
 #: src/profiles/core/actions.json:88
 # defaultMessage: Site Setup
 msgid "Site Setup"
@@ -968,6 +998,11 @@ msgstr "Site Instellingen"
 # defaultMessage: Site language
 msgid "Site language"
 msgstr "Website taal"
+
+#: src/profiles/core/controlpanels/site.json:28
+# defaultMessage: Site title
+msgid "Site title"
+msgstr "Site titel"
 
 #: src/profiles/core/actions.json:66
 # defaultMessage: Sitemap
@@ -1043,6 +1078,11 @@ msgstr "De JSON-weergave van de lay-out van objectblokken. Moet een JSON-array z
 # defaultMessage: The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail.
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 msgstr "Het adres van uw lokale SMTP-server (uitgaande e-mail). Meestal 'localhost', tenzij je een externe server gebruikt om e-mail te versturen."
+
+#: src/profiles/core/controlpanels/navigation.json:17
+# defaultMessage: The content types that should be shown in the navigation and site map.
+msgid "The content types that should be shown in the navigation and site map."
+msgstr "Content types die in de navigatie en de site map getoond moeten worden."
 
 #: src/profiles/core/catalog.json:143
 #: src/profiles/core/catalog.json:216
@@ -1161,10 +1201,25 @@ msgstr "De gebruiker die de resultaten van de querystring bekijkt"
 msgid "This document is already locked by another user."
 msgstr "Dit document is al vergrendeld door een andere gebruiker."
 
+#: src/profiles/core/controlpanels/site.json:16
+# defaultMessage: This is the contents of the robots.txt file.
+msgid "This is the contents of the robots.txt file."
+msgstr "Dit is de inhoud van het robots.txt bestand."
+
 #: src/profiles/core/behaviors/short_name.json:15
 # defaultMessage: This name will be displayed in the URL.
 msgid "This name will be displayed in the URL."
 msgstr "Deze naam wordt weergegeven in de URL."
+
+#: src/profiles/core/controlpanels/site.json:21
+# defaultMessage: This shows a custom logo on your site.
+msgid "This shows a custom logo on your site."
+msgstr "Dit toont een aangepast logo op uw site"
+
+#: src/profiles/core/controlpanels/site.json:29
+# defaultMessage: This shows up in the title bar of browsers and in syndication feeds.
+msgid "This shows up in the title bar of browsers and in syndication feeds."
+msgstr "Dit verschijnt in de titelbalk van browsers en in syndicatiefeeds."
 
 #: src/profiles/core/catalog.json:291
 #: src/profiles/core/catalog.json:297
@@ -1198,7 +1253,7 @@ msgstr "Aan, van en bericht zijn verplichte velden."
 msgid "Today"
 msgstr "Vandaag"
 
-#: src/app.js:132
+#: src/app.js:137
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr "Transactiefout"
@@ -1208,7 +1263,7 @@ msgstr "Transactiefout"
 msgid "Type"
 msgstr "Type"
 
-#: src/app.js:97
+#: src/app.js:99
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
@@ -1296,7 +1351,7 @@ msgstr "Verkeerde login en/of wachtwoord."
 msgid "Yes"
 msgstr "Ja"
 
-#: src/app.js:118
+#: src/app.js:123
 #: src/routes/workflow/workflow.js:25
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
@@ -1312,7 +1367,7 @@ msgstr "U kunt geen systeemgroepen verwijderen."
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
-#: src/routes/content/content.js:403
+#: src/routes/content/content.js:463
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
@@ -1331,4 +1386,4 @@ msgstr "U heeft geen rechten om een gebruiker toe te voegen."
 #: src/profiles/core/vocabularies/boolean.json:3
 # defaultMessage: boolean
 msgid "boolean"
-msgstr ""
+msgstr "boolean"
