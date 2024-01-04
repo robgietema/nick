@@ -200,6 +200,7 @@ export default [
         headers: {
           'Content-Type': field['content-type'],
           'Content-Disposition': `attachment; filename="${field.filename}"`,
+          'Accept-Ranges': 'bytes',
         },
         binary: buffer,
       };

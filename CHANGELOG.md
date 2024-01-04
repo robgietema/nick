@@ -45,6 +45,8 @@
 - Fix import order of profiles @robgietema
 - Fix test runner for projects @robgietema
 - Fix project vocabularies @robgietema
+- Fix password reset link @robgietema
+- Fix serving videos @robgietema
 
 ### Internal
 
