@@ -403,7 +403,7 @@ export class Document extends Model {
           isArray(json[field]) &&
           json[field].length > 0 &&
           this._relationLists &&
-          this.relationLists[field]
+          this._relationLists[field]
         ) {
           json[field] = this._relationLists[field].map((document) => ({
             '@id': document.path,
