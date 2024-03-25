@@ -399,7 +399,12 @@ export class Document extends Model {
       const relationListFields = this._type.getFactoryFields('Relation List');
       mapSync(relationListFields, async (field) => {
         // Check if related documents
-        if (isArray(json[field]) && json[field].length > 0) {
+        if (
+          isArray(json[field]) &&
+          json[field].length > 0 &&
+          this._relationLists &&
+          this.relationLists[field]
+        ) {
           json[field] = this._relationLists[field].map((document) => ({
             '@id': document.path,
             UID: document.uuid,

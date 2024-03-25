@@ -47,6 +47,7 @@
 - Fix project vocabularies @robgietema
 - Fix password reset link @robgietema
 - Fix serving videos @robgietema
+- Fix related items in get call @robgietema
 
 ### Internal
 
