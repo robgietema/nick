@@ -320,6 +320,7 @@ export class Model extends mixin(ObjectionModel, [
    * @param {string} id Id of the model.
    * @param {Object} data Model data.
    * @param {Object} trx Transaction object.
+   * @returns {Object} Model of the updated record
    */
   static async update(id, data, trx) {
     const relationObjects = this.getRelations();
@@ -369,6 +370,7 @@ export class Model extends mixin(ObjectionModel, [
         }
       }),
     );
+    return model;
   }
 
   /**

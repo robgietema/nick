@@ -12,7 +12,7 @@ export default [
     view: '/@site',
     permission: 'View',
     handler: async (req, trx) => {
-      const controlpanel = await Controlpanel.fetchById('site');
+      const controlpanel = await Controlpanel.fetchById('site', {}, trx);
       const config = controlpanel.data;
 
       // Return database information

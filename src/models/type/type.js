@@ -71,7 +71,7 @@ export class Type extends Model {
     } else {
       schema = this.schema;
     }
-    await this.update({ _schema: schema });
+    await this.update({ _schema: schema }, trx);
   }
 
   /**

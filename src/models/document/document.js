@@ -518,7 +518,7 @@ export class Document extends Model {
   async fetchWorkflowHistory(req, trx) {
     return await Promise.all(
       map(this.workflow_history, async (item) => {
-        const user = await User.fetchById(item.actor);
+        const user = await User.fetchById(item.actor, {}, trx);
         return {
           ...item,
           actor: {
@@ -727,7 +727,7 @@ export class Document extends Model {
    */
   async allowedUsersGroupsRoles(trx) {
     // Get global roles
-    const view = await Permission.fetchById('View');
+    const view = await Permission.fetchById('View', {}, trx);
     await view.fetchRelated('_roles', trx);
     const globalRoles = view._roles.map((role) => role.id);
 
