@@ -293,15 +293,10 @@ export default [
         await req.document.fetchRelated('_catalog', trx);
 
         if (req.document._children) {
-          await Promise.all(
-            req.document._children.map(
-              async (child) =>
-                await Promise.all(
-                  child.fetchRelated('_catalog', trx),
-                  child.fetchRelationLists(trx),
-                ),
-            ),
-          );
+          await mapAsync(req.document._children, async (child) => {
+            await child.fetchRelated('_catalog', trx);
+            await child.fetchRelationLists(trx);
+          });
         }
       }
       return {
