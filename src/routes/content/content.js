@@ -346,9 +346,6 @@ export default [
         ...omit(pick(req.body, keys(properties)), omitProperties),
       };
 
-      // Trigger onBeforeAdd
-      await config.events.trigger('onBeforeAdd', req.document, trx, json);
-
       // Handle files, images and relation lists
       json = await handleFiles(json, type);
       json = await handleImages(json, type);
@@ -387,6 +384,9 @@ export default [
         document.id
       }`;
 
+      // Trigger onBeforeAdd
+      await config.events.trigger('onBeforeAdd', document, json, trx);
+
       // Insert document in database
       document = await req.document.createRelatedAndFetch(
         '_children',
@@ -422,7 +422,7 @@ export default [
       // Fetch related lists
       await document.fetchRelationLists(trx);
 
-      // Trigger onBeforeAdd
+      // Trigger onAfterAdd
       await config.events.trigger('onAfterAdd', document, trx);
 
       // Send data back to client
@@ -529,6 +529,14 @@ export default [
         await Document.replacePath(path, newPath, trx);
       }
 
+      // Trigger onBeforeAdd
+      await config.events.trigger(
+        'onBeforeModified',
+        req.document,
+        { ...json, id: newId, path: newPath },
+        trx,
+      );
+
       // Save document with new values
       await req.document.update(
         {
@@ -598,6 +606,9 @@ export default [
       // Get parent
       await req.document.fetchRelated('_parent', trx);
       const parent = req.document._parent;
+
+      // Trigger onBeforeAdd
+      await config.events.trigger('onBeforeDelete', req.document, trx);
 
       // Remove document (versions will be cascaded)
       await req.document.delete(trx);

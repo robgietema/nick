@@ -4,6 +4,7 @@ export const up = (knex) =>
       .uuid('document')
       .notNull()
       .references('document.uuid')
+      .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table.string('path').notNull().index();
     table.primary(['document', 'path']);

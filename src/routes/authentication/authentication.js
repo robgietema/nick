@@ -25,8 +25,13 @@ export default [
         });
       }
 
-      // Find user
-      const user = await User.fetchById(req.body.login, {}, trx);
+      // Find user by id
+      let user = await User.fetchById(req.body.login, {}, trx);
+
+      // Find user by email
+      if (!user) {
+        user = await User.fetchOne({ email: req.body.login }, {}, trx);
+      }
 
       // If user not found
       if (!user) {

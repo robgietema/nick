@@ -4,6 +4,7 @@ export const up = async (knex) => {
       .uuid('document')
       .primary()
       .references('document.uuid')
+      .onUpdate('CASCADE')
       .onDelete('CASCADE');
   });
   await knex.schema.createTable('index', (table) => {

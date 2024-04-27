@@ -26,7 +26,11 @@ export const up = async (knex) => {
       .onDelete('CASCADE');
     table.integer('position_in_parent');
     table.integer('version');
-    table.string('owner').references('user.id');
+    table
+      .string('owner')
+      .references('user.id')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
     table.jsonb('json').notNull();
     table.jsonb('lock').notNull();
     table.boolean('inherit_roles').notNull().defaultTo(true);
@@ -37,7 +41,11 @@ export const up = async (knex) => {
   await knex.schema.createTable('version', (table) => {
     table.integer('version');
     table.dateTime('created');
-    table.string('actor').references('user.id');
+    table
+      .string('actor')
+      .references('user.id')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
     table
       .uuid('document')
       .index()
