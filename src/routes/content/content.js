@@ -416,14 +416,14 @@ export default [
       // Fetch type
       await document.fetchRelated('_type', trx);
 
+      // Trigger onAfterAdd
+      await config.events.trigger('onAfterAdd', document, trx);
+
       // Index new document
       await document.index(trx);
 
       // Fetch related lists
       await document.fetchRelationLists(trx);
-
-      // Trigger onAfterAdd
-      await config.events.trigger('onAfterAdd', document, trx);
 
       // Send data back to client
       return {
