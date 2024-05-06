@@ -50,6 +50,7 @@
 - Fix serving videos @robgietema
 - Fix related items in get call @robgietema
 - Update workflow from seeds when already exists @robgietema
+- Return default layout for content objects @robgietema
 
 ### Internal
 

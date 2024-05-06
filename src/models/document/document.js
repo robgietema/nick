@@ -439,6 +439,7 @@ export class Document extends Model {
       modified: this.modified,
       UID: this.uuid,
       owner: this.owner,
+      layout: 'view',
       is_folderish: this._type
         ? includes(this._type._schema.behaviors, 'folderish')
         : true,
