@@ -23,9 +23,10 @@ export class ActionCollection extends Collection {
       .filter((model) => includes(req.permissions, model.permission))
       .groupBy('category')
       .mapValues((category) =>
-        map(category, (action) =>
-          omit(action, ['order', 'permission', 'category']),
-        ),
+        map(category, (action) => ({
+          ...omit(action, ['order', 'permission', 'category']),
+          url: action.url ? action.url.replace('$username', req.user.id) : null,
+        })),
       )
       .value();
   }

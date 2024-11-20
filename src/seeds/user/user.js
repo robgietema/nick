@@ -8,7 +8,7 @@ export const seedUser = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/users`)) {
     const profile = stripI18n(require(`${profilePath}/users`));
     if (profile.purge) {
-      await User.delete(trx);
+      await User.delete({}, trx);
     }
     await Promise.all(
       map(profile.users, async (user) => {

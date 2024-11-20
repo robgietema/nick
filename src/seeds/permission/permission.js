@@ -7,7 +7,7 @@ export const seedPermission = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/permissions`)) {
     const profile = stripI18n(require(`${profilePath}/permissions`));
     if (profile.purge) {
-      await Permission.delete(trx);
+      await Permission.delete({}, trx);
     }
     await Promise.all(
       map(

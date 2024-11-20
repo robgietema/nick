@@ -5,7 +5,7 @@ export const seedAction = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/actions`)) {
     const profile = stripI18n(require(`${profilePath}/actions`));
     if (profile.purge) {
-      await Action.delete(trx);
+      await Action.delete({}, trx);
     }
     await mapAsync(
       ['object', 'site_actions', 'object_buttons', 'user'],

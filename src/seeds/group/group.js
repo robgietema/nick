@@ -7,7 +7,7 @@ export const seedGroup = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/groups`)) {
     const profile = stripI18n(require(`${profilePath}/groups`));
     if (profile.purge) {
-      await Group.delete(trx);
+      await Group.delete({}, trx);
     }
     await Promise.all(
       map(profile.groups, async (group) => {

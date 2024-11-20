@@ -7,7 +7,7 @@ export const seedRedirect = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/redirects`)) {
     const profile = stripI18n(require(`${profilePath}/redirects`));
     if (profile.purge) {
-      await Redirect.delete(trx);
+      await Redirect.delete({}, trx);
     }
     await Promise.all(
       map(

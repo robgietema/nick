@@ -7,7 +7,7 @@ export const seedWorkflow = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/workflows`)) {
     const profile = stripI18n(require(`${profilePath}/workflows`));
     if (profile.purge) {
-      await Workflow.delete(trx);
+      await Workflow.delete({}, trx);
     }
     await Promise.all(
       map(profile.workflows, async (workflow) => {
