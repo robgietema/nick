@@ -24,6 +24,7 @@ Content-Type: application/json
   "UID": "32215c67-86de-462a-8cc0-eabcd2b39c26",
   "owner": "admin",
   "is_folderish": true,
+  "layout": "view",
   "review_state": "published",
   "lock": {
     "locked": false,

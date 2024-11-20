@@ -5,77 +5,94 @@ Content-Type: application/json
   "object": [
     {
       "id": "view",
-      "title": "View"
+      "title": "View",
+      "url": null
     },
     {
       "id": "edit",
-      "title": "Edit"
+      "title": "Edit",
+      "url": null
     },
     {
       "id": "folderContents",
-      "title": "Contents"
+      "title": "Contents",
+      "url": null
     },
     {
       "id": "history",
-      "title": "History"
+      "title": "History",
+      "url": null
     },
     {
       "id": "local_roles",
-      "title": "Sharing"
+      "title": "Sharing",
+      "url": null
     },
     {
       "id": "contentrules",
-      "title": "Rules"
+      "title": "Rules",
+      "url": null
     }
   ],
   "site_actions": [
     {
       "id": "sitemap",
-      "title": "Sitemap"
+      "title": "Sitemap",
+      "url": null
     },
     {
       "id": "accessibility",
-      "title": "Accessibility"
+      "title": "Accessibility",
+      "url": null
     },
     {
       "id": "contact",
-      "title": "Contact"
+      "title": "Contact",
+      "url": null
     }
   ],
   "object_buttons": [
     {
       "id": "cut",
-      "title": "Cut"
+      "title": "Cut",
+      "url": null
     },
     {
       "id": "copy",
-      "title": "Copy"
+      "title": "Copy",
+      "url": null
     },
     {
       "id": "paste",
-      "title": "Paste"
+      "title": "Paste",
+      "url": null
     },
     {
       "id": "delete",
-      "title": "Delete"
+      "title": "Delete",
+      "url": null
     },
     {
       "id": "rename",
-      "title": "Rename"
+      "title": "Rename",
+      "url": null
     }
   ],
   "user": [
     {
       "id": "preferences",
-      "title": "Preferences"
+      "title": "Preferences",
+      "url": null
     },
     {
       "id": "plone_setup",
-      "title": "Site Setup"
+      "title": "Site Setup",
+      "url": null
     },
     {
       "id": "logout",
-      "title": "Log out"
+      "title": "Log out",
+      "url": null
     }
   ]
 }

@@ -115,6 +115,7 @@ Content-Type: application/json
   "modified": "2022-04-02T20:00:00.000Z",
   "UID": "92a80817-f5b7-400d-8f58-b08126f0f09b",
   "is_folderish": true,
+  "layout": "view",
   "review_state": "published",
   "lock": {
     "locked": false,
