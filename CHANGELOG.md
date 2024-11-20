@@ -26,6 +26,7 @@
 - Add @site endpoint @robgietema
 - Add upgrade profile functionality @robgietema
 - Add login by email @robgietema
+- Add url to action @robgietema
 
 ### Bugfix
 
@@ -51,6 +52,7 @@
 - Fix related items in get call @robgietema
 - Update workflow from seeds when already exists @robgietema
 - Return default layout for content objects @robgietema
+- Fix delete within transaction @robgietema
 
 ### Internal
 
