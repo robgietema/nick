@@ -16,7 +16,7 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
-#: src/profiles/core/behaviors/categorization.json:36
+#: src/profiles/core/behaviors/categorization.json:33
 #: src/profiles/core/catalog.json:58
 #: src/profiles/core/catalog.json:64
 #: src/profiles/core/catalog.json:70
@@ -33,6 +33,8 @@ msgstr ""
 #: src/profiles/core/types/page.json:4
 #: src/profiles/core/types/site.json:4
 #: src/profiles/default/groups.json:7
+#: src/profiles/multilingual/types/languageroot.json:4
+#: src/profiles/multilingualcontent/groups.json:7
 #: src/profiles/core/behaviors/basic.json:15
 # defaultMessage:
 # defaultMessage: A description of this item.
@@ -105,6 +107,7 @@ msgid "Administrator"
 msgstr "Beheerder"
 
 #: src/profiles/default/groups.json:6
+#: src/profiles/multilingualcontent/groups.json:6
 # defaultMessage: Administrators
 msgid "Administrators"
 msgstr "Beheerders"
@@ -380,7 +383,7 @@ msgstr "Omschrijving"
 msgid "Displayed content types"
 msgstr "Getoonde content types"
 
-#: src/routes/content/content.js:466
+#: src/routes/content/content.js:565
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -542,18 +545,18 @@ msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
-#: src/app.js:179
+#: src/app.js:181
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
 
-#: src/routes/authentication/authentication.js:35
-#: src/routes/authentication/authentication.js:46
+#: src/routes/authentication/authentication.js:40
+#: src/routes/authentication/authentication.js:51
 # defaultMessage: Invalid credentials
 msgid "Invalid credentials"
 msgstr "Ongeldige inloggegevens"
 
-#: src/routes/authentication/authentication.js:74
+#: src/routes/authentication/authentication.js:79
 # defaultMessage: Invalid session
 msgid "Invalid session"
 msgstr "Ongeldige sessie"
@@ -564,11 +567,16 @@ msgstr "Ongeldige sessie"
 msgid "Is"
 msgstr "Is"
 
-#: src/profiles/core/behaviors/categorization.json:28
+#: src/profiles/core/behaviors/categorization.json:22
 #: src/profiles/core/controlpanels/language.json:3
 # defaultMessage: Language
 msgid "Language"
 msgstr "Taal"
+
+#: src/profiles/multilingual/types/languageroot.json:3
+# defaultMessage: Languageroot
+msgid "Languageroot"
+msgstr "Taal hoofdmap"
 
 #: src/profiles/core/catalog.json:63
 # defaultMessage: Larger than
@@ -709,7 +717,7 @@ msgstr "Niet toegestaan"
 #: src/routes/controlpanels/controlpanels.js:31
 #: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:26
-#: src/routes/types/types.js:30
+#: src/routes/types/types.js:32
 #: src/routes/users/users.js:104
 #: src/routes/vocabularies/vocabularies.js:50
 # defaultMessage: Not found.
@@ -842,12 +850,12 @@ msgstr "Lezer"
 msgid "Register"
 msgstr "Registreren"
 
-#: src/profiles/core/behaviors/categorization.json:37
+#: src/profiles/core/behaviors/categorization.json:34
 # defaultMessage: Related
 msgid "Related"
 msgstr "Gerelateerd"
 
-#: src/profiles/core/behaviors/categorization.json:45
+#: src/profiles/core/behaviors/categorization.json:42
 # defaultMessage: Related Items
 msgid "Related Items"
 msgstr "Gerelateerde Items"
@@ -857,7 +865,7 @@ msgstr "Gerelateerde Items"
 msgid "Related To"
 msgstr "Gerelateerd aan"
 
-#: src/profiles/core/behaviors/categorization.json:34
+#: src/profiles/core/behaviors/categorization.json:31
 # defaultMessage: Related resources.
 msgid "Related resources."
 msgstr "Gerelateerde resources"
@@ -872,7 +880,7 @@ msgstr "Relatief pad"
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: src/routes/content/content.js:326
+#: src/routes/content/content.js:403
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
@@ -1044,7 +1052,7 @@ msgstr "Systeem gebruikers"
 msgid "Tag"
 msgstr "Tag"
 
-#: src/profiles/core/behaviors/categorization.json:58
+#: src/profiles/core/behaviors/categorization.json:50
 # defaultMessage: Tags
 msgid "Tags"
 msgstr "Tags"
@@ -1115,7 +1123,7 @@ msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw k
 msgid "The item's title, transformed for sorting"
 msgstr "De titel van het item, getransformeerd om te sorteren"
 
-#: src/profiles/core/behaviors/categorization.json:25
+#: src/profiles/core/behaviors/categorization.json:20
 # defaultMessage: The language of this item.
 msgid "The language of this item."
 msgstr "De taal van dit item"
@@ -1185,7 +1193,7 @@ msgstr "De tijd en datum waarop een item voor het eerst is gepubliceerd"
 msgid "The time and date an item was last modified"
 msgstr "De tijd en datum waarop een item voor het laatst is gewijzigd"
 
-#: src/profiles/core/behaviors/categorization.json:55
+#: src/profiles/core/behaviors/categorization.json:48
 # defaultMessage: The topic of this item.
 msgid "The topic of this item."
 msgstr "Het onderwerp van dit item."
@@ -1253,7 +1261,7 @@ msgstr "Aan, van en bericht zijn verplichte velden."
 msgid "Today"
 msgstr "Vandaag"
 
-#: src/app.js:137
+#: src/app.js:139
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr "Transactiefout"
@@ -1263,7 +1271,7 @@ msgstr "Transactiefout"
 msgid "Type"
 msgstr "Type"
 
-#: src/app.js:99
+#: src/app.js:100
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
@@ -1278,7 +1286,7 @@ msgstr "Gebruik '../' om naar bovenliggende objecten te navigeren."
 msgid "User doesn't exist or invalid credentials."
 msgstr "Gebruiker bestaat niet of ongeldige inloggegevens."
 
-#: src/routes/authentication/authentication.js:75
+#: src/routes/authentication/authentication.js:80
 # defaultMessage: User is not logged in.
 msgid "User is not logged in."
 msgstr "Gebruiker is niet ingelogd."
@@ -1339,8 +1347,8 @@ msgstr "Binnen laatste"
 msgid "Within next"
 msgstr "Binnen volgende"
 
-#: src/routes/authentication/authentication.js:36
-#: src/routes/authentication/authentication.js:47
+#: src/routes/authentication/authentication.js:41
+#: src/routes/authentication/authentication.js:52
 # defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
@@ -1351,8 +1359,8 @@ msgstr "Verkeerde login en/of wachtwoord."
 msgid "Yes"
 msgstr "Ja"
 
-#: src/app.js:123
-#: src/routes/workflow/workflow.js:25
+#: src/app.js:125
+#: src/routes/workflow/workflow.js:32
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
 msgstr "U heeft geen rechten om tot deze resource."
@@ -1367,7 +1375,7 @@ msgstr "U kunt geen systeemgroepen verwijderen."
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
-#: src/routes/content/content.js:463
+#: src/routes/content/content.js:562
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
