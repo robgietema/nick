@@ -16,11 +16,13 @@ import {
   omit,
   pick,
   split,
+  startsWith,
   uniq,
 } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
 import {
+  getUrl,
   getRootUrl,
   lockExpired,
   mapAsync,
@@ -34,9 +36,94 @@ import {
 } from '../../helpers';
 import { Document, Type } from '../../models';
 
+import { handler as actions } from '../actions/actions';
+import { handler as breadcrumbs } from '../breadcrumbs/breadcrumbs';
+import { handler as navigation } from '../navigation/navigation';
+import { handler as navroot } from '../navroot/navroot';
+import { handler as translations } from '../translations/translations';
+import { handler as types } from '../types/types';
+import { handler as workflow } from '../workflow/workflow';
+
 const { config } = require(`${process.cwd()}/config`);
 
-const omitProperties = ['@type', 'id', 'changeNote'];
+const omitProperties = ['@type', 'id', 'changeNote', 'language'];
+
+const getComponents = async (req, trx) => {
+  const components = {};
+
+  // Get nodes to expand
+  const expand = req.query?.expand?.split(',') || [];
+
+  // Get base url
+  const baseUrl = getUrl(req);
+
+  // Include catalog expander
+  if (includes(expand, 'catalog')) {
+    await req.document.fetchRelated('_catalog', trx);
+
+    if (req.document._children) {
+      await mapAsync(req.document._children, async (child) => {
+        await child.fetchRelated('_catalog', trx);
+        await child.fetchRelationLists(trx);
+      });
+    }
+    components.catalog = req.document._catalog.toJSON(req);
+  } else {
+    components.catalog = { '@id': `${baseUrl}/@catalog` };
+  }
+
+  // Include actions expander
+  if (includes(expand, 'actions')) {
+    components.actions = (await actions(req, trx)).json;
+  } else {
+    components.actions = { '@id': `${baseUrl}/@actions` };
+  }
+
+  // Include breadcrumbs expander
+  if (includes(expand, 'breadcrumbs')) {
+    components.breadcrumbs = (await breadcrumbs(req, trx)).json;
+  } else {
+    components.breadcrumbs = { '@id': `${baseUrl}/@breadcrumbs` };
+  }
+
+  // Include navigation expander
+  if (includes(expand, 'navigation')) {
+    components.navigation = (await navigation(req, trx)).json;
+  } else {
+    components.navigation = { '@id': `${baseUrl}/@navigation` };
+  }
+
+  // Include navroot expander
+  if (includes(expand, 'navroot')) {
+    components.navroot = (await navroot(req, trx)).json;
+  } else {
+    components.navroot = { '@id': `${baseUrl}/@navroot` };
+  }
+
+  // Include types expander
+  if (includes(expand, 'types')) {
+    components.types = (await types(req, trx)).json;
+  } else {
+    components.types = { '@id': `${baseUrl}/@types` };
+  }
+
+  // Include workflow expander
+  if (includes(expand, 'workflow')) {
+    components.workflow = (await workflow(req, trx)).json;
+  } else {
+    components.workflow = { '@id': `${baseUrl}/@workflow` };
+  }
+
+  // Include translations expander
+  if (includes(expand, 'translations')) {
+    components.translations = (await translations(req, trx)).json;
+  } else {
+    components.translations = { '@id': `${baseUrl}/@translations` };
+  }
+
+  // Return components
+  return components;
+};
 
 export default [
   {
@@ -185,7 +272,7 @@ export default [
       await req.document.fetchVersion(parseInt(req.params.version, 10), trx);
       await req.document.fetchRelationLists(trx);
       return {
-        json: await req.document.toJSON(req),
+        json: await req.document.toJSON(req, await getComponents(req, trx)),
       };
     },
   },
@@ -289,18 +376,8 @@ export default [
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       await req.document.fetchRelationLists(trx);
-      if (req.query?.expand === 'catalog') {
-        await req.document.fetchRelated('_catalog', trx);
-
-        if (req.document._children) {
-          await mapAsync(req.document._children, async (child) => {
-            await child.fetchRelated('_catalog', trx);
-            await child.fetchRelationLists(trx);
-          });
-        }
-      }
       return {
-        json: await req.document.toJSON(req),
+        json: await req.document.toJSON(req, await getComponents(req)),
       };
     },
   },
@@ -336,7 +413,27 @@ export default [
       // Get json data
       const properties = type._schema.properties;
 
-      // Handle file uploads
+      // Set uuid
+      const newUuid = req.body.uuid || uuid();
+
+      // Set translation
+      let translation_group = uuid;
+      if (req.body.translation_of) {
+        if (startsWith(req.body.translation_of, '/')) {
+          const translation = await Document.fetchOne(
+            { path: req.body.translation_of },
+            {},
+            trx,
+          );
+          if (translation) {
+            translation_group = translation.uuid;
+          }
+        } else {
+          translation_group = req.body.translation_of;
+        }
+      }
+
+      // Remove fields which are not in the schema
       let json = {
         ...omit(pick(req.body, keys(properties)), omitProperties),
       };
@@ -348,9 +445,11 @@ export default [
 
       // Create new document
       let document = Document.fromJson({
-        uuid: req.body.uuid || uuid(),
+        uuid: newUuid,
         type: req.body['@type'],
         created,
+        translation_group,
+        language: req.body.language,
         modified: created,
         version: 0,
         position_in_parent:
@@ -423,7 +522,7 @@ export default [
       // Send data back to client
       return {
         status: 201,
-        json: await document.toJSON(req),
+        json: await document.toJSON(req, await getComponents(req)),
       };
     },
   },

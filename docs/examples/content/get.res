@@ -15,9 +15,39 @@ Content-Type: application/json
     ]
   },
   "items": [],
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8000/news/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8000/news/@breadcrumbs"
+    },
+    "catalog": {
+      "@id": "http://localhost:8000/news/@catalog"
+    },
+    "navigation": {
+      "@id": "http://localhost:8000/news/@navigation"
+    },
+    "navroot": {
+      "@id": "http://localhost:8000/news/@navroot"
+    },
+    "translations": {
+      "@id": "http://localhost:8000/news/@translations"
+    },
+    "types": {
+      "@id": "http://localhost:8000/news/@types"
+    },
+    "workflow": {
+      "@id": "http://localhost:8000/news/@workflow"
+    }
+  },
   "@id": "http://localhost:8000/news",
   "@type": "Folder",
   "id": "news",
+   "language": {
+    "title": "English",
+    "token": "en"
+  },
   "created": "2022-04-02T20:22:00.000Z",
   "modified": "2022-04-02T20:22:00.000Z",
   "effective": "2022-04-02T20:22:00.000Z",

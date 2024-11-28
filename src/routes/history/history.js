@@ -1,6 +1,6 @@
 /**
- * Content routes.
- * @module routes/content/content
+ * History routes.
+ * @module routes/history/history
  */
 
 import moment from 'moment';

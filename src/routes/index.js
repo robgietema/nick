@@ -14,12 +14,14 @@ import groups from './groups/groups';
 import history from './history/history';
 import lock from './lock/lock';
 import navigation from './navigation/navigation';
+import navroot from './navroot/navroot';
 import querystring from './querystring/querystring';
 import roles from './roles/roles';
 import search from './search/search';
 import sharing from './sharing/sharing';
 import site from './site/site';
 import system from './system/system';
+import translations from './translations/translations';
 import types from './types/types';
 import users from './users/users';
 import vocabularies from './vocabularies/vocabularies';
@@ -36,12 +38,14 @@ export default [
   ...history,
   ...lock,
   ...navigation,
+  ...navroot,
   ...querystring,
   ...roles,
   ...search,
   ...sharing,
   ...site,
   ...system,
+  ...translations,
   ...types,
   ...users,
   ...vocabularies,

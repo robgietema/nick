@@ -12,5 +12,6 @@ Content-Type: application/json
       "@id": "http://localhost:8000/events/event-1",
       "title": "Event 1"
     }
-  ]
+  ],
+  "root": "/"
 }

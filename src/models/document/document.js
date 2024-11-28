@@ -27,6 +27,7 @@ import _, {
 } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
+import languages from '../../constants/languages';
 import { Catalog, Model, Permission, Redirect, Role, User } from '../../models';
 import {
   copyFile,
@@ -40,6 +41,7 @@ import {
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 import behaviors from '../../behaviors';
+import { TokenExpiredError } from 'jsonwebtoken';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -329,9 +331,7 @@ export class Document extends Model {
    * @param {Object} req Request object.
    * @returns {Object} JSON object.
    */
-  async toJSON(req) {
-    const components = {};
-
+  async toJSON(req, components = {}) {
     // Check if version data
     const version = this._version
       ? {
@@ -423,11 +423,6 @@ export class Document extends Model {
       );
     }
 
-    // Add catalog if available
-    if (this._catalog) {
-      components.catalog = this._catalog.toJSON(req);
-    }
-
     // Return data
     return {
       ...json,
@@ -443,6 +438,14 @@ export class Document extends Model {
       is_folderish: this._type
         ? includes(this._type._schema.behaviors, 'folderish')
         : true,
+      ...(this.language
+        ? {
+            language: {
+              token: this.language,
+              title: languages[this.language],
+            },
+          }
+        : {}),
       review_state: this.workflow_state,
       lock:
         this.lock.locked && lockExpired(this)
@@ -463,7 +466,7 @@ export class Document extends Model {
    * @param {Object} trx Transaction object.
    * @returns {Promise<Object>} A Promise that resolves to an object.
    */
-  async traverse(slugs, user, roles, trx) {
+  async traverse(slugs, user, roles, navroot, trx) {
     // Check if at leaf node
     if (slugs.length === 0) {
       // Add owner to roles if current document owned by user
@@ -476,6 +479,7 @@ export class Document extends Model {
       return {
         document: this,
         localRoles: extendedRoles,
+        navroot,
       };
     } else {
       // Fetch child matching the id
@@ -499,11 +503,18 @@ export class Document extends Model {
         trx,
       );
 
+      // Fetch navroot
+      await child.fetchRelated('_type', trx);
+      const is_navroot = child._type
+        ? includes(child._type._schema.behaviors, 'navigation_root')
+        : false;
+
       // Recursively call the traverse on child
       return child.traverse(
         drop(slugs),
         user,
         child.inherit_roles ? uniq([...roles, ...childRoles]) : childRoles,
+        is_navroot ? child : navroot,
         trx,
       );
     }

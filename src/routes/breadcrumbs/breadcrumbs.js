@@ -3,7 +3,7 @@
  * @module routes/breadcrumbs/breadcrumbs
  */
 
-import { compact, drop, head, last } from 'lodash';
+import { compact, drop, head, includes, last } from 'lodash';
 
 import { Document } from '../../models';
 import { getUrl, getRootUrl, getPath } from '../../helpers';
@@ -21,8 +21,8 @@ async function traverse(document, slugs, items, trx) {
   if (slugs.length === 0) {
     return items;
   } else {
-    // Get parent
-    let parent = await Document.fetchOne(
+    // Get child
+    let child = await Document.fetchOne(
       {
         parent: document.uuid,
         id: head(slugs),
@@ -32,17 +32,19 @@ async function traverse(document, slugs, items, trx) {
     );
 
     // Apply behaviors
-    await parent.applyBehaviors(trx);
+    await child.applyBehaviors(trx);
 
     // Traverse up
     return traverse(
-      parent,
+      child,
       drop(slugs),
       [
-        ...items,
+        ...(includes(child._type._schema.behaviors, 'navigation_root')
+          ? []
+          : items),
         {
-          '@id': `${last(items)['@id']}/${parent.id}`,
-          title: parent.getTitle(),
+          '@id': `${last(items)['@id']}/${child.id}`,
+          title: child.getTitle(),
         },
       ],
       trx,
@@ -50,35 +52,38 @@ async function traverse(document, slugs, items, trx) {
   }
 }
 
+export const handler = async (req, trx) => {
+  const slugs = getPath(req).split('/');
+  let document = await Document.fetchOne({ parent: null }, {}, trx);
+
+  // Apply behaviors
+  await document.applyBehaviors(trx);
+
+  const items = await traverse(
+    document,
+    compact(slugs),
+    [
+      {
+        '@id': getRootUrl(req),
+        title: document.getTitle(),
+      },
+    ],
+    trx,
+  );
+  return {
+    json: {
+      '@id': `${getUrl(req)}/@breadcrumbs`,
+      items: drop(items),
+      root: req.navroot.path,
+    },
+  };
+};
+
 export default [
   {
     op: 'get',
     view: '/@breadcrumbs',
     permission: 'View',
-    handler: async (req, trx) => {
-      const slugs = getPath(req).split('/');
-      let document = await Document.fetchOne({ parent: null }, {}, trx);
-
-      // Apply behaviors
-      await document.applyBehaviors(trx);
-
-      const items = await traverse(
-        document,
-        compact(slugs),
-        [
-          {
-            '@id': getRootUrl(req),
-            title: document.getTitle(),
-          },
-        ],
-        trx,
-      );
-      return {
-        json: {
-          '@id': `${getUrl(req)}/@breadcrumbs`,
-          items: drop(items),
-        },
-      };
-    },
+    handler,
   },
 ];

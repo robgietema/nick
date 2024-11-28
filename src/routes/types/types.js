@@ -8,17 +8,19 @@ import { omit } from 'lodash';
 import { RequestException, translateSchema } from '../../helpers';
 import { Type } from '../../models';
 
+export const handler = async (req, trx) => {
+  const types = await Type.fetchAll({}, {}, trx);
+  return {
+    json: types.toJSON(req),
+  };
+};
+
 export default [
   {
     op: 'get',
     view: '/@types',
     permission: 'View',
-    handler: async (req, trx) => {
-      const types = await Type.fetchAll({}, {}, trx);
-      return {
-        json: types.toJSON(req),
-      };
-    },
+    handler,
   },
   {
     op: 'get',

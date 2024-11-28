@@ -63,6 +63,7 @@ map(routes, (route) => {
           compact(getPath(req).split('/')), // Slugs
           req.user,
           await req.user.fetchUserGroupRolesByDocument(root.uuid), // Root roles
+          root,
           trx,
         );
 
@@ -108,6 +109,7 @@ map(routes, (route) => {
 
         // Call handler
         req.document = document;
+        req.navroot = result.navroot;
         req.type = type;
         req.permissions = uniq([
           ...permissions,

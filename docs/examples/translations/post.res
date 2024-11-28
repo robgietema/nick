@@ -1,0 +1,50 @@
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "title": "Evenementen",
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8000/nl/evenementen/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8000/nl/evenementen/@breadcrumbs"
+    },
+    "catalog": {
+      "@id": "http://localhost:8000/nl/evenementen/@catalog"
+    },
+    "navigation": {
+      "@id": "http://localhost:8000/nl/evenementen/@navigation"
+    },
+    "navroot": {
+      "@id": "http://localhost:8000/nl/evenementen/@navroot"
+    },
+    "translations": {
+      "@id": "http://localhost:8000/nl/evenementen/@translations"
+    },
+    "types": {
+      "@id": "http://localhost:8000/nl/evenementen/@types"
+    },
+    "workflow": {
+      "@id": "http://localhost:8000/nl/evenementen/@workflow"
+    }
+  },
+  "@id": "http://localhost:8000/nl/evenementen/my-news-item",
+  "@type": "Page",
+  "id": "evenementen",
+  "created": "2022-04-08T16:00:00.000Z",
+  "modified": "2022-04-08T16:00:00.000Z",
+  "UID": "a95388f2-e4b3-4292-98aa-62656cbd5b9c",
+  "is_folderish": true,
+  "layout": "view",
+  "owner": "admin",
+  "review_state": "private",
+  "language": {
+    "title": "Nederlands",
+    "token": "nl"
+  },
+  "lock": {
+    "locked": false,
+    "stealable": true
+  }
+}

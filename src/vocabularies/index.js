@@ -4,6 +4,7 @@
  */
 
 import { actions } from './actions/actions';
+import { availableLanguages } from './available-languages/available-languages';
 import { behaviors } from './behaviors/behaviors';
 import { groups } from './groups/groups';
 import { imageScales } from './image-scales/image-scales';
@@ -22,6 +23,7 @@ const { config } = require(`${process.cwd()}/config`);
 
 export const vocabularies = {
   actions,
+  availableLanguages,
   behaviors,
   groups,
   imageScales,

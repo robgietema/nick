@@ -27,6 +27,11 @@
 - Add upgrade profile functionality @robgietema
 - Add login by email @robgietema
 - Add url to action @robgietema
+- Add navroot endpoint @robgietema
+- Add language token to content objects @robgietema
+- Add support for expanders in content fetching @robgietema
+- Add available languages endpoint @robgietema
+- Add multilingual support @robgietema
 
 ### Bugfix
 
@@ -53,6 +58,8 @@
 - Update workflow from seeds when already exists @robgietema
 - Return default layout for content objects @robgietema
 - Fix delete within transaction @robgietema
+- Fix keywords endpoint @robgietema
+- Fix supported languages endpoint @robgietema
 
 ### Internal
 

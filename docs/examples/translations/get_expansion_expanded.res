@@ -1,0 +1,60 @@
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "title": "Events",
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8000/en/events/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8000/en/events/@breadcrumbs"
+    },
+    "catalog": {
+      "@id": "http://localhost:8000/en/events/@catalog"
+    },
+    "navigation": {
+      "@id": "http://localhost:8000/en/events/@navigation"
+    },
+    "navroot": {
+      "@id": "http://localhost:8000/en/events/@navroot"
+    },
+    "translations": {
+      "@id": "http://localhost:8000/en/events/@translations",
+      "items": [
+        {
+          "@id": "http://localhost:8000/nl/evenementen",
+          "language": "nl"
+        }
+      ],
+      "root": {
+        "en": "http://localhost:8000/en",
+        "nl": "http://localhost:8000/nl"
+      }
+    },
+    "types": {
+      "@id": "http://localhost:8000/en/events/@types"
+    },
+    "workflow": {
+      "@id": "http://localhost:8000/en/events/@workflow"
+    }
+  },
+  "@id": "http://localhost:8000/en/events/my-news-item",
+  "@type": "Page",
+  "id": "events",
+  "created": "2022-04-08T16:00:00.000Z",
+  "modified": "2022-04-08T16:00:00.000Z",
+  "UID": "a95388f2-e4b3-4292-98aa-62656cbd5b9c",
+  "is_folderish": true,
+  "layout": "view",
+  "owner": "admin",
+  "review_state": "private",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
+  "lock": {
+    "locked": false,
+    "stealable": true
+  }
+}

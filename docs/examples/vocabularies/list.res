@@ -7,6 +7,10 @@ Content-Type: application/json
     "title": "actions"
   },
   {
+    "@id": "http://localhost:8000/@vocabularies/availableLanguages",
+    "title": "availableLanguages"
+  },
+  {
     "@id": "http://localhost:8000/@vocabularies/behaviors",
     "title": "behaviors"
   },

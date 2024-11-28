@@ -7,6 +7,13 @@ import moment from 'moment';
 
 import { hasPermission, RequestException } from '../../helpers';
 
+export const handler = async (req, trx) => {
+  await req.type.fetchRelated('_workflow', trx);
+  return {
+    json: req.type._workflow.toJSON(req),
+  };
+};
+
 export default [
   {
     op: 'post',
@@ -75,11 +82,6 @@ export default [
     op: 'get',
     view: '/@workflow',
     permission: 'View',
-    handler: async (req, trx) => {
-      await req.type.fetchRelated('_workflow', trx);
-      return {
-        json: req.type._workflow.toJSON(req),
-      };
-    },
+    handler,
   },
 ];

@@ -18,6 +18,17 @@ export function getUrl(req) {
 }
 
 /**
+ * Get url by path
+ * @method getUrlByPath
+ * @param {Object} req Request object
+ * @param {string} path Path
+ * @returns {string} Url
+ */
+export function getUrlByPath(req, path) {
+  return `${req.protocol}://${req.headers.host}${path === '/' ? '' : path}`;
+}
+
+/**
  * Get root url
  * @method getRootUrl
  * @param {Object} req Request object

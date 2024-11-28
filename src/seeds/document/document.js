@@ -25,6 +25,8 @@ const documentFields = [
   'versions',
   'owner',
   'lock',
+  'translation_group',
+  'language',
   'workflow_state',
   'workflow_history',
   'sharing',
@@ -73,10 +75,12 @@ export const seedDocument = async (trx, profilePath) => {
       document = await handleFiles(document, type, profilePath);
       document = await handleImages(document, type, profilePath);
 
+      const newUuid = document.uuid || uuid();
+
       // Insert document
       let insert = await Document.create(
         {
-          uuid: document.uuid || uuid(),
+          uuid: newUuid,
           version: 'version' in document ? document.version : versionCount - 1,
           id,
           path,
@@ -92,6 +96,8 @@ export const seedDocument = async (trx, profilePath) => {
           type: document.type || 'Page',
           created: document.created || moment.utc().format(),
           modified: document.modified || moment.utc().format(),
+          translation_group: document.translation_group || newUuid,
+          language: document.language,
           json: omit(document, documentFields),
         },
         {},

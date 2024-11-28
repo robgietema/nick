@@ -1,0 +1,12 @@
+{
+  "purge": true,
+  "groups": [
+    {
+      "id": "Administrators",
+      "title:i18n": "Administrators",
+      "description:i18n": "",
+      "email": "",
+      "roles": ["Administrator"]
+    }
+  ]
+}

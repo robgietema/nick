@@ -1,0 +1,7 @@
+{
+  "id": "language",
+  "data": {
+    "default_language": "en",
+    "available_languages": ["en", "nl"]
+  }
+}

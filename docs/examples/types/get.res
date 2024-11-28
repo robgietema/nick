@@ -2,61 +2,37 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "required": [
-    "title"
-  ],
+  "required": ["title"],
   "fieldsets": [
     {
       "id": "default",
       "title": "Default",
-      "fields": [
-        "title",
-        "description",
-        "changeNote"
-      ]
+      "fields": ["title", "description", "changeNote"]
     },
     {
       "id": "categorization",
       "title": "Categorization",
-      "fields": [
-        "subjects",
-        "language",
-        "relatedItems",
-        "coverage"
-      ]
+      "fields": ["subjects", "language", "relatedItems", "coverage"]
     },
     {
       "id": "ownership",
       "title": "Ownership",
-      "fields": [
-        "rights",
-        "source",
-        "publisher"
-      ]
+      "fields": ["rights", "source", "publisher"]
     },
     {
       "id": "dates",
       "title": "Dates",
-      "fields": [
-        "effective",
-        "expires"
-      ]
+      "fields": ["effective", "expires"]
     },
     {
       "id": "layout",
       "title": "Layout",
-      "fields": [
-        "blocks",
-        "blocks_layout"
-      ]
+      "fields": ["blocks", "blocks_layout"]
     },
     {
       "id": "settings",
       "title": "Settings",
-      "fields": [
-        "id",
-        "exclude_from_nav"
-      ]
+      "fields": ["id", "exclude_from_nav"]
     }
   ],
   "properties": {
@@ -104,51 +80,21 @@ Content-Type: application/json
       "description": "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
     },
     "language": {
-      "enum": [
-        "nl",
-        "en-US"
-      ],
       "type": "string",
       "title": "Language",
-      "choices": [
-        [
-          "nl",
-          "Dutch"
-        ],
-        [
-          "en-US",
-          "English (United States)"
-        ]
-      ],
-      "default": "en-US",
-      "enumNames": [
-        "Dutch",
-        "English (United States)"
-      ],
+      "factory": "Choice",
+      "vocabulary": {
+        "@id": "availableLanguages"
+      },
       "description": "The language of this item."
     },
     "subjects": {
-      "enum": [
-        "Plone",
-        "Tokyo"
-      ],
       "type": "string",
       "title": "Tags",
-      "choices": [
-        [
-          "Plone",
-          "Plone"
-        ],
-        [
-          "Tokyo",
-          "Tokyo"
-        ]
-      ],
-      "enumNames": [
-        "Plone",
-        "Tokyo"
-      ],
-      "vocabulary": "plone.app.vocabularies.Keywords",
+      "factory": "Choice",
+      "vocabulary": {
+        "@id": "subjects"
+      },
       "description": "The topic of this item."
     },
     "effective": {

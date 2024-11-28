@@ -10,11 +10,39 @@ Content-Type: application/json
   },
   "description": "News Items",
   "blocks_layout": {
-    "items": [
-      "79ba8858-1dd3-4719-b731-5951e32fbf79"
-    ]
+    "items": ["79ba8858-1dd3-4719-b731-5951e32fbf79"]
   },
   "items": [],
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8000/news/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8000/news/@breadcrumbs"
+    },
+    "catalog": {
+      "@id": "http://localhost:8000/news/@catalog"
+    },
+    "navigation": {
+      "@id": "http://localhost:8000/news/@navigation"
+    },
+    "navroot": {
+      "@id": "http://localhost:8000/news/@navroot"
+    },
+    "translations": {
+      "@id": "http://localhost:8000/news/@translations"
+    },
+    "types": {
+      "@id": "http://localhost:8000/news/@types"
+    },
+    "workflow": {
+      "@id": "http://localhost:8000/news/@workflow"
+    }
+  },
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "@id": "http://localhost:8000/news",
   "@type": "Folder",
   "id": "news",

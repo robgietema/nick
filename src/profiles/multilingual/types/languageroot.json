@@ -1,0 +1,21 @@
+{
+  "id": "Languageroot",
+  "title:i18n": "Languageroot",
+  "description:i18n": "",
+  "global_allow": true,
+  "filter_content_types": false,
+  "allowed_content_types": [],
+  "schema": {
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "blocks",
+      "versioning",
+      "short_name",
+      "id_from_title",
+      "folderish",
+      "navigation_root"
+    ]
+  },
+  "workflow": "simple_publication_workflow"
+}

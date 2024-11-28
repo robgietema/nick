@@ -1,0 +1,146 @@
+{
+  "uuid": "92a80817-f527-400d-8f58-b081a6f0f09b",
+  "type": "Languageroot",
+  "title": "Welkom bij Nick!",
+  "description": "Gefeliciteerd! Je hebt Nick succesvol geïnstalleerd.",
+  "owner": "admin",
+  "workflow_state": "published",
+  "created": "2022-04-02T20:00:00.000Z",
+  "modified": "2022-04-02T20:00:00.000Z",
+  "effective": "2022-04-02T20:00:00.000Z",
+  "language": "nl",
+  "translation_group": "92a80817-f5b7-400d-8f58-b08126f0f09b",
+  "blocks": {
+    "495efb73-cbdd-4bef-935a-a56f70a20854": {
+      "text": {
+        "blocks": [
+          {
+            "key": "9f35d",
+            "data": {},
+            "text": "This is the demo site of Nick and is build with the Volto frontend.",
+            "type": "unstyled",
+            "depth": 0,
+            "entityRanges": [
+              {
+                "key": 0,
+                "length": 4,
+                "offset": 25
+              },
+              {
+                "key": 1,
+                "length": 5,
+                "offset": 52
+              }
+            ],
+            "inlineStyleRanges": []
+          }
+        ],
+        "entityMap": {
+          "0": {
+            "data": {
+              "url": "https://nickcms.org"
+            },
+            "type": "LINK",
+            "mutability": "MUTABLE"
+          },
+          "1": {
+            "data": {
+              "url": "https://voltocms.com"
+            },
+            "type": "LINK",
+            "mutability": "MUTABLE"
+          }
+        }
+      },
+      "@type": "text"
+    },
+    "6a6d1e67-fefd-4049-98a3-300f0302abcb": {
+      "text": {
+        "blocks": [
+          {
+            "key": "3jol2",
+            "text": "U kunt deze site gebruiken om de nieuwste versie van Nick te testen. U kunt inloggen met gebruikersnaam admin en wachtwoord admin.",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [
+              {
+                "offset": 89,
+                "length": 14,
+                "style": "ITALIC"
+              },
+              {
+                "offset": 113,
+                "length": 10,
+                "style": "ITALIC"
+              }
+            ],
+            "entityRanges": [
+              {
+                "offset": 53,
+                "length": 4,
+                "key": 0
+              }
+            ],
+            "data": {}
+          }
+        ],
+        "entityMap": {
+          "0": {
+            "type": "LINK",
+            "mutability": "MUTABLE",
+            "data": {
+              "url": "https://nickcms.org"
+            }
+          }
+        }
+      },
+      "@type": "text"
+    },
+    "79ba8858-1dd3-4719-b731-5951e32fbf79": {
+      "@type": "title"
+    },
+    "be383a3d-7409-42b5-a5bc-555e2fbf068d": {
+      "text": {
+        "blocks": [
+          {
+            "key": "atc31",
+            "text": "Deze site wordt elke nacht gereset, dus u kunt gerust wijzigingen aanbrengen!",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ],
+        "entityMap": {}
+      },
+      "@type": "text"
+    },
+    "eb024f35-ab6a-4034-ac5b-77c91fe3d400": {
+      "text": {
+        "blocks": [
+          {
+            "key": "5s8ah",
+            "data": {},
+            "text": "Demo",
+            "type": "header-three",
+            "depth": 0,
+            "entityRanges": [],
+            "inlineStyleRanges": []
+          }
+        ],
+        "entityMap": {}
+      },
+      "@type": "text"
+    }
+  },
+  "blocks_layout": {
+    "items": [
+      "79ba8858-1dd3-4719-b731-5951e32fbf79",
+      "495efb73-cbdd-4bef-935a-a56f70a20854",
+      "eb024f35-ab6a-4034-ac5b-77c91fe3d400",
+      "6a6d1e67-fefd-4049-98a3-300f0302abcb",
+      "be383a3d-7409-42b5-a5bc-555e2fbf068d"
+    ]
+  }
+}
