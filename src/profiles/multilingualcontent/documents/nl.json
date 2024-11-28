@@ -11,136 +11,145 @@
   "language": "nl",
   "translation_group": "92a80817-f5b7-400d-8f58-b08126f0f09b",
   "blocks": {
-    "495efb73-cbdd-4bef-935a-a56f70a20854": {
-      "text": {
-        "blocks": [
-          {
-            "key": "9f35d",
-            "data": {},
-            "text": "This is the demo site of Nick and is build with the Volto frontend.",
-            "type": "unstyled",
-            "depth": 0,
-            "entityRanges": [
-              {
-                "key": 0,
-                "length": 4,
-                "offset": 25
-              },
-              {
-                "key": 1,
-                "length": 5,
-                "offset": 52
-              }
-            ],
-            "inlineStyleRanges": []
-          }
-        ],
-        "entityMap": {
-          "0": {
-            "data": {
-              "url": "https://nickcms.org"
-            },
-            "type": "LINK",
-            "mutability": "MUTABLE"
-          },
-          "1": {
-            "data": {
-              "url": "https://voltocms.com"
-            },
-            "type": "LINK",
-            "mutability": "MUTABLE"
-          }
-        }
-      },
-      "@type": "text"
-    },
-    "6a6d1e67-fefd-4049-98a3-300f0302abcb": {
-      "text": {
-        "blocks": [
-          {
-            "key": "3jol2",
-            "text": "U kunt deze site gebruiken om de nieuwste versie van Nick te testen. U kunt inloggen met gebruikersnaam admin en wachtwoord admin.",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [
-              {
-                "offset": 89,
-                "length": 14,
-                "style": "ITALIC"
-              },
-              {
-                "offset": 113,
-                "length": 10,
-                "style": "ITALIC"
-              }
-            ],
-            "entityRanges": [
-              {
-                "offset": 53,
-                "length": 4,
-                "key": 0
-              }
-            ],
-            "data": {}
-          }
-        ],
-        "entityMap": {
-          "0": {
-            "type": "LINK",
-            "mutability": "MUTABLE",
-            "data": {
-              "url": "https://nickcms.org"
-            }
-          }
-        }
-      },
-      "@type": "text"
-    },
     "79ba8858-1dd3-4719-b731-5951e32fbf79": {
       "@type": "title"
     },
-    "be383a3d-7409-42b5-a5bc-555e2fbf068d": {
-      "text": {
-        "blocks": [
-          {
-            "key": "atc31",
-            "text": "Deze site wordt elke nacht gereset, dus u kunt gerust wijzigingen aanbrengen!",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [],
-            "entityRanges": [],
-            "data": {}
-          }
-        ],
-        "entityMap": {}
-      },
-      "@type": "text"
+    "0f06cd6f-5282-4966-9d4d-3abeba13953c": {
+      "@type": "slate",
+      "value": [
+        {
+          "type": "p",
+          "children": [
+            {
+              "text": "Dit is de demo site van "
+            },
+            {
+              "type": "link",
+              "data": {
+                "url": "https://nickcms.org"
+              },
+              "children": [
+                {
+                  "text": "Nick"
+                }
+              ]
+            },
+            {
+              "text": " en is gebouwd met de "
+            },
+            {
+              "type": "link",
+              "data": {
+                "url": "https://voltocms.com"
+              },
+              "children": [
+                {
+                  "text": "Volto"
+                }
+              ]
+            },
+            {
+              "text": " frontend."
+            }
+          ]
+        }
+      ],
+      "plaintext": "Dit is de demo site van Nick en is gebouwd met de Volto frontend."
     },
-    "eb024f35-ab6a-4034-ac5b-77c91fe3d400": {
-      "text": {
-        "blocks": [
-          {
-            "key": "5s8ah",
-            "data": {},
-            "text": "Demo",
-            "type": "header-three",
-            "depth": 0,
-            "entityRanges": [],
-            "inlineStyleRanges": []
-          }
-        ],
-        "entityMap": {}
-      },
-      "@type": "text"
+    "e47fdd86-5d1b-4e6c-86a4-f3edf9d74e31": {
+      "@type": "slate",
+      "value": [
+        {
+          "type": "h2",
+          "children": [
+            {
+              "text": "Demo"
+            }
+          ]
+        }
+      ],
+      "plaintext": "Demo"
+    },
+    "a6ba1f90-3bd0-4daa-869f-532c38d4c522": {
+      "@type": "slate",
+      "value": [
+        {
+          "type": "p",
+          "children": [
+            {
+              "text": "Je kan deze site gebruiken om de laatste versie van Nick te testen. Je kan inloggen met "
+            },
+            {
+              "type": "em",
+              "children": [
+                {
+                  "text": "gebruikersnaam"
+                }
+              ]
+            },
+            {
+              "text": " "
+            },
+            {
+              "type": "strong",
+              "children": [
+                {
+                  "text": "admin"
+                }
+              ]
+            },
+            {
+              "text": " en "
+            },
+            {
+              "type": "em",
+              "children": [
+                {
+                  "text": "wachtwoord"
+                }
+              ]
+            },
+            {
+              "text": " "
+            },
+            {
+              "type": "strong",
+              "children": [
+                {
+                  "text": "admin"
+                }
+              ]
+            },
+            {
+              "text": "."
+            }
+          ]
+        }
+      ],
+      "plaintext": "Je kan deze site gebruiken om de laatste versie van Nick te testen. Je kan inloggen met gebruikersnaam admin en wachtwoord admin."
+    },
+    "59ddb72e-2691-4571-b07c-eedbd843b613": {
+      "@type": "slate",
+      "value": [
+        {
+          "type": "p",
+          "children": [
+            {
+              "text": "Deze installatie wordt elke nacht gereset dus maak gerust wijzigingen aan!"
+            }
+          ]
+        }
+      ],
+      "plaintext": "Deze installatie wordt elke nacht gereset dus maak gerust wijzigingen aan!"
     }
   },
   "blocks_layout": {
     "items": [
       "79ba8858-1dd3-4719-b731-5951e32fbf79",
-      "495efb73-cbdd-4bef-935a-a56f70a20854",
-      "eb024f35-ab6a-4034-ac5b-77c91fe3d400",
-      "6a6d1e67-fefd-4049-98a3-300f0302abcb",
-      "be383a3d-7409-42b5-a5bc-555e2fbf068d"
+      "0f06cd6f-5282-4966-9d4d-3abeba13953c",
+      "e47fdd86-5d1b-4e6c-86a4-f3edf9d74e31",
+      "a6ba1f90-3bd0-4daa-869f-532c38d4c522",
+      "59ddb72e-2691-4571-b07c-eedbd843b613"
     ]
   }
 }

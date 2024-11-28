@@ -1,14 +1,23 @@
-# Yeoman Volto App development
-
 ### Defensive settings for make:
 #     https://tech.davis-hansson.com/p/make/
 SHELL:=bash
 .ONESHELL:
-.SHELLFLAGS:=-xeu -o pipefail -O inherit_errexit -c
+.SHELLFLAGS:=-eu -o pipefail -c
 .SILENT:
 .DELETE_ON_ERROR:
 MAKEFLAGS+=--warn-undefined-variables
 MAKEFLAGS+=--no-builtin-rules
+
+# Update the versions depending on your project requirements | Last Updated 2023-03-02
+DOCKER_IMAGE=plone/server-dev:6.0.6
+DOCKER_IMAGE_ACCEPTANCE=plone/server-acceptance:6.0.6
+KGS=
+NODEBIN = ./node_modules/.bin
+
+# Plone 5 legacy
+DOCKER_IMAGE5=plone/plone-backend:5.2.12
+KGS5=plone.restapi==8.43.3 plone.volto==4.1.0 plone.rest==3.0.1
+TESTING_ADDONS=plone.app.robotframework==2.0.0 plone.app.testing==7.0.0
 
 # Project settings
 
@@ -26,71 +35,72 @@ YELLOW=`tput setaf 3`
 
 # Top-level targets
 .PHONY: all
-all: init
-
-.PHONY: init
-init:  ## Init
-	@echo "Init"
-	make init-backend
-	make init-frontend
-
-.PHONY: init-backend
-init-backend:  ## Init Backend
-	@echo "Init Backend"
-	(cd api && yarn)
-
-.PHONY: init-frontend
-init-frontend:  ## Init React Frontend
-	@echo "Init Frontend"
-	yarn
-
-.PHONY: build
-build:  ## Build
-	@echo "Build"
-	make build-backend
-	make build-frontend
-
-.PHONY: build-backend
-build-backend:  ## Build Backend
-	@echo "Build Backend"
-	(cd api && yarn)
-
-.PHONY: build-frontend
-build-frontend:  ## Build React Frontend
-	@echo "Build Frontend"
-	yarn
-	yarn build
-
-.PHONY: start-backend
-start-backend:  ## Start React Frontend
-	@echo "Start Backend"
-	(cd api && yarn start)
-
-.PHONY: start-frontend
-start-frontend:  ## Start React Frontend
-	@echo "Start Frontend"
-	yarn start
-
-.PHONY: test
-test:
-	make test-backend
-	make test-frontend
-
-.PHONY: test-backend
-test-backend: ## Run Backend Tests
-	@echo "$(GREEN)==> Run Backend Tests$(RESET)"
-	(cd api && CI=true yarn test)
-
-.PHONY: test-frontend
-test-frontend: ## Run Frontend Tests
-	@echo "$(GREEN)==> Run Frontend Tests$(RESET)"
-	CI=true yarn test
-
-.PHONY: reset-backend
-reset-backend: ## Reset Backend Data
-	@echo "Reset Backend Data"
-	(cd api && yarn reset)
+all: project
 
 .PHONY: help
 help:		## Show this help.
 	@echo -e "$$(grep -hE '^\S+:.*##' $(MAKEFILE_LIST) | sed -e 's/:.*##\s*/:/' -e 's/^\(.\+\):\(.*\)/\\x1b[36m\1\\x1b[m:\2/' | column -c2 -t -s :)"
+
+.PHONY: start-backend-docker
+start-backend-docker:		## Starts a Docker-based backend
+	@echo "$(GREEN)==> Start Docker-based Plone Backend$(RESET)"
+	docker run -it --rm --name=backend -p 8080:8080 -e SITE=Plone -e ADDONS='$(KGS)' $(DOCKER_IMAGE)
+
+.PHONY: install
+install: ## Install the frontend
+	@echo "Install frontend"
+	$(MAKE) omelette
+	$(MAKE) preinstall
+	yarn install
+
+.PHONY: preinstall
+preinstall: ## Preinstall task, checks if missdev (mrs-developer) is present and runs it
+	if [ -f $$(pwd)/mrs.developer.json ]; then make develop; fi
+
+.PHONY: develop
+develop: ## Runs missdev in the local project (mrs.developer.json should be present)
+	if [ -f $$(pwd)/jsconfig.json ]; then npx -p mrs-developer missdev --config=jsconfig.json --output=addons --fetch-https; fi
+	if [ ! -f $$(pwd)/jsconfig.json ]; then npx -p mrs-developer missdev --output=addons --fetch-https; fi
+
+.PHONY: omelette
+omelette: ## Creates the omelette folder that contains a link to the installed version of Volto (a softlink pointing to node_modules/@plone/volto)
+	if [ ! -d omelette ]; then ln -sf node_modules/@plone/volto omelette; fi
+
+.PHONY: patches
+patches:
+	/bin/bash patches/patchit.sh > /dev/null 2>&1 ||true
+
+.PHONY: start-test-acceptance-server start-test-backend
+start-test-acceptance-server start-test-backend : ## Start Test Plone Backend
+	@echo "$(GREEN)==> Start Test Plone Backend$(RESET)"
+	docker run -i --rm -p 55001:55001 $(DOCKER_IMAGE_ACCEPTANCE)
+	## KGS in case you need a Plone 5.2 series (comment/remove above line):
+	# docker run -i --rm -e ZSERVER_HOST=0.0.0.0 -e ZSERVER_PORT=55001 -p 55001:55001 -e ADDONS='$(KGS5) $(TESTING_ADDONS)' -e APPLY_PROFILES=plone.app.contenttypes:plone-content,plone.restapi:default,plone.volto:default-homepage -e CONFIGURE_PACKAGES=plone.app.contenttypes,plone.restapi,plone.volto,plone.volto.cors $(DOCKER_IMAGE5) ./bin/robot-server plone.app.robotframework.testing.VOLTO_ROBOT_TESTING
+
+.PHONY: start-test-acceptance-frontend
+start-test-acceptance-frontend: ## Start the Acceptance Frontend Fixture
+	RAZZLE_API_PATH=http://127.0.0.1:55001/plone yarn build && yarn start:prod
+
+.PHONY: test-acceptance
+test-acceptance: ## Start Core Cypress Acceptance Tests
+	$(NODEBIN)/cypress open
+
+.PHONY: test-acceptance-headless
+test-acceptance-headless: ## Start Core Cypress Acceptance Tests in headless mode
+	$(NODEBIN)/cypress run
+
+.PHONY: full-test-acceptance
+full-test-acceptance: ## Runs Core Full Acceptance Testing in headless mode
+	$(NODEBIN)/start-test "make start-test-acceptance-server" http-get://127.0.0.1:55001/plone "make start-test-acceptance-frontend" http://127.0.0.1:3000 "make test-acceptance-headless"
+
+.PHONY: test-acceptance
+test-acceptance-addon: ## Start Core Cypress Acceptance Tests for an addon
+	$(NODEBIN)/cypress open -P $(ADDONPATH)
+
+.PHONY: test-acceptance-headless
+test-acceptance-addon-headless: ## Start Core Cypress Acceptance Tests for an addon in headless mode
+	$(NODEBIN)/cypress run -P $(ADDONPATH)
+
+.PHONY: full-test-acceptance-addon
+full-test-acceptance-addon: ## Runs Core Full Acceptance Testing for an addon in headless mode
+	$(NODEBIN)/start-test "make start-test-acceptance-server" http-get://127.0.0.1:55001/plone "make start-test-acceptance-frontend" http://127.0.0.1:3000 "make test-acceptance-addon-headless"

@@ -13,28 +13,25 @@
     "79ba8858-1dd3-4719-b731-5951e32fbf79": {
       "@type": "title"
     },
-    "495efb73-cbdd-4bef-935a-a56f70a20854": {
-      "@type": "text",
-      "text": {
-        "blocks": [
-          {
-            "key": "9f35d",
-            "text": "This is the first event.",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [],
-            "entityRanges": [],
-            "data": {}
-          }
-        ],
-        "entityMap": {}
-      }
+    "1d61035e-1fd3-435a-85a8-c44863f3a2dd": {
+      "@type": "slate",
+      "value": [
+        {
+          "type": "p",
+          "children": [
+            {
+              "text": "This is the first event."
+            }
+          ]
+        }
+      ],
+      "plaintext": "This is the first event."
     }
   },
   "blocks_layout": {
     "items": [
       "79ba8858-1dd3-4719-b731-5951e32fbf79",
-      "495efb73-cbdd-4bef-935a-a56f70a20854"
+      "1d61035e-1fd3-435a-85a8-c44863f3a2dd"
     ]
   }
 }
