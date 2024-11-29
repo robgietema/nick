@@ -26,6 +26,7 @@
     "bootstrap": "yarn && yarn create-config && yarn migrate && yarn seed",
     "coverage": "jest --coverage",
     "create-config": "cp -n config.js.sample config.js && cp -n frontend/src/config.js.sample frontend/src/config.js",
+    "convert": "babel-node scripts/convert.js",
     "i18n": "babel-node scripts/i18n.js",
     "i18n:ci": "yarn i18n && git diff -G'^[^\"POT]' --exit-code",
     "knex": "babel-node --plugins ./src/plugins/strip-i18n.js node_modules/.bin/knex",

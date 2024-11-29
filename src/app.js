@@ -155,6 +155,8 @@ map(routes, (route) => {
           // Send binary data
           res.write(view.binary, 'binary');
           res.end(undefined, 'binary');
+        } else if (view && view.html) {
+          res.status(view.status || 200).send(view.html);
         }
       } catch (err) {
         // Rollback transaction

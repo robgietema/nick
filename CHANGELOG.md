@@ -32,6 +32,8 @@
 - Add support for expanders in content fetching @robgietema
 - Add available languages endpoint @robgietema
 - Add multilingual support @robgietema
+- Add converter from plone.exportimport @robgietema
+- Add Nick endpoint @robgietema
 
 ### Bugfix
 

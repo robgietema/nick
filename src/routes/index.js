@@ -15,6 +15,7 @@ import history from './history/history';
 import lock from './lock/lock';
 import navigation from './navigation/navigation';
 import navroot from './navroot/navroot';
+import nick from './nick/nick';
 import querystring from './querystring/querystring';
 import roles from './roles/roles';
 import search from './search/search';
@@ -39,6 +40,7 @@ export default [
   ...lock,
   ...navigation,
   ...navroot,
+  ...nick,
   ...querystring,
   ...roles,
   ...search,
