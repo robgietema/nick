@@ -1,0 +1,19 @@
+---
+version: '3.8'
+name: nickcms
+
+services:
+
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: nick
+      POSTGRES_PASSWORD: nick
+      POSTGRES_DB: nick
+    volumes:
+      - vol-site-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  vol-site-data: {}
