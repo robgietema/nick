@@ -545,7 +545,7 @@ msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
-#: src/app.js:181
+#: src/app.js:183
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
