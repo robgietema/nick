@@ -4,6 +4,7 @@
  */
 
 import { Controlpanel } from '../../models';
+import { handleFiles, handleImages } from '../../helpers';
 
 export default [
   {
@@ -40,7 +41,15 @@ export default [
     view: '/@controlpanels/:id',
     permission: 'Manage Site',
     handler: async (req, trx) => {
+      // Make a copy
+      let json = { ...req.body };
+
       const controlpanel = await Controlpanel.fetchById(req.params.id, {}, trx);
+
+      // Handle images
+      json = await handleFiles(json, controlpanel);
+      json = await handleImages(json, controlpanel);
+
       await Controlpanel.update(
         req.params.id,
         {

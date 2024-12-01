@@ -35,7 +35,7 @@ export async function handleFiles(json, type, profile) {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',
-        'content-type': mime.lookup(`${profile}/documents${fields[field]}`),
+        'content-type': mime.lookup(`${profile}${fields[field]}`),
         filename: last(fields[field].split('/')),
       };
     }
@@ -83,7 +83,7 @@ export async function handleImages(json, type, profile) {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',
-        'content-type': mime.lookup(`${profile}/documents${fields[field]}`),
+        'content-type': mime.lookup(`${profile}${fields[field]}`),
         filename: last(fields[field].split('/')),
       };
     }
@@ -118,10 +118,9 @@ export async function handleImages(json, type, profile) {
  * @method handleRelationLists
  * @param {Object} json Current json object.
  * @param {Object} type Type object.
- * @param {string} profile Path of the profile.
  * @returns {Object} Fields with uuid info.
  */
-export async function handleRelationLists(json, type, profile) {
+export async function handleRelationLists(json, type) {
   // Make a copy of the json data
   const fields = { ...json };
 
@@ -140,4 +139,18 @@ export async function handleRelationLists(json, type, profile) {
 
   // Return new field data
   return fields;
+}
+
+/**
+ * Handle block references
+ * @method handleBlockReferences
+ * @param {Object} json Current json object.
+ * @returns {Object} Json with references expanded.
+ */
+export async function handleBlockReferences(json) {
+  // Make a copy of the json data
+  const output = { ...json };
+
+  // Return new json data
+  return output;
 }

@@ -1,0 +1,22 @@
+{
+  "id": "Post",
+  "title:i18n": "Blog Post",
+  "description:i18n": "A Blog Post",
+  "global_allow": true,
+  "filter_content_types": true,
+  "allowed_content_types": ["File", "Image"],
+  "schema": {
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "blocks",
+      "versioning",
+      "short_name",
+      "id_from_title",
+      "folderish",
+      "exclude_from_nav",
+      "preview_image_link"
+    ]
+  },
+  "workflow": "simple_publication_workflow"
+}

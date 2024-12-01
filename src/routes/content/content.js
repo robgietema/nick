@@ -33,6 +33,7 @@ import {
   handleFiles,
   handleImages,
   handleRelationLists,
+  handleBlockReferences,
 } from '../../helpers';
 import { Document, Type } from '../../models';
 
@@ -272,7 +273,9 @@ export default [
       await req.document.fetchVersion(parseInt(req.params.version, 10), trx);
       await req.document.fetchRelationLists(trx);
       return {
-        json: await req.document.toJSON(req, await getComponents(req, trx)),
+        json: await handleBlockReferences(
+          await req.document.toJSON(req, await getComponents(req, trx)),
+        ),
       };
     },
   },
@@ -300,7 +303,9 @@ export default [
     handler: async (req, trx) => {
       const buffer = readFile(req.params.uuid);
       return {
-        headers: { 'Content-Type': `image/${req.params.ext}` },
+        headers: {
+          'Content-Type': `image/${req.params.ext}`,
+        },
         binary: buffer,
       };
     },
@@ -442,6 +447,7 @@ export default [
       json = await handleFiles(json, type);
       json = await handleImages(json, type);
       json = await handleRelationLists(json, req.type);
+      json = await handleBlockReferences(json);
 
       // Create new document
       let document = Document.fromJson({
@@ -598,6 +604,7 @@ export default [
       json = await handleFiles(json, req.type);
       json = await handleImages(json, req.type);
       json = await handleRelationLists(json, req.type);
+      json = await handleBlockReferences(json);
 
       // Create new version
       const modified = moment.utc().format();

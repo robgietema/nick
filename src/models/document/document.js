@@ -9,6 +9,7 @@ import _, {
   concat,
   drop,
   findIndex,
+  flatten,
   head,
   includes,
   isArray,
@@ -756,6 +757,56 @@ export class Document extends Model {
 
     // Return allowed
     return uniq(concat(globalRoles, workflowRoles, localUsersGroups));
+  }
+
+  /**
+   * Has preview image
+   * @method hasPreviewImage
+   * @return {Boolean} True if has preview image
+   */
+  hasPreviewImage() {
+    return this.preview_image || this.preview_image_link ? true : false;
+  }
+
+  /**
+   * Get block types
+   * @method getBlockTypes
+   * @return {Array} Array with block types
+   */
+  getBlockTypes() {
+    return this.json.blocks
+      ? uniq(
+          flatten(
+            map(keys(this.json.blocks), (block) => [
+              this.json.blocks[block]['@type'],
+              ...(this.json.blocks[block].blocks
+                ? map(
+                    keys(this.json.blocks[block].blocks),
+                    (subblock) =>
+                      this.json.blocks[block].blocks[subblock]['@type'],
+                  )
+                : []),
+            ]),
+          ),
+        )
+      : [];
+  }
+
+  /**
+   * Get the image field
+   * @method getImageField
+   * @return {String} Image field
+   */
+  getImageField() {
+    if (this._type._schema.properties.preview_image_link) {
+      return 'preview_image_link';
+    } else if (this._type._schema.properties.preview_image) {
+      return 'preview_image';
+    } else if (this._type._schema.properties.image) {
+      return 'image';
+    } else {
+      return '';
+    }
   }
 
   /**

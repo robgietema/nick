@@ -4,9 +4,17 @@
  * @module scripts/convert
  */
 
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import {
+  existsSync,
+  copyFileSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'fs';
 import { sync as glob } from 'glob';
-import { endsWith, keys, map } from 'lodash';
+import { endsWith, keys, last, map } from 'lodash';
+import { v4 as uuid } from 'uuid';
 
 /**
  * Read file
@@ -75,22 +83,83 @@ const convertGroups = (groups, path) => {
 const convertDocuments = (input, path) => {
   console.log('Converting documents...');
 
+  // Remove folder if exists
+  if (existsSync(`${path}/documents`)) {
+    rmSync(`${path}/documents`, { recursive: true });
+  }
+
   // Create folder
   mkdirSync(`${path}/documents`);
+  mkdirSync(`${path}/documents/images`);
 
   map(glob(`${input}/content/**/*.json`), (filename) => {
     if (endsWith(filename, '__metadata__.json')) {
       return;
     }
     let document = JSON.parse(readFileSync(filename, 'utf8'));
+
+    // Set correct uuid field
     document.uuid = document.UID;
     delete document.UID;
 
+    // Convert types
+    if (document['@type'] === 'Plone Site') {
+      document['@type'] = 'Site';
+      document.uuid = uuid();
+    }
+    if (document['@type'] === 'LRF') {
+      document['@type'] = 'Languageroot';
+    }
+    if (document['@type'] === 'Document') {
+      document['@type'] = 'Page';
+    }
+    if (document['@type'] === 'LIF') {
+      document['@type'] = 'Folder';
+    }
+    document.type = document['@type'];
+    delete document['@type'];
+
+    // Remove fields
+    delete document.version;
+
+    // Fix language
+    if (document.language === '##DEFAULT##') {
+      document.language = 'en';
+    }
+
+    // Fix images
+    if (document.type === 'Image') {
+      const file = last(document.image.blob_path.split('/')).replace(' ', '_');
+      mkdirSync(`${path}/documents/images/${document.uuid}`);
+      copyFileSync(
+        `${input}/content/${document.image.blob_path}`,
+        `${path}/documents/images/${document.uuid}/${file}`,
+      );
+      document.image = `/images/${document.uuid}/${file}`;
+    }
+
+    // Convert to string
+    let json = JSON.stringify(document);
+    json = json.replaceAll(/\"[^"]*resolveuid\/([^"]*)\"/g, (result, uuid) => {
+      const targetfile = `${input}/content/${uuid}/data.json`;
+      if (existsSync(targetfile)) {
+        const target = JSON.parse(
+          readFileSync(`${input}/content/${uuid}/data.json`, 'utf8'),
+        );
+        return `"${target['@id'].replace('.', '-')}"`;
+      } else {
+        console.log(`Not found: ${targetfile}`);
+      }
+      return `"${uuid}"`;
+    });
+
+    const output =
+      document['@id'] === '/Plone'
+        ? `${path}/documents/_root.json`
+        : `${path}/documents/${document['@id'].replaceAll('.', '-').replaceAll('/', '.').substring(1)}.json`;
+
     // Write files
-    writeFileSync(
-      `${path}/documents/${document['@id'].replaceAll('.', '-').replaceAll('/', '.').substring(1)}.json`,
-      JSON.stringify(document),
-    );
+    writeFileSync(output, json);
   });
 
   console.log('done!');
@@ -113,10 +182,9 @@ async function main() {
   const outputfolder = process.argv[3];
 
   // Create output folder
-  if (existsSync(outputfolder)) {
-    rmSync(outputfolder, { recursive: true });
+  if (!existsSync(outputfolder)) {
+    mkdirSync(outputfolder, { recursive: true });
   }
-  mkdirSync(outputfolder, { recursive: true });
 
   // Convert principals
   if (existsSync(`${inputfolder}/principals.json`)) {

@@ -309,6 +309,12 @@
       "enabled": false
     },
     {
+      "name": "block_types",
+      "type": "string[]",
+      "attr": "getBlockTypes",
+      "enabled": false
+    },
+    {
       "name": "getRawRelatedItems",
       "type": "uuid[]",
       "attr": "relatedItems",
@@ -901,6 +907,16 @@
       "name": "ModificationDate",
       "type": "date",
       "attr": "modified"
+    },
+    {
+      "name": "image_field",
+      "type": "string",
+      "attr": "getImageField"
+    },
+    {
+      "name": "hasPreviewImage",
+      "type": "boolean",
+      "attr": "hasPreviewImage"
     }
   ]
 }

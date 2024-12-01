@@ -84,10 +84,10 @@ export class Type extends Model {
   getFactoryFields(factory) {
     const properties = this._schema.properties;
 
-    // Get file fields
-    const fileFields = map(keys(properties), (property) =>
+    // Get factory fields
+    const factoryFields = map(keys(properties), (property) =>
       properties[property].factory === factory ? property : false,
     );
-    return compact(fileFields);
+    return compact(factoryFields);
   }
 }

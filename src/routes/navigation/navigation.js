@@ -36,9 +36,15 @@ export const handler = async (req, trx) => {
             title: navitem[0],
             description: navitem[1],
             '@id': navitem[2],
+            items: [],
           };
         }),
-        ...(await items.toJSON(req)),
+        ...map(await items.toJSON(req), (item) => {
+          return {
+            ...item,
+            items: [],
+          };
+        }),
       ],
     },
   };

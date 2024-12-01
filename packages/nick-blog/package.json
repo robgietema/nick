@@ -1,0 +1,33 @@
+{
+  "name": "@robgietema/nick-blog",
+  "description": "Blog for Nick",
+  "maintainers": [
+    {
+      "name": "Rob Gietema",
+      "email": "rob.gietema@gmail.com",
+      "url": "https://robgietema.nl"
+    }
+  ],
+  "license": "MIT",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:robgietema/nick.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/robgietema/nick/issues",
+    "email": "info@nickcms.org"
+  },
+  "homepage": "https://nickcms.org",
+  "keywords": [
+    "nick",
+    "blog",
+    "cms"
+  ],
+  "engines": {
+    "node": "^20"
+  }
+}

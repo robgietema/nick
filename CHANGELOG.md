@@ -34,6 +34,9 @@
 - Add multilingual support @robgietema
 - Add converter from plone.exportimport @robgietema
 - Add Nick endpoint @robgietema
+- Add support for images in controlpanels @robgietema
+- Add preview link support @robgietema
+- Add block types index @robgietema
 
 ### Bugfix
 
@@ -62,6 +65,7 @@
 - Fix delete within transaction @robgietema
 - Fix keywords endpoint @robgietema
 - Fix supported languages endpoint @robgietema
+- Fix site logo @robgietema
 
 ### Internal
 

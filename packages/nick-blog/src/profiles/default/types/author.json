@@ -1,0 +1,22 @@
+{
+  "id": "Author",
+  "title:i18n": "Blog Author",
+  "description:i18n": "A Blog Author",
+  "global_allow": true,
+  "filter_content_types": false,
+  "allowed_content_types": [],
+  "schema": {
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "blocks",
+      "versioning",
+      "short_name",
+      "id_from_title",
+      "folderish",
+      "exclude_from_nav",
+      "preview_image_link"
+    ]
+  },
+  "workflow": "simple_publication_workflow"
+}

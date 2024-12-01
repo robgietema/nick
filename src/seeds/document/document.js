@@ -72,8 +72,8 @@ export const seedDocument = async (trx, profilePath) => {
 
       // Handle files and images
       const type = await Type.fetchById(document.type || 'Page', {}, trx);
-      document = await handleFiles(document, type, profilePath);
-      document = await handleImages(document, type, profilePath);
+      document = await handleFiles(document, type, `${profilePath}/documents`);
+      document = await handleImages(document, type, `${profilePath}/documents`);
 
       const newUuid = document.uuid || uuid();
 

@@ -67,7 +67,7 @@ export function readFile(uuid) {
  * @returns {string} Base64 string of the file
  */
 export function readProfileFile(profile, path) {
-  const file = `${profile}/documents${path}`;
+  const file = `${profile}${path}`;
   if (!existsSync(file)) {
     throw `Can not read file: ${file}`;
   }
@@ -118,12 +118,16 @@ export async function writeImage(data, encoding) {
   // Write scales
   await mapAsync(keys(config.imageScales), async (scale) => {
     const scaleId = uuid();
-    const scaleImage = sharp(buffer)
-      .rotate()
-      .resize(...config.imageScales[scale], {
-        fit: 'inside',
-      });
-    await scaleImage.toFile(`${config.blobsDir}/${scaleId}`);
+    if ((await image.metadata()).format === 'svg') {
+      writeFileSync(`${config.blobsDir}/${scaleId}`, buffer);
+    } else {
+      const scaleImage = sharp(buffer)
+        .rotate()
+        .resize(...config.imageScales[scale], {
+          fit: 'inside',
+        });
+      await scaleImage.toFile(`${config.blobsDir}/${scaleId}`);
+    }
     const [scaleWidth, scaleHeight] = getScaleDimensions(
       width,
       height,
