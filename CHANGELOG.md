@@ -66,6 +66,7 @@
 - Fix keywords endpoint @robgietema
 - Fix supported languages endpoint @robgietema
 - Fix site logo @robgietema
+- Make it compatible with Volto without special settings @davisagli
 
 ### Internal
 
