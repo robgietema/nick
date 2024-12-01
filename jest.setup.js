@@ -13,7 +13,7 @@ jest
   .spyOn(url, 'getUrl')
   .mockImplementation(
     (req) =>
-      `http://localhost:8000${
+      `http://localhost:8080${
         req.document.path === '/' ? '' : req.document.path
       }`,
   );
@@ -21,7 +21,7 @@ jest
 // Mock get root url
 jest
   .spyOn(url, 'getRootUrl')
-  .mockImplementation((req) => 'http://localhost:8000');
+  .mockImplementation((req) => 'http://localhost:8080');
 
 // Mock JWT sign
 jest

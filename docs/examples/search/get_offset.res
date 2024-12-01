@@ -2,10 +2,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8000/@search",
+  "@id": "http://localhost:8080/@search",
   "items": [
     {
-      "@id": "http://localhost:8000/events/event-1",
+      "@id": "http://localhost:8080/events/event-1",
       "@type": "Page",
       "title": "Event 1",
       "UID": "405ca717-0c68-43a0-88ac-629a82658675",
@@ -35,7 +35,7 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:10:00.000Z"
     },
     {
-      "@id": "http://localhost:8000/users",
+      "@id": "http://localhost:8080/users",
       "@type": "Folder",
       "title": "Users",
       "UID": "80994493-74ca-4b94-9a7c-145a33a6dd80",
@@ -65,7 +65,7 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:24:00.000Z"
     },
     {
-      "@id": "http://localhost:8000/",
+      "@id": "http://localhost:8080/",
       "@type": "Site",
       "title": "Welcome to Nick!",
       "UID": "92a80817-f5b7-400d-8f58-b08126f0f09b",

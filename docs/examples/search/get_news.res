@@ -2,10 +2,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8000/@search",
+  "@id": "http://localhost:8080/@search",
   "items": [
     {
-      "@id": "http://localhost:8000/news",
+      "@id": "http://localhost:8080/news",
       "@type": "Folder",
       "title": "News",
       "UID": "32215c67-86de-462a-8cc0-eabcd2b39c26",

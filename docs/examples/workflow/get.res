@@ -2,7 +2,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8000/news/@workflow",
+  "@id": "http://localhost:8080/news/@workflow",
   "history": [],
   "state": {
     "id": "published",
@@ -10,11 +10,11 @@ Content-Type: application/json
   },
   "transitions": [
     {
-      "@id": "http://localhost:8000/news/@workflow/reject",
+      "@id": "http://localhost:8080/news/@workflow/reject",
       "title": "Send back"
     },
     {
-      "@id": "http://localhost:8000/news/@workflow/retract",
+      "@id": "http://localhost:8080/news/@workflow/retract",
       "title": "Retract"
     }
   ]

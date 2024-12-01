@@ -3,11 +3,11 @@ Content-Type: application/json
 
 [
   {
-    "source": "http://localhost:8000/events",
-    "target": "http://localhost:8000/news/events"
+    "source": "http://localhost:8080/events",
+    "target": "http://localhost:8080/news/events"
   },
   {
-    "source": "http://localhost:8000/users",
-    "target": "http://localhost:8000/news/users"
+    "source": "http://localhost:8080/users",
+    "target": "http://localhost:8080/news/users"
   }
 ]

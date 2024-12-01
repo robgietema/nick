@@ -3,67 +3,67 @@ Content-Type: application/json
 
 [
   {
-    "@id": "http://localhost:8000/@vocabularies/actions",
+    "@id": "http://localhost:8080/@vocabularies/actions",
     "title": "actions"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/availableLanguages",
+    "@id": "http://localhost:8080/@vocabularies/availableLanguages",
     "title": "availableLanguages"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/behaviors",
+    "@id": "http://localhost:8080/@vocabularies/behaviors",
     "title": "behaviors"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/boolean",
+    "@id": "http://localhost:8080/@vocabularies/boolean",
     "title": "boolean"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/groups",
+    "@id": "http://localhost:8080/@vocabularies/groups",
     "title": "groups"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/imageScales",
+    "@id": "http://localhost:8080/@vocabularies/imageScales",
     "title": "imageScales"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/permissions",
+    "@id": "http://localhost:8080/@vocabularies/permissions",
     "title": "permissions"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/roles",
+    "@id": "http://localhost:8080/@vocabularies/roles",
     "title": "roles"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/subjects",
+    "@id": "http://localhost:8080/@vocabularies/subjects",
     "title": "subjects"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/supportedLanguages",
+    "@id": "http://localhost:8080/@vocabularies/supportedLanguages",
     "title": "supportedLanguages"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/systemGroups",
+    "@id": "http://localhost:8080/@vocabularies/systemGroups",
     "title": "systemGroups"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/systemUsers",
+    "@id": "http://localhost:8080/@vocabularies/systemUsers",
     "title": "systemUsers"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/types",
+    "@id": "http://localhost:8080/@vocabularies/types",
     "title": "types"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/users",
+    "@id": "http://localhost:8080/@vocabularies/users",
     "title": "users"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/workflowStates",
+    "@id": "http://localhost:8080/@vocabularies/workflowStates",
     "title": "workflowStates"
   },
   {
-    "@id": "http://localhost:8000/@vocabularies/workflows",
+    "@id": "http://localhost:8080/@vocabularies/workflows",
     "title": "workflows"
   }
 ]

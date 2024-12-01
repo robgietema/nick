@@ -2,10 +2,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8000/@search",
+  "@id": "http://localhost:8080/@search",
   "items": [
     {
-      "@id": "http://localhost:8000/events",
+      "@id": "http://localhost:8080/events",
       "@type": "Folder",
       "title": "Events",
       "UID": "1a2123ba-14e8-4910-8e6b-c04a40d72a41",
@@ -35,7 +35,7 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:30:00.000Z"
     },
     {
-      "@id": "http://localhost:8000/news",
+      "@id": "http://localhost:8080/news",
       "@type": "Folder",
       "title": "News",
       "UID": "32215c67-86de-462a-8cc0-eabcd2b39c26",
@@ -65,7 +65,7 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:22:00.000Z"
     },
     {
-      "@id": "http://localhost:8000/users",
+      "@id": "http://localhost:8080/users",
       "@type": "Folder",
       "title": "Users",
       "UID": "80994493-74ca-4b94-9a7c-145a33a6dd80",

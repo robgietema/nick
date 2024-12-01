@@ -3,22 +3,22 @@ Content-Type: application/json
 
 [
   {
-    "@id": "http://localhost:8000/@controlpanels/language",
+    "@id": "http://localhost:8080/@controlpanels/language",
     "group": "General",
     "title": "Language"
   },
   {
-    "@id": "http://localhost:8000/@controlpanels/mail",
+    "@id": "http://localhost:8080/@controlpanels/mail",
     "group": "General",
     "title": "Mail"
   },
   {
-    "@id": "http://localhost:8000/@controlpanels/navigation",
+    "@id": "http://localhost:8080/@controlpanels/navigation",
     "group": "General",
     "title": "Navigation"
   },
   {
-    "@id": "http://localhost:8000/@controlpanels/site",
+    "@id": "http://localhost:8080/@controlpanels/site",
     "group": "General",
     "title": "Site"
   }

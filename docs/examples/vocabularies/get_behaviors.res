@@ -2,7 +2,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8000/@vocabularies/behaviors",
+  "@id": "http://localhost:8080/@vocabularies/behaviors",
   "items": [
     {
       "title": "Basic metadata",
