@@ -17,7 +17,5 @@
 import '@plone/volto/config';
 
 export default function applyConfig(config) {
-  config.settings.devProxyToApiPath = 'http://localhost:8000';
-  config.settings.proxyRewriteTarget = new String('');
   return config;
 }

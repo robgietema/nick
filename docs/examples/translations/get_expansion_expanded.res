@@ -5,41 +5,41 @@ Content-Type: application/json
   "title": "Events",
   "@components": {
     "actions": {
-      "@id": "http://localhost:8000/en/events/@actions"
+      "@id": "http://localhost:8080/en/events/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8000/en/events/@breadcrumbs"
+      "@id": "http://localhost:8080/en/events/@breadcrumbs"
     },
     "catalog": {
-      "@id": "http://localhost:8000/en/events/@catalog"
+      "@id": "http://localhost:8080/en/events/@catalog"
     },
     "navigation": {
-      "@id": "http://localhost:8000/en/events/@navigation"
+      "@id": "http://localhost:8080/en/events/@navigation"
     },
     "navroot": {
-      "@id": "http://localhost:8000/en/events/@navroot"
+      "@id": "http://localhost:8080/en/events/@navroot"
     },
     "translations": {
-      "@id": "http://localhost:8000/en/events/@translations",
+      "@id": "http://localhost:8080/en/events/@translations",
       "items": [
         {
-          "@id": "http://localhost:8000/nl/evenementen",
+          "@id": "http://localhost:8080/nl/evenementen",
           "language": "nl"
         }
       ],
       "root": {
-        "en": "http://localhost:8000/en",
-        "nl": "http://localhost:8000/nl"
+        "en": "http://localhost:8080/en",
+        "nl": "http://localhost:8080/nl"
       }
     },
     "types": {
-      "@id": "http://localhost:8000/en/events/@types"
+      "@id": "http://localhost:8080/en/events/@types"
     },
     "workflow": {
-      "@id": "http://localhost:8000/en/events/@workflow"
+      "@id": "http://localhost:8080/en/events/@workflow"
     }
   },
-  "@id": "http://localhost:8000/en/events/my-news-item",
+  "@id": "http://localhost:8080/en/events/my-news-item",
   "@type": "Page",
   "id": "events",
   "created": "2022-04-08T16:00:00.000Z",

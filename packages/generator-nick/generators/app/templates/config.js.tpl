@@ -9,7 +9,7 @@ export const config = {
     password: '<%= projectName %>',
   },
   blobsDir: `${__dirname}/var/blobstorage`,
-  port: 8000,
+  port: 8080,
   secret: 'secret',
   clientMaxSize: '64mb',
   systemUsers: ['admin', 'anonymous'],

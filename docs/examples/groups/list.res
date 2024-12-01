@@ -3,7 +3,7 @@ Content-Type: application/json
 
 [
   {
-    "@id": "http://localhost:8000/@groups/Administrators",
+    "@id": "http://localhost:8080/@groups/Administrators",
     "description": "",
     "email": "",
     "groupname": "Administrators",
