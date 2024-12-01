@@ -69,6 +69,7 @@
 - Update node dependency requirement @robgietema
 - Split profiles in core and default @robgietema
 - Move apply behaviors to the document class @robgietema
+- Node 22 support @sneridagh
 
 ### Documentation
 

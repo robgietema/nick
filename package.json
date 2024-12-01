@@ -54,12 +54,12 @@
     ]
   },
   "engines": {
-    "node": "^20.17.0"
+    "node": "^20 || ^22"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.25.9",
     "babel-jest": "29.7.0",
-    "eslint": "9.15.0",
+    "eslint": "9.16.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-json": "4.0.1",
     "eslint-plugin-prettier": "5.2.1",
