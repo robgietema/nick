@@ -42,7 +42,7 @@
     ]
   },
   "engines": {
-    "node": "^20.17.0 || ^22"
+    "node": "^20 || ^22"
   },
   "devDependencies": {},
   "dependencies": {}
