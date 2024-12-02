@@ -33,6 +33,10 @@ Content-Type: application/json
       "token": "ownership"
     },
     {
+      "title": "Preview Image Link",
+      "token": "preview_image_link"
+    },
+    {
       "title": "Short name",
       "token": "short_name"
     },
@@ -41,5 +45,5 @@ Content-Type: application/json
       "token": "versioning"
     }
   ],
-  "items_total": 9
+  "items_total": 10
 }
