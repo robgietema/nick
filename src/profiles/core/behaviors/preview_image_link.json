@@ -15,6 +15,7 @@
         "title:i18n": "Preview image",
         "description:i18n": "Select an image that will be used in listing and teaser blocks.",
         "widget": "object_browser",
+        "factory": "Relation Choice",
         "mode": "image"
       },
       "preview_caption_link": {

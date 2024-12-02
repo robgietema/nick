@@ -6,6 +6,7 @@
 
 export { getUserId, hasPermission } from './auth/auth';
 export {
+  handleBlockReferences,
   handleFiles,
   handleImages,
   handleRelationLists,

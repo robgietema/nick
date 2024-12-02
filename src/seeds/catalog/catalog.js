@@ -77,6 +77,9 @@ export const seedCatalog = async (trx, profilePath) => {
           case 'boolean':
             table.boolean(metadata.name);
             break;
+          case 'json':
+            table.json(metadata.name);
+            break;
           case 'string[]':
             table.specificType(metadata.name, 'character varying(255)[]');
             break;

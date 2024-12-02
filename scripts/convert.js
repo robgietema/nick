@@ -92,6 +92,23 @@ const convertDocuments = (input, path) => {
   mkdirSync(`${path}/documents`);
   mkdirSync(`${path}/documents/images`);
 
+  let relations = [];
+  if (existsSync(`${input}/relations.json`)) {
+    relations = readfile(`${input}/relations.json`);
+  }
+  const references = {};
+  map(relations, (relation) => {
+    if (typeof references[relation.from_uuid] !== 'object') {
+      references[relation.from_uuid] = [];
+    }
+    if (relation.from_attribute !== 'isReferencing') {
+      references[relation.from_uuid].push({
+        attr: relation.from_attribute,
+        to: relation.to_uuid,
+      });
+    }
+  });
+
   map(glob(`${input}/content/**/*.json`), (filename) => {
     if (endsWith(filename, '__metadata__.json')) {
       return;
@@ -136,6 +153,25 @@ const convertDocuments = (input, path) => {
         `${path}/documents/images/${document.uuid}/${file}`,
       );
       document.image = `/images/${document.uuid}/${file}`;
+    }
+
+    // Add references
+    if (references[document.uuid]) {
+      map(references[document.uuid], (reference) => {
+        const targetfile = `${input}/content/${reference.to}/data.json`;
+        if (existsSync(targetfile)) {
+          const target = JSON.parse(
+            readFileSync(`${input}/content/${reference.to}/data.json`, 'utf8'),
+          );
+          document[reference.attr] = [
+            {
+              '@id': target['@id'].replace('.', '-'),
+              UID: target.UID,
+              title: target.title,
+            },
+          ];
+        }
+      });
     }
 
     // Convert to string

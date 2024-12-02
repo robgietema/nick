@@ -37,6 +37,7 @@
 - Add support for images in controlpanels @robgietema
 - Add preview link support @robgietema
 - Add block types index @robgietema
+- Expand image data in block data @robgietema
 
 ### Bugfix
 

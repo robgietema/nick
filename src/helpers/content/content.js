@@ -3,7 +3,7 @@
  * @module helpers/content/content
  */
 
-import { isString, last, map } from 'lodash';
+import { isObject, isString, keys, last, map } from 'lodash';
 import mime from 'mime-types';
 
 import {
@@ -145,11 +145,66 @@ export async function handleRelationLists(json, type) {
  * Handle block references
  * @method handleBlockReferences
  * @param {Object} json Current json object.
+ * @param {Object} trx Transaction object.
  * @returns {Object} Json with references expanded.
  */
-export async function handleBlockReferences(json) {
+export async function handleBlockReferences(json, trx) {
   // Make a copy of the json data
   const output = { ...json };
+  const { Catalog } = require('../../models/catalog/catalog');
+
+  const extendHref = async (href, trx) => {
+    const target = await Catalog.fetchOne({ _path: href['@id'] }, {}, trx);
+    if (target) {
+      return {
+        ...href,
+        image_field: target.image_field,
+        image_scales: target.image_scales,
+      };
+    }
+    return href;
+  };
+
+  if (isObject(output.blocks)) {
+    await Promise.all(
+      map(keys(output.blocks), async (block) => {
+        if (isObject(output.blocks[block].href)) {
+          output.blocks[block].href[0] = await extendHref(
+            output.blocks[block].href[0],
+            trx,
+          );
+        }
+        if (isObject(output.blocks[block].slides)) {
+          await Promise.all(
+            map(output.blocks[block].slides, async (slide, index) => {
+              console.log('image');
+              console.log(index);
+              if (isObject(output.blocks[block].slides[index].image)) {
+                console.log('image');
+                output.blocks[block].slides[index].image[0] = await extendHref(
+                  output.blocks[block].slides[index].image[0],
+                  trx,
+                );
+              }
+            }),
+          );
+        }
+        if (isObject(output.blocks[block].blocks)) {
+          await Promise.all(
+            map(keys(output.blocks[block].blocks), async (subblock) => {
+              if (isObject(output.blocks[block].blocks[subblock].href)) {
+                output.blocks[block].blocks[subblock].href[0] =
+                  await extendHref(
+                    output.blocks[block].blocks[subblock].href[0],
+                    trx,
+                  );
+              }
+            }),
+          );
+        }
+      }),
+    );
+  }
 
   // Return new json data
   return output;

@@ -914,6 +914,11 @@
       "attr": "getImageField"
     },
     {
+      "name": "image_scales",
+      "type": "json",
+      "attr": "getImageScales"
+    },
+    {
       "name": "hasPreviewImage",
       "type": "boolean",
       "attr": "hasPreviewImage"

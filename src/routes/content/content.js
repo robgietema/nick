@@ -288,8 +288,8 @@ export default [
       const buffer = readFile(field.uuid);
       return {
         headers: {
-          'Content-Type': field['content-type'],
-          'Content-Disposition': `attachment; filename="${field.filename}"`,
+          'content-type': field['content-type'],
+          'content-disposition': `attachment; filename="${field.filename}"`,
           'Accept-Ranges': 'bytes',
         },
         binary: buffer,
@@ -304,7 +304,7 @@ export default [
       const buffer = readFile(req.params.uuid);
       return {
         headers: {
-          'Content-Type': `image/${req.params.ext}`,
+          'content-type': `image/${req.params.ext}`,
         },
         binary: buffer,
       };
@@ -319,8 +319,8 @@ export default [
       const buffer = readFile(field.uuid);
       return {
         headers: {
-          'Content-Type': field['content-type'],
-          'Content-Disposition': `attachment; filename="${field.filename}"`,
+          'content-type': field['content-type'],
+          'content-disposition': `attachment; filename="${field.filename}"`,
         },
         binary: buffer,
       };
@@ -335,8 +335,8 @@ export default [
       const buffer = readFile(field.scales[req.params.scale].uuid);
       return {
         headers: {
-          'Content-Type': field['content-type'],
-          'Content-Disposition': `attachment; filename="${field.filename}"`,
+          'content-type': field['content-type'],
+          'content-disposition': `attachment; filename="${field.filename}"`,
         },
         binary: buffer,
       };
@@ -350,8 +350,8 @@ export default [
       const json = await req.document.toJSON(req);
       return {
         headers: {
-          'Content-Type': 'application/json',
-          'Content-Disposition': `attachment; filename="${
+          'content-cype': 'application/json',
+          'content-disposition': `attachment; filename="${
             req.document.path === '/'
               ? '_root.json'
               : `${join(drop(split(req.document.path, '/')), '.')}.json`
@@ -381,8 +381,9 @@ export default [
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       await req.document.fetchRelationLists(trx);
+      const json = await req.document.toJSON(req, await getComponents(req));
       return {
-        json: await req.document.toJSON(req, await getComponents(req)),
+        json: await handleBlockReferences(json, trx),
       };
     },
   },
@@ -447,7 +448,6 @@ export default [
       json = await handleFiles(json, type);
       json = await handleImages(json, type);
       json = await handleRelationLists(json, req.type);
-      json = await handleBlockReferences(json);
 
       // Create new document
       let document = Document.fromJson({
@@ -604,7 +604,6 @@ export default [
       json = await handleFiles(json, req.type);
       json = await handleImages(json, req.type);
       json = await handleRelationLists(json, req.type);
-      json = await handleBlockReferences(json);
 
       // Create new version
       const modified = moment.utc().format();

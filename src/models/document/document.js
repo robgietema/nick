@@ -15,6 +15,7 @@ import _, {
   isArray,
   isEmpty,
   isFunction,
+  isObject,
   isUndefined,
   keys,
   last,
@@ -765,7 +766,10 @@ export class Document extends Model {
    * @return {Boolean} True if has preview image
    */
   hasPreviewImage() {
-    return this.preview_image || this.preview_image_link ? true : false;
+    return isObject(this.json.preview_image) ||
+      isObject(this.json.preview_image_link)
+      ? true
+      : false;
   }
 
   /**
@@ -807,6 +811,58 @@ export class Document extends Model {
     } else {
       return '';
     }
+  }
+
+  /**
+   * Get image scales
+   * @method getImageScales
+   * @param {Object} trx Transaction object.
+   * @return {Object} Image scales object.
+   */
+  async getImageScales(trx) {
+    const image_scales = {};
+    const relationChoiceFields = this._type.getFactoryFields('Relation Choice');
+    const imageFields = this._type.getFactoryFields('Image');
+
+    const addDownload = (field) => {
+      return {
+        ...field,
+        download: `@@images/${field.uuid}.${last(field.filename.split('.'))}`,
+        scales: mapValues(field.scales, (scale) => ({
+          width: scale.width,
+          height: scale.height,
+          download: `@@images/${scale.uuid}.${last(field.filename.split('.'))}`,
+        })),
+      };
+    };
+
+    // Add image fields
+    map(imageFields, (field) => {
+      image_scales[field] = [addDownload(this.json[field])];
+    });
+
+    // Add relation choice fields
+    await Promise.all(
+      map(relationChoiceFields, async (field) => {
+        if (this.json[field] && this.json[field].length > 0) {
+          const target = await Document.fetchById(
+            this.json[field][0].UID,
+            {},
+            trx,
+          );
+          if (isObject(target.json.image)) {
+            image_scales[field] = [
+              {
+                ...addDownload(target.json.image),
+                base_path: target.path,
+              },
+            ];
+          }
+        }
+      }),
+    );
+
+    return image_scales;
   }
 
   /**
