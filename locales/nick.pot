@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2024-12-01T16:28:13.317Z\n"
+"POT-Creation-Date: 2024-12-02T10:02:14.680Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -14,16 +14,17 @@ msgstr ""
 "Domain: nick\n"
 
 #: src/profiles/core/behaviors/categorization.json:33
+#: src/profiles/core/behaviors/preview_image_link.json:22
 #: src/profiles/core/catalog.json:58
 #: src/profiles/core/catalog.json:64
 #: src/profiles/core/catalog.json:70
 #: src/profiles/core/catalog.json:235
 #: src/profiles/core/catalog.json:254
 #: src/profiles/core/catalog.json:273
-#: src/profiles/core/catalog.json:323
-#: src/profiles/core/catalog.json:342
+#: src/profiles/core/catalog.json:329
 #: src/profiles/core/catalog.json:348
-#: src/profiles/core/catalog.json:467
+#: src/profiles/core/catalog.json:354
+#: src/profiles/core/catalog.json:473
 #: src/profiles/core/types/file.json:18
 #: src/profiles/core/types/folder.json:4
 #: src/profiles/core/types/image.json:18
@@ -114,50 +115,50 @@ msgstr ""
 
 #: src/profiles/core/catalog.json:89
 #: src/profiles/core/catalog.json:162
-#: src/profiles/core/catalog.json:492
-#: src/profiles/core/catalog.json:571
-#: src/profiles/core/catalog.json:644
-#: src/profiles/core/catalog.json:717
+#: src/profiles/core/catalog.json:498
+#: src/profiles/core/catalog.json:577
+#: src/profiles/core/catalog.json:650
+#: src/profiles/core/catalog.json:723
 # defaultMessage: After N days in the future
 msgid "After N days in the future"
 msgstr ""
 
 #: src/profiles/core/catalog.json:118
 #: src/profiles/core/catalog.json:191
-#: src/profiles/core/catalog.json:521
-#: src/profiles/core/catalog.json:600
-#: src/profiles/core/catalog.json:673
-#: src/profiles/core/catalog.json:746
+#: src/profiles/core/catalog.json:527
+#: src/profiles/core/catalog.json:606
+#: src/profiles/core/catalog.json:679
+#: src/profiles/core/catalog.json:752
 # defaultMessage: After date
 msgid "After date"
 msgstr ""
 
 #: src/profiles/core/catalog.json:88
 #: src/profiles/core/catalog.json:161
-#: src/profiles/core/catalog.json:491
-#: src/profiles/core/catalog.json:570
-#: src/profiles/core/catalog.json:643
-#: src/profiles/core/catalog.json:716
+#: src/profiles/core/catalog.json:497
+#: src/profiles/core/catalog.json:576
+#: src/profiles/core/catalog.json:649
+#: src/profiles/core/catalog.json:722
 # defaultMessage: After relative Date
 msgid "After relative Date"
 msgstr ""
 
 #: src/profiles/core/catalog.json:95
 #: src/profiles/core/catalog.json:168
-#: src/profiles/core/catalog.json:498
-#: src/profiles/core/catalog.json:577
-#: src/profiles/core/catalog.json:650
-#: src/profiles/core/catalog.json:723
+#: src/profiles/core/catalog.json:504
+#: src/profiles/core/catalog.json:583
+#: src/profiles/core/catalog.json:656
+#: src/profiles/core/catalog.json:729
 # defaultMessage: After the current day
 msgid "After the current day"
 msgstr ""
 
 #: src/profiles/core/catalog.json:94
 #: src/profiles/core/catalog.json:167
-#: src/profiles/core/catalog.json:497
-#: src/profiles/core/catalog.json:576
-#: src/profiles/core/catalog.json:649
-#: src/profiles/core/catalog.json:722
+#: src/profiles/core/catalog.json:503
+#: src/profiles/core/catalog.json:582
+#: src/profiles/core/catalog.json:655
+#: src/profiles/core/catalog.json:728
 # defaultMessage: After today
 msgid "After today"
 msgstr ""
@@ -178,12 +179,12 @@ msgstr ""
 msgid "An item's description"
 msgstr ""
 
-#: src/profiles/core/catalog.json:422
+#: src/profiles/core/catalog.json:428
 # defaultMessage: An item's type (e.g. Event)
 msgid "An item's type (e.g. Event)"
 msgstr ""
 
-#: src/profiles/core/catalog.json:441
+#: src/profiles/core/catalog.json:447
 # defaultMessage: An item's workflow state (e.g.published)
 msgid "An item's workflow state (e.g.published)"
 msgstr ""
@@ -210,60 +211,60 @@ msgstr ""
 
 #: src/profiles/core/catalog.json:101
 #: src/profiles/core/catalog.json:174
-#: src/profiles/core/catalog.json:504
-#: src/profiles/core/catalog.json:583
-#: src/profiles/core/catalog.json:656
-#: src/profiles/core/catalog.json:729
+#: src/profiles/core/catalog.json:510
+#: src/profiles/core/catalog.json:589
+#: src/profiles/core/catalog.json:662
+#: src/profiles/core/catalog.json:735
 # defaultMessage: Before N days in the past
 msgid "Before N days in the past"
 msgstr ""
 
 #: src/profiles/core/catalog.json:130
 #: src/profiles/core/catalog.json:203
-#: src/profiles/core/catalog.json:533
-#: src/profiles/core/catalog.json:612
-#: src/profiles/core/catalog.json:685
-#: src/profiles/core/catalog.json:758
+#: src/profiles/core/catalog.json:539
+#: src/profiles/core/catalog.json:618
+#: src/profiles/core/catalog.json:691
+#: src/profiles/core/catalog.json:764
 # defaultMessage: Before date
 msgid "Before date"
 msgstr ""
 
 #: src/profiles/core/catalog.json:100
 #: src/profiles/core/catalog.json:173
-#: src/profiles/core/catalog.json:503
-#: src/profiles/core/catalog.json:582
-#: src/profiles/core/catalog.json:655
-#: src/profiles/core/catalog.json:728
+#: src/profiles/core/catalog.json:509
+#: src/profiles/core/catalog.json:588
+#: src/profiles/core/catalog.json:661
+#: src/profiles/core/catalog.json:734
 # defaultMessage: Before relative Date
 msgid "Before relative Date"
 msgstr ""
 
 #: src/profiles/core/catalog.json:107
 #: src/profiles/core/catalog.json:180
-#: src/profiles/core/catalog.json:510
-#: src/profiles/core/catalog.json:589
-#: src/profiles/core/catalog.json:662
-#: src/profiles/core/catalog.json:735
+#: src/profiles/core/catalog.json:516
+#: src/profiles/core/catalog.json:595
+#: src/profiles/core/catalog.json:668
+#: src/profiles/core/catalog.json:741
 # defaultMessage: Before the current day
 msgid "Before the current day"
 msgstr ""
 
 #: src/profiles/core/catalog.json:106
 #: src/profiles/core/catalog.json:179
-#: src/profiles/core/catalog.json:509
-#: src/profiles/core/catalog.json:588
-#: src/profiles/core/catalog.json:661
-#: src/profiles/core/catalog.json:734
+#: src/profiles/core/catalog.json:515
+#: src/profiles/core/catalog.json:594
+#: src/profiles/core/catalog.json:667
+#: src/profiles/core/catalog.json:740
 # defaultMessage: Before today
 msgid "Before today"
 msgstr ""
 
 #: src/profiles/core/catalog.json:112
 #: src/profiles/core/catalog.json:185
-#: src/profiles/core/catalog.json:515
-#: src/profiles/core/catalog.json:594
-#: src/profiles/core/catalog.json:667
-#: src/profiles/core/catalog.json:740
+#: src/profiles/core/catalog.json:521
+#: src/profiles/core/catalog.json:600
+#: src/profiles/core/catalog.json:673
+#: src/profiles/core/catalog.json:746
 # defaultMessage: Between dates
 msgid "Between dates"
 msgstr ""
@@ -303,7 +304,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:234
 #: src/profiles/core/catalog.json:253
 #: src/profiles/core/catalog.json:272
-#: src/profiles/core/catalog.json:466
+#: src/profiles/core/catalog.json:472
 # defaultMessage: Contains
 msgid "Contains"
 msgstr ""
@@ -328,17 +329,17 @@ msgstr ""
 msgid "Coverage"
 msgstr ""
 
-#: src/profiles/core/catalog.json:636
+#: src/profiles/core/catalog.json:642
 # defaultMessage: Creation date
 msgid "Creation date"
 msgstr ""
 
-#: src/profiles/core/catalog.json:390
+#: src/profiles/core/catalog.json:396
 # defaultMessage: Creator
 msgid "Creator"
 msgstr ""
 
-#: src/profiles/core/catalog.json:403
+#: src/profiles/core/catalog.json:409
 # defaultMessage: Current logged in user
 msgid "Current logged in user"
 msgstr ""
@@ -360,6 +361,7 @@ msgid "Debug"
 msgstr ""
 
 #: src/profiles/core/behaviors/basic.json:10
+#: src/profiles/core/behaviors/preview_image_link.json:10
 #: src/profiles/core/behaviors/versioning.json:10
 #: src/profiles/core/types/file.json:13
 #: src/profiles/core/types/image.json:13
@@ -383,7 +385,7 @@ msgstr ""
 msgid "Displayed content types"
 msgstr ""
 
-#: src/routes/content/content.js:565
+#: src/routes/content/content.js:571
 #: src/routes/history/history.js:48
 # defaultMessage: Document locked
 msgid "Document locked"
@@ -414,7 +416,7 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-#: src/profiles/core/catalog.json:709
+#: src/profiles/core/catalog.json:715
 # defaultMessage: Effective date
 msgid "Effective date"
 msgstr ""
@@ -430,7 +432,7 @@ msgid "Enter a comment that describes the changes you made."
 msgstr ""
 
 #: src/profiles/core/catalog.json:57
-#: src/profiles/core/catalog.json:322
+#: src/profiles/core/catalog.json:328
 # defaultMessage: Equals
 msgid "Equals"
 msgstr ""
@@ -456,7 +458,7 @@ msgstr ""
 msgid "Expiration Date"
 msgstr ""
 
-#: src/profiles/core/catalog.json:563
+#: src/profiles/core/catalog.json:569
 # defaultMessage: Expiration date
 msgid "Expiration date"
 msgstr ""
@@ -467,12 +469,12 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: src/profiles/core/catalog.json:316
+#: src/profiles/core/catalog.json:322
 # defaultMessage: Find items related to the selected items
 msgid "Find items related to the selected items"
 msgstr ""
 
-#: src/profiles/core/catalog.json:335
+#: src/profiles/core/catalog.json:341
 # defaultMessage: Find items that can contain other objects
 msgid "Find items that can contain other objects"
 msgstr ""
@@ -482,7 +484,7 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: src/profiles/core/catalog.json:334
+#: src/profiles/core/catalog.json:340
 # defaultMessage: Folder-like
 msgid "Folder-like"
 msgstr ""
@@ -493,6 +495,7 @@ msgstr ""
 msgid "From and message are required fields."
 msgstr ""
 
+#: src/profiles/core/behaviors/preview_image_link.json:4
 #: src/profiles/core/behaviors/short_name.json:4
 # defaultMessage: Gives the ability to rename an item from its edit form.
 msgid "Gives the ability to rename an item from its edit form."
@@ -545,7 +548,7 @@ msgstr ""
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:183
+#: src/app.js:184
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
@@ -561,8 +564,8 @@ msgstr ""
 msgid "Invalid session"
 msgstr ""
 
-#: src/profiles/core/catalog.json:378
-#: src/profiles/core/catalog.json:472
+#: src/profiles/core/catalog.json:384
+#: src/profiles/core/catalog.json:478
 # defaultMessage: Is
 msgid "Is"
 msgstr ""
@@ -664,9 +667,9 @@ msgid "Matches all of"
 msgstr ""
 
 #: src/profiles/core/catalog.json:299
-#: src/profiles/core/catalog.json:397
-#: src/profiles/core/catalog.json:428
-#: src/profiles/core/catalog.json:447
+#: src/profiles/core/catalog.json:403
+#: src/profiles/core/catalog.json:434
+#: src/profiles/core/catalog.json:453
 # defaultMessage: Matches any of
 msgid "Matches any of"
 msgstr ""
@@ -676,7 +679,7 @@ msgstr ""
 msgid "Missing credentials"
 msgstr ""
 
-#: src/profiles/core/catalog.json:484
+#: src/profiles/core/catalog.json:490
 # defaultMessage: Modification date
 msgid "Modification date"
 msgstr ""
@@ -703,7 +706,7 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: src/profiles/core/catalog.json:341
+#: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
 # defaultMessage: No
 msgid "No"
@@ -714,7 +717,7 @@ msgstr ""
 msgid "Not allowed"
 msgstr ""
 
-#: src/routes/controlpanels/controlpanels.js:31
+#: src/routes/controlpanels/controlpanels.js:32
 #: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:26
 #: src/routes/types/types.js:32
@@ -765,14 +768,14 @@ msgstr ""
 #: src/profiles/core/catalog.json:137
 #: src/profiles/core/catalog.json:198
 #: src/profiles/core/catalog.json:210
-#: src/profiles/core/catalog.json:528
-#: src/profiles/core/catalog.json:540
-#: src/profiles/core/catalog.json:607
-#: src/profiles/core/catalog.json:619
-#: src/profiles/core/catalog.json:680
-#: src/profiles/core/catalog.json:692
-#: src/profiles/core/catalog.json:753
-#: src/profiles/core/catalog.json:765
+#: src/profiles/core/catalog.json:534
+#: src/profiles/core/catalog.json:546
+#: src/profiles/core/catalog.json:613
+#: src/profiles/core/catalog.json:625
+#: src/profiles/core/catalog.json:686
+#: src/profiles/core/catalog.json:698
+#: src/profiles/core/catalog.json:759
+#: src/profiles/core/catalog.json:771
 # defaultMessage: Please enter the number in days.
 msgid "Please enter the number in days."
 msgstr ""
@@ -783,18 +786,18 @@ msgstr ""
 #: src/profiles/core/catalog.json:186
 #: src/profiles/core/catalog.json:192
 #: src/profiles/core/catalog.json:204
-#: src/profiles/core/catalog.json:516
 #: src/profiles/core/catalog.json:522
-#: src/profiles/core/catalog.json:534
-#: src/profiles/core/catalog.json:595
+#: src/profiles/core/catalog.json:528
+#: src/profiles/core/catalog.json:540
 #: src/profiles/core/catalog.json:601
-#: src/profiles/core/catalog.json:613
-#: src/profiles/core/catalog.json:668
+#: src/profiles/core/catalog.json:607
+#: src/profiles/core/catalog.json:619
 #: src/profiles/core/catalog.json:674
-#: src/profiles/core/catalog.json:686
-#: src/profiles/core/catalog.json:741
+#: src/profiles/core/catalog.json:680
+#: src/profiles/core/catalog.json:692
 #: src/profiles/core/catalog.json:747
-#: src/profiles/core/catalog.json:759
+#: src/profiles/core/catalog.json:753
+#: src/profiles/core/catalog.json:765
 # defaultMessage: Please use YYYY/MM/DD.
 msgid "Please use YYYY/MM/DD."
 msgstr ""
@@ -812,6 +815,21 @@ msgstr ""
 #: src/profiles/core/actions.json:83
 # defaultMessage: Preferences
 msgid "Preferences"
+msgstr ""
+
+#: src/profiles/core/behaviors/preview_image_link.json:3
+# defaultMessage: Preview Image Link
+msgid "Preview Image Link"
+msgstr ""
+
+#: src/profiles/core/behaviors/preview_image_link.json:15
+# defaultMessage: Preview image
+msgid "Preview image"
+msgstr ""
+
+#: src/profiles/core/behaviors/preview_image_link.json:23
+# defaultMessage: Preview image caption
+msgid "Preview image caption"
 msgstr ""
 
 #: src/profiles/core/workflows.json:12
@@ -860,7 +878,7 @@ msgstr ""
 msgid "Related Items"
 msgstr ""
 
-#: src/profiles/core/catalog.json:315
+#: src/profiles/core/catalog.json:321
 # defaultMessage: Related To
 msgid "Related To"
 msgstr ""
@@ -880,7 +898,7 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: src/routes/content/content.js:403
+#: src/routes/content/content.js:409
 # defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr ""
@@ -895,7 +913,7 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: src/profiles/core/catalog.json:440
+#: src/profiles/core/catalog.json:446
 # defaultMessage: Review state
 msgid "Review state"
 msgstr ""
@@ -940,6 +958,11 @@ msgstr ""
 msgid "Secure"
 msgstr ""
 
+#: src/profiles/core/behaviors/preview_image_link.json:16
+# defaultMessage: Select an image that will be used in listing and teaser blocks.
+msgid "Select an image that will be used in listing and teaser blocks."
+msgstr ""
+
 #: src/profiles/core/workflows.json:52
 # defaultMessage: Send back
 msgid "Send back"
@@ -961,7 +984,7 @@ msgstr ""
 msgid "Short name"
 msgstr ""
 
-#: src/profiles/core/catalog.json:371
+#: src/profiles/core/catalog.json:377
 # defaultMessage: Short name (id)
 msgid "Short name (id)"
 msgstr ""
@@ -1017,7 +1040,7 @@ msgstr ""
 msgid "Sitemap"
 msgstr ""
 
-#: src/profiles/core/catalog.json:459
+#: src/profiles/core/catalog.json:465
 # defaultMessage: Sortable Title
 msgid "Sortable Title"
 msgstr ""
@@ -1094,15 +1117,15 @@ msgstr ""
 
 #: src/profiles/core/catalog.json:143
 #: src/profiles/core/catalog.json:216
-#: src/profiles/core/catalog.json:546
-#: src/profiles/core/catalog.json:625
-#: src/profiles/core/catalog.json:698
-#: src/profiles/core/catalog.json:771
+#: src/profiles/core/catalog.json:552
+#: src/profiles/core/catalog.json:631
+#: src/profiles/core/catalog.json:704
+#: src/profiles/core/catalog.json:777
 # defaultMessage: The current day
 msgid "The current day"
 msgstr ""
 
-#: src/profiles/core/catalog.json:637
+#: src/profiles/core/catalog.json:643
 # defaultMessage: The date an item was created
 msgid "The date an item was created"
 msgstr ""
@@ -1120,7 +1143,7 @@ msgid "The following link takes you to a page where you can reset your password:
 (This link will expire in 7 days)"
 msgstr ""
 
-#: src/profiles/core/catalog.json:460
+#: src/profiles/core/catalog.json:466
 # defaultMessage: The item's title, transformed for sorting
 msgid "The item's title, transformed for sorting"
 msgstr ""
@@ -1155,7 +1178,7 @@ msgstr ""
 msgid "The password for the ESMTP user account."
 msgstr ""
 
-#: src/profiles/core/catalog.json:391
+#: src/profiles/core/catalog.json:397
 # defaultMessage: The person that created an item
 msgid "The person that created an item"
 msgstr ""
@@ -1165,7 +1188,7 @@ msgstr ""
 msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 msgstr ""
 
-#: src/profiles/core/catalog.json:372
+#: src/profiles/core/catalog.json:378
 # defaultMessage: The short name of an item (used in the url)
 msgid "The short name of an item (used in the url)"
 msgstr ""
@@ -1180,17 +1203,17 @@ msgstr ""
 msgid "The start date and time of an event"
 msgstr ""
 
-#: src/profiles/core/catalog.json:564
+#: src/profiles/core/catalog.json:570
 # defaultMessage: The time and date an item was expired
 msgid "The time and date an item was expired"
 msgstr ""
 
-#: src/profiles/core/catalog.json:710
+#: src/profiles/core/catalog.json:716
 # defaultMessage: The time and date an item was first published
 msgid "The time and date an item was first published"
 msgstr ""
 
-#: src/profiles/core/catalog.json:485
+#: src/profiles/core/catalog.json:491
 # defaultMessage: The time and date an item was last modified
 msgid "The time and date an item was last modified"
 msgstr ""
@@ -1200,7 +1223,7 @@ msgstr ""
 msgid "The topic of this item."
 msgstr ""
 
-#: src/profiles/core/catalog.json:404
+#: src/profiles/core/catalog.json:410
 # defaultMessage: The user viewing the querystring results
 msgid "The user viewing the querystring results"
 msgstr ""
@@ -1233,11 +1256,11 @@ msgstr ""
 
 #: src/profiles/core/catalog.json:291
 #: src/profiles/core/catalog.json:297
-#: src/profiles/core/catalog.json:379
-#: src/profiles/core/catalog.json:398
-#: src/profiles/core/catalog.json:429
-#: src/profiles/core/catalog.json:448
-#: src/profiles/core/catalog.json:473
+#: src/profiles/core/catalog.json:385
+#: src/profiles/core/catalog.json:404
+#: src/profiles/core/catalog.json:435
+#: src/profiles/core/catalog.json:454
+#: src/profiles/core/catalog.json:479
 # defaultMessage: Tip: you can use * to autocomplete.
 msgid "Tip: you can use * to autocomplete."
 msgstr ""
@@ -1255,25 +1278,25 @@ msgstr ""
 
 #: src/profiles/core/catalog.json:142
 #: src/profiles/core/catalog.json:215
-#: src/profiles/core/catalog.json:545
-#: src/profiles/core/catalog.json:624
-#: src/profiles/core/catalog.json:697
-#: src/profiles/core/catalog.json:770
+#: src/profiles/core/catalog.json:551
+#: src/profiles/core/catalog.json:630
+#: src/profiles/core/catalog.json:703
+#: src/profiles/core/catalog.json:776
 # defaultMessage: Today
 msgid "Today"
 msgstr ""
 
-#: src/app.js:139
+#: src/app.js:140
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr ""
 
-#: src/profiles/core/catalog.json:421
+#: src/profiles/core/catalog.json:427
 # defaultMessage: Type
 msgid "Type"
 msgstr ""
 
-#: src/app.js:100
+#: src/app.js:101
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
@@ -1331,20 +1354,20 @@ msgstr ""
 
 #: src/profiles/core/catalog.json:124
 #: src/profiles/core/catalog.json:197
-#: src/profiles/core/catalog.json:527
-#: src/profiles/core/catalog.json:606
-#: src/profiles/core/catalog.json:679
-#: src/profiles/core/catalog.json:752
+#: src/profiles/core/catalog.json:533
+#: src/profiles/core/catalog.json:612
+#: src/profiles/core/catalog.json:685
+#: src/profiles/core/catalog.json:758
 # defaultMessage: Within last
 msgid "Within last"
 msgstr ""
 
 #: src/profiles/core/catalog.json:136
 #: src/profiles/core/catalog.json:209
-#: src/profiles/core/catalog.json:539
-#: src/profiles/core/catalog.json:618
-#: src/profiles/core/catalog.json:691
-#: src/profiles/core/catalog.json:764
+#: src/profiles/core/catalog.json:545
+#: src/profiles/core/catalog.json:624
+#: src/profiles/core/catalog.json:697
+#: src/profiles/core/catalog.json:770
 # defaultMessage: Within next
 msgid "Within next"
 msgstr ""
@@ -1355,13 +1378,13 @@ msgstr ""
 msgid "Wrong login and/or password."
 msgstr ""
 
-#: src/profiles/core/catalog.json:347
+#: src/profiles/core/catalog.json:353
 #: src/profiles/core/vocabularies/boolean.json:5
 # defaultMessage: Yes
 msgid "Yes"
 msgstr ""
 
-#: src/app.js:125
+#: src/app.js:126
 #: src/routes/workflow/workflow.js:32
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
@@ -1377,7 +1400,7 @@ msgstr ""
 msgid "You can't delete system users."
 msgstr ""
 
-#: src/routes/content/content.js:562
+#: src/routes/content/content.js:568
 #: src/routes/history/history.js:45
 # defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
