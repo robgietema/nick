@@ -27,7 +27,7 @@ Example `GET` request on the portal root
 
 ### Prerequisites
 
-- [Node.js==16.x.x](https://nodejs.org/)
+- [Node.js==22.x.x](https://nodejs.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 
 ### Create Database
