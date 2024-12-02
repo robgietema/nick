@@ -4,5 +4,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsI
 Content-Type: application/json
 
 {
-  "id": "http://localhost:8000/nl/evenementen"
+  "id": "http://localhost:8080/nl/evenementen"
 }

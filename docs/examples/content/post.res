@@ -6,31 +6,31 @@ Content-Type: application/json
   "description": "News Description",
   "@components": {
     "actions": {
-      "@id": "http://localhost:8000/news/@actions"
+      "@id": "http://localhost:8080/news/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8000/news/@breadcrumbs"
+      "@id": "http://localhost:8080/news/@breadcrumbs"
     },
     "catalog": {
-      "@id": "http://localhost:8000/news/@catalog"
+      "@id": "http://localhost:8080/news/@catalog"
     },
     "navigation": {
-      "@id": "http://localhost:8000/news/@navigation"
+      "@id": "http://localhost:8080/news/@navigation"
     },
     "navroot": {
-      "@id": "http://localhost:8000/news/@navroot"
+      "@id": "http://localhost:8080/news/@navroot"
     },
     "translations": {
-      "@id": "http://localhost:8000/news/@translations"
+      "@id": "http://localhost:8080/news/@translations"
     },
     "types": {
-      "@id": "http://localhost:8000/news/@types"
+      "@id": "http://localhost:8080/news/@types"
     },
     "workflow": {
-      "@id": "http://localhost:8000/news/@workflow"
+      "@id": "http://localhost:8080/news/@workflow"
     }
   },
-  "@id": "http://localhost:8000/news/my-news-item",
+  "@id": "http://localhost:8080/news/my-news-item",
   "@type": "Page",
   "id": "my-news-item",
   "created": "2022-04-08T16:00:00.000Z",

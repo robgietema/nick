@@ -2,7 +2,7 @@ HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8000/@groups/nicks",
+  "@id": "http://localhost:8080/@groups/nicks",
   "id": "nicks",
   "groupname": "nicks",
   "description": "Nearly Headless Nicks",

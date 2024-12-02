@@ -2,7 +2,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8000/@controlpanels/mail",
+  "@id": "http://localhost:8080/@controlpanels/mail",
   "group": "General",
   "title": "Mail",
   "data": {

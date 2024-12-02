@@ -3,10 +3,10 @@ Content-Type: application/json
 
 [
   {
-    "@id": "http://localhost:8000/news/@history/1",
+    "@id": "http://localhost:8080/news/@history/1",
     "action": "Edited",
     "actor": {
-      "@id": "http://localhost:8000/@users/admin",
+      "@id": "http://localhost:8080/@users/admin",
       "fullname": "Admin",
       "id": "admin",
       "username": "admin"
@@ -21,7 +21,7 @@ Content-Type: application/json
   {
     "time": "2022-04-03T20:22:00.000Z",
     "actor": {
-      "@id": "http://localhost:8000/@users/admin",
+      "@id": "http://localhost:8080/@users/admin",
       "fullname": "Admin",
       "id": "admin",
       "username": "admin"
@@ -34,10 +34,10 @@ Content-Type: application/json
     "type": "workflow"
   },
   {
-    "@id": "http://localhost:8000/news/@history/0",
+    "@id": "http://localhost:8080/news/@history/0",
     "action": "Edited",
     "actor": {
-      "@id": "http://localhost:8000/@users/admin",
+      "@id": "http://localhost:8080/@users/admin",
       "fullname": "Admin",
       "id": "admin",
       "username": "admin"

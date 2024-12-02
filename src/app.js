@@ -18,7 +18,7 @@ import {
 } from './helpers';
 import { Document, Model, Redirect, Role, Type, User } from './models';
 import routes from './routes';
-import { accessLogger, cors, i18n } from './middleware';
+import { accessLogger, cors, i18n, removeZopeVhosting } from './middleware';
 import { applyBehaviors } from './behaviors';
 
 const { config } = require(`${process.cwd()}/config`);
@@ -33,6 +33,7 @@ const app = express();
 
 // Add middleware
 app.use(bodyParser.json({ limit: config.clientMaxSize }));
+app.use(removeZopeVhosting);
 app.use(accessLogger);
 app.use(i18n);
 app.use(cors);

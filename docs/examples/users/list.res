@@ -3,7 +3,7 @@ Content-Type: application/json
 
 [
   {
-    "@id": "http://localhost:8000/@users/admin",
+    "@id": "http://localhost:8080/@users/admin",
     "id": "admin",
     "fullname": "Admin",
     "email": "admin@example.com",
@@ -13,7 +13,7 @@ Content-Type: application/json
     "groups": []
   },
   {
-    "@id": "http://localhost:8000/@users/anonymous",
+    "@id": "http://localhost:8080/@users/anonymous",
     "id": "anonymous",
     "fullname": "Anonymous",
     "email": "anonymous@example.com",

@@ -5,25 +5,25 @@ describe('Url', () => {
     expect(
       getUrl({
         protocol: 'http',
-        headers: { host: 'localhost:8000' },
+        headers: { host: 'localhost:8080' },
         document: { path: '/news' },
       }),
-    ).toBe('http://localhost:8000/news'));
+    ).toBe('http://localhost:8080/news'));
 
   it('should get the url of the root', () =>
     expect(
       getUrl({
         protocol: 'http',
-        headers: { host: 'localhost:8000' },
+        headers: { host: 'localhost:8080' },
         document: { path: '/' },
       }),
-    ).toBe('http://localhost:8000'));
+    ).toBe('http://localhost:8080'));
 
   it('should get the root url', () =>
     expect(
       getRootUrl({
         protocol: 'http',
-        headers: { host: 'localhost:8000' },
+        headers: { host: 'localhost:8080' },
       }),
-    ).toBe('http://localhost:8000'));
+    ).toBe('http://localhost:8080'));
 });
