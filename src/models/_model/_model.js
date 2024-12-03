@@ -67,9 +67,6 @@ export class Model extends mixin(ObjectionModel, [
           operator = '=';
           valueWrapper = 'all(?)';
         }
-        if (operator === 'like') {
-          valueWrapper = '%?%';
-        }
         if (operator === '@@') {
           valueWrapper = 'to_tsquery(?)';
         }

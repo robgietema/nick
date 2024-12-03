@@ -22,9 +22,13 @@ import { Catalog, Index } from '../../models';
 const querystringToQuery = async (querystring, path = '/', req, trx) => {
   // Get root url
   const root = endsWith(path, '/') ? path : `${path}/`;
-  const indexes = (
-    await Index.fetchAll({ enabled: true, metadata: false }, {}, trx)
-  ).toJSON(req);
+
+  // Get indexes
+  let indexes = {};
+  (await Index.fetchAll({ metadata: false }, {}, trx)).map((index) => {
+    indexes[index.name] = index;
+  });
+
   const where = {};
 
   // Default options
@@ -129,7 +133,7 @@ const querystringToQuery = async (querystring, path = '/', req, trx) => {
         where[query.i] = req.user.id;
         break;
       case 'string.contains':
-        where[query.i] = ['like', query.v];
+        where[query.i] = ['like', `%${query.v}%`];
         break;
       default:
         break;
@@ -151,9 +155,12 @@ const querystringToQuery = async (querystring, path = '/', req, trx) => {
 const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
   // Get root url
   const root = endsWith(path, '/') ? path : `${path}/`;
-  const indexes = (
-    await Index.fetchAll({ enabled: true, metadata: false }, {}, trx)
-  ).toJSON(req);
+
+  // Get indexes
+  let indexes = {};
+  (await Index.fetchAll({ metadata: false }, {}, trx)).map((index) => {
+    indexes[index.name] = index;
+  });
 
   // Set path search
   const where = {
@@ -169,6 +176,8 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
       reverse: false,
     },
   };
+
+  // Loop through query params
   mapKeys(queryparam, (value, key) => {
     switch (key) {
       case 'sort_on':
