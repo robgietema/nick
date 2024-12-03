@@ -38,6 +38,7 @@
 - Add preview link support @robgietema
 - Add block types index @robgietema
 - Expand image data in block data @robgietema
+- Add querystring search @robgietema
 
 ### Bugfix
 
@@ -76,6 +77,7 @@
 - Split profiles in core and default @robgietema
 - Move apply behaviors to the document class @robgietema
 - Node 22 support @sneridagh
+- Fetch indexes from database @robgietema
 
 ### Documentation
 

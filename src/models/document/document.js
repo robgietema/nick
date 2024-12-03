@@ -30,7 +30,15 @@ import _, {
 import { v4 as uuid } from 'uuid';
 
 import languages from '../../constants/languages';
-import { Catalog, Model, Permission, Redirect, Role, User } from '../../models';
+import {
+  Catalog,
+  Index,
+  Model,
+  Permission,
+  Redirect,
+  Role,
+  User,
+} from '../../models';
 import {
   copyFile,
   fileExists,
@@ -962,60 +970,27 @@ export class Document extends Model {
       await this._type.fetchRelated('_workflow', trx);
     }
 
+    const indexes = await Index.fetchAll({}, {}, trx);
     await Promise.all(
-      map(config.profiles, async (profilePath) => {
-        if (fileExists(`${profilePath}/catalog`)) {
-          const profile = stripI18n(require(`${profilePath}/catalog`));
-
-          // Loop indexes
-          await Promise.all(
-            map(profile.indexes, async (index) => {
-              if (index.attr in this) {
-                fields[`_${index.name}`] = { type: index.type };
-                if (isFunction(this[index.attr])) {
-                  const value = this[index.attr](trx);
-                  fields[`_${index.name}`].value = isPromise(value)
-                    ? await value
-                    : value;
-                } else {
-                  fields[`_${index.name}`].value = this[index.attr];
-                }
-              } else if (index.attr in this._type._schema.properties) {
-                fields[`_${index.name}`] = {
-                  type: index.type,
-                  value:
-                    index.type === 'boolean'
-                      ? !!this.json[index.attr]
-                      : this.json[index.attr],
-                };
-              }
-            }),
-          );
-
-          // Loop metadata
-          await Promise.all(
-            map(profile.metadata, async (metadata) => {
-              if (metadata.attr in this) {
-                fields[metadata.name] = { type: metadata.type };
-                if (isFunction(this[metadata.attr])) {
-                  const value = this[metadata.attr](trx);
-                  fields[metadata.name].value = isPromise(value)
-                    ? await value
-                    : value;
-                } else {
-                  fields[metadata.name].value = this[metadata.attr];
-                }
-              } else if (metadata.attr in this._type._schema.properties) {
-                fields[metadata.name] = {
-                  type: metadata.type,
-                  value:
-                    metadata.type === 'boolean'
-                      ? !!this.json[metadata.attr]
-                      : this.json[metadata.attr],
-                };
-              }
-            }),
-          );
+      // Loop indexes
+      indexes.map(async (index) => {
+        const name = index.metadata ? index.name : `_${index.name}`;
+        if (index.attr in this) {
+          fields[name] = { type: index.type };
+          if (isFunction(this[index.attr])) {
+            const value = this[index.attr](trx);
+            fields[name].value = isPromise(value) ? await value : value;
+          } else {
+            fields[name].value = this[index.attr];
+          }
+        } else if (index.attr in this._type._schema.properties) {
+          fields[name] = {
+            type: index.type,
+            value:
+              index.type === 'boolean'
+                ? !!this.json[index.attr]
+                : this.json[index.attr],
+          };
         }
       }),
     );

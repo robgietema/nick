@@ -19,6 +19,10 @@ Content-Type: application/json
     "title": "boolean"
   },
   {
+    "@id": "http://localhost:8080/@vocabularies/captchaProviders",
+    "title": "captchaProviders"
+  },
+  {
     "@id": "http://localhost:8080/@vocabularies/groups",
     "title": "groups"
   },

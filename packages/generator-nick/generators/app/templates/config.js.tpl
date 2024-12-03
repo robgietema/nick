@@ -1,3 +1,5 @@
+import events from './src/events';
+
 export const config = {
   connection: {
     port: 5432,
@@ -36,4 +38,5 @@ export const config = {
     `${__dirname}/src/develop/nick/src/profiles/core`,
     `${__dirname}/src/profiles/default`,
   ],
+  events,
 };

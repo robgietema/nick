@@ -14,14 +14,14 @@ export default [
     handler: async (req, trx) => {
       // Get all enabled indexes
       const indexes = await Index.fetchAll(
-        { enabled: true },
+        { enabled: true, metadata: false },
         { order: 'title' },
         trx,
       );
 
       // Get all enabled and sortable indexes
       const sortableIndexes = await Index.fetchAll(
-        { sortable: true, enabled: true },
+        { sortable: true, enabled: true, metadata: false },
         { order: 'title' },
         trx,
       );
