@@ -6,22 +6,24 @@ export const seedCatalog = async (trx, profilePath) => {
     const profile = stripI18n(require(`${profilePath}/catalog`));
     await mapAsync(profile.indexes, async (index) => {
       // Add index
-      if (index.enabled) {
-        await Index.create(
-          {
-            id: index.name,
-            title: index.title,
-            description: index.description,
-            group: index.group,
-            enabled: index.enabled,
-            sortable: index.sortable,
-            operators: index.operators,
-            vocabulary: index.vocabulary,
-          },
-          {},
-          trx,
-        );
-      }
+      await Index.create(
+        {
+          id: `_${index.name}`,
+          name: index.name,
+          title: index.title,
+          type: index.type,
+          attr: index.attr,
+          metadata: false,
+          description: index.description,
+          group: index.group,
+          enabled: index.enabled,
+          sortable: index.sortable,
+          operators: index.operators,
+          vocabulary: index.vocabulary,
+        },
+        {},
+        trx,
+      );
       // Update catalog table
       await trx.schema.alterTable('catalog', async (table) => {
         const field = `_${index.name}`;
@@ -60,6 +62,18 @@ export const seedCatalog = async (trx, profilePath) => {
       });
     });
     await mapAsync(profile.metadata, async (metadata) => {
+      // Add index
+      await Index.create(
+        {
+          id: metadata.name,
+          name: metadata.name,
+          type: metadata.type,
+          attr: metadata.attr,
+          metadata: true,
+        },
+        {},
+        trx,
+      );
       await trx.schema.alterTable('catalog', async (table) => {
         switch (metadata.type) {
           case 'uuid':

@@ -4,23 +4,156 @@
  */
 
 import moment from 'moment';
-import { endsWith, find, includes, map, mapKeys, repeat } from 'lodash';
+import { normalize } from 'path';
+import { endsWith, includes, keys, map, mapKeys, repeat } from 'lodash';
 
-import { formatSize, getRootUrl, getUrl } from '../../helpers';
-import { Catalog } from '../../models';
-
-import profile from '../../profiles/core/catalog';
+import { getUrl } from '../../helpers';
+import { Catalog, Index } from '../../models';
 
 /**
  * Convert querystring to query.
  * @method querystringToQuery
  * @param {Object} querystring Querystring
  * @param {String} path Path to search
+ * @param {Object} req Request object
+ * @param {Object} trx Transaction object.
  * @returns {Object} Query.
  */
-function querystringToQuery(querystring, path = '/') {
+const querystringToQuery = async (querystring, path = '/', req, trx) => {
   // Get root url
   const root = endsWith(path, '/') ? path : `${path}/`;
+  const indexes = (
+    await Index.fetchAll({ enabled: true, metadata: false }, {}, trx)
+  ).toJSON(req);
+  const where = {};
+
+  // Default options
+  const options = {
+    offset: 0,
+    limit: 100,
+    order: {
+      column: 'UID',
+      reverse: false,
+    },
+  };
+
+  // Check sort
+  if (querystring.sort_on) {
+    if (includes(keys(indexes), querystring.sort_on)) {
+      options.order.column = `_${querystring.sort_on}`;
+    }
+  }
+
+  // Check sort order
+  if (querystring.sort_order) {
+    options.order.reverse = querystring.sort_order !== 'ascending';
+  }
+
+  // Check path depth
+  if (querystring['path.depth']) {
+    where['_path'] = [
+      '~',
+      `^${root}[^/]+${repeat('(/[^/]+)?', querystring['path.depth'] - 1)}$`,
+    ];
+  }
+
+  // Check batch size
+  if (querystring.b_size) {
+    options.limit = querystring.b_size;
+  }
+
+  // Check batch start
+  if (querystring.b_start) {
+    options.offset = querystring.b_start;
+  }
+
+  // Check metafields
+  if (querystring.meta_fields === '_all') {
+    // select column_name from information_schema.columns where table_name = 'catalog' and column_name ~ '^[^_]';
+  }
+
+  // Add query
+  map(querystring.query, (query) => {
+    switch (query.o) {
+      case 'selection.any':
+        where[query.i] = ['=', query.v];
+        break;
+      case 'selection.all':
+        where[query.i] = ['all', query.v];
+        break;
+      case 'date.today':
+        where[query.i] = ['>=', `${moment().format('MM-DD-YYYY')} 00:00:00`];
+        where[query.i] = ['<=', `${moment().format('MM-DD-YYYY')} 23:59:59`];
+        break;
+      case 'date.between':
+        where[query.i] = ['>', query.v[0]];
+        where[query.i] = ['<', query.v[1]];
+        break;
+      case 'date.lessThen':
+        where[query.i] = ['<', query.v];
+        break;
+      case 'date.afterToday':
+        where[query.i] = ['>', `${moment().format('MM-DD-YYYY')} 23:59:59`];
+        break;
+      case 'date.largerThan':
+        where[query.i] = ['>', query.v];
+        break;
+      case 'date.beforeToday':
+        where[query.i] = ['<', `${moment().format('MM-DD-YYYY')} 00:00:00`];
+        break;
+      case 'date.afterRelativeDate':
+        where[query.i] = ['>', query.v];
+        break;
+      case 'date.beforeRelativeDate':
+        where[query.i] = ['<', query.v];
+        break;
+      case 'date.lessThanRelativeDate':
+        where[query.i] = ['<', query.v];
+        break;
+      case 'date.largerThanRelativeDate':
+        where[query.i] = ['>', query.v];
+        break;
+      case 'string.is':
+        where[query.i] = query.v;
+        break;
+      case 'string.path':
+        where[query.i] = query.v;
+        break;
+      case 'string.absolutePath':
+        where[query.i] = query.v.replace(getUrlByPath(req, '/'), '/');
+        break;
+      case 'string.relativePath':
+        where[query.i] = ['~', normalize(`${root}${query.v}`)];
+        break;
+      case 'string.currentUser':
+        where[query.i] = req.user.id;
+        break;
+      case 'string.contains':
+        where[query.i] = ['like', query.v];
+        break;
+      default:
+        break;
+    }
+  });
+
+  return [where, options];
+};
+
+/**
+ * Convert queryparam to query.
+ * @method queryparamToQuery
+ * @param {Object} queryparam Querystring
+ * @param {String} path Path to search
+ * @param {Object} req Request object
+ * @param {Object} trx Transaction object.
+ * @returns {Object} Query.
+ */
+const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
+  // Get root url
+  const root = endsWith(path, '/') ? path : `${path}/`;
+  const indexes = (
+    await Index.fetchAll({ enabled: true, metadata: false }, {}, trx)
+  ).toJSON(req);
 
   // Set path search
   const where = {
@@ -36,15 +169,10 @@ function querystringToQuery(querystring, path = '/') {
       reverse: false,
     },
   };
-  mapKeys(querystring, (value, key) => {
+  mapKeys(queryparam, (value, key) => {
     switch (key) {
       case 'sort_on':
-        if (
-          includes(
-            map(profile.indexes, (index) => index.name),
-            value,
-          )
-        ) {
+        if (includes(keys(indexes), value)) {
           options.order.column = `_${value}`;
         }
         break;
@@ -63,20 +191,14 @@ function querystringToQuery(querystring, path = '/') {
       case 'b_start':
         options.offset = value;
         break;
-      case 'metadata_fields':
-        if (value === '_all') {
-          options.select = map(profile.metadata, (metadata) => metadata.name);
-        }
-        break;
       default:
         break;
     }
 
     // Check if key in indexes
-    const index = find(profile.indexes, (index) => index.name === key);
-    if (index) {
-      const field = `_${index.name}`;
-      switch (index.type) {
+    if (indexes[key]) {
+      const field = `_${key}`;
+      switch (indexes[key].type) {
         case 'string':
         case 'integer':
         case 'path':
@@ -97,7 +219,7 @@ function querystringToQuery(querystring, path = '/') {
     }
   });
   return [where, options];
-}
+};
 
 export default [
   {
@@ -106,7 +228,7 @@ export default [
     permission: 'View',
     handler: async (req, trx) => {
       const items = await Catalog.fetchAllRestricted(
-        ...querystringToQuery(req.query, req.document.path),
+        ...(await queryparamToQuery(req.query, req.document.path, req, trx)),
         trx,
         req,
       );
@@ -124,7 +246,11 @@ export default [
     view: '/@querystring-search',
     permission: 'View',
     handler: async (req, trx) => {
-      const items = await Catalog.fetchAll({}, { order: 'UID' }, trx);
+      const items = await Catalog.fetchAllRestricted(
+        ...(await querystringToQuery(req.body, req.document.path, req, trx)),
+        trx,
+        req,
+      );
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,

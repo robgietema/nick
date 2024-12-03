@@ -176,6 +176,8 @@ const convertDocuments = (input, path) => {
 
     // Convert to string
     let json = JSON.stringify(document);
+
+    // Resolve targets
     json = json.replaceAll(/\"[^"]*resolveuid\/([^"]*)\"/g, (result, uuid) => {
       const targetfile = `${input}/content/${uuid}/data.json`;
       if (existsSync(targetfile)) {
@@ -188,6 +190,9 @@ const convertDocuments = (input, path) => {
       }
       return `"${uuid}"`;
     });
+
+    // Convert index operations
+    json = json.replaceAll('plone.app.querystring.operation.', '');
 
     const output =
       document['@id'] === '/Plone'

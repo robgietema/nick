@@ -177,10 +177,7 @@ export async function handleBlockReferences(json, trx) {
         if (isObject(output.blocks[block].slides)) {
           await Promise.all(
             map(output.blocks[block].slides, async (slide, index) => {
-              console.log('image');
-              console.log(index);
               if (isObject(output.blocks[block].slides[index].image)) {
-                console.log('image');
                 output.blocks[block].slides[index].image[0] = await extendHref(
                   output.blocks[block].slides[index].image[0],
                   trx,

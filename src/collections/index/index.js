@@ -23,7 +23,7 @@ export class IndexCollection extends Collection {
 
     // Add index to return json
     this.map((index) => {
-      json[index.id] = index.toJSON(req);
+      json[index.name] = index.toJSON(req);
     });
 
     // Return json

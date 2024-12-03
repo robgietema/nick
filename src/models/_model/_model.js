@@ -59,10 +59,17 @@ export class Model extends mixin(ObjectionModel, [
       mapKeys(where, (value, key) => {
         // user and group are reserved words so need to be wrapper in quotes
         const attribute = formatAttribute(key);
-        const operator = isArray(value) ? value[0] : '=';
+        let operator = isArray(value) ? value[0] : '=';
         const values = isArray(value) ? value[1] : value;
         let valueWrapper =
           isArray(values) && operator !== '&&' ? 'any(?)' : '?';
+        if (isArray(values) && operator === 'all') {
+          operator = '=';
+          valueWrapper = 'all(?)';
+        }
+        if (operator === 'like') {
+          valueWrapper = '%?%';
+        }
         if (operator === '@@') {
           valueWrapper = 'to_tsquery(?)';
         }

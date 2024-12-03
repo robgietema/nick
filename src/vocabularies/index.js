@@ -6,6 +6,7 @@
 import { actions } from './actions/actions';
 import { availableLanguages } from './available-languages/available-languages';
 import { behaviors } from './behaviors/behaviors';
+import { captchaProviders } from './captcha-providers/captcha-providers';
 import { groups } from './groups/groups';
 import { imageScales } from './image-scales/image-scales';
 import { permissions } from './permissions/permissions';
@@ -25,6 +26,7 @@ export const vocabularies = {
   actions,
   availableLanguages,
   behaviors,
+  captchaProviders,
   groups,
   imageScales,
   permissions,
