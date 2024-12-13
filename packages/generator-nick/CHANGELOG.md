@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.3 (2024-12-13)
+
+### Bugfix
+
+- Change seed in config @robgietema
+
 ## 0.0.2 (2024-12-13)
 
 ### Bugfix
