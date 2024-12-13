@@ -69,6 +69,7 @@
 - Fix supported languages endpoint @robgietema
 - Fix site logo @robgietema
 - Make it compatible with Volto without special settings @davisagli
+- Fix catalog vocabulary @robgietema
 
 ### Internal
 
