@@ -79,6 +79,7 @@
 - Move apply behaviors to the document class @robgietema
 - Node 22 support @sneridagh
 - Fetch indexes from database @robgietema
+- Node 23 support @robgietema
 
 ### Documentation
 

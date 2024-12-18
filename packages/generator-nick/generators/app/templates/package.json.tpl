@@ -44,7 +44,7 @@
     ]
   },
   "engines": {
-    "node": "^20 || ^22"
+    "node": "^20 || ^22 || ^23"
   },
   "devDependencies": {},
   "dependencies": {}
