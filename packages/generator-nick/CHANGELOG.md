@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.4 (2024-12-18)
+
+### Feature
+
+- Add Node 23 support @robgietema
+
 ## 0.0.3 (2024-12-13)
 
 ### Bugfix
