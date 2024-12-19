@@ -89,6 +89,12 @@ Run "npm install -g @robgietema/generator-nick" to update.`,
     });
 
     this.fs.copyTpl(
+      this.templatePath('src/profiles/default/metadata.json.tpl'),
+      this.destinationPath(base, 'src/profiles/default/metadata.json.tpl'),
+      this.globals,
+    );
+
+    this.fs.copyTpl(
       this.templatePath('.gitignorefile'),
       this.destinationPath(base, '.gitignore'),
       this.globals,
