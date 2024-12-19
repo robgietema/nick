@@ -117,9 +117,9 @@ Done.
 
 Now install and run Postgres and setup the database by entering the following in your Postgres console:
 
-$ CREATE DATABASE ${this.globals.projectName};
-$ CREATE USER nick WITH ENCRYPTED PASSWORD '${this.globals.projectName}';
-$ GRANT ALL PRIVILEGES ON DATABASE ${this.globals.projectName} TO ${this.globals.projectName};
+$ CREATE DATABASE "${this.globals.projectName}";
+$ CREATE USER "${this.globals.projectName}" WITH ENCRYPTED PASSWORD '${this.globals.projectName}';
+$ GRANT ALL PRIVILEGES ON DATABASE "${this.globals.projectName}" TO "${this.globals.projectName}";
 
 Now go to the ${this.globals.projectName} folder and run:
 
