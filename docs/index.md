@@ -27,39 +27,20 @@ Example `GET` request on the portal root
 
 ### Prerequisites
 
-- [Node.js==22.x.x](https://nodejs.org/)
+- [Node.js](https://nodejs.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 
-### Create Database
+### Yeoman Generator
 
-    $ CREATE DATABASE nick;
-    $ CREATE USER nick WITH ENCRYPTED PASSWORD 'nick';
-    $ GRANT ALL PRIVILEGES ON DATABASE nick TO nick;
+If you want to create your own project using Nick you can use the Yeoman generator package. This way you are able to customize your project without making changes to the core of Nick.
 
-### Bootstrap Installation
+### Install dependencies
 
-    $ yarn bootstrap
-
-## Development
-
-### Run backend
-
-    $ yarn start
-
-### Testing
-
-    $ yarn test
-
-## Yeoman Generator
-
-If you want to create your own project and use Nick as a dependency you can use the Yeoman generator package for that. This way you are able to customize your project without making changes to the core of Nick.
-
-### Installation
-
-First, install [Yeoman](http://yeoman.io) and @robgietema/generator-nick using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io), @robgietema/generator-nick and [Yarn](https://classic.yarnpkg.com/en/) using [npm](https://www.npmjs.com/) (we assume you have pre-installed [Node.js](https://nodejs.org/)).
 
     $ npm install -g yo
     $ npm install -g @robgietema/generator-nick
+    $ npm install -g yarn
 
 ### Creating a new project
 
@@ -67,13 +48,25 @@ First, install [Yeoman](http://yeoman.io) and @robgietema/generator-nick using [
 
 This will bootstrap a new Nick project inside the current folder.
 
+### Create Database
+
+Connect to the PostgreSQL console and create a database and a user with the correct permission using the following commands:
+
+    $ CREATE DATABASE "my-nick-project";
+    $ CREATE USER "my-nick-project" WITH ENCRYPTED PASSWORD 'my-nick-project';
+    $ GRANT ALL PRIVILEGES ON DATABASE "my-nick-project" TO "my-nick-project";
+
 ### Boostrap the project
 
-Create a database and a user with the correct permissions for your project (see above for details) and then bootstrap Nick with:
+Bootstrap the project using the following commands:
 
     $ cd my-nick-project
     $ yarn bootstrap
     $ yarn start
+
+### Testing
+
+    $ yarn test
 
 ## Contribute
 
