@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.7 (2024-12-18)
+
+### Bugfix
+
+- Fix profiles templates @robgietema
+
 ## 0.0.6 (2024-12-18)
 
 ### Bugfix
