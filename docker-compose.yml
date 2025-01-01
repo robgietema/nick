@@ -1,0 +1,39 @@
+services:
+  nickcms-backend:
+    build:
+      context: .
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: nick
+      DB_PASSWORD: nick
+      DB_NAME: nick
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: >
+      sh -c "
+      yarn install &&
+      yarn bootstrap &&
+      yarn start
+      "
+
+
+  db:
+    image: postgres:15-alpine
+    container_name: nickcms-db
+    environment:
+      POSTGRES_DB: nick
+      POSTGRES_USER: nick
+      POSTGRES_PASSWORD: nick
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

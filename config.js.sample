@@ -1,12 +1,13 @@
 import events from './src/events';
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
 export const config = {
   connection: {
-    port: 5432,
-    host: 'localhost',
-    database: 'nick',
-    user: 'nick',
-    password: 'nick',
+    port: DB_PORT || 5432,
+    host: DB_HOST || 'localhost',
+    database: DB_NAME || 'nick',
+    user: DB_USER || 'nick',
+    password: DB_PASSWORD || 'nick',
   },
   blobsDir: `${__dirname}/var/blobstorage`,
   port: 8080,
@@ -32,7 +33,7 @@ export const config = {
     listing: [16, 16],
   },
   frontendUrl: 'http://localhost:3000',
-  prefix: '',
+  prefix: '/++api++',
   userRegistration: true,
   profiles: [
     `${__dirname}/src/profiles/core`,

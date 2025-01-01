@@ -70,6 +70,21 @@ Create a database and a user with the correct permissions for your project (see 
     $ yarn bootstrap
     $ yarn start
 
+## Using Docker Image
+
+Make sure you have docker installed in your system.
+
+### Backend
+
+Run `docker compose up --build` in the root directory to run the docker container for backend.
+This will expose port '8000' and you can make requests to 'http://localhost:8000/++api++/' to fetch content.
+
+Run `docker compose down` to shut down the containers.
+
+### Frontend
+
+Use any frontend as you feel like. For instance, you can go to `/frontend` directory and use pre-built frontend.
+
 ## Contribute
 
 - Issue tracker: [https://github.com/robgietema/nick/issues](https://github.com/robgietema/nick/issues)
