@@ -18,6 +18,7 @@ services:
     command: >
       sh -c "
       yarn install &&
+      yarn rollback &&
       yarn bootstrap &&
       yarn start
       "
