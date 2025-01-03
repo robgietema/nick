@@ -70,7 +70,7 @@ Create a database and a user with the correct permissions for your project (see 
     $ yarn bootstrap
     $ yarn start
 
-## Using Docker Image
+## Docker image
 
 Make sure you have docker installed in your system.
 
