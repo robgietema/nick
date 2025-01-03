@@ -72,18 +72,29 @@ Create a database and a user with the correct permissions for your project (see 
 
 ## Docker image
 
-Make sure you have docker installed in your system.
+Install [Docker Desktop](https://www.docker.com/get-started/).
 
 ### Backend
 
-Run `docker compose up --build` in the root directory to run the docker container for backend.
-This will expose port '8000' and you can make requests to 'http://localhost:8000/++api++/' to fetch content.
+Navigate to the root of the repository, and run the following command to run the Docker container for backend.
 
-Run `docker compose down` to shut down the containers.
+```shell
+docker compose up --build
+```
+
+This will expose port `8000`.
+You can make requests to `http://localhost:8000/++api++/` to fetch content.
+
+To shut down the containers, run the following command.
+
+```shell
+docker compose down
+```
 
 ### Frontend
 
-Use any frontend as you feel like. For instance, you can go to `/frontend` directory and use pre-built frontend.
+You can use any frontend.
+For convenience, you can navigate to the directory `/frontend` and use the pre-built frontend.
 
 ## Contribute
 
