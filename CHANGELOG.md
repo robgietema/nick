@@ -39,6 +39,7 @@
 - Add block types index @robgietema
 - Expand image data in block data @robgietema
 - Add querystring search @robgietema
+- Add @inherit endpoint @robgietema
 
 ### Bugfix
 

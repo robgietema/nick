@@ -12,6 +12,7 @@ import database from './database/database';
 import email from './email/email';
 import groups from './groups/groups';
 import history from './history/history';
+import inherit from './inherit/inherit';
 import lock from './lock/lock';
 import navigation from './navigation/navigation';
 import navroot from './navroot/navroot';
@@ -37,6 +38,7 @@ export default [
   ...email,
   ...groups,
   ...history,
+  ...inherit,
   ...lock,
   ...navigation,
   ...navroot,

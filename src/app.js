@@ -19,7 +19,6 @@ import {
 import { Document, Model, Redirect, Role, Type, User } from './models';
 import routes from './routes';
 import { accessLogger, cors, i18n, removeZopeVhosting } from './middleware';
-import { applyBehaviors } from './behaviors';
 
 const { config } = require(`${process.cwd()}/config`);
 

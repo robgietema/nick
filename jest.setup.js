@@ -18,6 +18,12 @@ jest
       }`,
   );
 
+jest
+  .spyOn(url, 'getUrlByPath')
+  .mockImplementation(
+    (req, path) => `http://localhost:8080${path === '/' ? '' : path}`,
+  );
+
 // Mock get root url
 jest
   .spyOn(url, 'getRootUrl')
