@@ -55,6 +55,7 @@ Connect to the PostgreSQL console and create a database and a user with the corr
     $ CREATE DATABASE "my-nick-project";
     $ CREATE USER "my-nick-project" WITH ENCRYPTED PASSWORD 'my-nick-project';
     $ GRANT ALL PRIVILEGES ON DATABASE "my-nick-project" TO "my-nick-project";
+    $ ALTER DATABASE "my-nick-project" OWNER TO "my-nick-project";
 
 ### Boostrap the project
 
