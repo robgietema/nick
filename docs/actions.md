@@ -19,6 +19,12 @@ To list the available actions, send a GET request to the `@actions` endpoint on 
 {% include_relative examples/actions/get_authenticated.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/actions/get_authenticated.ts %}
+```
+
 The server will respond with a 200 OK status code. The JSON response contains the available actions categories (object, object_buttons, user) on the top level. Each category contains a list of the available actions in that category:
 
 ```
