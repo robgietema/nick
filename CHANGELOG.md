@@ -81,6 +81,8 @@
 - Node 22 support @sneridagh
 - Fetch indexes from database @robgietema
 - Node 23 support @robgietema
+- Add support for typescript @robgietema
+- Move to ts-node in favor of babel @robgietema
 
 ### Documentation
 

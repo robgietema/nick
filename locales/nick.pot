@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2024-12-02T10:02:14.680Z\n"
+"POT-Creation-Date: 2025-03-27T21:10:42.792Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -548,7 +548,7 @@ msgstr ""
 msgid "Information about rights held in and over this item."
 msgstr ""
 
-#: src/app.js:184
+#: src/app.js:183
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr ""
@@ -697,13 +697,6 @@ msgstr ""
 #: src/profiles/core/catalog.json:20
 # defaultMessage: Navigation path
 msgid "Navigation path"
-msgstr ""
-
-#: src/helpers/i18n/i18n.test.js:5
-#: src/helpers/i18n/i18n.test.js:8
-#: src/helpers/i18n/i18n.test.js:11
-# defaultMessage: News
-msgid "News"
 msgstr ""
 
 #: src/profiles/core/catalog.json:347
@@ -1286,7 +1279,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: src/app.js:140
+#: src/app.js:139
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr ""
@@ -1296,7 +1289,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/app.js:101
+#: src/app.js:100
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr ""
@@ -1384,7 +1377,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: src/app.js:126
+#: src/app.js:125
 #: src/routes/workflow/workflow.js:32
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."

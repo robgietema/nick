@@ -168,7 +168,7 @@ export class Model extends mixin(ObjectionModel, [
    * @method fetchAll
    * @static
    * @param {Object} where Where clause.
-   * @param {Object} options Ooptions for the query.
+   * @param {Object} options Options for the query.
    * @param {Object} trx Transaction object.
    * @returns {Array} JSON object.
    */

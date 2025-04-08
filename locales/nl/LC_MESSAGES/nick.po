@@ -548,7 +548,7 @@ msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
-#: src/app.js:184
+#: src/app.js:183
 # defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
@@ -698,13 +698,6 @@ msgstr "Navigatie"
 # defaultMessage: Navigation path
 msgid "Navigation path"
 msgstr "Navigatiepad"
-
-#: src/helpers/i18n/i18n.test.js:5
-#: src/helpers/i18n/i18n.test.js:8
-#: src/helpers/i18n/i18n.test.js:11
-# defaultMessage: News
-msgid "News"
-msgstr "Nieuws"
 
 #: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
@@ -1284,7 +1277,7 @@ msgstr "Aan, van en bericht zijn verplichte velden."
 msgid "Today"
 msgstr "Vandaag"
 
-#: src/app.js:140
+#: src/app.js:139
 # defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr "Transactiefout"
@@ -1294,7 +1287,7 @@ msgstr "Transactiefout"
 msgid "Type"
 msgstr "Type"
 
-#: src/app.js:101
+#: src/app.js:100
 # defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
@@ -1382,7 +1375,7 @@ msgstr "Verkeerde login en/of wachtwoord."
 msgid "Yes"
 msgstr "Ja"
 
-#: src/app.js:126
+#: src/app.js:125
 #: src/routes/workflow/workflow.js:32
 # defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."

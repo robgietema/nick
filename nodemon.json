@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "ext": "js,mjs,cjs,json,ts",
+  "ignore": ["dist"]
+}

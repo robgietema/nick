@@ -3,7 +3,9 @@
  * @module helpers/auth/auth
  */
 
-import { includes, isUndefined } from 'lodash';
+import { Request } from 'express';
+
+import { includes, isString, isUndefined } from 'lodash';
 import jwt from 'jsonwebtoken';
 
 const { config } = require(`${process.cwd()}/config`);
@@ -11,11 +13,14 @@ const { config } = require(`${process.cwd()}/config`);
 /**
  * Check required permission.
  * @method hasPermission
- * @param {Array} permissions Permissions of the current user.
+ * @param {string[]} permissions Permissions of the current user.
  * @param {string} permission Permission to check.
  * @returns {boolean} True if you have permission.
  */
-export function hasPermission(permissions, permission) {
+export function hasPermission(
+  permissions: string[],
+  permission: string,
+): boolean {
   return isUndefined(permission) || includes(permissions, permission);
 }
 
@@ -25,7 +30,7 @@ export function hasPermission(permissions, permission) {
  * @param {Object} req Request object.
  * @returns {string} User id.
  */
-export function getUserId(req) {
+export function getUserId(req: Request): string | undefined {
   // Get token
   const token =
     req.headers.authorization &&
@@ -43,6 +48,6 @@ export function getUserId(req) {
     }
 
     // Return user id
-    return decoded.sub;
+    return isString(decoded.sub) ? decoded.sub : undefined;
   }
 }
