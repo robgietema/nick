@@ -1,2 +1,2 @@
-GET /@groups/admin HTTP/1.1
+GET /@groups/Administrators HTTP/1.1
 Accept: application/json
