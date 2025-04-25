@@ -2,6 +2,6 @@
   "id": "language",
   "data": {
     "default_language": "en",
-    "available_languages": ["en", "nl"]
+    "available_languages": ["en", "nl", "sv"]
   }
 }
