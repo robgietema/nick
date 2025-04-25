@@ -30,7 +30,7 @@
         "default": [],
         "description:i18n": "Related resources.",
         "items": {
-          "description:i18n": "",
+          "description": "",
           "title:i18n": "Related",
           "type": "string"
         },

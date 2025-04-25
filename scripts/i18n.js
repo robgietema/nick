@@ -20,8 +20,8 @@ import { endsWith } from 'lodash';
 function messagesToPot(messages) {
   return map(keys(messages).sort(), (key) =>
     [
+      `#. Default: "${messages[key].defaultMessage}"`,
       ...map(messages[key].files, (file) => `#: ${file.file}:${file.line}`),
-      `# defaultMessage: ${messages[key].defaultMessage}`,
       `msgid "${key}"`,
       'msgstr ""',
     ].join('\n'),
@@ -72,8 +72,10 @@ function poToJson() {
           map(items, (item) =>
             lang === 'en'
               ? item.msgstr[0] ||
-                (item.comments[0]
-                  ? item.comments[0].replace('defaultMessage: ', '')
+                (item.extractedComments[0]
+                  ? item.extractedComments[0]
+                      .replace('Default: ', '')
+                      .replaceAll('"', '')
                   : '')
               : item.msgstr[0],
           ),
@@ -117,8 +119,8 @@ function syncPoByPot() {
 ${map(pot.items, (item) => {
   const poItem = find(po.items, { msgid: item.msgid });
   return [
+    ...map(item.extractedComments, (comment) => `#. ${comment}`),
     `${map(item.references, (ref) => `#: ${ref}`).join('\n')}`,
-    ...map(item.comments, (comment) => `# ${comment}`),
     `msgid "${item.msgid}"`,
     `msgstr "${poItem ? poItem.msgstr : ''}"`,
   ].join('\n');

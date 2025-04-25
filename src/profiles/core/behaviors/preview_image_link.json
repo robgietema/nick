@@ -19,7 +19,7 @@
         "mode": "image"
       },
       "preview_caption_link": {
-        "description:i18n": "",
+        "description": "",
         "title:i18n": "Preview image caption",
         "type": "string"
       }

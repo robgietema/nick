@@ -1,7 +1,7 @@
 {
   "id": "Site",
   "title:i18n": "Site",
-  "description:i18n": "",
+  "description": "",
   "global_allow": false,
   "filter_content_types": false,
   "allowed_content_types": [],

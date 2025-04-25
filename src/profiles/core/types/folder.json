@@ -1,7 +1,7 @@
 {
   "id": "Folder",
   "title:i18n": "Folder",
-  "description:i18n": "",
+  "description": "",
   "global_allow": true,
   "filter_content_types": false,
   "allowed_content_types": [],

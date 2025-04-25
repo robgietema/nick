@@ -16,747 +16,727 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
-#: src/profiles/core/behaviors/categorization.json:33
-#: src/profiles/core/behaviors/preview_image_link.json:22
-#: src/profiles/core/catalog.json:58
-#: src/profiles/core/catalog.json:64
-#: src/profiles/core/catalog.json:70
-#: src/profiles/core/catalog.json:235
-#: src/profiles/core/catalog.json:254
-#: src/profiles/core/catalog.json:273
-#: src/profiles/core/catalog.json:329
-#: src/profiles/core/catalog.json:348
-#: src/profiles/core/catalog.json:354
-#: src/profiles/core/catalog.json:473
-#: src/profiles/core/types/file.json:18
-#: src/profiles/core/types/folder.json:4
-#: src/profiles/core/types/image.json:18
-#: src/profiles/core/types/page.json:4
-#: src/profiles/core/types/site.json:4
-#: src/profiles/default/groups.json:7
-#: src/profiles/multilingual/types/languageroot.json:4
-#: src/profiles/multilingualcontent/groups.json:7
+#. Default: "A description of this item."
 #: src/profiles/core/behaviors/basic.json:15
-# defaultMessage:
-# defaultMessage: A description of this item.
 msgid "A description of this item."
 msgstr "Een omschrijving van dit item"
 
+#. Default: "A name given to this item."
 #: src/profiles/core/behaviors/basic.json:21
-# defaultMessage: A name given to this item.
 msgid "A name given to this item."
 msgstr "Een naam gegeven aan dit item."
 
+#. Default: "A related item from which this item is derived."
 #: src/profiles/core/behaviors/ownership.json:25
-# defaultMessage: A related item from which this item is derived.
 msgid "A related item from which this item is derived."
 msgstr "Een gerelateerd item waarvan deze is afgeleid."
 
+#. Default: "Absolute path"
 #: src/profiles/core/catalog.json:14
-# defaultMessage: Absolute path
 msgid "Absolute path"
 msgstr "Absoluut pad"
 
+#. Default: "Accessibility"
 #: src/profiles/core/actions.json:71
-# defaultMessage: Accessibility
 msgid "Accessibility"
 msgstr "Toegankelijkheid"
 
+#. Default: "Add"
 #: src/profiles/core/permissions.json:10
-# defaultMessage: Add
 msgid "Add"
 msgstr "Toevoegen"
 
+#. Default: "Add additional items to the navigation, one per line. In the format 'title|description|url'."
 #: src/profiles/core/controlpanels/navigation.json:33
-# defaultMessage: Add additional items to the navigation, one per line. In the format 'title|description|url'.
 msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
 msgstr "Voeg items toe aan de navigatie, één per regel. In het formaatl 'titel|omschrijving|url'"
 
+#. Default: "Additional items"
 #: src/profiles/core/controlpanels/navigation.json:32
-# defaultMessage: Additional items
 msgid "Additional items"
 msgstr "Additionele items"
 
+#. Default: "Adds effective and expiration dates."
 #: src/profiles/core/behaviors/dates.json:4
-# defaultMessage: Adds effective and expiration dates.
 msgid "Adds effective and expiration dates."
 msgstr "Voegt ingangs- en vervaldatums toe."
 
+#. Default: "Adds keywords and language fields."
 #: src/profiles/core/behaviors/categorization.json:4
-# defaultMessage: Adds keywords and language fields.
 msgid "Adds keywords and language fields."
 msgstr "Voegt trefwoorden en taalvelden toe."
 
+#. Default: "Adds ownership and rights fields."
 #: src/profiles/core/behaviors/ownership.json:4
-# defaultMessage: Adds ownership and rights fields.
 msgid "Adds ownership and rights fields."
 msgstr "Voegt eigendoms- en rechtenvelden toe."
 
+#. Default: "Adds standard metadatafields"
 #: src/profiles/core/behaviors/dublin_core.json:4
-# defaultMessage: Adds standard metadatafields
 msgid "Adds standard metadatafields"
 msgstr "Voegt standaard metadatavelden toe"
 
+#. Default: "Adds title and description fields."
 #: src/profiles/core/behaviors/basic.json:4
-# defaultMessage: Adds title and description fields.
 msgid "Adds title and description fields."
 msgstr "Voegt titel- en beschrijvingsvelden toe."
 
+#. Default: "Administrator"
 #: src/profiles/core/roles.json:41
-# defaultMessage: Administrator
 msgid "Administrator"
 msgstr "Beheerder"
 
+#. Default: "Administrators"
 #: src/profiles/default/groups.json:6
 #: src/profiles/multilingualcontent/groups.json:6
-# defaultMessage: Administrators
 msgid "Administrators"
 msgstr "Beheerders"
 
+#. Default: "After N days in the future"
 #: src/profiles/core/catalog.json:89
 #: src/profiles/core/catalog.json:162
 #: src/profiles/core/catalog.json:498
 #: src/profiles/core/catalog.json:577
 #: src/profiles/core/catalog.json:650
 #: src/profiles/core/catalog.json:723
-# defaultMessage: After N days in the future
 msgid "After N days in the future"
 msgstr "Na N dagen in de toekomst"
 
+#. Default: "After date"
 #: src/profiles/core/catalog.json:118
 #: src/profiles/core/catalog.json:191
 #: src/profiles/core/catalog.json:527
 #: src/profiles/core/catalog.json:606
 #: src/profiles/core/catalog.json:679
 #: src/profiles/core/catalog.json:752
-# defaultMessage: After date
 msgid "After date"
 msgstr "Na datum"
 
+#. Default: "After relative Date"
 #: src/profiles/core/catalog.json:88
 #: src/profiles/core/catalog.json:161
 #: src/profiles/core/catalog.json:497
 #: src/profiles/core/catalog.json:576
 #: src/profiles/core/catalog.json:649
 #: src/profiles/core/catalog.json:722
-# defaultMessage: After relative Date
 msgid "After relative Date"
 msgstr "Na relatieve datum"
 
+#. Default: "After the current day"
 #: src/profiles/core/catalog.json:95
 #: src/profiles/core/catalog.json:168
 #: src/profiles/core/catalog.json:504
 #: src/profiles/core/catalog.json:583
 #: src/profiles/core/catalog.json:656
 #: src/profiles/core/catalog.json:729
-# defaultMessage: After the current day
 msgid "After the current day"
 msgstr "Na de huidige dag"
 
+#. Default: "After today"
 #: src/profiles/core/catalog.json:94
 #: src/profiles/core/catalog.json:167
 #: src/profiles/core/catalog.json:503
 #: src/profiles/core/catalog.json:582
 #: src/profiles/core/catalog.json:655
 #: src/profiles/core/catalog.json:728
-# defaultMessage: After today
 msgid "After today"
 msgstr "Na vandaag"
 
+#. Default: "Already locked"
 #: src/routes/lock/lock.js:52
 #: src/routes/lock/lock.js:103
-# defaultMessage: Already locked
 msgid "Already locked"
 msgstr "Al op slot"
 
+#. Default: "An entity responsible for making this item available."
 #: src/profiles/core/behaviors/ownership.json:15
-# defaultMessage: An entity responsible for making this item available.
 msgid "An entity responsible for making this item available."
 msgstr "Een entiteit die verantwoordelijk is voor het beschikbaar maken van dit item."
 
+#. Default: "An item's description"
 #: src/profiles/core/catalog.json:228
-# defaultMessage: An item's description
 msgid "An item's description"
 msgstr "De beschijving van het item"
 
+#. Default: "An item's type (e.g. Event)"
 #: src/profiles/core/catalog.json:428
-# defaultMessage: An item's type (e.g. Event)
 msgid "An item's type (e.g. Event)"
 msgstr "Het type van een item (bijv. Evenement)"
 
+#. Default: "An item's workflow state (e.g.published)"
 #: src/profiles/core/catalog.json:447
-# defaultMessage: An item's workflow state (e.g.published)
 msgid "An item's workflow state (e.g.published)"
 msgstr "De workflowstatus van een item (bijvoorbeeld gepubliceerd)"
 
+#. Default: "Anonymous"
 #: src/profiles/core/roles.json:6
-# defaultMessage: Anonymous
 msgid "Anonymous"
 msgstr "Anoniem"
 
+#. Default: "Authenticated"
 #: src/profiles/core/roles.json:11
-# defaultMessage: Authenticated
 msgid "Authenticated"
 msgstr "Geauthenticeerd"
 
+#. Default: "Available languages"
 #: src/profiles/core/controlpanels/language.json:27
-# defaultMessage: Available languages
 msgid "Available languages"
 msgstr "Beschikbare talen"
 
+#. Default: "Basic metadata"
 #: src/profiles/core/behaviors/basic.json:3
-# defaultMessage: Basic metadata
 msgid "Basic metadata"
 msgstr "Basis metadata"
 
+#. Default: "Before N days in the past"
 #: src/profiles/core/catalog.json:101
 #: src/profiles/core/catalog.json:174
 #: src/profiles/core/catalog.json:510
 #: src/profiles/core/catalog.json:589
 #: src/profiles/core/catalog.json:662
 #: src/profiles/core/catalog.json:735
-# defaultMessage: Before N days in the past
 msgid "Before N days in the past"
 msgstr "Voor N dagen in het verleden"
 
+#. Default: "Before date"
 #: src/profiles/core/catalog.json:130
 #: src/profiles/core/catalog.json:203
 #: src/profiles/core/catalog.json:539
 #: src/profiles/core/catalog.json:618
 #: src/profiles/core/catalog.json:691
 #: src/profiles/core/catalog.json:764
-# defaultMessage: Before date
 msgid "Before date"
 msgstr "Voor datum"
 
+#. Default: "Before relative Date"
 #: src/profiles/core/catalog.json:100
 #: src/profiles/core/catalog.json:173
 #: src/profiles/core/catalog.json:509
 #: src/profiles/core/catalog.json:588
 #: src/profiles/core/catalog.json:661
 #: src/profiles/core/catalog.json:734
-# defaultMessage: Before relative Date
 msgid "Before relative Date"
 msgstr "Voor relatieve datum"
 
+#. Default: "Before the current day"
 #: src/profiles/core/catalog.json:107
 #: src/profiles/core/catalog.json:180
 #: src/profiles/core/catalog.json:516
 #: src/profiles/core/catalog.json:595
 #: src/profiles/core/catalog.json:668
 #: src/profiles/core/catalog.json:741
-# defaultMessage: Before the current day
 msgid "Before the current day"
 msgstr "Voor de huidige dag"
 
+#. Default: "Before today"
 #: src/profiles/core/catalog.json:106
 #: src/profiles/core/catalog.json:179
 #: src/profiles/core/catalog.json:515
 #: src/profiles/core/catalog.json:594
 #: src/profiles/core/catalog.json:667
 #: src/profiles/core/catalog.json:740
-# defaultMessage: Before today
 msgid "Before today"
 msgstr "Voor vandaag"
 
+#. Default: "Between dates"
 #: src/profiles/core/catalog.json:112
 #: src/profiles/core/catalog.json:185
 #: src/profiles/core/catalog.json:521
 #: src/profiles/core/catalog.json:600
 #: src/profiles/core/catalog.json:673
 #: src/profiles/core/catalog.json:746
-# defaultMessage: Between dates
 msgid "Between dates"
 msgstr "Tussen datums"
 
+#. Default: "Blocks"
 #: src/profiles/core/behaviors/blocks.json:3
 #: src/profiles/core/behaviors/blocks.json:17
-# defaultMessage: Blocks
 msgid "Blocks"
 msgstr "Blokken"
 
+#. Default: "Blocks Layout"
 #: src/profiles/core/behaviors/blocks.json:26
-# defaultMessage: Blocks Layout
 msgid "Blocks Layout"
 msgstr "Blokken Layout"
 
+#. Default: "Can only be seen and edited by the owner."
 #: src/profiles/core/workflows.json:13
-# defaultMessage: Can only be seen and edited by the owner.
 msgid "Can only be seen and edited by the owner."
 msgstr "Kan alleen bekeken en gewijzigd worden door de eigenaar."
 
+#. Default: "Categorization"
 #: src/profiles/core/behaviors/categorization.json:3
 #: src/profiles/core/behaviors/categorization.json:10
-# defaultMessage: Categorization
 msgid "Categorization"
 msgstr "Categorisatie"
 
+#. Default: "Change Note"
 #: src/profiles/core/behaviors/versioning.json:16
-# defaultMessage: Change Note
 msgid "Change Note"
 msgstr "Wijzig Notitie"
 
+#. Default: "Contact"
 #: src/profiles/core/actions.json:76
-# defaultMessage: Contact
 msgid "Contact"
 msgstr "Contact"
 
+#. Default: "Contains"
 #: src/profiles/core/catalog.json:234
 #: src/profiles/core/catalog.json:253
 #: src/profiles/core/catalog.json:272
 #: src/profiles/core/catalog.json:472
-# defaultMessage: Contains
 msgid "Contains"
 msgstr "Bevat"
 
+#. Default: "Contents"
 #: src/profiles/core/actions.json:17
-# defaultMessage: Contents
 msgid "Contents"
 msgstr "Inhoud"
 
+#. Default: "Contributor"
 #: src/profiles/core/roles.json:26
-# defaultMessage: Contributor
 msgid "Contributor"
 msgstr "Bijdrager"
 
+#. Default: "Copy"
 #: src/profiles/core/actions.json:44
-# defaultMessage: Copy
 msgid "Copy"
 msgstr "Kopiëren"
 
+#. Default: "Coverage"
 #: src/profiles/core/behaviors/categorization.json:16
-# defaultMessage: Coverage
 msgid "Coverage"
 msgstr "Dekking"
 
+#. Default: "Creation date"
 #: src/profiles/core/catalog.json:642
-# defaultMessage: Creation date
 msgid "Creation date"
 msgstr "Aanmaakdatum"
 
+#. Default: "Creator"
 #: src/profiles/core/catalog.json:396
-# defaultMessage: Creator
 msgid "Creator"
 msgstr "Auteur"
 
+#. Default: "Current logged in user"
 #: src/profiles/core/catalog.json:409
-# defaultMessage: Current logged in user
 msgid "Current logged in user"
 msgstr "Huidige ingelogde gebruiker"
 
+#. Default: "Cut"
 #: src/profiles/core/actions.json:39
-# defaultMessage: Cut
 msgid "Cut"
 msgstr "Knippen"
 
+#. Default: "Dates"
 #: src/profiles/core/behaviors/dates.json:3
 #: src/profiles/core/behaviors/dates.json:10
-# defaultMessage: Dates
 msgid "Dates"
 msgstr "Data"
 
+#. Default: "Debug"
 #: src/profiles/core/controlpanels/mail.json:58
-# defaultMessage: Debug
 msgid "Debug"
 msgstr "Debug"
 
+#. Default: "Default"
 #: src/profiles/core/behaviors/basic.json:10
 #: src/profiles/core/behaviors/preview_image_link.json:10
 #: src/profiles/core/behaviors/versioning.json:10
 #: src/profiles/core/types/file.json:13
 #: src/profiles/core/types/image.json:13
-# defaultMessage: Default
 msgid "Default"
 msgstr "Standaard"
 
+#. Default: "Delete"
 #: src/profiles/core/actions.json:54
-# defaultMessage: Delete
 msgid "Delete"
 msgstr "Verwijderen"
 
+#. Default: "Description"
 #: src/profiles/core/behaviors/basic.json:16
 #: src/profiles/core/catalog.json:227
-# defaultMessage: Description
 msgid "Description"
 msgstr "Omschrijving"
 
+#. Default: "Displayed content types"
 #: src/profiles/core/controlpanels/navigation.json:27
-# defaultMessage: Displayed content types
 msgid "Displayed content types"
 msgstr "Getoonde content types"
 
+#. Default: "Document locked"
 #: src/routes/content/content.js:571
 #: src/routes/history/history.js:48
-# defaultMessage: Document locked
 msgid "Document locked"
 msgstr "Document vergrendeld"
 
+#. Default: "Dublin Core metadata"
 #: src/profiles/core/behaviors/dublin_core.json:3
-# defaultMessage: Dublin Core metadata
 msgid "Dublin Core metadata"
 msgstr "Dublin Core metadata"
 
+#. Default: "ESMTP password"
 #: src/profiles/core/controlpanels/mail.json:41
-# defaultMessage: ESMTP password
 msgid "ESMTP password"
 msgstr "ESMTP wachtwoord"
 
+#. Default: "ESMTP username"
 #: src/profiles/core/controlpanels/mail.json:53
-# defaultMessage: ESMTP username
 msgid "ESMTP username"
 msgstr "ESMTP gebruikersnaam"
 
+#. Default: "Edit"
 #: src/profiles/core/actions.json:12
-# defaultMessage: Edit
 msgid "Edit"
 msgstr "Wijzigen"
 
+#. Default: "Editor"
 #: src/profiles/core/roles.json:31
-# defaultMessage: Editor
 msgid "Editor"
 msgstr "Redacteur"
 
+#. Default: "Effective date"
 #: src/profiles/core/catalog.json:715
-# defaultMessage: Effective date
 msgid "Effective date"
 msgstr "Ingangsdatum"
 
+#. Default: "Enables Volto Blocks support"
 #: src/profiles/core/behaviors/blocks.json:4
-# defaultMessage: Enables Volto Blocks support
 msgid "Enables Volto Blocks support"
 msgstr "Schakelt Volto Blocks-ondersteuning in""
 
+#. Default: "Enter a comment that describes the changes you made."
 #: src/profiles/core/behaviors/versioning.json:15
-# defaultMessage: Enter a comment that describes the changes you made.
 msgid "Enter a comment that describes the changes you made."
 msgstr "Voer een opmerking in die de aangebrachte wijzigingen beschrijft."
 
+#. Default: "Equals"
 #: src/profiles/core/catalog.json:57
 #: src/profiles/core/catalog.json:328
-# defaultMessage: Equals
 msgid "Equals"
 msgstr "Gelijk aan"
 
+#. Default: "Event end date"
 #: src/profiles/core/catalog.json:154
-# defaultMessage: Event end date
 msgid "Event end date"
 msgstr "Einddatum evenement"
 
+#. Default: "Event start date"
 #: src/profiles/core/catalog.json:81
-# defaultMessage: Event start date
 msgid "Event start date"
 msgstr "Startdatum evenement"
 
+#. Default: "Exclude from navigation"
 #: src/profiles/core/behaviors/exclude_from_nav.json:3
 #: src/profiles/core/behaviors/exclude_from_nav.json:15
-# defaultMessage: Exclude from navigation
 msgid "Exclude from navigation"
 msgstr "Uitsluiten van de navigatie"
 
+#. Default: "Expiration Date"
 #: src/profiles/core/behaviors/dates.json:22
-# defaultMessage: Expiration Date
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
+#. Default: "Expiration date"
 #: src/profiles/core/catalog.json:569
-# defaultMessage: Expiration date
 msgid "Expiration date"
 msgstr "Vervaldatum"
 
+#. Default: "File"
 #: src/profiles/core/types/file.json:3
 #: src/profiles/core/types/file.json:19
-# defaultMessage: File
 msgid "File"
 msgstr "Bestand"
 
+#. Default: "Find items related to the selected items"
 #: src/profiles/core/catalog.json:322
-# defaultMessage: Find items related to the selected items
 msgid "Find items related to the selected items"
 msgstr "Zoek items gerelateerd aan de geselecteerde items"
 
+#. Default: "Find items that can contain other objects"
 #: src/profiles/core/catalog.json:341
-# defaultMessage: Find items that can contain other objects
 msgid "Find items that can contain other objects"
 msgstr "Zoek items die andere objecten kunnen bevatten"
 
+#. Default: "Folder"
 #: src/profiles/core/types/folder.json:3
-# defaultMessage: Folder
 msgid "Folder"
 msgstr "Map"
 
+#. Default: "Folder-like"
 #: src/profiles/core/catalog.json:340
-# defaultMessage: Folder-like
 msgid "Folder-like"
 msgstr "Map-achtig"
 
+#. Default: "From and message are required fields."
 #: src/routes/email/email.js:45
 #: src/routes/email/email.js:78
-# defaultMessage: From and message are required fields.
 msgid "From and message are required fields."
 msgstr "Afzender en bericht zijn verplichte velden."
 
+#. Default: "Gives the ability to rename an item from its edit form."
 #: src/profiles/core/behaviors/preview_image_link.json:4
 #: src/profiles/core/behaviors/short_name.json:4
-# defaultMessage: Gives the ability to rename an item from its edit form.
 msgid "Gives the ability to rename an item from its edit form."
 msgstr "Geeft de mogelijkheid om een item te hernoemen vanuit het bewerkingsformulier."
 
+#. Default: "History"
 #: src/profiles/core/actions.json:22
-# defaultMessage: History
 msgid "History"
 msgstr "Geschiedenis"
 
+#. Default: "Identifier"
 #: src/profiles/core/behaviors/short_name.json:16
-# defaultMessage: Identifier
 msgid "Identifier"
 msgstr "ID"
 
+#. Default: "If enabled the mail is send to a test server."
 #: src/profiles/core/controlpanels/mail.json:59
-# defaultMessage: If enabled the mail is send to a test server.
 msgid "If enabled the mail is send to a test server."
 msgstr "Indien ingeschakeld wordt de mail naar een testserver gestuurd."
 
+#. Default: "If enabled the mail is send using a secure connection."
 #: src/profiles/core/controlpanels/mail.json:64
-# defaultMessage: If enabled the mail is send using a secure connection.
 msgid "If enabled the mail is send using a secure connection."
 msgstr "Indien ingeschakeld, wordt de e-mail verzonden via een beveiligde verbinding."
 
+#. Default: "If selected, this item will not appear in the navigation tree."
 #: src/profiles/core/behaviors/exclude_from_nav.json:4
 #: src/profiles/core/behaviors/exclude_from_nav.json:16
-# defaultMessage: If selected, this item will not appear in the navigation tree.
 msgid "If selected, this item will not appear in the navigation tree."
 msgstr "Indien geselecteerd, verschijnt dit item niet in de navigatiestructuur."
 
+#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
 #: src/profiles/core/behaviors/dates.json:15
-# defaultMessage: If this date is in the future, the content will not show up in listings and searches until this date.
 msgid "If this date is in the future, the content will not show up in listings and searches until this date."
 msgstr "Als deze datum in de toekomst ligt, wordt de inhoud tot deze datum niet weergegeven in vermeldingen en zoekopdrachten."
 
+#. Default: "Image"
 #: src/profiles/core/types/image.json:3
 #: src/profiles/core/types/image.json:19
-# defaultMessage: Image
 msgid "Image"
 msgstr "Afbeelding"
 
+#. Default: "Images can be referenced in pages or displayed in an album."
 #: src/profiles/core/types/image.json:4
-# defaultMessage: Images can be referenced in pages or displayed in an album.
 msgid "Images can be referenced in pages or displayed in an album."
 msgstr "Naar afbeeldingen kan op pagina's worden verwezen of in een album worden weergegeven."
 
+#. Default: "Information about rights held in and over this item."
 #: src/profiles/core/behaviors/ownership.json:20
-# defaultMessage: Information about rights held in and over this item.
 msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
+#. Default: "Internal server error"
 #: src/app.js:183
-# defaultMessage: Internal server error
 msgid "Internal server error"
 msgstr "Interne server fout"
 
+#. Default: "Invalid credentials"
 #: src/routes/authentication/authentication.js:40
 #: src/routes/authentication/authentication.js:51
-# defaultMessage: Invalid credentials
 msgid "Invalid credentials"
 msgstr "Ongeldige inloggegevens"
 
+#. Default: "Invalid session"
 #: src/routes/authentication/authentication.js:79
-# defaultMessage: Invalid session
 msgid "Invalid session"
 msgstr "Ongeldige sessie"
 
+#. Default: "Is"
 #: src/profiles/core/catalog.json:384
 #: src/profiles/core/catalog.json:478
-# defaultMessage: Is
 msgid "Is"
 msgstr "Is"
 
+#. Default: "Language"
 #: src/profiles/core/behaviors/categorization.json:22
 #: src/profiles/core/controlpanels/language.json:3
-# defaultMessage: Language
 msgid "Language"
 msgstr "Taal"
 
+#. Default: "Languageroot"
 #: src/profiles/multilingual/types/languageroot.json:3
-# defaultMessage: Languageroot
 msgid "Languageroot"
 msgstr "Taal hoofdmap"
 
+#. Default: "Larger than"
 #: src/profiles/core/catalog.json:63
-# defaultMessage: Larger than
 msgid "Larger than"
 msgstr "Groter dan"
 
+#. Default: "Layout"
 #: src/profiles/core/behaviors/blocks.json:10
-# defaultMessage: Layout
 msgid "Layout"
 msgstr "Layout"
 
+#. Default: "Less than"
 #: src/profiles/core/catalog.json:69
-# defaultMessage: Less than
 msgid "Less than"
 msgstr "Kleiner dan"
 
+#. Default: "Lets you upload a file to the site."
 #: src/profiles/core/types/file.json:4
-# defaultMessage: Lets you upload a file to the site.
 msgid "Lets you upload a file to the site."
 msgstr "Hiermee kunt u een bestand uploaden naar de site."
 
+#. Default: "Location"
 #: src/profiles/core/catalog.json:7
-# defaultMessage: Location
 msgid "Location"
 msgstr "Locatie"
 
+#. Default: "Location in the navigation structure"
 #: src/profiles/core/catalog.json:21
-# defaultMessage: Location in the navigation structure
 msgid "Location in the navigation structure"
 msgstr "Locatie in de navigatiestructuur"
 
+#. Default: "Location in the site structure"
 #: src/profiles/core/catalog.json:15
-# defaultMessage: Location in the site structure
 msgid "Location in the site structure"
 msgstr "Locatie in de sitestructuur"
 
+#. Default: "Log in"
 #: src/profiles/core/actions.json:93
-# defaultMessage: Log in
 msgid "Log in"
 msgstr "Log in"
 
+#. Default: "Log out"
 #: src/profiles/core/actions.json:98
-# defaultMessage: Log out
 msgid "Log out"
 msgstr "Logout"
 
+#. Default: "Login"
 #: src/profiles/core/permissions.json:14
-# defaultMessage: Login
 msgid "Login"
 msgstr "Log in"
 
+#. Default: "Login and password must be provided in body."
 #: src/routes/authentication/authentication.js:23
-# defaultMessage: Login and password must be provided in body.
 msgid "Login and password must be provided in body."
 msgstr "Login en wachtwoord moeten in de body worden opgegeven."
 
+#. Default: "Logout"
 #: src/profiles/core/permissions.json:18
-# defaultMessage: Logout
 msgid "Logout"
 msgstr "Uitloggen"
 
+#. Default: "Mail"
 #: src/profiles/core/controlpanels/mail.json:3
-# defaultMessage: Mail
 msgid "Mail"
 msgstr "Mail"
 
+#. Default: "Manage Preferences"
 #: src/profiles/core/permissions.json:22
-# defaultMessage: Manage Preferences
 msgid "Manage Preferences"
 msgstr "Voorkeuren beheren"
 
+#. Default: "Manage Site"
 #: src/profiles/core/permissions.json:30
-# defaultMessage: Manage Site
 msgid "Manage Site"
 msgstr "Site beheren"
 
+#. Default: "Manage Users"
 #: src/profiles/core/permissions.json:26
-# defaultMessage: Manage Users
 msgid "Manage Users"
 msgstr "Gebruikers Beheren"
 
+#. Default: "Matches all of"
 #: src/profiles/core/catalog.json:293
-# defaultMessage: Matches all of
 msgid "Matches all of"
 msgstr "Komt overeen met alle"
 
+#. Default: "Matches any of"
 #: src/profiles/core/catalog.json:299
 #: src/profiles/core/catalog.json:403
 #: src/profiles/core/catalog.json:434
 #: src/profiles/core/catalog.json:453
-# defaultMessage: Matches any of
 msgid "Matches any of"
 msgstr "Komt overeen met een van"
 
+#. Default: "Missing credentials"
 #: src/routes/authentication/authentication.js:22
-# defaultMessage: Missing credentials
 msgid "Missing credentials"
 msgstr "Ontbrekende inloggegevens"
 
+#. Default: "Modification date"
 #: src/profiles/core/catalog.json:490
-# defaultMessage: Modification date
 msgid "Modification date"
 msgstr "Wijzigingsdatum:"
 
+#. Default: "Modify"
 #: src/profiles/core/permissions.json:34
-# defaultMessage: Modify
 msgid "Modify"
 msgstr "Wijzigen"
 
+#. Default: "Navigation"
 #: src/profiles/core/controlpanels/navigation.json:3
-# defaultMessage: Navigation
 msgid "Navigation"
 msgstr "Navigatie"
 
+#. Default: "Navigation path"
 #: src/profiles/core/catalog.json:20
-# defaultMessage: Navigation path
 msgid "Navigation path"
 msgstr "Navigatiepad"
 
+#. Default: "No"
 #: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
-# defaultMessage: No
 msgid "No"
 msgstr "Nee"
 
+#. Default: "Not allowed"
 #: src/routes/lock/lock.js:152
-# defaultMessage: Not allowed
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
+#. Default: "Not found."
 #: src/routes/controlpanels/controlpanels.js:32
 #: src/routes/email/email.js:52
 #: src/routes/groups/groups.js:26
 #: src/routes/types/types.js:32
 #: src/routes/users/users.js:104
 #: src/routes/vocabularies/vocabularies.js:50
-# defaultMessage: Not found.
 msgid "Not found."
 msgstr "Niet gevonden."
 
+#. Default: "Order in folder"
 #: src/profiles/core/catalog.json:50
-# defaultMessage: Order in folder
 msgid "Order in folder"
 msgstr "Volgorde in map"
 
+#. Default: "Owner"
 #: src/profiles/core/roles.json:16
-# defaultMessage: Owner
 msgid "Owner"
 msgstr "Eigenaar"
 
+#. Default: "Ownership"
 #: src/profiles/core/behaviors/ownership.json:3
 #: src/profiles/core/behaviors/ownership.json:10
-# defaultMessage: Ownership
 msgid "Ownership"
 msgstr "Eigenaarschap"
 
+#. Default: "Page"
 #: src/profiles/core/types/page.json:3
-# defaultMessage: Page
 msgid "Page"
 msgstr "Pagina"
 
+#. Default: "Password reset request"
 #: src/routes/users/users.js:77
 #: src/routes/users/users.js:177
-# defaultMessage: Password reset request
 msgid "Password reset request"
 msgstr "Wachtwoord herstel verzoek"
 
+#. Default: "Paste"
 #: src/profiles/core/actions.json:49
-# defaultMessage: Paste
 msgid "Paste"
 msgstr "Plakken"
 
+#. Default: "Pending review"
 #: src/profiles/core/workflows.json:22
-# defaultMessage: Pending review
 msgid "Pending review"
 msgstr "Wacht op review"
 
+#. Default: "Please enter the number in days."
 #: src/profiles/core/catalog.json:125
 #: src/profiles/core/catalog.json:137
 #: src/profiles/core/catalog.json:198
@@ -769,10 +749,10 @@ msgstr "Wacht op review"
 #: src/profiles/core/catalog.json:698
 #: src/profiles/core/catalog.json:759
 #: src/profiles/core/catalog.json:771
-# defaultMessage: Please enter the number in days.
 msgid "Please enter the number in days."
 msgstr "Voer het aantal in dagen in."
 
+#. Default: "Please use YYYY/MM/DD."
 #: src/profiles/core/catalog.json:113
 #: src/profiles/core/catalog.json:119
 #: src/profiles/core/catalog.json:131
@@ -791,460 +771,460 @@ msgstr "Voer het aantal in dagen in."
 #: src/profiles/core/catalog.json:747
 #: src/profiles/core/catalog.json:753
 #: src/profiles/core/catalog.json:765
-# defaultMessage: Please use YYYY/MM/DD.
 msgid "Please use YYYY/MM/DD."
 msgstr "Gebruik JJJJ/MM/DD."
 
+#. Default: "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
 #: src/profiles/core/controlpanels/mail.json:26
-# defaultMessage: Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature.
 msgid "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
 msgstr "Plone genereert e-mail met dit adres als het e-mailretouradres. Het wordt ook gebruikt als bestemmingsadres voor het contactformulier voor de hele site en de functie 'Test-e-mail verzenden'."
 
+#. Default: "Plone generates e-mail using this name as the e-mail sender."
 #: src/profiles/core/controlpanels/mail.json:31
-# defaultMessage: Plone generates e-mail using this name as the e-mail sender.
 msgid "Plone generates e-mail using this name as the e-mail sender."
 msgstr "Plone genereert e-mail met deze naam als afzender van de e-mail."
 
+#. Default: "Preferences"
 #: src/profiles/core/actions.json:83
-# defaultMessage: Preferences
 msgid "Preferences"
 msgstr "Voorkeuren"
 
+#. Default: "Preview Image Link"
 #: src/profiles/core/behaviors/preview_image_link.json:3
-# defaultMessage: Preview Image Link
 msgid "Preview Image Link"
 msgstr "Voorbeeld afbeelding link"
 
+#. Default: "Preview image"
 #: src/profiles/core/behaviors/preview_image_link.json:15
-# defaultMessage: Preview image
 msgid "Preview image"
 msgstr "Voorbeeld afbeelding"
 
+#. Default: "Preview image caption"
 #: src/profiles/core/behaviors/preview_image_link.json:23
-# defaultMessage: Preview image caption
 msgid "Preview image caption"
 msgstr "Voorbeeld afbeelding bijschrift"
 
+#. Default: "Private"
 #: src/profiles/core/workflows.json:12
-# defaultMessage: Private
 msgid "Private"
 msgstr "Privé"
 
+#. Default: "Publish"
 #: src/profiles/core/workflows.json:47
-# defaultMessage: Publish
 msgid "Publish"
 msgstr "Publiceren"
 
+#. Default: "Published"
 #: src/profiles/core/workflows.json:33
-# defaultMessage: Published
 msgid "Published"
 msgstr "Gepubliceerd"
 
+#. Default: "Publisher"
 #: src/profiles/core/behaviors/ownership.json:16
-# defaultMessage: Publisher
 msgid "Publisher"
 msgstr "Uitgever"
 
+#. Default: "Publishing Date"
 #: src/profiles/core/behaviors/dates.json:16
-# defaultMessage: Publishing Date
 msgid "Publishing Date"
 msgstr "Publicatiedatum"
 
+#. Default: "Reader"
 #: src/profiles/core/roles.json:21
-# defaultMessage: Reader
 msgid "Reader"
 msgstr "Lezer"
 
+#. Default: "Register"
 #: src/profiles/core/actions.json:103
 #: src/profiles/core/permissions.json:38
-# defaultMessage: Register
 msgid "Register"
 msgstr "Registreren"
 
+#. Default: "Related"
 #: src/profiles/core/behaviors/categorization.json:34
-# defaultMessage: Related
 msgid "Related"
 msgstr "Gerelateerd"
 
+#. Default: "Related Items"
 #: src/profiles/core/behaviors/categorization.json:42
-# defaultMessage: Related Items
 msgid "Related Items"
 msgstr "Gerelateerde Items"
 
+#. Default: "Related To"
 #: src/profiles/core/catalog.json:321
-# defaultMessage: Related To
 msgid "Related To"
 msgstr "Gerelateerd aan"
 
+#. Default: "Related resources."
 #: src/profiles/core/behaviors/categorization.json:31
-# defaultMessage: Related resources.
 msgid "Related resources."
 msgstr "Gerelateerde resources"
 
+#. Default: "Relative path"
 #: src/profiles/core/catalog.json:26
-# defaultMessage: Relative path
 msgid "Relative path"
 msgstr "Relatief pad"
 
+#. Default: "Rename"
 #: src/profiles/core/actions.json:59
-# defaultMessage: Rename
 msgid "Rename"
 msgstr "Hernoemen"
 
+#. Default: "Required field(s) missing."
 #: src/routes/content/content.js:409
-# defaultMessage: Required field(s) missing.
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
 
+#. Default: "Retract"
 #: src/profiles/core/workflows.json:57
-# defaultMessage: Retract
 msgid "Retract"
 msgstr "Intrekken"
 
+#. Default: "Review"
 #: src/profiles/core/permissions.json:42
-# defaultMessage: Review
 msgid "Review"
 msgstr "Review"
 
+#. Default: "Review state"
 #: src/profiles/core/catalog.json:446
-# defaultMessage: Review state
 msgid "Review state"
 msgstr "Beoordelingsstatus"
 
+#. Default: "Reviewer"
 #: src/profiles/core/roles.json:36
-# defaultMessage: Reviewer
 msgid "Reviewer"
 msgstr "Reviewer"
 
+#. Default: "Rights"
 #: src/profiles/core/behaviors/ownership.json:21
-# defaultMessage: Rights
 msgid "Rights"
 msgstr "Rechten"
 
+#. Default: "Robots.txt"
 #: src/profiles/core/controlpanels/site.json:15
-# defaultMessage: Robots.txt
 msgid "Robots.txt"
 msgstr "Robots.txt"
 
+#. Default: "Rules"
 #: src/profiles/core/actions.json:32
-# defaultMessage: Rules
 msgid "Rules"
 msgstr "Regels"
 
+#. Default: "SMTP port"
 #: src/profiles/core/controlpanels/mail.json:47
-# defaultMessage: SMTP port
 msgid "SMTP port"
 msgstr "SMTP poort"
 
+#. Default: "SMTP server"
 #: src/profiles/core/controlpanels/mail.json:35
-# defaultMessage: SMTP server
 msgid "SMTP server"
 msgstr "SMTP server"
 
+#. Default: "Searchable text"
 #: src/profiles/core/catalog.json:246
-# defaultMessage: Searchable text
 msgid "Searchable text"
 msgstr "Doorzoekbare tekst"
 
+#. Default: "Secure"
 #: src/profiles/core/controlpanels/mail.json:63
-# defaultMessage: Secure
 msgid "Secure"
 msgstr "Beveiligd"
 
+#. Default: "Select an image that will be used in listing and teaser blocks."
 #: src/profiles/core/behaviors/preview_image_link.json:16
-# defaultMessage: Select an image that will be used in listing and teaser blocks.
 msgid "Select an image that will be used in listing and teaser blocks."
 msgstr "Selecteer een afbeelding die u wilt gebruiken in de lijst- en teaserblokken."
 
+#. Default: "Send back"
 #: src/profiles/core/workflows.json:52
-# defaultMessage: Send back
 msgid "Send back"
 msgstr "Terugsturen"
 
+#. Default: "Settings"
 #: src/profiles/core/behaviors/exclude_from_nav.json:10
 #: src/profiles/core/behaviors/short_name.json:10
-# defaultMessage: Settings
 msgid "Settings"
 msgstr "Instellingen"
 
+#. Default: "Sharing"
 #: src/profiles/core/actions.json:27
-# defaultMessage: Sharing
 msgid "Sharing"
 msgstr "Delen"
 
+#. Default: "Short name"
 #: src/profiles/core/behaviors/short_name.json:3
-# defaultMessage: Short name
 msgid "Short name"
 msgstr "Verkorte naam"
 
+#. Default: "Short name (id)"
 #: src/profiles/core/catalog.json:377
-# defaultMessage: Short name (id)
 msgid "Short name (id)"
 msgstr "Verkorte naam (id)"
 
+#. Default: "Simple Publication Workflow"
 #: src/profiles/core/workflows.json:6
-# defaultMessage: Simple Publication Workflow
 msgid "Simple Publication Workflow"
 msgstr "Simpele Publicatie Workflow"
 
+#. Default: "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 #: src/profiles/core/workflows.json:7
-# defaultMessage: Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published.
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 msgstr "Eenvoudige workflow die handig is voor eenvoudige websites. Dingen beginnen als privé en kunnen ter beoordeling worden ingediend of rechtstreeks worden gepubliceerd. De maker van een inhoudsitem kan het item bewerken, zelfs nadat het is gepubliceerd."
 
+#. Default: "Site"
 #: src/profiles/core/controlpanels/site.json:3
 #: src/profiles/core/types/site.json:3
-# defaultMessage: Site
 msgid "Site"
 msgstr "Site"
 
+#. Default: "Site 'From' address"
 #: src/profiles/core/controlpanels/mail.json:25
-# defaultMessage: Site 'From' address
 msgid "Site 'From' address"
 msgstr "Site 'Van'-adres"
 
+#. Default: "Site 'From' name"
 #: src/profiles/core/controlpanels/mail.json:30
-# defaultMessage: Site 'From' name
 msgid "Site 'From' name"
 msgstr "Site 'Van' naam"
 
+#. Default: "Site Logo"
 #: src/profiles/core/controlpanels/site.json:22
-# defaultMessage: Site Logo
 msgid "Site Logo"
 msgstr "Site Logo"
 
+#. Default: "Site Setup"
 #: src/profiles/core/actions.json:88
-# defaultMessage: Site Setup
 msgid "Site Setup"
 msgstr "Site Instellingen"
 
+#. Default: "Site language"
 #: src/profiles/core/controlpanels/language.json:34
-# defaultMessage: Site language
 msgid "Site language"
 msgstr "Website taal"
 
+#. Default: "Site title"
 #: src/profiles/core/controlpanels/site.json:28
-# defaultMessage: Site title
 msgid "Site title"
 msgstr "Site titel"
 
+#. Default: "Sitemap"
 #: src/profiles/core/actions.json:66
-# defaultMessage: Sitemap
 msgid "Sitemap"
 msgstr "Sitemap"
 
+#. Default: "Sortable Title"
 #: src/profiles/core/catalog.json:465
-# defaultMessage: Sortable Title
 msgid "Sortable Title"
 msgstr "Sorteerbare titel"
 
+#. Default: "Source"
 #: src/profiles/core/behaviors/ownership.json:26
-# defaultMessage: Source
 msgid "Source"
 msgstr "Bron"
 
+#. Default: "Submit"
 #: src/profiles/core/permissions.json:46
-# defaultMessage: Submit
 msgid "Submit"
 msgstr "Indienen"
 
+#. Default: "Submit for publication"
 #: src/profiles/core/workflows.json:62
-# defaultMessage: Submit for publication
 msgid "Submit for publication"
 msgstr "Indienen ter publicatie"
 
+#. Default: "System group"
 #: src/routes/groups/groups.js:106
-# defaultMessage: System group
 msgid "System group"
 msgstr "Systeem groep"
 
+#. Default: "System users"
 #: src/routes/users/users.js:224
-# defaultMessage: System users
 msgid "System users"
 msgstr "Systeem gebruikers"
 
+#. Default: "Tag"
 #: src/profiles/core/catalog.json:284
-# defaultMessage: Tag
 msgid "Tag"
 msgstr "Tag"
 
+#. Default: "Tags"
 #: src/profiles/core/behaviors/categorization.json:50
-# defaultMessage: Tags
 msgid "Tags"
 msgstr "Tags"
 
+#. Default: "Tags are used for organization of content"
 #: src/profiles/core/catalog.json:285
-# defaultMessage: Tags are used for organization of content
 msgid "Tags are used for organization of content"
 msgstr "Tags worden gebruikt voor de organisatie van inhoud"
 
+#. Default: "Text search of an item's contents"
 #: src/profiles/core/catalog.json:247
-# defaultMessage: Text search of an item's contents
 msgid "Text search of an item's contents"
 msgstr "Tekst zoeken in de inhoud van een item"
 
+#. Default: "Text search of an item's title"
 #: src/profiles/core/catalog.json:266
-# defaultMessage: Text search of an item's title
 msgid "Text search of an item's title"
 msgstr "Tekst zoeken naar de titel van een item"
 
+#. Default: "The JSON representation of the object blocks information. Must be a JSON object."
 #: src/profiles/core/behaviors/blocks.json:16
-# defaultMessage: The JSON representation of the object blocks information. Must be a JSON object.
 msgid "The JSON representation of the object blocks information. Must be a JSON object."
 msgstr "De JSON-representatie van het object blokkeert informatie. Moet een JSON-object zijn."
 
+#. Default: "The JSON representation of the object blocks layout. Must be a JSON array."
 #: src/profiles/core/behaviors/blocks.json:25
-# defaultMessage: The JSON representation of the object blocks layout. Must be a JSON array.
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr "De JSON-weergave van de lay-out van objectblokken. Moet een JSON-array zijn."
 
+#. Default: "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 #: src/profiles/core/controlpanels/mail.json:36
-# defaultMessage: The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail.
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 msgstr "Het adres van uw lokale SMTP-server (uitgaande e-mail). Meestal 'localhost', tenzij je een externe server gebruikt om e-mail te versturen."
 
+#. Default: "The content types that should be shown in the navigation and site map."
 #: src/profiles/core/controlpanels/navigation.json:17
-# defaultMessage: The content types that should be shown in the navigation and site map.
 msgid "The content types that should be shown in the navigation and site map."
 msgstr "Content types die in de navigatie en de site map getoond moeten worden."
 
+#. Default: "The current day"
 #: src/profiles/core/catalog.json:143
 #: src/profiles/core/catalog.json:216
 #: src/profiles/core/catalog.json:552
 #: src/profiles/core/catalog.json:631
 #: src/profiles/core/catalog.json:704
 #: src/profiles/core/catalog.json:777
-# defaultMessage: The current day
 msgid "The current day"
 msgstr "De huidige dag"
 
+#. Default: "The date an item was created"
 #: src/profiles/core/catalog.json:643
-# defaultMessage: The date an item was created
 msgid "The date an item was created"
 msgstr "De datum waarop een item is gemaakt"
 
+#. Default: "The end date and time of an event"
 #: src/profiles/core/catalog.json:155
-# defaultMessage: The end date and time of an event
 msgid "The end date and time of an event"
 msgstr "De einddatum en -tijd van een evenement"
 
+#. Default: "undefined"
 #: src/routes/users/users.js:78
 #: src/routes/users/users.js:178
-# defaultMessage: undefined
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw kunt instellen: {url}"
 
+#. Default: "The item's title, transformed for sorting"
 #: src/profiles/core/catalog.json:466
-# defaultMessage: The item's title, transformed for sorting
 msgid "The item's title, transformed for sorting"
 msgstr "De titel van het item, getransformeerd om te sorteren"
 
+#. Default: "The language of this item."
 #: src/profiles/core/behaviors/categorization.json:20
-# defaultMessage: The language of this item.
 msgid "The language of this item."
 msgstr "De taal van dit item"
 
+#. Default: "The language used for the content and the UI of this site."
 #: src/profiles/core/controlpanels/language.json:33
-# defaultMessage: The language used for the content and the UI of this site.
 msgid "The language used for the content and the UI of this site."
 msgstr "De taal die wordt gebruikt voor de inhoud en de gebruikersinterface van deze site."
 
+#. Default: "The languages in which the site should be translatable."
 #: src/profiles/core/controlpanels/language.json:17
-# defaultMessage: The languages in which the site should be translatable.
 msgid "The languages in which the site should be translatable."
 msgstr "De talen waarin de site vertaalbaar moet zijn."
 
+#. Default: "The location of an item"
 #: src/profiles/core/catalog.json:8
-# defaultMessage: The location of an item
 msgid "The location of an item"
 msgstr "De locatie van een item"
 
+#. Default: "The order of an item in its parent folder"
 #: src/profiles/core/catalog.json:51
-# defaultMessage: The order of an item in its parent folder
 msgid "The order of an item in its parent folder"
 msgstr "De volgorde van een item in de bovenliggende map"
 
+#. Default: "The password for the ESMTP user account."
 #: src/profiles/core/controlpanels/mail.json:42
-# defaultMessage: The password for the ESMTP user account.
 msgid "The password for the ESMTP user account."
 msgstr "Het wachtwoord voor het ESMTP-gebruikersaccount."
 
+#. Default: "The person that created an item"
 #: src/profiles/core/catalog.json:397
-# defaultMessage: The person that created an item
 msgid "The person that created an item"
 msgstr "De persoon die een item heeft gemaakt"
 
+#. Default: "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 #: src/profiles/core/controlpanels/mail.json:48
-# defaultMessage: The port of your local SMTP (outgoing e-mail) server. Usually '25'.
 msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 msgstr "De poort van uw lokale SMTP-server (uitgaande e-mail). Meestal '25'."
 
+#. Default: "The short name of an item (used in the url)"
 #: src/profiles/core/catalog.json:378
-# defaultMessage: The short name of an item (used in the url)
 msgid "The short name of an item (used in the url)"
 msgstr "De korte naam van een item (gebruikt in de url)"
 
+#. Default: "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
 #: src/profiles/core/behaviors/categorization.json:15
-# defaultMessage: The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant.
 msgid "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
 msgstr "Het ruimtelijke of temporele onderwerp van dit item, de ruimtelijke toepasbaarheid van dit item of de jurisdictie waaronder dit item relevant is."
 
+#. Default: "The start date and time of an event"
 #: src/profiles/core/catalog.json:82
-# defaultMessage: The start date and time of an event
 msgid "The start date and time of an event"
 msgstr "De startdatum en -tijd van een evenement"
 
+#. Default: "The time and date an item was expired"
 #: src/profiles/core/catalog.json:570
-# defaultMessage: The time and date an item was expired
 msgid "The time and date an item was expired"
 msgstr "De tijd en datum waarop een item is verlopen"
 
+#. Default: "The time and date an item was first published"
 #: src/profiles/core/catalog.json:716
-# defaultMessage: The time and date an item was first published
 msgid "The time and date an item was first published"
 msgstr "De tijd en datum waarop een item voor het eerst is gepubliceerd"
 
+#. Default: "The time and date an item was last modified"
 #: src/profiles/core/catalog.json:491
-# defaultMessage: The time and date an item was last modified
 msgid "The time and date an item was last modified"
 msgstr "De tijd en datum waarop een item voor het laatst is gewijzigd"
 
+#. Default: "The topic of this item."
 #: src/profiles/core/behaviors/categorization.json:48
-# defaultMessage: The topic of this item.
 msgid "The topic of this item."
 msgstr "Het onderwerp van dit item."
 
+#. Default: "The user viewing the querystring results"
 #: src/profiles/core/catalog.json:410
-# defaultMessage: The user viewing the querystring results
 msgid "The user viewing the querystring results"
 msgstr "De gebruiker die de resultaten van de querystring bekijkt"
 
+#. Default: "This document is already locked by another user."
 #: src/routes/lock/lock.js:49
 #: src/routes/lock/lock.js:100
-# defaultMessage: This document is already locked by another user.
 msgid "This document is already locked by another user."
 msgstr "Dit document is al vergrendeld door een andere gebruiker."
 
+#. Default: "This is the contents of the robots.txt file."
 #: src/profiles/core/controlpanels/site.json:16
-# defaultMessage: This is the contents of the robots.txt file.
 msgid "This is the contents of the robots.txt file."
 msgstr "Dit is de inhoud van het robots.txt bestand."
 
+#. Default: "This name will be displayed in the URL."
 #: src/profiles/core/behaviors/short_name.json:15
-# defaultMessage: This name will be displayed in the URL.
 msgid "This name will be displayed in the URL."
 msgstr "Deze naam wordt weergegeven in de URL."
 
+#. Default: "This shows a custom logo on your site."
 #: src/profiles/core/controlpanels/site.json:21
-# defaultMessage: This shows a custom logo on your site.
 msgid "This shows a custom logo on your site."
 msgstr "Dit toont een aangepast logo op uw site"
 
+#. Default: "This shows up in the title bar of browsers and in syndication feeds."
 #: src/profiles/core/controlpanels/site.json:29
-# defaultMessage: This shows up in the title bar of browsers and in syndication feeds.
 msgid "This shows up in the title bar of browsers and in syndication feeds."
 msgstr "Dit verschijnt in de titelbalk van browsers en in syndicatiefeeds."
 
+#. Default: "Tip: you can use * to autocomplete."
 #: src/profiles/core/catalog.json:291
 #: src/profiles/core/catalog.json:297
 #: src/profiles/core/catalog.json:385
@@ -1252,162 +1232,161 @@ msgstr "Dit verschijnt in de titelbalk van browsers en in syndicatiefeeds."
 #: src/profiles/core/catalog.json:435
 #: src/profiles/core/catalog.json:454
 #: src/profiles/core/catalog.json:479
-# defaultMessage: Tip: you can use * to autocomplete.
 msgid "Tip: you can use * to autocomplete."
 msgstr "Tip: u kunt * gebruiken om automatisch aan te vullen."
 
+#. Default: "Title"
 #: src/profiles/core/behaviors/basic.json:22
 #: src/profiles/core/catalog.json:265
-# defaultMessage: Title
 msgid "Title"
 msgstr "Titel"
 
+#. Default: "To, from and message are required fields."
 #: src/routes/email/email.js:18
-# defaultMessage: To, from and message are required fields.
 msgid "To, from and message are required fields."
 msgstr "Aan, van en bericht zijn verplichte velden."
 
+#. Default: "Today"
 #: src/profiles/core/catalog.json:142
 #: src/profiles/core/catalog.json:215
 #: src/profiles/core/catalog.json:551
 #: src/profiles/core/catalog.json:630
 #: src/profiles/core/catalog.json:703
 #: src/profiles/core/catalog.json:776
-# defaultMessage: Today
 msgid "Today"
 msgstr "Vandaag"
 
+#. Default: "Transaction error."
 #: src/app.js:139
-# defaultMessage: Transaction error.
 msgid "Transaction error."
 msgstr "Transactiefout"
 
+#. Default: "Type"
 #: src/profiles/core/catalog.json:427
-# defaultMessage: Type
 msgid "Type"
 msgstr "Type"
 
+#. Default: "Type of the current document is not found."
 #: src/app.js:100
-# defaultMessage: Type of the current document is not found.
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
 
+#. Default: "Use '../' to navigate to parent objects."
 #: src/profiles/core/catalog.json:27
-# defaultMessage: Use '../' to navigate to parent objects.
 msgid "Use '../' to navigate to parent objects."
 msgstr "Gebruik '../' om naar bovenliggende objecten te navigeren."
 
+#. Default: "User doesn't exist or invalid credentials."
 #: src/routes/users/users.js:43
-# defaultMessage: User doesn't exist or invalid credentials.
 msgid "User doesn't exist or invalid credentials."
 msgstr "Gebruiker bestaat niet of ongeldige inloggegevens."
 
+#. Default: "User is not logged in."
 #: src/routes/authentication/authentication.js:80
-# defaultMessage: User is not logged in.
 msgid "User is not logged in."
 msgstr "Gebruiker is niet ingelogd."
 
+#. Default: "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 #: src/profiles/core/controlpanels/mail.json:54
-# defaultMessage: Username for authentication to your e-mail server. Not required unless you are using ESMTP.
 msgid "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 msgstr "Gebruikersnaam voor authenticatie naar uw e-mailserver. Niet vereist, tenzij u ESMTP gebruikt."
 
+#. Default: "Versioning"
 #: src/profiles/core/behaviors/versioning.json:3
-# defaultMessage: Versioning
 msgid "Versioning"
 msgstr "Versiebeheer"
 
+#. Default: "Versioning support"
 #: src/profiles/core/behaviors/versioning.json:4
-# defaultMessage: Versioning support
 msgid "Versioning support"
 msgstr "Versiebeheer ondersteuning"
 
+#. Default: "View"
 #: src/profiles/core/actions.json:7
 #: src/profiles/core/permissions.json:6
-# defaultMessage: View
 msgid "View"
 msgstr "Bekijken"
 
+#. Default: "Visible to everyone, editable by the owner."
 #: src/profiles/core/workflows.json:34
-# defaultMessage: Visible to everyone, editable by the owner.
 msgid "Visible to everyone, editable by the owner."
 msgstr "Voor iedereen zichtbaar, bewerkbaar door de eigenaar."
 
+#. Default: "Waiting to be reviewed, not editable by the owner."
 #: src/profiles/core/workflows.json:23
-# defaultMessage: Waiting to be reviewed, not editable by the owner.
 msgid "Waiting to be reviewed, not editable by the owner."
 msgstr "Wachten om te worden beoordeeld, kan niet worden bewerkt door de eigenaar."
 
+#. Default: "When this date is reached, the content will no longer be visible in listings and searches."
 #: src/profiles/core/behaviors/dates.json:21
-# defaultMessage: When this date is reached, the content will no longer be visible in listings and searches.
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
 msgstr "Wanneer deze datum is bereikt, is de inhoud niet langer zichtbaar in vermeldingen en zoekopdrachten."
 
+#. Default: "Within last"
 #: src/profiles/core/catalog.json:124
 #: src/profiles/core/catalog.json:197
 #: src/profiles/core/catalog.json:533
 #: src/profiles/core/catalog.json:612
 #: src/profiles/core/catalog.json:685
 #: src/profiles/core/catalog.json:758
-# defaultMessage: Within last
 msgid "Within last"
 msgstr "Binnen laatste"
 
+#. Default: "Within next"
 #: src/profiles/core/catalog.json:136
 #: src/profiles/core/catalog.json:209
 #: src/profiles/core/catalog.json:545
 #: src/profiles/core/catalog.json:624
 #: src/profiles/core/catalog.json:697
 #: src/profiles/core/catalog.json:770
-# defaultMessage: Within next
 msgid "Within next"
 msgstr "Binnen volgende"
 
+#. Default: "Wrong login and/or password."
 #: src/routes/authentication/authentication.js:41
 #: src/routes/authentication/authentication.js:52
-# defaultMessage: Wrong login and/or password.
 msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
 
+#. Default: "Yes"
 #: src/profiles/core/catalog.json:353
 #: src/profiles/core/vocabularies/boolean.json:5
-# defaultMessage: Yes
 msgid "Yes"
 msgstr "Ja"
 
+#. Default: "You are not authorization to access this resource."
 #: src/app.js:125
 #: src/routes/workflow/workflow.js:32
-# defaultMessage: You are not authorization to access this resource.
 msgid "You are not authorization to access this resource."
 msgstr "U heeft geen rechten om tot deze resource."
 
+#. Default: "You can't delete system groups."
 #: src/routes/groups/groups.js:105
-# defaultMessage: You can't delete system groups.
 msgid "You can't delete system groups."
 msgstr "U kunt geen systeemgroepen verwijderen."
 
+#. Default: "You can't delete system users."
 #: src/routes/users/users.js:223
-# defaultMessage: You can't delete system users.
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
+#. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/content/content.js:568
 #: src/routes/history/history.js:45
-# defaultMessage: You don't have permission to save this document because it is locked by another user.
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
 
+#. Default: "You don't have permission to unlock this document."
 #: src/routes/lock/lock.js:149
-# defaultMessage: You don't have permission to unlock this document.
 msgid "You don't have permission to unlock this document."
 msgstr "U heeft geen toestemming om dit document te ontgrendelen."
 
+#. Default: "You don't have permissions to add a user."
 #: src/routes/users/users.js:134
-# defaultMessage: You don't have permissions to add a user.
 msgid "You don't have permissions to add a user."
 msgstr "U heeft geen rechten om een gebruiker toe te voegen."
 
+#. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3
-# defaultMessage: boolean
 msgid "boolean"
 msgstr "boolean"

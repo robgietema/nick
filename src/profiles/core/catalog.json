@@ -55,19 +55,19 @@
       "operators": {
         "int.is": {
           "title:i18n": "Equals",
-          "description:i18n": "",
+          "description": "",
           "operation": "intEqual",
           "widget": "StringWidget"
         },
         "int.largerThan": {
           "title:i18n": "Larger than",
-          "description:i18n": "",
+          "description": "",
           "operation": "intLargerThan",
           "widget": "StringWidget"
         },
         "int.lessThan": {
           "title:i18n": "Less than",
-          "description:i18n": "",
+          "description": "",
           "operation": "intLessThan",
           "widget": "StringWidget"
         }
@@ -232,7 +232,7 @@
       "operators": {
         "string.contains": {
           "title:i18n": "Contains",
-          "description:i18n": "",
+          "description": "",
           "operation": "contains",
           "widget": "StringWidget"
         }
@@ -251,7 +251,7 @@
       "operators": {
         "string.contains": {
           "title:i18n": "Contains",
-          "description:i18n": "",
+          "description": "",
           "operation": "contains",
           "widget": "StringWidget"
         }
@@ -270,7 +270,7 @@
       "operators": {
         "string.contains": {
           "title:i18n": "Contains",
-          "description:i18n": "",
+          "description": "",
           "operation": "contains",
           "widget": "StringWidget"
         }
@@ -326,7 +326,7 @@
       "operators": {
         "reference.is": {
           "title:i18n": "Equals",
-          "description:i18n": "",
+          "description": "",
           "operation": "referenceIs",
           "widget": "ReferenceWidget"
         }
@@ -345,13 +345,13 @@
       "operators": {
         "boolean.isFalse": {
           "title:i18n": "No",
-          "description:i18n": "",
+          "description": "",
           "operation": "isFalse",
           "widget": null
         },
         "boolean.isTrue": {
           "title:i18n": "Yes",
-          "description:i18n": "",
+          "description": "",
           "operation": "isTrue",
           "widget": null
         }
@@ -470,7 +470,7 @@
       "operators": {
         "string.contains": {
           "title:i18n": "Contains",
-          "description:i18n": "",
+          "description": "",
           "operation": "contains",
           "widget": "StringWidget"
         },

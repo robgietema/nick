@@ -1,7 +1,7 @@
 {
   "id": "Languageroot",
   "title:i18n": "Languageroot",
-  "description:i18n": "",
+  "description": "",
   "global_allow": true,
   "filter_content_types": false,
   "allowed_content_types": [],

@@ -117,7 +117,7 @@ Content-Type: application/json
       "type": "string",
       "title": "Description",
       "widget": "textarea",
-      "description": "defaultMessage:"
+      "description": "A description of this item."
     },
     "relatedItems": {
       "type": "array",

@@ -4,7 +4,7 @@
     {
       "id": "Administrators",
       "title:i18n": "Administrators",
-      "description:i18n": "",
+      "description": "",
       "email": "",
       "roles": ["Administrator"]
     }

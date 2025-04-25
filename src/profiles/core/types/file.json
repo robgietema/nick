@@ -15,7 +15,7 @@
     ],
     "properties": {
       "file": {
-        "description:i18n": "",
+        "description": "",
         "title:i18n": "File",
         "type": "object",
         "widget": "file",
