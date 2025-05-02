@@ -70,6 +70,32 @@ Create a database and a user with the correct permissions for your project (see 
     $ yarn bootstrap
     $ yarn start
 
+## Docker image
+
+Install [Docker Desktop](https://www.docker.com/get-started/).
+
+### Backend
+
+Navigate to the root of the repository, and run the following command to run the Docker container for backend.
+
+```shell
+docker compose up --build
+```
+
+This will expose port `8000`.
+You can make requests to `http://localhost:8000/++api++/` to fetch content.
+
+To shut down the containers, run the following command.
+
+```shell
+docker compose down
+```
+
+### Frontend
+
+You can use any frontend.
+For convenience, you can navigate to the directory `/frontend` and use the pre-built frontend.
+
 ## Contribute
 
 - Issue tracker: [https://github.com/robgietema/nick/issues](https://github.com/robgietema/nick/issues)
