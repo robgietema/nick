@@ -2,11 +2,12 @@
  * Cors middleware.
  * @module cors
  */
+import { Request, Response, NextFunction } from 'express';
 
 const { config } = require(`${process.cwd()}/config`);
 
 // Export middleware
-export function cors(req, res, next) {
+export function cors(_req: Request, res: Response, next: NextFunction) {
   res.header('Access-Control-Allow-Origin', config.cors.allowOrigin);
   res.header('Access-Control-Allow-Headers', config.cors.allowHeaders);
   res.header('Access-Control-Allow-Methods', config.cors.allowMethods);

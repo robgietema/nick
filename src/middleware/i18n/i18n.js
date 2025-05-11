@@ -9,8 +9,6 @@ import fs from 'fs';
 
 import { Controlpanel } from '../../models';
 
-const { config } = require(`${process.cwd()}/config`);
-
 // Get available language files
 const languages = _(fs.readdirSync(`${__dirname}/../../../locales`))
   .remove((value) => endsWith(value, '.json'))

@@ -5,12 +5,28 @@
 
 import { logger } from '../../helpers';
 import moment from 'moment';
+import { Request, Response, NextFunction } from 'express';
 
 // Create access logger
 const access = logger.getLogger('access');
 
+interface RequestWithLog extends Request {
+  timestamp: string;
+  user: {
+    id: string;
+  };
+}
+
+interface ResponseWithLog extends Request {
+  _contentLength: number;
+}
+
 // Access logger middleware
-export function accessLogger(req, res, next) {
+export function accessLogger(
+  req: RequestWithLog,
+  res: ResponseWithLog,
+  next: NextFunction,
+) {
   function onResFinished() {
     access.info(
       `${req.hostname} - ${(req.user && req.user.id) || 'anonymous'} [${

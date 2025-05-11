@@ -4,8 +4,14 @@
  */
 
 import slugify from 'slugify';
-
 import { uniqueId } from '../../helpers';
+
+interface Document {
+  id: string;
+  json: {
+    title: string;
+  };
+}
 
 /**
  * Id from title behavior.
@@ -19,10 +25,10 @@ export const id_from_title = {
    * @param {Array} blacklist Blacklist ids
    * @returns {string} Id
    */
-  setId: function (id, blacklist) {
+  setId: function(this: Document, id?: string, blacklist?: string[]): void {
     this.id = uniqueId(
       id || slugify(this.json.title, { lower: true, remove: /[*+~.()'"!:@]/g }),
-      blacklist,
+      blacklist || [],
     );
   },
 };
