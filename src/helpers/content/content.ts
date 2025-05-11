@@ -5,6 +5,7 @@
 
 import { isObject, isString, keys, last, map } from 'lodash';
 import mime from 'mime-types';
+import { Knex } from 'knex';
 
 import {
   mapAsync,
@@ -14,15 +15,42 @@ import {
   writeImage,
 } from '../../helpers';
 
+interface Type {
+  getFactoryFields(fieldType: string): Promise<string[]>;
+}
+
+interface BlockHref {
+  '@id': string;
+  image_field?: string;
+  image_scales?: Record<string, any>;
+}
+
+interface Block {
+  href?: BlockHref[];
+  slides?: Array<{
+    image?: BlockHref[];
+  }>;
+  blocks?: Record<string, Block>;
+}
+
+interface Json {
+  blocks?: Record<string, Block>;
+  [key: string]: any;
+}
+
 /**
  * Handle file uploads and updates
  * @method handleFiles
- * @param {Object} json Current json object.
- * @param {Object} type Type object.
+ * @param {Json} json Current json object.
+ * @param {Type} type Type object.
  * @param {string} profile Path of the profile.
- * @returns {Object} Fields with uuid info.
+ * @returns {Json} Fields with uuid info.
  */
-export async function handleFiles(json, type, profile) {
+export async function handleFiles(
+  json: Json,
+  type: Type,
+  profile: string,
+): Promise<Json> {
   // Make a copy of the json data
   const fields = { ...json };
 
@@ -35,8 +63,10 @@ export async function handleFiles(json, type, profile) {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',
-        'content-type': mime.lookup(`${profile}${fields[field]}`),
-        filename: last(fields[field].split('/')),
+        'content-type':
+          mime.lookup(`${profile}${fields[field]}`) ||
+          'application/octet-stream',
+        filename: last(fields[field].split('/')) || '',
       };
     }
 
@@ -65,12 +95,16 @@ export async function handleFiles(json, type, profile) {
 /**
  * Handle image uploads and updates
  * @method handleImages
- * @param {Object} json Current json object.
- * @param {Object} type Type object.
+ * @param {Json} json Current json object.
+ * @param {Type} type Type object.
  * @param {string} profile Path of the profile.
- * @returns {Object} Fields with uuid info.
+ * @returns {Json} Fields with uuid info.
  */
-export async function handleImages(json, type, profile) {
+export async function handleImages(
+  json: Json,
+  type: Type,
+  profile: string,
+): Promise<Record<string, any>> {
   // Make a copy of the json data
   const fields = { ...json };
 
@@ -83,8 +117,10 @@ export async function handleImages(json, type, profile) {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',
-        'content-type': mime.lookup(`${profile}${fields[field]}`),
-        filename: last(fields[field].split('/')),
+        'content-type':
+          mime.lookup(`${profile}${fields[field]}`) ||
+          'application/octet-stream',
+        filename: last(fields[field].split('/')) || '',
       };
     }
 
@@ -116,11 +152,14 @@ export async function handleImages(json, type, profile) {
 /**
  * Handle relation lists
  * @method handleRelationLists
- * @param {Object} json Current json object.
- * @param {Object} type Type object.
- * @returns {Object} Fields with uuid info.
+ * @param {Json} json Current json object.
+ * @param {Type} type Type object.
+ * @returns {Json} Fields with uuid info.
  */
-export async function handleRelationLists(json, type) {
+export async function handleRelationLists(
+  json: Json,
+  type: Type,
+): Promise<Record<string, any>> {
   // Make a copy of the json data
   const fields = { ...json };
 
@@ -132,7 +171,8 @@ export async function handleRelationLists(json, type) {
     if (fields[field]) {
       fields[field] = map(
         fields[field],
-        (document) => document.UID || document,
+        (document: { UID: string } | string) =>
+          typeof document === 'object' ? document.UID : document,
       );
     }
   });
@@ -144,16 +184,22 @@ export async function handleRelationLists(json, type) {
 /**
  * Handle block references
  * @method handleBlockReferences
- * @param {Object} json Current json object.
- * @param {Object} trx Transaction object.
- * @returns {Object} Json with references expanded.
+ * @param {Json} json Current json object.
+ * @param {Knex.Transaction} trx Transaction object.
+ * @returns {Json} Json with references expanded.
  */
-export async function handleBlockReferences(json, trx) {
+export async function handleBlockReferences(
+  json: Json,
+  trx: Knex.Transaction,
+): Promise<Json> {
   // Make a copy of the json data
   const output = { ...json };
   const { Catalog } = require('../../models/catalog/catalog');
 
-  const extendHref = async (href, trx) => {
+  const extendHref = async (
+    href: BlockHref,
+    trx: Knex.Transaction,
+  ): Promise<BlockHref> => {
     const target = await Catalog.fetchOne({ _path: href['@id'] }, {}, trx);
     if (target) {
       return {
@@ -165,19 +211,19 @@ export async function handleBlockReferences(json, trx) {
     return href;
   };
 
-  if (isObject(output.blocks)) {
+  if (output.blocks && isObject(output.blocks)) {
     await Promise.all(
       map(keys(output.blocks), async (block) => {
-        if (isObject(output.blocks[block].href)) {
+        if (isObject(output.blocks?.[block].href)) {
           output.blocks[block].href[0] = await extendHref(
             output.blocks[block].href[0],
             trx,
           );
         }
-        if (isObject(output.blocks[block].slides)) {
+        if (isObject(output.blocks?.[block].slides)) {
           await Promise.all(
             map(output.blocks[block].slides, async (slide, index) => {
-              if (isObject(output.blocks[block].slides[index].image)) {
+              if (isObject(output.blocks?.[block].slides?.[index].image)) {
                 output.blocks[block].slides[index].image[0] = await extendHref(
                   output.blocks[block].slides[index].image[0],
                   trx,
@@ -186,10 +232,10 @@ export async function handleBlockReferences(json, trx) {
             }),
           );
         }
-        if (isObject(output.blocks[block].blocks)) {
+        if (isObject(output.blocks?.[block].blocks)) {
           await Promise.all(
             map(keys(output.blocks[block].blocks), async (subblock) => {
-              if (isObject(output.blocks[block].blocks[subblock].href)) {
+              if (isObject(output.blocks?.[block].blocks?.[subblock].href)) {
                 output.blocks[block].blocks[subblock].href[0] =
                   await extendHref(
                     output.blocks[block].blocks[subblock].href[0],

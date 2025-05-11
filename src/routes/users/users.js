@@ -71,15 +71,18 @@ export default [
         const settings = controlpanel.data;
 
         // Send mail
-        await sendMail({
-          to: `${user.fullname} <${user.email}>`,
-          from: `${settings.email_from_name} <${settings.email_from_address}>`,
-          subject: req.i18n('Password reset request'),
-          text: req.i18n(
-            'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
-            { url: `${config.frontendUrl}/passwordreset/${token}` },
-          ),
-        });
+        await sendMail(
+          {
+            to: `${user.fullname} <${user.email}>`,
+            from: `${settings.email_from_name} <${settings.email_from_address}>`,
+            subject: req.i18n('Password reset request'),
+            text: req.i18n(
+              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
+              { url: `${config.frontendUrl}/passwordreset/${token}` },
+            ),
+          },
+          trx,
+        );
       }
 
       // Return success
@@ -171,15 +174,18 @@ export default [
         const settings = controlpanel.data;
 
         // Send mail
-        await sendMail({
-          to: `${user.fullname} <${user.email}>`,
-          from: `${settings.email_from_name} <${settings.email_from_address}>`,
-          subject: req.i18n('Password reset request'),
-          text: req.i18n(
-            'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
-            { url: `${config.frontendUrl}/password-reset/${token}` },
-          ),
-        });
+        await sendMail(
+          {
+            to: `${user.fullname} <${user.email}>`,
+            from: `${settings.email_from_name} <${settings.email_from_address}>`,
+            subject: req.i18n('Password reset request'),
+            text: req.i18n(
+              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
+              { url: `${config.frontendUrl}/password-reset/${token}` },
+            ),
+          },
+          trx,
+        );
       }
 
       // Send created

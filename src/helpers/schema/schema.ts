@@ -5,17 +5,40 @@
 
 import { concat, findIndex, map, mapValues } from 'lodash';
 
+interface Fieldset {
+  id: string;
+  title: string;
+  fields: string[];
+}
+
+interface Property {
+  title: string;
+  description: string;
+  [key: string]: any;
+}
+
+interface Schema {
+  fieldsets: Fieldset[];
+  properties: { [key: string]: Property };
+  required?: string[];
+  behaviors?: string[];
+}
+
+interface Request {
+  i18n: (key: string) => string;
+}
+
 /**
  * Merge schemas
  * @method mergeSchemas
  * @param {Array} schemas Array of schemas
- * @returns {Object} Merged schemas.
+ * @returns {Schema} Merged schemas.
  */
-export function mergeSchemas(...schemas) {
-  const fieldsets = [];
-  let properties = {};
-  let required = [];
-  let behaviors = [];
+export function mergeSchemas(...schemas: Schema[]): Schema {
+  const fieldsets: Fieldset[] = [];
+  let properties: { [key: string]: Property } = {};
+  let required: string[] = [];
+  let behaviors: string[] = [];
 
   map(schemas, (schema) => {
     map(schema.fieldsets, (fieldset) => {
@@ -56,11 +79,11 @@ export function mergeSchemas(...schemas) {
 /**
  * Translate the schema
  * @method translateSchema
- * @param {Object} schema Schema object.
- * @param {Object} req Request object.
- * @returns {Object} Translated schema.
+ * @param {Schema} schema Schema object.
+ * @param {Request} req Request object.
+ * @returns {Schema} Translated schema.
  */
-export function translateSchema(schema, req) {
+export function translateSchema(schema: Schema, req: Request): Schema {
   return {
     ...schema,
     fieldsets: map(schema.fieldsets, (fieldset) => ({

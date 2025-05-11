@@ -24,13 +24,7 @@ export {
   writeImage,
 } from './fs/fs';
 export { stripI18n } from './i18n/i18n';
-export {
-  commitTransaction,
-  getPostgresVersion,
-  knex,
-  rollbackTransaction,
-  startTransaction,
-} from './knex/knex';
+export { getPostgresVersion, knex } from './knex/knex';
 export { lockExpired } from './lock/lock';
 export { log, logger } from './log/log';
 export { sendMail } from './mail/mail';

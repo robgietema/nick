@@ -9,10 +9,13 @@ import { keys, map, omitBy } from 'lodash';
  * Map asynchronous but in order through array
  * @method mapAsync
  * @param {Array} array Array to be looped over
- * @param {function} call Callback function
+ * @param {function} callback Callback function
  * @returns {Promise} Promise which returns when all callbacks are done
  */
-export async function mapAsync(array, callback) {
+export async function mapAsync<Item>(
+  array: Item[],
+  callback: (item: Item, index: number) => Promise<void>,
+): Promise<void> {
   for (let i = 0; i < array.length; i++) {
     await callback(array[i], i);
   }
@@ -22,9 +25,12 @@ export async function mapAsync(array, callback) {
  * Map synchronous through array
  * @method mapSync
  * @param {Array} array Array to be looped over
- * @param {function} call Callback function
+ * @param {function} callback Callback function
  */
-export function mapSync(array, callback) {
+export function mapSync<Item>(
+  array: Item[],
+  callback: (item: Item, index: number) => void,
+): void {
   for (let i = 0; i < array.length; i++) {
     callback(array[i], i);
   }
@@ -38,7 +44,7 @@ export function mapSync(array, callback) {
  * @param {Number} counter Current iteration.
  * @returns {String} Unique id.
  */
-export function uniqueId(id, ids, counter = 0) {
+export function uniqueId(id: string, ids: string[], counter = 0): string {
   const newId = counter === 0 ? id : `${id}-${counter}`;
   return ids.indexOf(newId) === -1 ? newId : uniqueId(id, ids, counter + 1);
 }
@@ -49,8 +55,13 @@ export function uniqueId(id, ids, counter = 0) {
  * @param {Object} object Object to remove undefined values from.
  * @returns {Object} Cleaned up object.
  */
-export function removeUndefined(object) {
+export function removeUndefined<T extends object>(object: T): Partial<T> {
   return omitBy(object, (value) => typeof value === 'undefined');
+}
+
+interface VocabularyTerm {
+  title: string;
+  token: string;
 }
 
 /**
@@ -59,7 +70,7 @@ export function removeUndefined(object) {
  * @param {Array} items Items to be converted
  * @returns {Array} Array of terms
  */
-export function arrayToVocabulary(items) {
+export function arrayToVocabulary(items: string[]): VocabularyTerm[] {
   return map(items, (item) => ({
     title: item,
     token: item,
@@ -72,7 +83,9 @@ export function arrayToVocabulary(items) {
  * @param {Object} items Items to be converted
  * @returns {Array} Array of terms
  */
-export function objectToVocabulary(items) {
+export function objectToVocabulary(items: {
+  [key: string]: string;
+}): VocabularyTerm[] {
   return map(keys(items), (key) => ({
     title: items[key],
     token: key,
@@ -85,7 +98,7 @@ export function objectToVocabulary(items) {
  * @param {*} variable Variable to be checked
  * @returns {boolean} True if variable is a promise
  */
-export function isPromise(variable) {
+export function isPromise(variable: any): boolean {
   return typeof variable === 'object' && typeof variable.then === 'function';
 }
 
@@ -95,7 +108,7 @@ export function isPromise(variable) {
  * @param {String} string Input string
  * @returns {String} Escaped string
  */
-export function regExpEscape(string) {
+export function regExpEscape(string: string): string {
   return string.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
@@ -104,6 +117,6 @@ export function regExpEscape(string) {
  * @method getNodeVersion
  * @returns {String} Node version
  */
-export function getNodeVersion() {
+export function getNodeVersion(): string {
   return process.version;
 }

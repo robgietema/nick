@@ -4,21 +4,39 @@
  */
 
 import nodemailer from 'nodemailer';
+import type { SendMailOptions } from 'nodemailer';
+import { Knex } from 'knex';
 
 import { log } from '../../helpers';
 import { Controlpanel } from '../../models';
 
+interface MailConfig {
+  debug: boolean;
+  mailDebug?: boolean;
+  host: string;
+  port: number;
+  secure: boolean;
+  user: string;
+  pass: string;
+}
+
 /**
  * Send mail
  * @method sendMail
- * @param {Object} data Mail data to send
+ * @param {SendMailOptions} data Mail data to send
+ * @param {Object} trx Transaction object.
  */
-export async function sendMail(data) {
-  let transporter;
+export async function sendMail(
+  data: SendMailOptions,
+  trx: Knex.Transaction,
+): Promise<void> {
+  let transporter: nodemailer.Transporter;
 
   // Fetch settings
-  const controlpanel = await Controlpanel.fetchById('mail');
-  const config = controlpanel.data;
+  const controlpanel = (await Controlpanel.fetchById('mail', {}, trx)) as {
+    data: MailConfig;
+  };
+  const config: MailConfig = controlpanel.data;
 
   // If debug
   if (config.debug) {

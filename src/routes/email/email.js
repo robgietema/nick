@@ -20,14 +20,17 @@ export default [
       }
 
       // Send mail
-      await sendMail({
-        to: req.body.to,
-        from: req.body.name
-          ? `"${req.body.name}" <${req.body.from}>`
-          : req.body.from,
-        subject: req.body.subject || '',
-        text: req.body.message,
-      });
+      await sendMail(
+        {
+          to: req.body.to,
+          from: req.body.name
+            ? `"${req.body.name}" <${req.body.from}>`
+            : req.body.from,
+          subject: req.body.subject || '',
+          text: req.body.message,
+        },
+        trx,
+      );
 
       return {
         status: 204,
@@ -53,14 +56,17 @@ export default [
       }
 
       // Send mail
-      await sendMail({
-        to: `"${user.fullname}" <${user.email}>`,
-        from: req.body.name
-          ? `"${req.body.name}" <${req.body.from}>`
-          : req.body.from,
-        subject: req.body.subject || '',
-        text: req.body.message,
-      });
+      await sendMail(
+        {
+          to: `"${user.fullname}" <${user.email}>`,
+          from: req.body.name
+            ? `"${req.body.name}" <${req.body.from}>`
+            : req.body.from,
+          subject: req.body.subject || '',
+          text: req.body.message,
+        },
+        trx,
+      );
 
       return {
         status: 204,
@@ -84,14 +90,17 @@ export default [
       const settings = controlpanel.data;
 
       // Send mail
-      await sendMail({
-        to: `"${settings.email_from_name}" <${settings.email_from_address}>`,
-        from: req.body.name
-          ? `"${req.body.name}" <${req.body.from}>`
-          : req.body.from,
-        subject: req.body.subject || '',
-        text: req.body.message,
-      });
+      await sendMail(
+        {
+          to: `"${settings.email_from_name}" <${settings.email_from_address}>`,
+          from: req.body.name
+            ? `"${req.body.name}" <${req.body.from}>`
+            : req.body.from,
+          subject: req.body.subject || '',
+          text: req.body.message,
+        },
+        trx,
+      );
 
       return {
         status: 204,
