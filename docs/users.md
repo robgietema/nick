@@ -94,7 +94,7 @@ To retrieve all details for a particular user, send a `GET` request to the `/@us
 Or use the client directly:
 
 ```
-{% include_relative examples/user/get.ts %}
+{% include_relative examples/users/get.ts %}
 ```
 
 The server will respond with a `200 OK` status code and the JSON representation of the user in the body:
