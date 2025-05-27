@@ -143,8 +143,8 @@ msgid "After today"
 msgstr "Na vandaag"
 
 #. Default: "Already locked"
-#: src/routes/lock/lock.js:52
-#: src/routes/lock/lock.js:103
+#: src/routes/lock/lock.js:54
+#: src/routes/lock/lock.js:106
 msgid "Already locked"
 msgstr "Al op slot"
 
@@ -365,8 +365,8 @@ msgid "Displayed content types"
 msgstr "Getoonde content types"
 
 #. Default: "Document locked"
-#: src/routes/content/content.js:571
-#: src/routes/history/history.js:48
+#: src/routes/content/content.js:577
+#: src/routes/history/history.js:50
 msgid "Document locked"
 msgstr "Document vergrendeld"
 
@@ -469,8 +469,8 @@ msgid "Folder-like"
 msgstr "Map-achtig"
 
 #. Default: "From and message are required fields."
-#: src/routes/email/email.js:45
-#: src/routes/email/email.js:78
+#: src/routes/email/email.js:50
+#: src/routes/email/email.js:87
 msgid "From and message are required fields."
 msgstr "Afzender en bericht zijn verplichte velden."
 
@@ -528,18 +528,18 @@ msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
 #. Default: "Internal server error"
-#: src/app.js:183
+#: src/app.js:102
 msgid "Internal server error"
 msgstr "Interne server fout"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.js:40
-#: src/routes/authentication/authentication.js:51
+#: src/routes/authentication/authentication.js:41
+#: src/routes/authentication/authentication.js:52
 msgid "Invalid credentials"
 msgstr "Ongeldige inloggegevens"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.js:79
+#: src/routes/authentication/authentication.js:81
 msgid "Invalid session"
 msgstr "Ongeldige sessie"
 
@@ -611,7 +611,7 @@ msgid "Login"
 msgstr "Log in"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.js:23
+#: src/routes/authentication/authentication.js:24
 msgid "Login and password must be provided in body."
 msgstr "Login en wachtwoord moeten in de body worden opgegeven."
 
@@ -654,7 +654,7 @@ msgid "Matches any of"
 msgstr "Komt overeen met een van"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.js:22
+#: src/routes/authentication/authentication.js:23
 msgid "Missing credentials"
 msgstr "Ontbrekende inloggegevens"
 
@@ -685,17 +685,17 @@ msgid "No"
 msgstr "Nee"
 
 #. Default: "Not allowed"
-#: src/routes/lock/lock.js:152
+#: src/routes/lock/lock.js:156
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
 #. Default: "Not found."
-#: src/routes/controlpanels/controlpanels.js:32
-#: src/routes/email/email.js:52
-#: src/routes/groups/groups.js:26
-#: src/routes/types/types.js:32
-#: src/routes/users/users.js:104
-#: src/routes/vocabularies/vocabularies.js:50
+#: src/routes/controlpanels/controlpanels.js:34
+#: src/routes/email/email.js:57
+#: src/routes/groups/groups.js:27
+#: src/routes/types/types.js:34
+#: src/routes/users/users.js:109
+#: src/routes/vocabularies/vocabularies.js:52
 msgid "Not found."
 msgstr "Niet gevonden."
 
@@ -721,8 +721,8 @@ msgid "Page"
 msgstr "Pagina"
 
 #. Default: "Password reset request"
-#: src/routes/users/users.js:77
-#: src/routes/users/users.js:177
+#: src/routes/users/users.js:79
+#: src/routes/users/users.js:185
 msgid "Password reset request"
 msgstr "Wachtwoord herstel verzoek"
 
@@ -871,7 +871,7 @@ msgid "Rename"
 msgstr "Hernoemen"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:409
+#: src/routes/content/content.js:414
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
 
@@ -1033,12 +1033,12 @@ msgid "Submit for publication"
 msgstr "Indienen ter publicatie"
 
 #. Default: "System group"
-#: src/routes/groups/groups.js:106
+#: src/routes/groups/groups.js:111
 msgid "System group"
 msgstr "Systeem groep"
 
 #. Default: "System users"
-#: src/routes/users/users.js:224
+#: src/routes/users/users.js:236
 msgid "System users"
 msgstr "Systeem gebruikers"
 
@@ -1108,8 +1108,8 @@ msgid "The end date and time of an event"
 msgstr "De einddatum en -tijd van een evenement"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:78
-#: src/routes/users/users.js:178
+#: src/routes/users/users.js:80
+#: src/routes/users/users.js:186
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw kunt instellen: {url}"
 
@@ -1199,8 +1199,8 @@ msgid "The user viewing the querystring results"
 msgstr "De gebruiker die de resultaten van de querystring bekijkt"
 
 #. Default: "This document is already locked by another user."
-#: src/routes/lock/lock.js:49
-#: src/routes/lock/lock.js:100
+#: src/routes/lock/lock.js:51
+#: src/routes/lock/lock.js:103
 msgid "This document is already locked by another user."
 msgstr "Dit document is al vergrendeld door een andere gebruiker."
 
@@ -1242,7 +1242,7 @@ msgid "Title"
 msgstr "Titel"
 
 #. Default: "To, from and message are required fields."
-#: src/routes/email/email.js:18
+#: src/routes/email/email.js:19
 msgid "To, from and message are required fields."
 msgstr "Aan, van en bericht zijn verplichte velden."
 
@@ -1257,7 +1257,8 @@ msgid "Today"
 msgstr "Vandaag"
 
 #. Default: "Transaction error."
-#: src/app.js:139
+#: src/app.js:58
+#: src/client.js:59
 msgid "Transaction error."
 msgstr "Transactiefout"
 
@@ -1267,7 +1268,7 @@ msgid "Type"
 msgstr "Type"
 
 #. Default: "Type of the current document is not found."
-#: src/app.js:100
+#: src/helpers/handler/handler.js:60
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
 
@@ -1277,12 +1278,12 @@ msgid "Use '../' to navigate to parent objects."
 msgstr "Gebruik '../' om naar bovenliggende objecten te navigeren."
 
 #. Default: "User doesn't exist or invalid credentials."
-#: src/routes/users/users.js:43
+#: src/routes/users/users.js:44
 msgid "User doesn't exist or invalid credentials."
 msgstr "Gebruiker bestaat niet of ongeldige inloggegevens."
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.js:80
+#: src/routes/authentication/authentication.js:82
 msgid "User is not logged in."
 msgstr "Gebruiker is niet ingelogd."
 
@@ -1343,8 +1344,8 @@ msgid "Within next"
 msgstr "Binnen volgende"
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.js:41
-#: src/routes/authentication/authentication.js:52
+#: src/routes/authentication/authentication.js:42
+#: src/routes/authentication/authentication.js:53
 msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
 
@@ -1355,34 +1356,34 @@ msgid "Yes"
 msgstr "Ja"
 
 #. Default: "You are not authorization to access this resource."
-#: src/app.js:125
-#: src/routes/workflow/workflow.js:32
+#: src/helpers/handler/handler.js:82
+#: src/routes/workflow/workflow.js:33
 msgid "You are not authorization to access this resource."
 msgstr "U heeft geen rechten om tot deze resource."
 
 #. Default: "You can't delete system groups."
-#: src/routes/groups/groups.js:105
+#: src/routes/groups/groups.js:110
 msgid "You can't delete system groups."
 msgstr "U kunt geen systeemgroepen verwijderen."
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:223
+#: src/routes/users/users.js:235
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
-#: src/routes/content/content.js:568
-#: src/routes/history/history.js:45
+#: src/routes/content/content.js:574
+#: src/routes/history/history.js:47
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
 
 #. Default: "You don't have permission to unlock this document."
-#: src/routes/lock/lock.js:149
+#: src/routes/lock/lock.js:153
 msgid "You don't have permission to unlock this document."
 msgstr "U heeft geen toestemming om dit document te ontgrendelen."
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:134
+#: src/routes/users/users.js:141
 msgid "You don't have permissions to add a user."
 msgstr "U heeft geen rechten om een gebruiker toe te voegen."
 

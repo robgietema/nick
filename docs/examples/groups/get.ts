@@ -5,5 +5,5 @@ const login = await cli.login({ username: 'admin', password: 'admin' });
 
 const { data } = await cli.getGroup({
   token: login.data.token,
-  groupId: 'Administrators',
+  params: { id: 'Administrators' },
 });

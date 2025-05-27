@@ -30,8 +30,10 @@ export class Client {
           token,
           path,
           data,
-          query,
           locktoken,
+          query,
+          params,
+          headers,
         }) => {
           let req = {
             token: initToken || token,
@@ -39,6 +41,8 @@ export class Client {
             documentPath: path,
             body: data,
             query,
+            params,
+            headers,
           };
           if (locktoken) {
             req.headers['Lock-Token'] = locktoken;

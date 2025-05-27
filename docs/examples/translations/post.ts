@@ -3,13 +3,14 @@ import { Client } from '@robgietema/nick';
 const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
 const login = await cli.login({ username: 'admin', password: 'admin' });
 
-const { data } = await cli.postForm({
+const { data } = await cli.createContent({
   token: login.data.token,
+  path: '/nl',
   data: {
-    block_id: '669530d8-d319-48cc-ad4f-cd690ab7e472',
-    data: {
-      myfield: 'Lorem Ipsum',
-    },
-    captcha: {},
+    '@type': 'Page',
+    id: 'evenementen',
+    language: 'nl',
+    title: 'Evenementen',
+    translation_of: '495efb73-cbdd-4bef-935a-a56f70a20854',
   },
 });

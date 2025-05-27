@@ -18,7 +18,7 @@ export default [
   {
     op: 'post',
     view: '/@workflow/:transition',
-    client: 'createWorkflow',
+    client: 'changeWorkflow',
     handler: async (req, trx) => {
       await req.type.fetchRelated('_workflow', trx);
 

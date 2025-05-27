@@ -2,4 +2,4 @@ import { Client } from '@robgietema/nick';
 
 const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
 
-const { data } = await cli.getGroup({ params: { id: 'Administrators' } });
+const { data } = await cli.getSystem();

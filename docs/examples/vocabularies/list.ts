@@ -3,9 +3,4 @@ import { Client } from '@robgietema/nick';
 const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
 const login = await cli.login({ username: 'admin', password: 'admin' });
 
-const { data } = await cli.deleteGroup({
-  token: login.data.token,
-  params: {
-    id: 'nicks',
-  },
-});
+const { data } = await cli.getVocabularies({ token: login.data.token });
