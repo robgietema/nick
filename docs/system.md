@@ -13,6 +13,12 @@ Send a `GET` request to the `@system` endpoint:
 {% include_relative examples/system/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/system/get.ts %}
+```
+
 The response will contain the system information:
 
 ```

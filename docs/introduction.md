@@ -13,6 +13,12 @@ The entry point to the RESTful API is the portal root. The client can ask for a 
 {% include_relative examples/content/get_root.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/content/get_root.ts %}
+```
+
 The server will then respond with the portal root in the JSON format:
 
 ```
@@ -31,6 +37,12 @@ Another example, this time showing a request and response for a folder.
 
 ```
 {% include_relative examples/content/get.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/content/get.ts %}
 ```
 
 ```

@@ -13,6 +13,12 @@ Send a `GET` request to the `@database` endpoint:
 {% include_relative examples/database/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/database/get.ts %}
+```
+
 The response will contain the database information:
 
 ```

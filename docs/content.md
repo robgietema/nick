@@ -24,6 +24,12 @@ To create a new resource, we send a `POST` request to the resource container. If
 {% include_relative examples/content/post.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/content/post.ts %}
+```
+
 By setting the 'Accept' header, we tell the server that we would like to receive the response in the 'application/json' representation format.
 
 The 'Content-Type' header indicates that the body uses the 'application/json' format.
@@ -54,6 +60,12 @@ After a successful POST, we can access the resource by sending a GET request to 
 
 ```
 {% include_relative examples/content/get.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/content/get.ts %}
 ```
 
 ### Successful Response (200 OK)
@@ -92,6 +104,12 @@ If you send the value `null` for a field, the field's content will be deleted. N
 {% include_relative examples/content/patch.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/content/patch.ts %}
+```
+
 ### Successful Response (204 No Content)
 
 A successful response to a PATCH request will be indicated by a `204 No Content` response by default:
@@ -106,6 +124,12 @@ We can delete an existing resource by sending a DELETE request:
 
 ```
 {% include_relative examples/content/delete.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/content/delete.ts %}
 ```
 
 A successful response will be indicated by a `204 No Content` response:
@@ -129,4 +153,10 @@ Use the `obj_id` subkey to specify which resource to reorder. The subkey `delta`
 
 ```
 {% include_relative examples/content/patch_reorder.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/content/patch_reorder.ts %}
 ```

@@ -15,6 +15,12 @@ Listing versions and history of a resource:
 {% include_relative examples/history/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/history/get.ts %}
+```
+
 ```
 {% include_relative examples/history/get.res %}
 ```
@@ -39,12 +45,24 @@ Older versions of a resource can be retrieved by appending version to the `@hist
 {% include_relative examples/history/get_version.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/history/get_version.ts %}
+```
+
 ## Revert to a Historical Version
 
 Reverting to an older versions of a resource can be done by sending a PATCH request to the `@history` endpoint and appending the version you want to revert to.
 
 ```
 {% include_relative examples/history/patch.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/history/patch.ts %}
 ```
 
 ```

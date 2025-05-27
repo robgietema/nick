@@ -15,6 +15,12 @@ To get the information about the navigation root, the REST API has a `@navroot` 
 {% include_relative examples/navroot/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/navroot/get.ts %}
+```
+
 The response will contain the navigation root information for the site:
 
 ```

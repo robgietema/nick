@@ -26,6 +26,12 @@ To lock an object send a `POST` request to the `/@lock` endpoint that is availab
 {% include_relative examples/locking/post.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/locking/post.ts %}
+```
+
 If the lock operation succeeds, the server will respond with status `200 OK` and return various information about the lock including the lock token. The token is needed in later requests to update the locked object.
 
 ```
@@ -42,6 +48,12 @@ The following example creates a non-stealable lock with a timeout of 1h.
 {% include_relative examples/locking/post_options.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/locking/post_options.ts %}
+```
+
 The server responds with status `200 OK` and returns the lock information.
 
 ```
@@ -56,6 +68,12 @@ To unlock an object send a `DELETE` request to the `/@lock` endpoint.
 {% include_relative examples/locking/delete.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/locking/delete.ts %}
+```
+
 The server responds with status 200 OK and returns the lock information.
 
 ```
@@ -66,6 +84,12 @@ To unlock an object locked by another user send a force `DELETE` request to the 
 
 ```
 {% include_relative examples/locking/delete_force.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/locking/delete_force.ts %}
 ```
 
 The server responds with status `200 OK` and returns the lock information.
@@ -82,6 +106,12 @@ An existing lock can be refreshed by sending a PATCH request to the `@lock` endp
 {% include_relative examples/locking/patch.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/locking/patch.ts %}
+```
+
 The server responds with status `200 OK` and returns the lock information containing the updated creation time.
 
 ```
@@ -96,6 +126,12 @@ To find out if an object is locked or to get information about the current lock 
 {% include_relative examples/locking/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/locking/get.ts %}
+```
+
 The server responds with status `200 OK` and returns the information about the lock.
 
 ```
@@ -108,4 +144,10 @@ To update a locked object with a PATCH request, you have to provide the lock tok
 
 ```
 {% include_relative examples/locking/update.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/locking/update.ts %}
 ```

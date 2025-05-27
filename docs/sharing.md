@@ -15,6 +15,12 @@ The sharing information of a content object can be accessed by appending `/@shar
 {% include_relative examples/sharing/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/sharing/get.ts %}
+```
+
 ```
 {% include_relative examples/sharing/get.res %}
 ```
@@ -29,6 +35,12 @@ Users and/or groups without a sharing entry can be found by appending the argume
 {% include_relative examples/sharing/get_search.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/sharing/get_search.ts %}
+```
+
 ```
 {% include_relative examples/sharing/get_search.res %}
 ```
@@ -39,6 +51,12 @@ You can update the _sharing_ information by sending a `POST` request to the obje
 
 ```
 {% include_relative examples/sharing/post.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/sharing/post.ts %}
 ```
 
 ```

@@ -11,6 +11,12 @@ Available content types can be listed and queried by accessing the `/@types` end
 {% include_relative examples/types/list.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/types/list.ts %}
+```
+
 ```
 {% include_relative examples/types/list.res %}
 ```
@@ -21,6 +27,12 @@ To get the schema of a content type, access the `/@types` endpoint with the name
 
 ```
 {% include_relative examples/types/get.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/types/get.ts %}
 ```
 
 ```

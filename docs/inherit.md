@@ -15,6 +15,12 @@ To use the service, send a `GET` request to the `@inherit` endpoint in the conte
 {% include_relative examples/inherit/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/inherit/get.ts %}
+```
+
 For each behavior, the service will find the closest ancestor which provides that behavior. The result includes `from` (the `@id` and `title` of the item from which values were inherited) and `data` (values for any fields that are part of the behavior).
 
 ```

@@ -15,6 +15,12 @@ A list of all existing control panels in the portal can be retrieved by sending 
 {% include_relative examples/controlpanels/list.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/controlpanels/list.ts %}
+```
+
 Response:
 
 ```
@@ -33,6 +39,12 @@ To retrieve a single control panel, send a `GET` request to the URL of the contr
 
 ```
 {% include_relative examples/controlpanels/get.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/controlpanels/get.ts %}
 ```
 
 Response:
@@ -55,6 +67,12 @@ To update the settings on a control panel, send a `PATCH` request to control pan
 
 ```
 {% include_relative examples/controlpanels/patch.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/controlpanels/patch.ts %}
 ```
 
 A successful response to a `PATCH` request will be indicated by a 204 No Content response:

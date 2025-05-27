@@ -23,6 +23,12 @@ To retrieve a list of all the available vocabularies, send a `GET` request to th
 {% include_relative examples/vocabularies/list.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/vocabularies/list.ts %}
+```
+
 The response will include a list with the URL (`@id`) and the names (`title`) of all the available vocabularies:
 
 ```
@@ -35,6 +41,12 @@ To enumerate the terms of a particular vocabulary, use the `@vocabularies` endpo
 
 ```
 {% include_relative examples/vocabularies/get.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/vocabularies/get.ts %}
 ```
 
 The server will respond with a list of terms. The title is purely for display purposes. The token is what should be sent to the server to address that term.

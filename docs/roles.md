@@ -15,6 +15,12 @@ To retrieve a list of all roles in the portal, call the `/@roles` endpoint with 
 {% include_relative examples/roles/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/roles/get.ts %}
+```
+
 The server will respond with a list of all roles in the site:
 
 ```

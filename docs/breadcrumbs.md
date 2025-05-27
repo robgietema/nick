@@ -11,6 +11,12 @@ Getting the breadcrumbs for the current page:
 {% include_relative examples/breadcrumbs/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/breadcrumbs/get.ts %}
+```
+
 Example response:
 
 ```

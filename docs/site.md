@@ -13,6 +13,12 @@ Send a `GET` request to the `@site` endpoint:
 {% include_relative examples/site/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/site/get.ts %}
+```
+
 The response will contain the site information:
 
 ```

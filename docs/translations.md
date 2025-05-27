@@ -17,6 +17,12 @@ Once we enabled more than one language, we can link two content items of differe
 {% include_relative examples/translations/post_url.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/translationx/post_url.ts %}
+```
+
 The API will return a 201 Created response, if the linking was successful:
 
 ```
@@ -29,6 +35,12 @@ We can also use the object's path to link the translation instead of the full UR
 {% include_relative examples/translations/post_path.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/translations/post_path.ts %}
+```
+
 ```
 {% include_relative examples/translations/post_path.res %}
 ```
@@ -37,6 +49,12 @@ We can also use the object's UID to link the translation:
 
 ```
 {% include_relative examples/translations/post_uuid.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/translations/post_uuid.ts %}
 ```
 
 ```
@@ -49,6 +67,12 @@ After linking the contents, we can get the list of the translations of that cont
 {% include_relative examples/translations/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/translations/get.ts %}
+```
+
 ```
 {% include_relative examples/translations/get.res %}
 ```
@@ -57,6 +81,12 @@ To unlink the content, issue a `DELETE` request on the `@translations` endpoint 
 
 ```
 {% include_relative examples/translations/delete.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/translations/delete.ts %}
 ```
 
 ```
@@ -71,6 +101,12 @@ The `POST` content endpoint to a folder is also capable of linking this new cont
 {% include_relative examples/translations/post.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/translations/post.ts %}
+```
+
 ```
 {% include_relative examples/translations/post.res %}
 ```
@@ -81,6 +117,12 @@ When you create a translation in Plone, there are policies in place for finding 
 
 ```
 {% include_relative examples/translations/get_locator.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/translations/get_locator.ts %}
 ```
 
 ```
@@ -99,6 +141,12 @@ If a simple `GET` request is done on the content item, a new entry will be shown
 {% include_relative examples/translations/get_expansion.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/translations/get_expansion.ts %}
+```
+
 ```
 {% include_relative examples/translations/get_expansion.res %}
 ```
@@ -107,6 +155,12 @@ In order to expand and embed the translations component, use the GET parameter e
 
 ```
 {% include_relative examples/translations/get_expansion_expanded.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/translations/get_expansion_expanded.ts %}
 ```
 
 ```

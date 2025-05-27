@@ -15,6 +15,12 @@ To retrieve a list of all current groups in the portal, call the `/@groups` endp
 {% include_relative examples/groups/list.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/groups/list.ts %}
+```
+
 The server will respond with a list of all groups in the portal:
 
 ```
@@ -25,6 +31,12 @@ The endpoint supports some basic filtering:
 
 ```
 {% include_relative examples/groups/list_query.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/groups/list_query.ts %}
 ```
 
 The server will respond with a list the filtered groups in the portal with groupname starts with the query.
@@ -41,6 +53,12 @@ To create a new group, send a `POST` request to the global `/@groups` endpoint w
 {% include_relative examples/groups/post.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/groups/post.ts %}
+```
+
 If the group has been created successfully, the server will respond with a status `201 Created`. The `Location` header contains the URL of the newly created group and the resource representation in the payload:
 
 ```
@@ -53,6 +71,12 @@ To retrieve all details for a particular group, send a `GET` request to the `/@g
 
 ```
 {% include_relative examples/groups/get.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/groups/get.ts %}
 ```
 
 The server will respond with a `200 OK` status code and the JSON representation of the group in the body:
@@ -69,6 +93,12 @@ To update the settings of a group, send a `PATCH` request with the group details
 {% include_relative examples/groups/patch.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/groups/patch.ts %}
+```
+
 A successful response to a `PATCH` request will be indicated by a `204 No Content` response:
 
 ```
@@ -81,6 +111,12 @@ To delete a group send a `DELETE` request to the `/@groups` endpoint and append 
 
 ```
 {% include_relative examples/groups/delete.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/groups/delete.ts %}
 ```
 
 A successful response will be indicated by a `204 No Content` response:

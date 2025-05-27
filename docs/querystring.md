@@ -17,6 +17,12 @@ To retrieve all querystring options in the portal, call the `/@querystring` endp
 {% include_relative examples/querystring/get.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/querystring/get.ts %}
+```
+
 The server will respond with all querystring options in the portal:
 
 ```

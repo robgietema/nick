@@ -13,6 +13,12 @@ To copy a content object send a `POST` request to the `/@copy` endpoint at the d
 {% include_relative examples/copymove/copy.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/copymove/copy.ts %}
+```
+
 If the copy operation succeeds, the server will respond with status 200 (OK) and return the new and old url of the copied object.
 
 ```
@@ -27,6 +33,12 @@ To move a content object send a `POST` request to the `/@move` endpoint at the d
 {% include_relative examples/copymove/move.req %}
 ```
 
+Or use the client directly:
+
+```
+{% include_relative examples/copymove/move.ts %}
+```
+
 If the move operation succeeds, the server will respond with status `200 OK` and return the new and old url of the moved object.
 
 ```
@@ -39,6 +51,12 @@ Multiple objects can be moved/copied by giving a list of sources.
 
 ```
 {% include_relative examples/copymove/copy_multiple.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/copymove/copy_multiple.ts %}
 ```
 
 If the operation succeeds, the server will respond with status `200 OK` and return the new and old urls for each copied/moved object.
