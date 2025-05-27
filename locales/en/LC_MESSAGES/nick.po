@@ -1258,7 +1258,7 @@ msgstr ""
 
 #. Default: "Transaction error."
 #: src/app.js:58
-#: src/client.js:59
+#: src/client.js:63
 msgid "Transaction error."
 msgstr ""
 

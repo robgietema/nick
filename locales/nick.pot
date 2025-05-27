@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-05-27T14:51:17.713Z\n"
+"POT-Creation-Date: 2025-05-27T16:52:13.894Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -1257,7 +1257,7 @@ msgstr ""
 
 #. Default: "Transaction error."
 #: src/app.js:58
-#: src/client.js:59
+#: src/client.js:63
 msgid "Transaction error."
 msgstr ""
 
