@@ -25,7 +25,7 @@ export const id_from_title = {
    * @param {Array} blacklist Blacklist ids
    * @returns {string} Id
    */
-  setId: function(this: Document, id?: string, blacklist?: string[]): void {
+  setId: function (this: Document, id?: string, blacklist?: string[]): void {
     this.id = uniqueId(
       id || slugify(this.json.title, { lower: true, remove: /[*+~.()'"!:@]/g }),
       blacklist || [],
