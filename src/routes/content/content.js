@@ -22,8 +22,8 @@ import {
 import { v4 as uuid } from 'uuid';
 
 import {
-  getUrl,
   getRootUrl,
+  getUrl,
   lockExpired,
   mapAsync,
   readFile,

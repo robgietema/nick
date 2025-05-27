@@ -18,6 +18,7 @@ jest
       }`,
   );
 
+// Mock get url by path
 jest
   .spyOn(url, 'getUrlByPath')
   .mockImplementation(

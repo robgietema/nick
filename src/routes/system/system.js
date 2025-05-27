@@ -3,7 +3,7 @@
  * @module routes/system/system
  */
 
-import { getPostgresVersion, getNodeVersion, getRootUrl } from '../../helpers';
+import { getRootUrl, getPostgresVersion, getNodeVersion } from '../../helpers';
 import packageJson from '../../../package.json';
 
 export default [

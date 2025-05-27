@@ -10,6 +10,11 @@ import jwt from 'jsonwebtoken';
 
 const { config } = require(`${process.cwd()}/config`);
 
+// Extend Request to include token property
+interface RequestWithToken extends Request {
+  token: string | undefined;
+}
+
 /**
  * Check required permission.
  * @method hasPermission
@@ -30,19 +35,14 @@ export function hasPermission(
  * @param {Object} req Request object.
  * @returns {string} User id.
  */
-export function getUserId(req: Request): string | undefined {
-  // Get token
-  const token =
-    req.headers.authorization &&
-    req.headers.authorization.match(/^Bearer (.*)$/);
-
+export function getUserId(req: RequestWithToken): string | undefined {
   // Check if auth token
-  if (!token) {
+  if (!req.token) {
     return 'anonymous';
   } else {
     let decoded;
     try {
-      decoded = jwt.verify(token[1], config.secret);
+      decoded = jwt.verify(req.token, config.secret);
     } catch (err) {
       return 'anonymous';
     }

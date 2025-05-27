@@ -40,6 +40,7 @@
 - Expand image data in block data @robgietema
 - Add querystring search @robgietema
 - Add @inherit endpoint @robgietema
+- Add client object @robgietema
 
 ### Bugfix
 

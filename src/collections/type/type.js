@@ -3,7 +3,7 @@
  * @module collections/type/type
  */
 
-import { has, includes } from 'lodash';
+import { includes } from 'lodash';
 
 import { getRootUrl, hasPermission } from '../../helpers';
 import { Collection } from '../../collections';

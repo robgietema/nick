@@ -24,9 +24,10 @@
   ],
   "scripts": {
     "bootstrap": "yarn && yarn create-config && yarn migrate && yarn seed",
+    "client": "node -r ts-node/register src/client_test.js",
     "coverage": "jest --coverage",
-    "create-config": "cp -n config.js.sample config.js && cp -n frontend/src/config.js.sample frontend/src/config.js",
     "convert": "node -r ts-node/register scripts/convert.js",
+    "create-config": "cp -n config.js.sample config.js && cp -n frontend/src/config.js.sample frontend/src/config.js",
     "i18n": "node -r ts-node/register scripts/i18n.js",
     "i18n:ci": "yarn i18n && git diff -G'^[^\"POT]' --exit-code",
     "knex": "node -r ts-node/register node_modules/.bin/knex",

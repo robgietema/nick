@@ -6,7 +6,7 @@
 import { compact, drop, head, includes, last } from 'lodash';
 
 import { Document } from '../../models';
-import { getUrl, getRootUrl, getPath } from '../../helpers';
+import { getRootUrl, getUrl, getPath } from '../../helpers';
 
 /**
  * Traverse path.
@@ -54,18 +54,14 @@ async function traverse(document, slugs, items, trx) {
 
 export const handler = async (req, trx) => {
   const slugs = getPath(req).split('/');
-  let document = await Document.fetchOne({ parent: null }, {}, trx);
-
-  // Apply behaviors
-  await document.applyBehaviors(trx);
 
   const items = await traverse(
-    document,
+    req.navroot,
     compact(slugs),
     [
       {
         '@id': getRootUrl(req),
-        title: document.getTitle(),
+        title: req.document.getTitle(),
       },
     ],
     trx,
@@ -84,6 +80,7 @@ export default [
     op: 'get',
     view: '/@breadcrumbs',
     permission: 'View',
+    client: 'getBreadcrumbs',
     handler,
   },
 ];

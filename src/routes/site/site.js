@@ -4,8 +4,8 @@
  */
 
 import { last } from 'lodash';
-import { Controlpanel } from '../../models';
 import { getRootUrl } from '../../helpers';
+import { Controlpanel } from '../../models';
 const { config } = require(`${process.cwd()}/config`);
 
 export default [

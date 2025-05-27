@@ -3,8 +3,8 @@
  * @module models/vocabulary/vocabulary
  */
 
-import { getRootUrl, translateSchema } from '../../helpers';
 import { Model } from '../../models';
+import { getRootlUrl } from '../../helpers';
 
 /**
  * A model for Vocabulary.
@@ -33,7 +33,7 @@ export class Vocabulary extends Model {
   toJSON(req) {
     // Get basic data
     return {
-      '@id': `${getRootUrl(req)}/@vocabularies/${this.id}`,
+      '@id': `${getRootlUrl(req)}/@vocabularies/${this.id}`,
       items: mapValues(this.items, (item) => ({
         title: req.i18n(item.title),
         token: item.token,

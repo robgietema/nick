@@ -12,6 +12,8 @@ interface RequestWithDocument extends Request {
   document: {
     path: string;
   };
+  apiPath: string;
+  documentPath: string;
 }
 
 /**
@@ -21,9 +23,7 @@ interface RequestWithDocument extends Request {
  * @returns {string} Url
  */
 export function getUrl(req: RequestWithDocument): string {
-  return `${req.protocol}://${req.headers.host}${
-    req.document.path === '/' ? '' : req.document.path
-  }`;
+  return `${req.apiPath}${req.document.path === '/' ? '' : req.document.path}`;
 }
 
 /**
@@ -33,8 +33,8 @@ export function getUrl(req: RequestWithDocument): string {
  * @param {string} path Path
  * @returns {string} Url
  */
-export function getUrlByPath(req: Request, path: string): string {
-  return `${req.protocol}://${req.headers.host}${path === '/' ? '' : path}`;
+export function getUrlByPath(req: RequestWithDocument, path: string): string {
+  return `${req.apiPath}${path === '/' ? '' : path}`;
 }
 
 /**
@@ -43,8 +43,8 @@ export function getUrlByPath(req: Request, path: string): string {
  * @param {Request} req Request object
  * @returns {string} Url
  */
-export function getRootUrl(req: Request): string {
-  return `${req.protocol}://${req.headers.host}`;
+export function getRootUrl(req: RequestWithDocument): string {
+  return req.apiPath;
 }
 
 /**
@@ -53,6 +53,6 @@ export function getRootUrl(req: Request): string {
  * @param {Request} req Request object
  * @returns {string} Path
  */
-export function getPath(req: Request): string {
-  return (req.params[0] as string).replace(config.prefix, '');
+export function getPath(req: RequestWithDocument): string {
+  return (req.documentPath as string).replace(config.prefix, '');
 }

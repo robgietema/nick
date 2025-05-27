@@ -41,17 +41,14 @@ import {
 } from '../../models';
 import {
   copyFile,
-  fileExists,
-  getRootUrl,
   isPromise,
+  getRootUrl,
   lockExpired,
   mapSync,
-  stripI18n,
   uniqueId,
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 import behaviors from '../../behaviors';
-import { TokenExpiredError } from 'jsonwebtoken';
 
 const { config } = require(`${process.cwd()}/config`);
 
