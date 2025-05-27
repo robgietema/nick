@@ -26,7 +26,13 @@ export class Client {
 
     map(routes, (route) => {
       if (route.client) {
-        client[route.client] = async ({ token, path, data, query }) => {
+        client[route.client] = async ({
+          token,
+          path,
+          data,
+          query,
+          locktoken,
+        }) => {
           let req = {
             token: initToken || token,
             apiPath,
@@ -34,6 +40,10 @@ export class Client {
             body: data,
             query,
           };
+          if (locktoken) {
+            req.headers['Lock-Token'] = locktoken;
+          }
+
           await i18n(req, {}, () => {});
 
           const trx = await Model.startTransaction();
