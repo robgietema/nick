@@ -20,7 +20,7 @@ Once we enabled more than one language, we can link two content items of differe
 Or use the client directly:
 
 ```
-{% include_relative examples/translationx/post_url.ts %}
+{% include_relative examples/translations/post_url.ts %}
 ```
 
 The API will return a 201 Created response, if the linking was successful:
