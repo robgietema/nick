@@ -1,6 +1,9 @@
 import { Client } from '@robgietema/nick';
 
 const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
-cli.login({ username: 'admin', password: 'admin' });
+const login = await cli.login({ username: 'admin', password: 'admin' });
 
-cli.deleteContent({ path: '/news/my-news-item' });
+const { data } = await cli.deleteContent({
+  token: login.data.token,
+  path: '/news/my-news-item',
+});

@@ -87,6 +87,7 @@ export default [
     op: 'get',
     view: '/@sharing',
     permission: 'Modify',
+    client: 'getSharing',
     handler: async (req, trx) => {
       // Get roles
       const roles = await Role.fetchAll({}, { order: 'order' }, trx);
@@ -130,6 +131,7 @@ export default [
     op: 'post',
     view: '/@sharing',
     permission: 'Modify',
+    client: 'updateSharing',
     handler: async (req, trx) => {
       // Update inherit
       if (req.document.inherit_roles !== req.body.inherit) {

@@ -41,12 +41,14 @@ export default [
     op: 'get',
     view: '/@translations',
     permission: 'View',
+    client: 'getTranslations',
     handler,
   },
   {
     op: 'delete',
     view: '/@translations',
     permission: 'Modify',
+    client: 'unlinkTranslation',
     handler: async (req, trx) => {
       const document = await Document.fetchOne(
         {
@@ -71,6 +73,7 @@ export default [
     op: 'post',
     view: '/@translations',
     permission: 'Modify',
+    client: 'linkTranslation',
     handler: async (req, trx) => {
       // Strip prefix of url
       const id = getPath(req.body.id);
@@ -101,6 +104,7 @@ export default [
     op: 'get',
     view: '/@translation-locator',
     permission: 'View',
+    client: 'getTranslationLocation',
     handler: async (req, trx) => {
       // Fetch parent
       const parent = await Document.fetchOne({

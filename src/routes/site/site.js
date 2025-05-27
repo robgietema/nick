@@ -13,6 +13,7 @@ export default [
     op: 'get',
     view: '/@site',
     permission: 'View',
+    client: 'getSite',
     handler: async (req, trx) => {
       const controlpanel = await Controlpanel.fetchById('site', {}, trx);
       const site = controlpanel.data;

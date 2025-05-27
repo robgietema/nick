@@ -17,6 +17,7 @@ export default [
     op: 'get',
     view: '/@navroot',
     permission: 'View',
+    client: 'getNavroot',
     handler,
   },
 ];

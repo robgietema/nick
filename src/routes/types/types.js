@@ -20,12 +20,14 @@ export default [
     op: 'get',
     view: '/@types',
     permission: 'View',
+    client: 'getTypes',
     handler,
   },
   {
     op: 'get',
     view: '/@types/:type',
     permission: 'View',
+    client: 'getType',
     handler: async (req, trx) => {
       const type = await Type.fetchById(req.params.type, {}, trx);
       if (!type) {

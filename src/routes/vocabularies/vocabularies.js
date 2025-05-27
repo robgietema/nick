@@ -16,6 +16,7 @@ export default [
     op: 'get',
     view: '/@vocabularies',
     permission: 'View',
+    client: 'getVocabularies',
     handler: async (req, trx) => {
       const profileVocabularies = await Vocabulary.fetchAll({}, {}, trx);
       return {
@@ -39,6 +40,7 @@ export default [
     op: 'get',
     view: '/@vocabularies/:id',
     permission: 'View',
+    client: 'getVocabulary',
     handler: async (req, trx) => {
       // Check if vocabulary is available
       if (

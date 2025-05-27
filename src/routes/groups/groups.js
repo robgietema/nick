@@ -14,6 +14,7 @@ export default [
     op: 'get',
     view: '/@groups/:id',
     permission: 'Manage Users',
+    client: 'getGroup',
     handler: async (req, trx) => {
       const group = await Group.fetchById(
         req.params.id,
@@ -34,6 +35,7 @@ export default [
     op: 'get',
     view: '/@groups',
     permission: 'Manage Users',
+    client: 'getGroups',
     handler: async (req, trx) => {
       const groups = await Group.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
@@ -49,6 +51,7 @@ export default [
     op: 'post',
     view: '/@groups',
     permission: 'Manage Users',
+    client: 'createGroup',
     handler: async (req, trx) => {
       const group = await Group.create(
         {
@@ -74,6 +77,7 @@ export default [
     op: 'patch',
     view: '/@groups/:id',
     permission: 'Manage Users',
+    client: 'updateGroup',
     handler: async (req, trx) => {
       await Group.update(
         req.params.id,
@@ -98,6 +102,7 @@ export default [
     op: 'delete',
     view: '/@groups/:id',
     permission: 'Manage Users',
+    client: 'deleteGroup',
     handler: async (req, trx) => {
       if (includes(config.systemGroups, req.params.id)) {
         throw new RequestException(401, {

@@ -11,6 +11,7 @@ export default [
     op: 'post',
     view: '/@email-send',
     permission: 'Modify',
+    client: 'sendEmail',
     handler: async (req, trx) => {
       // Check if required fields provided
       if (!req.body.to || !req.body.from || !req.body.message) {
@@ -41,6 +42,7 @@ export default [
     op: 'post',
     view: '/@users/:id/@email-notification',
     permission: 'Modify',
+    client: 'userEmailNotification',
     handler: async (req, trx) => {
       // Check if required fields provided
       if (!req.body.from || !req.body.message) {
@@ -77,6 +79,7 @@ export default [
     op: 'post',
     view: '/@email-notification',
     permission: 'View',
+    client: 'emailNotification',
     handler: async (req, trx) => {
       // Check if required fields provided
       if (!req.body.from || !req.body.message) {

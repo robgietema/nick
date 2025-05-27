@@ -1,6 +1,6 @@
 import { Client } from '@robgietema/nick';
 
 const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
-cli.login({ username: 'admin', password: 'admin' });
+const login = await cli.login({ username: 'admin', password: 'admin' });
 
-const { data, status } = cli.getActions({ path: '/' });
+const { data } = await cli.getActions({ token: login.data.token, path: '/' });

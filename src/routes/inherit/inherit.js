@@ -81,6 +81,7 @@ export default [
     op: 'get',
     view: '/@inherit',
     permission: 'View',
+    client: 'inherit',
     handler,
   },
 ];

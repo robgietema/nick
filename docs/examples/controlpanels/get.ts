@@ -1,6 +1,6 @@
 import { Client } from '@robgietema/nick';
 
 const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
-cli.login({ username: 'admin', password: 'admin' });
+const login = await cli.login({ username: 'admin', password: 'admin' });
 
-cli.getControlpanel({ path: '/mail' });
+const { data } = await cli.getControlpanel({ path: '/mail' });

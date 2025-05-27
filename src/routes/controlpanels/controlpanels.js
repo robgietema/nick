@@ -11,6 +11,7 @@ export default [
     op: 'get',
     view: '/@controlpanels',
     permission: 'Manage Site',
+    client: 'getControlpanels',
     handler: async (req, trx) => {
       const controlpanels = await Controlpanel.fetchAll(
         {},
@@ -26,6 +27,7 @@ export default [
     op: 'get',
     view: '/@controlpanels/:id',
     permission: 'Manage Site',
+    client: 'getControlpanel',
     handler: async (req, trx) => {
       const controlpanel = await Controlpanel.fetchById(req.params.id, {}, trx);
       if (!controlpanel) {
@@ -40,6 +42,7 @@ export default [
     op: 'patch',
     view: '/@controlpanels/:id',
     permission: 'Manage Site',
+    client: 'updateControlpanel',
     handler: async (req, trx) => {
       // Make a copy
       let json = { ...req.body };

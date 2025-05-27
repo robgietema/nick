@@ -1,9 +1,10 @@
 import { Client } from '@robgietema/nick';
 
 const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
-cli.login({ username: 'admin', password: 'admin' });
+const login = await cli.login({ username: 'admin', password: 'admin' });
 
-cli.orderContent({
+const { data } = cli.orderContent({
+  token: login.data.token,
   path: '/news',
   data: {
     obj_id: 'my-news-item',

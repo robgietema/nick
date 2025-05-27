@@ -55,6 +55,7 @@ export default [
     op: 'get',
     view: '/@navigation',
     permission: 'View',
+    client: 'getNavigation',
     handler,
   },
 ];

@@ -16,6 +16,7 @@ export default [
   {
     op: 'post',
     view: '/@users/:email/reset-password',
+    client: 'resetPassword',
     handler: async (req, trx) => {
       // Find user
       let user = await User.fetchOne({ email: req.params.email }, {}, trx);
@@ -95,6 +96,7 @@ export default [
     op: 'get',
     view: '/@users/:id',
     permission: 'Manage Users',
+    client: 'getUser',
     handler: async (req, trx) => {
       const user = await User.fetchById(
         req.params.id,
@@ -115,6 +117,7 @@ export default [
     op: 'get',
     view: '/@users',
     permission: 'Manage Users',
+    client: 'getUsers',
     handler: async (req, trx) => {
       const groups = await User.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
@@ -129,6 +132,7 @@ export default [
   {
     op: 'post',
     view: '/@users',
+    client: 'createUser',
     handler: async (req, trx) => {
       // Check permissions
       const manageUsers = includes(req.permissions, 'Manage Users');
@@ -199,6 +203,7 @@ export default [
     op: 'patch',
     view: '/@users/:id',
     permission: 'Manage Users',
+    client: 'updateUser',
     handler: async (req, trx) => {
       await User.update(
         req.params.id,
@@ -222,6 +227,7 @@ export default [
     op: 'delete',
     view: '/@users/:id',
     permission: 'Manage Users',
+    client: 'deleteUser',
     handler: async (req, trx) => {
       if (includes(config.systemUsers, req.params.id)) {
         throw new RequestException(401, {

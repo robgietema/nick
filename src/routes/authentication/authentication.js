@@ -15,6 +15,7 @@ export default [
   {
     op: 'post',
     view: '/@login',
+    client: 'login',
     handler: async (req, trx) => {
       if (!req.body.login || !req.body.password) {
         throw new RequestException(400, {
@@ -72,6 +73,7 @@ export default [
   {
     op: 'post',
     view: '/@login-renew',
+    client: 'renewLogin',
     handler: async (req, trx) => {
       if (req.user.id === 'anonymous') {
         throw new RequestException(401, {
@@ -98,6 +100,7 @@ export default [
   {
     op: 'post',
     view: '/@logout',
+    client: 'logout',
     handler: async (req) => ({
       status: 204,
     }),

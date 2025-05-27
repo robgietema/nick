@@ -131,6 +131,7 @@ export default [
     op: 'post',
     view: '/@move',
     permission: 'Add',
+    client: 'moveContent',
     handler: async (req, trx) => {
       // Get children
       await req.document.fetchRelated('_children', trx);
@@ -215,6 +216,7 @@ export default [
     op: 'post',
     view: '/@copy',
     permission: 'Add',
+    client: 'copyContent',
     handler: async (req, trx) => {
       // Get children
       await req.document.fetchRelated('_children', trx);
@@ -268,6 +270,7 @@ export default [
     op: 'get',
     view: '/@history/:version',
     permission: 'View',
+    client: 'getHistoryVersion',
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children._type, _type]', trx);
       await req.document.fetchVersion(parseInt(req.params.version, 10), trx);
@@ -378,6 +381,7 @@ export default [
     op: 'get',
     view: '',
     permission: 'View',
+    client: 'getContent',
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       await req.document.fetchRelationLists(trx);
@@ -391,6 +395,7 @@ export default [
     op: 'post',
     view: '',
     permission: 'Add',
+    client: 'addContent',
     handler: async (req, trx) => {
       // Get content type date
       const type = await Type.fetchById(
@@ -536,6 +541,7 @@ export default [
     op: 'patch',
     view: '',
     permission: 'Modify',
+    client: 'updateContent',
     handler: async (req, trx) => {
       // Check if ordering request
       if (typeof req.body?.ordering !== 'undefined') {
@@ -673,6 +679,7 @@ export default [
     op: 'delete',
     view: '',
     permission: 'Modify',
+    client: 'deleteContent',
     handler: async (req, trx) => {
       // Get file and image fields
       const fileFields = req.type.getFactoryFields('File');

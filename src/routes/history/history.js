@@ -14,6 +14,7 @@ export default [
     op: 'get',
     view: '/@history',
     permission: 'View',
+    client: 'getHistory',
     handler: async (req, trx) => {
       await req.document.fetchRelated('_versions(order)._actor', trx);
       const workflow_history = await req.document.fetchWorkflowHistory(
@@ -32,6 +33,7 @@ export default [
     op: 'patch',
     view: '/@history',
     permission: 'View',
+    client: 'revertHistory',
     handler: async (req, trx) => {
       // Check if locked
       const lock = req.document.lock;

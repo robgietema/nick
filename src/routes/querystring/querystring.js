@@ -11,6 +11,7 @@ export default [
     op: 'get',
     view: '/@querystring',
     permission: 'View',
+    client: 'getQuerystring',
     handler: async (req, trx) => {
       // Get all enabled indexes
       const indexes = await Index.fetchAll(

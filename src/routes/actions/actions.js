@@ -17,6 +17,7 @@ export default [
     op: 'get',
     view: '/@actions',
     permission: 'View',
+    client: 'getActions',
     handler,
   },
 ];

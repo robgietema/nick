@@ -12,6 +12,7 @@ export default [
     op: 'get',
     view: '/@lock',
     permission: 'View',
+    client: 'getLock',
     handler: async (req, trx) => {
       if (req.document.lock.locked && lockExpired(req.document)) {
         return {
@@ -31,6 +32,7 @@ export default [
     op: 'post',
     view: '/@lock',
     permission: 'Modify',
+    client: 'createLock',
     handler: async (req, trx) => {
       const lock = req.document.lock;
 
@@ -85,6 +87,7 @@ export default [
     op: 'patch',
     view: '/@lock',
     permission: 'Modify',
+    client: 'updateLock',
     handler: async (req, trx) => {
       const lock = req.document.lock;
 
@@ -135,6 +138,7 @@ export default [
     op: 'delete',
     view: '/@lock',
     permission: 'Modify',
+    client: 'deleteLock',
     handler: async (req, trx) => {
       const lock = req.document.lock;
 

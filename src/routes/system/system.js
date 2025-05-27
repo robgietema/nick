@@ -11,6 +11,7 @@ export default [
     op: 'get',
     view: '/@system',
     permission: 'Manage Site',
+    client: 'getSystem',
     handler: async (req, trx) => {
       const postgresVersion = await getPostgresVersion(trx);
 

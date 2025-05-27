@@ -21,14 +21,14 @@ export class Client {
    * @static
    * @returns {Client} New client object.
    */
-  static initialize = ({ token, apiPath }) => {
+  static initialize = ({ token: initToken, apiPath }) => {
     const client = new Client();
 
     map(routes, (route) => {
       if (route.client) {
-        client[route.client] = async ({ path, data, query }) => {
+        client[route.client] = async ({ token, path, data, query }) => {
           let req = {
-            token,
+            token: initToken || token,
             apiPath,
             documentPath: path,
             body: data,

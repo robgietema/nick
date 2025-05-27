@@ -235,6 +235,7 @@ export default [
     op: 'get',
     view: '/@search',
     permission: 'View',
+    client: 'search',
     handler: async (req, trx) => {
       const items = await Catalog.fetchAllRestricted(
         ...(await queryparamToQuery(req.query, req.document.path, req, trx)),
@@ -254,6 +255,7 @@ export default [
     op: 'post',
     view: '/@querystring-search',
     permission: 'View',
+    client: 'querystringSearch',
     handler: async (req, trx) => {
       const items = await Catalog.fetchAllRestricted(
         ...(await querystringToQuery(req.body, req.document.path, req, trx)),
