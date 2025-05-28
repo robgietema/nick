@@ -36,7 +36,7 @@ app.enable('trust proxy');
 // Add routes
 map(routes, (route) => {
   app[route.op](
-    `${regExpEscape(config.prefix)}*${route.view}`,
+    `${regExpEscape(config.prefix)}{*path}${route.view}`,
     async (req, res) => {
       // Start transaction
       const trx = await Model.startTransaction();
@@ -45,7 +45,7 @@ map(routes, (route) => {
         const match = req.headers.authorization.match(/^Bearer (.*)$/);
         req.token = match ? match[1] : undefined;
       }
-      req.documentPath = req.params[0];
+      req.documentPath = req.params.path?.join('/') || '/';
 
       try {
         const view = await callHandler(req, trx, route);
