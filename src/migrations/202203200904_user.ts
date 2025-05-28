@@ -1,35 +1,37 @@
-export const up = async (knex) => {
-  await knex.schema.createTable('user', (table) => {
+import type { Knex } from 'knex';
+
+export const up = async (knex: Knex): Promise<void> => {
+  await knex.schema.createTable('user', (table: Knex.TableBuilder) => {
     table.string('id').primary();
-    table.string('password').notNull();
+    table.string('password').notNullable();
     table.string('fullname');
     table.string('email').unique();
   });
-  await knex.schema.createTable('user_role', (table) => {
+  await knex.schema.createTable('user_role', (table: Knex.TableBuilder) => {
     table
       .string('user')
-      .notNull()
+      .notNullable()
       .references('user.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
       .string('role')
-      .notNull()
+      .notNullable()
       .references('role.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table.primary(['user', 'role']);
   });
-  await knex.schema.createTable('user_group', (table) => {
+  await knex.schema.createTable('user_group', (table: Knex.TableBuilder) => {
     table
       .string('user')
-      .notNull()
+      .notNullable()
       .references('user.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
       .string('group')
-      .notNull()
+      .notNullable()
       .references('group.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
@@ -37,7 +39,7 @@ export const up = async (knex) => {
   });
 };
 
-export const down = async (knex) => {
+export const down = async (knex: Knex): Promise<void> => {
   await knex.schema.dropTable('user_group');
   await knex.schema.dropTable('user_role');
   await knex.schema.dropTable('user');

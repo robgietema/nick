@@ -1,5 +1,7 @@
-export const up = async (knex) => {
-  await knex.schema.createTable('catalog', (table) => {
+import type { Knex } from 'knex';
+
+export const up = async (knex: Knex): Promise<void> => {
+  await knex.schema.createTable('catalog', (table: Knex.TableBuilder) => {
     table
       .uuid('document')
       .primary()
@@ -7,7 +9,7 @@ export const up = async (knex) => {
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
   });
-  await knex.schema.createTable('index', (table) => {
+  await knex.schema.createTable('index', (table: Knex.TableBuilder) => {
     table.string('id').primary();
     table.string('title');
     table.string('description');
@@ -19,7 +21,7 @@ export const up = async (knex) => {
   });
 };
 
-export const down = async (knex) => {
+export const down = async (knex: Knex): Promise<void> => {
   await knex.schema.dropTable('index');
   await knex.schema.dropTable('catalog');
 };

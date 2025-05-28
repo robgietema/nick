@@ -1,13 +1,18 @@
 import { existsSync, mkdirSync, readdirSync, rmSync } from 'fs';
+import type { Knex } from 'knex';
 
 const { config } = require(`${process.cwd()}/config`);
 
-export const up = async (knex) => {
+interface Config {
+  blobsDir: string;
+}
+
+export const up = async (knex: Knex): Promise<void> => {
   // Create blob dir if it doesn't exist
-  if (!existsSync(config.blobsDir)) {
-    mkdirSync(config.blobsDir, { recursive: true });
+  if (!existsSync((config as Config).blobsDir)) {
+    mkdirSync((config as Config).blobsDir, { recursive: true });
   }
-  await knex.schema.createTable('document', (table) => {
+  await knex.schema.createTable('document', (table: Knex.TableBuilder) => {
     table.uuid('uuid').primary();
     table
       .uuid('parent')
@@ -15,8 +20,8 @@ export const up = async (knex) => {
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
-    table.string('id').notNull();
-    table.string('path').notNull().index();
+    table.string('id').notNullable();
+    table.string('path').notNullable().index();
     table.dateTime('created');
     table.dateTime('modified');
     table
@@ -31,14 +36,15 @@ export const up = async (knex) => {
       .references('user.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
-    table.jsonb('json').notNull();
-    table.jsonb('lock').notNull();
-    table.boolean('inherit_roles').notNull().defaultTo(true);
-    table.string('workflow_state').notNull();
-    table.jsonb('workflow_history').notNull();
+    table.jsonb('json').notNullable();
+    table.jsonb('lock').notNullable();
+    table.boolean('inherit_roles').notNullable().defaultTo(true);
+    table.string('workflow_state').notNullable();
+    table.jsonb('workflow_history').notNullable();
     table.index(['parent', 'id']);
   });
-  await knex.schema.createTable('version', (table) => {
+
+  await knex.schema.createTable('version', (table: Knex.TableBuilder) => {
     table.integer('version');
     table.dateTime('created');
     table
@@ -52,47 +58,49 @@ export const up = async (knex) => {
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
-    table.string('id').notNull();
-    table.jsonb('json').notNull();
+    table.string('id').notNullable();
+    table.jsonb('json').notNullable();
     table.primary(['document', 'version']);
   });
-  await knex.schema.createTable('user_role_document', (table) => {
+
+  await knex.schema.createTable('user_role_document', (table: Knex.TableBuilder) => {
     table
       .string('user')
-      .notNull()
+      .notNullable()
       .references('user.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
       .string('role')
-      .notNull()
+      .notNullable()
       .references('role.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
       .uuid('document')
-      .notNull()
+      .notNullable()
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table.primary(['user', 'role', 'document']);
   });
-  await knex.schema.createTable('group_role_document', (table) => {
+
+  await knex.schema.createTable('group_role_document', (table: Knex.TableBuilder) => {
     table
       .string('group')
-      .notNull()
+      .notNullable()
       .references('group.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
       .string('role')
-      .notNull()
+      .notNullable()
       .references('role.id')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table
       .uuid('document')
-      .notNull()
+      .notNullable()
       .references('document.uuid')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
@@ -100,12 +108,12 @@ export const up = async (knex) => {
   });
 };
 
-export const down = async (knex) => {
+export const down = async (knex: Knex): Promise<void> => {
   await knex.schema.dropTable('group_role_document');
   await knex.schema.dropTable('user_role_document');
   await knex.schema.dropTable('version');
   await knex.schema.dropTable('document');
-  readdirSync(config.blobsDir).forEach((file) =>
-    rmSync(`${config.blobsDir}/${file}`),
+  readdirSync((config as Config).blobsDir).forEach((file) =>
+    rmSync(`${(config as Config).blobsDir}/${file}`),
   );
 };
