@@ -365,7 +365,7 @@ msgid "Displayed content types"
 msgstr "Getoonde content types"
 
 #. Default: "Document locked"
-#: src/routes/content/content.js:577
+#: src/routes/content/content.js:580
 #: src/routes/history/history.js:50
 msgid "Document locked"
 msgstr "Document vergrendeld"
@@ -871,7 +871,7 @@ msgid "Rename"
 msgstr "Hernoemen"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:414
+#: src/routes/content/content.js:417
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
 
@@ -1372,7 +1372,7 @@ msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
-#: src/routes/content/content.js:574
+#: src/routes/content/content.js:577
 #: src/routes/history/history.js:47
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
