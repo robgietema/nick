@@ -27,7 +27,8 @@ export const id_from_title = {
    */
   setId: function (this: Document, id?: string, blacklist?: string[]): void {
     this.id = uniqueId(
-      id || slugify(this.json.title, { lower: true, remove: /[*+~.()'"!:@]/g }),
+      id ||
+        slugify(this.json.title, { lower: true, remove: /[*+~.()'"!:@?]/g }),
       blacklist || [],
     );
   },
