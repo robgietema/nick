@@ -23,7 +23,7 @@ export default [
       );
       const versions = new Collection(req.document._versions);
       return {
-        json: concat(versions.toJSON(req), workflow_history).sort(
+        json: concat(await versions.toJSON(req), workflow_history).sort(
           (a, b) => new Date(b.time) - new Date(a.time),
         ),
       };

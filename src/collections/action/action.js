@@ -19,7 +19,7 @@ export class ActionCollection extends Collection {
    * @returns {Array} JSON object.
    */
   async toJSON(req) {
-    return _(super.toJSON())
+    return _(await super.toJSON())
       .filter((model) => includes(req.permissions, model.permission))
       .groupBy('category')
       .mapValues((category) =>

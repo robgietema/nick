@@ -22,7 +22,7 @@ export class TypeCollection extends Collection {
    * @returns {Array} JSON object.
    */
   async toJSON(req) {
-    return _(super.toJSON())
+    return _(await super.toJSON())
       .map((model) => ({
         '@id': `${getRootUrl(req)}/@types/${model.id}`,
         addable:
