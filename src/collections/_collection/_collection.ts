@@ -4,12 +4,7 @@
  */
 
 import { map, omitBy } from 'lodash';
-import { Request } from 'express';
-
-interface Model {
-  toJSON: (req: Request) => any;
-  getVocabulary: (req: Request) => any;
-}
+import type { Json, Model, Request } from '../../types';
 
 /**
  * Base collection used to extend collections from.
@@ -49,9 +44,9 @@ export class Collection<T extends Model> {
    * Returns JSON data.
    * @method toJSON
    * @param {Request} req Request object.
-   * @returns {Promise<Array>} JSON object.
+   * @returns {Promise<Json>} JSON object.
    */
-  async toJSON(req: Request): Promise<any[]> {
+  async toJSON(req: Request): Promise<Json> {
     return this.map((model) => model.toJSON(req));
   }
 

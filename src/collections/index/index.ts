@@ -4,22 +4,26 @@
  */
 
 import { Collection } from '../../collections';
-import _, { includes, map, omit } from 'lodash';
+import type { Json, Model, Request } from '../../types';
+
+interface IndexModel extends Model {
+  name: string;
+}
 
 /**
  * Index Collection
  * @class IndexCollection
  * @extends Collection
  */
-export class IndexCollection extends Collection {
+export class IndexCollection extends Collection<IndexModel> {
   /**
    * Returns JSON data.
    * @method toJSON
-   * @param {Object} req Request object.
-   * @returns {Array} JSON object.
+   * @param {Request} req Request object.
+   * @returns {Promise<any[]>} JSON object.
    */
-  async toJSON(req) {
-    let json = {};
+  async toJSON(req: Request): Promise<Json> {
+    let json: Json = {};
 
     // Add index to return json
     await Promise.all(

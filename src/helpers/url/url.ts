@@ -3,26 +3,17 @@
  * @module helpers/url/url
  */
 
-import { Request } from 'express';
+import type { Request } from '../../types';
 
 const { config } = require(`${process.cwd()}/config`);
-
-// Extend Express Request to include document property
-interface RequestWithDocument extends Request {
-  document: {
-    path: string;
-  };
-  apiPath: string;
-  documentPath: string;
-}
 
 /**
  * Get url
  * @method getUrl
- * @param {RequestWithDocument} req Request object
+ * @param {Request} req Request object
  * @returns {string} Url
  */
-export function getUrl(req: RequestWithDocument): string {
+export function getUrl(req: Request): string {
   return `${req.apiPath}${req.document.path === '/' ? '' : req.document.path}`;
 }
 
@@ -33,7 +24,7 @@ export function getUrl(req: RequestWithDocument): string {
  * @param {string} path Path
  * @returns {string} Url
  */
-export function getUrlByPath(req: RequestWithDocument, path: string): string {
+export function getUrlByPath(req: Request, path: string): string {
   return `${req.apiPath}${path === '/' ? '' : path}`;
 }
 
@@ -43,7 +34,7 @@ export function getUrlByPath(req: RequestWithDocument, path: string): string {
  * @param {Request} req Request object
  * @returns {string} Url
  */
-export function getRootUrl(req: RequestWithDocument): string {
+export function getRootUrl(req: Request): string {
   return req.apiPath;
 }
 
@@ -53,6 +44,6 @@ export function getRootUrl(req: RequestWithDocument): string {
  * @param {Request} req Request object
  * @returns {string} Path
  */
-export function getPath(req: RequestWithDocument): string {
+export function getPath(req: Request): string {
   return (req.documentPath as string).replace(config.prefix, '');
 }

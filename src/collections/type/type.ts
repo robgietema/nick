@@ -4,26 +4,34 @@
  */
 
 import { includes } from 'lodash';
-
 import { getRootUrl, hasPermission } from '../../helpers';
 import { Collection } from '../../collections';
 import _ from 'lodash';
+import type { Json, Model, Request } from '../../types';
+
+interface TypeModel extends Model {
+  id: string;
+  title: string;
+  global_allow: boolean;
+}
 
 /**
  * Type Collection
  * @class TypeCollection
  * @extends Collection
  */
-export class TypeCollection extends Collection {
+export class TypeCollection extends Collection<TypeModel> {
   /**
    * Returns JSON data.
    * @method toJSON
-   * @param {Object} req Request object.
-   * @returns {Array} JSON object.
+   * @param {CustomRequest} req Request object.
+   * @returns {Promise<TypeResponse[]>} JSON object.
    */
-  async toJSON(req) {
-    return _(await super.toJSON())
-      .map((model) => ({
+  async toJSON(req: Request): Promise<Json> {
+    let types = await super.toJSON(req);
+    types = Array.isArray(types) ? types : [];
+    return _(types)
+      .map((model: TypeModel) => ({
         '@id': `${getRootUrl(req)}/@types/${model.id}`,
         addable:
           hasPermission(req.permissions, 'Add') &&
