@@ -22,17 +22,19 @@ Example `GET` request on the portal root
 
 ### Prerequisites
 
-- [Node.js==22.x.x](https://nodejs.org/)
+- [Node.js](https://nodejs.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 
 ### Create Database
 
-    $ CREATE DATABASE nick;
-    $ CREATE USER nick WITH ENCRYPTED PASSWORD 'nick';
-    $ GRANT ALL PRIVILEGES ON DATABASE nick TO nick;
+    $ CREATE DATABASE "nick";
+    $ CREATE USER "nick" WITH ENCRYPTED PASSWORD 'nick';
+    $ GRANT ALL PRIVILEGES ON DATABASE "nick" TO "nick";
+    $ ALTER DATABASE "nick" OWNER TO "nick";
 
 ### Bootstrap Project
 
+    $ yarn install
     $ yarn bootstrap
 
 ## Development
@@ -55,6 +57,7 @@ First, install [Yeoman](http://yeoman.io) and @robgietema/generator-nick using [
 
     $ npm install -g yo
     $ npm install -g @robgietema/generator-nick
+    $ npm install -g yarn
 
 ### Creating a new project
 
@@ -62,9 +65,18 @@ First, install [Yeoman](http://yeoman.io) and @robgietema/generator-nick using [
 
 This will bootstrap a new Nick project inside the current folder.
 
+### Create Database
+
+Connect to the PostgreSQL console and create a database and a user with the correct permission using the following commands:
+
+    $ CREATE DATABASE "my-nick-project";
+    $ CREATE USER "my-nick-project" WITH ENCRYPTED PASSWORD 'my-nick-project';
+    $ GRANT ALL PRIVILEGES ON DATABASE "my-nick-project" TO "my-nick-project";
+    $ ALTER DATABASE "my-nick-project" OWNER TO "my-nick-project";
+
 ### Boostrap the project
 
-Create a database and a user with the correct permissions for your project (see above for details) and then bootstrap Nick with:
+Then bootstrap Nick with:
 
     $ cd my-nick-project
     $ yarn bootstrap
@@ -82,19 +94,14 @@ Navigate to the root of the repository, and run the following command to run the
 docker compose up --build
 ```
 
-This will expose port `8000`.
-You can make requests to `http://localhost:8000/++api++/` to fetch content.
+This will expose port `8080`.
+You can make requests to `http://localhost:8080/` to fetch content.
 
 To shut down the containers, run the following command.
 
 ```shell
 docker compose down
 ```
-
-### Frontend
-
-You can use any frontend.
-For convenience, you can navigate to the directory `/frontend` and use the pre-built frontend.
 
 ## Contribute
 

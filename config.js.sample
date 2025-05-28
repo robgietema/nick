@@ -33,7 +33,7 @@ export const config = {
     listing: [16, 16],
   },
   frontendUrl: 'http://localhost:3000',
-  prefix: '/++api++',
+  prefix: '',
   userRegistration: true,
   profiles: [
     `${__dirname}/src/profiles/core`,

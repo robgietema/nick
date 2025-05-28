@@ -69,6 +69,40 @@ Bootstrap the project using the following commands:
 
     $ yarn test
 
+## Development
+
+To develop the core of Nick use the following step to get started.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [PostgreSQL](https://www.postgresql.org/)
+
+### Create Database
+
+    $ CREATE DATABASE "nick";
+    $ CREATE USER "nick" WITH ENCRYPTED PASSWORD 'nick';
+    $ GRANT ALL PRIVILEGES ON DATABASE "nick" TO "nick";
+    $ ALTER DATABASE "nick" OWNER TO "nick";
+
+### Get the code
+
+    $ git clone git@github.com:robgietema/nick.git
+    $ cd nick
+
+### Bootstrap Project
+
+    $ yarn install
+    $ yarn bootstrap
+
+### Run backend
+
+    $ yarn start
+
+### Testing
+
+    $ yarn test
+
 ## Contribute
 
 - Issue tracker: [https://github.com/robgietema/nick/issues](https://github.com/robgietema/nick/issues)

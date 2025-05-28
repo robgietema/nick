@@ -12,13 +12,12 @@ services:
       DB_PASSWORD: nick
       DB_NAME: nick
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - .:/app
     command: >
       sh -c "
       yarn install &&
-      yarn rollback &&
       yarn bootstrap &&
       yarn start
       "
