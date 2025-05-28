@@ -72,6 +72,7 @@
 - Fix site logo @robgietema
 - Make it compatible with Volto without special settings @davisagli
 - Fix catalog vocabulary @robgietema
+- Fix bug with question marks in titles @robgietema
 
 ### Internal
 
