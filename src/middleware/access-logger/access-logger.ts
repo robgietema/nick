@@ -5,25 +5,19 @@
 
 import { logger } from '../../helpers';
 import moment from 'moment';
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
+import type { Request } from '../../types';
 
 // Create access logger
 const access = logger.getLogger('access');
 
-interface RequestWithLog extends Request {
-  timestamp: string;
-  user: {
-    id: string;
-  };
-}
-
-interface ResponseWithLog extends Request {
+interface ResponseWithLog extends Response {
   _contentLength: number;
 }
 
 // Access logger middleware
 export function accessLogger(
-  req: RequestWithLog,
+  req: Request,
   res: ResponseWithLog,
   next: NextFunction,
 ) {

@@ -3,17 +3,12 @@
  * @module helpers/auth/auth
  */
 
-import { Request } from 'express';
+import type { Request } from '../../types';
 
 import { includes, isString, isUndefined } from 'lodash';
 import jwt from 'jsonwebtoken';
 
 const { config } = require(`${process.cwd()}/config`);
-
-// Extend Request to include token property
-interface RequestWithToken extends Request {
-  token: string | undefined;
-}
 
 /**
  * Check required permission.
@@ -35,7 +30,7 @@ export function hasPermission(
  * @param {Object} req Request object.
  * @returns {string} User id.
  */
-export function getUserId(req: RequestWithToken): string | undefined {
+export function getUserId(req: Request): string | undefined {
   // Check if auth token
   if (!req.token) {
     return 'anonymous';

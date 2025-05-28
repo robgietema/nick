@@ -1,13 +1,5 @@
-import { Request } from 'express';
 import { getUrl, getRootUrl } from './url';
-
-// Extend Express Request to include document property
-interface RequestWithDocument extends Request {
-  document: {
-    path: string;
-  };
-  apiPath: string;
-}
+import type { Request } from '../../types';
 
 describe('Url', () => {
   it('should get the url of a document', () =>
@@ -15,7 +7,7 @@ describe('Url', () => {
       getUrl({
         apiPath: 'http://localhost:8080',
         document: { path: '/news' },
-      } as RequestWithDocument),
+      } as Request),
     ).toBe('http://localhost:8080/news'));
 
   it('should get the url of the root', () =>
@@ -23,13 +15,13 @@ describe('Url', () => {
       getUrl({
         apiPath: 'http://localhost:8080',
         document: { path: '/' },
-      } as RequestWithDocument),
+      } as Request),
     ).toBe('http://localhost:8080'));
 
   it('should get the root url', () =>
     expect(
       getRootUrl({
         apiPath: 'http://localhost:8080',
-      } as RequestWithDocument),
+      } as Request),
     ).toBe('http://localhost:8080'));
 });

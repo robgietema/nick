@@ -36,12 +36,18 @@
         "vocabulary": {
           "@id": "supportedLanguages"
         }
+      },
+      "multilingual": {
+        "title:i18n": "Multilingual",
+        "description:i18n": "If enabled the site is multilingual.",
+        "type": "boolean"
       }
     },
     "required": ["default_language", "available_languages"]
   },
   "data": {
     "default_language": "en",
-    "available_languages": ["en", "nl", "sv"]
+    "available_languages": ["en", "nl", "sv"],
+    "multilingual": false
   }
 }

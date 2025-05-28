@@ -26,6 +26,8 @@ export interface Request extends express.Request {
   user: {
     id: string;
   };
+  token?: string;
+  timestamp: string;
 }
 
 export interface Fieldset {
