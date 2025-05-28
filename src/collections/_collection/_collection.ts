@@ -4,17 +4,25 @@
  */
 
 import { map, omitBy } from 'lodash';
+import { Request } from 'express';
+
+interface Model {
+  toJSON: (req: Request) => any;
+  getVocabulary: (req: Request) => any;
+}
 
 /**
  * Base collection used to extend collections from.
  * @class Collection
  */
-export class Collection {
+export class Collection<T extends Model> {
+  protected models: T[];
+
   /**
    * Construct a Collection.
    * @constructs Collection
    */
-  constructor(models) {
+  constructor(models: T[]) {
     this.models = models;
   }
 
@@ -24,37 +32,36 @@ export class Collection {
    * @param {function} callback Callback function.
    * @returns {Array} Array of models.
    */
-  map(callback) {
+  map<U>(callback: (model: T) => U): U[] {
     return map(this.models, callback);
   }
 
   /**
    * Maps over models.
-   * @method map
+   * @method omitBy
    * @param {function} callback Callback function.
-   * @returns {Array} Array of models.
    */
-  omitBy(callback) {
-    this.models = omitBy(this.models, callback);
+  omitBy(callback: (model: T) => boolean): void {
+    this.models = omitBy(this.models, callback) as T[];
   }
 
   /**
    * Returns JSON data.
    * @method toJSON
-   * @param {Object} req Request object.
+   * @param {Request} req Request object.
    * @returns {Array} JSON object.
    */
-  toJSON(req) {
+  toJSON(req: Request): any[] {
     return this.map((model) => model.toJSON(req));
   }
 
   /**
    * Returns vocabulary data.
    * @method getVocabulary
-   * @param {Object} req Request object.
+   * @param {Request} req Request object.
    * @returns {Object} JSON object.
    */
-  getVocabulary(req) {
+  getVocabulary(req: Request): any[] {
     return this.map((model) => model.getVocabulary(req));
   }
 
@@ -63,7 +70,7 @@ export class Collection {
    * @method getLength
    * @returns {Number} Length of the collection.
    */
-  getLength() {
+  getLength(): number {
     return this.models.length;
   }
 }

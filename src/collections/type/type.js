@@ -21,7 +21,7 @@ export class TypeCollection extends Collection {
    * @param {Object} req Request object.
    * @returns {Array} JSON object.
    */
-  toJSON(req) {
+  async toJSON(req) {
     return _(super.toJSON())
       .map((model) => ({
         '@id': `${getRootUrl(req)}/@types/${model.id}`,

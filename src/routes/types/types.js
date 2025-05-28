@@ -11,7 +11,7 @@ import { Type } from '../../models';
 export const handler = async (req, trx) => {
   const types = await Type.fetchAll({}, {}, trx);
   return {
-    json: types.toJSON(req),
+    json: await types.toJSON(req),
   };
 };
 

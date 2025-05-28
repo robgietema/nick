@@ -18,7 +18,7 @@ export class ActionCollection extends Collection {
    * @param {Object} req Request object.
    * @returns {Array} JSON object.
    */
-  toJSON(req) {
+  async toJSON(req) {
     return _(super.toJSON())
       .filter((model) => includes(req.permissions, model.permission))
       .groupBy('category')

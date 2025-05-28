@@ -31,8 +31,8 @@ export default [
       return {
         json: {
           '@id': `${getUrl(req)}/@querystring`,
-          indexes: indexes.toJSON(req),
-          sortable_indexes: sortableIndexes.toJSON(req),
+          indexes: await indexes.toJSON(req),
+          sortable_indexes: await sortableIndexes.toJSON(req),
         },
       };
     },

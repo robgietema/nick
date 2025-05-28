@@ -18,13 +18,15 @@ export class IndexCollection extends Collection {
    * @param {Object} req Request object.
    * @returns {Array} JSON object.
    */
-  toJSON(req) {
+  async toJSON(req) {
     let json = {};
 
     // Add index to return json
-    this.map((index) => {
-      json[index.name] = index.toJSON(req);
-    });
+    await Promise.all(
+      this.map(async (index) => {
+        json[index.name] = await index.toJSON(req);
+      }),
+    );
 
     // Return json
     return json;

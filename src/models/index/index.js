@@ -22,7 +22,7 @@ export class Index extends Model {
    * @param {Object} req Request object
    * @returns {Array} JSON object.
    */
-  toJSON(req) {
+  async toJSON(req) {
     return {
       title: req.i18n(this.title),
       description: req.i18n(this.description),
