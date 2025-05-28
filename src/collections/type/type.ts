@@ -28,9 +28,7 @@ export class TypeCollection extends Collection<TypeModel> {
    * @returns {Promise<TypeResponse[]>} JSON object.
    */
   async toJSON(req: Request): Promise<Json> {
-    let types = await super.toJSON(req);
-    types = Array.isArray(types) ? types : [];
-    return _(types)
+    return _(await super.toJSON(req) as any)
       .map((model: TypeModel) => ({
         '@id': `${getRootUrl(req)}/@types/${model.id}`,
         addable:

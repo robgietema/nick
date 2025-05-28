@@ -5,28 +5,7 @@
 
 import { concat, findIndex, map, mapValues } from 'lodash';
 
-interface Fieldset {
-  id: string;
-  title: string;
-  fields: string[];
-}
-
-interface Property {
-  title: string;
-  description: string;
-  [key: string]: any;
-}
-
-interface Schema {
-  fieldsets: Fieldset[];
-  properties: { [key: string]: Property };
-  required?: string[];
-  behaviors?: string[];
-}
-
-interface Request {
-  i18n: (key: string) => string;
-}
+import {Fieldset, Property, Schema, Request} from '../../types';
 
 /**
  * Merge schemas

@@ -27,3 +27,22 @@ export interface Request extends express.Request {
     id: string;
   };
 }
+
+export interface Fieldset {
+  id: string;
+  title: string;
+  fields: string[];
+}
+
+export interface Property {
+  title: string;
+  description: string;
+  [key: string]: any;
+}
+
+export interface Schema {
+  fieldsets: Fieldset[];
+  properties: { [key: string]: Property };
+  required?: string[];
+  behaviors?: string[];
+}
