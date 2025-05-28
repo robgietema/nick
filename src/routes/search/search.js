@@ -19,7 +19,7 @@ import { Catalog, Index } from '../../models';
  * @param {Object} trx Transaction object.
  * @returns {Object} Query.
  */
-const querystringToQuery = async (querystring, path = '/', req, trx) => {
+const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
   // Get root url
   const root = endsWith(path, '/') ? path : `${path}/`;
 

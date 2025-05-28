@@ -84,7 +84,6 @@
     "@formatjs/intl": "3.1.6",
     "bcrypt": "6.0.0",
     "bcrypt-promise": "2.0.0",
-    "body-parser": "1.20.3",
     "du": "1.0.0",
     "express": "5.1.0",
     "jsonwebtoken": "9.0.2",

@@ -87,6 +87,7 @@
 - Add support for typescript @robgietema
 - Move to ts-node in favor of babel @robgietema
 - Upgrade to Express 5 @robgietema
+- Remove body-parser and use express buildin json parser @robgietema
 
 ### Documentation
 

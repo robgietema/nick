@@ -3,7 +3,6 @@
  * @module app
  */
 
-import bodyParser from 'body-parser';
 import express from 'express';
 import { existsSync, mkdirSync } from 'fs';
 import { isObject, map } from 'lodash';
@@ -25,7 +24,7 @@ if (!existsSync(config.blobsDir)) {
 const app = express();
 
 // Add middleware
-app.use(bodyParser.json({ limit: config.clientMaxSize }));
+app.use(express.json({ limit: config.clientMaxSize }));
 app.use(removeZopeVhosting);
 app.use(accessLogger);
 app.use(i18n);

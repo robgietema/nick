@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-05-28T08:15:08.178Z\n"
+"POT-Creation-Date: 2025-05-28T11:50:31.223Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -525,7 +525,7 @@ msgid "Information about rights held in and over this item."
 msgstr ""
 
 #. Default: "Internal server error"
-#: src/app.js:102
+#: src/app.js:101
 msgid "Internal server error"
 msgstr ""
 
@@ -691,7 +691,7 @@ msgstr ""
 #: src/routes/email/email.js:57
 #: src/routes/groups/groups.js:27
 #: src/routes/types/types.js:34
-#: src/routes/users/users.js:109
+#: src/routes/users/users.js:112
 #: src/routes/vocabularies/vocabularies.js:52
 msgid "Not found."
 msgstr ""
@@ -718,8 +718,8 @@ msgid "Page"
 msgstr ""
 
 #. Default: "Password reset request"
-#: src/routes/users/users.js:79
-#: src/routes/users/users.js:185
+#: src/routes/users/users.js:82
+#: src/routes/users/users.js:188
 msgid "Password reset request"
 msgstr ""
 
@@ -1035,7 +1035,7 @@ msgid "System group"
 msgstr ""
 
 #. Default: "System users"
-#: src/routes/users/users.js:236
+#: src/routes/users/users.js:239
 msgid "System users"
 msgstr ""
 
@@ -1105,8 +1105,8 @@ msgid "The end date and time of an event"
 msgstr ""
 
 #. Default: "undefined"
-#: src/routes/users/users.js:80
-#: src/routes/users/users.js:186
+#: src/routes/users/users.js:83
+#: src/routes/users/users.js:189
 msgid "The following link takes you to a page where you can reset your password: {url}
 
 (This link will expire in 7 days)"
@@ -1256,7 +1256,7 @@ msgid "Today"
 msgstr ""
 
 #. Default: "Transaction error."
-#: src/app.js:58
+#: src/app.js:57
 #: src/client.js:63
 msgid "Transaction error."
 msgstr ""
@@ -1366,7 +1366,7 @@ msgid "You can't delete system groups."
 msgstr ""
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:235
+#: src/routes/users/users.js:238
 msgid "You can't delete system users."
 msgstr ""
 
@@ -1382,7 +1382,7 @@ msgid "You don't have permission to unlock this document."
 msgstr ""
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:141
+#: src/routes/users/users.js:144
 msgid "You don't have permissions to add a user."
 msgstr ""
 

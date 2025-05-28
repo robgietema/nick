@@ -25,13 +25,13 @@ export default [
       }
 
       // Check input
-      if (req.body.reset_token && req.body.new_password && user) {
+      if (req.body?.reset_token && req.body?.new_password && user) {
         // Decode jwt
-        const decoded = jwt.verify(req.body.reset_token, config.secret);
+        const decoded = jwt.verify(req.body?.reset_token, config.secret);
 
         // User found
         if (user && decoded && user.id === decoded.sub) {
-          const password = await bcrypt.hash(req.body.new_password, 10);
+          const password = await bcrypt.hash(req.body?.new_password, 10);
           await User.update(
             user.id,
             {
@@ -44,10 +44,13 @@ export default [
             message: req.i18n("User doesn't exist or invalid credentials."),
           });
         }
-      } else if (req.body.old_password && req.body.new_password && user) {
-        const same = await bcrypt.compare(req.body.old_password, user.password);
+      } else if (req.body?.old_password && req.body?.new_password && user) {
+        const same = await bcrypt.compare(
+          req.body?.old_password,
+          user.password,
+        );
         if (req.user.id === user.id && same) {
-          const password = await bcrypt.hash(req.body.new_password, 10);
+          const password = await bcrypt.hash(req.body?.new_password, 10);
           await User.update(
             user.id,
             {
