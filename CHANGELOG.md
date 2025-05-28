@@ -41,6 +41,7 @@
 - Add querystring search @robgietema
 - Add @inherit endpoint @robgietema
 - Add client object @robgietema
+- Add @catalog endpoint @robgietema
 
 ### Bugfix
 

@@ -68,7 +68,10 @@ const getComponents = async (req, trx) => {
         await child.fetchRelationLists(trx);
       });
     }
-    components.catalog = req.document._catalog.toJSON(req);
+    components.catalog = {
+      ...req.document._catalog.toJSON(req),
+      '@id': `${baseUrl}/@catalog`,
+    };
   } else {
     components.catalog = { '@id': `${baseUrl}/@catalog` };
   }

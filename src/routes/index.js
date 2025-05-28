@@ -6,6 +6,7 @@
 import actions from './actions/actions';
 import authentication from './authentication/authentication';
 import breadcrumbs from './breadcrumbs/breadcrumbs';
+import catalog from './catalog/catalog';
 import content from './content/content';
 import controlpanels from './controlpanels/controlpanels';
 import database from './database/database';
@@ -33,6 +34,7 @@ export default [
   ...actions,
   ...authentication,
   ...breadcrumbs,
+  ...catalog,
   ...controlpanels,
   ...database,
   ...email,
