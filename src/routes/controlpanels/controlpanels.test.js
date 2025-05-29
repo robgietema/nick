@@ -20,6 +20,9 @@ describe('Controlpanels', () => {
   it('should get a type in the types controlpanel', () =>
     testRequest(app, 'controlpanels/get_type'));
 
+  it('should update a type in the types controlpanel', () =>
+    testRequest(app, 'controlpanels/patch_type'));
+
   it('should update a controlpanel', () =>
     testRequest(app, 'controlpanels/patch'));
 });

@@ -3,6 +3,7 @@
  * @module routes/controlpanels/controlpanels
  */
 
+import { mapKeys, omit, pick, without } from 'lodash';
 import { Controlpanel, Document, Type, Workflow } from '../../models';
 import { getUrl, handleFiles, handleImages } from '../../helpers';
 
@@ -96,6 +97,7 @@ export default [
               fieldsets: [],
               properties: {},
               required: [],
+              behaviors: [],
             },
             workflow: workflows.models[0].id,
             ...req.body,
@@ -145,6 +147,54 @@ export default [
       // Return success
       return {
         json: await type.toControlPanelJSON(req, trx),
+      };
+    },
+  },
+  {
+    op: 'patch',
+    view: '/@controlpanels/dexterity-types/:id',
+    permission: 'Manage Site',
+    client: 'updateControlpanel',
+    handler: async (req, trx) => {
+      const fields = [
+        'title',
+        'description',
+        'allowed_content_types',
+        'filter_content_types',
+      ];
+
+      // Fetch type
+      let type = await Type.fetchById(req.params.id, {}, trx);
+
+      // Calc behaviors
+      let behaviors = type.schema.behaviors;
+      mapKeys(omit(req.body, fields), (enabled, behavior) => {
+        if (enabled) {
+          behaviors.push(behavior);
+        } else {
+          behaviors = without(behaviors, behavior);
+        }
+      });
+
+      // Update type
+      type = await Type.update(
+        req.params.id,
+        {
+          ...pick(req.body, fields),
+          schema: {
+            ...type.schema,
+            behaviors,
+          },
+        },
+        trx,
+      );
+
+      // Chache schema
+      await type.cacheSchema(trx);
+
+      // Send ok
+      return {
+        status: 204,
       };
     },
   },

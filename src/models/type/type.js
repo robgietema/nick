@@ -41,7 +41,7 @@ export class Type extends Model {
    */
   async cacheSchema(trx) {
     let schema;
-    if (this.schema.behaviors) {
+    if (this.schema.behaviors && this.schema.behaviors.length > 0) {
       const behaviors = await Behavior.fetchAll(
         {
           id: ['=', this.schema.behaviors],
