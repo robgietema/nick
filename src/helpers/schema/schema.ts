@@ -5,7 +5,7 @@
 
 import { concat, findIndex, map, mapValues } from 'lodash';
 
-import {Fieldset, Property, Schema, Request} from '../../types';
+import { Fieldset, Property, Schema, Request } from '../../types';
 
 /**
  * Merge schemas
@@ -13,7 +13,7 @@ import {Fieldset, Property, Schema, Request} from '../../types';
  * @param {Array} schemas Array of schemas
  * @returns {Schema} Merged schemas.
  */
-export function mergeSchemas(...schemas: Schema[]): Schema {
+export function mergeSchemas(...schemas: {name: string, data:Schema}[]): Schema {
   const fieldsets: Fieldset[] = [];
   let properties: { [key: string]: Property } = {};
   let required: string[] = [];
@@ -21,7 +21,7 @@ export function mergeSchemas(...schemas: Schema[]): Schema {
   let layouts: string[] = [];
 
   map(schemas, (schema) => {
-    map(schema.fieldsets, (fieldset) => {
+    map(schema.data.fieldsets, (fieldset) => {
       // Find fieldset
       const index = findIndex(fieldsets, (entry) => entry.id === fieldset.id);
 
@@ -34,21 +34,27 @@ export function mergeSchemas(...schemas: Schema[]): Schema {
         ];
       } else {
         // Add new fieldset
-        fieldsets.push(fieldset);
+        fieldsets.push({
+          behavior: schema.name,
+          ...fieldset,
+        });
       }
     });
     properties = {
       ...properties,
-      ...schema.properties,
+      ...(mapValues(schema.data.properties, (property) => ({
+        behavior: schema.name,
+        ...property,
+      }))),
     };
-    if (schema.required) {
-      required = concat(required, schema.required);
+    if (schema.data.required) {
+      required = concat(required, schema.data.required);
     }
-    if (schema.behaviors) {
-      behaviors = concat(behaviors, schema.behaviors);
+    if (schema.data.behaviors) {
+      behaviors = concat(behaviors, schema.data.behaviors);
     }
-    if (schema.layouts) {
-      layouts = concat(layouts, schema.layouts);
+    if (schema.data.layouts) {
+      layouts = concat(layouts, schema.data.layouts);
     }
   });
   return {

@@ -143,7 +143,7 @@ msgid "After today"
 msgstr ""
 
 #. Default: "Allowed Content Types"
-#: src/models/type/type.js:123
+#: src/models/type/type.js:133
 msgid "Allowed Content Types"
 msgstr ""
 
@@ -244,7 +244,7 @@ msgid "Before today"
 msgstr ""
 
 #. Default: "Behaviors"
-#: src/models/type/type.js:106
+#: src/models/type/type.js:116
 msgid "Behaviors"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgid "Delete"
 msgstr ""
 
 #. Default: "Description"
-#: src/models/type/type.js:130
+#: src/models/type/type.js:140
 #: src/profiles/core/behaviors/basic.json:16
 #: src/profiles/core/catalog.json:227
 msgid "Description"
@@ -471,7 +471,7 @@ msgid "File"
 msgstr ""
 
 #. Default: "Filter Contained Types"
-#: src/models/type/type.js:136
+#: src/models/type/type.js:146
 msgid "Filter Contained Types"
 msgstr ""
 
@@ -582,7 +582,7 @@ msgid "Is"
 msgstr ""
 
 #. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
-#: src/models/type/type.js:137
+#: src/models/type/type.js:147
 msgid "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
 msgstr ""
 
@@ -1310,7 +1310,7 @@ msgid "Type"
 msgstr ""
 
 #. Default: "Type Name"
-#: src/models/type/type.js:145
+#: src/models/type/type.js:155
 msgid "Type Name"
 msgstr ""
 

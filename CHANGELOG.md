@@ -45,6 +45,7 @@
 - Add multilingual settings to site endpoint @robgietema
 - Add types controlpanel endpoints @robgietema
 - Add layouts to contenttypes @robgietema
+- Add behaviors to fieldsets and properties in schema @robgietema
 
 ### Bugfix
 

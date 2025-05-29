@@ -35,7 +35,16 @@ export class Behavior extends Model {
         },
         trx,
       );
-      return mergeSchemas(await behaviors.fetchSchema(trx), this.schema);
+      return mergeSchemas(
+        {
+          name: 'behaviors',
+          data: await behaviors.fetchSchema(trx),
+        },
+        {
+          name: this.id,
+          data: this.schema,
+        },
+      );
     }
     return this.schema;
   }

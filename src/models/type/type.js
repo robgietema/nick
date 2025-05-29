@@ -56,16 +56,26 @@ export class Type extends Model {
       );
       schema = mergeSchemas(
         {
-          fieldsets: [
-            {
-              fields: [],
-              id: 'default',
-              title: 'Default',
-            },
-          ],
+          behavior: 'default',
+          data: {
+            fieldsets: [
+              {
+                fields: [],
+                id: 'default',
+                title: 'Default',
+                behavior: 'default',
+              },
+            ],
+          },
         },
-        await behaviors.fetchSchema(trx),
-        this.schema,
+        {
+          behavior: 'behaviors',
+          data: await behaviors.fetchSchema(trx),
+        },
+        {
+          behavior: 'generated',
+          data: this.schema,
+        },
       );
     } else {
       schema = this.schema;

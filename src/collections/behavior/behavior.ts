@@ -10,6 +10,7 @@ import type { Model, Schema } from '../../types';
 
 interface BehaviorModel extends Model {
   fetchSchema: (trx: Knex.Transaction) => Promise<Schema>;
+  id: string;
 }
 
 /**
@@ -27,7 +28,10 @@ export class BehaviorCollection extends Collection<BehaviorModel> {
   async fetchSchema(trx: Knex.Transaction): Promise<Schema> {
     return mergeSchemas(
       ...(await Promise.all(
-        this.map(async (model) => await model.fetchSchema(trx)),
+        this.map(async (model) => ({
+          name: model.id,
+          data: await model.fetchSchema(trx),
+        }))
       )),
     );
   }

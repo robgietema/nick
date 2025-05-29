@@ -33,12 +33,14 @@ export interface Request extends express.Request {
 export interface Fieldset {
   id: string;
   title: string;
+  behavior?: string;
   fields: string[];
 }
 
 export interface Property {
   title: string;
   description: string;
+  behavior?: string;
   [key: string]: any;
 }
 
