@@ -90,8 +90,13 @@ export default [
           {
             id: req.body.title,
             global_allow: true,
+            allowed_content_types: [],
             filter_content_types: false,
-            schema: {},
+            schema: {
+              fieldsets: [],
+              properties: {},
+              required: [],
+            },
             workflow: workflows.models[0].id,
             ...req.body,
           },
@@ -111,6 +116,7 @@ export default [
       // Return success
       return {
         status: 201,
+        json: await typeModel.toControlPanelJSON(req, trx),
       };
     },
   },
@@ -125,6 +131,20 @@ export default [
       // Return deleted
       return {
         status: 204,
+      };
+    },
+  },
+  {
+    op: 'get',
+    view: '/@controlpanels/dexterity-types/:id',
+    permission: 'Manage Site',
+    client: 'getControlpanelType',
+    handler: async (req, trx) => {
+      const type = await Type.fetchById(req.params.id, {}, trx);
+
+      // Return success
+      return {
+        json: await type.toControlPanelJSON(req, trx),
       };
     },
   },

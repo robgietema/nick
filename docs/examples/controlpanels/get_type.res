@@ -1,10 +1,10 @@
-HTTP/1.1 201 Created
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "@id": "http://localhost:8080/@controlpanels/dexterity-types/My Type",
-  "title": "My Type",
-  "description": "Type Description",
+  "@id": "http://localhost:8080/@controlpanels/dexterity-types/Page",
+  "title": "Page",
+  "description": "",
   "schema": {
     "fieldsets": [
       {
@@ -138,19 +138,19 @@ Content-Type: application/json
     ]
   },
   "data": {
-      "title": "My Type",
-      "description": "Type Description",
-      "allowed_content_types": [],
-      "filter_content_types": false,
-      "basic": false,
-      "blocks": false,
-      "categorization": false,
-      "dates": false,
-      "dublin_core": false,
-      "exclude_from_nav": false,
-      "ownership": false,
-      "preview_image_link": false,
-      "short_name": false,
-      "versioning": false
+    "title": "Page",
+    "description": "",
+    "allowed_content_types": [],
+    "filter_content_types": false,
+    "basic": false,
+    "blocks": true,
+    "categorization": false,
+    "dates": true,
+    "dublin_core": true,
+    "exclude_from_nav": true,
+    "ownership": false,
+    "preview_image_link": false,
+    "short_name": true,
+    "versioning": true
   }
 }

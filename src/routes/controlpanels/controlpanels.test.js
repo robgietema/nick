@@ -17,6 +17,9 @@ describe('Controlpanels', () => {
   it('should delete a type in the types controlpanel', () =>
     testRequest(app, 'controlpanels/delete_types'));
 
+  it('should get a type in the types controlpanel', () =>
+    testRequest(app, 'controlpanels/get_type'));
+
   it('should update a controlpanel', () =>
     testRequest(app, 'controlpanels/patch'));
 });
