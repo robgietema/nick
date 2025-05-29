@@ -3,9 +3,8 @@
  * @module routes/controlpanels/controlpanels
  */
 
-import { Controlpanel, Document, Type } from '../../models';
+import { Controlpanel, Document, Type, Workflow } from '../../models';
 import { getUrl, handleFiles, handleImages } from '../../helpers';
-import { title } from 'process';
 
 export default [
   {
@@ -27,7 +26,7 @@ export default [
   {
     op: 'get',
     view: '/@controlpanels/:id',
-    // permission: 'Manage Site',
+    permission: 'Manage Site',
     client: 'getControlpanel',
     handler: async (req, trx) => {
       switch (req.params.id) {
@@ -72,6 +71,47 @@ export default [
             json: await controlpanel.toJSON(req, true),
           };
       }
+    },
+  },
+  {
+    op: 'post',
+    view: '/@controlpanels/dexterity-types',
+    permission: 'Manage Site',
+    client: 'createControlpanelType',
+    handler: async (req, trx) => {
+      // Check if type exists
+      const workflows = await Workflow.fetchAll({}, {}, trx);
+      const current = await Type.fetchById(req.body.title, {}, trx);
+      let typeModel;
+
+      // If doesn't exist
+      if (!current) {
+        typeModel = await Type.create(
+          {
+            id: req.body.title,
+            global_allow: true,
+            filter_content_types: false,
+            schema: {},
+            workflow: workflows.models[0].id,
+            ...req.body,
+          },
+          {},
+          trx,
+        );
+      } else {
+        typeModel = await Type.update(
+          req.body.title,
+          merge(current.$toDatabaseJson(), req.body),
+          trx,
+        );
+      }
+
+      await typeModel.cacheSchema(trx);
+
+      // Return success
+      return {
+        status: 201,
+      };
     },
   },
   {

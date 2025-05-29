@@ -3,6 +3,11 @@ Content-Type: application/json
 
 [
   {
+    "@id": "http://localhost:8080/@controlpanels/dexterity-types",
+    "group": "Content",
+    "title": "Content Types"
+  },
+  {
     "@id": "http://localhost:8080/@controlpanels/language",
     "group": "General",
     "title": "Language"
