@@ -115,6 +115,20 @@ export default [
     },
   },
   {
+    op: 'delete',
+    view: '/@controlpanels/dexterity-types/:id',
+    permission: 'Manage Site',
+    client: 'deleteControlpanelType',
+    handler: async (req, trx) => {
+      await Type.deleteById(req.params.id, trx);
+
+      // Return deleted
+      return {
+        status: 204,
+      };
+    },
+  },
+  {
     op: 'patch',
     view: '/@controlpanels/:id',
     permission: 'Manage Site',
