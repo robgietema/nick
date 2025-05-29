@@ -1,0 +1,10 @@
+{
+  "id": "dexterity-types",
+  "title:i18n": "Content Types",
+  "group": "Content",
+  "schema": {
+    "fieldsets": [],
+    "properties": {}
+  },
+  "data": {}
+}
