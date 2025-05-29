@@ -142,6 +142,11 @@ msgstr "Na de huidige dag"
 msgid "After today"
 msgstr "Na vandaag"
 
+#. Default: "Allowed Content Types"
+#: src/models/type/type.js:123
+msgid "Allowed Content Types"
+msgstr ""
+
 #. Default: "Already locked"
 #: src/routes/lock/lock.js:54
 #: src/routes/lock/lock.js:106
@@ -238,6 +243,11 @@ msgstr "Voor de huidige dag"
 msgid "Before today"
 msgstr "Voor vandaag"
 
+#. Default: "Behaviors"
+#: src/models/type/type.js:106
+msgid "Behaviors"
+msgstr ""
+
 #. Default: "Between dates"
 #: src/profiles/core/catalog.json:112
 #: src/profiles/core/catalog.json:185
@@ -295,6 +305,7 @@ msgstr ""
 
 #. Default: "Content Types"
 #: src/routes/controlpanels/controlpanels.js:58
+#: src/profiles/core/controlpanels/dexterity-types.json:3
 msgid "Content Types"
 msgstr ""
 
@@ -364,6 +375,7 @@ msgid "Delete"
 msgstr "Verwijderen"
 
 #. Default: "Description"
+#: src/models/type/type.js:130
 #: src/profiles/core/behaviors/basic.json:16
 #: src/profiles/core/catalog.json:227
 msgid "Description"
@@ -457,6 +469,11 @@ msgstr "Vervaldatum"
 #: src/profiles/core/types/file.json:19
 msgid "File"
 msgstr "Bestand"
+
+#. Default: "Filter Contained Types"
+#: src/models/type/type.js:136
+msgid "Filter Contained Types"
+msgstr ""
 
 #. Default: "Find items related to the selected items"
 #: src/profiles/core/catalog.json:322
@@ -563,6 +580,11 @@ msgstr "Ongeldige sessie"
 #: src/profiles/core/catalog.json:478
 msgid "Is"
 msgstr "Is"
+
+#. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
+#: src/models/type/type.js:137
+msgid "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
+msgstr ""
 
 #. Default: "Language"
 #: src/profiles/core/behaviors/categorization.json:22
@@ -1286,6 +1308,11 @@ msgstr "Transactiefout"
 #: src/profiles/core/catalog.json:427
 msgid "Type"
 msgstr "Type"
+
+#. Default: "Type Name"
+#: src/models/type/type.js:145
+msgid "Type Name"
+msgstr ""
 
 #. Default: "Type of the current document is not found."
 #: src/helpers/handler/handler.js:60
