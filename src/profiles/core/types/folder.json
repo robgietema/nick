@@ -15,7 +15,8 @@
       "id_from_title",
       "folderish",
       "exclude_from_nav"
-    ]
+    ],
+    "layouts": []
   },
   "workflow": "simple_publication_workflow"
 }

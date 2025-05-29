@@ -47,4 +47,5 @@ export interface Schema {
   properties: { [key: string]: Property };
   required?: string[];
   behaviors?: string[];
+  layouts?: string[];
 }

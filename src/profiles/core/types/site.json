@@ -13,7 +13,8 @@
       "versioning",
       "folderish",
       "navigation_root"
-    ]
+    ],
+    "layouts": []
   },
   "workflow": "simple_publication_workflow"
 }

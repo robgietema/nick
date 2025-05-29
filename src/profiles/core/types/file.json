@@ -30,7 +30,8 @@
       "short_name",
       "id_from_title",
       "exclude_from_nav"
-    ]
+    ],
+    "layouts": []
   },
   "workflow": "simple_publication_workflow"
 }

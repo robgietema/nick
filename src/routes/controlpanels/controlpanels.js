@@ -98,6 +98,7 @@ export default [
               properties: {},
               required: [],
               behaviors: [],
+              layouts: [],
             },
             workflow: workflows.models[0].id,
             ...req.body,

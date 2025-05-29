@@ -18,6 +18,7 @@ export function mergeSchemas(...schemas: Schema[]): Schema {
   let properties: { [key: string]: Property } = {};
   let required: string[] = [];
   let behaviors: string[] = [];
+  let layouts: string[] = [];
 
   map(schemas, (schema) => {
     map(schema.fieldsets, (fieldset) => {
@@ -46,12 +47,16 @@ export function mergeSchemas(...schemas: Schema[]): Schema {
     if (schema.behaviors) {
       behaviors = concat(behaviors, schema.behaviors);
     }
+    if (schema.layouts) {
+      layouts = concat(layouts, schema.layouts);
+    }
   });
   return {
     fieldsets,
     properties,
     required,
     behaviors,
+    layouts,
   };
 }
 
