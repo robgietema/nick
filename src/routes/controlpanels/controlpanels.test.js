@@ -8,6 +8,9 @@ describe('Controlpanels', () => {
   it('should return a controlpanel', () =>
     testRequest(app, 'controlpanels/get'));
 
+  it('should return the types controlpanel', () =>
+    testRequest(app, 'controlpanels/get_types'));
+
   it('should update a controlpanel', () =>
     testRequest(app, 'controlpanels/patch'));
 });

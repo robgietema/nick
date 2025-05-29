@@ -288,6 +288,16 @@ msgstr "Contact"
 msgid "Contains"
 msgstr "Bevat"
 
+#. Default: "Content"
+#: src/routes/controlpanels/controlpanels.js:59
+msgid "Content"
+msgstr ""
+
+#. Default: "Content Types"
+#: src/routes/controlpanels/controlpanels.js:58
+msgid "Content Types"
+msgstr ""
+
 #. Default: "Contents"
 #: src/profiles/core/actions.json:17
 msgid "Contents"
@@ -500,6 +510,11 @@ msgstr "Indien ingeschakeld wordt de mail naar een testserver gestuurd."
 msgid "If enabled the mail is send using a secure connection."
 msgstr "Indien ingeschakeld, wordt de e-mail verzonden via een beveiligde verbinding."
 
+#. Default: "If enabled the site is multilingual."
+#: src/profiles/core/controlpanels/language.json:42
+msgid "If enabled the site is multilingual."
+msgstr ""
+
 #. Default: "If selected, this item will not appear in the navigation tree."
 #: src/profiles/core/behaviors/exclude_from_nav.json:4
 #: src/profiles/core/behaviors/exclude_from_nav.json:16
@@ -668,6 +683,11 @@ msgstr "Wijzigingsdatum:"
 msgid "Modify"
 msgstr "Wijzigen"
 
+#. Default: "Multilingual"
+#: src/profiles/core/controlpanels/language.json:41
+msgid "Multilingual"
+msgstr ""
+
 #. Default: "Navigation"
 #: src/profiles/core/controlpanels/navigation.json:3
 msgid "Navigation"
@@ -690,7 +710,7 @@ msgid "Not allowed"
 msgstr "Niet toegestaan"
 
 #. Default: "Not found."
-#: src/routes/controlpanels/controlpanels.js:34
+#: src/routes/controlpanels/controlpanels.js:69
 #: src/routes/email/email.js:57
 #: src/routes/groups/groups.js:27
 #: src/routes/types/types.js:34

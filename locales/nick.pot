@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-05-28T11:50:31.223Z\n"
+"POT-Creation-Date: 2025-05-29T11:59:40.888Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -285,6 +285,16 @@ msgstr ""
 msgid "Contains"
 msgstr ""
 
+#. Default: "Content"
+#: src/routes/controlpanels/controlpanels.js:59
+msgid "Content"
+msgstr ""
+
+#. Default: "Content Types"
+#: src/routes/controlpanels/controlpanels.js:58
+msgid "Content Types"
+msgstr ""
+
 #. Default: "Contents"
 #: src/profiles/core/actions.json:17
 msgid "Contents"
@@ -497,6 +507,11 @@ msgstr ""
 msgid "If enabled the mail is send using a secure connection."
 msgstr ""
 
+#. Default: "If enabled the site is multilingual."
+#: src/profiles/core/controlpanels/language.json:42
+msgid "If enabled the site is multilingual."
+msgstr ""
+
 #. Default: "If selected, this item will not appear in the navigation tree."
 #: src/profiles/core/behaviors/exclude_from_nav.json:4
 #: src/profiles/core/behaviors/exclude_from_nav.json:16
@@ -665,6 +680,11 @@ msgstr ""
 msgid "Modify"
 msgstr ""
 
+#. Default: "Multilingual"
+#: src/profiles/core/controlpanels/language.json:41
+msgid "Multilingual"
+msgstr ""
+
 #. Default: "Navigation"
 #: src/profiles/core/controlpanels/navigation.json:3
 msgid "Navigation"
@@ -687,7 +707,7 @@ msgid "Not allowed"
 msgstr ""
 
 #. Default: "Not found."
-#: src/routes/controlpanels/controlpanels.js:34
+#: src/routes/controlpanels/controlpanels.js:69
 #: src/routes/email/email.js:57
 #: src/routes/groups/groups.js:27
 #: src/routes/types/types.js:34

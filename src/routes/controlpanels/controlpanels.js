@@ -3,8 +3,9 @@
  * @module routes/controlpanels/controlpanels
  */
 
-import { Controlpanel } from '../../models';
-import { handleFiles, handleImages } from '../../helpers';
+import { Controlpanel, Document, Type } from '../../models';
+import { getUrl, handleFiles, handleImages } from '../../helpers';
+import { title } from 'process';
 
 export default [
   {
@@ -26,16 +27,51 @@ export default [
   {
     op: 'get',
     view: '/@controlpanels/:id',
-    permission: 'Manage Site',
+    // permission: 'Manage Site',
     client: 'getControlpanel',
     handler: async (req, trx) => {
-      const controlpanel = await Controlpanel.fetchById(req.params.id, {}, trx);
-      if (!controlpanel) {
-        throw new RequestException(404, { error: req.i18n('Not found.') });
+      switch (req.params.id) {
+        case 'dexterity-types':
+          const types = await Type.fetchAll({}, {}, trx);
+          const path = getUrl(req);
+          const documents = await Document.buildQuery({}, {}, trx)
+            .select('type')
+            .count()
+            .groupBy('type');
+          const counts = {};
+          documents.map((document) => {
+            counts[document.type] = parseInt(document.count);
+          });
+
+          return {
+            json: {
+              '@id': `${path}/@controlpanels/dexterity-types`,
+              items: types.map((type) => ({
+                '@id': `${path}/@controlpanels/dexterity-types/${type.id}`,
+                '@type': type.id,
+                title: type.title,
+                description: type.description,
+                id: type.id,
+                count: counts[type.id] || 0,
+                meta_type: type.id,
+              })),
+              title: req.i18n('Content Types'),
+              group: req.i18n('Content'),
+            },
+          };
+        default:
+          const controlpanel = await Controlpanel.fetchById(
+            req.params.id,
+            {},
+            trx,
+          );
+          if (!controlpanel) {
+            throw new RequestException(404, { error: req.i18n('Not found.') });
+          }
+          return {
+            json: await controlpanel.toJSON(req, true),
+          };
       }
-      return {
-        json: await controlpanel.toJSON(req, true),
-      };
     },
   },
   {
