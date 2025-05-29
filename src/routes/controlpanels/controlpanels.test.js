@@ -15,7 +15,7 @@ describe('Controlpanels', () => {
     testRequest(app, 'controlpanels/post_types'));
 
   it('should delete a type in the types controlpanel', () =>
-    testRequest(app, 'controlpanels/delete_types'));
+    testRequest(app, 'controlpanels/delete_type'));
 
   it('should get a type in the types controlpanel', () =>
     testRequest(app, 'controlpanels/get_type'));
