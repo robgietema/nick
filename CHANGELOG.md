@@ -43,7 +43,7 @@
 - Add client object @robgietema
 - Add @catalog endpoint @robgietema
 - Add multilingual settings to site endpoint @robgietema
-- Add Types controlpanel endpoint @robgietema
+- Add types controlpanel endpoints @robgietema
 
 ### Bugfix
 
