@@ -44,4 +44,7 @@ describe('Content', () => {
 
     return testRequest(app, 'copymove/copy_multiple');
   });
+
+  it('should export a content object', () =>
+    testRequest(app, 'content/export'));
 });

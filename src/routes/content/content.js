@@ -352,6 +352,7 @@ export default [
     op: 'get',
     view: '@export',
     permission: 'View',
+    client: 'exportContent',
     handler: async (req, trx) => {
       const json = await req.document.toJSON(req);
       return {

@@ -160,3 +160,25 @@ Or use the client directly:
 ```
 {% include_relative examples/content/patch_reorder.ts %}
 ```
+
+## Exporting a Resource with GET
+
+We can use the `@export` endpoint to export the content to a `json`-file to be used for migrations or external services. We can export the resource by sending a GET request to the resource URL:
+
+```
+{% include_relative examples/content/export.req %}
+```
+
+Or use the client directly:
+
+```
+{% include_relative examples/content/export.ts %}
+```
+
+### Successful Response (200 OK)
+
+If a resource has been retrieved successfully, the server responds with `200 OK`:
+
+```
+{% include_relative examples/content/export.res %}
+```

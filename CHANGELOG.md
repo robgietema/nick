@@ -46,6 +46,7 @@
 - Add types controlpanel endpoints @robgietema
 - Add layouts to contenttypes @robgietema
 - Add behaviors to fieldsets and properties in schema @robgietema
+- Add @export documentation and tests @robgietema
 
 ### Bugfix
 
