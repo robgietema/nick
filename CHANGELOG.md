@@ -93,6 +93,7 @@
 - Move to ts-node in favor of babel @robgietema
 - Upgrade to Express 5 @robgietema
 - Remove body-parser and use express buildin json parser @robgietema
+- Node 24 support @robgietema
 
 ### Documentation
 
