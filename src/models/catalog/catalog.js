@@ -3,7 +3,7 @@
  * @module models/catalog/catalog
  */
 
-import { concat, map, pick, uniq } from 'lodash';
+import { concat, filter, map, pick, uniq } from 'lodash';
 
 import { fileExists, getRootUrl, stripI18n } from '../../helpers';
 import { Model } from '../../models';
@@ -33,6 +33,7 @@ export class Catalog extends Model {
         metadata = [...metadata, ...profile.metadata];
       }
     });
+    metadata = filter(metadata, (index) => index.enabled !== false);
 
     return {
       '@id': `${getRootUrl(req)}${this.path}`,

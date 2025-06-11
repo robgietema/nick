@@ -69,6 +69,7 @@ export const seedCatalog = async (trx, profilePath) => {
           name: metadata.name,
           type: metadata.type,
           attr: metadata.attr,
+          enabled: metadata.enabled === false ? false : true,
           metadata: true,
         },
         {},

@@ -48,6 +48,7 @@
 - Add behaviors to fieldsets and properties in schema @robgietema
 - Add @export documentation and tests @robgietema
 - Add SearchableText metadata to the catalog @robgietema
+- Add support for disabled metadata catalog entries @robgietema
 
 ### Bugfix
 
