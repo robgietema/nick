@@ -97,6 +97,9 @@ export const seedCatalog = async (trx, profilePath) => {
           case 'string[]':
             table.specificType(metadata.name, 'character varying(255)[]');
             break;
+          case 'text':
+            table.text(metadata.name);
+            break;
           default:
             console.log(`Unhandled index type: ${metadata.type}`);
             break;

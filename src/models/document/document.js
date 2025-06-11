@@ -700,7 +700,13 @@ export class Document extends Model {
    * @return {string} Searchable text
    */
   searchableText() {
-    return compact([this.json.title, this.json.description]).join(' ');
+    let chunks = compact([this.json.title, this.json.description]);
+    map(values(this.json.blocks), (block) => {
+      if (block['@type'] === 'slate' && block.plaintext) {
+        chunks.push(block.plaintext);
+      }
+    });
+    return chunks.join(' ');
   }
 
   /**
@@ -973,7 +979,7 @@ export class Document extends Model {
       indexes.map(async (index) => {
         const name = index.metadata ? index.name : `_${index.name}`;
         if (index.attr in this) {
-          fields[name] = { type: index.type };
+          fields[name] = { type: index.type, metadata: index.metadata };
           if (isFunction(this[index.attr])) {
             const value = this[index.attr](trx);
             fields[name].value = isPromise(value) ? await value : value;
@@ -983,6 +989,7 @@ export class Document extends Model {
         } else if (index.attr in this._type._schema.properties) {
           fields[name] = {
             type: index.type,
+            metadata: index.metadata,
             value:
               index.type === 'boolean'
                 ? !!this.json[index.attr]
@@ -1008,7 +1015,10 @@ export class Document extends Model {
         .raw(
           `INSERT INTO catalog ("${keys(fields).join('", "')}") VALUES (${map(
             keys(fields),
-            (field) => (fields[field].type === 'text' ? 'to_tsvector(?)' : '?'),
+            (field) =>
+              fields[field].type === 'text' && !fields[field].metadata
+                ? 'to_tsvector(?)'
+                : '?',
           ).join(', ')});`,
           map(values(fields), (field) => field.value),
         )
@@ -1021,7 +1031,9 @@ export class Document extends Model {
             keys(fields),
             (key) =>
               `"${key}" = ${
-                fields[key].type === 'text' ? 'to_tsvector(?)' : '?'
+                fields[key].type === 'text' && !fields[key].metadata
+                  ? 'to_tsvector(?)'
+                  : '?'
               }`,
           ).join(', ')} WHERE document = '${this.uuid}';`,
           map(values(fields), (field) => field.value),

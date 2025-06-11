@@ -922,6 +922,11 @@
       "name": "hasPreviewImage",
       "type": "boolean",
       "attr": "hasPreviewImage"
+    },
+    {
+      "name": "SearchableText",
+      "type": "text",
+      "attr": "searchableText"
     }
   ]
 }
