@@ -64,7 +64,7 @@
     "@types/jsonwebtoken": "9.0.9",
     "@types/lodash": "4.17.17",
     "@types/mime-types": "3.0.1",
-    "@types/node": "24.0.0",
+    "@types/node": "24.0.1",
     "@types/nodemailer": "6.4.17",
     "@types/supertest": "6.0.3",
     "eslint": "9.28.0",
@@ -75,7 +75,7 @@
     "pofile": "1.1.4",
     "prettier": "3.5.3",
     "supertest": "7.1.1",
-    "ts-jest": "29.3.4",
+    "ts-jest": "29.4.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
   },
