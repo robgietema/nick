@@ -51,7 +51,7 @@ export class Catalog extends Model {
    * @method fetchAllRestricted
    * @static
    * @param {Object} where Where clause.
-   * @param {Object} options Ooptions for the query.
+   * @param {Object} options Options for the query.
    * @param {Object} trx Transaction object.
    * @param {Object} req Request object.
    * @returns {Array} JSON object.
@@ -71,6 +71,33 @@ export class Catalog extends Model {
       { ...where, _allowedUsersGroupsRoles: ['&&', userGroupsRoles] },
       options,
       trx,
+    );
+  }
+
+  /**
+   * Fetch all items closest by embedding but take permissions into account.
+   * @method fetchClosestEmbeddingRestricted
+   * @static
+   * @param {Object} embedding Embedding vector to compare.
+   * @param {Object} limit Limit for the query.
+   * @param {Object} trx Transaction object.
+   * @param {Object} req Request object.
+   * @returns {Array} JSON object.
+   */
+  static async fetchClosestEmbeddingRestricted(embedding, limit, trx, req) {
+    // Fetch data
+    return this.fetchAllRestricted(
+      {},
+      {
+        select: [
+          'SearchableText',
+          this.knex().raw(`1 - (_embedding <=> '${embedding}') AS similarity`),
+        ],
+        order: { column: 'similarity', reverse: true },
+        limit,
+      },
+      trx,
+      req,
     );
   }
 

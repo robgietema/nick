@@ -3,7 +3,7 @@
  * @module routes/generate/generate
  */
 
-import { concat, join, map, uniq } from 'lodash';
+import { join } from 'lodash';
 
 import { Catalog } from '../../models/catalog/catalog';
 import { embed, generate } from '../../helpers';
@@ -31,33 +31,20 @@ export default [
         });
       }
 
-      // Find user, groups and roles
-      const userGroupsRoles = uniq(
-        concat(
-          [req.user.id],
-          req.user._groups.map((groups) => groups.id),
-          req.user.getRoles(),
-        ),
-      );
-
       // Get embedding vector
       const embedding = await embed(req.body.prompt);
 
       // Fetch catalog items with closest embeddings
-      const knex = Catalog.knex();
-      const result = await knex
-        .raw(
-          `select "SearchableText", 1 - (_embedding <=> '${embedding}') AS similarity
-            from catalog
-            where "_allowedUsersGroupsRoles" && '{${userGroupsRoles.join(',')}}'
-            order by similarity desc
-            limit ${config.ai.models.generate.contextSize};`,
-        )
-        .transacting(trx);
+      const result = await Catalog.fetchClosestEmbeddingRestricted(
+        embedding,
+        config.ai.models.generate.contextSize,
+        trx,
+        req,
+      );
 
       // Generate context from the results
       const context = join(
-        map(result.rows, (row) => row.SearchableText),
+        result.map((item) => item.SearchableText),
         ' ',
       );
 
