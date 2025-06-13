@@ -41,6 +41,7 @@ import { handler as actions } from '../actions/actions';
 import { handler as breadcrumbs } from '../breadcrumbs/breadcrumbs';
 import { handler as navigation } from '../navigation/navigation';
 import { handler as navroot } from '../navroot/navroot';
+import { handler as related } from '../related/related';
 import { handler as translations } from '../translations/translations';
 import { handler as types } from '../types/types';
 import { handler as workflow } from '../workflow/workflow';
@@ -102,6 +103,13 @@ const getComponents = async (req, trx) => {
     components.navroot = (await navroot(req, trx)).json;
   } else {
     components.navroot = { '@id': `${baseUrl}/@navroot` };
+  }
+
+  // Include related expander
+  if (includes(expand, 'related')) {
+    components.related = (await related(req, trx)).json;
+  } else {
+    components.related = { '@id': `${baseUrl}/@related` };
   }
 
   // Include types expander

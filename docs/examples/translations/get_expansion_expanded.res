@@ -19,6 +19,9 @@ Content-Type: application/json
     "navroot": {
       "@id": "http://localhost:8080/en/events/@navroot"
     },
+    "related": {
+      "@id": "http://localhost:8080/en/events/@related"
+    },
     "translations": {
       "@id": "http://localhost:8080/en/events/@translations",
       "items": [

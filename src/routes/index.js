@@ -21,6 +21,7 @@ import navigation from './navigation/navigation';
 import navroot from './navroot/navroot';
 import nick from './nick/nick';
 import querystring from './querystring/querystring';
+import related from './related/related';
 import roles from './roles/roles';
 import search from './search/search';
 import sharing from './sharing/sharing';
@@ -50,6 +51,7 @@ export default [
   ...navroot,
   ...nick,
   ...querystring,
+  ...related,
   ...roles,
   ...search,
   ...sharing,

@@ -90,7 +90,7 @@ export class Catalog extends Model {
       {},
       {
         select: [
-          'SearchableText',
+          '*',
           this.knex().raw(`1 - (_embedding <=> '${embedding}') AS similarity`),
         ],
         order: { column: 'similarity', reverse: true },

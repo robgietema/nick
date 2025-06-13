@@ -51,6 +51,7 @@
 - Add support for disabled metadata catalog entries @robgietema
 - Add support for AI models @robgietema
 - Add @generate endpoint @robgietema
+- Add @related endpoint @robgietema
 
 ### Bugfix
 

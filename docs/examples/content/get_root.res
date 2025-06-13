@@ -210,6 +210,7 @@ Content-Type: application/json
     "breadcrumbs": { "@id": "http://localhost:8080/@breadcrumbs" },
     "navigation": { "@id": "http://localhost:8080/@navigation" },
     "navroot": { "@id": "http://localhost:8080/@navroot" },
+    "related": { "@id": "http://localhost:8080/@related" },
     "types": { "@id": "http://localhost:8080/@types" },
     "workflow": { "@id": "http://localhost:8080/@workflow" },
     "translations": { "@id": "http://localhost:8080/@translations" }
