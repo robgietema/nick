@@ -3,7 +3,7 @@ nav_order: 30
 permalink: /related
 ---
 
-# Generate
+# Related
 
 This endpoint can be used to fetch related documents. For this endpoint to work you need to setup the different AI models as specified on the homepage of this documentation. The `@related` endpoint will return all the related documents based on embedding vectors. You can do the following request:
 
