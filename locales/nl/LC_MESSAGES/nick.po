@@ -31,6 +31,11 @@ msgstr "Een naam gegeven aan dit item."
 msgid "A related item from which this item is derived."
 msgstr "Een gerelateerd item waarvan deze is afgeleid."
 
+#. Default: "AI is disabled."
+#: src/routes/generate/generate.js:30
+msgid "AI is disabled."
+msgstr ""
+
 #. Default: "Absolute path"
 #: src/profiles/core/catalog.json:14
 msgid "Absolute path"
@@ -87,8 +92,8 @@ msgid "Administrator"
 msgstr "Beheerder"
 
 #. Default: "Administrators"
-#: src/profiles/default/groups.json:6
 #: src/profiles/multilingualcontent/groups.json:6
+#: src/profiles/default/groups.json:6
 msgid "Administrators"
 msgstr "Beheerders"
 
@@ -361,11 +366,11 @@ msgid "Debug"
 msgstr "Debug"
 
 #. Default: "Default"
-#: src/profiles/core/behaviors/basic.json:10
-#: src/profiles/core/behaviors/preview_image_link.json:10
-#: src/profiles/core/behaviors/versioning.json:10
-#: src/profiles/core/types/file.json:13
 #: src/profiles/core/types/image.json:13
+#: src/profiles/core/types/file.json:13
+#: src/profiles/core/behaviors/versioning.json:10
+#: src/profiles/core/behaviors/preview_image_link.json:10
+#: src/profiles/core/behaviors/basic.json:10
 msgid "Default"
 msgstr "Standaard"
 
@@ -376,8 +381,8 @@ msgstr "Verwijderen"
 
 #. Default: "Description"
 #: src/models/type/type.js:140
-#: src/profiles/core/behaviors/basic.json:16
 #: src/profiles/core/catalog.json:227
+#: src/profiles/core/behaviors/basic.json:16
 msgid "Description"
 msgstr "Omschrijving"
 
@@ -387,8 +392,8 @@ msgid "Displayed content types"
 msgstr "Getoonde content types"
 
 #. Default: "Document locked"
-#: src/routes/content/content.js:580
 #: src/routes/history/history.js:50
+#: src/routes/content/content.js:581
 msgid "Document locked"
 msgstr "Document vergrendeld"
 
@@ -502,8 +507,8 @@ msgid "From and message are required fields."
 msgstr "Afzender en bericht zijn verplichte velden."
 
 #. Default: "Gives the ability to rename an item from its edit form."
-#: src/profiles/core/behaviors/preview_image_link.json:4
 #: src/profiles/core/behaviors/short_name.json:4
+#: src/profiles/core/behaviors/preview_image_link.json:4
 msgid "Gives the ability to rename an item from its edit form."
 msgstr "Geeft de mogelijkheid om een item te hernoemen vanuit het bewerkingsformulier."
 
@@ -587,8 +592,8 @@ msgid "Items of this type can act as a folder containing other  items. What cont
 msgstr ""
 
 #. Default: "Language"
-#: src/profiles/core/behaviors/categorization.json:22
 #: src/profiles/core/controlpanels/language.json:3
+#: src/profiles/core/behaviors/categorization.json:22
 msgid "Language"
 msgstr "Taal"
 
@@ -732,12 +737,12 @@ msgid "Not allowed"
 msgstr "Niet toegestaan"
 
 #. Default: "Not found."
-#: src/routes/controlpanels/controlpanels.js:69
-#: src/routes/email/email.js:57
-#: src/routes/groups/groups.js:27
-#: src/routes/types/types.js:34
-#: src/routes/users/users.js:112
 #: src/routes/vocabularies/vocabularies.js:52
+#: src/routes/users/users.js:112
+#: src/routes/types/types.js:34
+#: src/routes/groups/groups.js:27
+#: src/routes/email/email.js:57
+#: src/routes/controlpanels/controlpanels.js:69
 msgid "Not found."
 msgstr "Niet gevonden."
 
@@ -851,6 +856,11 @@ msgstr "Voorbeeld afbeelding bijschrift"
 msgid "Private"
 msgstr "Privé"
 
+#. Default: "Prompt is a required field."
+#: src/routes/generate/generate.js:23
+msgid "Prompt is a required field."
+msgstr ""
+
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
 msgid "Publish"
@@ -877,8 +887,8 @@ msgid "Reader"
 msgstr "Lezer"
 
 #. Default: "Register"
-#: src/profiles/core/actions.json:103
 #: src/profiles/core/permissions.json:38
+#: src/profiles/core/actions.json:103
 msgid "Register"
 msgstr "Registreren"
 
@@ -913,7 +923,7 @@ msgid "Rename"
 msgstr "Hernoemen"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:417
+#: src/routes/content/content.js:418
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
 
@@ -983,8 +993,8 @@ msgid "Send back"
 msgstr "Terugsturen"
 
 #. Default: "Settings"
-#: src/profiles/core/behaviors/exclude_from_nav.json:10
 #: src/profiles/core/behaviors/short_name.json:10
+#: src/profiles/core/behaviors/exclude_from_nav.json:10
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -1014,8 +1024,8 @@ msgid "Simple workflow that is useful for basic web sites. Things start out as p
 msgstr "Eenvoudige workflow die handig is voor eenvoudige websites. Dingen beginnen als privé en kunnen ter beoordeling worden ingediend of rechtstreeks worden gepubliceerd. De maker van een inhoudsitem kan het item bewerken, zelfs nadat het is gepubliceerd."
 
 #. Default: "Site"
-#: src/profiles/core/controlpanels/site.json:3
 #: src/profiles/core/types/site.json:3
+#: src/profiles/core/controlpanels/site.json:3
 msgid "Site"
 msgstr "Site"
 
@@ -1278,8 +1288,8 @@ msgid "Tip: you can use * to autocomplete."
 msgstr "Tip: u kunt * gebruiken om automatisch aan te vullen."
 
 #. Default: "Title"
-#: src/profiles/core/behaviors/basic.json:22
 #: src/profiles/core/catalog.json:265
+#: src/profiles/core/behaviors/basic.json:22
 msgid "Title"
 msgstr "Titel"
 
@@ -1299,8 +1309,8 @@ msgid "Today"
 msgstr "Vandaag"
 
 #. Default: "Transaction error."
-#: src/app.js:57
 #: src/client.js:63
+#: src/app.js:57
 msgid "Transaction error."
 msgstr "Transactiefout"
 
@@ -1350,8 +1360,8 @@ msgid "Versioning support"
 msgstr "Versiebeheer ondersteuning"
 
 #. Default: "View"
-#: src/profiles/core/actions.json:7
 #: src/profiles/core/permissions.json:6
+#: src/profiles/core/actions.json:7
 msgid "View"
 msgstr "Bekijken"
 
@@ -1403,8 +1413,8 @@ msgid "Yes"
 msgstr "Ja"
 
 #. Default: "You are not authorization to access this resource."
-#: src/helpers/handler/handler.js:82
 #: src/routes/workflow/workflow.js:33
+#: src/helpers/handler/handler.js:82
 msgid "You are not authorization to access this resource."
 msgstr "U heeft geen rechten om tot deze resource."
 
@@ -1419,8 +1429,8 @@ msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
-#: src/routes/content/content.js:577
 #: src/routes/history/history.js:47
+#: src/routes/content/content.js:578
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
 

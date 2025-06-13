@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-05-29T18:09:53.505Z\n"
+"POT-Creation-Date: 2025-06-13T18:35:27.244Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgstr ""
 #. Default: "A related item from which this item is derived."
 #: src/profiles/core/behaviors/ownership.json:25
 msgid "A related item from which this item is derived."
+msgstr ""
+
+#. Default: "AI is disabled."
+#: src/routes/generate/generate.js:30
+msgid "AI is disabled."
 msgstr ""
 
 #. Default: "Absolute path"
@@ -84,8 +89,8 @@ msgid "Administrator"
 msgstr ""
 
 #. Default: "Administrators"
-#: src/profiles/default/groups.json:6
 #: src/profiles/multilingualcontent/groups.json:6
+#: src/profiles/default/groups.json:6
 msgid "Administrators"
 msgstr ""
 
@@ -358,11 +363,11 @@ msgid "Debug"
 msgstr ""
 
 #. Default: "Default"
-#: src/profiles/core/behaviors/basic.json:10
-#: src/profiles/core/behaviors/preview_image_link.json:10
-#: src/profiles/core/behaviors/versioning.json:10
-#: src/profiles/core/types/file.json:13
 #: src/profiles/core/types/image.json:13
+#: src/profiles/core/types/file.json:13
+#: src/profiles/core/behaviors/versioning.json:10
+#: src/profiles/core/behaviors/preview_image_link.json:10
+#: src/profiles/core/behaviors/basic.json:10
 msgid "Default"
 msgstr ""
 
@@ -373,8 +378,8 @@ msgstr ""
 
 #. Default: "Description"
 #: src/models/type/type.js:140
-#: src/profiles/core/behaviors/basic.json:16
 #: src/profiles/core/catalog.json:227
+#: src/profiles/core/behaviors/basic.json:16
 msgid "Description"
 msgstr ""
 
@@ -384,8 +389,8 @@ msgid "Displayed content types"
 msgstr ""
 
 #. Default: "Document locked"
-#: src/routes/content/content.js:580
 #: src/routes/history/history.js:50
+#: src/routes/content/content.js:581
 msgid "Document locked"
 msgstr ""
 
@@ -499,8 +504,8 @@ msgid "From and message are required fields."
 msgstr ""
 
 #. Default: "Gives the ability to rename an item from its edit form."
-#: src/profiles/core/behaviors/preview_image_link.json:4
 #: src/profiles/core/behaviors/short_name.json:4
+#: src/profiles/core/behaviors/preview_image_link.json:4
 msgid "Gives the ability to rename an item from its edit form."
 msgstr ""
 
@@ -584,8 +589,8 @@ msgid "Items of this type can act as a folder containing other  items. What cont
 msgstr ""
 
 #. Default: "Language"
-#: src/profiles/core/behaviors/categorization.json:22
 #: src/profiles/core/controlpanels/language.json:3
+#: src/profiles/core/behaviors/categorization.json:22
 msgid "Language"
 msgstr ""
 
@@ -729,12 +734,12 @@ msgid "Not allowed"
 msgstr ""
 
 #. Default: "Not found."
-#: src/routes/controlpanels/controlpanels.js:69
-#: src/routes/email/email.js:57
-#: src/routes/groups/groups.js:27
-#: src/routes/types/types.js:34
-#: src/routes/users/users.js:112
 #: src/routes/vocabularies/vocabularies.js:52
+#: src/routes/users/users.js:112
+#: src/routes/types/types.js:34
+#: src/routes/groups/groups.js:27
+#: src/routes/email/email.js:57
+#: src/routes/controlpanels/controlpanels.js:69
 msgid "Not found."
 msgstr ""
 
@@ -848,6 +853,11 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
+#. Default: "Prompt is a required field."
+#: src/routes/generate/generate.js:23
+msgid "Prompt is a required field."
+msgstr ""
+
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
 msgid "Publish"
@@ -874,8 +884,8 @@ msgid "Reader"
 msgstr ""
 
 #. Default: "Register"
-#: src/profiles/core/actions.json:103
 #: src/profiles/core/permissions.json:38
+#: src/profiles/core/actions.json:103
 msgid "Register"
 msgstr ""
 
@@ -910,7 +920,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:417
+#: src/routes/content/content.js:418
 msgid "Required field(s) missing."
 msgstr ""
 
@@ -980,8 +990,8 @@ msgid "Send back"
 msgstr ""
 
 #. Default: "Settings"
-#: src/profiles/core/behaviors/exclude_from_nav.json:10
 #: src/profiles/core/behaviors/short_name.json:10
+#: src/profiles/core/behaviors/exclude_from_nav.json:10
 msgid "Settings"
 msgstr ""
 
@@ -1011,8 +1021,8 @@ msgid "Simple workflow that is useful for basic web sites. Things start out as p
 msgstr ""
 
 #. Default: "Site"
-#: src/profiles/core/controlpanels/site.json:3
 #: src/profiles/core/types/site.json:3
+#: src/profiles/core/controlpanels/site.json:3
 msgid "Site"
 msgstr ""
 
@@ -1277,8 +1287,8 @@ msgid "Tip: you can use * to autocomplete."
 msgstr ""
 
 #. Default: "Title"
-#: src/profiles/core/behaviors/basic.json:22
 #: src/profiles/core/catalog.json:265
+#: src/profiles/core/behaviors/basic.json:22
 msgid "Title"
 msgstr ""
 
@@ -1298,8 +1308,8 @@ msgid "Today"
 msgstr ""
 
 #. Default: "Transaction error."
-#: src/app.js:57
 #: src/client.js:63
+#: src/app.js:57
 msgid "Transaction error."
 msgstr ""
 
@@ -1349,8 +1359,8 @@ msgid "Versioning support"
 msgstr ""
 
 #. Default: "View"
-#: src/profiles/core/actions.json:7
 #: src/profiles/core/permissions.json:6
+#: src/profiles/core/actions.json:7
 msgid "View"
 msgstr ""
 
@@ -1402,8 +1412,8 @@ msgid "Yes"
 msgstr ""
 
 #. Default: "You are not authorization to access this resource."
-#: src/helpers/handler/handler.js:82
 #: src/routes/workflow/workflow.js:33
+#: src/helpers/handler/handler.js:82
 msgid "You are not authorization to access this resource."
 msgstr ""
 
@@ -1418,8 +1428,8 @@ msgid "You can't delete system users."
 msgstr ""
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
-#: src/routes/content/content.js:577
 #: src/routes/history/history.js:47
+#: src/routes/content/content.js:578
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr ""
 

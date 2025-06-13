@@ -46,6 +46,7 @@ import {
   lockExpired,
   mapSync,
   uniqueId,
+  embed,
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 import behaviors from '../../behaviors';
@@ -985,6 +986,9 @@ export class Document extends Model {
             fields[name].value = isPromise(value) ? await value : value;
           } else {
             fields[name].value = this[index.attr];
+          }
+          if (index.type === 'embed') {
+            fields[name].value = await embed(fields[name].value);
           }
         } else if (index.attr in this._type._schema.properties) {
           fields[name] = {

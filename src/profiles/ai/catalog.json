@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "name": "embedding",
+      "type": "embed",
+      "attr": "searchableText",
+      "enabled": false
+    }
+  ],
+  "metadata": [
+    {
+      "name": "SearchableText",
+      "type": "text",
+      "attr": "searchableText",
+      "enabled": false
+    }
+  ]
+}

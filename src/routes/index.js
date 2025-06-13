@@ -12,6 +12,7 @@ import controlpanels from './controlpanels/controlpanels';
 import database from './database/database';
 import email from './email/email';
 import form from './form/form';
+import generate from './generate/generate';
 import groups from './groups/groups';
 import history from './history/history';
 import inherit from './inherit/inherit';
@@ -40,6 +41,7 @@ export default [
   ...database,
   ...email,
   ...form,
+  ...generate,
   ...groups,
   ...history,
   ...inherit,

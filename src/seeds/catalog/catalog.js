@@ -1,6 +1,8 @@
 import { fileExists, mapAsync, stripI18n } from '../../helpers';
 import { Index } from '../../models';
 
+const { config } = require(`${process.cwd()}/config`);
+
 export const seedCatalog = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/catalog`)) {
     const profile = stripI18n(require(`${profilePath}/catalog`));
@@ -51,6 +53,12 @@ export const seedCatalog = async (trx, profilePath) => {
             break;
           case 'uuid[]':
             table.specificType(field, 'uuid[]').index();
+            break;
+          case 'embed':
+            table.specificType(
+              field,
+              `vector(${config.ai.models.embed.dimensions})`,
+            );
             break;
           case 'text':
             table.specificType(field, 'tsvector').index(null, 'GIN');

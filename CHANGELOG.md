@@ -49,6 +49,8 @@
 - Add @export documentation and tests @robgietema
 - Add SearchableText metadata to the catalog @robgietema
 - Add support for disabled metadata catalog entries @robgietema
+- Add support for AI models @robgietema
+- Add @generate endpoint @robgietema
 
 ### Bugfix
 
