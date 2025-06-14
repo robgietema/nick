@@ -27,7 +27,7 @@ export class ActionCollection extends Collection<ActionModel> {
    * @returns {Promise<Json>} JSON object grouped by category.
    */
   async toJSON(req: Request): Promise<Json> {
-    return _(await super.toJSON(req) as any)
+    return _((await super.toJSON(req)) as any)
       .filter((model) => includes(req.permissions, model?.permission))
       .groupBy('category')
       .mapValues((category) =>

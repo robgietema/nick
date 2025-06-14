@@ -32,6 +32,7 @@ msgid "A related item from which this item is derived."
 msgstr "Een gerelateerd item waarvan deze is afgeleid."
 
 #. Default: "AI is disabled."
+#: src/routes/related/related.js:17
 #: src/routes/generate/generate.js:30
 msgid "AI is disabled."
 msgstr ""
@@ -393,7 +394,7 @@ msgstr "Getoonde content types"
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:581
+#: src/routes/content/content.js:589
 msgid "Document locked"
 msgstr "Document vergrendeld"
 
@@ -923,7 +924,7 @@ msgid "Rename"
 msgstr "Hernoemen"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:418
+#: src/routes/content/content.js:426
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
 
@@ -1430,7 +1431,7 @@ msgstr "U kunt geen systeem gebruikers verwijderen."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:47
-#: src/routes/content/content.js:578
+#: src/routes/content/content.js:586
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
 

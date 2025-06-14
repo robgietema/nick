@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-06-13T18:35:27.244Z\n"
+"POT-Creation-Date: 2025-06-14T08:32:47.753Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,7 @@ msgid "A related item from which this item is derived."
 msgstr ""
 
 #. Default: "AI is disabled."
+#: src/routes/related/related.js:17
 #: src/routes/generate/generate.js:30
 msgid "AI is disabled."
 msgstr ""
@@ -390,7 +391,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:581
+#: src/routes/content/content.js:589
 msgid "Document locked"
 msgstr ""
 
@@ -920,7 +921,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:418
+#: src/routes/content/content.js:426
 msgid "Required field(s) missing."
 msgstr ""
 
@@ -1429,7 +1430,7 @@ msgstr ""
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:47
-#: src/routes/content/content.js:578
+#: src/routes/content/content.js:586
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr ""
 

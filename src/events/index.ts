@@ -8,7 +8,11 @@ import { isArray, mapKeys } from 'lodash';
 import { Knex } from 'knex';
 import { mapAsync } from '../helpers/utils/utils';
 
-type EventHandler = (context: any, trx: Knex.Transaction, ...params: any[]) => Promise<void>;
+type EventHandler = (
+  context: any,
+  trx: Knex.Transaction,
+  ...params: any[]
+) => Promise<void>;
 
 interface EventPlugin {
   [eventName: string]: EventHandler;
@@ -16,7 +20,12 @@ interface EventPlugin {
 
 interface Events {
   register: (plugin: EventPlugin, position?: number | 'bottom') => void;
-  trigger: (event: string, context: any, trx: Knex.Transaction, ...params: any[]) => Promise<void>;
+  trigger: (
+    event: string,
+    context: any,
+    trx: Knex.Transaction,
+    ...params: any[]
+  ) => Promise<void>;
   events: {
     [eventName: string]: EventHandler[];
   };
@@ -35,7 +44,12 @@ const events: Events = {
     });
   },
 
-  trigger: async (event: string, context: any, trx: Knex.Transaction, ...params: any[]): Promise<void> => {
+  trigger: async (
+    event: string,
+    context: any,
+    trx: Knex.Transaction,
+    ...params: any[]
+  ): Promise<void> => {
     if (!events.events[event]) return;
     await mapAsync(
       events.events[event],

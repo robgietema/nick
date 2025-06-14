@@ -12,7 +12,7 @@ export interface Model {
 }
 
 export interface Request extends express.Request {
- permissions: string[];
+  permissions: string[];
   apiPath: string;
   document: {
     path: string;

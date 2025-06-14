@@ -31,7 +31,7 @@ export class BehaviorCollection extends Collection<BehaviorModel> {
         this.map(async (model) => ({
           name: model.id,
           data: await model.fetchSchema(trx),
-        }))
+        })),
       )),
     );
   }

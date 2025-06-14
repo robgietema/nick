@@ -13,7 +13,9 @@ import { Fieldset, Property, Schema, Request } from '../../types';
  * @param {Array} schemas Array of schemas
  * @returns {Schema} Merged schemas.
  */
-export function mergeSchemas(...schemas: {name: string, data:Schema}[]): Schema {
+export function mergeSchemas(
+  ...schemas: { name: string; data: Schema }[]
+): Schema {
   const fieldsets: Fieldset[] = [];
   let properties: { [key: string]: Property } = {};
   let required: string[] = [];
@@ -42,10 +44,10 @@ export function mergeSchemas(...schemas: {name: string, data:Schema}[]): Schema 
     });
     properties = {
       ...properties,
-      ...(mapValues(schema.data.properties, (property) => ({
+      ...mapValues(schema.data.properties, (property) => ({
         behavior: schema.name,
         ...property,
-      }))),
+      })),
     };
     if (schema.data.required) {
       required = concat(required, schema.data.required);

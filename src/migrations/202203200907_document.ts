@@ -63,49 +63,55 @@ export const up = async (knex: Knex): Promise<void> => {
     table.primary(['document', 'version']);
   });
 
-  await knex.schema.createTable('user_role_document', (table: Knex.TableBuilder) => {
-    table
-      .string('user')
-      .notNullable()
-      .references('user.id')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    table
-      .string('role')
-      .notNullable()
-      .references('role.id')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    table
-      .uuid('document')
-      .notNullable()
-      .references('document.uuid')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    table.primary(['user', 'role', 'document']);
-  });
+  await knex.schema.createTable(
+    'user_role_document',
+    (table: Knex.TableBuilder) => {
+      table
+        .string('user')
+        .notNullable()
+        .references('user.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .string('role')
+        .notNullable()
+        .references('role.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .uuid('document')
+        .notNullable()
+        .references('document.uuid')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table.primary(['user', 'role', 'document']);
+    },
+  );
 
-  await knex.schema.createTable('group_role_document', (table: Knex.TableBuilder) => {
-    table
-      .string('group')
-      .notNullable()
-      .references('group.id')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    table
-      .string('role')
-      .notNullable()
-      .references('role.id')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    table
-      .uuid('document')
-      .notNullable()
-      .references('document.uuid')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    table.primary(['group', 'role', 'document']);
-  });
+  await knex.schema.createTable(
+    'group_role_document',
+    (table: Knex.TableBuilder) => {
+      table
+        .string('group')
+        .notNullable()
+        .references('group.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .string('role')
+        .notNullable()
+        .references('role.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .uuid('document')
+        .notNullable()
+        .references('document.uuid')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table.primary(['group', 'role', 'document']);
+    },
+  );
 };
 
 export const down = async (knex: Knex): Promise<void> => {
