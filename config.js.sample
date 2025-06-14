@@ -40,4 +40,19 @@ export const config = {
     `${__dirname}/src/profiles/default`,
   ],
   events,
+  ai: {
+    enabled: false,
+    models: {
+      embed: {
+        name: 'nomic-embed-text',
+        api: 'http://localhost:11434/api/embed',
+        dimensions: 768,
+      },
+      generate: {
+        name: 'llama3.2',
+        api: 'http://localhost:11434/api/generate',
+        contextSize: 10,
+      },
+    },
+  },
 };
