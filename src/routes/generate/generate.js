@@ -25,7 +25,10 @@ export default [
       }
 
       // Check if ai enabled
-      if (!config.ai?.enabled) {
+      if (
+        !config.ai?.models?.embed?.enabled ||
+        !config.ai?.models?.llm?.enabled
+      ) {
         throw new RequestException(400, {
           message: req.i18n('AI is disabled.'),
         });
@@ -37,7 +40,7 @@ export default [
       // Fetch catalog items with closest embeddings
       const result = await Catalog.fetchClosestEmbeddingRestricted(
         embedding,
-        config.ai.models.generate.contextSize,
+        config.ai.models.llm.contextSize,
         trx,
         req,
       );

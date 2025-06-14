@@ -10,11 +10,12 @@ Some endpoints require an AI model to function, if this is the case it is specif
 
 ## Install local AI models
 
-To run the models locally you start by install [Ollama](https://ollama.com). When Ollama is installed you need an Embedding Model and a Large Language Model. For this example we will use `nomic-embed-text` and `llama3.2` but you can use any model you want. To install the models use the following commands:
+To run the models locally you start by install [Ollama](https://ollama.com). When Ollama is installed you need an Embedding Model, a Large Language Model and a Vision Model. For this example we will use `nomic-embed-text`, `llama3.2` and `llava` but you can use any model you want. To install the models use the following commands:
 
 ```shell
 $ ollama pull nomic-embed-text
 $ ollama pull llama3.2
+$ ollama pull llava
 ```
 
 ## Install PostgreSQL extension
@@ -39,23 +40,29 @@ export const config = {
   ],
   ...
   ai: {
-    enabled: true,
     models: {
       embed: {
         name: 'nomic-embed-text',
         api: 'http://localhost:11434/api/embed',
         dimensions: 768,
-        minSimilarity: 0.75,
+        minSimilarity: 0.6,
+        enabled: true,
       },
-      generate: {
+      llm: {
         name: 'llama3.2',
         api: 'http://localhost:11434/api/generate',
         contextSize: 10,
+        enabled: true,
       },
+      vision: {
+        name: 'llava',
+        api: 'http://localhost:11434/api/generate',
+        enabled: true,
+      }
     },
   },
   ...
 };
 ```
 
-The `ai` profile adds 2 extra indexes. One is used to store the embedding of the content in a vector and the other is used to store the context which can be used when RAG is needed. When you choose another embedding model make sure the `dimensions` setting matches with your model. The `contextSize` parameters specifies how many documents are added to the context when using RAG.
+The `ai` profile adds 2 extra indexes. One is used to store the embedding of the content in a vector and the other is used to store the context which can be used when RAG is needed. When you choose another embedding model make sure the `dimensions` setting matches with your model. The `contextSize` parameters specifies how many documents are added to the context when using RAG. When the `vision` model is enabled all images will be scanned and text indexed so they can show up in search results.

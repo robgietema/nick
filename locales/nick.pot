@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-06-14T08:32:47.753Z\n"
+"POT-Creation-Date: 2025-06-14T18:36:01.357Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:17
-#: src/routes/generate/generate.js:30
+#: src/routes/generate/generate.js:33
 msgid "AI is disabled."
 msgstr ""
 

@@ -33,7 +33,7 @@ msgstr "Een gerelateerd item waarvan deze is afgeleid."
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:17
-#: src/routes/generate/generate.js:30
+#: src/routes/generate/generate.js:33
 msgid "AI is disabled."
 msgstr ""
 

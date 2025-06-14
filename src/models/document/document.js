@@ -700,13 +700,26 @@ export class Document extends Model {
    * @method searchableText
    * @return {string} Searchable text
    */
-  searchableText() {
+  async searchableText() {
+    // Add title and description
     let chunks = compact([this.json.title, this.json.description]);
+
+    // Add all text blocks
     map(values(this.json.blocks), (block) => {
       if (block['@type'] === 'slate' && block.plaintext) {
         chunks.push(block.plaintext);
       }
     });
+
+    // Add vision data if enabled
+    if (config.ai?.models?.vision?.enabled) {
+      const imageFields = await this._type.getFactoryFields('Image');
+
+      map(imageFields, (field) => {
+        chunks.push(this.json[field].text);
+      });
+    }
+
     return chunks.join(' ');
   }
 

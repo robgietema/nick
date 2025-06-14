@@ -12,7 +12,7 @@ const { config } = require(`${process.cwd()}/config`);
 
 export const handler = async (req, trx) => {
   // Check if ai enabled
-  if (!config.ai?.enabled) {
+  if (!config.ai?.models?._embedding?.enabled) {
     throw new RequestException(400, {
       message: req.i18n('AI is disabled.'),
     });

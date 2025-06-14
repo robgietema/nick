@@ -13,7 +13,10 @@ import {
   readProfileFile,
   writeFile,
   writeImage,
+  vision,
 } from '../../helpers';
+
+const { config } = require(`${process.cwd()}/config`);
 
 interface Type {
   getFactoryFields(fieldType: string): Promise<string[]>;
@@ -132,6 +135,14 @@ export async function handleImages(
         fields[field].encoding,
       );
 
+      // Check if vision is enabled
+      let text = '';
+      if (config.ai?.models?.vision?.enabled) {
+        // Add vision data
+        const result = await vision(fields[field].data);
+        text = result.response || '';
+      }
+
       // Set data
       fields[field] = {
         'content-type': fields[field]['content-type'],
@@ -141,6 +152,7 @@ export async function handleImages(
         scales,
         filename: fields[field].filename,
         size,
+        text,
       };
     }
   });

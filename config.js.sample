@@ -41,19 +41,25 @@ export const config = {
   ],
   events,
   ai: {
-    enabled: false,
     models: {
       embed: {
         name: 'nomic-embed-text',
         api: 'http://localhost:11434/api/embed',
         dimensions: 768,
-        minSimilarity: 0.75,
+        minSimilarity: 0.6,
+        enabled: false,
       },
-      generate: {
+      llm: {
         name: 'llama3.2',
         api: 'http://localhost:11434/api/generate',
         contextSize: 10,
+        enabled: false,
       },
+      vision: {
+        name: 'llava',
+        api: 'http://localhost:11434/api/generate',
+        enabled: false,
+      }
     },
   },
 };

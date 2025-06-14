@@ -30,7 +30,7 @@ export class Catalog extends Model {
       (index) => index.metadata === true && index.enabled !== false,
     );
 
-    if (config.ai.enabled && isNumber(this.similarity)) {
+    if (config.ai?.models?.embed?.enabled && isNumber(this.similarity)) {
       metadata.push({
         name: 'similarity',
       });

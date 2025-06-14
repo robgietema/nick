@@ -187,7 +187,7 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
       // Check if key in indexes
       if (indexes[key]) {
         // Check if key is SearchableText and AI is enabled
-        if (key === 'SearchableText' && config.ai.enabled) {
+        if (key === 'SearchableText' && config.ai?.models?.embed?.enabled) {
           // Get embedding vector
           const embedding = await embed(value.replace(/\*/, ''), trx);
 
