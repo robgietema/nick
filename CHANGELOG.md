@@ -53,6 +53,7 @@
 - Add @generate endpoint @robgietema
 - Add @related endpoint @robgietema
 - Add similarity property to @related endpoint @robgietema
+- Fetch indexes from db instead of profiles @robgietema
 
 ### Bugfix
 

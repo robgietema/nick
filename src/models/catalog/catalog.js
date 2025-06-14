@@ -25,15 +25,11 @@ export class Catalog extends Model {
    * @returns {Object} JSON object.
    */
   toJSON(req) {
-    let metadata = [];
+    const metadata = filter(
+      req.indexes.models,
+      (index) => index.metadata === true && index.enabled !== false,
+    );
 
-    map(config.profiles, (profilePath) => {
-      if (fileExists(`${profilePath}/catalog`)) {
-        const profile = stripI18n(require(`${profilePath}/catalog`));
-        metadata = [...metadata, ...profile.metadata];
-      }
-    });
-    metadata = filter(metadata, (index) => index.enabled !== false);
     if (config.ai.enabled && isNumber(this.similarity)) {
       metadata.push({
         name: 'similarity',

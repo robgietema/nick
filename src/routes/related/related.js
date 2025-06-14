@@ -6,7 +6,7 @@
 import { filter } from 'lodash';
 
 import { getUrl } from '../../helpers';
-import { Catalog } from '../../models/catalog/catalog';
+import { Catalog, Index } from '../../models';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -31,6 +31,11 @@ export const handler = async (req, trx) => {
 
   // Get base url
   const baseUrl = getUrl(req);
+
+  // Fetch indexes
+  if (!req.indexes) {
+    req.indexes = await Index.fetchAll({}, {}, trx);
+  }
 
   return {
     json: {

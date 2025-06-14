@@ -4,6 +4,7 @@
  */
 
 import { getUrl } from '../../helpers';
+import { Index } from '../../models';
 
 export const handler = async (req, trx) => {
   await req.document.fetchRelated('_catalog', trx);
@@ -17,6 +18,11 @@ export const handler = async (req, trx) => {
 
   // Get base url
   const baseUrl = getUrl(req);
+
+  // Fetch indexes
+  if (!req.indexes) {
+    req.indexes = await Index.fetchAll({}, {}, trx);
+  }
 
   return {
     json: {

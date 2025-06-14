@@ -242,6 +242,13 @@ export default [
         trx,
         req,
       );
+
+      // Fetch indexes
+      if (!req.indexes) {
+        req.indexes = await Index.fetchAll({}, {}, trx);
+      }
+
+      // Return JSON response
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
@@ -262,6 +269,13 @@ export default [
         trx,
         req,
       );
+
+      // Fetch indexes
+      if (!req.indexes) {
+        req.indexes = await Index.fetchAll({}, {}, trx);
+      }
+
+      // Return JSON response
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,

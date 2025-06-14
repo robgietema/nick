@@ -3,7 +3,7 @@
  * @module routes/navigation/navigation
  */
 
-import { Catalog, Controlpanel, Document } from '../../models';
+import { Catalog, Controlpanel, Index } from '../../models';
 import { getUrl } from '../../helpers';
 import { compact, includes, map, split } from 'lodash';
 
@@ -24,6 +24,11 @@ export const handler = async (req, trx) => {
 
   // Omit by type
   items.omitBy((item) => !includes(settings.displayed_types, item.Type));
+
+  // Fetch indexes
+  if (!req.indexes) {
+    req.indexes = await Index.fetchAll({}, {}, trx);
+  }
 
   // Return navigation
   return {
