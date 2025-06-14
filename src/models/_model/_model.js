@@ -50,10 +50,11 @@ export class Model extends mixin(ObjectionModel, [
     /**
      * Add where
      * Possible options are:
-     * { id: 0 }                              // Search by field
-     * { "json->>'title'": 'News'}            // Search in json field
-     * { title: ['like', 'News'] }            // Override operator
-     * { roles: ['=', ['Reader', 'Editor']] } // Search by values
+     * { id: 0 }                                // Search by field
+     * { "json->>'title'": 'News'}              // Search in json field
+     * { title: ['like', 'News'] }              // Override operator
+     * { title: ['raw', 'similarity > 0.75'] }  // Use raw SQL
+     * { roles: ['=', ['Reader', 'Editor']] }   // Search by values
      */
     if (where) {
       mapKeys(where, (value, key) => {
@@ -75,6 +76,8 @@ export class Model extends mixin(ObjectionModel, [
             operator === 'is not'
               ? query.whereNotNull(key)
               : query.whereNull(key);
+        } else if (operator === 'raw') {
+          query = query.whereRaw(values);
         } else {
           query = query.whereRaw(`${attribute} ${operator} ${valueWrapper}`, [
             values,

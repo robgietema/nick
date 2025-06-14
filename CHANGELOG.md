@@ -54,6 +54,7 @@
 - Add @related endpoint @robgietema
 - Add similarity property to @related endpoint @robgietema
 - Fetch indexes from db instead of profiles @robgietema
+- Add search based on embedding model @robgietema
 
 ### Bugfix
 

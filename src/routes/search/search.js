@@ -7,8 +7,10 @@ import moment from 'moment';
 import { normalize } from 'path';
 import { endsWith, includes, keys, map, mapKeys, repeat } from 'lodash';
 
-import { getUrl } from '../../helpers';
+import { embed, getUrl } from '../../helpers';
 import { Catalog, Index } from '../../models';
+
+const { config } = require(`${process.cwd()}/config`);
 
 /**
  * Convert querystring to query.
@@ -167,7 +169,7 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
     _path: ['~', `^${path}`],
   };
 
-  // Default options
+  // Default option
   const options = {
     offset: 0,
     limit: 100,
@@ -178,55 +180,77 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
   };
 
   // Loop through query params
-  mapKeys(queryparam, (value, key) => {
-    switch (key) {
-      case 'sort_on':
-        if (includes(keys(indexes), value)) {
-          options.order.column = `_${value}`;
-        }
-        break;
-      case 'sort_order':
-        options.order.reverse = value !== 'ascending';
-        break;
-      case 'path.depth':
-        where['_path'] = [
-          '~',
-          `^${root}[^/]+${repeat('(/[^/]+)?', value - 1)}$`,
-        ];
-        break;
-      case 'b_size':
-        options.limit = value;
-        break;
-      case 'b_start':
-        options.offset = value;
-        break;
-      default:
-        break;
-    }
+  await Promise.all(
+    map(keys(queryparam), async (key) => {
+      const value = queryparam[key];
 
-    // Check if key in indexes
-    if (indexes[key]) {
-      const field = `_${key}`;
-      switch (indexes[key].type) {
-        case 'string':
-        case 'integer':
-        case 'path':
-        case 'uuid':
-        case 'boolean':
-        case 'date':
-          where[field] = value;
+      // Check if key in indexes
+      if (indexes[key]) {
+        // Check if key is SearchableText and AI is enabled
+        if (key === 'SearchableText' && config.ai.enabled) {
+          // Get embedding vector
+          const embedding = await embed(value.replace(/\*/, ''), trx);
+
+          where['_embedding'] = [
+            'raw',
+            `1 - (_embedding <=> '${embedding}') > ${config.ai.models.embed.minSimilarity}`,
+          ];
+          options.select = [
+            '*',
+            trx.raw(`1 - (_embedding <=> '${embedding}') AS similarity`),
+          ];
+          options.order.column = 'similarity';
+          options.order.reverse = true;
+        } else {
+          const field = `_${key}`;
+          switch (indexes[key].type) {
+            case 'string':
+            case 'integer':
+            case 'path':
+            case 'uuid':
+            case 'boolean':
+            case 'date':
+              where[field] = value;
+              break;
+            case 'string[]':
+            case 'uuid[]':
+              break;
+            case 'text':
+              where[field] = ['@@', value.replace(/\*/g, '')];
+              break;
+            default:
+              break;
+          }
+        }
+      }
+
+      // Check other query params
+      switch (key) {
+        case 'sort_on':
+          if (includes(keys(indexes), value)) {
+            options.order.column = `_${value}`;
+          }
           break;
-        case 'string[]':
-        case 'uuid[]':
+        case 'sort_order':
+          options.order.reverse = value !== 'ascending';
           break;
-        case 'text':
-          where[field] = ['@@', value.replace(/\*/g, '')];
+        case 'path.depth':
+          where['_path'] = [
+            '~',
+            `^${root}[^/]+${repeat('(/[^/]+)?', value - 1)}$`,
+          ];
+          break;
+        case 'b_size':
+          options.limit = value;
+          break;
+        case 'b_start':
+          options.offset = value;
           break;
         default:
           break;
       }
-    }
-  });
+    }),
+  );
   return [where, options];
 };
 

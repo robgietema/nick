@@ -47,6 +47,7 @@ export const config = {
         name: 'nomic-embed-text',
         api: 'http://localhost:11434/api/embed',
         dimensions: 768,
+        minSimilarity: 0.75,
       },
       generate: {
         name: 'llama3.2',

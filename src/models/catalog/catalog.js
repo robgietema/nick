@@ -5,7 +5,7 @@
 
 import { concat, filter, isNumber, map, pick, uniq } from 'lodash';
 
-import { fileExists, getRootUrl, stripI18n } from '../../helpers';
+import { getRootUrl } from '../../helpers';
 import { Model } from '../../models';
 
 const { config } = require(`${process.cwd()}/config`);
