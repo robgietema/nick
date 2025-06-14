@@ -37,7 +37,8 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:30:00.000Z",
       "image_field": "",
       "image_scales": {},
-      "hasPreviewImage": false
+      "hasPreviewImage": false,
+      "similarity": 0.6123342903959068
     },
     {
       "@id": "http://localhost:8080/events/event-1",
@@ -74,7 +75,8 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:10:00.000Z",
       "image_field": "",
       "image_scales": {},
-      "hasPreviewImage": false
+      "hasPreviewImage": false,
+      "similarity": 0.4926838666935264
     },
     {
       "@id": "http://localhost:8080/users",
@@ -109,7 +111,8 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:24:00.000Z",
       "image_field": "",
       "image_scales": {},
-      "hasPreviewImage": false
+      "hasPreviewImage": false,
+      "similarity": 0.42598878067772117
     },
     {
       "@id": "http://localhost:8080/",
@@ -144,7 +147,8 @@ Content-Type: application/json
       "ModificationDate": "2022-04-02T20:00:00.000Z",
       "image_field": "",
       "image_scales": {},
-      "hasPreviewImage": false
+      "hasPreviewImage": false,
+      "similarity": 0.41005329819281644
     }
   ]
 }

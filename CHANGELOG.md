@@ -52,6 +52,7 @@
 - Add support for AI models @robgietema
 - Add @generate endpoint @robgietema
 - Add @related endpoint @robgietema
+- Add similarity property to @related endpoint @robgietema
 
 ### Bugfix
 

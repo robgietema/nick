@@ -3,7 +3,7 @@
  * @module models/catalog/catalog
  */
 
-import { concat, filter, map, pick, uniq } from 'lodash';
+import { concat, filter, isNumber, map, pick, uniq } from 'lodash';
 
 import { fileExists, getRootUrl, stripI18n } from '../../helpers';
 import { Model } from '../../models';
@@ -34,6 +34,11 @@ export class Catalog extends Model {
       }
     });
     metadata = filter(metadata, (index) => index.enabled !== false);
+    if (config.ai.enabled && isNumber(this.similarity)) {
+      metadata.push({
+        name: 'similarity',
+      });
+    }
 
     return {
       '@id': `${getRootUrl(req)}${this.path}`,
