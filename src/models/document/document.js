@@ -44,9 +44,11 @@ import {
   isPromise,
   getRootUrl,
   lockExpired,
+  mapAsync,
   mapSync,
   uniqueId,
   embed,
+  generate,
 } from '../../helpers';
 import { DocumentCollection } from '../../collections';
 import behaviors from '../../behaviors';
@@ -696,13 +698,43 @@ export class Document extends Model {
   }
 
   /**
-   * Searchable text
-   * @method searchableText
-   * @return {string} Searchable text
+   * Get summary
+   * @method getSummary
+   * @return {string} Summary text
    */
-  async searchableText() {
-    // Add title and description
-    let chunks = compact([this.json.title, this.json.description]);
+  async getSummary() {
+    // If no AI model enabled, return empty string
+    if (!config.ai?.models?.llm?.enabled) {
+      return '';
+    }
+
+    // Get searchable text
+    const bodytext = await this.getBodytext();
+
+    if (bodytext.length < 255) {
+      return bodytext;
+    }
+
+    // Generate summary using AI model
+    const result = await generate(
+      'Give a one paragraph summary in plain text of the context.',
+      bodytext,
+    );
+    return result.response;
+  }
+
+  /**
+   * Get bodytext
+   * @method getBodytext
+   * @return {string} Body text
+   */
+  async getBodytext() {
+    // Cache result
+    if (this._cache?.bodytext) {
+      return this._cache.bodytext;
+    }
+
+    let chunks = [];
 
     // Add all text blocks
     map(values(this.json.blocks), (block) => {
@@ -720,7 +752,27 @@ export class Document extends Model {
       });
     }
 
-    return chunks.join(' ');
+    // Cache searchable text
+    if (!this._cache) {
+      this._cache = {};
+    }
+    this._cache.bodytext = chunks.join(' ');
+
+    return this._cache.bodytext;
+  }
+
+  /**
+   * Searchable text
+   * @method searchableText
+   * @return {string} Searchable text
+   */
+  async searchableText() {
+    // Return text from title, description and bodytext
+    return compact([
+      this.json.title,
+      this.json.description,
+      await this.getBodytext(),
+    ]).join(' ');
   }
 
   /**
@@ -891,8 +943,8 @@ export class Document extends Model {
   }
 
   /**
-   * Re index children
-   * @method reindexChildren
+   * Fetch local users and groups.
+   * @method fetchLocalUsersGroups
    * @param {Array} viewRoles List of roles with the view permission.
    * @param {Object} trx Transaction object.
    * @return {Array} List of allowed users and groups.
@@ -987,34 +1039,34 @@ export class Document extends Model {
       await this._type.fetchRelated('_workflow', trx);
     }
 
+    // Fetch indexes
     const indexes = await Index.fetchAll({}, {}, trx);
-    await Promise.all(
-      // Loop indexes
-      indexes.map(async (index) => {
-        const name = index.metadata ? index.name : `_${index.name}`;
-        if (index.attr in this) {
-          fields[name] = { type: index.type, metadata: index.metadata };
-          if (isFunction(this[index.attr])) {
-            const value = this[index.attr](trx);
-            fields[name].value = isPromise(value) ? await value : value;
-          } else {
-            fields[name].value = this[index.attr];
-          }
-          if (index.type === 'embed') {
-            fields[name].value = await embed(fields[name].value);
-          }
-        } else if (index.attr in this._type._schema.properties) {
-          fields[name] = {
-            type: index.type,
-            metadata: index.metadata,
-            value:
-              index.type === 'boolean'
-                ? !!this.json[index.attr]
-                : this.json[index.attr],
-          };
+
+    // Loop indexes
+    await mapAsync(indexes.models, async (index) => {
+      const name = index.metadata ? index.name : `_${index.name}`;
+      if (index.attr in this) {
+        fields[name] = { type: index.type, metadata: index.metadata };
+        if (isFunction(this[index.attr])) {
+          const value = this[index.attr](trx);
+          fields[name].value = isPromise(value) ? await value : value;
+        } else {
+          fields[name].value = this[index.attr];
         }
-      }),
-    );
+        if (index.type === 'embed') {
+          fields[name].value = await embed(fields[name].value);
+        }
+      } else if (index.attr in this._type._schema.properties) {
+        fields[name] = {
+          type: index.type,
+          metadata: index.metadata,
+          value:
+            index.type === 'boolean'
+              ? !!this.json[index.attr]
+              : this.json[index.attr],
+        };
+      }
+    });
 
     // Get knex
     const knex = Document.knex();

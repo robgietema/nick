@@ -56,6 +56,7 @@
 - Fetch indexes from db instead of profiles @robgietema
 - Add search based on embedding model @robgietema
 - Add image recognition and indexing using a vision model @robgietema
+- Add summary metadata index using an LLM to create a summary @robgietema
 
 ### Bugfix
 

@@ -13,6 +13,12 @@
       "type": "text",
       "attr": "searchableText",
       "enabled": false
+    },
+    {
+      "name": "summary",
+      "type": "text",
+      "attr": "getSummary",
+      "enabled": true
     }
   ]
 }
