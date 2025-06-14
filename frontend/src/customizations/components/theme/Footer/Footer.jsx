@@ -72,7 +72,7 @@ const Footer = ({ intl }) => {
       <Container>
         <Segment inverted className="discreet">
           <FormattedMessage
-            id="Nick is copyright 2022 by Rob Gietema."
+            id="Nick is copyright 2022-2025 by Rob Gietema."
             defaultMessage="Nick is copyright 2022 by Rob Gietema."
           />{' '}
           <FormattedMessage

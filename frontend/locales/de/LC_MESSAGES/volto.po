@@ -1,4 +1,4 @@
-# Translation of volto.pot to German
+#. Translation of volto.pot to German
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
