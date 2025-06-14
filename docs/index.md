@@ -21,7 +21,9 @@ A live demo of Nick with the latest release is available at:
 
 Example `GET` request on the portal root
 
-    curl -i https://demo.nickcms.org -H "Accept: application/json"
+```shell
+curl -i https://demo.nickcms.org -H "Accept: application/json"
+```
 
 ## Contribute
 
