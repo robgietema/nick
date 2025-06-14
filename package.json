@@ -28,6 +28,8 @@
     "coverage": "jest --coverage",
     "convert": "node -r ts-node/register scripts/convert.js",
     "create-config": "cp -n config.js.sample config.js && cp -n frontend/src/config.js.sample frontend/src/config.js",
+    "docs": "cd docs && bundle exec jekyll serve --baseurl=\"\"",
+    "docs:install": "cd docs && bundler install",
     "i18n": "node -r ts-node/register scripts/i18n.js",
     "i18n:ci": "yarn i18n && git diff -G'^[^\"POT]' --exit-code",
     "knex": "node -r ts-node/register node_modules/.bin/knex",

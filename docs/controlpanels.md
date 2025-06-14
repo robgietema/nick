@@ -1,6 +1,7 @@
 ---
-nav_order: 18
-permalink: /controlpanels
+nav_order: 4
+permalink: /endpoints/controlpanels
+parent: Endpoints
 ---
 
 # Control panels
@@ -11,19 +12,19 @@ Control panels allow you to configure the global site setup. The `@controlpanels
 
 A list of all existing control panels in the portal can be retrieved by sending a `GET` request to the `@controlpanels` endpoint:
 
-```
+```http
 {% include_relative examples/controlpanels/list.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/list.ts %}
 ```
 
 Response:
 
-```
+```http
 {% include_relative examples/controlpanels/list.res %}
 ```
 
@@ -37,19 +38,19 @@ The following fields are returned:
 
 To retrieve a single control panel, send a `GET` request to the URL of the control panel:
 
-```
+```http
 {% include_relative examples/controlpanels/get.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/get.ts %}
 ```
 
 Response:
 
-```
+```http
 {% include_relative examples/controlpanels/get.res %}
 ```
 
@@ -65,26 +66,25 @@ The following fields are returned:
 
 To update the settings on a control panel, send a `PATCH` request to control panel resource:
 
-```
+```http
 {% include_relative examples/controlpanels/patch.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/patch.ts %}
 ```
 
 A successful response to a `PATCH` request will be indicated by a 204 No Content response:
 
-```
+```http
 {% include_relative examples/controlpanels/patch.res %}
 ```
 
 ## Control Panels not based on schemas
 
 Control panels which are not based on schemas have a custom `@controlpanels/:panel` endpoint implementation.
-
 
 ### Content Types
 
@@ -100,24 +100,23 @@ Reading or writing content types require the `Manage Site` permission.
 | `PATCH`  | `/@controlpanels/dexterity-types/{type-id}` | Update the content type details           |
 | `DELETE` | `/@controlpanels/dexterity-types/{type-id}` | Remove the content type                   |
 
-
 #### Listing Content Types
 
 To list the available content types, send a `GET` request to `@controlpanels/dexterity-types`
 
-```
+```http
 {% include_relative examples/controlpanels/get_types.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/get_types.ts %}
 ```
 
 Response:
 
-```
+```http
 {% include_relative examples/controlpanels/get_types.res %}
 ```
 
@@ -128,46 +127,44 @@ The following fields are returned:
 - `group`: group name of the control panel
 - `items`: list of configurable content types
 
-
 #### Creating a new type with `POST`
 
 To create a new content type, send a `POST` request to the `/@controlpanels/dexterity-types` endpoint:
 
-```
+```http
 {% include_relative examples/controlpanels/post_types.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/post_types.ts %}
 ```
 
 Response:
 
-```
+```http
 {% include_relative examples/controlpanels/post_types.res %}
 ```
-
 
 #### Reading a type with `GET`
 
 After a successful `POST`, access the content type by sending a `GET` request to the endpoint `/@controlpanels/dexterity-types/{type-id}`:
 
-```
+```http
 {% include_relative examples/controlpanels/get_type.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/get_type.ts %}
 ```
 
 Response:
 
-```
-{% include_relative examples/controlpanels/get_type.ts %}
+```http
+{% include_relative examples/controlpanels/get_type.res %}
 ```
 
 #### Updating a type with `PATCH`
@@ -175,39 +172,38 @@ Response:
 To update an existing content type, send a `PATCH` request to the server.
 `PATCH` allows to provide just a subset of the resource, that is, the values you actually want to change:
 
-```
+```http
 {% include_relative examples/controlpanels/patch_type.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/patch_type.ts %}
 ```
 
 Response:
 
-```
+```http
 {% include_relative examples/controlpanels/patch_type.res %}
 ```
-
 
 #### Removing a type with `DELETE`
 
 Delete an existing content type by sending a `DELETE` request to the URL of an existing content type:
 
-```
+```http
 {% include_relative examples/controlpanels/delete_type.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/controlpanels/delete_type.ts %}
 ```
 
 Response:
 
-```
+```http
 {% include_relative examples/controlpanels/delete_type.res %}
 ```

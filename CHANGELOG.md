@@ -102,6 +102,12 @@
 
 ### Documentation
 
+- Added documentation for AI support @robgietema
+- Rearranged documention into sections @robgietema
+- Use different documention theme @robgietema
+- Add expansion documentation @robgietema
+- Add multilingual documention @robgietema
+
 ## 2.8.0 (2022-07-17)
 
 ### Feature

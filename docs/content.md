@@ -1,6 +1,7 @@
 ---
 nav_order: 3
-permalink: /content
+permalink: /usage/content
+parent: Usage
 ---
 
 # Content Manipulation
@@ -20,13 +21,13 @@ Manipulating resources across the network by using HTTP as an application protoc
 
 To create a new resource, we send a `POST` request to the resource container. If we want to create a new document within an existing folder, we send a `POST` request to that folder:
 
-```
+```http
 {% include_relative examples/content/post.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/post.ts %}
 ```
 
@@ -40,7 +41,7 @@ The request body contains the minimal necessary information needed to create a d
 
 If a resource has been created, the server responds with the `201 Created` status code. The 'Location' header contains the URL of the newly created resource and the resource representation in the payload:
 
-```
+```http
 {% include_relative examples/content/post.res %}
 ```
 
@@ -48,7 +49,7 @@ If a resource has been created, the server responds with the `201 Created` statu
 
 If the resource could not be created, for instance because the title was missing in the request, the server responds with `400 Bad Request`:
 
-```
+```http
 {% include_relative examples/content/post_badrequest.res %}
 ```
 
@@ -58,13 +59,13 @@ The response body can contain information about why the request failed.
 
 After a successful POST, we can access the resource by sending a GET request to the resource URL:
 
-```
+```http
 {% include_relative examples/content/get.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/get.ts %}
 ```
 
@@ -72,7 +73,7 @@ Or use the client directly:
 
 If a resource has been retrieved successfully, the server responds with `200 OK`:
 
-```
+```http
 {% include_relative examples/content/get.res %}
 ```
 
@@ -82,7 +83,7 @@ For folderish types, their childrens are automatically included in the response 
 
 If a resource could not be found, the server will respond with `404 Not Found`:
 
-```
+```http
 {% include_relative examples/content/get_notfound.res %}
 ```
 
@@ -100,13 +101,13 @@ To update an existing resource we send a `PATCH` request to the server. `PATCH` 
 
 If you send the value `null` for a field, the field's content will be deleted. Note that this is not possible if the field is required.
 
-```
+```http
 {% include_relative examples/content/patch.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/patch.ts %}
 ```
 
@@ -114,7 +115,7 @@ Or use the client directly:
 
 A successful response to a PATCH request will be indicated by a `204 No Content` response by default:
 
-```
+```http
 {% include_relative examples/content/patch.res %}
 ```
 
@@ -122,19 +123,19 @@ A successful response to a PATCH request will be indicated by a `204 No Content`
 
 We can delete an existing resource by sending a DELETE request:
 
-```
+```http
 {% include_relative examples/content/delete.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/delete.ts %}
 ```
 
 A successful response will be indicated by a `204 No Content` response:
 
-```
+```http
 {% include_relative examples/content/delete.res %}
 ```
 
@@ -151,13 +152,13 @@ The resources contained within a resource can be reordered using the `ordering` 
 
 Use the `obj_id` subkey to specify which resource to reorder. The subkey `delta` can be 'top', 'bottom', or a negative or positive integer for moving up or down.
 
-```
+```http
 {% include_relative examples/content/patch_reorder.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/patch_reorder.ts %}
 ```
 
@@ -165,13 +166,13 @@ Or use the client directly:
 
 We can use the `@export` endpoint to export the content to a `json`-file to be used for migrations or external services. We can export the resource by sending a GET request to the resource URL:
 
-```
+```http
 {% include_relative examples/content/export.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/export.ts %}
 ```
 
@@ -179,6 +180,6 @@ Or use the client directly:
 
 If a resource has been retrieved successfully, the server responds with `200 OK`:
 
-```
+```http
 {% include_relative examples/content/export.res %}
 ```

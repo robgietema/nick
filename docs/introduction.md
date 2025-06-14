@@ -9,19 +9,19 @@ A hypermedia API provides an entry point to the API, which contains hyperlinks t
 
 The entry point to the RESTful API is the portal root. The client can ask for a REST API response by setting the `Accept` HTTP header to `application/json`:
 
-```
+```http
 {% include_relative examples/content/get_root.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/get_root.ts %}
 ```
 
 The server will then respond with the portal root in the JSON format:
 
-```
+```http
 {% include_relative examples/content/get_root.res %}
 ```
 
@@ -35,16 +35,16 @@ A client application can "follow" the links (by calling the `@id` property) to o
 
 Another example, this time showing a request and response for a folder.
 
-```
+```http
 {% include_relative examples/content/get.req %}
 ```
 
 Or use the client directly:
 
-```
+```ts
 {% include_relative examples/content/get.ts %}
 ```
 
-```
+```http
 {% include_relative examples/content/get.res %}
 ```

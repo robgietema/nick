@@ -1,3 +1,9 @@
-title: 'Nick: Nearly Headless CMS'
-
-remote_theme: carlosperate/jekyll-theme-rtd
+title: 'Nick'
+remote_theme: just-the-docs/just-the-docs
+color_scheme: 'dark'
+search_enabled: true
+aux_links:
+  'Nick: Nearly Headles CMS':
+    - 'https://nickcms.org'
+heading_anchors: true
+nav_enabled: true
