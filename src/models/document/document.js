@@ -752,6 +752,12 @@ export class Document extends Model {
       });
     }
 
+    // Add text from indexed files
+    const fileFields = await this._type.getFactoryFields('File');
+    map(fileFields, (field) => {
+      chunks.push(this.json[field].text);
+    });
+
     // Cache searchable text
     if (!this._cache) {
       this._cache = {};

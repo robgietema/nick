@@ -5,11 +5,11 @@
 
 import { isObject, isString, keys, last, map } from 'lodash';
 import mime from 'mime-types';
+import pdfParse from 'pdf-parse';
 import { Knex } from 'knex';
 
 import {
   mapAsync,
-  mapSync,
   readProfileFile,
   writeFile,
   writeImage,
@@ -60,7 +60,7 @@ export async function handleFiles(
   // Get file fields
   const fileFields = await type.getFactoryFields('File');
 
-  mapSync(fileFields, (field) => {
+  await mapAsync(fileFields, async (field) => {
     // Check if filename is specified
     if (isString(fields[field])) {
       fields[field] = {
@@ -81,12 +81,21 @@ export async function handleFiles(
         fields[field].encoding,
       );
 
+      // Check if pdf
+      let text = '';
+      if (fields[field]['content-type'] === 'application/pdf') {
+        const buffer = Buffer.from(fields[field].data, fields[field].encoding);
+        const result = await pdfParse(buffer);
+        text = result.text || '';
+      }
+
       // Set data
       fields[field] = {
         'content-type': fields[field]['content-type'],
         uuid,
         filename: fields[field].filename,
         size,
+        text,
       };
     }
   });
