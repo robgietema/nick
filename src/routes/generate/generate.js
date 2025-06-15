@@ -34,22 +34,28 @@ export default [
         });
       }
 
-      // Get embedding vector
-      const embedding = await embed(req.body.prompt);
+      let context = '';
 
-      // Fetch catalog items with closest embeddings
-      const result = await Catalog.fetchClosestEmbeddingRestricted(
-        embedding,
-        config.ai.models.llm.contextSize,
-        trx,
-        req,
-      );
+      if (req.body.context) {
+        context = req.body.context;
+      } else {
+        // Get embedding vector
+        const embedding = await embed(req.body.prompt);
 
-      // Generate context from the results
-      const context = join(
-        result.map((item) => item.SearchableText),
-        ' ',
-      );
+        // Fetch catalog items with closest embeddings
+        const result = await Catalog.fetchClosestEmbeddingRestricted(
+          embedding,
+          config.ai.models.llm.contextSize,
+          trx,
+          req,
+        );
+
+        // Generate context from the results
+        context = join(
+          result.map((item) => item.SearchableText),
+          ' ',
+        );
+      }
 
       return {
         json: await generate(req.body.prompt, context),
