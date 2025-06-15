@@ -168,7 +168,9 @@ const Assistant = (props) => {
 
     // If new response is loaded
     if (prevloading && loaded) {
-      newQueries[queries.length - 1].response = response.split('\n\n');
+      newQueries[queries.length - 1].response = response
+        .replaceAll('**', '')
+        .split('\n\n');
       setQueries(newQueries);
       scrollToLastQuery();
     }
