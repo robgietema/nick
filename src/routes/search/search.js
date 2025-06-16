@@ -43,6 +43,95 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
     },
   };
 
+  // Add query
+  await Promise.all(
+    map(querystring.query, async (query) => {
+      // Check if key is SearchableText and AI is enabled
+      if (query.i === 'SearchableText' && config.ai?.models?.embed?.enabled) {
+        // Get embedding vector
+        const embedding = await embed(query.v.replace(/\*/, ''), trx);
+
+        where['_embedding'] = [
+          'raw',
+          `1 - (_embedding <=> '${embedding}') > ${config.ai.models.embed.minSimilarity}`,
+        ];
+        options.select = [
+          '*',
+          trx.raw(`1 - (_embedding <=> '${embedding}') AS similarity`),
+        ];
+        options.order.column = 'similarity';
+        options.order.reverse = true;
+      } else {
+        switch (query.o) {
+          case 'selection.any':
+            where[query.i] = ['=', query.v];
+            break;
+          case 'selection.all':
+            where[query.i] = ['all', query.v];
+            break;
+          case 'date.today':
+            where[query.i] = [
+              '>=',
+              `${moment().format('MM-DD-YYYY')} 00:00:00`,
+            ];
+            where[query.i] = [
+              '<=',
+              `${moment().format('MM-DD-YYYY')} 23:59:59`,
+            ];
+            break;
+          case 'date.between':
+            where[query.i] = ['>', query.v[0]];
+            where[query.i] = ['<', query.v[1]];
+            break;
+          case 'date.lessThen':
+            where[query.i] = ['<', query.v];
+            break;
+          case 'date.afterToday':
+            where[query.i] = ['>', `${moment().format('MM-DD-YYYY')} 23:59:59`];
+            break;
+          case 'date.largerThan':
+            where[query.i] = ['>', query.v];
+            break;
+          case 'date.beforeToday':
+            where[query.i] = ['<', `${moment().format('MM-DD-YYYY')} 00:00:00`];
+            break;
+          case 'date.afterRelativeDate':
+            where[query.i] = ['>', query.v];
+            break;
+          case 'date.beforeRelativeDate':
+            where[query.i] = ['<', query.v];
+            break;
+          case 'date.lessThanRelativeDate':
+            where[query.i] = ['<', query.v];
+            break;
+          case 'date.largerThanRelativeDate':
+            where[query.i] = ['>', query.v];
+            break;
+          case 'string.is':
+            where[query.i] = query.v;
+            break;
+          case 'string.path':
+            where[query.i] = query.v;
+            break;
+          case 'string.absolutePath':
+            where[query.i] = query.v.replace(getUrlByPath(req, '/'), '/');
+            break;
+          case 'string.relativePath':
+            where[query.i] = ['~', normalize(`${root}${query.v}`)];
+            break;
+          case 'string.currentUser':
+            where[query.i] = req.user.id;
+            break;
+          case 'string.contains':
+            where[query.i] = ['like', `%${query.v}%`];
+            break;
+          default:
+            break;
+        }
+      }
+    }),
+  );
+
   // Check sort
   if (querystring.sort_on) {
     if (includes(keys(indexes), querystring.sort_on)) {
@@ -77,70 +166,6 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
   if (querystring.meta_fields === '_all') {
     // select column_name from information_schema.columns where table_name = 'catalog' and column_name ~ '^[^_]';
   }
-
-  // Add query
-  map(querystring.query, (query) => {
-    switch (query.o) {
-      case 'selection.any':
-        where[query.i] = ['=', query.v];
-        break;
-      case 'selection.all':
-        where[query.i] = ['all', query.v];
-        break;
-      case 'date.today':
-        where[query.i] = ['>=', `${moment().format('MM-DD-YYYY')} 00:00:00`];
-        where[query.i] = ['<=', `${moment().format('MM-DD-YYYY')} 23:59:59`];
-        break;
-      case 'date.between':
-        where[query.i] = ['>', query.v[0]];
-        where[query.i] = ['<', query.v[1]];
-        break;
-      case 'date.lessThen':
-        where[query.i] = ['<', query.v];
-        break;
-      case 'date.afterToday':
-        where[query.i] = ['>', `${moment().format('MM-DD-YYYY')} 23:59:59`];
-        break;
-      case 'date.largerThan':
-        where[query.i] = ['>', query.v];
-        break;
-      case 'date.beforeToday':
-        where[query.i] = ['<', `${moment().format('MM-DD-YYYY')} 00:00:00`];
-        break;
-      case 'date.afterRelativeDate':
-        where[query.i] = ['>', query.v];
-        break;
-      case 'date.beforeRelativeDate':
-        where[query.i] = ['<', query.v];
-        break;
-      case 'date.lessThanRelativeDate':
-        where[query.i] = ['<', query.v];
-        break;
-      case 'date.largerThanRelativeDate':
-        where[query.i] = ['>', query.v];
-        break;
-      case 'string.is':
-        where[query.i] = query.v;
-        break;
-      case 'string.path':
-        where[query.i] = query.v;
-        break;
-      case 'string.absolutePath':
-        where[query.i] = query.v.replace(getUrlByPath(req, '/'), '/');
-        break;
-      case 'string.relativePath':
-        where[query.i] = ['~', normalize(`${root}${query.v}`)];
-        break;
-      case 'string.currentUser':
-        where[query.i] = req.user.id;
-        break;
-      case 'string.contains':
-        where[query.i] = ['like', `%${query.v}%`];
-        break;
-      default:
-        break;
-    }
-  });
 
   return [where, options];
 };
