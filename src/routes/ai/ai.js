@@ -4,6 +4,7 @@
  */
 
 import { has, join, omit } from 'lodash';
+import pdfParse from 'pdf-parse';
 
 import { Catalog } from '../../models/catalog/catalog';
 import { chat, embed, generate } from '../../helpers';
@@ -53,12 +54,20 @@ export default [
         });
       }
 
+      let attachment = '';
+      if (has(req.body.params, 'Attachment')) {
+        const buffer = Buffer.from(req.body.params.Attachment, 'base64');
+        const result = await pdfParse(buffer);
+        attachment = result.text || '';
+      }
+
       return {
         json: await generate(req.body.prompt, req.body.context, {
-          ...omit(req.body.params, ['Site']),
+          ...omit(req.body.params, ['Site', 'Attachment']),
           ...(has(req.body.params, 'Site')
             ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
             : {}),
+          ...(attachment ? { Attachment: attachment } : {}),
         }),
       };
     },
@@ -86,12 +95,20 @@ export default [
         });
       }
 
+      let attachment = '';
+      if (has(req.body.params, 'Attachment')) {
+        const buffer = Buffer.from(req.body.params.Attachment, 'base64');
+        const result = await pdfParse(buffer);
+        attachment = result.text || '';
+      }
+
       return {
         json: await chat(req.body.prompt, req.body.messages, {
-          ...omit(req.body.params, ['Site']),
+          ...omit(req.body.params, ['Site', 'Attachment']),
           ...(has(req.body.params, 'Site')
             ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
             : {}),
+          ...(attachment ? { Attachment: attachment } : {}),
         }),
       };
     },

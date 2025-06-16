@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
 import { last, map } from 'lodash';
+
 import { usePrevious } from '@plone/volto/helpers/Utils/usePrevious';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 
@@ -87,6 +88,9 @@ const Assistant = (props) => {
     if (contextSite) {
       params.Site = 'enable';
     }
+    if (contextAttachment && contextAttachmentContent) {
+      params.Attachment = contextAttachmentContent.data;
+    }
     dispatch(generate(value, lastContext, params));
     scrollToLastQuery();
   };
@@ -140,6 +144,17 @@ const Assistant = (props) => {
       </ButtonGroup>
     </div>
   );
+
+  const onUploadAttachment = (e) => {
+    let fr = new FileReader();
+    fr.onload = () => {
+      setContextAttachmentContent({
+        filename: e.target.files[0].name,
+        data: fr.result.split(',')[1], // Get base64 data
+      });
+    };
+    fr.readAsDataURL(e.target.files[0]);
+  };
 
   const renderParagraph = (paragraph) => {
     // If paragraph is a list
@@ -295,19 +310,28 @@ const Assistant = (props) => {
           <div
             className={`assistant-context-button ${contextAttachment ? '' : 'hide'}`}
           >
-            <Button
-              basic
-              className="context-icon attachement"
-              onClick={() => {}}
-              icon={
-                <Icon
-                  name={attachmentSVG}
-                  size={20}
-                  title="Enable site content"
-                />
-              }
-            />
-            <span className="context-label">Add Context...</span>
+            <label
+              for="context-attachment-input"
+              className="context-attachment-label"
+            >
+              <Icon
+                name={attachmentSVG}
+                size={20}
+                title="Enable site content"
+                className="context-icon attachment"
+              />
+              <input
+                name="context-attachment-input"
+                id="context-attachment-input"
+                type="file"
+                onChange={onUploadAttachment}
+              />
+              <span className="context-label attachment">
+                {contextAttachmentContent
+                  ? contextAttachmentContent.filename
+                  : 'Add Context...'}
+              </span>
+            </label>
             {contextAttachmentContent && (
               <Button
                 basic

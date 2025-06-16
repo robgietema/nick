@@ -181,6 +181,14 @@
       .context-label {
         vertical-align: bottom;
         margin: 0 4px 0 0;
+
+        &.attachment {
+          max-width: 110px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: inline-block;
+          overflow: hidden;
+        }
       }
 
       .show-hide-button {
@@ -194,7 +202,13 @@
         padding: 0 4px;
         margin: 0;
       }
-      .context-icon.attachement {
+      #context-attachment-input {
+        display: none;
+      }
+      .context-attachment-label {
+        cursor: pointer;
+      }
+      .context-icon.attachment {
         padding: 0 2px;
       }
       .button {
