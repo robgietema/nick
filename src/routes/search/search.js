@@ -64,66 +64,76 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
       } else {
         switch (query.o) {
           case 'selection.any':
-            where[query.i] = ['=', query.v];
+            where[`_${query.i}`] = ['=', query.v];
             break;
           case 'selection.all':
-            where[query.i] = ['all', query.v];
+            where[`_${query.i}`] = ['all', query.v];
             break;
           case 'date.today':
-            where[query.i] = [
+            where[`_${query.i}`] = [
               '>=',
               `${moment().format('MM-DD-YYYY')} 00:00:00`,
             ];
-            where[query.i] = [
+            where[`_${query.i}`] = [
               '<=',
               `${moment().format('MM-DD-YYYY')} 23:59:59`,
             ];
             break;
           case 'date.between':
-            where[query.i] = ['>', query.v[0]];
-            where[query.i] = ['<', query.v[1]];
+            where[`_${query.i}`] = ['>', query.v[0]];
+            where[`_${query.i}`] = ['<', query.v[1]];
             break;
           case 'date.lessThen':
-            where[query.i] = ['<', query.v];
+            where[`_${query.i}`] = ['<', query.v];
             break;
           case 'date.afterToday':
-            where[query.i] = ['>', `${moment().format('MM-DD-YYYY')} 23:59:59`];
+            where[`_${query.i}`] = [
+              '>',
+              `${moment().format('MM-DD-YYYY')} 23:59:59`,
+            ];
             break;
           case 'date.largerThan':
-            where[query.i] = ['>', query.v];
+            where[`_${query.i}`] = ['>', query.v];
             break;
           case 'date.beforeToday':
-            where[query.i] = ['<', `${moment().format('MM-DD-YYYY')} 00:00:00`];
+            where[`_${query.i}`] = [
+              '<',
+              `${moment().format('MM-DD-YYYY')} 00:00:00`,
+            ];
             break;
           case 'date.afterRelativeDate':
-            where[query.i] = ['>', query.v];
+            where[`_${query.i}`] = ['>', query.v];
             break;
           case 'date.beforeRelativeDate':
-            where[query.i] = ['<', query.v];
+            where[`_${query.i}`] = ['<', query.v];
             break;
           case 'date.lessThanRelativeDate':
-            where[query.i] = ['<', query.v];
+            where[`_${query.i}`] = ['<', query.v];
             break;
           case 'date.largerThanRelativeDate':
-            where[query.i] = ['>', query.v];
+            where[`_${query.i}`] = ['>', query.v];
             break;
           case 'string.is':
-            where[query.i] = query.v;
+            where[`_${query.i}`] = query.v;
             break;
           case 'string.path':
-            where[query.i] = query.v;
+            where[`_${query.i}`] = query.v;
             break;
           case 'string.absolutePath':
-            where[query.i] = query.v.replace(getUrlByPath(req, '/'), '/');
+            where[`_${query.i}`] = query.v.replace(getUrlByPath(req, '/'), '/');
             break;
           case 'string.relativePath':
-            where[query.i] = ['~', normalize(`${root}${query.v}`)];
+            where[`_${query.i}`] = ['~', normalize(`${root}${query.v}`)];
             break;
           case 'string.currentUser':
-            where[query.i] = req.user.id;
+            where[`_${query.i}`] = req.user.id;
             break;
           case 'string.contains':
-            where[query.i] = ['like', `%${query.v}%`];
+            if (indexes[query.i].type === 'text') {
+              where[`_${query.i}`] = ['@@', query.v];
+            } else {
+              where[`_${query.i}`] = ['like', `%${query.v}%`];
+            }
             break;
           default:
             break;

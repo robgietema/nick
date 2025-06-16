@@ -91,6 +91,8 @@
 - Make it compatible with Volto without special settings @davisagli
 - Fix catalog vocabulary @robgietema
 - Fix bug with question marks in titles @robgietema
+- Fix querystring search field specification bug @robgietema
+- Fix querystring search text search @robgietema
 
 ### Internal
 
