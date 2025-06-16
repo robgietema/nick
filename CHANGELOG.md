@@ -59,6 +59,8 @@
 - Add summary metadata index using an LLM to create a summary @robgietema
 - Add indexing to pdf files. @robgietema
 - Add embedding search to querystring search @robgietema
+- Add @chat endpoint @robgietema
+- Add parameters and context to generate endpoint @robgietema
 
 ### Bugfix
 

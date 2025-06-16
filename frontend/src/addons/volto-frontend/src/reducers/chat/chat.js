@@ -1,16 +1,15 @@
-import { GENERATE } from '../../constants/ActionTypes';
+import { CHAT } from '../../constants/ActionTypes';
 
 const initialState = {
   error: null,
   response: '',
-  context: [],
   loaded: false,
   loading: false,
 };
 
 export default function generator(state = initialState, action = {}) {
   switch (action.type) {
-    case `${GENERATE}_PENDING`:
+    case `${CHAT}_PENDING`:
       return {
         ...state,
         error: null,
@@ -18,16 +17,15 @@ export default function generator(state = initialState, action = {}) {
         loaded: false,
         loading: true,
       };
-    case `${GENERATE}_SUCCESS`:
+    case `${CHAT}_SUCCESS`:
       return {
         ...state,
         error: null,
         response: action.result.response,
-        context: action.result.context || [],
         loaded: true,
         loading: false,
       };
-    case `${GENERATE}_FAIL`:
+    case `${CHAT}_FAIL`:
       return {
         ...state,
         error: action.error,

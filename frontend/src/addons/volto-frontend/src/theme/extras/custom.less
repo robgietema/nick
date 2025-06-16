@@ -162,15 +162,44 @@
     width: 375px;
   }
   .assistant-context {
-    .label {
-      font-size: @12px;
-      text-transform: uppercase;
-      margin-right: 0.5rem;
-    }
-    .radio {
-      margin-right: 0.5rem !important;
-      label {
-        padding-left: 1.4em !important;
+    .assistant-context-button {
+      display: inline-block;
+      font-size: 0.9rem;
+      border: 1px solid #c7d5d8;
+      border-radius: 4px;
+      margin-right: 4px;
+
+      &:hover {
+        border-color: #85b7d9;
+      }
+
+      &.hide {
+        border-style: dashed;
+        font-style: italic;
+      }
+
+      .context-label {
+        vertical-align: bottom;
+        margin: 0 4px 0 0;
+      }
+
+      .show-hide-button {
+        margin: 0;
+        padding: 0 2px;
+      }
+
+      .context-icon {
+        vertical-align: middle;
+        color: rgba(0, 0, 0, 0.87);
+        padding: 0 4px;
+        margin: 0;
+      }
+      .context-icon.attachement {
+        padding: 0 2px;
+      }
+      .button {
+        box-shadow: none !important;
+        vertical-align: middle;
       }
     }
   }

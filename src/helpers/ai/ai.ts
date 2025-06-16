@@ -5,8 +5,15 @@
 
 const { config } = require(`${process.cwd()}/config`);
 
+import { map, keys } from 'lodash';
+
 interface VisionResult {
   response: string;
+}
+
+interface Message {
+  role: string;
+  content: string;
 }
 
 /**
@@ -34,12 +41,14 @@ export async function embed(input: string): Promise<string> {
  * Generate
  * @method generate
  * @param {string} prompt Prompt to be used for generation
- * @param {string} context Context to be used for generation
+ * @param {Array<number>} context Context to be used for generation
+ * @param {Object} params Params to be used for generation
  * @returns {string} response
  */
 export async function generate(
   prompt: string,
-  context: string,
+  context: Array<number>,
+  params: any = {},
 ): Promise<string> {
   const response = await fetch(config.ai?.models?.llm?.api, {
     method: 'POST',
@@ -48,7 +57,45 @@ export async function generate(
     },
     body: JSON.stringify({
       model: config.ai?.models?.llm?.name,
-      prompt: `Query: ${prompt}\nContext: ${context}\nPlease provide an answer and use the given context if you can't find the answer.`,
+      context,
+      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
+      stream: false,
+    }),
+  });
+  return await response.json();
+}
+
+/**
+ * Chat
+ * @method chat
+ * @param {string} prompt Prompt to be used for generation
+ * @param {Array<Message>} messages Message history
+ * @param {Object} params Params to be used for generation
+ * @returns {string} response
+ */
+export async function chat(
+  prompt: string,
+  messages: Array<Message>,
+  params: any = {},
+): Promise<string> {
+  console.log(
+    'body: ',
+    JSON.stringify({
+      model: config.ai?.models?.llm?.name,
+      messages,
+      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+      stream: false,
+    }),
+  );
+  const response = await fetch(config.ai?.models?.llm?.api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: config.ai?.models?.llm?.name,
+      messages,
+      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
       stream: false,
     }),
   });

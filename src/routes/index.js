@@ -4,6 +4,7 @@
  */
 
 import actions from './actions/actions';
+import ai from './ai/ai';
 import authentication from './authentication/authentication';
 import breadcrumbs from './breadcrumbs/breadcrumbs';
 import catalog from './catalog/catalog';
@@ -12,7 +13,6 @@ import controlpanels from './controlpanels/controlpanels';
 import database from './database/database';
 import email from './email/email';
 import form from './form/form';
-import generate from './generate/generate';
 import groups from './groups/groups';
 import history from './history/history';
 import inherit from './inherit/inherit';
@@ -35,6 +35,7 @@ import workflow from './workflow/workflow';
 
 export default [
   ...actions,
+  ...ai,
   ...authentication,
   ...breadcrumbs,
   ...catalog,
@@ -42,7 +43,6 @@ export default [
   ...database,
   ...email,
   ...form,
-  ...generate,
   ...groups,
   ...history,
   ...inherit,

@@ -1,6 +1,6 @@
 import { GENERATE } from '../../constants/ActionTypes';
 
-export function generate(prompt, context = '') {
+export function generate(prompt, context = [], params = {}) {
   return {
     type: GENERATE,
     request: {
@@ -9,6 +9,7 @@ export function generate(prompt, context = '') {
       data: {
         prompt,
         context,
+        params,
       },
     },
   };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, ButtonGroup, Form, Input, Radio } from 'semantic-ui-react';
-import { last, map, remove } from 'lodash';
+import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
+import { last, map } from 'lodash';
 import { usePrevious } from '@plone/volto/helpers/Utils/usePrevious';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 
@@ -11,6 +11,11 @@ import subheadingSVG from '@plone/volto/icons/subheading.svg';
 import textSVG from '@plone/volto/icons/paragraph.svg';
 import reloadSVG from '@plone/volto/icons/reload.svg';
 import deleteSVG from '@plone/volto/icons/delete.svg';
+import pageSVG from '@plone/volto/icons/page.svg';
+import navSVG from '@plone/volto/icons/nav.svg';
+import attachmentSVG from '@plone/volto/icons/attachment.svg';
+import hideSVG from '@plone/volto/icons/hide.svg';
+import showSVG from '@plone/volto/icons/show.svg';
 
 import { generate } from '../../actions/generate/generate';
 import { setFormData } from '@plone/volto/actions/form/form';
@@ -19,6 +24,7 @@ import { addBlock, changeBlock } from '@plone/volto/helpers/Blocks/Blocks';
 const Assistant = (props) => {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.generate.response);
+  const lastContext = useSelector((state) => state.generate.context);
   const loading = useSelector((state) => state.generate.loading);
   const loaded = useSelector((state) => state.generate.loaded);
   const formData = useSelector((state) => state.form?.global);
@@ -53,7 +59,11 @@ const Assistant = (props) => {
   };
 
   // Select context
-  const [contextSelection, setContextSelection] = useState('page');
+  const [contextPage, setContextPage] = useState(true);
+  const [contextSite, setContextSite] = useState(true);
+  const [contextAttachment, setContextAttachment] = useState(true);
+  const [contextAttachmentContent, setContextAttachmentContent] =
+    useState(undefined);
   const [queries, setQueries] = useState([]);
 
   const scrollToLastQuery = () => {
@@ -66,13 +76,18 @@ const Assistant = (props) => {
 
   const sendQuery = (value) => {
     setQueries([...queries, { prompt: value, response: [] }]);
-    let context = '';
-    if (contextSelection === 'page') {
-      context = map(formData.blocks, (block) =>
+    let params = {};
+    if (contextPage) {
+      let page = '';
+      page = map(formData.blocks, (block) =>
         block['@type'] === 'slate' ? block.plaintext : '',
       ).join(' ');
+      params.Page = page;
     }
-    dispatch(generate(value, context));
+    if (contextSite) {
+      params.Site = 'enable';
+    }
+    dispatch(generate(value, lastContext, params));
     scrollToLastQuery();
   };
 
@@ -226,24 +241,94 @@ const Assistant = (props) => {
         ))}
       </div>
       <div className="assistant-footer">
-        <Form>
-          <div className="assistant-context">
-            <span className="label">Context: </span>
-            <Radio
-              label="Page"
-              name="radioGroup"
-              value="this"
-              checked={contextSelection === 'page'}
-              onChange={() => setContextSelection('page')}
+        <div className="assistant-context">
+          <div
+            className={`assistant-context-button ${contextPage ? '' : 'hide'}`}
+          >
+            <Icon
+              name={pageSVG}
+              size={16}
+              title="Page context"
+              className="context-icon"
             />
-            <Radio
-              label="Site"
-              name="radioGroup"
-              value="this"
-              checked={contextSelection === 'site'}
-              onChange={() => setContextSelection('site')}
+            <span className="context-label">Page</span>
+            <Button
+              basic
+              className="show-hide-button"
+              onClick={() => setContextPage(!contextPage)}
+              icon={
+                <Icon
+                  name={contextPage ? showSVG : hideSVG}
+                  size={20}
+                  title={
+                    contextPage ? 'Disable page context' : 'Enable page context'
+                  }
+                />
+              }
             />
           </div>
+          <div
+            className={`assistant-context-button ${contextSite ? '' : 'hide'}`}
+          >
+            <Icon
+              name={navSVG}
+              size={16}
+              title="Site context"
+              className="context-icon"
+            />
+            <span className="context-label">Site</span>
+            <Button
+              basic
+              className="show-hide-button"
+              onClick={() => setContextSite(!contextSite)}
+              icon={
+                <Icon
+                  name={contextSite ? showSVG : hideSVG}
+                  size={20}
+                  title={
+                    contextPage ? 'Disable site context' : 'Enable site context'
+                  }
+                />
+              }
+            />
+          </div>
+          <div
+            className={`assistant-context-button ${contextAttachment ? '' : 'hide'}`}
+          >
+            <Button
+              basic
+              className="context-icon attachement"
+              onClick={() => {}}
+              icon={
+                <Icon
+                  name={attachmentSVG}
+                  size={20}
+                  title="Enable site content"
+                />
+              }
+            />
+            <span className="context-label">Add Context...</span>
+            {contextAttachmentContent && (
+              <Button
+                basic
+                className="show-hide-button"
+                onClick={() => setContextAttachment(!contextAttachment)}
+                icon={
+                  <Icon
+                    name={contextAttachment ? showSVG : hideSVG}
+                    size={20}
+                    title={
+                      contextPage
+                        ? 'Disable attachment context'
+                        : 'Enable attachment context'
+                    }
+                  />
+                }
+              />
+            )}
+          </div>
+        </div>
+        <Form>
           <Input
             className="assistant-input"
             loading={loading}
