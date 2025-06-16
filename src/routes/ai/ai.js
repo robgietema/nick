@@ -27,7 +27,7 @@ const getEmbedFromPrompt = async (prompt, req, trx) => {
   return join(
     result.map((item) => item.SearchableText),
     ' ',
-  );
+  ).replace(/\n/g, ' ');
 };
 
 export default [
@@ -67,7 +67,7 @@ export default [
           ...(has(req.body.params, 'Site')
             ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
             : {}),
-          ...(attachment ? { Attachment: attachment } : {}),
+          ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),
         }),
       };
     },
@@ -108,7 +108,7 @@ export default [
           ...(has(req.body.params, 'Site')
             ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
             : {}),
-          ...(attachment ? { Attachment: attachment } : {}),
+          ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),
         }),
       };
     },
