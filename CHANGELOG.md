@@ -116,6 +116,7 @@
 - Use different documention theme @robgietema
 - Add expansion documentation @robgietema
 - Add multilingual documention @robgietema
+- Extended search docs with extra examples @robgietema
 
 ## 2.8.0 (2022-07-17)
 
