@@ -24,7 +24,7 @@ export {
   writeImage,
 } from './fs/fs';
 export { stripI18n } from './i18n/i18n';
-export { chat, embed, generate, vision } from './ai/ai';
+export { chat, embed, generate, streamGenerate, vision } from './ai/ai';
 export { getPostgresVersion, knex } from './knex/knex';
 export { lockExpired } from './lock/lock';
 export { log, logger } from './log/log';

@@ -7,7 +7,13 @@ import { has, join, omit } from 'lodash';
 import pdfParse from 'pdf-parse';
 
 import { Catalog } from '../../models/catalog/catalog';
-import { chat, embed, generate } from '../../helpers';
+import {
+  chat,
+  embed,
+  generate,
+  streamGenerate,
+  RequestException,
+} from '../../helpers';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -36,7 +42,7 @@ export default [
     view: '/@generate',
     permission: 'View',
     client: 'generate',
-    handler: async (req, trx) => {
+    handler: async (req, trx, callback) => {
       // Check if required field provided
       if (!req.body.prompt) {
         throw new RequestException(400, {
@@ -61,15 +67,22 @@ export default [
         attachment = result.text || '';
       }
 
-      return {
-        json: await generate(req.body.prompt, req.body.context, {
-          ...omit(req.body.params, ['Site', 'Attachment']),
-          ...(has(req.body.params, 'Site')
-            ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
-            : {}),
-          ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),
-        }),
+      // Create params for the generation
+      const params = {
+        ...omit(req.body.params, ['Site', 'Attachment']),
+        ...(has(req.body.params, 'Site')
+          ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
+          : {}),
+        ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),
       };
+
+      if (req.body.stream === true) {
+        streamGenerate(req.body.prompt, req.body.context, params, callback);
+      } else {
+        return {
+          json: await generate(req.body.prompt, req.body.context, params),
+        };
+      }
     },
   },
   {

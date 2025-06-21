@@ -47,34 +47,57 @@ map(routes, (route) => {
       req.documentPath = req.params.path?.join('/') || '/';
 
       try {
-        const view = await callHandler(req, trx, route);
-
-        // Try to commit the transaction
-        try {
-          await trx.commit();
-        } catch (err) {
-          throw new RequestException(500, {
-            message: req.i18n('Transaction error.'),
+        if (req.body?.stream === true) {
+          res.writeHead(200, {
+            'Transfer-Encoding': 'chunked',
+            'Access-Control-Allow-Origin': '*',
           });
-        }
+          callHandler(req, trx, route, async (data) => {
+            res.write(data);
+            const result = JSON.parse(data);
+            if (result.done) {
+              res.end();
 
-        // Add headers if specified
-        if (view && view.headers) {
-          res.set(view.headers);
-        }
+              // Try to commit the transaction
+              try {
+                await trx.commit();
+              } catch (err) {
+                throw new RequestException(500, {
+                  message: req.i18n('Transaction error.'),
+                });
+              }
+            }
+          });
+        } else {
+          const view = await callHandler(req, trx, route);
 
-        if (view && view.json) {
-          // Send json data
-          res.status(view.status || 200).send(view.json);
-        } else if (view && view.status) {
-          // Send just the status code with no data
-          res.status(view.status).send();
-        } else if (view && view.binary) {
-          // Send binary data
-          res.write(view.binary, 'binary');
-          res.end(undefined, 'binary');
-        } else if (view && view.html) {
-          res.status(view.status || 200).send(view.html);
+          // Try to commit the transaction
+          try {
+            await trx.commit();
+          } catch (err) {
+            throw new RequestException(500, {
+              message: req.i18n('Transaction error.'),
+            });
+          }
+
+          // Add headers if specified
+          if (view && view.headers) {
+            res.set(view.headers);
+          }
+
+          if (view && view.json) {
+            // Send json data
+            res.status(view.status || 200).send(view.json);
+          } else if (view && view.status) {
+            // Send just the status code with no data
+            res.status(view.status).send();
+          } else if (view && view.binary) {
+            // Send binary data
+            res.write(view.binary, 'binary');
+            res.end(undefined, 'binary');
+          } else if (view && view.html) {
+            res.status(view.status || 200).send(view.html);
+          }
         }
       } catch (err) {
         // Rollback transaction

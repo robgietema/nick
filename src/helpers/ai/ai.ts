@@ -66,6 +66,44 @@ export async function generate(
 }
 
 /**
+ * Stream generate
+ * @method streamGenerate
+ * @param {string} prompt Prompt to be used for generation
+ * @param {Array<number>} context Context to be used for generation
+ * @param {Object} params Params to be used for generation
+ * @param {Function|null} callback Callback function to be called with the response
+ * @returns {string} response
+ */
+export function streamGenerate(
+  prompt: string,
+  context: Array<number>,
+  params: any = {},
+  callback: Function,
+): undefined {
+  fetch(config.ai?.models?.llm?.api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: config.ai?.models?.llm?.name,
+      context,
+      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
+      stream: true,
+    }),
+  }).then(async (response: Response) => {
+    const reader: any = response.body?.getReader();
+    let readResult: any;
+    readResult = await reader.read();
+    while (!readResult.done) {
+      const token = new TextDecoder().decode(readResult.value);
+      readResult = await reader.read();
+      callback(token);
+    }
+  });
+}
+
+/**
  * Chat
  * @method chat
  * @param {string} prompt Prompt to be used for generation
@@ -78,15 +116,6 @@ export async function chat(
   messages: Array<Message>,
   params: any = {},
 ): Promise<string> {
-  console.log(
-    'body: ',
-    JSON.stringify({
-      model: config.ai?.models?.llm?.name,
-      messages,
-      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
-      stream: false,
-    }),
-  );
   const response = await fetch(config.ai?.models?.llm?.api, {
     method: 'POST',
     headers: {

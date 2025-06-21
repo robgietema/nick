@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
-import { last, map } from 'lodash';
+import { compact, last, map } from 'lodash';
 
-import { usePrevious } from '@plone/volto/helpers/Utils/usePrevious';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 
 import copySVG from '@plone/volto/icons/copy.svg';
@@ -18,18 +17,16 @@ import attachmentSVG from '@plone/volto/icons/attachment.svg';
 import hideSVG from '@plone/volto/icons/hide.svg';
 import showSVG from '@plone/volto/icons/show.svg';
 
-import { generate } from '../../actions/generate/generate';
 import { setFormData } from '@plone/volto/actions/form/form';
 import { addBlock, changeBlock } from '@plone/volto/helpers/Blocks/Blocks';
 
+import config from '@plone/volto/registry';
+
 const Assistant = (props) => {
   const dispatch = useDispatch();
-  const response = useSelector((state) => state.generate.response);
-  const lastContext = useSelector((state) => state.generate.context);
-  const loading = useSelector((state) => state.generate.loading);
-  const loaded = useSelector((state) => state.generate.loaded);
+  const [lastContext, setLastContext] = useState(undefined);
+  const [loading, setLoading] = useState(false);
   const formData = useSelector((state) => state.form?.global);
-  const prevloading = usePrevious(loading);
 
   const setTitle = (value) => {
     dispatch(setFormData({ ...formData, title: value }));
@@ -37,6 +34,29 @@ const Assistant = (props) => {
 
   const setDescription = (value) => {
     dispatch(setFormData({ ...formData, description: value }));
+  };
+
+  const insertBlocks = (values) => {
+    let newFormData = formData;
+    map(values, (value) => {
+      let [blockId, addFormData] = addBlock(newFormData, 'slate', -1);
+      newFormData = changeBlock(addFormData, blockId, {
+        '@type': 'slate',
+        plaintext: value,
+        value: [
+          {
+            type: 'p',
+            children: [
+              {
+                text: value,
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    dispatch(setFormData(newFormData));
   };
 
   const insertBlock = (value) => {
@@ -66,17 +86,23 @@ const Assistant = (props) => {
   const [contextAttachmentContent, setContextAttachmentContent] =
     useState(undefined);
   const [queries, setQueries] = useState([]);
+  const [currentQuery, setCurrentQuery] = useState(false);
 
   const scrollToLastQuery = () => {
     window.setTimeout(() => {
-      last(document.getElementsByClassName('assistant-query')).scrollIntoView({
-        behavior: 'smooth',
+      last(
+        document.getElementsByClassName('assistant-query-footer'),
+      ).scrollIntoView({
+        behavior: 'instant',
       });
     }, 100);
   };
 
   const sendQuery = (value) => {
-    setQueries([...queries, { prompt: value, response: [] }]);
+    setCurrentQuery({ prompt: value, raw: '', response: [] });
+    setLoading(true);
+    scrollToLastQuery();
+    let raw = '';
     let params = {};
     if (contextPage) {
       let page = '';
@@ -91,8 +117,51 @@ const Assistant = (props) => {
     if (contextAttachment && contextAttachmentContent) {
       params.Attachment = contextAttachmentContent.data;
     }
-    dispatch(generate(value, lastContext, params));
-    scrollToLastQuery();
+    fetch(`${config.settings.devProxyToApiPath}/@generate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        context: lastContext,
+        prompt: value,
+        params,
+        stream: true,
+      }),
+    }).then(async (response) => {
+      const reader = response.body?.getReader();
+      let readResult;
+      readResult = await reader.read();
+      while (!readResult.done) {
+        console.log(new TextDecoder().decode(readResult.value));
+        const tokens = JSON.parse(
+          `[${compact(new TextDecoder().decode(readResult.value).split('\n')).join(',')}]`,
+        );
+        readResult = await reader.read();
+        map(tokens, (token) => {
+          raw += token.response;
+          const newCurrentQuery = {
+            response: raw.replaceAll('**', '').split('\n\n'),
+            prompt: value,
+          };
+          if (token.done) {
+            setLastContext(token.context);
+            setQueries([
+              ...queries,
+              {
+                prompt: newCurrentQuery.prompt,
+                response: newCurrentQuery.response,
+              },
+            ]);
+            setCurrentQuery(undefined);
+            setLoading(false);
+          } else {
+            setCurrentQuery(newCurrentQuery);
+          }
+          scrollToLastQuery();
+        });
+      }
+    });
   };
 
   const deleteQuery = (index) => {
@@ -193,67 +262,83 @@ const Assistant = (props) => {
     }
   };
 
-  useEffect(() => {
-    const newQueries = [...queries];
-
-    // If new response is loaded
-    if (prevloading && loaded) {
-      newQueries[queries.length - 1].response = response
-        .replaceAll('**', '')
-        .split('\n\n');
-      setQueries(newQueries);
-      scrollToLastQuery();
-    }
-  }, [prevloading, loaded]);
-
   return (
     <div className="assistant">
       <div className="assistant-response">
-        {queries.map((query, index) => (
-          <div className="assistant-query" key={index}>
-            <div className="assistant-prompt">
-              {query.prompt}{' '}
-              {(index < queries.length - 1 || !loading) && (
-                <>
-                  <Button
-                    basic
-                    onClick={() => {
-                      sendQuery(query.prompt);
-                    }}
-                    icon={
-                      <Icon
-                        name={reloadSVG}
-                        size={16}
-                        title="Resend this prompt"
-                      />
-                    }
-                  />
-                  <Button
-                    basic
-                    onClick={() => {
-                      deleteQuery(index);
-                    }}
-                    className="delete"
-                    icon={
-                      <Icon
-                        name={deleteSVG}
-                        size={16}
-                        title="Delete this prompt"
-                      />
-                    }
-                  />
-                </>
+        {(currentQuery ? [...queries, currentQuery] : queries).map(
+          (query, index) => (
+            <div className="assistant-query" key={index}>
+              <div className="assistant-prompt">
+                <div className="assistant-prompt-title">
+                  {query.prompt}
+
+                  {(index < queries.length - 1 || !loading) && (
+                    <Button
+                      basic
+                      className="reload"
+                      onClick={() => {
+                        sendQuery(query.prompt);
+                      }}
+                      icon={
+                        <Icon
+                          name={reloadSVG}
+                          size="16px"
+                          title="Resend this prompt"
+                        />
+                      }
+                    />
+                  )}
+                </div>
+                {(index < queries.length - 1 || !loading) && (
+                  <>
+                    <Button
+                      basic
+                      onClick={() => {
+                        insertBlocks(
+                          map(query.response, (paragraph) =>
+                            stripQuotes(paragraph),
+                          ),
+                        );
+                      }}
+                      className="blocks"
+                      icon={
+                        <Icon
+                          name={textSVG}
+                          size="16px"
+                          title="Insert all text as new blocks"
+                        />
+                      }
+                    />
+                    <Button
+                      basic
+                      onClick={() => {
+                        deleteQuery(index);
+                      }}
+                      className="delete"
+                      icon={
+                        <Icon
+                          name={deleteSVG}
+                          size="16px"
+                          title="Delete this prompt"
+                        />
+                      }
+                    />
+                  </>
+                )}
+              </div>
+              {query.response.length > 0 ? (
+                <div className="assistant-res">
+                  {map(query.response, (paragraph) =>
+                    renderParagraph(paragraph),
+                  )}
+                </div>
+              ) : (
+                loading && <div className="dot-elastic"></div>
               )}
             </div>
-            {query.response.length > 0 ? (
-              <div className="assistant-res">
-                {map(query.response, (paragraph) => renderParagraph(paragraph))}
-              </div>
-            ) : (
-              loading && <div className="dot-elastic"></div>
-            )}
-          </div>
-        ))}
+          ),
+        )}
+        <span className="assistant-query-footer"></span>
       </div>
       <div className="assistant-footer">
         <div className="assistant-context">
@@ -262,7 +347,7 @@ const Assistant = (props) => {
           >
             <Icon
               name={pageSVG}
-              size={16}
+              size="16px"
               title="Page context"
               className="context-icon"
             />
@@ -274,7 +359,7 @@ const Assistant = (props) => {
               icon={
                 <Icon
                   name={contextPage ? showSVG : hideSVG}
-                  size={20}
+                  size="20px"
                   title={
                     contextPage ? 'Disable page context' : 'Enable page context'
                   }
@@ -287,7 +372,7 @@ const Assistant = (props) => {
           >
             <Icon
               name={navSVG}
-              size={16}
+              size="16px"
               title="Site context"
               className="context-icon"
             />
@@ -299,7 +384,7 @@ const Assistant = (props) => {
               icon={
                 <Icon
                   name={contextSite ? showSVG : hideSVG}
-                  size={20}
+                  size="20px"
                   title={
                     contextPage ? 'Disable site context' : 'Enable site context'
                   }
@@ -311,12 +396,12 @@ const Assistant = (props) => {
             className={`assistant-context-button ${contextAttachment ? '' : 'hide'}`}
           >
             <label
-              for="context-attachment-input"
+              htmlFor="context-attachment-input"
               className="context-attachment-label"
             >
               <Icon
                 name={attachmentSVG}
-                size={20}
+                size="20px"
                 title="Enable site content"
                 className="context-icon attachment"
               />
@@ -340,7 +425,7 @@ const Assistant = (props) => {
                 icon={
                   <Icon
                     name={contextAttachment ? showSVG : hideSVG}
-                    size={20}
+                    size="20px"
                     title={
                       contextPage
                         ? 'Disable attachment context'

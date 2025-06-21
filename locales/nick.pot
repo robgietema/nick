@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-06-16T23:00:31.268Z\n"
+"POT-Creation-Date: 2025-06-21T15:43:48.832Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -30,8 +30,8 @@ msgstr ""
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:17
-#: src/routes/ai/ai.js:53
-#: src/routes/ai/ai.js:94
+#: src/routes/ai/ai.js:59
+#: src/routes/ai/ai.js:107
 msgid "AI is disabled."
 msgstr ""
 
@@ -564,7 +564,7 @@ msgid "Information about rights held in and over this item."
 msgstr ""
 
 #. Default: "Internal server error"
-#: src/app.js:101
+#: src/app.js:124
 msgid "Internal server error"
 msgstr ""
 
@@ -856,8 +856,8 @@ msgid "Private"
 msgstr ""
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.js:43
-#: src/routes/ai/ai.js:84
+#: src/routes/ai/ai.js:49
+#: src/routes/ai/ai.js:97
 msgid "Prompt is a required field."
 msgstr ""
 
@@ -1312,7 +1312,8 @@ msgstr ""
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:57
+#: src/app.js:66
+#: src/app.js:79
 msgid "Transaction error."
 msgstr ""
 
@@ -1327,7 +1328,7 @@ msgid "Type Name"
 msgstr ""
 
 #. Default: "Type of the current document is not found."
-#: src/helpers/handler/handler.js:60
+#: src/helpers/handler/handler.js:61
 msgid "Type of the current document is not found."
 msgstr ""
 
@@ -1416,7 +1417,7 @@ msgstr ""
 
 #. Default: "You are not authorization to access this resource."
 #: src/routes/workflow/workflow.js:33
-#: src/helpers/handler/handler.js:82
+#: src/helpers/handler/handler.js:83
 msgid "You are not authorization to access this resource."
 msgstr ""
 

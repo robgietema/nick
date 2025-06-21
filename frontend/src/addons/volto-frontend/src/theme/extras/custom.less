@@ -138,13 +138,24 @@
     .button {
       box-shadow: none !important;
     }
-    .delete {
-      display: none;
-      right: -4px;
-      position: absolute;
-      top: 0;
+    .reload {
+      margin-left: 4px;
+      vertical-align: middle;
     }
-    &:hover .delete {
+    .delete,
+    .blocks {
+      display: none;
+      position: absolute;
+      top: 2px;
+    }
+    .delete {
+      right: -4px;
+    }
+    .blocks {
+      right: 20px;
+    }
+    &:hover .delete,
+    &:hover .blocks {
       display: block;
     }
   }
@@ -153,6 +164,9 @@
     font-weight: bold;
     margin-bottom: 4px;
     position: relative;
+  }
+  .assistant-prompt-title {
+    margin-right: 40px;
   }
   .assistant-footer {
     background-color: #f0f9f9;

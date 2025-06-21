@@ -62,6 +62,7 @@
 - Add @chat endpoint @robgietema
 - Add parameters and context to generate endpoint @robgietema
 - Add attachment support to generate and chat endpoints @robgietema
+- Add streaming to generate endpoint @robgietema
 
 ### Bugfix
 

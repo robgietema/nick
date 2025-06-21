@@ -8,9 +8,10 @@ import { Document, Redirect, Role, Type, User } from '../../models';
  * @param {Request} req Request object
  * @param {Knex.Transaction} trx Transaction object.
  * @param {Object} route Route object.
+ * @param {Function} callback Callback function.
  * @returns {any} Respons
  */
-export async function callHandler(req, trx, route) {
+export async function callHandler(req, trx, route, callback) {
   // Get user
   req.user = await User.fetchById(
     getUserId(req),
@@ -84,5 +85,5 @@ export async function callHandler(req, trx, route) {
   }
 
   // Call view
-  return route.handler(req, trx);
+  return route.handler(req, trx, callback);
 }

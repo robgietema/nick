@@ -33,8 +33,8 @@ msgstr "Een gerelateerd item waarvan deze is afgeleid."
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:17
-#: src/routes/ai/ai.js:53
-#: src/routes/ai/ai.js:94
+#: src/routes/ai/ai.js:59
+#: src/routes/ai/ai.js:107
 msgid "AI is disabled."
 msgstr ""
 
@@ -567,7 +567,7 @@ msgid "Information about rights held in and over this item."
 msgstr "Informatie over rechten op en over dit item."
 
 #. Default: "Internal server error"
-#: src/app.js:101
+#: src/app.js:124
 msgid "Internal server error"
 msgstr "Interne server fout"
 
@@ -859,8 +859,8 @@ msgid "Private"
 msgstr "Privé"
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.js:43
-#: src/routes/ai/ai.js:84
+#: src/routes/ai/ai.js:49
+#: src/routes/ai/ai.js:97
 msgid "Prompt is a required field."
 msgstr ""
 
@@ -1313,7 +1313,8 @@ msgstr "Vandaag"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:57
+#: src/app.js:66
+#: src/app.js:79
 msgid "Transaction error."
 msgstr "Transactiefout"
 
@@ -1328,7 +1329,7 @@ msgid "Type Name"
 msgstr ""
 
 #. Default: "Type of the current document is not found."
-#: src/helpers/handler/handler.js:60
+#: src/helpers/handler/handler.js:61
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
 
@@ -1417,7 +1418,7 @@ msgstr "Ja"
 
 #. Default: "You are not authorization to access this resource."
 #: src/routes/workflow/workflow.js:33
-#: src/helpers/handler/handler.js:82
+#: src/helpers/handler/handler.js:83
 msgid "You are not authorization to access this resource."
 msgstr "U heeft geen rechten om tot deze resource."
 
