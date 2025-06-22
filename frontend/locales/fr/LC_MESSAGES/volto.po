@@ -1,4 +1,3 @@
-#. Translation of volto.pot to French
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
