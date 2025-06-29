@@ -105,13 +105,13 @@ Run "npm install -g @robgietema/generator-nick" to update.`,
     this.fs.delete(this.destinationPath(base, '.gitignorefile'));
   }
 
-  install() {
+  async install() {
     if (!this.opts['skip-install']) {
       const base =
         currentDir === this.globals.projectName
           ? '.'
           : this.globals.projectName;
-      this.yarnInstall(null, { cwd: base });
+      await exec(`pnpm install --cwd ${base}`);
     }
   }
 
@@ -129,8 +129,8 @@ $ GRANT ALL PRIVILEGES ON DATABASE "${this.globals.projectName}" TO "${this.glob
 
 Now go to the ${this.globals.projectName} folder and run:
 
-yarn bootstrap
-yarn start
+pnpm bootstrap
+pnpm start
 `,
       );
     } else {
@@ -145,9 +145,9 @@ $ GRANT ALL PRIVILEGES ON DATABASE "${this.globals.projectName}" TO "${this.glob
 
 Now go to the ${this.globals.projectName} folder and run:
 
-yarn install
-yarn bootstrap
-yarn start
+pnpm install
+pnpm bootstrap
+pnpm start
 `);
     }
   }

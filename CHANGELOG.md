@@ -112,6 +112,7 @@
 - Upgrade to Express 5 @robgietema
 - Remove body-parser and use express buildin json parser @robgietema
 - Node 24 support @robgietema
+- Upgrade to pnpm @robgietema
 
 ### Documentation
 

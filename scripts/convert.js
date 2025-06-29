@@ -214,7 +214,7 @@ const convertDocuments = (input, path) => {
 async function main() {
   // Check arguments
   if (process.argv.length !== 4) {
-    console.log('Usage: yarn convert <inputfolder> <outputfolder>');
+    console.log('Usage: pnpm convert <inputfolder> <outputfolder>');
     return;
   }
 

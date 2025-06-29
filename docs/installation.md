@@ -17,12 +17,13 @@ If you want to create your own project using Nick you can use the Yeoman generat
 
 ## Install dependencies
 
-First, install [Yeoman](http://yeoman.io), @robgietema/generator-nick and [Yarn](https://classic.yarnpkg.com/en/) using [npm](https://www.npmjs.com/) (we assume you have pre-installed [Node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io), @robgietema/generator-nick and pnpm using [npm](https://www.npmjs.com/) (we assume you have pre-installed [Node.js](https://nodejs.org/)).
 
 ```shell
 $ npm install -g yo
 $ npm install -g @robgietema/generator-nick
-$ npm install -g yarn
+$ npm install -g corepack@latest
+$ corepack enable pnpm
 ```
 
 ## Creating a new project
@@ -50,12 +51,12 @@ Bootstrap the project using the following commands:
 
 ```shell
 $ cd my-nick-project
-$ yarn bootstrap
-$ yarn start
+$ pnpm bootstrap
+$ pnpm start
 ```
 
 ## Testing
 
 ```shell
-$ yarn test
+$ pnpm test
 ```

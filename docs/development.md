@@ -32,18 +32,18 @@ $ cd nick
 ## Bootstrap Project
 
 ```shell
-$ yarn install
-$ yarn bootstrap
+$ pnpm install
+$ pnpm bootstrap
 ```
 
 ## Run backend
 
 ```shell
-$ yarn start
+$ pnpm start
 ```
 
 ## Testing
 
 ```shell
-$ yarn test
+$ pnpm test
 ```

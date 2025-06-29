@@ -34,18 +34,18 @@ Example `GET` request on the portal root
 
 ### Bootstrap Project
 
-    $ yarn install
-    $ yarn bootstrap
+    $ pnpm install
+    $ pnpm bootstrap
 
 ## Development
 
 ### Run backend
 
-    $ yarn start
+    $ pnpm start
 
 ### Testing
 
-    $ yarn test
+    $ pnpm test
 
 ## Yeoman Generator
 
@@ -57,7 +57,8 @@ First, install [Yeoman](http://yeoman.io) and @robgietema/generator-nick using [
 
     $ npm install -g yo
     $ npm install -g @robgietema/generator-nick
-    $ npm install -g yarn
+    $ npm install -g corepack@latest
+    $ corepack enable pnpm
 
 ### Creating a new project
 
@@ -79,8 +80,8 @@ Connect to the PostgreSQL console and create a database and a user with the corr
 Then bootstrap Nick with:
 
     $ cd my-nick-project
-    $ yarn bootstrap
-    $ yarn start
+    $ pnpm bootstrap
+    $ pnpm start
 
 ## Docker image
 

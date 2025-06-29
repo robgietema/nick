@@ -20,7 +20,7 @@ Here are some important resources you can use get get familiar with Nick:
 
 Currently Nick is available in _English_ and _Dutch_. Feel free add missing
 translations or add a new language. The translations can be found in the
-`locales` folder and you can extract new translatable text using the `yarn i18n`
+`locales` folder and you can extract new translatable text using the `pnpm i18n`
 command. This command also builds the language files for use with Nick.
 
 ## Testing

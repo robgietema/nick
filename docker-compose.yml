@@ -17,9 +17,9 @@ services:
       - .:/app
     command: >
       sh -c "
-      yarn install &&
-      yarn bootstrap &&
-      yarn start
+      pnpm install &&
+      pnpm bootstrap &&
+      pnpm start
       "
 
 

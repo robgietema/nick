@@ -31,12 +31,12 @@ yo @robgietema/nick
 
 This will bootstrap a new Nick project inside the current folder.
 
-### Start Nick with `yarn start`
+### Start Nick with `pnpm start`
 
 Start Nick with:
 
 ```bash
-yarn start
+pnpm start
 ```
 
 This runs the project in development mode.
@@ -45,10 +45,10 @@ Consult the Nick docs for further details:
 
 https://nickcms.org
 
-### Run unit tests with `yarn test`
+### Run unit tests with `pnpm test`
 
 Runs all the tests.
 
-### Update translations with `yarn i18n`
+### Update translations with `pnpm i18n`
 
 Runs the test i18n runner which extracts all the translation strings and generates the needed files.
