@@ -7,9 +7,9 @@ const { data } = await cli.generate({
   token: login.data.token,
   data: {
     prompt: 'What is the username of the nick demo site?',
-    context: [ ... ],
+    context: [],
     params: {
-      Site: "enable",
-    }
+      Site: 'enable',
+    },
   },
 });
