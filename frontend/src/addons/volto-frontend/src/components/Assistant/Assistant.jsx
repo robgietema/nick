@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
-import { compact, last, map } from 'lodash';
+import { compact, last, map, keys } from 'lodash';
 
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 
@@ -24,9 +24,33 @@ import config from '@plone/volto/registry';
 
 const Assistant = (props) => {
   const dispatch = useDispatch();
-  const [lastContext, setLastContext] = useState(undefined);
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const formData = useSelector((state) => state.form?.global);
+
+  const tools = {
+    set_title: {
+      spec: {
+        type: 'function',
+        function: {
+          name: 'set_title',
+          description: 'Sets the title',
+          parameters: {
+            type: 'object',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title to be set',
+              },
+            },
+            required: ['title'],
+          },
+        },
+      },
+      handler: ({ title }) => setTitle(title),
+      message: ({ title }) => `The title is set to "${title}".`,
+    },
+  };
 
   const setTitle = (value) => {
     dispatch(setFormData({ ...formData, title: value }));
@@ -117,15 +141,16 @@ const Assistant = (props) => {
     if (contextAttachment && contextAttachmentContent) {
       params.Attachment = contextAttachmentContent.data;
     }
-    fetch(`${config.settings.devProxyToApiPath}/@generate`, {
+    fetch(`${config.settings.devProxyToApiPath}/@chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        context: lastContext,
         prompt: value,
         params,
+        messages,
+        tools: map(keys(tools), (tool) => tools[tool].spec),
         stream: true,
       }),
     }).then(async (response) => {
@@ -133,19 +158,31 @@ const Assistant = (props) => {
       let readResult;
       readResult = await reader.read();
       while (!readResult.done) {
-        console.log(new TextDecoder().decode(readResult.value));
         const tokens = JSON.parse(
           `[${compact(new TextDecoder().decode(readResult.value).split('\n')).join(',')}]`,
         );
         readResult = await reader.read();
         map(tokens, (token) => {
-          raw += token.response;
+          raw += token.message.content;
+          if (token.message.tool_calls) {
+            map(token.message.tool_calls, (tool) => {
+              raw += tools[tool.function.name].message(tool.function.arguments);
+              tools[tool.function.name].handler(tool.function.arguments);
+            });
+          }
           const newCurrentQuery = {
             response: raw.replaceAll('**', '').split('\n\n'),
             prompt: value,
           };
           if (token.done) {
-            setLastContext(token.context);
+            setMessages([
+              ...messages,
+              { role: 'user', content: newCurrentQuery.prompt },
+              {
+                role: 'assistant',
+                content: newCurrentQuery.response.join('\n'),
+              },
+            ]);
             setQueries([
               ...queries,
               {

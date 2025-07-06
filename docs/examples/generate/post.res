@@ -2,7 +2,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "model": "llama3.2",
+  "model": "qwen3",
   "created_at": "2025-01-01T00:00:00.00000Z",
   "response": "The username for the demo site is \"admin\".",
   "done": true,

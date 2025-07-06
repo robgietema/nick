@@ -10,11 +10,11 @@ Some endpoints require an AI model to function, if this is the case it is specif
 
 ## Install local AI models
 
-To run the models locally you start by install [Ollama](https://ollama.com). When Ollama is installed you need an Embedding Model, a Large Language Model and a Vision Model. For this example we will use `nomic-embed-text`, `llama3.2` and `llava` but you can use any model you want. To install the models use the following commands:
+To run the models locally you start by install [Ollama](https://ollama.com). When Ollama is installed you need an Embedding Model, a Large Language Model and a Vision Model. For this example we will use `nomic-embed-text`, `qwen3` and `llava` but you can use any model you want. To install the models use the following commands:
 
 ```shell
 $ ollama pull nomic-embed-text
-$ ollama pull llama3.2
+$ ollama pull qwen3
 $ ollama pull llava
 ```
 
@@ -49,7 +49,7 @@ export const config = {
         enabled: true,
       },
       llm: {
-        name: 'llama3.2',
+        name: 'qwen3',
         api: 'http://localhost:11434/api/generate',
         contextSize: 10,
         enabled: true,

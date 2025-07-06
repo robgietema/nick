@@ -60,6 +60,7 @@ export async function generate(
       context,
       prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
       stream: false,
+      think: false,
     }),
   });
   return await response.json();
@@ -90,6 +91,7 @@ export function streamGenerate(
       context,
       prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
       stream: true,
+      think: false,
     }),
   }).then(async (response: Response) => {
     const reader: any = response.body?.getReader();
@@ -109,12 +111,14 @@ export function streamGenerate(
  * @param {string} prompt Prompt to be used for generation
  * @param {Array<Message>} messages Message history
  * @param {Object} params Params to be used for generation
+ * @param {Object} tools Tools to be used for generation
  * @returns {string} response
  */
 export async function chat(
   prompt: string,
-  messages: Array<Message>,
+  messages: Array<Message> = [],
   params: any = {},
+  tools: any = [],
 ): Promise<string> {
   const response = await fetch(config.ai?.models?.llm?.api, {
     method: 'POST',
@@ -123,12 +127,66 @@ export async function chat(
     },
     body: JSON.stringify({
       model: config.ai?.models?.llm?.name,
-      messages,
-      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+      messages: [
+        ...messages,
+        {
+          role: 'user',
+          content: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+        },
+      ],
+      tools,
       stream: false,
+      think: false,
     }),
   });
   return await response.json();
+}
+
+/**
+ * Stream chat
+ * @method streamChat
+ * @param {string} prompt Prompt to be used for generation
+ * @param {Array<Message>} messages Message history
+ * @param {Object} params Params to be used for generation
+ * @param {Object} tools Tools to be used for generation
+ * @param {Function|null} callback Callback function to be called with the response
+ * @returns {string} response
+ */
+export function streamChat(
+  prompt: string,
+  messages: Array<Message> = [],
+  params: any = {},
+  tools: any = [],
+  callback: Function,
+): undefined {
+  fetch(config.ai?.models?.llm?.api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: config.ai?.models?.llm?.name,
+      messages: [
+        ...messages,
+        {
+          role: 'user',
+          content: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+        },
+      ],
+      tools,
+      stream: true,
+      think: false,
+    }),
+  }).then(async (response: Response) => {
+    const reader: any = response.body?.getReader();
+    let readResult: any;
+    readResult = await reader.read();
+    while (!readResult.done) {
+      const token = new TextDecoder().decode(readResult.value);
+      readResult = await reader.read();
+      callback(token);
+    }
+  });
 }
 
 /**

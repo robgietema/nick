@@ -63,6 +63,7 @@
 - Add parameters and context to generate endpoint @robgietema
 - Add attachment support to generate and chat endpoints @robgietema
 - Add streaming to generate endpoint @robgietema
+- Add client side tools to assistant @robgietema
 
 ### Bugfix
 
@@ -97,6 +98,9 @@
 - Fix bug with question marks in titles @robgietema
 - Fix querystring search field specification bug @robgietema
 - Fix querystring search text search @robgietema
+- Add streaming chat call @robgietema
+- Move to qwen3 modal @robgietema
+- Move assistant from generate to chat endpoint @robgietema
 
 ### Internal
 

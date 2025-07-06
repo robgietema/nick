@@ -11,6 +11,7 @@ import {
   chat,
   embed,
   generate,
+  streamChat,
   streamGenerate,
   RequestException,
 } from '../../helpers';
@@ -90,7 +91,7 @@ export default [
     view: '/@chat',
     permission: 'View',
     client: 'chat',
-    handler: async (req, trx) => {
+    handler: async (req, trx, callback) => {
       // Check if required field provided
       if (!req.body.prompt) {
         throw new RequestException(400, {
@@ -115,15 +116,33 @@ export default [
         attachment = result.text || '';
       }
 
-      return {
-        json: await chat(req.body.prompt, req.body.messages, {
-          ...omit(req.body.params, ['Site', 'Attachment']),
-          ...(has(req.body.params, 'Site')
-            ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
-            : {}),
-          ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),
-        }),
+      // Create params for the generation
+      const params = {
+        ...omit(req.body.params, ['Site', 'Attachment']),
+        ...(has(req.body.params, 'Site')
+          ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
+          : {}),
+        ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),
       };
+
+      if (req.body.stream === true) {
+        streamChat(
+          req.body.prompt,
+          req.body.messages,
+          params,
+          req.body.tools,
+          callback,
+        );
+      } else {
+        return {
+          json: await chat(
+            req.body.prompt,
+            req.body.messages,
+            params,
+            req.body.tools,
+          ),
+        };
+      }
     },
   },
 ];
