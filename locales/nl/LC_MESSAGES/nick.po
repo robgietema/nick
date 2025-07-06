@@ -33,8 +33,8 @@ msgstr "Een gerelateerd item waarvan deze is afgeleid."
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:17
-#: src/routes/ai/ai.js:59
-#: src/routes/ai/ai.js:107
+#: src/routes/ai/ai.js:60
+#: src/routes/ai/ai.js:108
 msgid "AI is disabled."
 msgstr ""
 
@@ -859,8 +859,8 @@ msgid "Private"
 msgstr "Privé"
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.js:49
-#: src/routes/ai/ai.js:97
+#: src/routes/ai/ai.js:50
+#: src/routes/ai/ai.js:98
 msgid "Prompt is a required field."
 msgstr ""
 
