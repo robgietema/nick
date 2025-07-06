@@ -16,23 +16,28 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # node cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Enable corepack
+        shell: bash
+        run: npm i -g corepack@latest && corepack enable
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - uses: actions/cache@v4
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        name: Setup pnpm cache
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-pnpm-store-
 
       # node install
-      - run: yarn --frozen-lockfile
+      - run: pnpm install
 
       - name: Prettier check
-        run: yarn run prettier
+        run: pnpm run prettier
 
   eslint:
     name: ESlint
@@ -49,23 +54,28 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # node cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Enable corepack
+        shell: bash
+        run: npm i -g corepack@latest && corepack enable
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - uses: actions/cache@v4
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        name: Setup pnpm cache
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-pnpm-store-
 
       # node install
-      - run: yarn --frozen-lockfile
+      - run: pnpm install
 
       - name: ESlint check
-        run: yarn run lint
+        run: pnpm run lint
 
   i18n:
     name: i18n
@@ -82,20 +92,25 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # node cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Enable corepack
+        shell: bash
+        run: npm i -g corepack@latest && corepack enable
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - uses: actions/cache@v4
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        name: Setup pnpm cache
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-pnpm-store-
 
       # node install
-      - run: yarn --frozen-lockfile
+      - run: pnpm install
 
       - name: i18n locales in sync
-        run: yarn run i18n:ci
+        run: pnpm run i18n:ci
