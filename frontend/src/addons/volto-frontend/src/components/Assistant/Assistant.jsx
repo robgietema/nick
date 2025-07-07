@@ -371,7 +371,7 @@ const Assistant = (props) => {
             size="20px"
             title="Virtual Assistant"
           />
-          Virtual assistant
+          Virtual Assistant
           <Icon
             className="close"
             name={clearSVG}
