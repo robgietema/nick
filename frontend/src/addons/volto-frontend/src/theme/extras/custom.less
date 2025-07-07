@@ -74,9 +74,55 @@
   }
 }
 
+.assistant-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #007eb1;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  line-height: 0;
+  cursor: pointer;
+}
 .assistant {
-  position: static;
-  height: 100%;
+  position: fixed;
+  height: 70vh;
+  width: 375px;
+  bottom: 80px;
+  right: 20px;
+  border: 1px solid #edf1f2;
+  border-radius: 5px;
+  display: none;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+
+  &.show {
+    display: block;
+  }
+
+  .assistant-header {
+    border-bottom: solid 1px #edf1f2;
+    line-height: 2.5em;
+    font-weight: bold;
+    padding: 0 6px;
+
+    .icon {
+      vertical-align: text-bottom;
+    }
+
+    .star {
+      margin-right: 4px;
+    }
+
+    .close {
+      cursor: pointer;
+      float: right;
+      margin-top: 7px;
+    }
+  }
 
   .assistant-res {
     p,
@@ -126,7 +172,7 @@
     }
   }
   .assistant-response {
-    height: calc(100% - 121px);
+    height: calc(100% - 146px);
     padding: 1rem;
     overflow-x: hidden;
     overflow-y: auto;
@@ -171,9 +217,9 @@
   .assistant-footer {
     background-color: #f0f9f9;
     padding: 1rem;
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    width: 375px;
+    width: 100%;
   }
   .assistant-context {
     .assistant-context-button {

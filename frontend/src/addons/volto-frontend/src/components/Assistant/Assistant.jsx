@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
+import cx from 'classnames';
 import { compact, last, map, keys } from 'lodash';
 
 import Icon from '@plone/volto/components/theme/Icon/Icon';
@@ -12,6 +13,9 @@ import textSVG from '@plone/volto/icons/paragraph.svg';
 import reloadSVG from '@plone/volto/icons/reload.svg';
 import deleteSVG from '@plone/volto/icons/delete.svg';
 import pageSVG from '@plone/volto/icons/page.svg';
+import clearSVG from '@plone/volto/icons/clear.svg';
+import halfstarSVG from '@plone/volto/icons/half-star.svg';
+import commentSVG from '@plone/volto/icons/comment.svg';
 import navSVG from '@plone/volto/icons/nav.svg';
 import attachmentSVG from '@plone/volto/icons/attachment.svg';
 import hideSVG from '@plone/volto/icons/hide.svg';
@@ -26,7 +30,17 @@ const Assistant = (props) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
   const formData = useSelector((state) => state.form?.global);
+
+  const toggleShow = () => {
+    if (!show) {
+      window.setTimeout(() => {
+        document.querySelector('.assistant-input input').focus();
+      }, 10);
+    }
+    setShow(!show);
+  };
 
   const tools = {
     set_title: {
@@ -300,194 +314,225 @@ const Assistant = (props) => {
   };
 
   return (
-    <div className="assistant">
-      <div className="assistant-response">
-        {(currentQuery ? [...queries, currentQuery] : queries).map(
-          (query, index) => (
-            <div className="assistant-query" key={index}>
-              <div className="assistant-prompt">
-                <div className="assistant-prompt-title">
-                  {query.prompt}
+    <div className="assistant-wrapper">
+      <div className="assistant-button">
+        <Icon
+          name={commentSVG}
+          size="36px"
+          className="circled"
+          title="Assistant"
+          onClick={toggleShow}
+        />
+      </div>
+      <div className={cx('assistant', { show: show })}>
+        <div className="assistant-header">
+          <Icon
+            className="star"
+            name={halfstarSVG}
+            size="20px"
+            title="Virtual Assistant"
+          />
+          Virtual assistant
+          <Icon
+            className="close"
+            name={clearSVG}
+            size="20px"
+            title="Close"
+            onClick={() => setShow(false)}
+          />
+        </div>
+        <div className="assistant-response">
+          {(currentQuery ? [...queries, currentQuery] : queries).map(
+            (query, index) => (
+              <div className="assistant-query" key={index}>
+                <div className="assistant-prompt">
+                  <div className="assistant-prompt-title">
+                    {query.prompt}
 
+                    {(index < queries.length - 1 || !loading) && (
+                      <Button
+                        basic
+                        className="reload"
+                        onClick={() => {
+                          sendQuery(query.prompt);
+                        }}
+                        icon={
+                          <Icon
+                            name={reloadSVG}
+                            size="16px"
+                            title="Resend this prompt"
+                          />
+                        }
+                      />
+                    )}
+                  </div>
                   {(index < queries.length - 1 || !loading) && (
-                    <Button
-                      basic
-                      className="reload"
-                      onClick={() => {
-                        sendQuery(query.prompt);
-                      }}
-                      icon={
-                        <Icon
-                          name={reloadSVG}
-                          size="16px"
-                          title="Resend this prompt"
-                        />
-                      }
-                    />
+                    <>
+                      <Button
+                        basic
+                        onClick={() => {
+                          insertBlocks(
+                            map(query.response, (paragraph) =>
+                              stripQuotes(paragraph),
+                            ),
+                          );
+                        }}
+                        className="blocks"
+                        icon={
+                          <Icon
+                            name={textSVG}
+                            size="16px"
+                            title="Insert all text as new blocks"
+                          />
+                        }
+                      />
+                      <Button
+                        basic
+                        onClick={() => {
+                          deleteQuery(index);
+                        }}
+                        className="delete"
+                        icon={
+                          <Icon
+                            name={deleteSVG}
+                            size="16px"
+                            title="Delete this prompt"
+                          />
+                        }
+                      />
+                    </>
                   )}
                 </div>
-                {(index < queries.length - 1 || !loading) && (
-                  <>
-                    <Button
-                      basic
-                      onClick={() => {
-                        insertBlocks(
-                          map(query.response, (paragraph) =>
-                            stripQuotes(paragraph),
-                          ),
-                        );
-                      }}
-                      className="blocks"
-                      icon={
-                        <Icon
-                          name={textSVG}
-                          size="16px"
-                          title="Insert all text as new blocks"
-                        />
-                      }
-                    />
-                    <Button
-                      basic
-                      onClick={() => {
-                        deleteQuery(index);
-                      }}
-                      className="delete"
-                      icon={
-                        <Icon
-                          name={deleteSVG}
-                          size="16px"
-                          title="Delete this prompt"
-                        />
-                      }
-                    />
-                  </>
+                {query.response.length > 0 ? (
+                  <div className="assistant-res">
+                    {map(query.response, (paragraph) =>
+                      renderParagraph(paragraph),
+                    )}
+                  </div>
+                ) : (
+                  loading && <div className="dot-elastic"></div>
                 )}
               </div>
-              {query.response.length > 0 ? (
-                <div className="assistant-res">
-                  {map(query.response, (paragraph) =>
-                    renderParagraph(paragraph),
-                  )}
-                </div>
-              ) : (
-                loading && <div className="dot-elastic"></div>
-              )}
-            </div>
-          ),
-        )}
-        <span className="assistant-query-footer"></span>
-      </div>
-      <div className="assistant-footer">
-        <div className="assistant-context">
-          <div
-            className={`assistant-context-button ${contextPage ? '' : 'hide'}`}
-          >
-            <Icon
-              name={pageSVG}
-              size="16px"
-              title="Page context"
-              className="context-icon"
-            />
-            <span className="context-label">Page</span>
-            <Button
-              basic
-              className="show-hide-button"
-              onClick={() => setContextPage(!contextPage)}
-              icon={
-                <Icon
-                  name={contextPage ? showSVG : hideSVG}
-                  size="20px"
-                  title={
-                    contextPage ? 'Disable page context' : 'Enable page context'
-                  }
-                />
-              }
-            />
-          </div>
-          <div
-            className={`assistant-context-button ${contextSite ? '' : 'hide'}`}
-          >
-            <Icon
-              name={navSVG}
-              size="16px"
-              title="Site context"
-              className="context-icon"
-            />
-            <span className="context-label">Site</span>
-            <Button
-              basic
-              className="show-hide-button"
-              onClick={() => setContextSite(!contextSite)}
-              icon={
-                <Icon
-                  name={contextSite ? showSVG : hideSVG}
-                  size="20px"
-                  title={
-                    contextPage ? 'Disable site context' : 'Enable site context'
-                  }
-                />
-              }
-            />
-          </div>
-          <div
-            className={`assistant-context-button ${contextAttachment ? '' : 'hide'}`}
-          >
-            <label
-              htmlFor="context-attachment-input"
-              className="context-attachment-label"
+            ),
+          )}
+          <span className="assistant-query-footer"></span>
+        </div>
+        <div className="assistant-footer">
+          <div className="assistant-context">
+            <div
+              className={`assistant-context-button ${contextPage ? '' : 'hide'}`}
             >
               <Icon
-                name={attachmentSVG}
-                size="20px"
-                title="Enable site content"
-                className="context-icon attachment"
+                name={pageSVG}
+                size="16px"
+                title="Page context"
+                className="context-icon"
               />
-              <input
-                name="context-attachment-input"
-                id="context-attachment-input"
-                type="file"
-                onChange={onUploadAttachment}
-              />
-              <span className="context-label attachment">
-                {contextAttachmentContent
-                  ? contextAttachmentContent.filename
-                  : 'Add Context...'}
-              </span>
-            </label>
-            {contextAttachmentContent && (
+              <span className="context-label">Page</span>
               <Button
                 basic
                 className="show-hide-button"
-                onClick={() => setContextAttachment(!contextAttachment)}
+                onClick={() => setContextPage(!contextPage)}
                 icon={
                   <Icon
-                    name={contextAttachment ? showSVG : hideSVG}
+                    name={contextPage ? showSVG : hideSVG}
                     size="20px"
                     title={
                       contextPage
-                        ? 'Disable attachment context'
-                        : 'Enable attachment context'
+                        ? 'Disable page context'
+                        : 'Enable page context'
                     }
                   />
                 }
               />
-            )}
+            </div>
+            <div
+              className={`assistant-context-button ${contextSite ? '' : 'hide'}`}
+            >
+              <Icon
+                name={navSVG}
+                size="16px"
+                title="Site context"
+                className="context-icon"
+              />
+              <span className="context-label">Site</span>
+              <Button
+                basic
+                className="show-hide-button"
+                onClick={() => setContextSite(!contextSite)}
+                icon={
+                  <Icon
+                    name={contextSite ? showSVG : hideSVG}
+                    size="20px"
+                    title={
+                      contextPage
+                        ? 'Disable site context'
+                        : 'Enable site context'
+                    }
+                  />
+                }
+              />
+            </div>
+            <div
+              className={`assistant-context-button ${contextAttachment ? '' : 'hide'}`}
+            >
+              <label
+                htmlFor="context-attachment-input"
+                className="context-attachment-label"
+              >
+                <Icon
+                  name={attachmentSVG}
+                  size="20px"
+                  title="Enable site content"
+                  className="context-icon attachment"
+                />
+                <input
+                  name="context-attachment-input"
+                  id="context-attachment-input"
+                  type="file"
+                  onChange={onUploadAttachment}
+                />
+                <span className="context-label attachment">
+                  {contextAttachmentContent
+                    ? contextAttachmentContent.filename
+                    : 'Add Context...'}
+                </span>
+              </label>
+              {contextAttachmentContent && (
+                <Button
+                  basic
+                  className="show-hide-button"
+                  onClick={() => setContextAttachment(!contextAttachment)}
+                  icon={
+                    <Icon
+                      name={contextAttachment ? showSVG : hideSVG}
+                      size="20px"
+                      title={
+                        contextPage
+                          ? 'Disable attachment context'
+                          : 'Enable attachment context'
+                      }
+                    />
+                  }
+                />
+              )}
+            </div>
           </div>
+          <Form>
+            <Input
+              className="assistant-input"
+              loading={loading}
+              type="text"
+              placeholder={loading ? 'Loading...' : 'How can I help you?'}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  sendQuery(e.target.value);
+                  e.target.value = ''; // Clear input after sending
+                }
+              }}
+            />
+          </Form>
         </div>
-        <Form>
-          <Input
-            className="assistant-input"
-            loading={loading}
-            type="text"
-            placeholder={loading ? 'Loading...' : 'How can I help you?'}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                sendQuery(e.target.value);
-                e.target.value = ''; // Clear input after sending
-              }
-            }}
-          />
-        </Form>
       </div>
     </div>
   );
