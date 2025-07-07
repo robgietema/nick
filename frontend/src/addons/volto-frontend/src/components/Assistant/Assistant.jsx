@@ -43,11 +43,11 @@ const Assistant = (props) => {
   };
 
   const tools = {
-    set_title: {
+    'set title': {
       spec: {
         type: 'function',
         function: {
-          name: 'set_title',
+          name: 'set title',
           description: 'Sets the title',
           parameters: {
             type: 'object',
@@ -63,6 +63,45 @@ const Assistant = (props) => {
       },
       handler: ({ title }) => setTitle(title),
       message: ({ title }) => `The title is set to "${title}".`,
+    },
+    'save page': {
+      spec: {
+        type: 'function',
+        function: {
+          name: 'save page',
+          description: 'Save the page',
+        },
+      },
+      handler: () => {
+        document.getElementById('toolbar-save').click();
+      },
+      message: () => `The page is saved.`,
+    },
+    'edit page': {
+      spec: {
+        type: 'function',
+        function: {
+          name: 'edit page',
+          description: 'Edit the page',
+        },
+      },
+      handler: () => {
+        document.querySelector('.toolbar-actions .edit').click();
+      },
+      message: () => `Editing the page.`,
+    },
+    cancel: {
+      spec: {
+        type: 'function',
+        function: {
+          name: 'cancel',
+          description: 'Cancel',
+        },
+      },
+      handler: () => {
+        document.querySelector('.toolbar-actions .cancel').click();
+      },
+      message: () => `Cancelled editing the page.`,
     },
   };
 
