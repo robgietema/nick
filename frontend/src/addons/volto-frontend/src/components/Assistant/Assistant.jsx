@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
 import cx from 'classnames';
-import { compact, last, map, keys } from 'lodash';
+import { compact, last, map, keys, trim } from 'lodash';
+import { toast } from 'react-toastify';
 
 import Icon from '@plone/volto/components/theme/Icon/Icon';
+import Toast from '@plone/volto/components/manage/Toast/Toast';
 
 import copySVG from '@plone/volto/icons/copy.svg';
 import headingSVG from '@plone/volto/icons/heading.svg';
@@ -17,6 +19,8 @@ import clearSVG from '@plone/volto/icons/clear.svg';
 import halfstarSVG from '@plone/volto/icons/half-star.svg';
 import commentSVG from '@plone/volto/icons/comment.svg';
 import navSVG from '@plone/volto/icons/nav.svg';
+import microphoneSVG from '@plone/volto/icons/microphone.svg';
+import microphoneOffSVG from '@plone/volto/icons/microphone-off.svg';
 import attachmentSVG from '@plone/volto/icons/attachment.svg';
 import hideSVG from '@plone/volto/icons/hide.svg';
 import showSVG from '@plone/volto/icons/show.svg';
@@ -31,7 +35,133 @@ const Assistant = (props) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+
+  const [speechListening, setSpeechListening] = useState(false);
+  const [speechSupported, setSpeechSupported] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+
+  // Select context
+  const [contextPage, setContextPage] = useState(true);
+  const [contextSite, setContextSite] = useState(true);
+  const [contextAttachment, setContextAttachment] = useState(true);
+  const [contextAttachmentContent, setContextAttachmentContent] =
+    useState(undefined);
+  const [queries, setQueries] = useState([]);
+  const [currentQuery, setCurrentQuery] = useState(false);
+
   const formData = useSelector((state) => state.form?.global);
+
+  const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    // Check if browser supports SpeechRecognition
+    if (
+      !('webkitSpeechRecognition' in window) &&
+      !('SpeechRecognition' in window)
+    ) {
+      setSpeechSupported(false);
+      return;
+    }
+
+    // Initialize SpeechRecognition
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognitionRef.current = new SpeechRecognition();
+    recognitionRef.current.continuous = true;
+    recognitionRef.current.interimResults = true;
+
+    const handleStart = () => {
+      setSpeechListening(true);
+      setInputValue('');
+    };
+
+    const handleEnd = () => {
+      setSpeechListening(false);
+      setInputValue('');
+    };
+
+    const handleError = (event) => {
+      toast.error(
+        <Toast
+          error
+          title="Error"
+          content={`Speech recognition error ${event.error}`}
+        />,
+      );
+    };
+
+    const handleResult = (event) => {
+      let currentInterimTranscript = '';
+      let newFinalTranscript = '';
+
+      // Process results
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const result = event.results[i];
+        const transcriptText = result[0].transcript;
+
+        if (result.isFinal) {
+          newFinalTranscript += transcriptText + ' ';
+        } else {
+          currentInterimTranscript += transcriptText;
+        }
+      }
+
+      if (trim(newFinalTranscript) !== '') {
+        sendQuery(newFinalTranscript);
+      }
+
+      // Update interim transcript
+      setInputValue(currentInterimTranscript);
+    };
+
+    // Attach event listeners
+    recognitionRef.current.onstart = handleStart;
+    recognitionRef.current.onend = handleEnd;
+    recognitionRef.current.onerror = handleError;
+    recognitionRef.current.onresult = handleResult;
+
+    // Cleanup function
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.onstart = null;
+        recognitionRef.current.onend = null;
+        recognitionRef.current.onerror = null;
+        recognitionRef.current.onresult = null;
+        recognitionRef.current.stop();
+      }
+    };
+  }, [setSpeechSupported, setSpeechListening, setInputValue]);
+
+  const toggleListening = async () => {
+    if (!speechSupported) {
+      toast.error(
+        <Toast
+          error
+          title="Error"
+          content={'Speech recognition is not supported in your browser.'}
+        />,
+      );
+      return;
+    }
+
+    if (speechListening) {
+      recognitionRef.current?.stop();
+    } else {
+      try {
+        // Request microphone permission
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+        recognitionRef.current?.start();
+      } catch (error) {
+        toast.error(
+          <Toast
+            error
+            title="Error"
+            content={'Microphone access is required for speech recognition.'}
+          />,
+        );
+      }
+    }
+  };
 
   const toggleShow = () => {
     if (!show) {
@@ -156,15 +286,6 @@ const Assistant = (props) => {
     dispatch(setFormData(newFormData));
   };
 
-  // Select context
-  const [contextPage, setContextPage] = useState(true);
-  const [contextSite, setContextSite] = useState(true);
-  const [contextAttachment, setContextAttachment] = useState(true);
-  const [contextAttachmentContent, setContextAttachmentContent] =
-    useState(undefined);
-  const [queries, setQueries] = useState([]);
-  const [currentQuery, setCurrentQuery] = useState(false);
-
   const scrollToLastQuery = () => {
     window.setTimeout(() => {
       last(
@@ -236,8 +357,8 @@ const Assistant = (props) => {
                 content: newCurrentQuery.response.join('\n'),
               },
             ]);
-            setQueries([
-              ...queries,
+            setQueries((prevQueries) => [
+              ...prevQueries,
               {
                 prompt: newCurrentQuery.prompt,
                 response: newCurrentQuery.response,
@@ -563,13 +684,23 @@ const Assistant = (props) => {
               loading={loading}
               type="text"
               placeholder={loading ? 'Loading...' : 'How can I help you?'}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
                   sendQuery(e.target.value);
-                  e.target.value = ''; // Clear input after sending
+                  setInputValue('');
                 }
               }}
-            />
+            >
+              <input />
+              <Icon
+                size={24}
+                name={speechListening ? microphoneSVG : microphoneOffSVG}
+                onClick={toggleListening}
+                className={speechListening ? 'listening' : ''}
+              />
+            </Input>
           </Form>
         </div>
       </div>
