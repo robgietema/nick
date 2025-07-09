@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
 import cx from 'classnames';
@@ -25,7 +25,7 @@ import attachmentSVG from '@plone/volto/icons/attachment.svg';
 import hideSVG from '@plone/volto/icons/hide.svg';
 import showSVG from '@plone/volto/icons/show.svg';
 
-import { setFormData } from '@plone/volto/actions/form/form';
+import { updateFormData } from '../../actions/form/form';
 import { addBlock, changeBlock } from '@plone/volto/helpers/Blocks/Blocks';
 
 import config from '@plone/volto/registry';
@@ -53,100 +53,82 @@ const Assistant = (props) => {
 
   const recognitionRef = useRef(null);
 
-  useEffect(() => {
-    // Check if browser supports SpeechRecognition
-    if (
-      !('webkitSpeechRecognition' in window) &&
-      !('SpeechRecognition' in window)
-    ) {
-      setSpeechSupported(false);
-      return;
+  const handleResult = (event) => {
+    let currentInterimTranscript = '';
+    let newFinalTranscript = '';
+
+    // Process results
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      const result = event.results[i];
+      const transcriptText = result[0].transcript;
+
+      if (result.isFinal) {
+        newFinalTranscript += transcriptText + ' ';
+      } else {
+        currentInterimTranscript += transcriptText;
+      }
     }
 
-    // Initialize SpeechRecognition
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-    recognitionRef.current = new SpeechRecognition();
-    recognitionRef.current.continuous = true;
-    recognitionRef.current.interimResults = true;
+    if (trim(newFinalTranscript) !== '') {
+      sendQuery(newFinalTranscript);
+    }
 
-    const handleStart = () => {
-      setSpeechListening(true);
-      setInputValue('');
-    };
+    // Update interim transcript
+    setInputValue(currentInterimTranscript);
+  };
 
-    const handleEnd = () => {
-      setSpeechListening(false);
-      setInputValue('');
-    };
+  const handleStart = () => {
+    setSpeechListening(true);
+    setInputValue('');
+  };
 
-    const handleError = (event) => {
-      toast.error(
-        <Toast
-          error
-          title="Error"
-          content={`Speech recognition error ${event.error}`}
-        />,
-      );
-    };
+  const handleEnd = () => {
+    setSpeechListening(false);
+    setInputValue('');
+  };
 
-    const handleResult = (event) => {
-      let currentInterimTranscript = '';
-      let newFinalTranscript = '';
-
-      // Process results
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const result = event.results[i];
-        const transcriptText = result[0].transcript;
-
-        if (result.isFinal) {
-          newFinalTranscript += transcriptText + ' ';
-        } else {
-          currentInterimTranscript += transcriptText;
-        }
-      }
-
-      if (trim(newFinalTranscript) !== '') {
-        sendQuery(newFinalTranscript);
-      }
-
-      // Update interim transcript
-      setInputValue(currentInterimTranscript);
-    };
-
-    // Attach event listeners
-    recognitionRef.current.onstart = handleStart;
-    recognitionRef.current.onend = handleEnd;
-    recognitionRef.current.onerror = handleError;
-    recognitionRef.current.onresult = handleResult;
-
-    // Cleanup function
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.onstart = null;
-        recognitionRef.current.onend = null;
-        recognitionRef.current.onerror = null;
-        recognitionRef.current.onresult = null;
-        recognitionRef.current.stop();
-      }
-    };
-  }, [setSpeechSupported, setSpeechListening, setInputValue]);
+  const handleError = (event) => {
+    toast.error(
+      <Toast
+        error
+        title="Error"
+        content={`Speech recognition error ${event.error}`}
+      />,
+    );
+  };
 
   const toggleListening = async () => {
-    if (!speechSupported) {
-      toast.error(
-        <Toast
-          error
-          title="Error"
-          content={'Speech recognition is not supported in your browser.'}
-        />,
-      );
-      return;
-    }
-
     if (speechListening) {
       recognitionRef.current?.stop();
     } else {
+      // Check if browser supports SpeechRecognition
+      if (
+        !('webkitSpeechRecognition' in window) &&
+        !('SpeechRecognition' in window)
+      ) {
+        toast.error(
+          <Toast
+            error
+            title="Error"
+            content={'Speech recognition is not supported in your browser.'}
+          />,
+        );
+        return;
+      }
+
+      // Initialize SpeechRecognition
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = true;
+      recognitionRef.current.interimResults = true;
+
+      // Attach event listeners
+      recognitionRef.current.onstart = handleStart;
+      recognitionRef.current.onend = handleEnd;
+      recognitionRef.current.onerror = handleError;
+      recognitionRef.current.onresult = handleResult;
+
       try {
         // Request microphone permission
         await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -236,11 +218,11 @@ const Assistant = (props) => {
   };
 
   const setTitle = (value) => {
-    dispatch(setFormData({ ...formData, title: value }));
+    dispatch(updateFormData({ title: value }));
   };
 
   const setDescription = (value) => {
-    dispatch(setFormData({ ...formData, description: value }));
+    dispatch(updateFormData({ description: value }));
   };
 
   const insertBlocks = (values) => {
@@ -263,7 +245,7 @@ const Assistant = (props) => {
       });
     });
 
-    dispatch(setFormData(newFormData));
+    dispatch(updateFormData(newFormData));
   };
 
   const insertBlock = (value) => {
@@ -283,7 +265,7 @@ const Assistant = (props) => {
       ],
     });
 
-    dispatch(setFormData(newFormData));
+    dispatch(updateFormData(newFormData));
   };
 
   const scrollToLastQuery = () => {
