@@ -37,7 +37,6 @@ const Assistant = (props) => {
   const [show, setShow] = useState(false);
 
   const [speechListening, setSpeechListening] = useState(false);
-  const [speechSupported, setSpeechSupported] = useState(true);
   const [inputValue, setInputValue] = useState('');
 
   // Select context
