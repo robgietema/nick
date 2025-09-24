@@ -37,7 +37,6 @@ export { lockExpired } from './lock/lock';
 export { log, logger } from './log/log';
 export { sendMail } from './mail/mail';
 export { mergeSchemas, translateSchema } from './schema/schema';
-export { testRequest } from './tests/tests';
 export { getPath, getUrl, getUrlByPath, getRootUrl } from './url/url';
 export {
   arrayToVocabulary,

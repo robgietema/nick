@@ -1,5 +1,5 @@
 import app from '../../app';
-import { testRequest } from '../../helpers';
+import { testRequest } from '../../helpers/tests/tests';
 
 describe('Vocabularies', () => {
   it('should return the vocabularies', () =>

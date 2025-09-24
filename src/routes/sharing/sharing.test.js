@@ -1,5 +1,5 @@
 import app from '../../app';
-import { testRequest } from '../../helpers';
+import { testRequest } from '../../helpers/tests/tests';
 
 describe('Sharing', () => {
   it('should get sharing information', () => testRequest(app, 'sharing/get'));

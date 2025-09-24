@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 import app from '../../app';
-import { testRequest } from '../../helpers';
+import { testRequest } from '../../helpers/tests/tests';
 
 describe('Content', () => {
   it('should return a content object', () => testRequest(app, 'content/get'));

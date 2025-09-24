@@ -1,5 +1,5 @@
 import app from '../../app';
-import { testRequest } from '../../helpers';
+import { testRequest } from '../../helpers/tests/tests';
 
 describe('Search', () => {
   it('should return all items', () => testRequest(app, 'search/get'));

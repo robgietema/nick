@@ -1,5 +1,5 @@
 import app from '../../app';
-import { testRequest } from '../../helpers';
+import { testRequest } from '../../helpers/tests/tests';
 
 describe('Catalog', () => {
   it('should return the catalog info', () => testRequest(app, 'catalog/get'));
