@@ -1,9 +1,5 @@
 import app from '../../app';
-import helpers, {
-  getPostgresVersion,
-  getNodeVersion,
-  testRequest,
-} from '../../helpers';
+import { testRequest } from '../../helpers/tests/tests';
 
 // Mock formatSize
 jest.mock('../../helpers', () => {
