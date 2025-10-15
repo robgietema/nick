@@ -4,7 +4,7 @@
  * @module scripts/i18n
  */
 
-import { find, keys, map, upperFirst, zipObject } from 'lodash';
+import { find, keys, map, uniq, upperFirst, zipObject } from 'lodash';
 import { sync as glob } from 'glob';
 import Pofile from 'pofile';
 import { transformSync } from '@babel/core';
@@ -18,14 +18,15 @@ import { endsWith } from 'lodash';
  * @return {string} Context string
  */
 function pathToContext(path) {
-  return path
-    .replace('src/', '')
-    .replace('.json', '')
-    .replace('.js', '')
-    .replace(/:.*$/, '')
-    .split(/\//)
-    .map((part) => upperFirst(part.replace(/_/gi, ' ')))
-    .join('|');
+  return uniq(
+    path
+      .replace('src/', '')
+      .replace('.json', '')
+      .replace('.js', '')
+      .replace(/:.*$/, '')
+      .split(/\//)
+      .map((part) => upperFirst(part.replace(/_/gi, ' '))),
+  ).join('|');
 }
 
 /**

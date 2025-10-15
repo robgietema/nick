@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-10-15T11:27:22.413Z\n"
+"POT-Creation-Date: 2025-10-15T11:40:20.792Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgctxt "Profiles|Core|Behaviors|Ownership"
 #: src/routes/ai/ai.js:108
 msgid "AI is disabled."
 msgstr ""
-msgctxt "Routes|Related|Related"
+msgctxt "Routes|Related"
 
 #. Default: "Absolute path"
 #: src/profiles/core/catalog.json:14
@@ -171,14 +171,14 @@ msgctxt "Profiles|Core|Catalog"
 #: src/models/type/type.js:133
 msgid "Allowed Content Types"
 msgstr ""
-msgctxt "Models|Type|Type"
+msgctxt "Models|Type"
 
 #. Default: "Already locked"
 #: src/routes/lock/lock.js:54
 #: src/routes/lock/lock.js:106
 msgid "Already locked"
 msgstr ""
-msgctxt "Routes|Lock|Lock"
+msgctxt "Routes|Lock"
 
 #. Default: "An entity responsible for making this item available."
 #: src/profiles/core/behaviors/ownership.json:15
@@ -287,7 +287,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/models/type/type.js:116
 msgid "Behaviors"
 msgstr ""
-msgctxt "Models|Type|Type"
+msgctxt "Models|Type"
 
 #. Default: "Between dates"
 #: src/profiles/core/catalog.json:112
@@ -351,14 +351,14 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/controlpanels/controlpanels.js:59
 msgid "Content"
 msgstr ""
-msgctxt "Routes|Controlpanels|Controlpanels"
+msgctxt "Routes|Controlpanels"
 
 #. Default: "Content Types"
 #: src/routes/controlpanels/controlpanels.js:58
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgid "Content Types"
 msgstr ""
-msgctxt "Routes|Controlpanels|Controlpanels"
+msgctxt "Routes|Controlpanels"
 
 #. Default: "Contents"
 #: src/profiles/core/actions.json:17
@@ -443,7 +443,7 @@ msgctxt "Profiles|Core|Actions"
 #: src/profiles/core/behaviors/basic.json:16
 msgid "Description"
 msgstr ""
-msgctxt "Models|Type|Type"
+msgctxt "Models|Type"
 
 #. Default: "Displayed content types"
 #: src/profiles/core/controlpanels/navigation.json:27
@@ -456,7 +456,7 @@ msgctxt "Profiles|Core|Controlpanels|Navigation"
 #: src/routes/content/content.js:589
 msgid "Document locked"
 msgstr ""
-msgctxt "Routes|History|History"
+msgctxt "Routes|History"
 
 #. Default: "Dublin Core metadata"
 #: src/profiles/core/behaviors/dublin_core.json:3
@@ -555,7 +555,7 @@ msgctxt "Profiles|Core|Types|File"
 #: src/models/type/type.js:146
 msgid "Filter Contained Types"
 msgstr ""
-msgctxt "Models|Type|Type"
+msgctxt "Models|Type"
 
 #. Default: "Find items related to the selected items"
 #: src/profiles/core/catalog.json:322
@@ -586,7 +586,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/email/email.js:87
 msgid "From and message are required fields."
 msgstr ""
-msgctxt "Routes|Email|Email"
+msgctxt "Routes|Email"
 
 #. Default: "Gives the ability to rename an item from its edit form."
 #: src/profiles/core/behaviors/short_name.json:4
@@ -668,13 +668,13 @@ msgctxt "App"
 #: src/routes/authentication/authentication.js:52
 msgid "Invalid credentials"
 msgstr ""
-msgctxt "Routes|Authentication|Authentication"
+msgctxt "Routes|Authentication"
 
 #. Default: "Invalid session"
 #: src/routes/authentication/authentication.js:81
 msgid "Invalid session"
 msgstr ""
-msgctxt "Routes|Authentication|Authentication"
+msgctxt "Routes|Authentication"
 
 #. Default: "Is"
 #: src/profiles/core/catalog.json:384
@@ -687,7 +687,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/models/type/type.js:147
 msgid "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
 msgstr ""
-msgctxt "Models|Type|Type"
+msgctxt "Models|Type"
 
 #. Default: "Language"
 #: src/profiles/core/controlpanels/language.json:3
@@ -766,7 +766,7 @@ msgctxt "Profiles|Core|Permissions"
 #: src/routes/authentication/authentication.js:24
 msgid "Login and password must be provided in body."
 msgstr ""
-msgctxt "Routes|Authentication|Authentication"
+msgctxt "Routes|Authentication"
 
 #. Default: "Logout"
 #: src/profiles/core/permissions.json:18
@@ -817,7 +817,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/authentication/authentication.js:23
 msgid "Missing credentials"
 msgstr ""
-msgctxt "Routes|Authentication|Authentication"
+msgctxt "Routes|Authentication"
 
 #. Default: "Modification date"
 #: src/profiles/core/catalog.json:490
@@ -860,7 +860,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/lock/lock.js:156
 msgid "Not allowed"
 msgstr ""
-msgctxt "Routes|Lock|Lock"
+msgctxt "Routes|Lock"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:52
@@ -871,7 +871,7 @@ msgctxt "Routes|Lock|Lock"
 #: src/routes/controlpanels/controlpanels.js:69
 msgid "Not found."
 msgstr ""
-msgctxt "Routes|Vocabularies|Vocabularies"
+msgctxt "Routes|Vocabularies"
 
 #. Default: "Order in folder"
 #: src/profiles/core/catalog.json:50
@@ -903,7 +903,7 @@ msgctxt "Profiles|Core|Types|Page"
 #: src/routes/users/users.js:188
 msgid "Password reset request"
 msgstr ""
-msgctxt "Routes|Users|Users"
+msgctxt "Routes|Users"
 
 #. Default: "Paste"
 #: src/profiles/core/actions.json:49
@@ -1004,7 +1004,7 @@ msgctxt "Profiles|Core|Workflows"
 #: src/routes/ai/ai.js:98
 msgid "Prompt is a required field."
 msgstr ""
-msgctxt "Routes|Ai|Ai"
+msgctxt "Routes|Ai"
 
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
@@ -1083,7 +1083,7 @@ msgctxt "Profiles|Core|Actions"
 #: src/routes/content/content.js:426
 msgid "Required field(s) missing."
 msgstr ""
-msgctxt "Routes|Content|Content"
+msgctxt "Routes|Content"
 
 #. Default: "Retract"
 #: src/profiles/core/workflows.json:57
@@ -1277,13 +1277,13 @@ msgctxt "Profiles|Core|Workflows"
 #: src/routes/groups/groups.js:111
 msgid "System group"
 msgstr ""
-msgctxt "Routes|Groups|Groups"
+msgctxt "Routes|Groups"
 
 #. Default: "System users"
 #: src/routes/users/users.js:239
 msgid "System users"
 msgstr ""
-msgctxt "Routes|Users|Users"
+msgctxt "Routes|Users"
 
 #. Default: "Tag"
 #: src/profiles/core/catalog.json:284
@@ -1369,7 +1369,7 @@ msgid "The following link takes you to a page where you can reset your password:
 
 (This link will expire in 7 days)"
 msgstr ""
-msgctxt "Routes|Users|Users"
+msgctxt "Routes|Users"
 
 #. Default: "The item's title, transformed for sorting"
 #: src/profiles/core/catalog.json:466
@@ -1478,7 +1478,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/lock/lock.js:103
 msgid "This document is already locked by another user."
 msgstr ""
-msgctxt "Routes|Lock|Lock"
+msgctxt "Routes|Lock"
 
 #. Default: "This is the contents of the robots.txt file."
 #: src/profiles/core/controlpanels/site.json:16
@@ -1527,7 +1527,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/email/email.js:19
 msgid "To, from and message are required fields."
 msgstr ""
-msgctxt "Routes|Email|Email"
+msgctxt "Routes|Email"
 
 #. Default: "Today"
 #: src/profiles/core/catalog.json:142
@@ -1558,13 +1558,13 @@ msgctxt "Profiles|Core|Catalog"
 #: src/models/type/type.js:155
 msgid "Type Name"
 msgstr ""
-msgctxt "Models|Type|Type"
+msgctxt "Models|Type"
 
 #. Default: "Type of the current document is not found."
 #: src/helpers/handler/handler.js:61
 msgid "Type of the current document is not found."
 msgstr ""
-msgctxt "Helpers|Handler|Handler"
+msgctxt "Helpers|Handler"
 
 #. Default: "Use '../' to navigate to parent objects."
 #: src/profiles/core/catalog.json:27
@@ -1576,13 +1576,13 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/users/users.js:44
 msgid "User doesn't exist or invalid credentials."
 msgstr ""
-msgctxt "Routes|Users|Users"
+msgctxt "Routes|Users"
 
 #. Default: "User is not logged in."
 #: src/routes/authentication/authentication.js:82
 msgid "User is not logged in."
 msgstr ""
-msgctxt "Routes|Authentication|Authentication"
+msgctxt "Routes|Authentication"
 
 #. Default: "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 #: src/profiles/core/controlpanels/mail.json:54
@@ -1654,7 +1654,7 @@ msgctxt "Profiles|Core|Catalog"
 #: src/routes/authentication/authentication.js:53
 msgid "Wrong login and/or password."
 msgstr ""
-msgctxt "Routes|Authentication|Authentication"
+msgctxt "Routes|Authentication"
 
 #. Default: "Yes"
 #: src/profiles/core/catalog.json:353
@@ -1668,38 +1668,38 @@ msgctxt "Profiles|Core|Catalog"
 #: src/helpers/handler/handler.js:83
 msgid "You are not authorization to access this resource."
 msgstr ""
-msgctxt "Routes|Workflow|Workflow"
+msgctxt "Routes|Workflow"
 
 #. Default: "You can't delete system groups."
 #: src/routes/groups/groups.js:110
 msgid "You can't delete system groups."
 msgstr ""
-msgctxt "Routes|Groups|Groups"
+msgctxt "Routes|Groups"
 
 #. Default: "You can't delete system users."
 #: src/routes/users/users.js:238
 msgid "You can't delete system users."
 msgstr ""
-msgctxt "Routes|Users|Users"
+msgctxt "Routes|Users"
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:47
 #: src/routes/content/content.js:586
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr ""
-msgctxt "Routes|History|History"
+msgctxt "Routes|History"
 
 #. Default: "You don't have permission to unlock this document."
 #: src/routes/lock/lock.js:153
 msgid "You don't have permission to unlock this document."
 msgstr ""
-msgctxt "Routes|Lock|Lock"
+msgctxt "Routes|Lock"
 
 #. Default: "You don't have permissions to add a user."
 #: src/routes/users/users.js:144
 msgid "You don't have permissions to add a user."
 msgstr ""
-msgctxt "Routes|Users|Users"
+msgctxt "Routes|Users"
 
 #. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3
