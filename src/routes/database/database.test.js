@@ -1,5 +1,5 @@
 import app from '../../app';
-import helpers, { formatSize, testRequest } from '../../helpers';
+import { testRequest } from '../../helpers/tests/tests';
 
 // Mock formatSize
 jest.mock('../../helpers', () => {
