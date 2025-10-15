@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2025-10-15T11:40:20.792Z\n"
+"POT-Creation-Date: 2025-10-15T18:30:19.647Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,12 @@ msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "A related item from which this item is derived."
 msgstr ""
 msgctxt "Profiles|Core|Behaviors|Ownership"
+
+#. Default: "AI"
+#: src/profiles/ai/controlpanels/ai.json:3
+msgid "AI"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:17
@@ -62,6 +68,12 @@ msgctxt "Profiles|Core|Permissions"
 msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
 msgstr ""
 msgctxt "Profiles|Core|Controlpanels|Navigation"
+
+#. Default: "Add prompt"
+#: src/profiles/ai/controlpanels/ai.json:19
+msgid "Add prompt"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
 
 #. Default: "Additional items"
 #: src/profiles/core/controlpanels/navigation.json:32
@@ -431,6 +443,12 @@ msgid "Default"
 msgstr ""
 msgctxt "Profiles|Core|Types|Image"
 
+#. Default: "Define custom prompts for the assistant."
+#: src/profiles/ai/controlpanels/ai.json:16
+msgid "Define custom prompts for the assistant."
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
+
 #. Default: "Delete"
 #: src/profiles/core/actions.json:54
 msgid "Delete"
@@ -441,6 +459,7 @@ msgctxt "Profiles|Core|Actions"
 #: src/models/type/type.js:140
 #: src/profiles/core/catalog.json:227
 #: src/profiles/core/behaviors/basic.json:16
+#: src/profiles/ai/controlpanels/ai.json:33
 msgid "Description"
 msgstr ""
 msgctxt "Models|Type"
@@ -999,12 +1018,25 @@ msgid "Private"
 msgstr ""
 msgctxt "Profiles|Core|Workflows"
 
+#. Default: "Prompt"
+#: src/profiles/ai/controlpanels/ai.json:18
+#: src/profiles/ai/controlpanels/ai.json:37
+msgid "Prompt"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
+
 #. Default: "Prompt is a required field."
 #: src/routes/ai/ai.js:50
 #: src/routes/ai/ai.js:98
 msgid "Prompt is a required field."
 msgstr ""
 msgctxt "Routes|Ai"
+
+#. Default: "Prompts"
+#: src/profiles/ai/controlpanels/ai.json:15
+msgid "Prompts"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
 
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
@@ -1519,6 +1551,7 @@ msgctxt "Profiles|Core|Catalog"
 #. Default: "Title"
 #: src/profiles/core/catalog.json:265
 #: src/profiles/core/behaviors/basic.json:22
+#: src/profiles/ai/controlpanels/ai.json:29
 msgid "Title"
 msgstr ""
 msgctxt "Profiles|Core|Catalog"

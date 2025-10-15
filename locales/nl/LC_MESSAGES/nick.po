@@ -34,6 +34,12 @@ msgid "A related item from which this item is derived."
 msgstr "Een gerelateerd item waarvan deze is afgeleid."
 msgctxt "Profiles|Core|Behaviors|Ownership"
 
+#. Default: "AI"
+#: src/profiles/ai/controlpanels/ai.json:3
+msgid "AI"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
+
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:17
 #: src/routes/ai/ai.js:60
@@ -65,6 +71,12 @@ msgctxt "Profiles|Core|Permissions"
 msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
 msgstr "Voeg items toe aan de navigatie, één per regel. In het formaatl 'titel|omschrijving|url'"
 msgctxt "Profiles|Core|Controlpanels|Navigation"
+
+#. Default: "Add prompt"
+#: src/profiles/ai/controlpanels/ai.json:19
+msgid "Add prompt"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
 
 #. Default: "Additional items"
 #: src/profiles/core/controlpanels/navigation.json:32
@@ -434,6 +446,12 @@ msgid "Default"
 msgstr "Standaard"
 msgctxt "Profiles|Core|Types|Image"
 
+#. Default: "Define custom prompts for the assistant."
+#: src/profiles/ai/controlpanels/ai.json:16
+msgid "Define custom prompts for the assistant."
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
+
 #. Default: "Delete"
 #: src/profiles/core/actions.json:54
 msgid "Delete"
@@ -444,6 +462,7 @@ msgctxt "Profiles|Core|Actions"
 #: src/models/type/type.js:140
 #: src/profiles/core/catalog.json:227
 #: src/profiles/core/behaviors/basic.json:16
+#: src/profiles/ai/controlpanels/ai.json:33
 msgid "Description"
 msgstr "Omschrijving"
 msgctxt "Models|Type"
@@ -1002,12 +1021,25 @@ msgid "Private"
 msgstr "Privé"
 msgctxt "Profiles|Core|Workflows"
 
+#. Default: "Prompt"
+#: src/profiles/ai/controlpanels/ai.json:18
+#: src/profiles/ai/controlpanels/ai.json:37
+msgid "Prompt"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
+
 #. Default: "Prompt is a required field."
 #: src/routes/ai/ai.js:50
 #: src/routes/ai/ai.js:98
 msgid "Prompt is a required field."
 msgstr ""
 msgctxt "Routes|Ai"
+
+#. Default: "Prompts"
+#: src/profiles/ai/controlpanels/ai.json:15
+msgid "Prompts"
+msgstr ""
+msgctxt "Profiles|Ai|Controlpanels"
 
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
@@ -1520,6 +1552,7 @@ msgctxt "Profiles|Core|Catalog"
 #. Default: "Title"
 #: src/profiles/core/catalog.json:265
 #: src/profiles/core/behaviors/basic.json:22
+#: src/profiles/ai/controlpanels/ai.json:29
 msgid "Title"
 msgstr "Titel"
 msgctxt "Profiles|Core|Catalog"
