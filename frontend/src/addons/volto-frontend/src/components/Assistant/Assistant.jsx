@@ -1,12 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, ButtonGroup, Form, Input } from 'semantic-ui-react';
+import {
+  Button,
+  ButtonGroup,
+  Form,
+  Input,
+  DropdownMenu,
+  DropdownItem,
+  DropdownDivider,
+  Dropdown,
+} from 'semantic-ui-react';
 import cx from 'classnames';
 import { compact, last, map, keys, trim } from 'lodash';
 import { toast } from 'react-toastify';
 
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import Toast from '@plone/volto/components/manage/Toast/Toast';
+
+import { getControlpanel } from '@plone/volto/actions/controlpanels/controlpanels';
 
 import copySVG from '@plone/volto/icons/copy.svg';
 import headingSVG from '@plone/volto/icons/heading.svg';
@@ -24,6 +35,7 @@ import microphoneOffSVG from '@plone/volto/icons/microphone-off.svg';
 import attachmentSVG from '@plone/volto/icons/attachment.svg';
 import hideSVG from '@plone/volto/icons/hide.svg';
 import showSVG from '@plone/volto/icons/show.svg';
+import downSVG from '@plone/volto/icons/down-key.svg';
 
 import { updateFormData } from '../../actions/form/form';
 import { addBlock, changeBlock } from '@plone/volto/helpers/Blocks/Blocks';
@@ -49,8 +61,15 @@ const Assistant = (props) => {
   const [currentQuery, setCurrentQuery] = useState(false);
 
   const formData = useSelector((state) => state.form?.global);
+  const prompts = useSelector(
+    (state) => state.controlpanels.controlpanel?.data?.prompts,
+  );
 
   const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    dispatch(getControlpanel('ai'));
+  }, [dispatch]);
 
   const handleResult = (event) => {
     let currentInterimTranscript = '';
@@ -367,6 +386,10 @@ const Assistant = (props) => {
     return str.replace(/^['"]|['"]$/g, '');
   };
 
+  const onPrompt = (e, { value }) => {
+    sendQuery(prompts[value].prompt);
+  };
+
   const Toolbar = ({ value }) => (
     <div className="assistant-toolbar">
       <ButtonGroup>
@@ -679,8 +702,30 @@ const Assistant = (props) => {
                 size={24}
                 name={speechListening ? microphoneSVG : microphoneOffSVG}
                 onClick={toggleListening}
-                className={speechListening ? 'listening' : ''}
+                className={speechListening ? 'listening mic' : 'mic'}
               />
+              <Dropdown
+                icon={<Icon size={24} name={downSVG} title="Prompts" />}
+                className="assistant-prompts-dropdown"
+                direction="left"
+                upward={true}
+              >
+                <DropdownMenu>
+                  {map(prompts, (prompt, index) => (
+                    <DropdownItem
+                      onClick={onPrompt}
+                      value={index}
+                      content={
+                        <div>
+                          <b>{prompt.title}</b>
+                          <br />
+                          <em>{prompt.description}</em>
+                        </div>
+                      }
+                    />
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
             </Input>
           </Form>
         </div>

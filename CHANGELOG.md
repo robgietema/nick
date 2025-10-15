@@ -65,6 +65,7 @@
 - Add streaming to generate endpoint @robgietema
 - Add client side tools to assistant @robgietema
 - Add msgctxt to po and pot files @robgietema
+- Add AI controlpanel with prompts @robgietema
 
 ### Bugfix
 

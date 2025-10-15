@@ -1,0 +1,64 @@
+{
+  "id": "ai",
+  "title:i18n": "AI",
+  "group": "Content",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["prompts"],
+        "id": "general",
+        "title": "General"
+      }
+    ],
+    "properties": {
+      "prompts": {
+        "title:i18n": "Prompts",
+        "description:i18n": "Define custom prompts for the assistant.",
+        "schema": {
+          "title:i18n": "Prompt",
+          "addMessage:i18n": "Add prompt",
+          "fieldsets": [
+            {
+              "id": "default",
+              "title": "Default",
+              "fields": ["title", "description", "prompt"]
+            }
+          ],
+          "properties": {
+            "title": {
+              "title:i18n": "Title",
+              "type": "string"
+            },
+            "description": {
+              "title:i18n": "Description",
+              "type": "string"
+            },
+            "prompt": {
+              "title:i18n": "Prompt",
+              "type": "string"
+            }
+          },
+          "required": ["title", "prompt"]
+        },
+        "widget": "object_list"
+      }
+    },
+    "required": []
+  },
+  "data": {
+    "prompts": [
+      {
+        "@id": "fd2b06e4-e7c1-412e-91c0-de81e026e515",
+        "title": "Summary",
+        "prompt": "Give a summary of this page",
+        "description": "Gives a summary of this page"
+      },
+      {
+        "@id": "992fb45f-5842-4cbc-b825-1c009803dff2",
+        "title": "Title",
+        "prompt": "Suggest a title for this page",
+        "description": "Suggest a title for this page"
+      }
+    ]
+  }
+}
