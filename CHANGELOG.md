@@ -64,6 +64,7 @@
 - Add attachment support to generate and chat endpoints @robgietema
 - Add streaming to generate endpoint @robgietema
 - Add client side tools to assistant @robgietema
+- Add msgctxt to po and pot files @robgietema
 
 ### Bugfix
 

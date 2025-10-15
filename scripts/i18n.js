@@ -4,12 +4,29 @@
  * @module scripts/i18n
  */
 
-import { find, keys, map, zipObject } from 'lodash';
+import { find, keys, map, upperFirst, zipObject } from 'lodash';
 import { sync as glob } from 'glob';
 import Pofile from 'pofile';
 import { transformSync } from '@babel/core';
 import { readFileSync, writeFileSync } from 'fs';
 import { endsWith } from 'lodash';
+
+/**
+ * Convert path to context
+ * @function pathToContext
+ * @param {string} path Path of the file
+ * @return {string} Context string
+ */
+function pathToContext(path) {
+  return path
+    .replace('src/', '')
+    .replace('.json', '')
+    .replace('.js', '')
+    .replace(/:.*$/, '')
+    .split(/\//)
+    .map((part) => upperFirst(part.replace(/_/gi, ' ')))
+    .join('|');
+}
 
 /**
  * Convert messages to pot format
@@ -24,6 +41,7 @@ function messagesToPot(messages) {
       ...map(messages[key].files, (file) => `#: ${file.file}:${file.line}`),
       `msgid "${key}"`,
       'msgstr ""',
+      `msgctxt "${pathToContext(messages[key].files[0].file)}"`,
     ].join('\n'),
   ).join('\n\n');
 }
@@ -123,6 +141,7 @@ ${map(pot.items, (item) => {
     `${map(item.references, (ref) => `#: ${ref}`).join('\n')}`,
     `msgid "${item.msgid}"`,
     `msgstr "${poItem ? poItem.msgstr : ''}"`,
+    `msgctxt "${pathToContext(item.references[0])}"`,
   ].join('\n');
 }).join('\n\n')}\n`,
     );
