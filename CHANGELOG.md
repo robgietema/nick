@@ -69,6 +69,7 @@
 - Option to pass JWT secret in env @robgietema
 - Disable user registration by default @robgietema
 - Add security headers @robgietema
+- Add rate limiting to the search and auth calls @robgietema
 
 ### Bugfix
 

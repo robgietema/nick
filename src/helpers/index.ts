@@ -49,3 +49,4 @@ export {
   regExpEscape,
   getNodeVersion,
 } from './utils/utils';
+export { apiLimiter, authLimiter } from './limiter/limiter';

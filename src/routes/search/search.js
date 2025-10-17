@@ -7,7 +7,7 @@ import moment from 'moment';
 import { normalize } from 'path';
 import { endsWith, includes, keys, map, mapKeys, repeat } from 'lodash';
 
-import { embed, getUrl } from '../../helpers';
+import { apiLimiter, embed, getUrl } from '../../helpers';
 import { Catalog, Index } from '../../models';
 
 const { config } = require(`${process.cwd()}/config`);
@@ -295,6 +295,7 @@ export default [
     view: '/@search',
     permission: 'View',
     client: 'search',
+    middleware: apiLimiter,
     handler: async (req, trx) => {
       const items = await Catalog.fetchAllRestricted(
         ...(await queryparamToQuery(req.query, req.document.path, req, trx)),
@@ -322,6 +323,7 @@ export default [
     view: '/@querystring-search',
     permission: 'View',
     client: 'querystringSearch',
+    middleware: apiLimiter,
     handler: async (req, trx) => {
       const items = await Catalog.fetchAllRestricted(
         ...(await querystringToQuery(req.body, req.document.path, req, trx)),

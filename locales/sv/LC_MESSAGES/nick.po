@@ -363,13 +363,13 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.js:59
+#: src/routes/controlpanels/controlpanels.js:64
 msgid "Content"
 msgstr ""
 msgctxt "Routes|Controlpanels"
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.js:58
+#: src/routes/controlpanels/controlpanels.js:63
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgid "Content Types"
 msgstr ""
@@ -680,20 +680,21 @@ msgstr ""
 msgctxt "Profiles|Core|Behaviors|Ownership"
 
 #. Default: "Internal server error"
-#: src/app.js:124
+#: src/app.js:162
+#: src/app.js:172
 msgid "Internal server error"
 msgstr ""
 msgctxt "App"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.js:41
-#: src/routes/authentication/authentication.js:52
+#: src/routes/authentication/authentication.js:46
+#: src/routes/authentication/authentication.js:60
 msgid "Invalid credentials"
 msgstr ""
 msgctxt "Routes|Authentication"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.js:81
+#: src/routes/authentication/authentication.js:98
 msgid "Invalid session"
 msgstr ""
 msgctxt "Routes|Authentication"
@@ -785,7 +786,7 @@ msgstr ""
 msgctxt "Profiles|Core|Permissions"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.js:24
+#: src/routes/authentication/authentication.js:26
 msgid "Login and password must be provided in body."
 msgstr ""
 msgctxt "Routes|Authentication"
@@ -836,7 +837,7 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.js:23
+#: src/routes/authentication/authentication.js:25
 msgid "Missing credentials"
 msgstr ""
 msgctxt "Routes|Authentication"
@@ -890,7 +891,7 @@ msgctxt "Routes|Lock"
 #: src/routes/types/types.js:34
 #: src/routes/groups/groups.js:27
 #: src/routes/email/email.js:57
-#: src/routes/controlpanels/controlpanels.js:69
+#: src/routes/controlpanels/controlpanels.js:74
 msgid "Not found."
 msgstr ""
 msgctxt "Routes|Vocabularies"
@@ -1576,8 +1577,8 @@ msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:66
-#: src/app.js:79
+#: src/app.js:110
+#: src/app.js:123
 msgid "Transaction error."
 msgstr ""
 msgctxt "Client"
@@ -1613,7 +1614,7 @@ msgstr ""
 msgctxt "Routes|Users"
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.js:82
+#: src/routes/authentication/authentication.js:99
 msgid "User is not logged in."
 msgstr ""
 msgctxt "Routes|Authentication"
@@ -1684,8 +1685,8 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.js:42
-#: src/routes/authentication/authentication.js:53
+#: src/routes/authentication/authentication.js:47
+#: src/routes/authentication/authentication.js:61
 msgid "Wrong login and/or password."
 msgstr ""
 msgctxt "Routes|Authentication"

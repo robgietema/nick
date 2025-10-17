@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../../models';
-import { log, RequestException } from '../../helpers';
+import { log, RequestException, authLimiter } from '../../helpers';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -16,6 +16,7 @@ export default [
     op: 'post',
     view: '/@login',
     client: 'login',
+    middleware: authLimiter,
     handler: async (req, trx) => {
       if (!req.body.login || !req.body.password) {
         log.error(`Log in attempt without login or password from ${req.ip}.`);
@@ -86,6 +87,7 @@ export default [
     op: 'post',
     view: '/@login-renew',
     client: 'renewLogin',
+    middleware: authLimiter,
     handler: async (req, trx) => {
       if (req.user.id === 'anonymous') {
         // Log error

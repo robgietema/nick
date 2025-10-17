@@ -73,11 +73,13 @@ app.use(i18n);
 app.use(cors);
 
 app.enable('trust proxy');
+app.set('trust proxy', config.rateLimit.trustProxy || 0);
 
 // Add routes
 map(routes, (route) => {
   app[route.op](
     `${regExpEscape(config.prefix)}{*path}${route.view}`,
+    route.middleware || ((req, res, next) => next()),
     async (req, res) => {
       // Start transaction
       const trx = await Model.startTransaction();
