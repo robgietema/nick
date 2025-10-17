@@ -59,7 +59,7 @@ async function main() {
     await mapAsync(config.profiles, async (profilePath, index) => {
       if (fileExists(`${profilePath}/metadata`)) {
         const metadata = stripI18n(require(`${profilePath}/metadata`));
-        const profile = await Profile.fetchOne({ id: metadata.id }, {}, knex);
+        const profile = await Profile.fetchOne({ id: metadata.id }, {}, trx);
 
         switch (command) {
           case 'status':
