@@ -122,6 +122,8 @@
 - Remove body-parser and use express buildin json parser @robgietema
 - Node 24 support @robgietema
 - Upgrade to pnpm @robgietema
+- Add logging for log in attempts @robgietema
+- Harden CORS settings @robgietema
 
 ### Documentation
 

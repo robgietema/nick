@@ -1,5 +1,6 @@
 import events from './src/events';
-const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, SECRET } = process.env;
+const { ALLOWED_ORIGINS, DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } =
+  process.env;
 
 export const config = {
   connection: {
@@ -16,12 +17,12 @@ export const config = {
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Owner'],
   cors: {
-    allowOrigin: '*',
-    allowMethods: '*',
-    allowHeaders: '*',
+    allowOrigin: ALLOWED_ORIGINS || 'http://localhost:3000',
+    allowMethods: 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    allowHeaders: 'Content-Type,Authorization,Accept',
     allowCredentials: true,
-    exposeHeaders: '*',
-    maxAge: 3660,
+    exposeHeaders: 'Content-Length,Content-Type',
+    maxAge: 3600,
   },
   imageScales: {
     large: [768, 768],
