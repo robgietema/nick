@@ -67,7 +67,7 @@ export default [
             fullname: user.fullname,
           },
           config.secret,
-          { expiresIn: '7d' },
+          { expiresIn: '2h', algorithm: 'HS256' },
         );
 
         // Fetch settings
@@ -173,7 +173,7 @@ export default [
             fullname: user.fullname,
           },
           config.secret,
-          { expiresIn: '7d' },
+          { expiresIn: '2h', algorithm: 'HS256' },
         );
 
         // Fetch settings

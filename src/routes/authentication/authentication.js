@@ -64,7 +64,7 @@ export default [
               fullname: user.fullname,
             },
             config.secret,
-            { expiresIn: '12h' },
+            { expiresIn: '2h', algorithm: 'HS256' },
           ),
         },
       };
@@ -91,7 +91,7 @@ export default [
               fullname: req.user.fullname,
             },
             config.secret,
-            { expiresIn: '12h' },
+            { expiresIn: '2h', algorithm: 'HS256' },
           ),
         },
       };

@@ -66,6 +66,7 @@
 - Add client side tools to assistant @robgietema
 - Add msgctxt to po and pot files @robgietema
 - Add AI controlpanel with prompts @robgietema
+- Option to pass JWT secret in env @robgietema
 
 ### Bugfix
 
@@ -103,6 +104,8 @@
 - Add streaming chat call @robgietema
 - Move to qwen3 modal @robgietema
 - Move assistant from generate to chat endpoint @robgietema
+- Reduce jwt expiration to 2 hours @robgietema
+- Specify jwt algorithm explicitly @robgietema
 
 ### Internal
 

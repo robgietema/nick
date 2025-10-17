@@ -1,5 +1,5 @@
 import events from './src/events';
-const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, SECRET } = process.env;
 
 export const config = {
   connection: {
@@ -11,7 +11,7 @@ export const config = {
   },
   blobsDir: `${__dirname}/var/blobstorage`,
   port: 8080,
-  secret: 'secret',
+  secret: SECRET || 'secret',
   clientMaxSize: '64mb',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Owner'],
