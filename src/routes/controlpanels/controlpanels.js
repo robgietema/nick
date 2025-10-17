@@ -5,7 +5,12 @@
 
 import { mapKeys, omit, pick, without } from 'lodash';
 import { Controlpanel, Document, Type, Workflow } from '../../models';
-import { getUrl, handleFiles, handleImages } from '../../helpers';
+import {
+  getUrl,
+  handleFiles,
+  handleImages,
+  RequestException,
+} from '../../helpers';
 
 export default [
   {

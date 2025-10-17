@@ -4,6 +4,7 @@
  */
 
 import express from 'express';
+import helmet from 'helmet';
 import { existsSync, mkdirSync } from 'fs';
 import { isObject, map } from 'lodash';
 
@@ -24,6 +25,47 @@ if (!existsSync(config.blobsDir)) {
 const app = express();
 
 // Add middleware
+app.use(
+  helmet({
+    // Content Security Policy
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"],
+        imgSrc: ["'self'", 'data:', 'https:'],
+        fontSrc: ["'self'", 'data:'],
+        connectSrc: ["'self'"],
+        frameSrc: ["'none'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [], // Force HTTPS in production
+      },
+    },
+
+    // HTTP Strict Transport Security
+    hsts: {
+      maxAge: 31536000, // 1 year
+      includeSubDomains: true,
+      preload: true,
+    },
+
+    // X-Frame-Options
+    frameguard: {
+      action: 'deny',
+    },
+
+    // X-Content-Type-Options
+    noSniff: true,
+
+    // Referrer-Policy
+    referrerPolicy: {
+      policy: 'strict-origin-when-cross-origin',
+    },
+
+    // X-XSS-Protection (legacy, but still useful)
+    xssFilter: true,
+  }),
+);
 app.use(express.json({ limit: config.clientMaxSize }));
 app.use(removeZopeVhosting);
 app.use(accessLogger);

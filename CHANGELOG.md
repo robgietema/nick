@@ -68,6 +68,7 @@
 - Add AI controlpanel with prompts @robgietema
 - Option to pass JWT secret in env @robgietema
 - Disable user registration by default @robgietema
+- Add security headers @robgietema
 
 ### Bugfix
 
