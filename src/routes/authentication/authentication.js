@@ -96,7 +96,7 @@ export default [
       }
 
       // Log success
-      log.info(`Log in renew attempt success for user '${req.body.login}'.`);
+      log.info(`Log in renew attempt success for user '${req.user.id}'.`);
 
       return {
         json: {
