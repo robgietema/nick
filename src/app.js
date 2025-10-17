@@ -113,7 +113,11 @@ map(routes, (route) => {
           );
 
           // Return error message
-          return res.status(err.status).send(err.message);
+          const message =
+            process.env.NODE_ENV === 'production'
+              ? { message: req.i18n('Internal server error') }
+              : err.message;
+          return res.status(err.status).send(message);
         } else {
           // Log error
           log.error(err);

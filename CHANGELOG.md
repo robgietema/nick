@@ -124,6 +124,7 @@
 - Upgrade to pnpm @robgietema
 - Add logging for log in attempts @robgietema
 - Harden CORS settings @robgietema
+- Don't expose stack trace on error in production @robgietema
 
 ### Documentation
 
