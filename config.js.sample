@@ -1,12 +1,15 @@
 import events from './src/events';
 const {
   ALLOWED_ORIGINS,
+  API_RATE_LIMIT,
+  AUTH_RATE_LIMIT,
   DB_HOST,
   DB_PORT,
   DB_USER,
   DB_PASSWORD,
   DB_NAME,
   SECRET,
+  TRUST_PROXY,
 } = process.env;
 
 export const config = {
@@ -47,24 +50,24 @@ export const config = {
     `${__dirname}/src/profiles/core`,
     `${__dirname}/src/profiles/default`,
   ],
-  events,
   rateLimit: {
-    api: 100,
-    auth: 5,
-    trustProxy: 1,
+    api: API_RATE_LIMIT || 100,
+    auth: AUTH_RATE_LIMIT || 5,
+    trustProxy: TRUST_PROXY || 1,
   },
+  events,
   ai: {
     models: {
       embed: {
         name: 'nomic-embed-text',
         api: 'http://localhost:11434/api/embed',
         dimensions: 768,
-        minSimilarity: 0.6,
+        minSimilarity: 0.5,
         enabled: false,
       },
       llm: {
-        name: 'llama3.2',
-        api: 'http://localhost:11434/api/generate',
+        name: 'qwen3',
+        api: 'http://localhost:11434/api/chat',
         contextSize: 10,
         enabled: false,
       },
@@ -72,7 +75,7 @@ export const config = {
         name: 'llava',
         api: 'http://localhost:11434/api/generate',
         enabled: false,
-      }
+      },
     },
   },
 };
