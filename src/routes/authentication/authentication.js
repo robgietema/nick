@@ -18,7 +18,7 @@ export default [
     client: 'login',
     handler: async (req, trx) => {
       if (!req.body.login || !req.body.password) {
-        log.error('Log in attempt without login or password.');
+        log.error(`Log in attempt without login or password from ${req.ip}.`);
         throw new RequestException(400, {
           error: {
             type: req.i18n('Missing credentials'),
@@ -37,7 +37,9 @@ export default [
 
       // If user not found
       if (!user) {
-        log.error(`Log in attempt failed, user '${req.body.login}' not found.`);
+        log.error(
+          `Log in attempt failed, user '${req.body.login}' not found from ${req.ip}.`,
+        );
         throw new RequestException(401, {
           error: {
             type: req.i18n('Invalid credentials'),
@@ -50,7 +52,7 @@ export default [
       const same = await bcrypt.compare(req.body.password, user.password);
       if (!same) {
         log.error(
-          `Log in attempt failed, password incorrect for user '${req.body.login}'.`,
+          `Log in attempt failed, password incorrect for user '${req.body.login}' from ${req.ip}.`,
         );
         throw new RequestException(401, {
           error: {
@@ -61,7 +63,9 @@ export default [
       }
 
       // Log success
-      log.info(`Log in attempt success for user '${req.body.login}'.`);
+      log.info(
+        `Log in attempt success for user '${req.body.login}' from ${req.ip}.`,
+      );
 
       // Return ok
       return {
