@@ -48,6 +48,11 @@ export const config = {
     `${__dirname}/src/profiles/default`,
   ],
   events,
+  rateLimit: {
+    api: 100,
+    auth: 5,
+    trustProxy: 1,
+  },
   ai: {
     models: {
       embed: {
