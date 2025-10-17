@@ -67,6 +67,7 @@
 - Add msgctxt to po and pot files @robgietema
 - Add AI controlpanel with prompts @robgietema
 - Option to pass JWT secret in env @robgietema
+- Disable user registration by default @robgietema
 
 ### Bugfix
 
