@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../../models';
-import { RequestException } from '../../helpers';
+import { log, RequestException } from '../../helpers';
 
 const { config } = require(`${process.cwd()}/config`);
 
@@ -18,6 +18,7 @@ export default [
     client: 'login',
     handler: async (req, trx) => {
       if (!req.body.login || !req.body.password) {
+        log.error('Log in attempt without login or password.');
         throw new RequestException(400, {
           error: {
             type: req.i18n('Missing credentials'),
@@ -36,6 +37,7 @@ export default [
 
       // If user not found
       if (!user) {
+        log.error(`Log in attempt failed, user '${req.body.login}' not found.`);
         throw new RequestException(401, {
           error: {
             type: req.i18n('Invalid credentials'),
@@ -47,6 +49,9 @@ export default [
       // Check password
       const same = await bcrypt.compare(req.body.password, user.password);
       if (!same) {
+        log.error(
+          `Log in attempt failed, password incorrect for user '${req.body.login}'.`,
+        );
         throw new RequestException(401, {
           error: {
             type: req.i18n('Invalid credentials'),
@@ -54,6 +59,9 @@ export default [
           },
         });
       }
+
+      // Log success
+      log.info(`Log in attempt success for user '${req.body.login}'.`);
 
       // Return ok
       return {
@@ -76,6 +84,9 @@ export default [
     client: 'renewLogin',
     handler: async (req, trx) => {
       if (req.user.id === 'anonymous') {
+        // Log error
+        log.info('Log in renew attempt failed for anonymous user.');
+
         throw new RequestException(401, {
           error: {
             type: req.i18n('Invalid session'),
@@ -83,6 +94,10 @@ export default [
           },
         });
       }
+
+      // Log success
+      log.info(`Log in renew attempt success for user '${req.body.login}'.`);
+
       return {
         json: {
           token: jwt.sign(
