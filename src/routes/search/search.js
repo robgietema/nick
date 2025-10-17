@@ -49,7 +49,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
       // Check if key is SearchableText and AI is enabled
       if (query.i === 'SearchableText' && config.ai?.models?.embed?.enabled) {
         // Get embedding vector
-        const embedding = await embed(query.v.replace(/\*/, ''), trx);
+        const embedding = await embed(query.v.replace(/\*/g, ''), trx);
 
         where['_embedding'] = [
           'raw',
@@ -224,7 +224,7 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
         // Check if key is SearchableText and AI is enabled
         if (key === 'SearchableText' && config.ai?.models?.embed?.enabled) {
           // Get embedding vector
-          const embedding = await embed(value.replace(/\*/, ''), trx);
+          const embedding = await embed(value.replace(/\*/g, ''), trx);
 
           where['_embedding'] = [
             'raw',
