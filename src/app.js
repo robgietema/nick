@@ -66,7 +66,7 @@ app.use(
     xssFilter: true,
   }),
 );
-app.use(express.json({ limit: config.clientMaxSize }));
+app.use(express.json({ limit: config.requestLimit?.api || '1mb' }));
 app.use(removeZopeVhosting);
 app.use(accessLogger);
 app.use(i18n);

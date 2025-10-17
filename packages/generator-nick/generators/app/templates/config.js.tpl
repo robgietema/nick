@@ -11,7 +11,6 @@ export const config = {
   blobsDir: `${__dirname}/var/blobstorage`,
   port: 8080,
   secret: 'secret',
-  clientMaxSize: '64mb',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Owner'],
   cors: {

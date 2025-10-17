@@ -3,6 +3,7 @@
  * @module routes/content/content
  */
 
+import express from 'express';
 import moment from 'moment';
 import {
   drop,
@@ -408,6 +409,7 @@ export default [
     view: '',
     permission: 'Add',
     client: 'addContent',
+    middleware: express.json({ limit: config.requestLimit?.files || '10mb' }),
     handler: async (req, trx) => {
       // Get content type date
       const type = await Type.fetchById(
@@ -554,6 +556,7 @@ export default [
     view: '',
     permission: 'Modify',
     client: 'updateContent',
+    middleware: express.json({ limit: config.requestLimit?.files || '10mb' }),
     handler: async (req, trx) => {
       // Check if ordering request
       if (typeof req.body?.ordering !== 'undefined') {

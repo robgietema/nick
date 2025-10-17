@@ -70,6 +70,7 @@
 - Disable user registration by default @robgietema
 - Add security headers @robgietema
 - Add rate limiting to the search and auth calls @robgietema
+- Add config option for request limits @robgietema
 
 ### Bugfix
 

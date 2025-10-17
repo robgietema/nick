@@ -63,6 +63,10 @@ export const config = {
     `${__dirname}/src/profiles/core`,
     `${__dirname}/src/profiles/default`,
   ],
+  requestLimit: {
+    api: '1mb',
+    files: '10mb',
+  },
   rateLimit: {
     api: API_RATE_LIMIT || 100,
     auth: AUTH_RATE_LIMIT || 5,
