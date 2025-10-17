@@ -3,7 +3,7 @@ remote_theme: just-the-docs/just-the-docs
 color_scheme: 'dark'
 search_enabled: true
 aux_links:
-  'Nick: Nearly Headles CMS':
+  'Nick: Nearly Headless CMS':
     - 'https://nickcms.org'
 heading_anchors: true
 nav_enabled: true

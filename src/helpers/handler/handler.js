@@ -9,7 +9,7 @@ import { Document, Redirect, Role, Type, User } from '../../models';
  * @param {Knex.Transaction} trx Transaction object.
  * @param {Object} route Route object.
  * @param {Function} callback Callback function.
- * @returns {any} Respons
+ * @returns {any} Response
  */
 export async function callHandler(req, trx, route, callback) {
   // Get user
