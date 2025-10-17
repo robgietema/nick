@@ -8,9 +8,22 @@ const {
   DB_USER,
   DB_PASSWORD,
   DB_NAME,
+  NODE_ENV,
   SECRET,
   TRUST_PROXY,
 } = process.env;
+
+// Check required environment variables
+if (NODE_ENV === 'production') {
+  const required = ['JWT_SECRET', 'DB_PASSWORD'];
+  const missing = required.filter((key) => !process.env[key]);
+
+  if (missing.length > 0) {
+    throw new Error(
+      `Missing required environment variables: ${missing.join(', ')}\n`,
+    );
+  }
+}
 
 export const config = {
   connection: {
