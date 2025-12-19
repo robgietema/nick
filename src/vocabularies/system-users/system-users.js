@@ -3,9 +3,9 @@
  * @module vocabularies/system-users/system-users
  */
 
-import { arrayToVocabulary } from '../../helpers';
+import { arrayToVocabulary } from '../../helpers/utils/utils';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 /**
  * Returns the system users vocabulary.
@@ -13,5 +13,5 @@ const { config } = require(`${process.cwd()}/config`);
  * @returns {Array} Array of terms.
  */
 export async function systemUsers(req, trx) {
-  return arrayToVocabulary(config.systemUsers);
+  return arrayToVocabulary(config.settings.systemUsers);
 }

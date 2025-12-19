@@ -3,7 +3,7 @@
  * @module vocabularies/actions/actions
  */
 
-import { Action } from '../../models';
+import { Action } from '../../models/action/action';
 
 /**
  * Returns the acions vocabulary.

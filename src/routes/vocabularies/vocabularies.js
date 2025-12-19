@@ -5,11 +5,12 @@
 
 import { includes, keys, map, sortBy } from 'lodash';
 
-import { Vocabulary } from '../../models';
+import { Vocabulary } from '../../models/vocabulary/vocabulary';
 import { vocabularies } from '../../vocabularies';
-import { RequestException, getUrl } from '../../helpers';
+import { RequestException } from '../../helpers/error/error';
+import { getUrl } from '../../helpers/url/url';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 export default [
   {
@@ -45,7 +46,7 @@ export default [
       // Check if vocabulary is available
       if (
         !includes(keys(vocabularies), req.params.id) &&
-        !includes(keys(config.vocabularies || {}), req.params.id)
+        !includes(keys(config.settings.vocabularies || {}), req.params.id)
       ) {
         const vocabulary = await Vocabulary.fetchById(req.params.id, {}, trx);
         if (!vocabulary) {
@@ -65,7 +66,7 @@ export default [
       // Get items
       const items = includes(keys(vocabularies), req.params.id)
         ? await vocabularies[req.params.id](req)
-        : await config.vocabularies[req.params.id](req);
+        : await config.settings.vocabularies[req.params.id](req);
 
       // Return data
       return {

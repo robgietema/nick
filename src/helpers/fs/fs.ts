@@ -15,9 +15,9 @@ import { v4 as uuid } from 'uuid';
 import sharp from 'sharp';
 import type { Metadata } from 'sharp';
 
-import { mapAsync } from '../../helpers';
+import { mapAsync } from '../utils/utils';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 /**
  * Get scale dimensions
@@ -63,7 +63,7 @@ export function getDimensions(metadata: Metadata): Dimensions {
  * @returns {Buffer} File buffer.
  */
 export function readFile(uuid: string): Buffer {
-  return readFileSync(`${config.blobsDir}/${uuid}`);
+  return readFileSync(`${config.settings.blobsDir}/${uuid}`);
 }
 
 /**
@@ -112,7 +112,7 @@ export function writeFile(
   const id = uuid();
 
   // Write file to disk
-  writeFileSync(`${config.blobsDir}/${id}`, buffer);
+  writeFileSync(`${config.settings.blobsDir}/${id}`, buffer);
 
   // Return data
   return {
@@ -173,7 +173,7 @@ export async function writeImage(
   const id = uuid();
 
   // Write file to disk
-  writeFileSync(`${config.blobsDir}/${id}`, buffer);
+  writeFileSync(`${config.settings.blobsDir}/${id}`, buffer);
 
   // Create image and get metadata
   const image = sharp(buffer);
@@ -182,23 +182,27 @@ export async function writeImage(
   const scales: ImageScales = {};
 
   // Write scales
-  await mapAsync(keys(config.imageScales), async (scale: string) => {
+  await mapAsync(keys(config.settings.imageScales), async (scale: string) => {
     const scaleId = uuid();
     if ((await image.metadata()).format === 'svg') {
-      writeFileSync(`${config.blobsDir}/${scaleId}`, buffer);
+      writeFileSync(`${config.settings.blobsDir}/${scaleId}`, buffer);
     } else {
       const scaleImage = sharp(buffer)
         .rotate()
-        .resize(config.imageScales[scale][0], config.imageScales[scale][1], {
-          fit: 'inside',
-        });
-      await scaleImage.toFile(`${config.blobsDir}/${scaleId}`);
+        .resize(
+          config.settings.imageScales[scale][0],
+          config.settings.imageScales[scale][1],
+          {
+            fit: 'inside',
+          },
+        );
+      await scaleImage.toFile(`${config.settings.blobsDir}/${scaleId}`);
     }
     const [scaleWidth, scaleHeight] = getScaleDimensions(
       width,
       height,
-      config.imageScales[scale][0],
-      config.imageScales[scale][1],
+      config.settings.imageScales[scale][0],
+      config.settings.imageScales[scale][1],
     );
     scales[scale] = {
       uuid: scaleId,
@@ -223,7 +227,7 @@ export async function writeImage(
  * @param {string} uuid Uuid of the file to remove.
  */
 export function removeFile(uuid: string) {
-  rmSync(`${config.blobsDir}/${uuid}`);
+  rmSync(`${config.settings.blobsDir}/${uuid}`);
 }
 
 /**
@@ -233,7 +237,10 @@ export function removeFile(uuid: string) {
  * @param {string} target Uuid of the target file.
  */
 export function copyFile(source: string, target: string) {
-  copyFileSync(`${config.blobsDir}/${source}`, `${config.blobsDir}/${target}`);
+  copyFileSync(
+    `${config.settings.blobsDir}/${source}`,
+    `${config.settings.blobsDir}/${target}`,
+  );
 }
 
 /**

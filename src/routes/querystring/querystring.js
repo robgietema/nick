@@ -3,8 +3,8 @@
  * @module routes/actions/actions
  */
 
-import { getUrl } from '../../helpers';
-import { Index } from '../../models';
+import { getUrl } from '../../helpers/url/url';
+import { Index } from '../../models/index/index';
 
 export default [
   {

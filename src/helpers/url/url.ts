@@ -5,7 +5,7 @@
 
 import type { Request } from '../../types';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 /**
  * Get url
@@ -45,5 +45,5 @@ export function getRootUrl(req: Request): string {
  * @returns {string} Path
  */
 export function getPath(req: Request): string {
-  return (req.documentPath as string).replace(config.prefix, '');
+  return (req.documentPath as string).replace(config.settings.prefix, '');
 }

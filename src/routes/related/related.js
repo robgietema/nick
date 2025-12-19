@@ -5,14 +5,15 @@
 
 import { filter } from 'lodash';
 
-import { getUrl } from '../../helpers';
-import { Catalog, Index } from '../../models';
+import { getUrl } from '../../helpers/url/url';
+import { Catalog } from '../../models/catalog/catalog';
+import { Index } from '../../models/index/index';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 export const handler = async (req, trx) => {
   // Check if ai enabled
-  if (!config.ai?.models?._embedding?.enabled) {
+  if (!config.settings.ai?.models?._embedding?.enabled) {
     throw new RequestException(400, {
       message: req.i18n('AI is disabled.'),
     });

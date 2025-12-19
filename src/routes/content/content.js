@@ -22,21 +22,20 @@ import {
 } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
+import { getRootUrl, getUrl } from '../../helpers/url/url';
+import { lockExpired } from '../../helpers/lock/lock';
+import { mapAsync, uniqueId } from '../../helpers/utils/utils';
+import { readFile, removeFile } from '../../helpers/fs/fs';
+import { RequestException } from '../../helpers/error/error';
 import {
-  getRootUrl,
-  getUrl,
-  lockExpired,
-  mapAsync,
-  readFile,
-  removeFile,
-  RequestException,
-  uniqueId,
   handleFiles,
   handleImages,
   handleRelationLists,
   handleBlockReferences,
-} from '../../helpers';
-import { Document, Type } from '../../models';
+} from '../../helpers/content/content';
+
+import { Document } from '../../models/document/document';
+import { Type } from '../../models/type/type';
 
 import { handler as actions } from '../actions/actions';
 import { handler as breadcrumbs } from '../breadcrumbs/breadcrumbs';
@@ -47,7 +46,7 @@ import { handler as translations } from '../translations/translations';
 import { handler as types } from '../types/types';
 import { handler as workflow } from '../workflow/workflow';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 const omitProperties = ['@type', 'id', 'changeNote', 'language'];
 
@@ -409,7 +408,9 @@ export default [
     view: '',
     permission: 'Add',
     client: 'addContent',
-    middleware: express.json({ limit: config.requestLimit?.files || '10mb' }),
+    middleware: express.json({
+      limit: config.settings.requestLimit?.files || '10mb',
+    }),
     handler: async (req, trx) => {
       // Get content type date
       const type = await Type.fetchById(
@@ -504,7 +505,7 @@ export default [
       }`;
 
       // Trigger onBeforeAdd
-      await config.events.trigger('onBeforeAdd', document, json, trx);
+      await config.settings.events.trigger('onBeforeAdd', document, json, trx);
 
       // Insert document in database
       document = await req.document.createRelatedAndFetch(
@@ -536,7 +537,7 @@ export default [
       await document.fetchRelated('_type', trx);
 
       // Trigger onAfterAdd
-      await config.events.trigger('onAfterAdd', document, trx);
+      await config.settings.events.trigger('onAfterAdd', document, trx);
 
       // Index new document
       await document.index(trx);
@@ -556,7 +557,9 @@ export default [
     view: '',
     permission: 'Modify',
     client: 'updateContent',
-    middleware: express.json({ limit: config.requestLimit?.files || '10mb' }),
+    middleware: express.json({
+      limit: config.settings.requestLimit?.files || '10mb',
+    }),
     handler: async (req, trx) => {
       // Check if ordering request
       if (typeof req.body?.ordering !== 'undefined') {
@@ -651,7 +654,7 @@ export default [
       }
 
       // Trigger onBeforeAdd
-      await config.events.trigger(
+      await config.settings.events.trigger(
         'onBeforeModified',
         req.document,
         { ...json, id: newId, path: newPath },
@@ -682,7 +685,11 @@ export default [
       await req.document.reindex(trx);
 
       // Trigger onAfterModified
-      await config.events.trigger('onAfterModified', req.document, trx);
+      await config.settings.events.trigger(
+        'onAfterModified',
+        req.document,
+        trx,
+      );
 
       // Send ok
       return {
@@ -713,7 +720,7 @@ export default [
               ...imageFields.map((field) => [
                 version.json[field].uuid,
                 ...map(
-                  keys(config.imageScales),
+                  keys(config.settings.imageScales),
                   (scale) => version.json[field].scales[scale].uuid,
                 ),
               ]),
@@ -730,7 +737,7 @@ export default [
       const parent = req.document._parent;
 
       // Trigger onBeforeAdd
-      await config.events.trigger('onBeforeDelete', req.document, trx);
+      await config.settings.events.trigger('onBeforeDelete', req.document, trx);
 
       // Remove document (versions will be cascaded)
       await req.document.delete(trx);

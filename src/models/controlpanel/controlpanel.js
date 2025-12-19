@@ -4,8 +4,9 @@
  */
 
 import { compact, keys, map } from 'lodash';
-import { getRootUrl, translateSchema } from '../../helpers';
-import { Model } from '../../models';
+import { getRootUrl } from '../../helpers/url/url';
+import { translateSchema } from '../../helpers/schema/schema';
+import { Model } from '../../models/_model/_model';
 
 /**
  * A model for Controlpanel.

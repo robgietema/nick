@@ -8,7 +8,7 @@ import type { Request } from '../../types';
 import { includes, isString, isUndefined } from 'lodash';
 import jwt from 'jsonwebtoken';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../config/config';
 
 /**
  * Check required permission.
@@ -37,7 +37,7 @@ export function getUserId(req: Request): string | undefined {
   } else {
     let decoded;
     try {
-      decoded = jwt.verify(req.token, config.secret);
+      decoded = jwt.verify(req.token, config.settings.secret);
     } catch (err) {
       return 'anonymous';
     }

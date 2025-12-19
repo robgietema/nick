@@ -3,8 +3,10 @@
  * @module models/version/version
  */
 
-import { Model } from '../../models';
-import { getRootUrl, getUrl } from '../../helpers';
+import { Model } from '../../models/_model/_model';
+import { getRootUrl, getUrl } from '../../helpers/url/url';
+
+import { User } from '../../models/user/user';
 
 /**
  * A model for Version.
@@ -15,7 +17,6 @@ export class Version extends Model {
   // Set relation mappings
   static get relationMappings() {
     // Prevent circular imports
-    const { User } = require('../../models/user/user');
 
     return {
       _actor: {

@@ -8,15 +8,13 @@ import mime from 'mime-types';
 import pdfParse from 'pdf-parse';
 import { Knex } from 'knex';
 
-import {
-  mapAsync,
-  readProfileFile,
-  writeFile,
-  writeImage,
-  vision,
-} from '../../helpers';
+import { mapAsync } from '../utils/utils';
+import { readProfileFile, writeFile, writeImage } from '../fs/fs';
+import { vision } from '../ai/ai';
 
-const { config } = require(`${process.cwd()}/config`);
+import { Catalog } from '../../models/catalog/catalog';
+
+import config from '../config/config';
 
 interface Type {
   getFactoryFields(fieldType: string): Promise<string[]>;
@@ -146,7 +144,7 @@ export async function handleImages(
 
       // Check if vision is enabled
       let text = '';
-      if (config.ai?.models?.vision?.enabled) {
+      if (config.settings.ai?.models?.vision?.enabled) {
         // Add vision data
         const result = await vision(fields[field].data);
         text = result.response || '';
@@ -215,13 +213,16 @@ export async function handleBlockReferences(
 ): Promise<Json> {
   // Make a copy of the json data
   const output = { ...json };
-  const { Catalog } = require('../../models/catalog/catalog');
 
   const extendHref = async (
     href: BlockHref,
     trx: Knex.Transaction,
   ): Promise<BlockHref> => {
-    const target = await Catalog.fetchOne({ _path: href['@id'] }, {}, trx);
+    const target = (await Catalog.fetchOne(
+      { _path: href['@id'] },
+      {},
+      trx,
+    )) as any;
     if (target) {
       return {
         ...href,

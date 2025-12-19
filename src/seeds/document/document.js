@@ -3,14 +3,13 @@ import { promises as fs } from 'fs';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 
-import {
-  dirExists,
-  handleFiles,
-  handleImages,
-  mapAsync,
-  stripI18n,
-} from '../../helpers';
-import { Document, Type } from '../../models';
+import { dirExists } from '../../helpers/fs/fs';
+import { handleFiles, handleImages } from '../../helpers/content/content';
+import { mapAsync } from '../../helpers/utils/utils';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { Document } from '../../models/document/document';
+import { Type } from '../../models/type/type';
 
 const documentFields = [
   'uuid',

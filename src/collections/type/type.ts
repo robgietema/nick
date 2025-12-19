@@ -4,8 +4,9 @@
  */
 
 import { includes } from 'lodash';
-import { getRootUrl, hasPermission } from '../../helpers';
-import { Collection } from '../../collections';
+import { getRootUrl } from '../../helpers/url/url';
+import { hasPermission } from '../../helpers/auth/auth';
+import { Collection } from '../../collections/_collection/_collection';
 import _ from 'lodash';
 import type { Json, Model, Request } from '../../types';
 

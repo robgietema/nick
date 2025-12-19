@@ -1,14 +1,11 @@
 import { dropRight, endsWith, filter, map, merge } from 'lodash';
 import { promises as fs } from 'fs';
 
-import {
-  dirExists,
-  handleFiles,
-  handleImages,
-  mapAsync,
-  stripI18n,
-} from '../../helpers';
-import { Controlpanel } from '../../models';
+import { dirExists } from '../../helpers/fs/fs';
+import { handleFiles, handleImages } from '../../helpers/content/content';
+import { mapAsync } from '../../helpers/utils/utils';
+import { stripI18n } from '../../helpers/i18n/i18n';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
 export const seedControlpanel = async (trx, profilePath) => {
   if (dirExists(`${profilePath}/controlpanels`)) {

@@ -3,7 +3,7 @@
  * @module collection/action/action
  */
 
-import { Collection } from '../../collections';
+import { Collection } from '../../collections/_collection/_collection';
 import _, { includes, map, omit } from 'lodash';
 import type { Json, Model, Request } from '../../types';
 

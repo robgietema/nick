@@ -6,11 +6,11 @@
 
 import { id_from_title } from './id_from_title/id_from_title';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../helpers/config/config';
 
 const behaviors = {
   id_from_title,
-  ...('behaviors' in config ? config.behaviors : {}),
+  ...('behaviors' in config.settings ? config.settings.behaviors : {}),
 };
 
 export default behaviors;

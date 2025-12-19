@@ -4,8 +4,8 @@
  */
 
 import { Knex } from 'knex';
-import { mergeSchemas } from '../../helpers';
-import { Collection } from '../../collections';
+import { mergeSchemas } from '../../helpers/schema/schema';
+import { Collection } from '../../collections/_collection/_collection';
 import type { Model, Schema } from '../../types';
 
 interface BehaviorModel extends Model {

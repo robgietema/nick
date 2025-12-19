@@ -3,9 +3,9 @@
  * @module models/behavior/behavior
  */
 
-import { mergeSchemas } from '../../helpers';
-import { BehaviorCollection } from '../../collections';
-import { Model } from '../../models';
+import { mergeSchemas } from '../../helpers/schema/schema';
+import { BehaviorCollection } from '../../collections/behavior/behavior';
+import { Model } from '../../models/_model/_model';
 
 /**
  * A model for Behavior.

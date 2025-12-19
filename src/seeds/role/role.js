@@ -1,7 +1,10 @@
 import { omit } from 'lodash';
 
-import { fileExists, mapAsync, stripI18n } from '../../helpers';
-import { Role } from '../../models';
+import { fileExists } from '../../helpers/fs/fs';
+import { mapAsync } from '../../helpers/utils/utils';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { Role } from '../../models/role/role';
 
 export const seedRole = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/roles`)) {

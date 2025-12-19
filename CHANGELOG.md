@@ -130,6 +130,8 @@
 - Harden CORS settings @robgietema
 - Don't expose stack trace on error in production @robgietema
 - Add coverage threshold @robgietema
+- Remove barrel files @robgietema
+- Remove require for the config @robgietema
 
 ### Documentation
 

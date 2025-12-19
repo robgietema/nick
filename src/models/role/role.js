@@ -5,8 +5,9 @@
 
 import { map, uniq } from 'lodash';
 
-import { getRootUrl } from '../../helpers';
-import { Model } from '../../models';
+import { getRootUrl } from '../../helpers/url/url';
+import { Model } from '../../models/_model/_model';
+import { Permission } from '../../models/permission/permission';
 
 /**
  * A model for Role.
@@ -16,9 +17,6 @@ import { Model } from '../../models';
 export class Role extends Model {
   // Set relation mappings
   static get relationMappings() {
-    // Prevent circular imports
-    const { Permission } = require('../../models/permission/permission');
-
     return {
       _permissions: {
         relation: Model.ManyToManyRelation,

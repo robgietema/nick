@@ -3,8 +3,11 @@
  * @module routes/lock/lock
  */
 
-import { RequestException, sendMail } from '../../helpers';
-import { Controlpanel, User } from '../../models';
+import { RequestException } from '../../helpers/error/error';
+import { sendMail } from '../../helpers/mail/mail';
+
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import { User } from '../../models/user/user';
 
 export default [
   {

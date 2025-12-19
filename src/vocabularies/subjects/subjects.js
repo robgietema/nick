@@ -5,8 +5,8 @@
 
 import { concat, uniq } from 'lodash';
 
-import { Catalog } from '../../models';
-import { arrayToVocabulary } from '../../helpers';
+import { Catalog } from '../../models/catalog/catalog';
+import { arrayToVocabulary } from '../../helpers/utils/utils';
 
 /**
  * Returns the subjects vocabulary.

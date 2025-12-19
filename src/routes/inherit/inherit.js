@@ -5,8 +5,9 @@
 
 import { includes, keys, pick, map } from 'lodash';
 
-import { Behavior, Document } from '../../models';
-import { getUrl, getUrlByPath } from '../../helpers';
+import { Behavior } from '../../models/behavior/behavior';
+import { Document } from '../../models/document/document';
+import { getUrl, getUrlByPath } from '../../helpers/url/url';
 
 /**
  * Traverse path.

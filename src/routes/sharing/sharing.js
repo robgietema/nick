@@ -5,7 +5,10 @@
 
 import { concat, fromPairs, includes, keys, map } from 'lodash';
 
-import { Document, Group, Role, User } from '../../models';
+import { Document } from '../../models/document/document';
+import { Group } from '../../models/group/group';
+import { Role } from '../../models/role/role';
+import { User } from '../../models/user/user';
 
 /**
  * Fetch principals

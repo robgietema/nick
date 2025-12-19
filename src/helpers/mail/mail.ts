@@ -7,8 +7,8 @@ import nodemailer from 'nodemailer';
 import type { SendMailOptions } from 'nodemailer';
 import { Knex } from 'knex';
 
-import { log } from '../../helpers';
-import { Controlpanel } from '../../models';
+import { log } from '../log/log';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
 interface MailConfig {
   debug: boolean;

@@ -3,9 +3,9 @@
  * @module vocabularies/available-languages/available-languages
  */
 
-import { Controlpanel } from '../../models';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import languages from '../../constants/languages';
-import { objectToVocabulary } from '../../helpers';
+import { objectToVocabulary } from '../../helpers/utils/utils';
 import { pick } from 'lodash';
 
 /**

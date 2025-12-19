@@ -7,7 +7,7 @@ import _, { endsWith, includes, map, zipObject } from 'lodash';
 import { createIntl, createIntlCache } from '@formatjs/intl';
 import fs from 'fs';
 
-import { Controlpanel } from '../../models';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
 // Get available language files
 const languages = _(fs.readdirSync(`${__dirname}/../../../locales`))
@@ -28,7 +28,12 @@ const intl = zipObject(
     createIntl(
       {
         locale: language,
-        messages: require(`../../../locales/${language}.json`),
+        messages: JSON.parse(
+          fs.readFileSync(
+            `${__dirname}/../../../locales/${language}.json`,
+            'utf8',
+          ),
+        ),
       },
       intlCache[language],
     ),

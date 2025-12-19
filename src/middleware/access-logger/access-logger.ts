@@ -3,7 +3,7 @@
  * @module log
  */
 
-import { logger } from '../../helpers';
+import { logger } from '../../helpers/log/log';
 import moment from 'moment';
 import { Response, NextFunction } from 'express';
 import type { Request } from '../../types';

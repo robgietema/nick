@@ -18,9 +18,12 @@ import _, {
   snakeCase,
 } from 'lodash';
 
-import { formatAttribute, log, removeUndefined } from '../../helpers';
-import { Collection } from '../../collections';
-import { knex } from '../../helpers';
+import { formatAttribute } from '../../helpers/format/format';
+import { log } from '../../helpers/log/log';
+import { removeUndefined } from '../../helpers/utils/utils';
+import { knex } from '../../helpers/knex/knex';
+
+import { Collection } from '../../collections/_collection/_collection';
 
 // Give the knex instance to objection.
 ObjectionModel.knex(knex);

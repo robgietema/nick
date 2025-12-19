@@ -1,6 +1,14 @@
 import { compact, uniq } from 'lodash';
-import { RequestException, getPath, getUserId, hasPermission } from '../';
-import { Document, Redirect, Role, Type, User } from '../../models';
+
+import { RequestException } from '../error/error';
+import { getPath } from '../url/url';
+import { getUserId, hasPermission } from '../auth/auth';
+
+import { Document } from '../../models/document/document';
+import { Redirect } from '../../models/redirect/redirect';
+import { Role } from '../../models/role/role';
+import { Type } from '../../models/type/type';
+import { User } from '../../models/user/user';
 
 /**
  * Resolve and call handler

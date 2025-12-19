@@ -3,7 +3,7 @@
  * @module routes/roles/roles
  */
 
-import { Role } from '../../models';
+import { Role } from '../../models/role/role';
 
 export default [
   {

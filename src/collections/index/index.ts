@@ -3,7 +3,7 @@
  * @module collection/index/index
  */
 
-import { Collection } from '../../collections';
+import { Collection } from '../../collections/_collection/_collection';
 import type { Json, Model, Request } from '../../types';
 
 interface IndexModel extends Model {

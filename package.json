@@ -42,7 +42,7 @@
     "start": "nodemon --exec 'node -r ts-node/register src/server.ts'",
     "rollback": "pnpm knex migrate:rollback --all",
     "reset": "pnpm rollback && pnpm migrate && pnpm seed",
-    "test": "jest"
+    "test": "AUTH_RATE_LIMIT=1000 jest"
   },
   "prettier": {
     "trailingComma": "all",

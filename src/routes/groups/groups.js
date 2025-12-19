@@ -4,10 +4,10 @@
  */
 
 import { includes } from 'lodash';
-import { Group } from '../../models';
-import { RequestException } from '../../helpers';
+import { Group } from '../../models/group/group';
+import { RequestException } from '../../helpers/error/error';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 export default [
   {
@@ -104,7 +104,7 @@ export default [
     permission: 'Manage Users',
     client: 'deleteGroup',
     handler: async (req, trx) => {
-      if (includes(config.systemGroups, req.params.id)) {
+      if (includes(config.settings.systemGroups, req.params.id)) {
         throw new RequestException(401, {
           error: {
             message: req.i18n("You can't delete system groups."),

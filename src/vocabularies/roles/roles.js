@@ -3,7 +3,7 @@
  * @module vocabularies/roles/roles
  */
 
-import { Role } from '../../models';
+import { Role } from '../../models/role/role';
 
 /**
  * Returns the roles vocabulary.

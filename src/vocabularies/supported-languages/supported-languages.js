@@ -4,7 +4,7 @@
  */
 
 import languages from '../../constants/languages';
-import { objectToVocabulary } from '../../helpers';
+import { objectToVocabulary } from '../../helpers/utils/utils';
 
 /**
  * Returns the supported languages vocabulary.

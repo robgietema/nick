@@ -5,9 +5,10 @@
 
 import routes from './routes';
 import { map } from 'lodash';
-import { Model } from './models';
-import { callHandler } from './helpers/handler/handler';
+import { Model } from './models/_model/_model';
 import { i18n } from './middleware';
+
+import { callHandler } from './helpers/handler/handler';
 
 /**
  * Client component

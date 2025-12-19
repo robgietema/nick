@@ -3,8 +3,10 @@
  * @module routes/navigation/navigation
  */
 
-import { Catalog, Controlpanel, Index } from '../../models';
-import { getUrl } from '../../helpers';
+import { Catalog } from '../../models/catalog/catalog';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import { Index } from '../../models/index/index';
+import { getUrl } from '../../helpers/url/url';
 import { compact, includes, map, split } from 'lodash';
 
 export const handler = async (req, trx) => {

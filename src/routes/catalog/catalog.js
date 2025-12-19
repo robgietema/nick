@@ -3,8 +3,8 @@
  * @module routes/catalog/catalog
  */
 
-import { getUrl } from '../../helpers';
-import { Index } from '../../models';
+import { getUrl } from '../../helpers/url/url';
+import { Index } from '../../models/index/index';
 
 export const handler = async (req, trx) => {
   await req.document.fetchRelated('_catalog', trx);

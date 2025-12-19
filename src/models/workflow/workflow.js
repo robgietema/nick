@@ -4,8 +4,8 @@
  */
 
 import _, { flatten, includes, map } from 'lodash';
-import { getUrl } from '../../helpers';
-import { Model } from '../../models';
+import { getUrl } from '../../helpers/url/url';
+import { Model } from '../../models/_model/_model';
 
 /**
  * A model for Workflow.

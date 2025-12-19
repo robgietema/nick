@@ -3,7 +3,7 @@
  * @module vocabularies/behaviors/behaviors
  */
 
-import { Behavior } from '../../models';
+import { Behavior } from '../../models/behavior/behavior';
 
 /**
  * Returns the behaviors vocabulary.

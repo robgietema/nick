@@ -4,7 +4,7 @@
  */
 
 import slugify from 'slugify';
-import { uniqueId } from '../../helpers';
+import { uniqueId } from '../../helpers/utils/utils';
 
 interface Document {
   id: string;

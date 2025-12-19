@@ -3,7 +3,7 @@
  * @module helpers/ai/ai
  */
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../config/config';
 
 import { map, keys } from 'lodash';
 
@@ -23,13 +23,13 @@ interface Message {
  * @returns {string} Vector of input value
  */
 export async function embed(input: string): Promise<string> {
-  const response = await fetch(config.ai?.models?.embed?.api, {
+  const response = await fetch(config.settings.ai?.models?.embed?.api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: config.ai.models.embed.name,
+      model: config.settings.ai.models.embed.name,
       input,
     }),
   });
@@ -50,13 +50,13 @@ export async function generate(
   context: Array<number>,
   params: any = {},
 ): Promise<string> {
-  const response = await fetch(config.ai?.models?.llm?.api, {
+  const response = await fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: config.ai?.models?.llm?.name,
+      model: config.settings.ai?.models?.llm?.name,
       context,
       prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
       stream: false,
@@ -81,13 +81,13 @@ export function streamGenerate(
   params: any = {},
   callback: Function,
 ): undefined {
-  fetch(config.ai?.models?.llm?.api, {
+  fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: config.ai?.models?.llm?.name,
+      model: config.settings.ai?.models?.llm?.name,
       context,
       prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
       stream: true,
@@ -120,13 +120,13 @@ export async function chat(
   params: any = {},
   tools: any = [],
 ): Promise<string> {
-  const response = await fetch(config.ai?.models?.llm?.api, {
+  const response = await fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: config.ai?.models?.llm?.name,
+      model: config.settings.ai?.models?.llm?.name,
       messages: [
         ...messages,
         {
@@ -159,13 +159,13 @@ export function streamChat(
   tools: any = [],
   callback: Function,
 ): undefined {
-  fetch(config.ai?.models?.llm?.api, {
+  fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: config.ai?.models?.llm?.name,
+      model: config.settings.ai?.models?.llm?.name,
       messages: [
         ...messages,
         {
@@ -196,13 +196,13 @@ export function streamChat(
  * @returns {VisionResult} response
  */
 export async function vision(data: string): Promise<VisionResult> {
-  const response = await fetch(config.ai?.models?.vision?.api, {
+  const response = await fetch(config.settings.ai?.models?.vision?.api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: config.ai?.models?.vision?.name,
+      model: config.settings.ai?.models?.vision?.name,
       prompt: 'What is in this picture?',
       images: [data],
       stream: false,

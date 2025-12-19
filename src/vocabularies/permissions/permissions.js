@@ -3,7 +3,7 @@
  * @module vocabularies/permissions/permissions
  */
 
-import { Permission } from '../../models';
+import { Permission } from '../../models/permission/permission';
 
 /**
  * Returns the permissions vocabulary.

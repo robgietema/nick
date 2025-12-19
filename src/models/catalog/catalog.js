@@ -5,10 +5,10 @@
 
 import { concat, filter, isNumber, map, pick, uniq } from 'lodash';
 
-import { getRootUrl } from '../../helpers';
-import { Model } from '../../models';
+import { getRootUrl } from '../../helpers/url/url';
+import { Model } from '../../models/_model/_model';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 /**
  * A model for Catalog.
@@ -30,7 +30,10 @@ export class Catalog extends Model {
       (index) => index.metadata === true && index.enabled !== false,
     );
 
-    if (config.ai?.models?.embed?.enabled && isNumber(this.similarity)) {
+    if (
+      config.settings.ai?.models?.embed?.enabled &&
+      isNumber(this.similarity)
+    ) {
       metadata.push({
         name: 'similarity',
       });

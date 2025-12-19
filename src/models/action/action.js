@@ -3,8 +3,8 @@
  * @module models/action/action
  */
 
-import { Model } from '../../models';
-import { ActionCollection } from '../../collections';
+import { Model } from '../../models/_model/_model';
+import { ActionCollection } from '../../collections/action/action';
 
 /**
  * A model for Action.

@@ -5,9 +5,12 @@
 
 import { map, keys, compact } from 'lodash';
 
-import { getRootUrl, mergeSchemas } from '../../helpers';
-import { TypeCollection } from '../../collections';
-import { Behavior, Model } from '../../models';
+import { getRootUrl } from '../../helpers/url/url';
+import { mergeSchemas } from '../../helpers/schema/schema';
+import { TypeCollection } from '../../collections/type/type';
+import { Behavior } from '../../models/behavior/behavior';
+import { Model } from '../../models/_model/_model';
+import { Workflow } from '../../models/workflow/workflow';
 
 /**
  * A model for Type.
@@ -19,9 +22,6 @@ export class Type extends Model {
 
   // Set relation mappings
   static get relationMappings() {
-    // Prevent circular imports
-    const { Workflow } = require('../../models/workflow/workflow');
-
     return {
       _workflow: {
         relation: Model.BelongsToOneRelation,

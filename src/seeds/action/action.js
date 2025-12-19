@@ -1,5 +1,8 @@
-import { fileExists, mapAsync, stripI18n } from '../../helpers';
-import { Action } from '../../models';
+import { fileExists } from '../../helpers/fs/fs';
+import { mapAsync } from '../../helpers/utils/utils';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { Action } from '../../models/action/action';
 
 export const seedAction = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/actions`)) {

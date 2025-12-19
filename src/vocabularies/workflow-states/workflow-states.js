@@ -5,8 +5,8 @@
 
 import { mapValues } from 'lodash';
 
-import { Workflow } from '../../models';
-import { objectToVocabulary } from '../../helpers';
+import { Workflow } from '../../models/workflow/workflow';
+import { objectToVocabulary } from '../../helpers/utils/utils';
 
 /**
  * Returns the workflows vocabulary.

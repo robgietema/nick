@@ -5,8 +5,10 @@
 
 import { concat, map, uniq } from 'lodash';
 
-import { getRootUrl } from '../../helpers';
-import { Model, Group } from '../../models';
+import { getRootUrl } from '../../helpers/url/url';
+import { Model } from '../../models/_model/_model';
+import { Group } from '../../models/group/group';
+import { Role } from '../../models/role/role';
 
 /**
  * A model for User.
@@ -16,10 +18,6 @@ import { Model, Group } from '../../models';
 export class User extends Model {
   // Set relation mappings
   static get relationMappings() {
-    // Prevent circular imports
-    const { Group } = require('../../models/group/group');
-    const { Role } = require('../../models/role/role');
-
     return {
       _roles: {
         relation: Model.ManyToManyRelation,

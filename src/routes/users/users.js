@@ -7,10 +7,12 @@ import bcrypt from 'bcrypt-promise';
 import { includes } from 'lodash';
 import jwt from 'jsonwebtoken';
 
-import { Controlpanel, User } from '../../models';
-import { RequestException, sendMail } from '../../helpers';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import { User } from '../../models/user/user';
+import { RequestException } from '../../helpers/error/error';
+import { sendMail } from '../../helpers/mail/mail';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 export default [
   {
@@ -27,7 +29,10 @@ export default [
       // Check input
       if (req.body?.reset_token && req.body?.new_password && user) {
         // Decode jwt
-        const decoded = jwt.verify(req.body?.reset_token, config.secret);
+        const decoded = jwt.verify(
+          req.body?.reset_token,
+          config.settings.secret,
+        );
 
         // User found
         if (user && decoded && user.id === decoded.sub) {
@@ -66,7 +71,7 @@ export default [
             sub: user.id,
             fullname: user.fullname,
           },
-          config.secret,
+          config.settings.secret,
           { expiresIn: '2h', algorithm: 'HS256' },
         );
 
@@ -82,7 +87,7 @@ export default [
             subject: req.i18n('Password reset request'),
             text: req.i18n(
               'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
-              { url: `${config.frontendUrl}/passwordreset/${token}` },
+              { url: `${config.settings.frontendUrl}/passwordreset/${token}` },
             ),
           },
           trx,
@@ -139,7 +144,7 @@ export default [
     handler: async (req, trx) => {
       // Check permissions
       const manageUsers = includes(req.permissions, 'Manage Users');
-      if (!config.userRegistration && !manageUsers) {
+      if (!config.settings.userRegistration && !manageUsers) {
         throw new RequestException(401, {
           message: req.i18n("You don't have permissions to add a user."),
         });
@@ -172,7 +177,7 @@ export default [
             sub: user.id,
             fullname: user.fullname,
           },
-          config.secret,
+          config.settings.secret,
           { expiresIn: '2h', algorithm: 'HS256' },
         );
 
@@ -188,7 +193,7 @@ export default [
             subject: req.i18n('Password reset request'),
             text: req.i18n(
               'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
-              { url: `${config.frontendUrl}/password-reset/${token}` },
+              { url: `${config.settings.frontendUrl}/password-reset/${token}` },
             ),
           },
           trx,
@@ -232,7 +237,7 @@ export default [
     permission: 'Manage Users',
     client: 'deleteUser',
     handler: async (req, trx) => {
-      if (includes(config.systemUsers, req.params.id)) {
+      if (includes(config.settings.systemUsers, req.params.id)) {
         throw new RequestException(401, {
           error: {
             message: req.i18n("You can't delete system users."),

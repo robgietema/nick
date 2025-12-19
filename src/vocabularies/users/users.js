@@ -3,7 +3,7 @@
  * @module vocabularies/users/users
  */
 
-import { User } from '../../models';
+import { User } from '../../models/user/user';
 
 /**
  * Returns the users vocabulary.

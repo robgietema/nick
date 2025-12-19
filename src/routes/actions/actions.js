@@ -3,7 +3,7 @@
  * @module routes/actions/actions
  */
 
-import { Action } from '../../models';
+import { Action } from '../../models/action/action';
 
 export const handler = async (req, trx) => {
   const actions = await Action.fetchAll({}, { order: 'order' }, trx);

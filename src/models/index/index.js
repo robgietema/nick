@@ -5,8 +5,8 @@
 
 import { keys, mapValues } from 'lodash';
 
-import { Model } from '../../models';
-import { IndexCollection } from '../../collections';
+import { Model } from '../../models/_model/_model';
+import { IndexCollection } from '../../collections/index/index';
 
 /**
  * A model for Index.

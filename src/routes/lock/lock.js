@@ -5,7 +5,9 @@
 
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
-import { getRootUrl, lockExpired, RequestException } from '../../helpers';
+import { getRootUrl } from '../../helpers/url/url';
+import { lockExpired } from '../../helpers/lock/lock';
+import { RequestException } from '../../helpers/error/error';
 
 export default [
   {

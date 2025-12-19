@@ -3,7 +3,7 @@
  * @module models/profile/profile
  */
 
-import { Model } from '../../models';
+import { Model } from '../../models/_model/_model';
 
 /**
  * A model for Profile.

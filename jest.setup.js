@@ -3,8 +3,8 @@ import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid';
 
-import { Model } from './src/models';
-import { knex } from './src/helpers';
+import { Model } from './src/models/_model/_model';
+import { knex } from './src/helpers/knex/knex';
 
 import * as url from './src/helpers/url/url';
 

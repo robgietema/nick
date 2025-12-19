@@ -6,10 +6,12 @@
 import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
 
-import { User } from '../../models';
-import { log, RequestException, authLimiter } from '../../helpers';
+import { User } from '../../models/user/user';
+import { log } from '../../helpers/log/log';
+import { RequestException } from '../../helpers/error/error';
+import { authLimiter } from '../../helpers/limiter/limiter';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 export default [
   {
@@ -76,7 +78,7 @@ export default [
               sub: user.id,
               fullname: user.fullname,
             },
-            config.secret,
+            config.settings.secret,
             { expiresIn: '2h', algorithm: 'HS256' },
           ),
         },
@@ -111,7 +113,7 @@ export default [
               sub: req.user.id,
               fullname: req.user.fullname,
             },
-            config.secret,
+            config.settings.secret,
             { expiresIn: '2h', algorithm: 'HS256' },
           ),
         },

@@ -3,7 +3,7 @@
  * @module vocabularies/groups/groups
  */
 
-import { Group } from '../../models';
+import { Group } from '../../models/group/group';
 
 /**
  * Returns the groups vocabulary.

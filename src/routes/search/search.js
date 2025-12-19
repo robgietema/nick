@@ -7,10 +7,14 @@ import moment from 'moment';
 import { normalize } from 'path';
 import { endsWith, includes, keys, map, mapKeys, repeat } from 'lodash';
 
-import { apiLimiter, embed, getUrl } from '../../helpers';
-import { Catalog, Index } from '../../models';
+import { apiLimiter } from '../../helpers/limiter/limiter';
+import { embed } from '../../helpers/ai/ai';
+import { getUrl } from '../../helpers/url/url';
 
-const { config } = require(`${process.cwd()}/config`);
+import { Catalog } from '../../models/catalog/catalog';
+import { Index } from '../../models/index/index';
+
+import config from '../../helpers/config/config';
 
 /**
  * Convert querystring to query.
@@ -47,13 +51,16 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
   await Promise.all(
     map(querystring.query, async (query) => {
       // Check if key is SearchableText and AI is enabled
-      if (query.i === 'SearchableText' && config.ai?.models?.embed?.enabled) {
+      if (
+        query.i === 'SearchableText' &&
+        config.settings.ai?.models?.embed?.enabled
+      ) {
         // Get embedding vector
         const embedding = await embed(query.v.replace(/\*/g, ''), trx);
 
         where['_embedding'] = [
           'raw',
-          `1 - (_embedding <=> '${embedding}') > ${config.ai.models.embed.minSimilarity}`,
+          `1 - (_embedding <=> '${embedding}') > ${config.settings.ai.models.embed.minSimilarity}`,
         ];
         options.select = [
           '*',
@@ -222,13 +229,16 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
       // Check if key in indexes
       if (indexes[key]) {
         // Check if key is SearchableText and AI is enabled
-        if (key === 'SearchableText' && config.ai?.models?.embed?.enabled) {
+        if (
+          key === 'SearchableText' &&
+          config.settings.ai?.models?.embed?.enabled
+        ) {
           // Get embedding vector
           const embedding = await embed(value.replace(/\*/g, ''), trx);
 
           where['_embedding'] = [
             'raw',
-            `1 - (_embedding <=> '${embedding}') > ${config.ai.models.embed.minSimilarity}`,
+            `1 - (_embedding <=> '${embedding}') > ${config.settings.ai.models.embed.minSimilarity}`,
           ];
           options.select = [
             '*',

@@ -5,8 +5,11 @@
 
 import { map, uniq } from 'lodash';
 
-import { getRootUrl } from '../../helpers';
-import { Model } from '../../models';
+import { getRootUrl } from '../../helpers/url/url';
+
+import { Model } from '../../models/_model/_model';
+import { Role } from '../../models/role/role';
+import { User } from '../../models/user/user';
 
 /**
  * A model for Group.
@@ -16,10 +19,6 @@ import { Model } from '../../models';
 export class Group extends Model {
   // Set relation mappings
   static get relationMappings() {
-    // Prevent circular imports
-    const { Role } = require('../../models/role/role');
-    const { User } = require('../../models/user/user');
-
     return {
       _roles: {
         relation: Model.ManyToManyRelation,

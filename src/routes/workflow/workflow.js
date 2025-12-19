@@ -5,7 +5,8 @@
 
 import moment from 'moment';
 
-import { hasPermission, RequestException } from '../../helpers';
+import { hasPermission } from '../../helpers/auth/auth';
+import { RequestException } from '../../helpers/error/error';
 
 export const handler = async (req, trx) => {
   await req.type.fetchRelated('_workflow', trx);

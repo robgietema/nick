@@ -3,12 +3,12 @@
  * @module server
  */
 
-import { log } from './helpers';
+import { log } from './helpers/log/log';
 import app from './app';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from './helpers/config/config';
 
 // Start server
-app.listen(config.port, () =>
-  log.info(`Server listening on port ${config.port}`),
+app.listen(config.settings.port, () =>
+  log.info(`Server listening on port ${config.settings.port}`),
 );

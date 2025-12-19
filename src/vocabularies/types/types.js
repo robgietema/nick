@@ -3,7 +3,7 @@
  * @module vocabularies/types/types
  */
 
-import { Type } from '../../models';
+import { Type } from '../../models/type/type';
 
 /**
  * Returns the types vocabulary.

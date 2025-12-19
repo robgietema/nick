@@ -30,30 +30,32 @@ import _, {
 import { v4 as uuid } from 'uuid';
 
 import languages from '../../constants/languages';
+import { Model } from '../../models/_model/_model';
+import { Catalog } from '../../models/catalog/catalog';
+import { Index } from '../../models/index/index';
+import { Permission } from '../../models/permission/permission';
+import { Redirect } from '../../models/redirect/redirect';
+import { Role } from '../../models/role/role';
+import { User } from '../../models/user/user';
+import { Type } from '../../models/type/type';
+import { Version } from '../../models/version/version';
+
+import { copyFile } from '../../helpers/fs/fs';
 import {
-  Catalog,
-  Index,
-  Model,
-  Permission,
-  Redirect,
-  Role,
-  User,
-} from '../../models';
-import {
-  copyFile,
   isPromise,
-  getRootUrl,
-  lockExpired,
   mapAsync,
   mapSync,
   uniqueId,
-  embed,
-  generate,
-} from '../../helpers';
-import { DocumentCollection } from '../../collections';
+} from '../../helpers/utils/utils';
+import { getRootUrl } from '../../helpers/url/url';
+import { lockExpired } from '../../helpers/lock/lock';
+import { generate, embed } from '../../helpers/ai/ai';
+
+import { DocumentCollection } from '../../collections/document/document';
+
 import behaviors from '../../behaviors';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 /**
  * A model for Document.
@@ -67,11 +69,6 @@ export class Document extends Model {
 
   // Set relation mappings
   static get relationMappings() {
-    // Prevent circular imports
-    const { Type } = require('../../models/type/type');
-    const { User } = require('../../models/user/user');
-    const { Version } = require('../../models/version/version');
-
     return {
       _owner: {
         relation: Model.BelongsToOneRelation,
@@ -572,7 +569,7 @@ export class Document extends Model {
     await this.fetchRelated('_type', trx);
 
     // Trigger on before copy
-    await config.events.trigger('onBeforeCopy', this, trx, json);
+    await config.settings.events.trigger('onBeforeCopy', this, trx, json);
 
     // Store used uuids
     let fileUuid = {};
@@ -604,7 +601,7 @@ export class Document extends Model {
           fileUuid[json[field].uuid] = newUuid;
           json[field].uuid = newUuid;
         }
-        map(keys(config.imageScales), (scale) => {
+        map(keys(config.settings.imageScales), (scale) => {
           if (json[field].scales[scale].uuid in fileUuid) {
             json[field].scales[scale].uuid =
               fileUuid[json[field].scales[scale].uuid];
@@ -704,7 +701,7 @@ export class Document extends Model {
    */
   async getSummary() {
     // If no AI model enabled, return empty string
-    if (!config.ai?.models?.llm?.enabled) {
+    if (!config.settings.ai?.models?.llm?.enabled) {
       return '';
     }
 
@@ -744,7 +741,7 @@ export class Document extends Model {
     });
 
     // Add vision data if enabled
-    if (config.ai?.models?.vision?.enabled) {
+    if (config.settings.ai?.models?.vision?.enabled) {
       const imageFields = await this._type.getFactoryFields('Image');
 
       map(imageFields, (field) => {

@@ -5,11 +5,11 @@
 
 import du from 'du';
 
-import { Model } from '../../models';
-import { formatSize, getRootUrl } from '../../helpers';
+import { Model } from '../../models/_model/_model';
+import { formatSize } from '../../helpers/format/format';
+import { getRootUrl } from '../../helpers/url/url';
 
-const { config } = require(`${process.cwd()}/config`);
-const knexfile = require(`${process.cwd()}/knexfile`);
+import config from '../../helpers/config/config';
 
 export default [
   {
@@ -28,10 +28,9 @@ export default [
       return {
         json: {
           '@id': `${getRootUrl(req)}/@database`,
-          db_name: config.connection.database,
+          db_name: config.settings.connection.database,
           db_size: formatSize(postgres.rows[0].pg_database_size),
-          pool: knexfile.production.pool,
-          blob_size: formatSize(await du(config.blobsDir)),
+          blob_size: formatSize(await du(config.settings.blobsDir)),
         },
       };
     },

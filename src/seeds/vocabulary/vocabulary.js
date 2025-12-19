@@ -1,8 +1,11 @@
 import { dropRight, map } from 'lodash';
 import { promises as fs } from 'fs';
 
-import { dirExists, mapAsync, stripI18n } from '../../helpers';
-import { Vocabulary } from '../../models';
+import { dirExists } from '../../helpers/fs/fs';
+import { mapAsync } from '../../helpers/utils/utils';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { Vocabulary } from '../../models/vocabulary/vocabulary';
 
 export const seedVocabulary = async (trx, profilePath) => {
   if (dirExists(`${profilePath}/vocabularies`)) {

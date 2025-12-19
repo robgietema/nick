@@ -5,9 +5,11 @@
 
 import moment from 'moment';
 import { concat, omit } from 'lodash';
-import { lockExpired, RequestException, uniqueId } from '../../helpers';
-import { Collection } from '../../collections';
-import { Version } from '../../models';
+import { lockExpired } from '../../helpers/lock/lock';
+import { RequestException } from '../../helpers/error/error';
+import { uniqueId } from '../../helpers/utils/utils';
+import { Collection } from '../../collections/_collection/_collection';
+import { Version } from '../../models/version/version';
 
 export default [
   {

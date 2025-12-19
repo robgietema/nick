@@ -1,7 +1,9 @@
 import { map, merge } from 'lodash';
 
-import { fileExists, stripI18n } from '../../helpers';
-import { Workflow } from '../../models';
+import { fileExists } from '../../helpers/fs/fs';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { Workflow } from '../../models/workflow/workflow';
 
 export const seedWorkflow = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/workflows`)) {

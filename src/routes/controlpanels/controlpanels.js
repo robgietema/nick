@@ -4,13 +4,14 @@
  */
 
 import { mapKeys, omit, pick, without } from 'lodash';
-import { Controlpanel, Document, Type, Workflow } from '../../models';
-import {
-  getUrl,
-  handleFiles,
-  handleImages,
-  RequestException,
-} from '../../helpers';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import { Document } from '../../models/document/document';
+import { Type } from '../../models/type/type';
+import { Workflow } from '../../models/workflow/workflow';
+
+import { getUrl } from '../../helpers/url/url';
+import { RequestException } from '../../helpers/error/error';
+import { handleFiles, handleImages } from '../../helpers/content/content';
 
 export default [
   {

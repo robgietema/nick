@@ -5,8 +5,9 @@
 
 import { fromPairs, map } from 'lodash';
 
-import { Document, Controlpanel } from '../../models';
-import { getPath, getUrl, getUrlByPath } from '../../helpers';
+import { Document } from '../../models/document/document';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import { getPath, getUrl, getUrlByPath } from '../../helpers/url/url';
 
 export const handler = async (req, trx) => {
   const documents = req.document.translation_group

@@ -6,24 +6,25 @@
 
 import { last, padEnd } from 'lodash';
 
-import { Profile } from '../src/models';
-import { fileExists, knex, mapAsync, stripI18n } from '../src/helpers';
+import { Profile } from '../src/models/profile/profile';
+import { fileExists } from '../src/helpers/fs/fs';
+import { knex } from '../src/helpers/knex/knex';
+import { mapAsync } from '../src/helpers/utils/utils';
+import { stripI18n } from '../src/helpers/i18n/i18n';
 
-import {
-  seedProfile,
-  seedPermission,
-  seedRole,
-  seedGroup,
-  seedUser,
-  seedWorkflow,
-  seedType,
-  seedCatalog,
-  seedDocument,
-  seedRedirect,
-  seedAction,
-  seedControlpanel,
-  seedVocabulary,
-} from '../src/seeds';
+import { seedProfile } from '../src/seeds/profile/profile';
+import { seedPermission } from '../src/seeds/permission/permission';
+import { seedRole } from '../src/seeds/role/role';
+import { seedGroup } from '../src/seeds/group/group';
+import { seedUser } from '../src/seeds/user/user';
+import { seedWorkflow } from '../src/seeds/workflow/workflow';
+import { seedType } from '../src/seeds/type/type';
+import { seedCatalog } from '../src/seeds/catalog/catalog';
+import { seedDocument } from '../src/seeds/document/document';
+import { seedRedirect } from '../src/seeds/redirect/redirect';
+import { seedAction } from '../src/seeds/action/action';
+import { seedControlpanel } from '../src/seeds/controlpanel/controlpanel';
+import { seedVocabulary } from '../src/seeds/vocabulary/vocabulary';
 
 const { config } = require(`${process.cwd()}/config`);
 

@@ -5,8 +5,10 @@
 
 import { omit } from 'lodash';
 
-import { RequestException, translateSchema } from '../../helpers';
-import { Type } from '../../models';
+import { RequestException } from '../../helpers/error/error';
+import { translateSchema } from '../../helpers/schema/schema';
+
+import { Type } from '../../models/type/type';
 
 export const handler = async (req, trx) => {
   const types = await Type.fetchAll({}, {}, trx);

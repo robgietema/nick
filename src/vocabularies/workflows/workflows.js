@@ -3,7 +3,7 @@
  * @module vocabularies/workflows/workflows
  */
 
-import { Workflow } from '../../models';
+import { Workflow } from '../../models/workflow/workflow';
 
 /**
  * Returns the workflows vocabulary.

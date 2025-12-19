@@ -5,8 +5,8 @@
 
 import { compact, drop, head, includes, last } from 'lodash';
 
-import { Document } from '../../models';
-import { getRootUrl, getUrl, getPath } from '../../helpers';
+import { Document } from '../../models/document/document';
+import { getRootUrl, getUrl, getPath } from '../../helpers/url/url';
 
 /**
  * Traverse path.

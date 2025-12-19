@@ -4,9 +4,11 @@
  */
 
 import { last } from 'lodash';
-import { getRootUrl } from '../../helpers';
-import { Controlpanel } from '../../models';
-const { config } = require(`${process.cwd()}/config`);
+
+import { getRootUrl } from '../../helpers/url/url';
+import config from '../../helpers/config/config';
+
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
 export default [
   {
@@ -33,7 +35,7 @@ export default [
           },
           'plone.robots_txt': site?.robots_txt,
           'plone.site_logo': site?.site_logo
-            ? `${config.frontendUrl}/en/@@images/${site.site_logo.uuid}.${last(site.site_logo.filename.split('.'))}`
+            ? `${config.settings.frontendUrl}/en/@@images/${site.site_logo.uuid}.${last(site.site_logo.filename.split('.'))}`
             : null,
           'plone.site_title': site?.site_title,
           'plone.available_languages': language?.available_languages,

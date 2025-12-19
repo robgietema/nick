@@ -1,7 +1,9 @@
 import { map } from 'lodash';
 
-import { fileExists, stripI18n } from '../../helpers';
-import { Redirect } from '../../models';
+import { fileExists } from '../../helpers/fs/fs';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { Redirect } from '../../models/redirect/redirect';
 
 export const seedRedirect = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/redirects`)) {

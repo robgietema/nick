@@ -3,7 +3,8 @@
  * @module models/redirect/redirect
  */
 
-import { Model } from '../../models';
+import { Model } from '../../models/_model/_model';
+import { Document } from '../../models/document/document';
 
 /**
  * A model for Redirect.
@@ -18,9 +19,6 @@ export class Redirect extends Model {
 
   // Set relation mappings
   static get relationMappings() {
-    // Prevent circular imports
-    const { Document } = require('../../models/document/document');
-
     return {
       _document: {
         relation: Model.BelongsToOneRelation,

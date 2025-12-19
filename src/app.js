@@ -8,17 +8,25 @@ import helmet from 'helmet';
 import { existsSync, mkdirSync } from 'fs';
 import { isObject, map } from 'lodash';
 
-import { RequestException, log, regExpEscape } from './helpers';
+import { RequestException } from './helpers/error/error';
+import { log } from './helpers/log/log';
+import { regExpEscape } from './helpers/utils/utils';
 import { callHandler } from './helpers/handler/handler';
-import { Model } from './models';
+import { Model } from './models/_model/_model';
 import routes from './routes';
-import { accessLogger, cors, i18n, removeZopeVhosting } from './middleware';
 
-const { config } = require(`${process.cwd()}/config`);
+import { accessLogger } from './middleware/access-logger/access-logger';
+import { cors } from './middleware/cors/cors';
+import { i18n } from './middleware/i18n/i18n';
+import { removeZopeVhosting } from './middleware/volto/volto';
+
+const { config: configSettings } = require(`${process.cwd()}/config`);
+import config from './helpers/config/config';
+config.settings = configSettings;
 
 // Create blob dir if it doesn't exist
-if (!existsSync(config.blobsDir)) {
-  mkdirSync(config.blobsDir, { recursive: true });
+if (!existsSync(config.settings.blobsDir)) {
+  mkdirSync(config.settings.blobsDir, { recursive: true });
 }
 
 // Create app
@@ -66,19 +74,19 @@ app.use(
     xssFilter: true,
   }),
 );
-app.use(express.json({ limit: config.requestLimit?.api || '1mb' }));
+app.use(express.json({ limit: config.settings.requestLimit?.api || '1mb' }));
 app.use(removeZopeVhosting);
 app.use(accessLogger);
 app.use(i18n);
 app.use(cors);
 
 app.enable('trust proxy');
-app.set('trust proxy', config.rateLimit.trustProxy || 0);
+app.set('trust proxy', config.settings.rateLimit.trustProxy || 0);
 
 // Add routes
 map(routes, (route) => {
   app[route.op](
-    `${regExpEscape(config.prefix)}{*path}${route.view}`,
+    `${regExpEscape(config.settings.prefix)}{*path}${route.view}`,
     route.middleware || ((req, res, next) => next()),
     async (req, res) => {
       // Start transaction

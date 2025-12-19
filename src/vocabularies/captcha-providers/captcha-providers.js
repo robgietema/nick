@@ -3,7 +3,7 @@
  * @module vocabularies/captcha-providers/captcha-providers
  */
 
-import { objectToVocabulary } from '../../helpers';
+import { objectToVocabulary } from '../../helpers/utils/utils';
 const providers = {
   'norobots-captcha': 'NoRobots ReCaptcha Support',
 };

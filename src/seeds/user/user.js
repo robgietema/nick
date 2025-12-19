@@ -1,8 +1,10 @@
 import { map, omit } from 'lodash';
 import bcrypt from 'bcrypt-promise';
 
-import { fileExists, stripI18n } from '../../helpers';
-import { User } from '../../models';
+import { fileExists } from '../../helpers/fs/fs';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { User } from '../../models/user/user';
 
 export const seedUser = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/users`)) {

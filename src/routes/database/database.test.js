@@ -2,8 +2,8 @@ import app from '../../app';
 import { testRequest } from '../../helpers/tests/tests';
 
 // Mock formatSize
-jest.mock('../../helpers', () => {
-  const originalModule = jest.requireActual('../../helpers');
+jest.mock('../../helpers/format/format', () => {
+  const originalModule = jest.requireActual('../../helpers/format/format');
   return {
     __esModule: true,
     ...originalModule,

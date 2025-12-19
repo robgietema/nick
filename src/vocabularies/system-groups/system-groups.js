@@ -3,9 +3,9 @@
  * @module vocabularies/system-groups/system-groups
  */
 
-import { arrayToVocabulary } from '../../helpers';
+import { arrayToVocabulary } from '../../helpers/utils/utils';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 /**
  * Returns the system groups vocabulary.
@@ -13,5 +13,5 @@ const { config } = require(`${process.cwd()}/config`);
  * @returns {Array} Array of terms.
  */
 export async function systemGroups(req, trx) {
-  return arrayToVocabulary(config.systemGroups);
+  return arrayToVocabulary(config.settings.systemGroups);
 }

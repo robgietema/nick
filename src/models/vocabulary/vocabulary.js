@@ -3,8 +3,8 @@
  * @module models/vocabulary/vocabulary
  */
 
-import { Model } from '../../models';
-import { getRootlUrl } from '../../helpers';
+import { Model } from '../../models/_model/_model';
+import { getRootlUrl } from '../../helpers/url/url';
 
 /**
  * A model for Vocabulary.

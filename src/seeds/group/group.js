@@ -1,7 +1,9 @@
 import { map, omit } from 'lodash';
 
-import { fileExists, stripI18n } from '../../helpers';
-import { Group } from '../../models';
+import { fileExists } from '../../helpers/fs/fs';
+import { stripI18n } from '../../helpers/i18n/i18n';
+
+import { Group } from '../../models/group/group';
 
 export const seedGroup = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/groups`)) {

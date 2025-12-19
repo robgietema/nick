@@ -13,10 +13,10 @@ import {
   generate,
   streamChat,
   streamGenerate,
-  RequestException,
-} from '../../helpers';
+} from '../../helpers/ai/ai';
+import config from '../../helpers/config/config';
 
-const { config } = require(`${process.cwd()}/config`);
+import { RequestException } from '../../helpers/error/error';
 
 const getEmbedFromPrompt = async (prompt, req, trx) => {
   // Get embedding vector
@@ -25,7 +25,7 @@ const getEmbedFromPrompt = async (prompt, req, trx) => {
   // Fetch catalog items with closest embeddings
   const result = await Catalog.fetchClosestEmbeddingRestricted(
     embedding,
-    config.ai.models.llm.contextSize,
+    config.settings.ai.models.llm.contextSize,
     trx,
     req,
   );
@@ -53,8 +53,8 @@ export default [
 
       // Check if ai enabled
       if (
-        !config.ai?.models?.embed?.enabled ||
-        !config.ai?.models?.llm?.enabled
+        !config.settings.ai?.models?.embed?.enabled ||
+        !config.settings.ai?.models?.llm?.enabled
       ) {
         throw new RequestException(400, {
           message: req.i18n('AI is disabled.'),
@@ -101,8 +101,8 @@ export default [
 
       // Check if ai enabled
       if (
-        !config.ai?.models?.embed?.enabled ||
-        !config.ai?.models?.llm?.enabled
+        !config.settings.ai?.models?.embed?.enabled ||
+        !config.settings.ai?.models?.llm?.enabled
       ) {
         throw new RequestException(400, {
           message: req.i18n('AI is disabled.'),

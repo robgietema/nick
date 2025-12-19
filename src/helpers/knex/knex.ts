@@ -5,12 +5,12 @@
 
 import knexPkg, { Knex } from 'knex';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 // Initialize knex with proper types
 export const knex = knexPkg({
   client: 'pg',
-  connection: config.connection,
+  connection: config.settings.connection,
 });
 
 // Debug

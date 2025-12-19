@@ -1,7 +1,10 @@
-import { fileExists, mapAsync, stripI18n } from '../../helpers';
-import { Index } from '../../models';
+import { fileExists } from '../../helpers/fs/fs';
+import { mapAsync } from '../../helpers/utils/utils';
+import { stripI18n } from '../../helpers/i18n/i18n';
 
-const { config } = require(`${process.cwd()}/config`);
+import { Index } from '../../models/index/index';
+
+import config from '../../helpers/config/config';
 
 export const seedCatalog = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/catalog`)) {
@@ -57,7 +60,7 @@ export const seedCatalog = async (trx, profilePath) => {
           case 'embed':
             table.specificType(
               field,
-              `vector(${config.ai.models.embed.dimensions})`,
+              `vector(${config.settings.ai.models.embed.dimensions})`,
             );
             break;
           case 'text':

@@ -5,9 +5,9 @@
 
 import { keys } from 'lodash';
 
-import { arrayToVocabulary } from '../../helpers';
+import { arrayToVocabulary } from '../../helpers/utils/utils';
 
-const { config } = require(`${process.cwd()}/config`);
+import config from '../../helpers/config/config';
 
 /**
  * Returns the image scales vocabulary.
@@ -15,5 +15,5 @@ const { config } = require(`${process.cwd()}/config`);
  * @returns {Array} Array of terms.
  */
 export async function imageScales(req, trx) {
-  return arrayToVocabulary(keys(config.imageScales));
+  return arrayToVocabulary(keys(config.settings.imageScales));
 }
