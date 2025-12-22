@@ -41,7 +41,7 @@ msgstr ""
 msgctxt "Profiles|Ai|Controlpanels"
 
 #. Default: "AI is disabled."
-#: src/routes/related/related.js:17
+#: src/routes/related/related.js:18
 #: src/routes/ai/ai.js:60
 #: src/routes/ai/ai.js:108
 msgid "AI is disabled."
@@ -189,8 +189,8 @@ msgstr ""
 msgctxt "Models|Type"
 
 #. Default: "Already locked"
-#: src/routes/lock/lock.js:54
-#: src/routes/lock/lock.js:106
+#: src/routes/lock/lock.js:56
+#: src/routes/lock/lock.js:108
 msgid "Already locked"
 msgstr "Al op slot"
 msgctxt "Routes|Lock"
@@ -363,13 +363,13 @@ msgstr "Bevat"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.js:64
+#: src/routes/controlpanels/controlpanels.js:65
 msgid "Content"
 msgstr ""
 msgctxt "Routes|Controlpanels"
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.js:63
+#: src/routes/controlpanels/controlpanels.js:64
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgid "Content Types"
 msgstr ""
@@ -474,8 +474,8 @@ msgstr "Getoonde content types"
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 
 #. Default: "Document locked"
-#: src/routes/history/history.js:50
-#: src/routes/content/content.js:589
+#: src/routes/history/history.js:52
+#: src/routes/content/content.js:595
 msgid "Document locked"
 msgstr "Document vergrendeld"
 msgctxt "Routes|History"
@@ -604,8 +604,8 @@ msgstr "Map-achtig"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "From and message are required fields."
-#: src/routes/email/email.js:50
-#: src/routes/email/email.js:87
+#: src/routes/email/email.js:53
+#: src/routes/email/email.js:90
 msgid "From and message are required fields."
 msgstr "Afzender en bericht zijn verplichte velden."
 msgctxt "Routes|Email"
@@ -680,21 +680,21 @@ msgstr "Informatie over rechten op en over dit item."
 msgctxt "Profiles|Core|Behaviors|Ownership"
 
 #. Default: "Internal server error"
-#: src/app.js:162
-#: src/app.js:172
+#: src/app.js:170
+#: src/app.js:180
 msgid "Internal server error"
 msgstr "Interne server fout"
 msgctxt "App"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.js:46
-#: src/routes/authentication/authentication.js:60
+#: src/routes/authentication/authentication.js:48
+#: src/routes/authentication/authentication.js:62
 msgid "Invalid credentials"
 msgstr "Ongeldige inloggegevens"
 msgctxt "Routes|Authentication"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.js:98
+#: src/routes/authentication/authentication.js:100
 msgid "Invalid session"
 msgstr "Ongeldige sessie"
 msgctxt "Routes|Authentication"
@@ -786,7 +786,7 @@ msgstr "Log in"
 msgctxt "Profiles|Core|Permissions"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.js:26
+#: src/routes/authentication/authentication.js:28
 msgid "Login and password must be provided in body."
 msgstr "Login en wachtwoord moeten in de body worden opgegeven."
 msgctxt "Routes|Authentication"
@@ -837,7 +837,7 @@ msgstr "Komt overeen met een van"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.js:25
+#: src/routes/authentication/authentication.js:27
 msgid "Missing credentials"
 msgstr "Ontbrekende inloggegevens"
 msgctxt "Routes|Authentication"
@@ -880,18 +880,18 @@ msgstr "Nee"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Not allowed"
-#: src/routes/lock/lock.js:156
+#: src/routes/lock/lock.js:158
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 msgctxt "Routes|Lock"
 
 #. Default: "Not found."
-#: src/routes/vocabularies/vocabularies.js:52
-#: src/routes/users/users.js:112
-#: src/routes/types/types.js:34
+#: src/routes/vocabularies/vocabularies.js:53
+#: src/routes/users/users.js:117
+#: src/routes/types/types.js:36
 #: src/routes/groups/groups.js:27
-#: src/routes/email/email.js:57
-#: src/routes/controlpanels/controlpanels.js:74
+#: src/routes/email/email.js:60
+#: src/routes/controlpanels/controlpanels.js:75
 msgid "Not found."
 msgstr "Niet gevonden."
 msgctxt "Routes|Vocabularies"
@@ -922,8 +922,8 @@ msgstr "Pagina"
 msgctxt "Profiles|Core|Types|Page"
 
 #. Default: "Password reset request"
-#: src/routes/users/users.js:82
-#: src/routes/users/users.js:188
+#: src/routes/users/users.js:87
+#: src/routes/users/users.js:193
 msgid "Password reset request"
 msgstr "Wachtwoord herstel verzoek"
 msgctxt "Routes|Users"
@@ -1116,7 +1116,7 @@ msgstr "Hernoemen"
 msgctxt "Profiles|Core|Actions"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:426
+#: src/routes/content/content.js:429
 msgid "Required field(s) missing."
 msgstr "Verplichte velden ontbreken."
 msgctxt "Routes|Content"
@@ -1316,7 +1316,7 @@ msgstr "Systeem groep"
 msgctxt "Routes|Groups"
 
 #. Default: "System users"
-#: src/routes/users/users.js:239
+#: src/routes/users/users.js:244
 msgid "System users"
 msgstr "Systeem gebruikers"
 msgctxt "Routes|Users"
@@ -1399,8 +1399,8 @@ msgstr "De einddatum en -tijd van een evenement"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:83
-#: src/routes/users/users.js:189
+#: src/routes/users/users.js:88
+#: src/routes/users/users.js:194
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw kunt instellen: {url}"
 msgctxt "Routes|Users"
@@ -1508,8 +1508,8 @@ msgstr "De gebruiker die de resultaten van de querystring bekijkt"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "This document is already locked by another user."
-#: src/routes/lock/lock.js:51
-#: src/routes/lock/lock.js:103
+#: src/routes/lock/lock.js:53
+#: src/routes/lock/lock.js:105
 msgid "This document is already locked by another user."
 msgstr "Dit document is al vergrendeld door een andere gebruiker."
 msgctxt "Routes|Lock"
@@ -1559,7 +1559,7 @@ msgstr "Titel"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "To, from and message are required fields."
-#: src/routes/email/email.js:19
+#: src/routes/email/email.js:22
 msgid "To, from and message are required fields."
 msgstr "Aan, van en bericht zijn verplichte velden."
 msgctxt "Routes|Email"
@@ -1576,9 +1576,9 @@ msgstr "Vandaag"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Transaction error."
-#: src/client.js:63
-#: src/app.js:110
-#: src/app.js:123
+#: src/client.js:64
+#: src/app.js:118
+#: src/app.js:131
 msgid "Transaction error."
 msgstr "Transactiefout"
 msgctxt "Client"
@@ -1596,7 +1596,7 @@ msgstr ""
 msgctxt "Models|Type"
 
 #. Default: "Type of the current document is not found."
-#: src/helpers/handler/handler.js:61
+#: src/helpers/handler/handler.js:69
 msgid "Type of the current document is not found."
 msgstr "Type van het huidige document is niet gevonden."
 msgctxt "Helpers|Handler"
@@ -1608,13 +1608,13 @@ msgstr "Gebruik '../' om naar bovenliggende objecten te navigeren."
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "User doesn't exist or invalid credentials."
-#: src/routes/users/users.js:44
+#: src/routes/users/users.js:49
 msgid "User doesn't exist or invalid credentials."
 msgstr "Gebruiker bestaat niet of ongeldige inloggegevens."
 msgctxt "Routes|Users"
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.js:99
+#: src/routes/authentication/authentication.js:101
 msgid "User is not logged in."
 msgstr "Gebruiker is niet ingelogd."
 msgctxt "Routes|Authentication"
@@ -1685,8 +1685,8 @@ msgstr "Binnen volgende"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.js:47
-#: src/routes/authentication/authentication.js:61
+#: src/routes/authentication/authentication.js:49
+#: src/routes/authentication/authentication.js:63
 msgid "Wrong login and/or password."
 msgstr "Verkeerde login en/of wachtwoord."
 msgctxt "Routes|Authentication"
@@ -1699,8 +1699,8 @@ msgstr "Ja"
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "You are not authorization to access this resource."
-#: src/routes/workflow/workflow.js:33
-#: src/helpers/handler/handler.js:83
+#: src/routes/workflow/workflow.js:34
+#: src/helpers/handler/handler.js:91
 msgid "You are not authorization to access this resource."
 msgstr "U heeft geen rechten om tot deze resource."
 msgctxt "Routes|Workflow"
@@ -1712,26 +1712,26 @@ msgstr "U kunt geen systeemgroepen verwijderen."
 msgctxt "Routes|Groups"
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:238
+#: src/routes/users/users.js:243
 msgid "You can't delete system users."
 msgstr "U kunt geen systeem gebruikers verwijderen."
 msgctxt "Routes|Users"
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
-#: src/routes/history/history.js:47
-#: src/routes/content/content.js:586
+#: src/routes/history/history.js:49
+#: src/routes/content/content.js:592
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "U heeft geen toestemming om dit document op te slaan omdat het is vergrendeld door een andere gebruiker."
 msgctxt "Routes|History"
 
 #. Default: "You don't have permission to unlock this document."
-#: src/routes/lock/lock.js:153
+#: src/routes/lock/lock.js:155
 msgid "You don't have permission to unlock this document."
 msgstr "U heeft geen toestemming om dit document te ontgrendelen."
 msgctxt "Routes|Lock"
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:144
+#: src/routes/users/users.js:149
 msgid "You don't have permissions to add a user."
 msgstr "U heeft geen rechten om een gebruiker toe te voegen."
 msgctxt "Routes|Users"
