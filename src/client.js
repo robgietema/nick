@@ -4,9 +4,8 @@
  */
 
 import routes from './routes';
-import { map } from 'lodash';
 import { Model } from './models/_model/_model';
-import { i18n } from './middleware';
+import { i18n } from './middleware/i18n/i18n';
 
 import { callHandler } from './helpers/handler/handler';
 
@@ -25,7 +24,7 @@ export class Client {
   static initialize = ({ token: initToken, apiPath }) => {
     const client = new Client();
 
-    map(routes, (route) => {
+    routes.map((route) => {
       if (route.client) {
         client[route.client] = async ({
           token,
@@ -35,11 +34,11 @@ export class Client {
           query,
           params,
           headers,
-        }) => {
+        } = {}) => {
           let req = {
             token: initToken || token,
             apiPath,
-            documentPath: path,
+            documentPath: path || '/',
             body: data,
             query,
             params,

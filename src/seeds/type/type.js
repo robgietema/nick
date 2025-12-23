@@ -1,4 +1,5 @@
-import { dropRight, map, merge } from 'lodash';
+import { dropRight } from 'es-toolkit/array';
+import { merge } from 'es-toolkit/object';
 import { promises as fs } from 'fs';
 
 import { dirExists } from '../../helpers/fs/fs';
@@ -11,10 +12,9 @@ import { Type } from '../../models/type/type';
 export const seedType = async (trx, profilePath) => {
   if (dirExists(`${profilePath}/behaviors`)) {
     // Get behavior profiles
-    const behaviors = map(
-      await fs.readdir(`${profilePath}/behaviors`),
-      (file) => dropRight(file.split('.')).join('.'),
-    ).sort();
+    const behaviors = (await fs.readdir(`${profilePath}/behaviors`))
+      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .sort();
 
     // Import behaviors
     await mapAsync(behaviors, async (behavior) => {
@@ -26,9 +26,9 @@ export const seedType = async (trx, profilePath) => {
 
   if (dirExists(`${profilePath}/types`)) {
     // Get type profiles
-    const types = map(await fs.readdir(`${profilePath}/types`), (file) =>
-      dropRight(file.split('.')).join('.'),
-    ).sort();
+    const types = (await fs.readdir(`${profilePath}/types`))
+      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .sort();
 
     // Import types
     await mapAsync(types, async (type) => {

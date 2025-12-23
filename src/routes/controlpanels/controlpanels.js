@@ -3,7 +3,9 @@
  * @module routes/controlpanels/controlpanels
  */
 
-import { mapKeys, omit, pick, without } from 'lodash';
+import { without } from 'es-toolkit/array';
+import { mapKeys, merge, omit, pick } from 'es-toolkit/object';
+
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { Document } from '../../models/document/document';
 import { Type } from '../../models/type/type';

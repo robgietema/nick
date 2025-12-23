@@ -4,7 +4,8 @@
  */
 
 import moment from 'moment';
-import { concat, omit } from 'lodash';
+import { omit } from 'es-toolkit/object';
+
 import { lockExpired } from '../../helpers/lock/lock';
 import { RequestException } from '../../helpers/error/error';
 import { uniqueId } from '../../helpers/utils/utils';
@@ -25,7 +26,7 @@ export default [
       );
       const versions = new Collection(req.document._versions);
       return {
-        json: concat(await versions.toJSON(req), workflow_history).sort(
+        json: [...(await versions.toJSON(req)), ...workflow_history].sort(
           (a, b) => new Date(b.time) - new Date(a.time),
         ),
       };

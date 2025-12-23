@@ -3,7 +3,7 @@
  * @module vocabularies/subjects/subjects
  */
 
-import { concat, uniq } from 'lodash';
+import { uniq } from 'es-toolkit/array';
 
 import { Catalog } from '../../models/catalog/catalog';
 import { arrayToVocabulary } from '../../helpers/utils/utils';
@@ -20,6 +20,6 @@ export async function subjects(req, trx) {
     trx,
   );
   return arrayToVocabulary(
-    uniq(concat(...subjects.map((subject) => subject._Subject))),
+    uniq([...subjects.map((subject) => subject._Subject)].flat()),
   );
 }

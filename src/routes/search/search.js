@@ -5,7 +5,6 @@
 
 import moment from 'moment';
 import { normalize } from 'path';
-import { endsWith, includes, keys, map, mapKeys, repeat } from 'lodash';
 
 import { apiLimiter } from '../../helpers/limiter/limiter';
 import { embed } from '../../helpers/ai/ai';
@@ -27,7 +26,7 @@ import config from '../../helpers/config/config';
  */
 const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
   // Get root url
-  const root = endsWith(path, '/') ? path : `${path}/`;
+  const root = path.endsWith('/') ? path : `${path}/`;
 
   // Get indexes
   let indexes = {};
@@ -49,7 +48,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
 
   // Add query
   await Promise.all(
-    map(querystring.query, async (query) => {
+    querystring.query.map(async (query) => {
       // Check if key is SearchableText and AI is enabled
       if (
         query.i === 'SearchableText' &&
@@ -151,7 +150,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
 
   // Check sort
   if (querystring.sort_on) {
-    if (includes(keys(indexes), querystring.sort_on)) {
+    if (Object.keys(indexes).includes(querystring.sort_on)) {
       options.order.column = `_${querystring.sort_on}`;
     }
   }
@@ -165,7 +164,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
   if (querystring['path.depth']) {
     where['_path'] = [
       '~',
-      `^${root}[^/]+${repeat('(/[^/]+)?', querystring['path.depth'] - 1)}$`,
+      `^${root}[^/]+${'(/[^/]+)?'.repeat(querystring['path.depth'] - 1)}$`,
     ];
   }
 
@@ -198,7 +197,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
  */
 const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
   // Get root url
-  const root = endsWith(path, '/') ? path : `${path}/`;
+  const root = path.endsWith('/') ? path : `${path}/`;
 
   // Get indexes
   let indexes = {};
@@ -223,7 +222,7 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
 
   // Loop through query params
   await Promise.all(
-    map(keys(queryparam), async (key) => {
+    Object.keys(queryparam).map(async (key) => {
       const value = queryparam[key];
 
       // Check if key in indexes
@@ -272,7 +271,7 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
       // Check other query params
       switch (key) {
         case 'sort_on':
-          if (includes(keys(indexes), value)) {
+          if (Object.keys(indexes).includes(value)) {
             options.order.column = `_${value}`;
           }
           break;
@@ -282,7 +281,7 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
         case 'path.depth':
           where['_path'] = [
             '~',
-            `^${root}[^/]+${repeat('(/[^/]+)?', value - 1)}$`,
+            `^${root}[^/]+${'(/[^/]+)?'.repeat(value - 1)}$`,
           ];
           break;
         case 'b_size':

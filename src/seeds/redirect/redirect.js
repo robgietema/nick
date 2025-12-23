@@ -1,5 +1,3 @@
-import { map } from 'lodash';
-
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
@@ -12,8 +10,7 @@ export const seedRedirect = async (trx, profilePath) => {
       await Redirect.delete({}, trx);
     }
     await Promise.all(
-      map(
-        profile.redirects,
+      profile.redirects.map(
         async (redirects) => await Redirect.create(redirects, {}, trx),
       ),
     );

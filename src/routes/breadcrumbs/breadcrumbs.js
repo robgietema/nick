@@ -3,7 +3,7 @@
  * @module routes/breadcrumbs/breadcrumbs
  */
 
-import { compact, drop, head, includes, last } from 'lodash';
+import { compact, drop, head, last } from 'es-toolkit/array';
 
 import { Document } from '../../models/document/document';
 import { getRootUrl, getUrl, getPath } from '../../helpers/url/url';
@@ -37,9 +37,9 @@ async function traverse(document, slugs, items, trx) {
     // Traverse up
     return traverse(
       child,
-      drop(slugs),
+      drop(slugs, 1),
       [
-        ...(includes(child._type._schema.behaviors, 'navigation_root')
+        ...(child._type._schema.behaviors.includes('navigation_root')
           ? []
           : items),
         {
@@ -69,7 +69,7 @@ export const handler = async (req, trx) => {
   return {
     json: {
       '@id': `${getUrl(req)}/@breadcrumbs`,
-      items: drop(items),
+      items: drop(items, 1),
       root: req.navroot.path,
     },
   };

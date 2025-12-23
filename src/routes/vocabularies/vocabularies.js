@@ -3,7 +3,7 @@
  * @module routes/vocabularies/vocabularies
  */
 
-import { includes, keys, map, sortBy } from 'lodash';
+import { sortBy } from 'es-toolkit/compat';
 
 import { Vocabulary } from '../../models/vocabulary/vocabulary';
 import { vocabularies } from '../../vocabularies';
@@ -23,7 +23,7 @@ export default [
       return {
         json: sortBy(
           [
-            ...map(keys(vocabularies), (vocabulary) => ({
+            ...Object.keys(vocabularies).map((vocabulary) => ({
               '@id': `${getUrl(req)}/@vocabularies/${vocabulary}`,
               title: vocabulary,
             })),
@@ -45,8 +45,8 @@ export default [
     handler: async (req, trx) => {
       // Check if vocabulary is available
       if (
-        !includes(keys(vocabularies), req.params.id) &&
-        !includes(keys(config.settings.vocabularies || {}), req.params.id)
+        !Object.keys(vocabularies).includes(req.params.id) &&
+        !Object.keys(config.settings.vocabularies || {}).includes(req.params.id)
       ) {
         const vocabulary = await Vocabulary.fetchById(req.params.id, {}, trx);
         if (!vocabulary) {
@@ -64,7 +64,7 @@ export default [
       }
 
       // Get items
-      const items = includes(keys(vocabularies), req.params.id)
+      const items = Object.keys(vocabularies).includes(req.params.id)
         ? await vocabularies[req.params.id](req)
         : await config.settings.vocabularies[req.params.id](req);
 

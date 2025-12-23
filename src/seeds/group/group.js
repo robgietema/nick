@@ -1,4 +1,4 @@
-import { map, omit } from 'lodash';
+import { omit } from 'es-toolkit/object';
 
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
@@ -12,7 +12,7 @@ export const seedGroup = async (trx, profilePath) => {
       await Group.delete({}, trx);
     }
     await Promise.all(
-      map(profile.groups, async (group) => {
+      profile.groups.map(async (group) => {
         await Group.create(
           {
             ...omit(group, ['roles']),

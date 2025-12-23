@@ -3,30 +3,10 @@
  * @module models/document/document
  */
 
-import _, {
-  assign,
-  compact,
-  concat,
-  drop,
-  findIndex,
-  flatten,
-  head,
-  includes,
-  isArray,
-  isEmpty,
-  isFunction,
-  isObject,
-  isUndefined,
-  keys,
-  last,
-  map,
-  mapValues,
-  omit,
-  omitBy,
-  pick,
-  uniq,
-  values,
-} from 'lodash';
+import { compact, drop, flatten, head, last, uniq } from 'es-toolkit/array';
+import { mapValues, omit, omitBy, pick, pickBy } from 'es-toolkit/object';
+import { isObject, isEmpty } from 'es-toolkit/compat';
+import { isUndefined, isFunction } from 'es-toolkit/predicate';
 import { v4 as uuid } from 'uuid';
 
 import languages from '../../constants/languages';
@@ -178,7 +158,10 @@ export class Document extends Model {
     }
 
     // Assign behaviors
-    assign(this, ...values(pick(behaviors, this._type.schema.behaviors)));
+    Object.assign(
+      this,
+      ...Object.values(pick(behaviors, this._type.schema.behaviors)),
+    );
   }
 
   /**
@@ -208,7 +191,7 @@ export class Document extends Model {
     await Promise.all(
       relationListFields.map(async (field) => {
         // Check if related documents
-        if (isArray(json[field]) && json[field].length > 0) {
+        if (Array.isArray(json[field]) && json[field].length > 0) {
           this._relationLists[field] = await Document.fetchAll(
             {
               uuid: ['=', json[field]],
@@ -301,7 +284,7 @@ export class Document extends Model {
    */
   async reorder(id, delta, trx) {
     let to;
-    const from = findIndex(this._children, { id });
+    const from = this._children.findIndex((child) => child.id === id);
 
     // Set to based on delta
     if (delta === 'top') {
@@ -407,7 +390,7 @@ export class Document extends Model {
       mapSync(relationListFields, async (field) => {
         // Check if related documents
         if (
-          isArray(json[field]) &&
+          Array.isArray(json[field]) &&
           json[field].length > 0 &&
           this._relationLists &&
           this._relationLists[field]
@@ -426,7 +409,7 @@ export class Document extends Model {
     // Add children if available
     if (this._children) {
       json.items = await Promise.all(
-        map(this._children, async (child) => await child.toJSON(req)),
+        this._children.map(async (child) => await child.toJSON(req)),
       );
     }
 
@@ -443,7 +426,7 @@ export class Document extends Model {
       owner: this.owner,
       layout: 'view',
       is_folderish: this._type
-        ? includes(this._type._schema.behaviors, 'folderish')
+        ? this._type._schema.behaviors.includes('folderish')
         : true,
       ...(this.language
         ? {
@@ -513,12 +496,12 @@ export class Document extends Model {
       // Fetch navroot
       await child.fetchRelated('_type', trx);
       const is_navroot = child._type
-        ? includes(child._type._schema.behaviors, 'navigation_root')
+        ? child._type._schema.behaviors.includes('navigation_root')
         : false;
 
       // Recursively call the traverse on child
       return child.traverse(
-        drop(slugs),
+        drop(slugs, 1),
         user,
         child.inherit_roles ? uniq([...roles, ...childRoles]) : childRoles,
         is_navroot ? child : navroot,
@@ -536,7 +519,7 @@ export class Document extends Model {
    */
   async fetchWorkflowHistory(req, trx) {
     return await Promise.all(
-      map(this.workflow_history, async (item) => {
+      this.workflow_history.map(async (item) => {
         const user = await User.fetchById(item.actor, {}, trx);
         return {
           ...item,
@@ -578,7 +561,7 @@ export class Document extends Model {
 
     // Copy files
     const copyFiles = () =>
-      map(fileFields, (field) => {
+      fileFields.map((field) => {
         if (json[field].uuid in fileUuid) {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
@@ -592,7 +575,7 @@ export class Document extends Model {
 
     // Copy images
     const copyImages = () =>
-      map(imageFields, (field) => {
+      imageFields.map((field) => {
         if (json[field].uuid in fileUuid) {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
@@ -601,7 +584,7 @@ export class Document extends Model {
           fileUuid[json[field].uuid] = newUuid;
           json[field].uuid = newUuid;
         }
-        map(keys(config.settings.imageScales), (scale) => {
+        Object.keys(config.settings.imageScales).map((scale) => {
           if (json[field].scales[scale].uuid in fileUuid) {
             json[field].scales[scale].uuid =
               fileUuid[json[field].scales[scale].uuid];
@@ -691,7 +674,7 @@ export class Document extends Model {
    * @return {boolean} True if folderish
    */
   isFolderish() {
-    return includes(this._type._schema.behaviors, 'folderish');
+    return this._type._schema.behaviors.includes('folderish');
   }
 
   /**
@@ -734,7 +717,7 @@ export class Document extends Model {
     let chunks = [];
 
     // Add all text blocks
-    map(values(this.json.blocks), (block) => {
+    Object.values(this.json.blocks || {}).map((block) => {
       if (block['@type'] === 'slate' && block.plaintext) {
         chunks.push(block.plaintext);
       }
@@ -744,14 +727,14 @@ export class Document extends Model {
     if (config.settings.ai?.models?.vision?.enabled) {
       const imageFields = await this._type.getFactoryFields('Image');
 
-      map(imageFields, (field) => {
+      imageFields.map((field) => {
         chunks.push(this.json[field].text);
       });
     }
 
     // Add text from indexed files
     const fileFields = await this._type.getFactoryFields('File');
-    map(fileFields, (field) => {
+    fileFields.map((field) => {
       chunks.push(this.json[field].text);
     });
 
@@ -826,18 +809,18 @@ export class Document extends Model {
     const globalRoles = view._roles.map((role) => role.id);
 
     // Get workflow roles
-    const workflowRoles = _(
-      this._type._workflow.json.states[this.workflow_state].permissions,
-    )
-      .pickBy((value) => includes(value, 'View'))
-      .keys()
-      .value();
+    const workflowRoles = Object.keys(
+      pickBy(
+        this._type._workflow.json.states[this.workflow_state].permissions,
+        (value) => value.includes('View'),
+      ),
+    );
 
     // Get users and groups from local roles with 'View' permission
     const localUsersGroups = await this.fetchLocalUsersGroups(globalRoles, trx);
 
     // Return allowed
-    return uniq(concat(globalRoles, workflowRoles, localUsersGroups));
+    return uniq([...globalRoles, ...workflowRoles, ...localUsersGroups]);
   }
 
   /**
@@ -861,11 +844,10 @@ export class Document extends Model {
     return this.json.blocks
       ? uniq(
           flatten(
-            map(keys(this.json.blocks), (block) => [
+            Object.keys(this.json.blocks).map((block) => [
               this.json.blocks[block]['@type'],
               ...(this.json.blocks[block].blocks
-                ? map(
-                    keys(this.json.blocks[block].blocks),
+                ? Object.keys(this.json.blocks[block].blocks).map(
                     (subblock) =>
                       this.json.blocks[block].blocks[subblock]['@type'],
                   )
@@ -917,13 +899,13 @@ export class Document extends Model {
     };
 
     // Add image fields
-    map(imageFields, (field) => {
+    imageFields.map((field) => {
       image_scales[field] = [addDownload(this.json[field])];
     });
 
     // Add relation choice fields
     await Promise.all(
-      map(relationChoiceFields, async (field) => {
+      relationChoiceFields.map(async (field) => {
         if (this.json[field] && this.json[field].length > 0) {
           const target = await Document.fetchById(
             this.json[field][0].UID,
@@ -960,14 +942,14 @@ export class Document extends Model {
 
     // Append user roles
     this._userRoles.map((role) => {
-      if (includes(viewRoles, role.id)) {
+      if (viewRoles.includes(role.id)) {
         localUsersGroups.push(role.user);
       }
     });
 
     // Append group roles
     this._groupRoles.map((role) => {
-      if (includes(viewRoles, role.id)) {
+      if (viewRoles.includes(role.id)) {
         localUsersGroups.push(role.group);
       }
     });
@@ -978,10 +960,10 @@ export class Document extends Model {
       await this.fetchRelated('_parent', trx);
 
       // Append parent users and groups
-      localUsersGroups = concat(
-        localUsersGroups,
-        await this._parent.fetchLocalUsersGroups(viewRoles, trx),
-      );
+      localUsersGroups = [
+        ...localUsersGroups,
+        ...(await this._parent.fetchLocalUsersGroups(viewRoles, trx)),
+      ];
     }
     return uniq(localUsersGroups);
   }
@@ -993,7 +975,7 @@ export class Document extends Model {
    */
   async reindexChildren(trx) {
     return Promise.all(
-      map(this._children, async (child) => await child.index(trx, false)),
+      this._children.map(async (child) => await child.index(trx, false)),
     );
   }
 
@@ -1004,7 +986,7 @@ export class Document extends Model {
    */
   async indexChildren(trx) {
     return Promise.all(
-      map(this._children, async (child) => await child.index(trx)),
+      this._children.map(async (child) => await child.index(trx)),
     );
   }
 
@@ -1085,30 +1067,33 @@ export class Document extends Model {
       // Insert into catalog
       await knex
         .raw(
-          `INSERT INTO catalog ("${keys(fields).join('", "')}") VALUES (${map(
-            keys(fields),
-            (field) =>
+          `INSERT INTO catalog ("${Object.keys(fields).join('", "')}") VALUES (${Object.keys(
+            fields,
+          )
+            .map((field) =>
               fields[field].type === 'text' && !fields[field].metadata
                 ? 'to_tsvector(?)'
                 : '?',
-          ).join(', ')});`,
-          map(values(fields), (field) => field.value),
+            )
+            .join(', ')});`,
+          Object.values(fields).map((field) => field.value),
         )
         .transacting(trx);
     } else {
       // Insert into catalog
       await knex
         .raw(
-          `UPDATE catalog SET ${map(
-            keys(fields),
-            (key) =>
-              `"${key}" = ${
-                fields[key].type === 'text' && !fields[key].metadata
-                  ? 'to_tsvector(?)'
-                  : '?'
-              }`,
-          ).join(', ')} WHERE document = '${this.uuid}';`,
-          map(values(fields), (field) => field.value),
+          `UPDATE catalog SET ${Object.keys(fields)
+            .map(
+              (key) =>
+                `"${key}" = ${
+                  fields[key].type === 'text' && !fields[key].metadata
+                    ? 'to_tsvector(?)'
+                    : '?'
+                }`,
+            )
+            .join(', ')} WHERE document = '${this.uuid}';`,
+          Object.values(fields).map((field) => field.value),
         )
         .transacting(trx);
     }

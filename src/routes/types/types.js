@@ -3,7 +3,7 @@
  * @module routes/types/types
  */
 
-import { omit } from 'lodash';
+import { omit } from 'es-toolkit/object';
 
 import { RequestException } from '../../helpers/error/error';
 import { translateSchema } from '../../helpers/schema/schema';

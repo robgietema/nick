@@ -41,7 +41,7 @@ msgstr ""
 msgctxt "Profiles|Ai|Controlpanels"
 
 #. Default: "AI is disabled."
-#: src/routes/related/related.js:18
+#: src/routes/related/related.js:16
 #: src/routes/ai/ai.js:60
 #: src/routes/ai/ai.js:108
 msgid "AI is disabled."
@@ -363,13 +363,13 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.js:65
+#: src/routes/controlpanels/controlpanels.js:67
 msgid "Content"
 msgstr ""
 msgctxt "Routes|Controlpanels"
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.js:64
+#: src/routes/controlpanels/controlpanels.js:66
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgid "Content Types"
 msgstr ""
@@ -474,8 +474,8 @@ msgstr ""
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 
 #. Default: "Document locked"
-#: src/routes/history/history.js:52
-#: src/routes/content/content.js:595
+#: src/routes/history/history.js:53
+#: src/routes/content/content.js:582
 msgid "Document locked"
 msgstr ""
 msgctxt "Routes|History"
@@ -887,11 +887,11 @@ msgctxt "Routes|Lock"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
-#: src/routes/users/users.js:117
+#: src/routes/users/users.js:116
 #: src/routes/types/types.js:36
-#: src/routes/groups/groups.js:27
+#: src/routes/groups/groups.js:26
 #: src/routes/email/email.js:60
-#: src/routes/controlpanels/controlpanels.js:75
+#: src/routes/controlpanels/controlpanels.js:77
 msgid "Not found."
 msgstr ""
 msgctxt "Routes|Vocabularies"
@@ -922,8 +922,8 @@ msgstr ""
 msgctxt "Profiles|Core|Types|Page"
 
 #. Default: "Password reset request"
-#: src/routes/users/users.js:87
-#: src/routes/users/users.js:193
+#: src/routes/users/users.js:86
+#: src/routes/users/users.js:192
 msgid "Password reset request"
 msgstr ""
 msgctxt "Routes|Users"
@@ -1116,7 +1116,7 @@ msgstr ""
 msgctxt "Profiles|Core|Actions"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:429
+#: src/routes/content/content.js:416
 msgid "Required field(s) missing."
 msgstr ""
 msgctxt "Routes|Content"
@@ -1310,13 +1310,13 @@ msgstr ""
 msgctxt "Profiles|Core|Workflows"
 
 #. Default: "System group"
-#: src/routes/groups/groups.js:111
+#: src/routes/groups/groups.js:110
 msgid "System group"
 msgstr ""
 msgctxt "Routes|Groups"
 
 #. Default: "System users"
-#: src/routes/users/users.js:244
+#: src/routes/users/users.js:243
 msgid "System users"
 msgstr ""
 msgctxt "Routes|Users"
@@ -1399,8 +1399,8 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:88
-#: src/routes/users/users.js:194
+#: src/routes/users/users.js:87
+#: src/routes/users/users.js:193
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr ""
 msgctxt "Routes|Users"
@@ -1576,7 +1576,7 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "Transaction error."
-#: src/client.js:64
+#: src/client.js:63
 #: src/app.js:118
 #: src/app.js:131
 msgid "Transaction error."
@@ -1608,7 +1608,7 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 
 #. Default: "User doesn't exist or invalid credentials."
-#: src/routes/users/users.js:49
+#: src/routes/users/users.js:48
 msgid "User doesn't exist or invalid credentials."
 msgstr ""
 msgctxt "Routes|Users"
@@ -1706,20 +1706,20 @@ msgstr ""
 msgctxt "Routes|Workflow"
 
 #. Default: "You can't delete system groups."
-#: src/routes/groups/groups.js:110
+#: src/routes/groups/groups.js:109
 msgid "You can't delete system groups."
 msgstr ""
 msgctxt "Routes|Groups"
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:243
+#: src/routes/users/users.js:242
 msgid "You can't delete system users."
 msgstr ""
 msgctxt "Routes|Users"
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
-#: src/routes/history/history.js:49
-#: src/routes/content/content.js:592
+#: src/routes/history/history.js:50
+#: src/routes/content/content.js:579
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr ""
 msgctxt "Routes|History"
@@ -1731,7 +1731,7 @@ msgstr ""
 msgctxt "Routes|Lock"
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:149
+#: src/routes/users/users.js:148
 msgid "You don't have permissions to add a user."
 msgstr ""
 msgctxt "Routes|Users"

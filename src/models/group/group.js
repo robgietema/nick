@@ -3,7 +3,7 @@
  * @module models/group/group
  */
 
-import { map, uniq } from 'lodash';
+import { uniq } from 'es-toolkit/array';
 
 import { getRootUrl } from '../../helpers/url/url';
 
@@ -88,12 +88,11 @@ export class Group extends Model {
    */
   static async fetchRolesByDocument(groups, document, trx) {
     return uniq(
-      map(
+      (
         await this.relatedQuery('_documentRoles', trx).for(groups).where({
           'group_role_document.document': document,
-        }),
-        (role) => role.id,
-      ),
+        })
+      ).map((role) => role.id),
     );
   }
 
@@ -105,11 +104,10 @@ export class Group extends Model {
    * @returns {Array} Array of roles.
    */
   async fetchRolesByDocument(document, trx) {
-    return map(
+    return (
       await this.$relatedQuery('_documentRoles', trx).where({
         'group_role_document.document': document,
-      }),
-      (role) => role.id,
-    );
+      })
+    ).map((role) => role.id);
   }
 }

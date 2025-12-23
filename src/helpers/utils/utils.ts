@@ -3,7 +3,7 @@
  * @module helpers/utils/utils
  */
 
-import { keys, map, omitBy } from 'lodash';
+import { omitBy } from 'es-toolkit/object';
 
 /**
  * Map asynchronous but in order through array
@@ -71,7 +71,7 @@ interface VocabularyTerm {
  * @returns {Array} Array of terms
  */
 export function arrayToVocabulary(items: string[]): VocabularyTerm[] {
-  return map(items, (item) => ({
+  return items.map((item) => ({
     title: item,
     token: item,
   }));
@@ -86,7 +86,7 @@ export function arrayToVocabulary(items: string[]): VocabularyTerm[] {
 export function objectToVocabulary(items: {
   [key: string]: string;
 }): VocabularyTerm[] {
-  return map(keys(items), (key) => ({
+  return Object.keys(items).map((key) => ({
     title: items[key],
     token: key,
   }));

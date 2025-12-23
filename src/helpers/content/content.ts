@@ -3,7 +3,8 @@
  * @module helpers/content/content
  */
 
-import { isObject, isString, keys, last, map } from 'lodash';
+import { last } from 'es-toolkit/array';
+import { isObject } from 'es-toolkit/compat';
 import mime from 'mime-types';
 import pdfParse from 'pdf-parse';
 import { Knex } from 'knex';
@@ -60,7 +61,7 @@ export async function handleFiles(
 
   await mapAsync(fileFields, async (field) => {
     // Check if filename is specified
-    if (isString(fields[field])) {
+    if (typeof fields[field] === 'string') {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',
@@ -123,7 +124,7 @@ export async function handleImages(
 
   await mapAsync(imageFields, async (field) => {
     // Check if filename is specified
-    if (isString(fields[field])) {
+    if (typeof fields[field] === 'string') {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',
@@ -188,8 +189,7 @@ export async function handleRelationLists(
   // Strip all but the UID from the document data
   await mapAsync(relationListFields, async (field) => {
     if (fields[field]) {
-      fields[field] = map(
-        fields[field],
+      fields[field] = Object.keys(fields[field]).map(
         (document: { UID: string } | string) =>
           typeof document === 'object' ? document.UID : document,
       );
@@ -235,7 +235,7 @@ export async function handleBlockReferences(
 
   if (output.blocks && isObject(output.blocks)) {
     await Promise.all(
-      map(keys(output.blocks), async (block) => {
+      Object.keys(output.blocks).map(async (block) => {
         if (isObject(output.blocks?.[block].href)) {
           output.blocks[block].href[0] = await extendHref(
             output.blocks[block].href[0],
@@ -244,19 +244,22 @@ export async function handleBlockReferences(
         }
         if (isObject(output.blocks?.[block].slides)) {
           await Promise.all(
-            map(output.blocks[block].slides, async (slide, index) => {
-              if (isObject(output.blocks?.[block].slides?.[index].image)) {
-                output.blocks[block].slides[index].image[0] = await extendHref(
-                  output.blocks[block].slides[index].image[0],
-                  trx,
-                );
-              }
-            }),
+            Object.keys(output.blocks[block].slides).map(
+              async (slide, index) => {
+                if (isObject(output.blocks?.[block].slides?.[index].image)) {
+                  output.blocks[block].slides[index].image[0] =
+                    await extendHref(
+                      output.blocks[block].slides[index].image[0],
+                      trx,
+                    );
+                }
+              },
+            ),
           );
         }
         if (isObject(output.blocks?.[block].blocks)) {
           await Promise.all(
-            map(keys(output.blocks[block].blocks), async (subblock) => {
+            Object.keys(output.blocks[block].blocks).map(async (subblock) => {
               if (isObject(output.blocks?.[block].blocks?.[subblock].href)) {
                 output.blocks[block].blocks[subblock].href[0] =
                   await extendHref(

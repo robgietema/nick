@@ -1,4 +1,5 @@
-import { dropRight, endsWith, filter, map, merge } from 'lodash';
+import { dropRight } from 'es-toolkit/array';
+import { merge } from 'es-toolkit/object';
 import { promises as fs } from 'fs';
 
 import { dirExists } from '../../helpers/fs/fs';
@@ -10,12 +11,10 @@ import { Controlpanel } from '../../models/controlpanel/controlpanel';
 export const seedControlpanel = async (trx, profilePath) => {
   if (dirExists(`${profilePath}/controlpanels`)) {
     // Get controlpanel profiles
-    const controlpanels = map(
-      filter(await fs.readdir(`${profilePath}/controlpanels`), (file) =>
-        endsWith(file, '.json'),
-      ),
-      (file) => dropRight(file.split('.')).join('.'),
-    ).sort();
+    const controlpanels = (await fs.readdir(`${profilePath}/controlpanels`))
+      .filter((file) => file.endsWith('.json'))
+      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .sort();
 
     // Import controlpanels
     await mapAsync(controlpanels, async (controlpanel) => {

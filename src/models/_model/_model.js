@@ -5,18 +5,10 @@
 
 import { mixin, Model as ObjectionModel } from 'objection';
 import TableName from 'objection-table-name';
-import _, {
-  difference,
-  isArray,
-  isEmpty,
-  isObject,
-  isString,
-  keys,
-  map,
-  mapKeys,
-  omit,
-  snakeCase,
-} from 'lodash';
+import { isEmpty, isObject } from 'es-toolkit/compat';
+import { snakeCase } from 'es-toolkit/string';
+import { difference } from 'es-toolkit/array';
+import { mapKeys, omit } from 'es-toolkit/object';
 
 import { formatAttribute } from '../../helpers/format/format';
 import { log } from '../../helpers/log/log';
@@ -63,11 +55,11 @@ export class Model extends mixin(ObjectionModel, [
       mapKeys(where, (value, key) => {
         // user and group are reserved words so need to be wrapper in quotes
         const attribute = formatAttribute(key);
-        let operator = isArray(value) ? value[0] : '=';
-        const values = isArray(value) ? value[1] : value;
+        let operator = Array.isArray(value) ? value[0] : '=';
+        const values = Array.isArray(value) ? value[1] : value;
         let valueWrapper =
-          isArray(values) && operator !== '&&' ? 'any(?)' : '?';
-        if (isArray(values) && operator === 'all') {
+          Array.isArray(values) && operator !== '&&' ? 'any(?)' : '?';
+        if (Array.isArray(values) && operator === 'all') {
           operator = '=';
           valueWrapper = 'all(?)';
         }
@@ -99,11 +91,11 @@ export class Model extends mixin(ObjectionModel, [
      */
     if (options.order) {
       // Check if default order
-      if (isString(options.order)) {
+      if (typeof options.order === 'string') {
         query = query.orderByRaw(formatAttribute(options.order));
-      } else if (isArray(options.order)) {
+      } else if (Array.isArray(options.order)) {
         query = query.orderBy(
-          map(options.order, (order) => ({
+          options.order.map((order) => ({
             column: order,
           })),
         );
@@ -111,7 +103,7 @@ export class Model extends mixin(ObjectionModel, [
         let order = '';
         // Check if values are defined
         if (options.order.values) {
-          order = `case ${_(options.order.values)
+          order = `case ${options.order.values
             .map(
               (value, index) =>
                 `when ${options.order.column} = '${value}' then ${index}`,
@@ -157,16 +149,16 @@ export class Model extends mixin(ObjectionModel, [
    */
   async fetchRelated(graph, trx) {
     // Get current keys
-    const curKeys = keys(this);
+    const curKeys = Object.keys(this);
 
     // Fetch related
     const related = await this.$fetchGraph(graph, { transaction: trx });
 
     // Get new keys
-    const newKeys = difference(keys(related), curKeys);
+    const newKeys = difference(Object.keys(related), curKeys);
 
     // Assign new props
-    map(newKeys, (key) => (this[key] = related[key]));
+    newKeys.map((key) => (this[key] = related[key]));
   }
 
   /**
@@ -255,15 +247,14 @@ export class Model extends mixin(ObjectionModel, [
    * @returns {Object} Model of the inserted record
    */
   static async create(data, options = {}, trx) {
-    const relations = keys(this.getRelations());
+    const relations = Object.keys(this.getRelations());
     let own = omit(data, relations);
     let model = await this.query(trx).insertAndFetch(own);
     await Promise.all(
-      map(relations, async (related) => {
+      relations.map(async (related) => {
         if (data[related]) {
           await Promise.all(
-            map(
-              data[related],
+            data[related].map(
               async (item) =>
                 await model.$relatedQuery(related, trx).relate(item),
             ),
@@ -334,7 +325,7 @@ export class Model extends mixin(ObjectionModel, [
    */
   static async update(id, data, trx) {
     const relationObjects = this.getRelations();
-    const relations = keys(relationObjects);
+    const relations = Object.keys(relationObjects);
     let own = removeUndefined(omit(data, relations));
     let model;
     if (isEmpty(own)) {
@@ -343,11 +334,11 @@ export class Model extends mixin(ObjectionModel, [
       model = await this.query(trx).updateAndFetchById(id, own);
     }
     await Promise.all(
-      map(relations, async (related) => {
-        if (isArray(data[related])) {
+      relations.map(async (related) => {
+        if (Array.isArray(data[related])) {
           await model.$relatedQuery(related, trx).unrelate();
           await Promise.all(
-            map(data[related], async (item) => {
+            data[related].map(async (item) => {
               // Ignore insert related errors
               try {
                 await model.$relatedQuery(related, trx).relate(item);
@@ -358,7 +349,7 @@ export class Model extends mixin(ObjectionModel, [
           );
         } else if (isObject(data[related])) {
           await Promise.all(
-            map(keys(data[related]), async (key) => {
+            Object.keys(data[related]).map(async (key) => {
               if (data[related][key]) {
                 // Ignore insert related errors
                 try {

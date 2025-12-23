@@ -3,7 +3,7 @@
  * @module models/role/role
  */
 
-import { map, uniq } from 'lodash';
+import { uniq } from 'es-toolkit/array';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
@@ -58,8 +58,7 @@ export class Role extends Model {
    */
   static async fetchPermissions(roles, trx) {
     return uniq(
-      map(
-        await this.relatedQuery('_permissions', trx).for(roles),
+      (await this.relatedQuery('_permissions', trx).for(roles)).map(
         (permission) => permission.id,
       ),
     );

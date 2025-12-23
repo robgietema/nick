@@ -3,7 +3,7 @@
  * @module routes/generate/generate
  */
 
-import { has, join, omit } from 'lodash';
+import { omit } from 'es-toolkit/object';
 import pdfParse from 'pdf-parse';
 
 import { Catalog } from '../../models/catalog/catalog';
@@ -31,10 +31,10 @@ const getEmbedFromPrompt = async (prompt, req, trx) => {
   );
 
   // Generate contents from the results
-  return join(
-    result.map((item) => item.SearchableText),
-    ' ',
-  ).replace(/\n/g, ' ');
+  return result
+    .map((item) => item.SearchableText)
+    .join(' ')
+    .replace(/\n/g, ' ');
 };
 
 export default [
@@ -62,7 +62,7 @@ export default [
       }
 
       let attachment = '';
-      if (has(req.body.params, 'Attachment')) {
+      if (Object.hasOwn(req.body.params, 'Attachment')) {
         const buffer = Buffer.from(req.body.params.Attachment, 'base64');
         const result = await pdfParse(buffer);
         attachment = result.text || '';
@@ -71,7 +71,7 @@ export default [
       // Create params for the generation
       const params = {
         ...omit(req.body.params, ['Site', 'Attachment']),
-        ...(has(req.body.params, 'Site')
+        ...(Object.hasOwn(req.body.params, 'Site')
           ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
           : {}),
         ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),
@@ -110,7 +110,7 @@ export default [
       }
 
       let attachment = '';
-      if (has(req.body.params, 'Attachment')) {
+      if (Object.hasOwn(req.body.params, 'Attachment')) {
         const buffer = Buffer.from(req.body.params.Attachment, 'base64');
         const result = await pdfParse(buffer);
         attachment = result.text || '';
@@ -119,7 +119,7 @@ export default [
       // Create params for the generation
       const params = {
         ...omit(req.body.params, ['Site', 'Attachment']),
-        ...(has(req.body.params, 'Site')
+        ...(Object.hasOwn(req.body.params, 'Site')
           ? { Site: await getEmbedFromPrompt(req.body.prompt, req, trx) }
           : {}),
         ...(attachment ? { Attachment: attachment.replace(/\n/, '') } : {}),

@@ -13,7 +13,7 @@ import {
   writeFileSync,
 } from 'fs';
 import { sync as glob } from 'glob';
-import { endsWith, keys, last, map } from 'lodash';
+import { last } from 'es-toolkit/array';
 import { v4 as uuid } from 'uuid';
 
 /**
@@ -46,7 +46,7 @@ const convertRedirects = (redirects, path) => {
   const output = [];
 
   // Loop through redirects
-  map(keys(redirects), (key) => {
+  Object.keys(redirects).map((key) => {
     const document = readfile(
       `${path}/documents/${redirects[key].replace('/Plone/', '').replaceAll('.', '-').replaceAll('/', '.')}.json`,
     );
@@ -97,7 +97,7 @@ const convertDocuments = (input, path) => {
     relations = readfile(`${input}/relations.json`);
   }
   const references = {};
-  map(relations, (relation) => {
+  relations.map((relation) => {
     if (typeof references[relation.from_uuid] !== 'object') {
       references[relation.from_uuid] = [];
     }
@@ -109,8 +109,8 @@ const convertDocuments = (input, path) => {
     }
   });
 
-  map(glob(`${input}/content/**/*.json`), (filename) => {
-    if (endsWith(filename, '__metadata__.json')) {
+  glob(`${input}/content/**/*.json`).map((filename) => {
+    if (filename.endsWith('__metadata__.json')) {
       return;
     }
     let document = JSON.parse(readFileSync(filename, 'utf8'));
@@ -157,7 +157,7 @@ const convertDocuments = (input, path) => {
 
     // Add references
     if (references[document.uuid]) {
-      map(references[document.uuid], (reference) => {
+      references[document.uuid].map((reference) => {
         const targetfile = `${input}/content/${reference.to}/data.json`;
         if (existsSync(targetfile)) {
           const target = JSON.parse(

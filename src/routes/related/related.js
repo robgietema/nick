@@ -3,8 +3,6 @@
  * @module routes/related/related
  */
 
-import { filter } from 'lodash';
-
 import { getUrl } from '../../helpers/url/url';
 import { Catalog } from '../../models/catalog/catalog';
 import { Index } from '../../models/index/index';
@@ -41,10 +39,9 @@ export const handler = async (req, trx) => {
   return {
     json: {
       '@id': `${baseUrl}/@related`,
-      items: filter(
-        items.map((item) => item.toJSON(req)),
-        (item) => item.UID !== req.document._catalog.UID,
-      ),
+      items: items
+        .map((item) => item.toJSON(req))
+        .filter((item) => item.UID !== req.document._catalog.UID),
     },
   };
 };

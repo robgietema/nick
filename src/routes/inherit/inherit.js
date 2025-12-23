@@ -3,7 +3,7 @@
  * @module routes/inherit/inherit
  */
 
-import { includes, keys, pick, map } from 'lodash';
+import { pick } from 'es-toolkit/object';
 
 import { Behavior } from '../../models/behavior/behavior';
 import { Document } from '../../models/document/document';
@@ -28,14 +28,14 @@ async function traverse(document, behaviors, items, req, trx) {
   }
 
   await Promise.all(
-    map(behaviors, async (behavior) => {
+    behaviors.map(async (behavior) => {
       if (
         !returnItems[behavior] &&
-        includes(document._type._schema.behaviors, behavior)
+        document._type._schema.behaviors.includes(behavior)
       ) {
         // Fetch behavior
         const behaviorObj = await Behavior.fetchById(behavior, {}, trx);
-        const props = keys(behaviorObj?.schema?.properties || {});
+        const props = Object.keys(behaviorObj?.schema?.properties || {});
 
         returnItems[behavior] = {
           from: {

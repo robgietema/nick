@@ -132,6 +132,7 @@
 - Add coverage threshold @robgietema
 - Remove barrel files @robgietema
 - Remove require for the config @robgietema
+- Replace lodash with es-toolkit and native functions @robgietema
 
 ### Documentation
 

@@ -3,8 +3,6 @@
  * @module vocabularies/image-scales/image-scales
  */
 
-import { keys } from 'lodash';
-
 import { arrayToVocabulary } from '../../helpers/utils/utils';
 
 import config from '../../helpers/config/config';
@@ -15,5 +13,5 @@ import config from '../../helpers/config/config';
  * @returns {Array} Array of terms.
  */
 export async function imageScales(req, trx) {
-  return arrayToVocabulary(keys(config.settings.imageScales));
+  return arrayToVocabulary(Object.keys(config.settings.imageScales));
 }

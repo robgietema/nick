@@ -1,4 +1,4 @@
-import { compact, uniq } from 'lodash';
+import { compact, uniq } from 'es-toolkit/array';
 
 import { RequestException } from '../error/error';
 import { getPath } from '../url/url';

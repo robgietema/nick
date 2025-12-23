@@ -3,6 +3,8 @@
  * @module models/vocabulary/vocabulary
  */
 
+import { mapValues } from 'es-toolkit/object';
+
 import { Model } from '../../models/_model/_model';
 import { getRootlUrl } from '../../helpers/url/url';
 

@@ -3,7 +3,6 @@
  * @module collection/_collection/_collection
  */
 
-import { map, omitBy } from 'lodash';
 import type { Json, Model, Request } from '../../types';
 
 /**
@@ -28,16 +27,16 @@ export class Collection<T extends Model> {
    * @returns {Array} Array of models.
    */
   map<U>(callback: (model: T) => U): U[] {
-    return map(this.models, callback);
+    return this.models.map(callback);
   }
 
   /**
-   * Maps over models.
-   * @method omitBy
+   * Filter models.
+   * @method filter
    * @param {function} callback Callback function.
    */
-  omitBy(callback: (model: T) => boolean): void {
-    this.models = omitBy(this.models, callback) as T[];
+  filter(callback: (model: T) => boolean): void {
+    this.models.filter(callback) as T[];
   }
 
   /**

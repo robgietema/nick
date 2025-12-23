@@ -1,4 +1,4 @@
-import { map, omit } from 'lodash';
+import { omit } from 'es-toolkit/object';
 import bcrypt from 'bcrypt-promise';
 
 import { fileExists } from '../../helpers/fs/fs';
@@ -13,7 +13,7 @@ export const seedUser = async (trx, profilePath) => {
       await User.delete({}, trx);
     }
     await Promise.all(
-      map(profile.users, async (user) => {
+      profile.users.map(async (user) => {
         // Insert user
         await User.create(
           {

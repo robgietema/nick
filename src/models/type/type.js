@@ -3,7 +3,7 @@
  * @module models/type/type
  */
 
-import { map, keys, compact } from 'lodash';
+import { compact } from 'es-toolkit/array';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { mergeSchemas } from '../../helpers/schema/schema';
@@ -197,7 +197,7 @@ export class Type extends Model {
     const properties = this._schema.properties;
 
     // Get factory fields
-    const factoryFields = map(keys(properties), (property) =>
+    const factoryFields = Object.keys(properties).map((property) =>
       properties[property].factory === factory ? property : false,
     );
     return compact(factoryFields);

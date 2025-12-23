@@ -3,7 +3,7 @@
  * @module models/index/index
  */
 
-import { keys, mapValues } from 'lodash';
+import { mapValues } from 'es-toolkit/object';
 
 import { Model } from '../../models/_model/_model';
 import { IndexCollection } from '../../collections/index/index';
@@ -31,7 +31,7 @@ export class Index extends Model {
       sortable: this.sortable,
       values: {},
       vocabulary: this.vocabulary,
-      operations: keys(this.operators),
+      operations: Object.keys(this.operators),
       operators: mapValues(this.operators, (operator) => ({
         ...operator,
         title: req.i18n(operator.title),

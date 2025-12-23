@@ -3,7 +3,7 @@
  * @module models/group/group
  */
 
-import { concat, map, uniq } from 'lodash';
+import { uniq } from 'es-toolkit/array';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
@@ -96,20 +96,14 @@ export class User extends Model {
 
     // Add roles of the user
     if (this._roles) {
-      roles = concat(
-        roles,
-        this._roles.map((role) => role.id),
-      );
+      roles = [...roles, ...this._roles.map((role) => role.id)];
     }
 
     // Add roles of the groups of the users
     if (this._groups) {
-      map(this._groups, (group) => {
+      this._groups.map((group) => {
         if (group._roles) {
-          roles = concat(
-            roles,
-            group._roles.map((role) => role.id),
-          );
+          roles = [...roles, ...group._roles.map((role) => role.id)];
         }
       });
     }
@@ -126,12 +120,11 @@ export class User extends Model {
    * @returns {Array} Array of roles.
    */
   async fetchRolesByDocument(document, trx) {
-    return map(
+    return (
       await this.$relatedQuery('_documentRoles', trx).where({
         'user_role_document.document': document,
-      }),
-      (role) => role.id,
-    );
+      })
+    ).map((role) => role.id);
   }
 
   /**

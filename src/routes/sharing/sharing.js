@@ -3,8 +3,6 @@
  * @module routes/sharing/sharing
  */
 
-import { concat, fromPairs, includes, keys, map } from 'lodash';
-
 import { Document } from '../../models/document/document';
 import { Group } from '../../models/group/group';
 import { Role } from '../../models/role/role';
@@ -53,10 +51,10 @@ async function fetchPrincipals(
       let traverse = document;
       while (traverse.parent && traverse.inherit_roles) {
         traverse = await Document.fetchById(traverse.parent, {}, trx);
-        acquiredRoles = concat(
-          acquiredRoles,
-          await principal.fetchRolesByDocument(traverse.uuid),
-        );
+        acquiredRoles = [
+          ...acquiredRoles,
+          ...(await principal.fetchRolesByDocument(traverse.uuid)),
+        ];
       }
 
       // Get global roles
@@ -68,14 +66,14 @@ async function fetchPrincipals(
       return {
         id: principal.id,
         title: principal[title],
-        roles: fromPairs(
+        roles: Object.fromEntries(
           roles.map((role) => {
-            if (includes(globalRoles, role.id)) {
+            if (globalRoles.includes(role.id)) {
               return [role.id, 'global'];
-            } else if (includes(acquiredRoles, role.id)) {
+            } else if (acquiredRoles.includes(role.id)) {
               return [role.id, 'acquired'];
             } else {
-              return [role.id, includes(localRoles, role.id)];
+              return [role.id, localRoles.includes(role.id)];
             }
           }),
         ),
@@ -122,7 +120,7 @@ export default [
             id: role.id,
             title: role.title,
           })),
-          entries: concat(users, groups).sort((a, b) =>
+          entries: [...users, ...groups].sort((a, b) =>
             a.title > b.title ? 1 : -1,
           ),
           inherit: req.document.inherit_roles,
@@ -145,11 +143,11 @@ export default [
 
       // Update local roles
       await Promise.all(
-        map(req.body.entries, async (entry) => {
+        req.body.entries.map(async (entry) => {
           const Model = entry.type === 'user' ? User : Group;
           const principal = await Model.fetchById(entry.id, {}, trx);
           await Promise.all(
-            map(keys(entry.roles), async (role) => {
+            Object.keys(entry.roles).map(async (role) => {
               // If should relate
               if (entry.roles[role] === true) {
                 try {

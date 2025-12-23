@@ -5,21 +5,8 @@
 
 import express from 'express';
 import moment from 'moment';
-import {
-  drop,
-  flattenDeep,
-  includes,
-  intersection,
-  isArray,
-  join,
-  keys,
-  map,
-  omit,
-  pick,
-  split,
-  startsWith,
-  uniq,
-} from 'lodash';
+import { drop, flattenDeep, intersection, uniq } from 'es-toolkit/array';
+import { omit, pick } from 'es-toolkit/object';
 import { v4 as uuid } from 'uuid';
 
 import { getRootUrl, getUrl } from '../../helpers/url/url';
@@ -60,7 +47,7 @@ const getComponents = async (req, trx) => {
   const baseUrl = getUrl(req);
 
   // Include catalog expander
-  if (includes(expand, 'catalog')) {
+  if (expand.includes('catalog')) {
     await req.document.fetchRelated('_catalog', trx);
 
     if (req.document._children) {
@@ -78,56 +65,56 @@ const getComponents = async (req, trx) => {
   }
 
   // Include actions expander
-  if (includes(expand, 'actions')) {
+  if (expand.includes('actions')) {
     components.actions = (await actions(req, trx)).json;
   } else {
     components.actions = { '@id': `${baseUrl}/@actions` };
   }
 
   // Include breadcrumbs expander
-  if (includes(expand, 'breadcrumbs')) {
+  if (expand.includes('breadcrumbs')) {
     components.breadcrumbs = (await breadcrumbs(req, trx)).json;
   } else {
     components.breadcrumbs = { '@id': `${baseUrl}/@breadcrumbs` };
   }
 
   // Include navigation expander
-  if (includes(expand, 'navigation')) {
+  if (expand.includes('navigation')) {
     components.navigation = (await navigation(req, trx)).json;
   } else {
     components.navigation = { '@id': `${baseUrl}/@navigation` };
   }
 
   // Include navroot expander
-  if (includes(expand, 'navroot')) {
+  if (expand.includes('navroot')) {
     components.navroot = (await navroot(req, trx)).json;
   } else {
     components.navroot = { '@id': `${baseUrl}/@navroot` };
   }
 
   // Include related expander
-  if (includes(expand, 'related')) {
+  if (expand.includes('related')) {
     components.related = (await related(req, trx)).json;
   } else {
     components.related = { '@id': `${baseUrl}/@related` };
   }
 
   // Include types expander
-  if (includes(expand, 'types')) {
+  if (expand.includes('types')) {
     components.types = (await types(req, trx)).json;
   } else {
     components.types = { '@id': `${baseUrl}/@types` };
   }
 
   // Include workflow expander
-  if (includes(expand, 'workflow')) {
+  if (expand.includes('workflow')) {
     components.workflow = (await workflow(req, trx)).json;
   } else {
     components.workflow = { '@id': `${baseUrl}/@workflow` };
   }
 
   // Include translations expander
-  if (includes(expand, 'translations')) {
+  if (expand.includes('translations')) {
     components.translations = (await translations(req, trx)).json;
   } else {
     components.translations = { '@id': `${baseUrl}/@translations` };
@@ -152,7 +139,7 @@ export default [
       const items = [];
 
       // Loop through source objects to be moved
-      const sources = isArray(req.body.source)
+      const sources = Array.isArray(req.body.source)
         ? req.body.source
         : [req.body.source];
       await mapAsync(sources, async (source) => {
@@ -162,7 +149,7 @@ export default [
         // If moved to same folder or subfolder do nothing
         if (
           req.document.uuid === document.parent ||
-          includes(req.document.path, document.path)
+          req.document.path.includes(document.path)
         ) {
           items.push({
             source,
@@ -237,7 +224,7 @@ export default [
       const items = [];
 
       // Loop through source objects to be copied
-      const sources = isArray(req.body.source)
+      const sources = Array.isArray(req.body.source)
         ? req.body.source
         : [req.body.source];
       await mapAsync(sources, async (source) => {
@@ -369,7 +356,7 @@ export default [
           'content-disposition': `attachment; filename="${
             req.document.path === '/'
               ? '_root.json'
-              : `${join(drop(split(req.document.path, '/')), '.')}.json`
+              : `${drop(req.document.path.split('/'), 1).join('.')}.json`
           }"`,
         },
         json: {
@@ -423,7 +410,7 @@ export default [
 
       // Check required fields
       const required = type._schema.required;
-      const requiredPosted = intersection(required, keys(req.body));
+      const requiredPosted = intersection(required, Object.keys(req.body));
       if (required.length !== requiredPosted.length) {
         throw new RequestException(400, {
           message: req.i18n('Required field(s) missing.'),
@@ -445,7 +432,7 @@ export default [
       // Set translation
       let translation_group = uuid;
       if (req.body.translation_of) {
-        if (startsWith(req.body.translation_of, '/')) {
+        if (req.body.translation_of.startsWith('/')) {
           const translation = await Document.fetchOne(
             { path: req.body.translation_of },
             {},
@@ -461,7 +448,7 @@ export default [
 
       // Remove fields which are not in the schema
       let json = {
-        ...omit(pick(req.body, keys(properties)), omitProperties),
+        ...omit(pick(req.body, Object.keys(properties)), omitProperties),
       };
 
       // Handle files, images and relation lists
@@ -621,7 +608,7 @@ export default [
       let json = {
         ...req.document.json,
         ...omit(
-          pick(req.body, keys(req.type._schema.properties)),
+          pick(req.body, Object.keys(req.type._schema.properties)),
           omitProperties,
         ),
       };
@@ -719,8 +706,7 @@ export default [
               ...fileFields.map((field) => version.json[field].uuid),
               ...imageFields.map((field) => [
                 version.json[field].uuid,
-                ...map(
-                  keys(config.settings.imageScales),
+                ...Object.keys(config.settings.imageScales).map(
                   (scale) => version.json[field].scales[scale].uuid,
                 ),
               ]),

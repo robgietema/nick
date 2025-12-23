@@ -7,7 +7,7 @@ import { Catalog } from '../../models/catalog/catalog';
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { Index } from '../../models/index/index';
 import { getUrl } from '../../helpers/url/url';
-import { compact, includes, map, split } from 'lodash';
+import { compact } from 'es-toolkit/array';
 
 export const handler = async (req, trx) => {
   const items = await Catalog.fetchAllRestricted(
@@ -18,14 +18,14 @@ export const handler = async (req, trx) => {
   );
 
   // Omit exclude from nav items
-  items.omitBy((item) => item.exclude_from_nav);
+  items.filter((item) => !item.exclude_from_nav);
 
   // Fetch settings
   const controlpanel = await Controlpanel.fetchById('navigation', {}, trx);
   const settings = controlpanel.data;
 
   // Omit by type
-  items.omitBy((item) => !includes(settings.displayed_types, item.Type));
+  items.filter((item) => settings.displayed_types.includes(item.Type));
 
   // Fetch indexes
   if (!req.indexes) {
@@ -37,7 +37,7 @@ export const handler = async (req, trx) => {
     json: {
       '@id': `${getUrl(req)}/@navigation`,
       items: [
-        ...map(compact(split(settings.additional_items, '\n')), (item) => {
+        ...compact(settings.additional_items.split('\n')).map((item) => {
           const navitem = item.split('|');
           return {
             title: navitem[0],
@@ -46,7 +46,7 @@ export const handler = async (req, trx) => {
             items: [],
           };
         }),
-        ...map(await items.toJSON(req), (item) => {
+        ...(await items.toJSON(req)).map((item) => {
           return {
             ...item,
             items: [],

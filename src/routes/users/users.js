@@ -4,7 +4,6 @@
  */
 
 import bcrypt from 'bcrypt-promise';
-import { includes } from 'lodash';
 import jwt from 'jsonwebtoken';
 
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
@@ -143,7 +142,7 @@ export default [
     client: 'createUser',
     handler: async (req, trx) => {
       // Check permissions
-      const manageUsers = includes(req.permissions, 'Manage Users');
+      const manageUsers = req.permissions.includes('Manage Users');
       if (!config.settings.userRegistration && !manageUsers) {
         throw new RequestException(401, {
           message: req.i18n("You don't have permissions to add a user."),
@@ -237,7 +236,7 @@ export default [
     permission: 'Manage Users',
     client: 'deleteUser',
     handler: async (req, trx) => {
-      if (includes(config.settings.systemUsers, req.params.id)) {
+      if (config.settings.systemUsers.includes(req.params.id)) {
         throw new RequestException(401, {
           error: {
             message: req.i18n("You can't delete system users."),

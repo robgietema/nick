@@ -1,4 +1,4 @@
-import { omit } from 'lodash';
+import { omit } from 'es-toolkit/object';
 
 import { fileExists } from '../../helpers/fs/fs';
 import { mapAsync } from '../../helpers/utils/utils';

@@ -4,7 +4,7 @@
  * @module scripts/seed
  */
 
-import { last, padEnd } from 'lodash';
+import { last } from 'es-toolkit/array';
 
 import { Profile } from '../src/models/profile/profile';
 import { fileExists } from '../src/helpers/fs/fs';
@@ -66,17 +66,16 @@ async function main() {
           case 'status':
             if (index === 0) {
               console.log(
-                `${padEnd(`${underline}Profile${reset}`, 58)}${padEnd(
-                  `${underline}Current${reset}`,
+                `${`${underline}Profile${reset}`.padEnd(58)}${`${underline}Current${reset}`.padEnd(
                   18,
-                )}${padEnd(`${underline}Latest${reset}`, 18)}`,
+                )}${`${underline}Latest${reset}`.padEnd(18)}`,
               );
             }
             console.log(
-              `${padEnd(metadata.id, 50)}${padEnd(
-                profile ? profile.version : 'Not found',
-                10,
-              )}${padEnd(metadata.version, 10)}`,
+              `${metadata.id.padEnd(50)}${(profile
+                ? profile.version
+                : 'Not found'
+              ).padEnd(10)}${metadata.version.padEnd(10)}`,
             );
             break;
           case 'upgrade':

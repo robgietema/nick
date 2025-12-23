@@ -3,7 +3,8 @@
  * @module models/catalog/catalog
  */
 
-import { concat, filter, isNumber, map, pick, uniq } from 'lodash';
+import { uniq } from 'es-toolkit/array';
+import { pick } from 'es-toolkit/object';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
@@ -25,14 +26,13 @@ export class Catalog extends Model {
    * @returns {Object} JSON object.
    */
   toJSON(req) {
-    const metadata = filter(
-      req.indexes.models,
+    const metadata = req.indexes.models.filter(
       (index) => index.metadata === true && index.enabled !== false,
     );
 
     if (
       config.settings.ai?.models?.embed?.enabled &&
-      isNumber(this.similarity)
+      typeof this.similarity === 'number'
     ) {
       metadata.push({
         name: 'similarity',
@@ -45,7 +45,7 @@ export class Catalog extends Model {
       title: this.Title,
       ...pick(
         this,
-        map(metadata, (field) => field.name),
+        metadata.map((field) => field.name),
       ),
     };
   }
@@ -62,13 +62,11 @@ export class Catalog extends Model {
    */
   static async fetchAllRestricted(where = {}, options = {}, trx, req) {
     // Find user, groups and roles
-    const userGroupsRoles = uniq(
-      concat(
-        [req.user.id],
-        req.user._groups.map((groups) => groups.id),
-        req.user.getRoles(),
-      ),
-    );
+    const userGroupsRoles = uniq([
+      ...[req.user.id],
+      ...req.user._groups.map((groups) => groups.id),
+      ...req.user.getRoles(),
+    ]);
 
     // Fetch data
     return this.fetchAll(

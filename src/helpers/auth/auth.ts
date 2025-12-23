@@ -5,7 +5,7 @@
 
 import type { Request } from '../../types';
 
-import { includes, isString, isUndefined } from 'lodash';
+import { isUndefined } from 'es-toolkit/predicate';
 import jwt from 'jsonwebtoken';
 
 import config from '../config/config';
@@ -21,7 +21,7 @@ export function hasPermission(
   permissions: string[],
   permission: string,
 ): boolean {
-  return isUndefined(permission) || includes(permissions, permission);
+  return isUndefined(permission) || permissions.includes(permission);
 }
 
 /**
@@ -43,6 +43,6 @@ export function getUserId(req: Request): string | undefined {
     }
 
     // Return user id
-    return isString(decoded.sub) ? decoded.sub : undefined;
+    return typeof decoded.sub === 'string' ? decoded.sub : undefined;
   }
 }

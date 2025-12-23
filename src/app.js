@@ -6,7 +6,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import { existsSync, mkdirSync } from 'fs';
-import { isObject, map } from 'lodash';
+import { isObject } from 'es-toolkit/compat';
 
 import { RequestException } from './helpers/error/error';
 import { log } from './helpers/log/log';
@@ -84,7 +84,7 @@ app.enable('trust proxy');
 app.set('trust proxy', config.settings.rateLimit.trustProxy || 0);
 
 // Add routes
-map(routes, (route) => {
+routes.map((route) => {
   app[route.op](
     `${regExpEscape(config.settings.prefix)}{*path}${route.view}`,
     route.middleware || ((req, res, next) => next()),

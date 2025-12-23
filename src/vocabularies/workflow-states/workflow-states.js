@@ -3,7 +3,7 @@
  * @module vocabularies/workflows/workflows
  */
 
-import { mapValues } from 'lodash';
+import { mapValues } from 'es-toolkit/object';
 
 import { Workflow } from '../../models/workflow/workflow';
 import { objectToVocabulary } from '../../helpers/utils/utils';

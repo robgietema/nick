@@ -3,7 +3,8 @@
  * @module models/controlpanel/controlpanel
  */
 
-import { compact, keys, map } from 'lodash';
+import { compact } from 'es-toolkit/array';
+
 import { getRootUrl } from '../../helpers/url/url';
 import { translateSchema } from '../../helpers/schema/schema';
 import { Model } from '../../models/_model/_model';
@@ -46,7 +47,7 @@ export class Controlpanel extends Model {
     const properties = this.schema.properties;
 
     // Get factory fields
-    const factoryFields = map(keys(properties), (property) =>
+    const factoryFields = Object.keys(properties).map((property) =>
       properties[property].factory === factory ? property : false,
     );
     return compact(factoryFields);

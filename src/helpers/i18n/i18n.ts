@@ -3,7 +3,8 @@
  * @module helpers/fs/fs
  */
 
-import { isArray, isObject, mapKeys, mapValues, map } from 'lodash';
+import { mapValues } from 'es-toolkit/object';
+import { mapKeys, isObject } from 'es-toolkit/compat';
 
 /**
  * Node of an object
@@ -18,11 +19,11 @@ export type Node = any;
  * @returns {Node} Node stripped of i18n data
  */
 export function stripI18n(node: Node): Node {
-  if (isArray(node)) {
-    return map(node, (child) => stripI18n(child));
+  if (Array.isArray(node)) {
+    return node.map((child) => stripI18n(child));
   } else if (isObject(node)) {
     return mapValues(
-      mapKeys(node, (value, key) => key.replace(/:i18n$/, '')),
+      mapKeys(node, (_value, key) => key.replace(/:i18n$/, '')),
       (value) => stripI18n(value),
     );
   } else {

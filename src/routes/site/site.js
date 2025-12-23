@@ -3,7 +3,7 @@
  * @module routes/site/site
  */
 
-import { last } from 'lodash';
+import { last } from 'es-toolkit/array';
 
 import { getRootUrl } from '../../helpers/url/url';
 import config from '../../helpers/config/config';

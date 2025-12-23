@@ -5,7 +5,7 @@
 
 import request, { Response } from 'supertest';
 import fs from 'fs';
-import _, { indexOf, join, slice } from 'lodash';
+import { indexOf } from 'es-toolkit/compat';
 import { Application } from 'express';
 import type { AllMethods } from 'supertest/types';
 
@@ -44,16 +44,14 @@ function readFile(filename: string): FileData {
   // Get method, url and headers from request
   const request = data[0];
   const headerLength = indexOf(data, '') || data.length;
-  const headers = _(data)
-    .slice(1, headerLength)
-    .map((header) => header.split(': '))
-    .fromPairs()
-    .value();
+  const headers = Object.fromEntries(
+    data.slice(1, headerLength).map((header) => header.split(': ')),
+  );
 
   // Get body from request
   const body =
     data.length - 1 > headerLength
-      ? JSON.parse(join(slice(data, headerLength), '\n'))
+      ? JSON.parse(data.slice(headerLength).join('\n'))
       : null;
 
   return {

@@ -1,4 +1,4 @@
-import { dropRight, map } from 'lodash';
+import { dropRight } from 'es-toolkit/array';
 import { promises as fs } from 'fs';
 
 import { dirExists } from '../../helpers/fs/fs';
@@ -10,10 +10,9 @@ import { Vocabulary } from '../../models/vocabulary/vocabulary';
 export const seedVocabulary = async (trx, profilePath) => {
   if (dirExists(`${profilePath}/vocabularies`)) {
     // Get vocabulary profiles
-    const vocabularies = map(
-      await fs.readdir(`${profilePath}/vocabularies`),
-      (file) => dropRight(file.split('.')).join('.'),
-    ).sort();
+    const vocabularies = (await fs.readdir(`${profilePath}/vocabularies`))
+      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .sort();
 
     // Import vocabularies
     await mapAsync(vocabularies, async (vocabulary) => {

@@ -3,7 +3,7 @@
  * @module helpers/schema/schema
  */
 
-import { concat, findIndex, map, mapValues } from 'lodash';
+import { mapValues } from 'es-toolkit/object';
 
 import { Fieldset, Property, Schema, Request } from '../../types';
 
@@ -22,41 +22,42 @@ export function mergeSchemas(
   let behaviors: string[] = [];
   let layouts: string[] = [];
 
-  map(schemas, (schema) => {
-    map(schema.data.fieldsets, (fieldset) => {
-      // Find fieldset
-      const index = findIndex(fieldsets, (entry) => entry.id === fieldset.id);
+  schemas.map((schema) => {
+    schema.data.fieldsets &&
+      schema.data.fieldsets.map((fieldset) => {
+        // Find fieldset
+        const index = fieldsets.findIndex((entry) => entry.id === fieldset.id);
 
-      // Check if already exists
-      if (index !== -1) {
-        // Append fields
-        fieldsets[index].fields = [
-          ...fieldsets[index].fields,
-          ...fieldset.fields,
-        ];
-      } else {
-        // Add new fieldset
-        fieldsets.push({
-          behavior: schema.name,
-          ...fieldset,
-        });
-      }
-    });
+        // Check if already exists
+        if (index !== -1) {
+          // Append fields
+          fieldsets[index].fields = [
+            ...fieldsets[index].fields,
+            ...fieldset.fields,
+          ];
+        } else {
+          // Add new fieldset
+          fieldsets.push({
+            behavior: schema.name,
+            ...fieldset,
+          });
+        }
+      });
     properties = {
       ...properties,
-      ...mapValues(schema.data.properties, (property) => ({
+      ...mapValues(schema.data.properties || [], (property) => ({
         behavior: schema.name,
         ...property,
       })),
     };
     if (schema.data.required) {
-      required = concat(required, schema.data.required);
+      required = [...required, ...schema.data.required];
     }
     if (schema.data.behaviors) {
-      behaviors = concat(behaviors, schema.data.behaviors);
+      behaviors = [...behaviors, ...schema.data.behaviors];
     }
     if (schema.data.layouts) {
-      layouts = concat(layouts, schema.data.layouts);
+      layouts = [...layouts, ...schema.data.layouts];
     }
   });
   return {
@@ -78,7 +79,7 @@ export function mergeSchemas(
 export function translateSchema(schema: Schema, req: Request): Schema {
   return {
     ...schema,
-    fieldsets: map(schema.fieldsets, (fieldset) => ({
+    fieldsets: schema.fieldsets.map((fieldset) => ({
       ...fieldset,
       title: req.i18n(fieldset.title),
     })),

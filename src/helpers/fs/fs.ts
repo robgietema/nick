@@ -3,7 +3,6 @@
  * @module helpers/fs/fs
  */
 
-import { keys, max, round } from 'lodash';
 import {
   copyFileSync,
   rmSync,
@@ -34,8 +33,8 @@ export function getScaleDimensions(
   limitWidth: number,
   limitHeight: number,
 ): [number, number] {
-  const scale = max([orgWidth / limitWidth, orgHeight / limitHeight]) || 1;
-  return [round(orgWidth / scale), round(orgHeight / scale)];
+  const scale = Math.max(orgWidth / limitWidth, orgHeight / limitHeight) || 1;
+  return [Math.round(orgWidth / scale), Math.round(orgHeight / scale)];
 }
 
 /**
@@ -182,34 +181,37 @@ export async function writeImage(
   const scales: ImageScales = {};
 
   // Write scales
-  await mapAsync(keys(config.settings.imageScales), async (scale: string) => {
-    const scaleId = uuid();
-    if ((await image.metadata()).format === 'svg') {
-      writeFileSync(`${config.settings.blobsDir}/${scaleId}`, buffer);
-    } else {
-      const scaleImage = sharp(buffer)
-        .rotate()
-        .resize(
-          config.settings.imageScales[scale][0],
-          config.settings.imageScales[scale][1],
-          {
-            fit: 'inside',
-          },
-        );
-      await scaleImage.toFile(`${config.settings.blobsDir}/${scaleId}`);
-    }
-    const [scaleWidth, scaleHeight] = getScaleDimensions(
-      width,
-      height,
-      config.settings.imageScales[scale][0],
-      config.settings.imageScales[scale][1],
-    );
-    scales[scale] = {
-      uuid: scaleId,
-      width: scaleWidth,
-      height: scaleHeight,
-    };
-  });
+  await mapAsync(
+    Object.keys(config.settings.imageScales),
+    async (scale: string) => {
+      const scaleId = uuid();
+      if ((await image.metadata()).format === 'svg') {
+        writeFileSync(`${config.settings.blobsDir}/${scaleId}`, buffer);
+      } else {
+        const scaleImage = sharp(buffer)
+          .rotate()
+          .resize(
+            config.settings.imageScales[scale][0],
+            config.settings.imageScales[scale][1],
+            {
+              fit: 'inside',
+            },
+          );
+        await scaleImage.toFile(`${config.settings.blobsDir}/${scaleId}`);
+      }
+      const [scaleWidth, scaleHeight] = getScaleDimensions(
+        width,
+        height,
+        config.settings.imageScales[scale][0],
+        config.settings.imageScales[scale][1],
+      );
+      scales[scale] = {
+        uuid: scaleId,
+        width: scaleWidth,
+        height: scaleHeight,
+      };
+    },
+  );
 
   // Return data
   return {

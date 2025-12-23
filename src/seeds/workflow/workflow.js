@@ -1,4 +1,4 @@
-import { map, merge } from 'lodash';
+import { merge } from 'es-toolkit/object';
 
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
@@ -12,7 +12,7 @@ export const seedWorkflow = async (trx, profilePath) => {
       await Workflow.delete({}, trx);
     }
     await Promise.all(
-      map(profile.workflows, async (workflow) => {
+      profile.workflows.map(async (workflow) => {
         // Check if type exists
         const current = await Workflow.fetchById(workflow.id, {}, trx);
 

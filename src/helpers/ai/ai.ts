@@ -5,8 +5,6 @@
 
 import config from '../config/config';
 
-import { map, keys } from 'lodash';
-
 interface VisionResult {
   response: string;
 }
@@ -58,7 +56,7 @@ export async function generate(
     body: JSON.stringify({
       model: config.settings.ai?.models?.llm?.name,
       context,
-      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
+      prompt: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
       stream: false,
       think: false,
     }),
@@ -89,7 +87,7 @@ export function streamGenerate(
     body: JSON.stringify({
       model: config.settings.ai?.models?.llm?.name,
       context,
-      prompt: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
+      prompt: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
       stream: true,
       think: false,
     }),
@@ -131,7 +129,7 @@ export async function chat(
         ...messages,
         {
           role: 'user',
-          content: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+          content: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
         },
       ],
       tools,
@@ -170,7 +168,7 @@ export function streamChat(
         ...messages,
         {
           role: 'user',
-          content: `Query: ${prompt}\n${map(keys(params), (key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+          content: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
         },
       ],
       tools,

@@ -4,7 +4,9 @@
  */
 
 import { Collection } from '../../collections/_collection/_collection';
-import _, { includes, map, omit } from 'lodash';
+import { groupBy } from 'es-toolkit/array';
+import { mapValues, omit } from 'es-toolkit/object';
+
 import type { Json, Model, Request } from '../../types';
 
 interface ActionModel extends Model {
@@ -27,15 +29,18 @@ export class ActionCollection extends Collection<ActionModel> {
    * @returns {Promise<Json>} JSON object grouped by category.
    */
   async toJSON(req: Request): Promise<Json> {
-    return _((await super.toJSON(req)) as any)
-      .filter((model) => includes(req.permissions, model?.permission))
-      .groupBy('category')
-      .mapValues((category) =>
-        map(category, (action) => ({
+    return mapValues(
+      groupBy(
+        ((await super.toJSON(req)) as any[]).filter((model) =>
+          req.permissions.includes(model.permission),
+        ),
+        (model) => model.category,
+      ),
+      (category) =>
+        category.map((action) => ({
           ...omit(action, ['order', 'permission', 'category']),
           url: action.url ? action.url.replace('$username', req.user.id) : null,
         })),
-      )
-      .value();
+    );
   }
 }

@@ -3,8 +3,6 @@
  * @module routes/translations/translations
  */
 
-import { fromPairs, map } from 'lodash';
-
 import { Document } from '../../models/document/document';
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { getPath, getUrl, getUrlByPath } from '../../helpers/url/url';
@@ -23,12 +21,12 @@ export const handler = async (req, trx) => {
   return {
     json: {
       '@id': `${getUrl(req)}/@translations`,
-      items: map(documents.models, (document) => ({
+      items: documents.models.map((document) => ({
         '@id': getUrlByPath(req, document.path),
         language: document.language,
       })),
-      root: fromPairs(
-        map(settings.available_languages, (language) => [
+      root: Object.fromEntries(
+        settings.available_languages.map((language) => [
           language,
           getUrlByPath(req, `/${language}`),
         ]),
@@ -81,7 +79,7 @@ export default [
 
       let target;
       // Check if path
-      if (startsWith(id, '/')) {
+      if (id.startsWith('/')) {
         target = await Document.fetchOne({ path: id }, {}, trx);
         // Else it is a uuid
       } else {

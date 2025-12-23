@@ -3,7 +3,6 @@
  * @module routes/groups/groups
  */
 
-import { includes } from 'lodash';
 import { Group } from '../../models/group/group';
 import { RequestException } from '../../helpers/error/error';
 
@@ -104,7 +103,7 @@ export default [
     permission: 'Manage Users',
     client: 'deleteGroup',
     handler: async (req, trx) => {
-      if (includes(config.settings.systemGroups, req.params.id)) {
+      if (config.settings.systemGroups.includes(req.params.id)) {
         throw new RequestException(401, {
           error: {
             message: req.i18n("You can't delete system groups."),

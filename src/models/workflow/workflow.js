@@ -3,7 +3,9 @@
  * @module models/workflow/workflow
  */
 
-import _, { flatten, includes, map } from 'lodash';
+import { flatten } from 'es-toolkit/array';
+import { mapValues, pick, pickBy } from 'es-toolkit/object';
+
 import { getUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
 
@@ -30,18 +32,20 @@ export class Workflow extends Model {
         id: current_state_id,
         title: req.i18n(current_state.title),
       },
-      transitions: _(this.json.transitions)
-        .pickBy((transition) =>
-          includes(req.permissions, transition.permission),
-        )
-        .pick(current_state.transitions)
-        .mapValues('title')
-        .toPairs()
-        .map((transition) => ({
-          '@id': `${getUrl(req)}/@workflow/${transition[0]}`,
-          title: req.i18n(transition[1]),
-        }))
-        .value(),
+      transitions: Object.entries(
+        mapValues(
+          pick(
+            pickBy(this.json.transitions, (transition) =>
+              req.permissions.includes(transition.permission),
+            ),
+            current_state.transitions,
+          ),
+          (item) => item.title,
+        ),
+      ).map((transition) => ({
+        '@id': `${getUrl(req)}/@workflow/${transition[0]}`,
+        title: req.i18n(transition[1]),
+      })),
     };
   }
 
@@ -54,7 +58,7 @@ export class Workflow extends Model {
    */
   getPermissions(state, roles) {
     return flatten(
-      map(roles, (role) => this.json.states[state].permissions[role] || []),
+      roles.map((role) => this.json.states[state].permissions[role] || []),
     );
   }
 }

@@ -3,28 +3,28 @@
  * @module i18n
  */
 
-import _, { endsWith, includes, map, zipObject } from 'lodash';
+import { remove, zipObject } from 'es-toolkit/array';
 import { createIntl, createIntlCache } from '@formatjs/intl';
 import fs from 'fs';
 
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
 // Get available language files
-const languages = _(fs.readdirSync(`${__dirname}/../../../locales`))
-  .remove((value) => endsWith(value, '.json'))
-  .map((value) => value.replace(/.json/, ''))
-  .value();
+const languages = remove(
+  fs.readdirSync(`${__dirname}/../../../locales`),
+  (value) => value.endsWith('.json'),
+).map((value) => value.replace(/.json/, ''));
 
 // Create i18n cache
 const intlCache = zipObject(
   languages,
-  map(languages, () => createIntlCache()),
+  languages.map(() => createIntlCache()),
 );
 
 // Load i18n files
 const intl = zipObject(
   languages,
-  map(languages, (language) =>
+  languages.map((language) =>
     createIntl(
       {
         locale: language,
@@ -58,7 +58,7 @@ export async function i18n(req, res, next) {
       settings.default_language;
 
     // Check if language is available
-    if (!includes(languages, language)) {
+    if (!languages.includes(language)) {
       language = settings.default_language;
     }
 

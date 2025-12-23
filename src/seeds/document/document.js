@@ -1,4 +1,5 @@
-import { dropRight, endsWith, filter, last, map, omit } from 'lodash';
+import { dropRight, last } from 'es-toolkit/array';
+import { omit } from 'es-toolkit/object';
 import { promises as fs } from 'fs';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
@@ -38,12 +39,10 @@ export const seedDocument = async (trx, profilePath) => {
 
   if (dirExists(`${profilePath}/documents`)) {
     const children = {};
-    const files = map(
-      filter(await fs.readdir(`${profilePath}/documents`), (file) =>
-        endsWith(file, '.json'),
-      ),
-      (file) => dropRight(file.split('.')).join('.'),
-    ).sort();
+    const files = (await fs.readdir(`${profilePath}/documents`))
+      .filter((file) => file.endsWith('.json'))
+      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .sort();
     await mapAsync(files, async (file) => {
       let document = stripI18n(require(`${profilePath}/documents/${file}`));
       const slugs = file.split('.');
@@ -55,7 +54,7 @@ export const seedDocument = async (trx, profilePath) => {
           : (
               await Document.fetchOne(
                 {
-                  path: `/${dropRight(slugs).join('/')}`,
+                  path: `/${dropRight(slugs, 1).join('/')}`,
                 },
                 {},
                 trx,
@@ -109,7 +108,7 @@ export const seedDocument = async (trx, profilePath) => {
       // Create versions
       const versions =
         'versions' in document
-          ? map(document.versions, (version, index) => ({
+          ? document.versions.map((version, index) => ({
               version: version.version || index,
               created: version.created || moment.utc().format(),
               actor: version.actor || 'admin',

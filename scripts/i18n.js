@@ -4,12 +4,12 @@
  * @module scripts/i18n
  */
 
-import { find, keys, map, uniq, upperFirst, zipObject } from 'lodash';
+import { uniq, zipObject } from 'es-toolkit/array';
+import { upperFirst } from 'es-toolkit/string';
 import { sync as glob } from 'glob';
 import Pofile from 'pofile';
 import { transformSync } from '@babel/core';
 import { readFileSync, writeFileSync } from 'fs';
-import { endsWith } from 'lodash';
 
 /**
  * Convert path to context
@@ -36,15 +36,18 @@ function pathToContext(path) {
  * @return {string} Formatted pot string
  */
 function messagesToPot(messages) {
-  return map(keys(messages).sort(), (key) =>
-    [
-      `#. Default: "${messages[key].defaultMessage}"`,
-      ...map(messages[key].files, (file) => `#: ${file.file}:${file.line}`),
-      `msgid "${key}"`,
-      'msgstr ""',
-      `msgctxt "${pathToContext(messages[key].files[0].file)}"`,
-    ].join('\n'),
-  ).join('\n\n');
+  return Object.keys(messages)
+    .sort()
+    .map((key) =>
+      [
+        `#. Default: "${messages[key].defaultMessage}"`,
+        ...messages[key].files.map((file) => `#: ${file.file}:${file.line}`),
+        `msgid "${key}"`,
+        'msgstr ""',
+        `msgctxt "${pathToContext(messages[key].files[0].file)}"`,
+      ].join('\n'),
+    )
+    .join('\n\n');
 }
 
 /**
@@ -77,7 +80,7 @@ msgstr ""
  * @return {undefined}
  */
 function poToJson() {
-  map(glob('locales/**/*.po'), (filename) => {
+  glob('locales/**/*.po').map((filename) => {
     let { items } = Pofile.parse(readFileSync(filename, 'utf8'));
     const lang = filename.match(/locales\/(.*)\/LC_MESSAGES\//)[1];
 
@@ -87,8 +90,8 @@ function poToJson() {
       `locales/${lang}.json`,
       JSON.stringify(
         zipObject(
-          map(items, (item) => item.msgid),
-          map(items, (item) =>
+          items.map((item) => item.msgid),
+          items.map((item) =>
             lang === 'en'
               ? item.msgstr[0] ||
                 (item.extractedComments[0]
@@ -113,10 +116,10 @@ function poToJson() {
  */
 function formatHeader(comments, headers) {
   return [
-    ...map(comments, (comment) => `# ${comment}`),
+    ...comments.map((comment) => `# ${comment}`),
     'msgid ""',
     'msgstr ""',
-    ...map(keys(headers), (key) => `"${key}: ${headers[key]}\\n"`),
+    ...Object.keys(headers).map((key) => `"${key}: ${headers[key]}\\n"`),
     '',
   ].join('\n');
 }
@@ -129,22 +132,24 @@ function formatHeader(comments, headers) {
 function syncPoByPot() {
   const pot = Pofile.parse(readFileSync('locales/nick.pot', 'utf8'));
 
-  map(glob('locales/**/*.po'), (filename) => {
+  glob('locales/**/*.po').map((filename) => {
     const po = Pofile.parse(readFileSync(filename, 'utf8'));
 
     writeFileSync(
       filename,
       `${formatHeader(po.comments, po.headers)}
-${map(pot.items, (item) => {
-  const poItem = find(po.items, { msgid: item.msgid });
-  return [
-    ...map(item.extractedComments, (comment) => `#. ${comment}`),
-    `${map(item.references, (ref) => `#: ${ref}`).join('\n')}`,
-    `msgid "${item.msgid}"`,
-    `msgstr "${poItem ? poItem.msgstr : ''}"`,
-    `msgctxt "${pathToContext(item.references[0])}"`,
-  ].join('\n');
-}).join('\n\n')}\n`,
+${pot.items
+  .map((item) => {
+    const poItem = po.items.find((subitem) => subitem.msgid === item.msgid);
+    return [
+      ...item.extractedComments.map((comment) => `#. ${comment}`),
+      `${item.references.map((ref) => `#: ${ref}`).join('\n')}`,
+      `msgid "${item.msgid}"`,
+      `msgstr "${poItem ? poItem.msgstr : ''}"`,
+      `msgctxt "${pathToContext(item.references[0])}"`,
+    ].join('\n');
+  })
+  .join('\n\n')}\n`,
     );
   });
 }
@@ -177,7 +182,7 @@ function extractMessages() {
         }
       },
       ObjectProperty(path) {
-        if (endsWith(path.node.key.value, ':i18n')) {
+        if (path.node.key.value && path.node.key.value.endsWith(':i18n')) {
           const id = path.node.value.value;
           messages[id] = {
             id,
@@ -194,14 +199,14 @@ function extractMessages() {
   });
 
   // Read js files
-  map(glob('src/**/*.js'), (file) => {
+  glob('src/**/*.js').map((file) => {
     transformSync(readFileSync(file), {
       plugins: [plugin(file)],
     });
   });
 
   // Read json files
-  map(glob('src/**/*.json'), (file) => {
+  glob('src/**/*.json').map((file) => {
     transformSync(`export default ${readFileSync(file)}`, {
       plugins: [plugin(file)],
     });
