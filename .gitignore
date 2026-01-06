@@ -16,6 +16,7 @@ junit.xml
 eslint.xml
 yarn-error.log
 build
+locales/translations.json
 
 # Other
 .DS_Store

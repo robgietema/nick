@@ -1,15 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-01-06T11:43:11.573Z\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-06T11:50:40.332Z\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Rob Gietema\n"
+"Language: \n"
 "Language-Team: Nick\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"MIME-Version: 1.0\n"
+"Language-Code: de\n"
+"Language-Name: de\n"
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
@@ -17,25 +20,25 @@ msgstr ""
 #: src/profiles/core/behaviors/basic.json:15
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "A description of this item."
-msgstr ""
+msgstr "Eine Beschreibung dieses Elements."
 
 #. Default: "A name given to this item."
 #: src/profiles/core/behaviors/basic.json:21
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "A name given to this item."
-msgstr ""
+msgstr "Ein Name für dieses Element."
 
 #. Default: "A related item from which this item is derived."
 #: src/profiles/core/behaviors/ownership.json:25
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "A related item from which this item is derived."
-msgstr ""
+msgstr "Ein verwandtes Element, von dem dieses Element abgeleitet ist."
 
 #. Default: "AI"
 #: src/profiles/ai/controlpanels/ai.json:3
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "AI"
-msgstr ""
+msgstr "KI"
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:16
@@ -43,86 +46,86 @@ msgstr ""
 #: src/routes/ai/ai.js:108
 msgctxt "Routes|Related"
 msgid "AI is disabled."
-msgstr ""
+msgstr "KI ist deaktiviert."
 
 #. Default: "Absolute path"
 #: src/profiles/core/catalog.json:14
 msgctxt "Profiles|Core|Catalog"
 msgid "Absolute path"
-msgstr ""
+msgstr "Absoluter Pfad"
 
 #. Default: "Accessibility"
 #: src/profiles/core/actions.json:71
 msgctxt "Profiles|Core|Actions"
 msgid "Accessibility"
-msgstr ""
+msgstr "Barrierefreiheit"
 
 #. Default: "Add"
 #: src/profiles/core/permissions.json:10
 msgctxt "Profiles|Core|Permissions"
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #. Default: "Add additional items to the navigation, one per line. In the format 'title|description|url'."
 #: src/profiles/core/controlpanels/navigation.json:33
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
-msgstr ""
+msgstr "Füge zusätzliche Elemente zur Navigation hinzu, eines pro Zeile. Im Format 'title|description|url'."
 
 #. Default: "Add prompt"
 #: src/profiles/ai/controlpanels/ai.json:19
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Add prompt"
-msgstr ""
+msgstr "Eingabeaufforderung hinzufügen"
 
 #. Default: "Additional items"
 #: src/profiles/core/controlpanels/navigation.json:32
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Additional items"
-msgstr ""
+msgstr "Zusätzliche Elemente"
 
 #. Default: "Adds effective and expiration dates."
 #: src/profiles/core/behaviors/dates.json:4
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Adds effective and expiration dates."
-msgstr ""
+msgstr "Fügt Veröffentlichungs- und Ablaufdaten hinzu."
 
 #. Default: "Adds keywords and language fields."
 #: src/profiles/core/behaviors/categorization.json:4
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Adds keywords and language fields."
-msgstr ""
+msgstr "Felder für Schlagwörter und Sprache"
 
 #. Default: "Adds ownership and rights fields."
 #: src/profiles/core/behaviors/ownership.json:4
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Adds ownership and rights fields."
-msgstr ""
+msgstr "Fügt Eigentums- und Rechtefelder hinzu."
 
 #. Default: "Adds standard metadatafields"
 #: src/profiles/core/behaviors/dublin_core.json:4
 msgctxt "Profiles|Core|Behaviors|Dublin core"
 msgid "Adds standard metadatafields"
-msgstr ""
+msgstr "Fügt Standard-Metadatenfelder hinzu"
 
 #. Default: "Adds title and description fields."
 #: src/profiles/core/behaviors/basic.json:4
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "Adds title and description fields."
-msgstr ""
+msgstr "Felder für Titel und Beschreibung"
 
 #. Default: "Administrator"
 #: src/profiles/core/roles.json:41
 msgctxt "Profiles|Core|Roles"
 msgid "Administrator"
-msgstr ""
+msgstr "Administrator"
 
 #. Default: "Administrators"
 #: src/profiles/multilingualcontent/groups.json:6
 #: src/profiles/default/groups.json:6
 msgctxt "Profiles|Multilingualcontent|Groups"
 msgid "Administrators"
-msgstr ""
+msgstr "Administratoren"
 
 #. Default: "After N days in the future"
 #: src/profiles/core/catalog.json:89
@@ -133,7 +136,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:723
 msgctxt "Profiles|Core|Catalog"
 msgid "After N days in the future"
-msgstr ""
+msgstr "Nach n Tagen in der Zukunft"
 
 #. Default: "After date"
 #: src/profiles/core/catalog.json:118
@@ -144,7 +147,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:752
 msgctxt "Profiles|Core|Catalog"
 msgid "After date"
-msgstr ""
+msgstr "Nach dem"
 
 #. Default: "After relative Date"
 #: src/profiles/core/catalog.json:88
@@ -155,7 +158,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:722
 msgctxt "Profiles|Core|Catalog"
 msgid "After relative Date"
-msgstr ""
+msgstr "Nach dem relativen Datum"
 
 #. Default: "After the current day"
 #: src/profiles/core/catalog.json:95
@@ -166,7 +169,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:729
 msgctxt "Profiles|Core|Catalog"
 msgid "After the current day"
-msgstr ""
+msgstr "Nach dem aktuellen Tag"
 
 #. Default: "After today"
 #: src/profiles/core/catalog.json:94
@@ -177,68 +180,68 @@ msgstr ""
 #: src/profiles/core/catalog.json:728
 msgctxt "Profiles|Core|Catalog"
 msgid "After today"
-msgstr ""
+msgstr "In der Zukunft"
 
 #. Default: "Allowed Content Types"
 #: src/models/type/type.js:133
 msgctxt "Models|Type"
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "Erlaubte Inhaltstypen"
 
 #. Default: "Already locked"
 #: src/routes/lock/lock.js:56
 #: src/routes/lock/lock.js:108
 msgctxt "Routes|Lock"
 msgid "Already locked"
-msgstr ""
+msgstr "Bereits gesperrt"
 
 #. Default: "An entity responsible for making this item available."
 #: src/profiles/core/behaviors/ownership.json:15
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "An entity responsible for making this item available."
-msgstr ""
+msgstr "Eine Entität, die für die Bereitstellung dieses Elements verantwortlich ist."
 
 #. Default: "An item's description"
 #: src/profiles/core/catalog.json:228
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's description"
-msgstr ""
+msgstr "Die Beschreibung eines Inhalts"
 
 #. Default: "An item's type (e.g. Event)"
 #: src/profiles/core/catalog.json:428
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's type (e.g. Event)"
-msgstr ""
+msgstr "Der Typ eines Inhalts (beispielsweise Termin)"
 
 #. Default: "An item's workflow state (e.g.published)"
 #: src/profiles/core/catalog.json:447
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's workflow state (e.g.published)"
-msgstr ""
+msgstr "Status eines Inhalts im Arbeitsablauf"
 
 #. Default: "Anonymous"
 #: src/profiles/core/roles.json:6
 msgctxt "Profiles|Core|Roles"
 msgid "Anonymous"
-msgstr ""
+msgstr "Anonym"
 
 #. Default: "Authenticated"
 #: src/profiles/core/roles.json:11
 msgctxt "Profiles|Core|Roles"
 msgid "Authenticated"
-msgstr ""
+msgstr "Authentifiziert"
 
 #. Default: "Available languages"
 #: src/profiles/core/controlpanels/language.json:27
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Available languages"
-msgstr ""
+msgstr "Verfügbare Sprachen"
 
 #. Default: "Basic metadata"
 #: src/profiles/core/behaviors/basic.json:3
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "Basic metadata"
-msgstr ""
+msgstr "Basis-Metadaten"
 
 #. Default: "Before N days in the past"
 #: src/profiles/core/catalog.json:101
@@ -249,7 +252,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:735
 msgctxt "Profiles|Core|Catalog"
 msgid "Before N days in the past"
-msgstr ""
+msgstr "Vor n Tagen in der Vergangenheit"
 
 #. Default: "Before date"
 #: src/profiles/core/catalog.json:130
@@ -260,7 +263,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:764
 msgctxt "Profiles|Core|Catalog"
 msgid "Before date"
-msgstr ""
+msgstr "Vor dem"
 
 #. Default: "Before relative Date"
 #: src/profiles/core/catalog.json:100
@@ -271,7 +274,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:734
 msgctxt "Profiles|Core|Catalog"
 msgid "Before relative Date"
-msgstr ""
+msgstr "Vor dem relativen Datum"
 
 #. Default: "Before the current day"
 #: src/profiles/core/catalog.json:107
@@ -282,7 +285,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:741
 msgctxt "Profiles|Core|Catalog"
 msgid "Before the current day"
-msgstr ""
+msgstr "Vor dem aktuellen Tag"
 
 #. Default: "Before today"
 #: src/profiles/core/catalog.json:106
@@ -293,13 +296,13 @@ msgstr ""
 #: src/profiles/core/catalog.json:740
 msgctxt "Profiles|Core|Catalog"
 msgid "Before today"
-msgstr ""
+msgstr "In der Vergangenheit oder heute"
 
 #. Default: "Behaviors"
 #: src/models/type/type.js:116
 msgctxt "Models|Type"
 msgid "Behaviors"
-msgstr ""
+msgstr "Verhalten"
 
 #. Default: "Between dates"
 #: src/profiles/core/catalog.json:112
@@ -310,45 +313,45 @@ msgstr ""
 #: src/profiles/core/catalog.json:746
 msgctxt "Profiles|Core|Catalog"
 msgid "Between dates"
-msgstr ""
+msgstr "Zwischen"
 
 #. Default: "Blocks"
 #: src/profiles/core/behaviors/blocks.json:3
 #: src/profiles/core/behaviors/blocks.json:17
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Blocks"
-msgstr ""
+msgstr "Blocks"
 
 #. Default: "Blocks Layout"
 #: src/profiles/core/behaviors/blocks.json:26
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Blocks Layout"
-msgstr ""
+msgstr "Blocks-Layout"
 
 #. Default: "Can only be seen and edited by the owner."
 #: src/profiles/core/workflows.json:13
 msgctxt "Profiles|Core|Workflows"
 msgid "Can only be seen and edited by the owner."
-msgstr ""
+msgstr "Kann nur vom Besitzer gesehen und bearbeitet werden."
 
 #. Default: "Categorization"
 #: src/profiles/core/behaviors/categorization.json:3
 #: src/profiles/core/behaviors/categorization.json:10
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Categorization"
-msgstr ""
+msgstr "Kategorisierung"
 
 #. Default: "Change Note"
 #: src/profiles/core/behaviors/versioning.json:16
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Change Note"
-msgstr ""
+msgstr "Änderungsnotiz"
 
 #. Default: "Contact"
 #: src/profiles/core/actions.json:76
 msgctxt "Profiles|Core|Actions"
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. Default: "Contains"
 #: src/profiles/core/catalog.json:234
@@ -357,81 +360,81 @@ msgstr ""
 #: src/profiles/core/catalog.json:472
 msgctxt "Profiles|Core|Catalog"
 msgid "Contains"
-msgstr ""
+msgstr "Beinhaltet"
 
 #. Default: "Content"
 #: src/routes/controlpanels/controlpanels.js:67
 msgctxt "Routes|Controlpanels"
 msgid "Content"
-msgstr ""
+msgstr "Inhalt"
 
 #. Default: "Content Types"
 #: src/routes/controlpanels/controlpanels.js:66
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels"
 msgid "Content Types"
-msgstr ""
+msgstr "Inhaltstypen"
 
 #. Default: "Contents"
 #: src/profiles/core/actions.json:17
 msgctxt "Profiles|Core|Actions"
 msgid "Contents"
-msgstr ""
+msgstr "Inhalte"
 
 #. Default: "Contributor"
 #: src/profiles/core/roles.json:26
 msgctxt "Profiles|Core|Roles"
 msgid "Contributor"
-msgstr ""
+msgstr "Hinzufügen"
 
 #. Default: "Copy"
 #: src/profiles/core/actions.json:44
 msgctxt "Profiles|Core|Actions"
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #. Default: "Coverage"
 #: src/profiles/core/behaviors/categorization.json:16
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Coverage"
-msgstr ""
+msgstr "Abdeckung"
 
 #. Default: "Creation date"
 #: src/profiles/core/catalog.json:642
 msgctxt "Profiles|Core|Catalog"
 msgid "Creation date"
-msgstr ""
+msgstr "Erstellungsdatum"
 
 #. Default: "Creator"
 #: src/profiles/core/catalog.json:396
 msgctxt "Profiles|Core|Catalog"
 msgid "Creator"
-msgstr ""
+msgstr "Ersteller"
 
 #. Default: "Current logged in user"
 #: src/profiles/core/catalog.json:409
 msgctxt "Profiles|Core|Catalog"
 msgid "Current logged in user"
-msgstr ""
+msgstr "Aktuell eingeloggter Benutzer"
 
 #. Default: "Cut"
 #: src/profiles/core/actions.json:39
 msgctxt "Profiles|Core|Actions"
 msgid "Cut"
-msgstr ""
+msgstr "Ausschneiden"
 
 #. Default: "Dates"
 #: src/profiles/core/behaviors/dates.json:3
 #: src/profiles/core/behaviors/dates.json:10
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Dates"
-msgstr ""
+msgstr "Datum"
 
 #. Default: "Debug"
 #: src/profiles/core/controlpanels/mail.json:58
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
 #. Default: "Default"
 #: src/profiles/core/types/image.json:13
@@ -441,19 +444,19 @@ msgstr ""
 #: src/profiles/core/behaviors/basic.json:10
 msgctxt "Profiles|Core|Types|Image"
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #. Default: "Define custom prompts for the assistant."
 #: src/profiles/ai/controlpanels/ai.json:16
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Define custom prompts for the assistant."
-msgstr ""
+msgstr "Definiere benutzerdefinierte Eingabeaufforderungen für den Assistenten."
 
 #. Default: "Delete"
 #: src/profiles/core/actions.json:54
 msgctxt "Profiles|Core|Actions"
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #. Default: "Description"
 #: src/models/type/type.js:140
@@ -462,367 +465,367 @@ msgstr ""
 #: src/profiles/ai/controlpanels/ai.json:33
 msgctxt "Models|Type"
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. Default: "Displayed content types"
 #: src/profiles/core/controlpanels/navigation.json:27
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Displayed content types"
-msgstr ""
+msgstr "Angezeigte Inhaltstypen"
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
 #: src/routes/content/content.js:582
 msgctxt "Routes|History"
 msgid "Document locked"
-msgstr ""
+msgstr "Dokument gesperrt"
 
 #. Default: "Dublin Core metadata"
 #: src/profiles/core/behaviors/dublin_core.json:3
 msgctxt "Profiles|Core|Behaviors|Dublin core"
 msgid "Dublin Core metadata"
-msgstr ""
+msgstr "Dublin Core Metadaten"
 
 #. Default: "ESMTP password"
 #: src/profiles/core/controlpanels/mail.json:41
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP password"
-msgstr ""
+msgstr "ESMTP-Passwort"
 
 #. Default: "ESMTP username"
 #: src/profiles/core/controlpanels/mail.json:53
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP username"
-msgstr ""
+msgstr "ESMTP-Benutzername"
 
 #. Default: "Edit"
 #: src/profiles/core/actions.json:12
 msgctxt "Profiles|Core|Actions"
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #. Default: "Editor"
 #: src/profiles/core/roles.json:31
 msgctxt "Profiles|Core|Roles"
 msgid "Editor"
-msgstr ""
+msgstr "Bearbeiten"
 
 #. Default: "Effective date"
 #: src/profiles/core/catalog.json:715
 msgctxt "Profiles|Core|Catalog"
 msgid "Effective date"
-msgstr ""
+msgstr "Freigabedatum"
 
 #. Default: "Enables Volto Blocks support"
 #: src/profiles/core/behaviors/blocks.json:4
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Enables Volto Blocks support"
-msgstr ""
+msgstr "Aktiviert Volto Blocks-Unterstützung"
 
 #. Default: "Enter a comment that describes the changes you made."
 #: src/profiles/core/behaviors/versioning.json:15
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Enter a comment that describes the changes you made."
-msgstr ""
+msgstr "Gib einen Kommentar ein, der deine Änderungen beschreibt."
 
 #. Default: "Equals"
 #: src/profiles/core/catalog.json:57
 #: src/profiles/core/catalog.json:328
 msgctxt "Profiles|Core|Catalog"
 msgid "Equals"
-msgstr ""
+msgstr "Gleicht"
 
 #. Default: "Event end date"
 #: src/profiles/core/catalog.json:154
 msgctxt "Profiles|Core|Catalog"
 msgid "Event end date"
-msgstr ""
+msgstr "Terminende"
 
 #. Default: "Event start date"
 #: src/profiles/core/catalog.json:81
 msgctxt "Profiles|Core|Catalog"
 msgid "Event start date"
-msgstr ""
+msgstr "Terminanfang"
 
 #. Default: "Exclude from navigation"
 #: src/profiles/core/behaviors/exclude_from_nav.json:3
 #: src/profiles/core/behaviors/exclude_from_nav.json:15
 msgctxt "Profiles|Core|Behaviors|Exclude from nav"
 msgid "Exclude from navigation"
-msgstr ""
+msgstr "Von Navigation ausschließen"
 
 #. Default: "Expiration Date"
 #: src/profiles/core/behaviors/dates.json:22
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Expiration Date"
-msgstr ""
+msgstr "Ablaufdatum"
 
 #. Default: "Expiration date"
 #: src/profiles/core/catalog.json:569
 msgctxt "Profiles|Core|Catalog"
 msgid "Expiration date"
-msgstr ""
+msgstr "Ablaufdatum"
 
 #. Default: "File"
 #: src/profiles/core/types/file.json:3
 #: src/profiles/core/types/file.json:19
 msgctxt "Profiles|Core|Types|File"
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 #. Default: "Filter Contained Types"
 #: src/models/type/type.js:146
 msgctxt "Models|Type"
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "Einschränkung der erlaubten Inhaltstypen"
 
 #. Default: "Find items related to the selected items"
 #: src/profiles/core/catalog.json:322
 msgctxt "Profiles|Core|Catalog"
 msgid "Find items related to the selected items"
-msgstr ""
+msgstr "Findet Inhalte, auf welche dieser Inhalt verweist."
 
 #. Default: "Find items that can contain other objects"
 #: src/profiles/core/catalog.json:341
 msgctxt "Profiles|Core|Catalog"
 msgid "Find items that can contain other objects"
-msgstr ""
+msgstr "Findet Ordner und ordnerähnliche Inhalte."
 
 #. Default: "Folder"
 #: src/profiles/core/types/folder.json:3
 msgctxt "Profiles|Core|Types|Folder"
 msgid "Folder"
-msgstr ""
+msgstr "Ordner"
 
 #. Default: "Folder-like"
 #: src/profiles/core/catalog.json:340
 msgctxt "Profiles|Core|Catalog"
 msgid "Folder-like"
-msgstr ""
+msgstr "Ordnerähnlich"
 
 #. Default: "From and message are required fields."
 #: src/routes/email/email.js:53
 #: src/routes/email/email.js:90
 msgctxt "Routes|Email"
 msgid "From and message are required fields."
-msgstr ""
+msgstr "Absender und Nachricht sind Pflichtfelder."
 
 #. Default: "Gives the ability to rename an item from its edit form."
 #: src/profiles/core/behaviors/short_name.json:4
 #: src/profiles/core/behaviors/preview_image_link.json:4
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Gives the ability to rename an item from its edit form."
-msgstr ""
+msgstr "Ermöglicht das Umbenennen des Kurznamens im Bearbeitungsformular."
 
 #. Default: "History"
 #: src/profiles/core/actions.json:22
 msgctxt "Profiles|Core|Actions"
 msgid "History"
-msgstr ""
+msgstr "Historie"
 
 #. Default: "Identifier"
 #: src/profiles/core/behaviors/short_name.json:16
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Identifier"
-msgstr ""
+msgstr "Kennung"
 
 #. Default: "If enabled the mail is send to a test server."
 #: src/profiles/core/controlpanels/mail.json:59
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled the mail is send to a test server."
-msgstr ""
+msgstr "Wenn aktiviert, wird die E-Mail an einen Testserver gesendet."
 
 #. Default: "If enabled the mail is send using a secure connection."
 #: src/profiles/core/controlpanels/mail.json:64
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled the mail is send using a secure connection."
-msgstr ""
+msgstr "Wenn aktiviert, wird die E-Mail über eine sichere Verbindung gesendet."
 
 #. Default: "If enabled the site is multilingual."
 #: src/profiles/core/controlpanels/language.json:42
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "If enabled the site is multilingual."
-msgstr ""
+msgstr "Wenn aktiviert, ist die Website mehrsprachig."
 
 #. Default: "If selected, this item will not appear in the navigation tree."
 #: src/profiles/core/behaviors/exclude_from_nav.json:4
 #: src/profiles/core/behaviors/exclude_from_nav.json:16
 msgctxt "Profiles|Core|Behaviors|Exclude from nav"
 msgid "If selected, this item will not appear in the navigation tree."
-msgstr ""
+msgstr "Wenn ausgewählt, erscheint dieses Element nicht im Navigationsbaum."
 
 #. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
 #: src/profiles/core/behaviors/dates.json:15
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "If this date is in the future, the content will not show up in listings and searches until this date."
-msgstr ""
+msgstr "Wenn dieses Datum in der Zukunft liegt, wird der Inhalt bis zu diesem Datum nicht in Listen und Suchen angezeigt."
 
 #. Default: "Image"
 #: src/profiles/core/types/image.json:3
 #: src/profiles/core/types/image.json:19
 msgctxt "Profiles|Core|Types|Image"
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #. Default: "Images can be referenced in pages or displayed in an album."
 #: src/profiles/core/types/image.json:4
 msgctxt "Profiles|Core|Types|Image"
 msgid "Images can be referenced in pages or displayed in an album."
-msgstr ""
+msgstr "Bilder können in Inhalten eingebunden und angezeigt und in Alben angezeigt werden."
 
 #. Default: "Information about rights held in and over this item."
 #: src/profiles/core/behaviors/ownership.json:20
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Information about rights held in and over this item."
-msgstr ""
+msgstr "Informationen über Rechte an diesem Element."
 
 #. Default: "Internal server error"
 #: src/app.js:170
 #: src/app.js:180
 msgctxt "App"
 msgid "Internal server error"
-msgstr ""
+msgstr "Interner Serverfehler"
 
 #. Default: "Invalid credentials"
 #: src/routes/authentication/authentication.js:48
 #: src/routes/authentication/authentication.js:62
 msgctxt "Routes|Authentication"
 msgid "Invalid credentials"
-msgstr ""
+msgstr "Ungültige Anmeldedaten"
 
 #. Default: "Invalid session"
 #: src/routes/authentication/authentication.js:100
 msgctxt "Routes|Authentication"
 msgid "Invalid session"
-msgstr ""
+msgstr "Ungültige Sitzung"
 
 #. Default: "Is"
 #: src/profiles/core/catalog.json:384
 #: src/profiles/core/catalog.json:478
 msgctxt "Profiles|Core|Catalog"
 msgid "Is"
-msgstr ""
+msgstr "Ist"
 
 #. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
 #: src/models/type/type.js:147
 msgctxt "Models|Type"
 msgid "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
-msgstr ""
+msgstr "Elemente dieses Typs können als Ordner für andere Elemente dienen. Welche Inhaltstypen sollen darin erlaubt sein?"
 
 #. Default: "Language"
 #: src/profiles/core/controlpanels/language.json:3
 #: src/profiles/core/behaviors/categorization.json:22
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #. Default: "Languageroot"
 #: src/profiles/multilingual/types/languageroot.json:3
 msgctxt "Profiles|Multilingual|Types|Languageroot"
 msgid "Languageroot"
-msgstr ""
+msgstr "Sprachwurzel"
 
 #. Default: "Larger than"
 #: src/profiles/core/catalog.json:63
 msgctxt "Profiles|Core|Catalog"
 msgid "Larger than"
-msgstr ""
+msgstr "Größer als"
 
 #. Default: "Layout"
 #: src/profiles/core/behaviors/blocks.json:10
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #. Default: "Less than"
 #: src/profiles/core/catalog.json:69
 msgctxt "Profiles|Core|Catalog"
 msgid "Less than"
-msgstr ""
+msgstr "Weniger als"
 
 #. Default: "Lets you upload a file to the site."
 #: src/profiles/core/types/file.json:4
 msgctxt "Profiles|Core|Types|File"
 msgid "Lets you upload a file to the site."
-msgstr ""
+msgstr "Damit können Sie eine Datei auf die Website hochladen."
 
 #. Default: "Location"
 #: src/profiles/core/catalog.json:7
 msgctxt "Profiles|Core|Catalog"
 msgid "Location"
-msgstr ""
+msgstr "Pfad"
 
 #. Default: "Location in the navigation structure"
 #: src/profiles/core/catalog.json:21
 msgctxt "Profiles|Core|Catalog"
 msgid "Location in the navigation structure"
-msgstr ""
+msgstr "Pfad in der Navigationsstruktur"
 
 #. Default: "Location in the site structure"
 #: src/profiles/core/catalog.json:15
 msgctxt "Profiles|Core|Catalog"
 msgid "Location in the site structure"
-msgstr ""
+msgstr "Pfad in der Seitenstruktur"
 
 #. Default: "Log in"
 #: src/profiles/core/actions.json:93
 msgctxt "Profiles|Core|Actions"
 msgid "Log in"
-msgstr ""
+msgstr "Anmelden"
 
 #. Default: "Log out"
 #: src/profiles/core/actions.json:98
 msgctxt "Profiles|Core|Actions"
 msgid "Log out"
-msgstr ""
+msgstr "Abmelden"
 
 #. Default: "Login"
 #: src/profiles/core/permissions.json:14
 msgctxt "Profiles|Core|Permissions"
 msgid "Login"
-msgstr ""
+msgstr "Anmeldung"
 
 #. Default: "Login and password must be provided in body."
 #: src/routes/authentication/authentication.js:28
 msgctxt "Routes|Authentication"
 msgid "Login and password must be provided in body."
-msgstr ""
+msgstr "Benutzername und Passwort müssen im Anfragetext angegeben werden."
 
 #. Default: "Logout"
 #: src/profiles/core/permissions.json:18
 msgctxt "Profiles|Core|Permissions"
 msgid "Logout"
-msgstr ""
+msgstr "Abmelden"
 
 #. Default: "Mail"
 #: src/profiles/core/controlpanels/mail.json:3
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #. Default: "Manage Preferences"
 #: src/profiles/core/permissions.json:22
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Preferences"
-msgstr ""
+msgstr "Einstellungen verwalten"
 
 #. Default: "Manage Site"
 #: src/profiles/core/permissions.json:30
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Site"
-msgstr ""
+msgstr "Website verwalten"
 
 #. Default: "Manage Users"
 #: src/profiles/core/permissions.json:26
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Users"
-msgstr ""
+msgstr "Benutzer verwalten"
 
 #. Default: "Matches all of"
 #: src/profiles/core/catalog.json:293
 msgctxt "Profiles|Core|Catalog"
 msgid "Matches all of"
-msgstr ""
+msgstr "Alle Bedingungen"
 
 #. Default: "Matches any of"
 #: src/profiles/core/catalog.json:299
@@ -831,56 +834,56 @@ msgstr ""
 #: src/profiles/core/catalog.json:453
 msgctxt "Profiles|Core|Catalog"
 msgid "Matches any of"
-msgstr ""
+msgstr "Eine oder mehrere Bedingungen"
 
 #. Default: "Missing credentials"
 #: src/routes/authentication/authentication.js:27
 msgctxt "Routes|Authentication"
 msgid "Missing credentials"
-msgstr ""
+msgstr "Fehlende Anmeldedaten"
 
 #. Default: "Modification date"
 #: src/profiles/core/catalog.json:490
 msgctxt "Profiles|Core|Catalog"
 msgid "Modification date"
-msgstr ""
+msgstr "Änderungsdatum"
 
 #. Default: "Modify"
 #: src/profiles/core/permissions.json:34
 msgctxt "Profiles|Core|Permissions"
 msgid "Modify"
-msgstr ""
+msgstr "Ändern"
 
 #. Default: "Multilingual"
 #: src/profiles/core/controlpanels/language.json:41
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Multilingual"
-msgstr ""
+msgstr "Mehrsprachig"
 
 #. Default: "Navigation"
 #: src/profiles/core/controlpanels/navigation.json:3
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Navigation"
-msgstr ""
+msgstr "Navigation"
 
 #. Default: "Navigation path"
 #: src/profiles/core/catalog.json:20
 msgctxt "Profiles|Core|Catalog"
 msgid "Navigation path"
-msgstr ""
+msgstr "Navigationspfad"
 
 #. Default: "No"
 #: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
 msgctxt "Profiles|Core|Catalog"
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #. Default: "Not allowed"
 #: src/routes/lock/lock.js:158
 msgctxt "Routes|Lock"
 msgid "Not allowed"
-msgstr ""
+msgstr "Nicht erlaubt"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
@@ -891,51 +894,51 @@ msgstr ""
 #: src/routes/controlpanels/controlpanels.js:77
 msgctxt "Routes|Vocabularies"
 msgid "Not found."
-msgstr ""
+msgstr "Nicht gefunden."
 
 #. Default: "Order in folder"
 #: src/profiles/core/catalog.json:50
 msgctxt "Profiles|Core|Catalog"
 msgid "Order in folder"
-msgstr ""
+msgstr "Reihenfolge in einem Ordner"
 
 #. Default: "Owner"
 #: src/profiles/core/roles.json:16
 msgctxt "Profiles|Core|Roles"
 msgid "Owner"
-msgstr ""
+msgstr "Besitzer"
 
 #. Default: "Ownership"
 #: src/profiles/core/behaviors/ownership.json:3
 #: src/profiles/core/behaviors/ownership.json:10
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Ownership"
-msgstr ""
+msgstr "Eigentümer"
 
 #. Default: "Page"
 #: src/profiles/core/types/page.json:3
 msgctxt "Profiles|Core|Types|Page"
 msgid "Page"
-msgstr ""
+msgstr "Seite"
 
 #. Default: "Password reset request"
 #: src/routes/users/users.js:86
 #: src/routes/users/users.js:192
 msgctxt "Routes|Users"
 msgid "Password reset request"
-msgstr ""
+msgstr "Anfrage zur Passwortzurücksetzung"
 
 #. Default: "Paste"
 #: src/profiles/core/actions.json:49
 msgctxt "Profiles|Core|Actions"
 msgid "Paste"
-msgstr ""
+msgstr "Einfügen"
 
 #. Default: "Pending review"
 #: src/profiles/core/workflows.json:22
 msgctxt "Profiles|Core|Workflows"
 msgid "Pending review"
-msgstr ""
+msgstr "Zur Redaktion eingereicht"
 
 #. Default: "Please enter the number in days."
 #: src/profiles/core/catalog.json:125
@@ -952,7 +955,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:771
 msgctxt "Profiles|Core|Catalog"
 msgid "Please enter the number in days."
-msgstr ""
+msgstr "Bitte Anzahl Tage eintragen."
 
 #. Default: "Please use YYYY/MM/DD."
 #: src/profiles/core/catalog.json:113
@@ -975,402 +978,402 @@ msgstr ""
 #: src/profiles/core/catalog.json:765
 msgctxt "Profiles|Core|Catalog"
 msgid "Please use YYYY/MM/DD."
-msgstr ""
+msgstr "Bitte benutzen Sie folgendes Format: JJJJ/MM/TT."
 
 #. Default: "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
 #: src/profiles/core/controlpanels/mail.json:26
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
-msgstr ""
+msgstr "Wenn Plone E-Mails verschickt, wird diese Adresse als Antwortadresse angegeben. Sie dient auch als Zieladresse für das globale Kontaktformular und die "Sende Test-E-Mail"-Funktion."
 
 #. Default: "Plone generates e-mail using this name as the e-mail sender."
 #: src/profiles/core/controlpanels/mail.json:31
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Plone generates e-mail using this name as the e-mail sender."
-msgstr ""
+msgstr "Dieser Name wird als Absender von E-Mails benutzt."
 
 #. Default: "Preferences"
 #: src/profiles/core/actions.json:83
 msgctxt "Profiles|Core|Actions"
 msgid "Preferences"
-msgstr ""
+msgstr "Meine Einstellungen"
 
 #. Default: "Preview Image Link"
 #: src/profiles/core/behaviors/preview_image_link.json:3
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview Image Link"
-msgstr ""
+msgstr "Vorschaubild-Link"
 
 #. Default: "Preview image"
 #: src/profiles/core/behaviors/preview_image_link.json:15
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview image"
-msgstr ""
+msgstr "Vorschaubild"
 
 #. Default: "Preview image caption"
 #: src/profiles/core/behaviors/preview_image_link.json:23
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview image caption"
-msgstr ""
+msgstr "Vorschaubild-Beschriftung"
 
 #. Default: "Private"
 #: src/profiles/core/workflows.json:12
 msgctxt "Profiles|Core|Workflows"
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #. Default: "Prompt"
 #: src/profiles/ai/controlpanels/ai.json:18
 #: src/profiles/ai/controlpanels/ai.json:37
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Prompt"
-msgstr ""
+msgstr "Eingabeaufforderung"
 
 #. Default: "Prompt is a required field."
 #: src/routes/ai/ai.js:50
 #: src/routes/ai/ai.js:98
 msgctxt "Routes|Ai"
 msgid "Prompt is a required field."
-msgstr ""
+msgstr "Eingabeaufforderung ist ein Pflichtfeld."
 
 #. Default: "Prompts"
 #: src/profiles/ai/controlpanels/ai.json:15
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Prompts"
-msgstr ""
+msgstr "Eingabeaufforderungen"
 
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
 msgctxt "Profiles|Core|Workflows"
 msgid "Publish"
-msgstr ""
+msgstr "Veröffentlichen"
 
 #. Default: "Published"
 #: src/profiles/core/workflows.json:33
 msgctxt "Profiles|Core|Workflows"
 msgid "Published"
-msgstr ""
+msgstr "Veröffentlicht"
 
 #. Default: "Publisher"
 #: src/profiles/core/behaviors/ownership.json:16
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Publisher"
-msgstr ""
+msgstr "Herausgeber"
 
 #. Default: "Publishing Date"
 #: src/profiles/core/behaviors/dates.json:16
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Publishing Date"
-msgstr ""
+msgstr "Veröffentlichungsdatum"
 
 #. Default: "Reader"
 #: src/profiles/core/roles.json:21
 msgctxt "Profiles|Core|Roles"
 msgid "Reader"
-msgstr ""
+msgstr "Ansehen"
 
 #. Default: "Register"
 #: src/profiles/core/permissions.json:38
 #: src/profiles/core/actions.json:103
 msgctxt "Profiles|Core|Permissions"
 msgid "Register"
-msgstr ""
+msgstr "Registrieren"
 
 #. Default: "Related"
 #: src/profiles/core/behaviors/categorization.json:34
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related"
-msgstr ""
+msgstr "Verwandt"
 
 #. Default: "Related Items"
 #: src/profiles/core/behaviors/categorization.json:42
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related Items"
-msgstr ""
+msgstr "Verwandte Elemente"
 
 #. Default: "Related To"
 #: src/profiles/core/catalog.json:321
 msgctxt "Profiles|Core|Catalog"
 msgid "Related To"
-msgstr ""
+msgstr "Verweise zu"
 
 #. Default: "Related resources."
 #: src/profiles/core/behaviors/categorization.json:31
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related resources."
-msgstr ""
+msgstr "Verwandte Ressourcen."
 
 #. Default: "Relative path"
 #: src/profiles/core/catalog.json:26
 msgctxt "Profiles|Core|Catalog"
 msgid "Relative path"
-msgstr ""
+msgstr "Relativer Pfad"
 
 #. Default: "Rename"
 #: src/profiles/core/actions.json:59
 msgctxt "Profiles|Core|Actions"
 msgid "Rename"
-msgstr ""
+msgstr "Umbenennen"
 
 #. Default: "Required field(s) missing."
 #: src/routes/content/content.js:416
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
-msgstr ""
+msgstr "Pflichtfeld(er) fehlen."
 
 #. Default: "Retract"
 #: src/profiles/core/workflows.json:57
 msgctxt "Profiles|Core|Workflows"
 msgid "Retract"
-msgstr ""
+msgstr "Zurückziehen"
 
 #. Default: "Review"
 #: src/profiles/core/permissions.json:42
 msgctxt "Profiles|Core|Permissions"
 msgid "Review"
-msgstr ""
+msgstr "Überprüfung"
 
 #. Default: "Review state"
 #: src/profiles/core/catalog.json:446
 msgctxt "Profiles|Core|Catalog"
 msgid "Review state"
-msgstr ""
+msgstr "Status"
 
 #. Default: "Reviewer"
 #: src/profiles/core/roles.json:36
 msgctxt "Profiles|Core|Roles"
 msgid "Reviewer"
-msgstr ""
+msgstr "Reviewer"
 
 #. Default: "Rights"
 #: src/profiles/core/behaviors/ownership.json:21
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Rights"
-msgstr ""
+msgstr "Rechte"
 
 #. Default: "Robots.txt"
 #: src/profiles/core/controlpanels/site.json:15
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Robots.txt"
-msgstr ""
+msgstr "Robots.txt"
 
 #. Default: "Rules"
 #: src/profiles/core/actions.json:32
 msgctxt "Profiles|Core|Actions"
 msgid "Rules"
-msgstr ""
+msgstr "Regeln"
 
 #. Default: "SMTP port"
 #: src/profiles/core/controlpanels/mail.json:47
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP port"
-msgstr ""
+msgstr "SMTP-Port"
 
 #. Default: "SMTP server"
 #: src/profiles/core/controlpanels/mail.json:35
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP server"
-msgstr ""
+msgstr "SMTP-Server"
 
 #. Default: "Searchable text"
 #: src/profiles/core/catalog.json:246
 msgctxt "Profiles|Core|Catalog"
 msgid "Searchable text"
-msgstr ""
+msgstr "Durchsuchbarer Text"
 
 #. Default: "Secure"
 #: src/profiles/core/controlpanels/mail.json:63
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Secure"
-msgstr ""
+msgstr "Sicher"
 
 #. Default: "Select an image that will be used in listing and teaser blocks."
 #: src/profiles/core/behaviors/preview_image_link.json:16
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Select an image that will be used in listing and teaser blocks."
-msgstr ""
+msgstr "Wähle ein Bild aus, das in Listen- und Teaser-Blocks verwendet wird."
 
 #. Default: "Send back"
 #: src/profiles/core/workflows.json:52
 msgctxt "Profiles|Core|Workflows"
 msgid "Send back"
-msgstr ""
+msgstr "Zurückweisen"
 
 #. Default: "Settings"
 #: src/profiles/core/behaviors/short_name.json:10
 #: src/profiles/core/behaviors/exclude_from_nav.json:10
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #. Default: "Sharing"
 #: src/profiles/core/actions.json:27
 msgctxt "Profiles|Core|Actions"
 msgid "Sharing"
-msgstr ""
+msgstr "Freigabe"
 
 #. Default: "Short name"
 #: src/profiles/core/behaviors/short_name.json:3
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Short name"
-msgstr ""
+msgstr "Kurzname"
 
 #. Default: "Short name (id)"
 #: src/profiles/core/catalog.json:377
 msgctxt "Profiles|Core|Catalog"
 msgid "Short name (id)"
-msgstr ""
+msgstr "Kurzname (ID)"
 
 #. Default: "Simple Publication Workflow"
 #: src/profiles/core/workflows.json:6
 msgctxt "Profiles|Core|Workflows"
 msgid "Simple Publication Workflow"
-msgstr ""
+msgstr "Einfacher Arbeitsablauf"
 
 #. Default: "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 #: src/profiles/core/workflows.json:7
 msgctxt "Profiles|Core|Workflows"
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
-msgstr ""
+msgstr "Einfacher Workflow, der für grundlegende Websites nützlich ist. Inhalte starten als privat und können entweder zur Überprüfung eingereicht oder direkt veröffentlicht werden. Der Ersteller eines Inhalts kann das Element auch nach der Veröffentlichung bearbeiten."
 
 #. Default: "Site"
 #: src/profiles/core/types/site.json:3
 #: src/profiles/core/controlpanels/site.json:3
 msgctxt "Profiles|Core|Types|Site"
 msgid "Site"
-msgstr ""
+msgstr "Website"
 
 #. Default: "Site 'From' address"
 #: src/profiles/core/controlpanels/mail.json:25
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' address"
-msgstr ""
+msgstr "Absenderadresse der Website"
 
 #. Default: "Site 'From' name"
 #: src/profiles/core/controlpanels/mail.json:30
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' name"
-msgstr ""
+msgstr "Absendername der Website"
 
 #. Default: "Site Logo"
 #: src/profiles/core/controlpanels/site.json:22
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Site Logo"
-msgstr ""
+msgstr "Seitenlogo"
 
 #. Default: "Site Setup"
 #: src/profiles/core/actions.json:88
 msgctxt "Profiles|Core|Actions"
 msgid "Site Setup"
-msgstr ""
+msgstr "Konfiguration"
 
 #. Default: "Site language"
 #: src/profiles/core/controlpanels/language.json:34
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Site language"
-msgstr ""
+msgstr "Website-Sprache"
 
 #. Default: "Site title"
 #: src/profiles/core/controlpanels/site.json:28
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Site title"
-msgstr ""
+msgstr "Titel der Website"
 
 #. Default: "Sitemap"
 #: src/profiles/core/actions.json:66
 msgctxt "Profiles|Core|Actions"
 msgid "Sitemap"
-msgstr ""
+msgstr "Sitemap"
 
 #. Default: "Sortable Title"
 #: src/profiles/core/catalog.json:465
 msgctxt "Profiles|Core|Catalog"
 msgid "Sortable Title"
-msgstr ""
+msgstr "Sortierbarer Titel"
 
 #. Default: "Source"
 #: src/profiles/core/behaviors/ownership.json:26
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Source"
-msgstr ""
+msgstr "Quelle"
 
 #. Default: "Submit"
 #: src/profiles/core/permissions.json:46
 msgctxt "Profiles|Core|Permissions"
 msgid "Submit"
-msgstr ""
+msgstr "Einreichen"
 
 #. Default: "Submit for publication"
 #: src/profiles/core/workflows.json:62
 msgctxt "Profiles|Core|Workflows"
 msgid "Submit for publication"
-msgstr ""
+msgstr "Zur Veröffentlichung einreichen"
 
 #. Default: "System group"
 #: src/routes/groups/groups.js:110
 msgctxt "Routes|Groups"
 msgid "System group"
-msgstr ""
+msgstr "Systemgruppe"
 
 #. Default: "System users"
 #: src/routes/users/users.js:243
 msgctxt "Routes|Users"
 msgid "System users"
-msgstr ""
+msgstr "Systembenutzer"
 
 #. Default: "Tag"
 #: src/profiles/core/catalog.json:284
 msgctxt "Profiles|Core|Catalog"
 msgid "Tag"
-msgstr ""
+msgstr "Schlagwort"
 
 #. Default: "Tags"
 #: src/profiles/core/behaviors/categorization.json:50
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Tags"
-msgstr ""
+msgstr "Schlagwörter"
 
 #. Default: "Tags are used for organization of content"
 #: src/profiles/core/catalog.json:285
 msgctxt "Profiles|Core|Catalog"
 msgid "Tags are used for organization of content"
-msgstr ""
+msgstr "Schlagwörter werden zur Organisation von Inhalten genutzt."
 
 #. Default: "Text search of an item's contents"
 #: src/profiles/core/catalog.json:247
 msgctxt "Profiles|Core|Catalog"
 msgid "Text search of an item's contents"
-msgstr ""
+msgstr "Der durchsuchbare Text eines Inhalts"
 
 #. Default: "Text search of an item's title"
 #: src/profiles/core/catalog.json:266
 msgctxt "Profiles|Core|Catalog"
 msgid "Text search of an item's title"
-msgstr ""
+msgstr "Titel eines Inhalts"
 
 #. Default: "The JSON representation of the object blocks information. Must be a JSON object."
 #: src/profiles/core/behaviors/blocks.json:16
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "The JSON representation of the object blocks information. Must be a JSON object."
-msgstr ""
+msgstr "Die JSON-Darstellung der Objekt-Blocks-Informationen. Muss ein JSON-Objekt sein."
 
 #. Default: "The JSON representation of the object blocks layout. Must be a JSON array."
 #: src/profiles/core/behaviors/blocks.json:25
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
-msgstr ""
+msgstr "Die JSON-Darstellung des Objekt-Blocks-Layouts. Muss ein JSON-Array sein."
 
 #. Default: "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 #: src/profiles/core/controlpanels/mail.json:36
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
-msgstr ""
+msgstr "Die Adresse deines lokalen SMTP-Servers (ausgehende E-Mail). Normalerweise 'localhost', es sei denn, du verwendest einen externen Server zum Senden von E-Mails."
 
 #. Default: "The content types that should be shown in the navigation and site map."
 #: src/profiles/core/controlpanels/navigation.json:17
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "The content types that should be shown in the navigation and site map."
-msgstr ""
+msgstr "Inhaltstypen, die in der Navigation und der Übersicht angezeigt werden sollen"
 
 #. Default: "The current day"
 #: src/profiles/core/catalog.json:143
@@ -1381,161 +1384,159 @@ msgstr ""
 #: src/profiles/core/catalog.json:777
 msgctxt "Profiles|Core|Catalog"
 msgid "The current day"
-msgstr ""
+msgstr "Der aktuelle Tag"
 
 #. Default: "The date an item was created"
 #: src/profiles/core/catalog.json:643
 msgctxt "Profiles|Core|Catalog"
 msgid "The date an item was created"
-msgstr ""
+msgstr "Das Datum, an dem ein Inhalt erzeugt wurde"
 
 #. Default: "The end date and time of an event"
 #: src/profiles/core/catalog.json:155
 msgctxt "Profiles|Core|Catalog"
 msgid "The end date and time of an event"
-msgstr ""
+msgstr "Terminende und -zeit"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:87
 #: src/routes/users/users.js:193
 msgctxt "Routes|Users"
-msgid "The following link takes you to a page where you can reset your password: {url}
-
-(This link will expire in 7 days)"
-msgstr ""
+msgid "The following link takes you to a page where you can reset your password: {url}"
+msgstr "undefiniert"
 
 #. Default: "The item's title, transformed for sorting"
 #: src/profiles/core/catalog.json:466
 msgctxt "Profiles|Core|Catalog"
 msgid "The item's title, transformed for sorting"
-msgstr ""
+msgstr "Der Titel des Inhalts, optimiert für die Sortierung"
 
 #. Default: "The language of this item."
 #: src/profiles/core/behaviors/categorization.json:20
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The language of this item."
-msgstr ""
+msgstr "Die Sprache dieses Elements."
 
 #. Default: "The language used for the content and the UI of this site."
 #: src/profiles/core/controlpanels/language.json:33
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "The language used for the content and the UI of this site."
-msgstr ""
+msgstr "Die Sprache für den Inhalt und die Benutzeroberfläche dieser Website."
 
 #. Default: "The languages in which the site should be translatable."
 #: src/profiles/core/controlpanels/language.json:17
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "The languages in which the site should be translatable."
-msgstr ""
+msgstr "Die Sprachen, in die die Website übersetzbar sein soll."
 
 #. Default: "The location of an item"
 #: src/profiles/core/catalog.json:8
 msgctxt "Profiles|Core|Catalog"
 msgid "The location of an item"
-msgstr ""
+msgstr "Der Ort eines Inhalts"
 
 #. Default: "The order of an item in its parent folder"
 #: src/profiles/core/catalog.json:51
 msgctxt "Profiles|Core|Catalog"
 msgid "The order of an item in its parent folder"
-msgstr ""
+msgstr "Die Position eines Inhalts in seinem Ordner"
 
 #. Default: "The password for the ESMTP user account."
 #: src/profiles/core/controlpanels/mail.json:42
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The password for the ESMTP user account."
-msgstr ""
+msgstr "Das Passwort für das ESMTP-Benutzerkonto."
 
 #. Default: "The person that created an item"
 #: src/profiles/core/catalog.json:397
 msgctxt "Profiles|Core|Catalog"
 msgid "The person that created an item"
-msgstr ""
+msgstr "Die Person, die den Inhalt erstellt hat"
 
 #. Default: "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 #: src/profiles/core/controlpanels/mail.json:48
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
-msgstr ""
+msgstr "Der Port deines lokalen SMTP-Servers (ausgehende E-Mail). Normalerweise '25'."
 
 #. Default: "The short name of an item (used in the url)"
 #: src/profiles/core/catalog.json:378
 msgctxt "Profiles|Core|Catalog"
 msgid "The short name of an item (used in the url)"
-msgstr ""
+msgstr "Kurzname eines Inhalts. Der Kurzname ist Bestandteil der URL des Inhalts."
 
 #. Default: "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
 #: src/profiles/core/behaviors/categorization.json:15
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
-msgstr ""
+msgstr "Das räumliche oder zeitliche Thema dieses Elements, die räumliche Anwendbarkeit oder die Rechtsordnung, unter der dieses Element relevant ist."
 
 #. Default: "The start date and time of an event"
 #: src/profiles/core/catalog.json:82
 msgctxt "Profiles|Core|Catalog"
 msgid "The start date and time of an event"
-msgstr ""
+msgstr "Terminanfang und -zeit"
 
 #. Default: "The time and date an item was expired"
 #: src/profiles/core/catalog.json:570
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was expired"
-msgstr ""
+msgstr "Zeitpunkt an dem der Inhalt abläuft"
 
 #. Default: "The time and date an item was first published"
 #: src/profiles/core/catalog.json:716
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was first published"
-msgstr ""
+msgstr "Zeitpunkt, ab dem ein Inhalt öffentlich sichtbar ist"
 
 #. Default: "The time and date an item was last modified"
 #: src/profiles/core/catalog.json:491
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was last modified"
-msgstr ""
+msgstr "Zeitpunkt, zu dem ein Inhalt zuletzt geändert wurde"
 
 #. Default: "The topic of this item."
 #: src/profiles/core/behaviors/categorization.json:48
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The topic of this item."
-msgstr ""
+msgstr "Das Thema dieses Elements."
 
 #. Default: "The user viewing the querystring results"
 #: src/profiles/core/catalog.json:410
 msgctxt "Profiles|Core|Catalog"
 msgid "The user viewing the querystring results"
-msgstr ""
+msgstr "Der Benutzer, der sich die Ergebnisse der Abfrage anschaut"
 
 #. Default: "This document is already locked by another user."
 #: src/routes/lock/lock.js:53
 #: src/routes/lock/lock.js:105
 msgctxt "Routes|Lock"
 msgid "This document is already locked by another user."
-msgstr ""
+msgstr "Dieses Dokument ist bereits von einem anderen Benutzer gesperrt."
 
 #. Default: "This is the contents of the robots.txt file."
 #: src/profiles/core/controlpanels/site.json:16
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This is the contents of the robots.txt file."
-msgstr ""
+msgstr "Dies ist der Inhalt der robots.txt-Datei."
 
 #. Default: "This name will be displayed in the URL."
 #: src/profiles/core/behaviors/short_name.json:15
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "This name will be displayed in the URL."
-msgstr ""
+msgstr "Dieser Name wird in der Adressleiste des Browsers angezeigt."
 
 #. Default: "This shows a custom logo on your site."
 #: src/profiles/core/controlpanels/site.json:21
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This shows a custom logo on your site."
-msgstr ""
+msgstr "Hiermit wird ein angepasstes Logo aud Ihrer Website angezeigt."
 
 #. Default: "This shows up in the title bar of browsers and in syndication feeds."
 #: src/profiles/core/controlpanels/site.json:29
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This shows up in the title bar of browsers and in syndication feeds."
-msgstr ""
+msgstr "Der Titel erscheint in der Titelzeile Ihres Browsers und in RSS-Feeds."
 
 #. Default: "Tip: you can use * to autocomplete."
 #: src/profiles/core/catalog.json:291
@@ -1547,7 +1548,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:479
 msgctxt "Profiles|Core|Catalog"
 msgid "Tip: you can use * to autocomplete."
-msgstr ""
+msgstr "Tipp: SIe können * zur automatischen Vervollständigung nutzen."
 
 #. Default: "Title"
 #: src/profiles/core/catalog.json:265
@@ -1555,13 +1556,13 @@ msgstr ""
 #: src/profiles/ai/controlpanels/ai.json:29
 msgctxt "Profiles|Core|Catalog"
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #. Default: "To, from and message are required fields."
 #: src/routes/email/email.js:22
 msgctxt "Routes|Email"
 msgid "To, from and message are required fields."
-msgstr ""
+msgstr "Empfänger, Absender und Nachricht sind Pflichtfelder."
 
 #. Default: "Today"
 #: src/profiles/core/catalog.json:142
@@ -1572,7 +1573,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:776
 msgctxt "Profiles|Core|Catalog"
 msgid "Today"
-msgstr ""
+msgstr "Heute"
 
 #. Default: "Transaction error."
 #: src/client.js:63
@@ -1580,86 +1581,86 @@ msgstr ""
 #: src/app.js:131
 msgctxt "Client"
 msgid "Transaction error."
-msgstr ""
+msgstr "Transaktionsfehler."
 
 #. Default: "Type"
 #: src/profiles/core/catalog.json:427
 msgctxt "Profiles|Core|Catalog"
 msgid "Type"
-msgstr ""
+msgstr "Inhaltstyp"
 
 #. Default: "Type Name"
 #: src/models/type/type.js:155
 msgctxt "Models|Type"
 msgid "Type Name"
-msgstr ""
+msgstr "Name des Inhaltstyps"
 
 #. Default: "Type of the current document is not found."
 #: src/helpers/handler/handler.js:69
 msgctxt "Helpers|Handler"
 msgid "Type of the current document is not found."
-msgstr ""
+msgstr "Der Typ des aktuellen Dokuments wurde nicht gefunden."
 
 #. Default: "Use '../' to navigate to parent objects."
 #: src/profiles/core/catalog.json:27
 msgctxt "Profiles|Core|Catalog"
 msgid "Use '../' to navigate to parent objects."
-msgstr ""
+msgstr "Benutze '../' um zum zum übergeordneten Inhalt zu navigieren."
 
 #. Default: "User doesn't exist or invalid credentials."
 #: src/routes/users/users.js:48
 msgctxt "Routes|Users"
 msgid "User doesn't exist or invalid credentials."
-msgstr ""
+msgstr "Benutzer existiert nicht oder ungültige Anmeldedaten."
 
 #. Default: "User is not logged in."
 #: src/routes/authentication/authentication.js:101
 msgctxt "Routes|Authentication"
 msgid "User is not logged in."
-msgstr ""
+msgstr "Benutzer ist nicht angemeldet."
 
 #. Default: "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 #: src/profiles/core/controlpanels/mail.json:54
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
-msgstr ""
+msgstr "Benutzername zur Authentifizierung bei deinem E-Mail-Server. Nicht erforderlich, es sei denn, du verwendest ESMTP."
 
 #. Default: "Versioning"
 #: src/profiles/core/behaviors/versioning.json:3
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Versioning"
-msgstr ""
+msgstr "Versionierung"
 
 #. Default: "Versioning support"
 #: src/profiles/core/behaviors/versioning.json:4
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Versioning support"
-msgstr ""
+msgstr "Versionierungsunterstützung"
 
 #. Default: "View"
 #: src/profiles/core/permissions.json:6
 #: src/profiles/core/actions.json:7
 msgctxt "Profiles|Core|Permissions"
 msgid "View"
-msgstr ""
+msgstr "Anzeigen"
 
 #. Default: "Visible to everyone, editable by the owner."
 #: src/profiles/core/workflows.json:34
 msgctxt "Profiles|Core|Workflows"
 msgid "Visible to everyone, editable by the owner."
-msgstr ""
+msgstr "Sichtbar für alle, vom Besitzer zu bearbeiten"
 
 #. Default: "Waiting to be reviewed, not editable by the owner."
 #: src/profiles/core/workflows.json:23
 msgctxt "Profiles|Core|Workflows"
 msgid "Waiting to be reviewed, not editable by the owner."
-msgstr ""
+msgstr "Wartet auf Reviewing, nicht vom Besitzer zu bearbeiten"
 
 #. Default: "When this date is reached, the content will no longer be visible in listings and searches."
 #: src/profiles/core/behaviors/dates.json:21
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
-msgstr ""
+msgstr "Wenn dieses Datum erreicht ist, wird der Inhalt nicht mehr in Listen und Suchen sichtbar sein."
 
 #. Default: "Within last"
 #: src/profiles/core/catalog.json:124
@@ -1670,7 +1671,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:758
 msgctxt "Profiles|Core|Catalog"
 msgid "Within last"
-msgstr ""
+msgstr "Innerhalb der letzten"
 
 #. Default: "Within next"
 #: src/profiles/core/catalog.json:136
@@ -1681,62 +1682,62 @@ msgstr ""
 #: src/profiles/core/catalog.json:770
 msgctxt "Profiles|Core|Catalog"
 msgid "Within next"
-msgstr ""
+msgstr "Innerhalb der nächsten"
 
 #. Default: "Wrong login and/or password."
 #: src/routes/authentication/authentication.js:49
 #: src/routes/authentication/authentication.js:63
 msgctxt "Routes|Authentication"
 msgid "Wrong login and/or password."
-msgstr ""
+msgstr "Falscher Benutzername und/oder Passwort."
 
 #. Default: "Yes"
 #: src/profiles/core/catalog.json:353
 #: src/profiles/core/vocabularies/boolean.json:5
 msgctxt "Profiles|Core|Catalog"
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #. Default: "You are not authorization to access this resource."
 #: src/routes/workflow/workflow.js:34
 #: src/helpers/handler/handler.js:91
 msgctxt "Routes|Workflow"
 msgid "You are not authorization to access this resource."
-msgstr ""
+msgstr "Du bist nicht berechtigt, auf diese Ressource zuzugreifen."
 
 #. Default: "You can't delete system groups."
 #: src/routes/groups/groups.js:109
 msgctxt "Routes|Groups"
 msgid "You can't delete system groups."
-msgstr ""
+msgstr "Du kannst Systemgruppen nicht löschen."
 
 #. Default: "You can't delete system users."
 #: src/routes/users/users.js:242
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
-msgstr ""
+msgstr "Du kannst Systembenutzer nicht löschen."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
 #: src/routes/content/content.js:579
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
-msgstr ""
+msgstr "Du hast keine Berechtigung, dieses Dokument zu speichern, da es von einem anderen Benutzer gesperrt ist."
 
 #. Default: "You don't have permission to unlock this document."
 #: src/routes/lock/lock.js:155
 msgctxt "Routes|Lock"
 msgid "You don't have permission to unlock this document."
-msgstr ""
+msgstr "Du hast keine Berechtigung, dieses Dokument zu entsperren."
 
 #. Default: "You don't have permissions to add a user."
 #: src/routes/users/users.js:148
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
-msgstr ""
+msgstr "Du hast keine Berechtigung, einen Benutzer hinzuzufügen."
 
 #. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3
 msgctxt "Profiles|Core|Vocabularies|Boolean"
 msgid "boolean"
-msgstr ""
+msgstr "Boolean"

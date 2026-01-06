@@ -9,7 +9,7 @@ import { upperFirst } from 'es-toolkit/string';
 import { sync as glob } from 'glob';
 import Pofile from 'pofile';
 import { transformSync } from '@babel/core';
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 
 /**
  * Convert path to context
@@ -42,9 +42,9 @@ function messagesToPot(messages) {
       [
         `#. Default: "${messages[key].defaultMessage}"`,
         ...messages[key].files.map((file) => `#: ${file.file}:${file.line}`),
+        `msgctxt "${pathToContext(messages[key].files[0].file)}"`,
         `msgid "${key}"`,
         'msgstr ""',
-        `msgctxt "${pathToContext(messages[key].files[0].file)}"`,
       ].join('\n'),
     )
     .join('\n\n');
@@ -127,13 +127,16 @@ function formatHeader(comments, headers) {
 /**
  * Sync po by the pot file
  * @function syncPoByPot
+ * @param {Object} translations Translations object
  * @return {undefined}
  */
-function syncPoByPot() {
+function syncPoByPot(translations) {
   const pot = Pofile.parse(readFileSync('locales/nick.pot', 'utf8'));
 
   glob('locales/**/*.po').map((filename) => {
     const po = Pofile.parse(readFileSync(filename, 'utf8'));
+
+    const lang = po.headers['Language-Code'];
 
     writeFileSync(
       filename,
@@ -144,9 +147,9 @@ ${pot.items
     return [
       ...item.extractedComments.map((comment) => `#. ${comment}`),
       `${item.references.map((ref) => `#: ${ref}`).join('\n')}`,
-      `msgid "${item.msgid}"`,
-      `msgstr "${poItem ? poItem.msgstr : ''}"`,
       `msgctxt "${pathToContext(item.references[0])}"`,
+      `msgid "${item.msgid}"`,
+      `msgstr "${lang === 'en' ? '' : translations[item.msgid]?.[lang] || poItem?.msgstr || ''}"`,
     ].join('\n');
   })
   .join('\n\n')}\n`,
@@ -244,9 +247,49 @@ async function main() {
     );
   }
 
+  let translations = {};
+
+  // Check if translations exists
+  if (existsSync('locales/translations.json')) {
+    // Read translations
+    const json = JSON.parse(readFileSync('locales/translations.json', 'utf8'));
+
+    // Create po files for each language if not exists
+    const languages = Object.keys(json[0].translations);
+    languages.map((lang) => {
+      if (!existsSync(`locales/${lang}/LC_MESSAGES/nick.po`)) {
+        mkdirSync(`locales/${lang}/LC_MESSAGES`, { recursive: true });
+        writeFileSync(
+          `locales/${lang}/LC_MESSAGES/nick.po`,
+          `msgid ""
+msgstr ""
+"Project-Id-Version: Nick\\n"
+"POT-Creation-Date: ${new Date().toISOString()}\\n"
+"Last-Translator: Rob Gietema\\n"
+"Language-Team: Nick\\n"
+"MIME-Version: 1.0\\n"
+"Content-Type: text/plain; charset=utf-8\\n"
+"Content-Transfer-Encoding: 8bit\\n"
+"Plural-Forms: nplurals=1; plural=0;\\n"
+"Language-Code: ${lang}\\n"
+"Language-Name: ${lang}\\n"
+"Preferred-Encodings: utf-8\\n"
+"Domain: nick\\n"
+
+`,
+        );
+      }
+    });
+
+    // Create translations object
+    json.map((item) => {
+      translations[item.msgid] = item.translations;
+    });
+  }
+
   console.log('Synchronizing messages to po files...');
 
-  syncPoByPot();
+  syncPoByPot(translations);
 
   console.log('Write messages to json files...');
 

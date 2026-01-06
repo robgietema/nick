@@ -1,15 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-01-06T11:43:11.573Z\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-06T11:50:40.334Z\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Rob Gietema\n"
+"Language: \n"
 "Language-Team: Nick\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"MIME-Version: 1.0\n"
+"Language-Code: hu\n"
+"Language-Name: hu\n"
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
@@ -17,25 +20,25 @@ msgstr ""
 #: src/profiles/core/behaviors/basic.json:15
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "A description of this item."
-msgstr ""
+msgstr "Az elem leírása."
 
 #. Default: "A name given to this item."
 #: src/profiles/core/behaviors/basic.json:21
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "A name given to this item."
-msgstr ""
+msgstr "Az elem neve."
 
 #. Default: "A related item from which this item is derived."
 #: src/profiles/core/behaviors/ownership.json:25
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "A related item from which this item is derived."
-msgstr ""
+msgstr "Egy kapcsolódó elem, amelyből ez az elem származik."
 
 #. Default: "AI"
 #: src/profiles/ai/controlpanels/ai.json:3
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "AI"
-msgstr ""
+msgstr "MI"
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:16
@@ -43,86 +46,86 @@ msgstr ""
 #: src/routes/ai/ai.js:108
 msgctxt "Routes|Related"
 msgid "AI is disabled."
-msgstr ""
+msgstr "A MI le van tiltva."
 
 #. Default: "Absolute path"
 #: src/profiles/core/catalog.json:14
 msgctxt "Profiles|Core|Catalog"
 msgid "Absolute path"
-msgstr ""
+msgstr "Abszolút útvonal"
 
 #. Default: "Accessibility"
 #: src/profiles/core/actions.json:71
 msgctxt "Profiles|Core|Actions"
 msgid "Accessibility"
-msgstr ""
+msgstr "Akadálymentesítés"
 
 #. Default: "Add"
 #: src/profiles/core/permissions.json:10
 msgctxt "Profiles|Core|Permissions"
 msgid "Add"
-msgstr ""
+msgstr "Hozzáadás"
 
 #. Default: "Add additional items to the navigation, one per line. In the format 'title|description|url'."
 #: src/profiles/core/controlpanels/navigation.json:33
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
-msgstr ""
+msgstr "További elemek hozzáadása a navigációhoz, soronként egyet. 'title|description|url' formátumban."
 
 #. Default: "Add prompt"
 #: src/profiles/ai/controlpanels/ai.json:19
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Add prompt"
-msgstr ""
+msgstr "Prompt hozzáadása"
 
 #. Default: "Additional items"
 #: src/profiles/core/controlpanels/navigation.json:32
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Additional items"
-msgstr ""
+msgstr "További elemek"
 
 #. Default: "Adds effective and expiration dates."
 #: src/profiles/core/behaviors/dates.json:4
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Adds effective and expiration dates."
-msgstr ""
+msgstr "Hozzáadja a hatálybalépési és lejárati dátumokat."
 
 #. Default: "Adds keywords and language fields."
 #: src/profiles/core/behaviors/categorization.json:4
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Adds keywords and language fields."
-msgstr ""
+msgstr "Hozzáadja a kulcsszavak és nyelv mezőket."
 
 #. Default: "Adds ownership and rights fields."
 #: src/profiles/core/behaviors/ownership.json:4
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Adds ownership and rights fields."
-msgstr ""
+msgstr "Hozzáadja a tulajdonjogi és jogi mezőket."
 
 #. Default: "Adds standard metadatafields"
 #: src/profiles/core/behaviors/dublin_core.json:4
 msgctxt "Profiles|Core|Behaviors|Dublin core"
 msgid "Adds standard metadatafields"
-msgstr ""
+msgstr "Hozzáadja a szabványos metaadatmezőket"
 
 #. Default: "Adds title and description fields."
 #: src/profiles/core/behaviors/basic.json:4
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "Adds title and description fields."
-msgstr ""
+msgstr "Hozzáadja a cím és leírás mezőket."
 
 #. Default: "Administrator"
 #: src/profiles/core/roles.json:41
 msgctxt "Profiles|Core|Roles"
 msgid "Administrator"
-msgstr ""
+msgstr "Adminisztrátor"
 
 #. Default: "Administrators"
 #: src/profiles/multilingualcontent/groups.json:6
 #: src/profiles/default/groups.json:6
 msgctxt "Profiles|Multilingualcontent|Groups"
 msgid "Administrators"
-msgstr ""
+msgstr "Adminisztrátorok"
 
 #. Default: "After N days in the future"
 #: src/profiles/core/catalog.json:89
@@ -133,7 +136,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:723
 msgctxt "Profiles|Core|Catalog"
 msgid "After N days in the future"
-msgstr ""
+msgstr "N nap múlva a jövőben"
 
 #. Default: "After date"
 #: src/profiles/core/catalog.json:118
@@ -144,7 +147,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:752
 msgctxt "Profiles|Core|Catalog"
 msgid "After date"
-msgstr ""
+msgstr "Dátum után"
 
 #. Default: "After relative Date"
 #: src/profiles/core/catalog.json:88
@@ -155,7 +158,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:722
 msgctxt "Profiles|Core|Catalog"
 msgid "After relative Date"
-msgstr ""
+msgstr "Relatív dátum után"
 
 #. Default: "After the current day"
 #: src/profiles/core/catalog.json:95
@@ -166,7 +169,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:729
 msgctxt "Profiles|Core|Catalog"
 msgid "After the current day"
-msgstr ""
+msgstr "Az aktuális nap után"
 
 #. Default: "After today"
 #: src/profiles/core/catalog.json:94
@@ -177,68 +180,68 @@ msgstr ""
 #: src/profiles/core/catalog.json:728
 msgctxt "Profiles|Core|Catalog"
 msgid "After today"
-msgstr ""
+msgstr "Ma után"
 
 #. Default: "Allowed Content Types"
 #: src/models/type/type.js:133
 msgctxt "Models|Type"
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "Engedélyezett tartalomtípusok"
 
 #. Default: "Already locked"
 #: src/routes/lock/lock.js:56
 #: src/routes/lock/lock.js:108
 msgctxt "Routes|Lock"
 msgid "Already locked"
-msgstr ""
+msgstr "Már zárolva"
 
 #. Default: "An entity responsible for making this item available."
 #: src/profiles/core/behaviors/ownership.json:15
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "An entity responsible for making this item available."
-msgstr ""
+msgstr "Az elem elérhetővé tételéért felelős entitás."
 
 #. Default: "An item's description"
 #: src/profiles/core/catalog.json:228
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's description"
-msgstr ""
+msgstr "Elem leírása"
 
 #. Default: "An item's type (e.g. Event)"
 #: src/profiles/core/catalog.json:428
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's type (e.g. Event)"
-msgstr ""
+msgstr "Elem típusa (pl. Esemény)"
 
 #. Default: "An item's workflow state (e.g.published)"
 #: src/profiles/core/catalog.json:447
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's workflow state (e.g.published)"
-msgstr ""
+msgstr "Elem munkafolyamat-állapota (pl. közzétéve)"
 
 #. Default: "Anonymous"
 #: src/profiles/core/roles.json:6
 msgctxt "Profiles|Core|Roles"
 msgid "Anonymous"
-msgstr ""
+msgstr "Névtelen"
 
 #. Default: "Authenticated"
 #: src/profiles/core/roles.json:11
 msgctxt "Profiles|Core|Roles"
 msgid "Authenticated"
-msgstr ""
+msgstr "Hitelesített"
 
 #. Default: "Available languages"
 #: src/profiles/core/controlpanels/language.json:27
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Available languages"
-msgstr ""
+msgstr "Elérhető nyelvek"
 
 #. Default: "Basic metadata"
 #: src/profiles/core/behaviors/basic.json:3
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "Basic metadata"
-msgstr ""
+msgstr "Alapvető metaadatok"
 
 #. Default: "Before N days in the past"
 #: src/profiles/core/catalog.json:101
@@ -249,7 +252,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:735
 msgctxt "Profiles|Core|Catalog"
 msgid "Before N days in the past"
-msgstr ""
+msgstr "Több mint N nappal ezelőtt"
 
 #. Default: "Before date"
 #: src/profiles/core/catalog.json:130
@@ -260,7 +263,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:764
 msgctxt "Profiles|Core|Catalog"
 msgid "Before date"
-msgstr ""
+msgstr "Dátum előtt"
 
 #. Default: "Before relative Date"
 #: src/profiles/core/catalog.json:100
@@ -271,7 +274,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:734
 msgctxt "Profiles|Core|Catalog"
 msgid "Before relative Date"
-msgstr ""
+msgstr "Relatív dátum előtt"
 
 #. Default: "Before the current day"
 #: src/profiles/core/catalog.json:107
@@ -282,7 +285,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:741
 msgctxt "Profiles|Core|Catalog"
 msgid "Before the current day"
-msgstr ""
+msgstr "Az aktuális nap előtt"
 
 #. Default: "Before today"
 #: src/profiles/core/catalog.json:106
@@ -293,13 +296,13 @@ msgstr ""
 #: src/profiles/core/catalog.json:740
 msgctxt "Profiles|Core|Catalog"
 msgid "Before today"
-msgstr ""
+msgstr "Ma előtt"
 
 #. Default: "Behaviors"
 #: src/models/type/type.js:116
 msgctxt "Models|Type"
 msgid "Behaviors"
-msgstr ""
+msgstr "Viselkedések"
 
 #. Default: "Between dates"
 #: src/profiles/core/catalog.json:112
@@ -310,45 +313,45 @@ msgstr ""
 #: src/profiles/core/catalog.json:746
 msgctxt "Profiles|Core|Catalog"
 msgid "Between dates"
-msgstr ""
+msgstr "Dátumok között"
 
 #. Default: "Blocks"
 #: src/profiles/core/behaviors/blocks.json:3
 #: src/profiles/core/behaviors/blocks.json:17
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Blocks"
-msgstr ""
+msgstr "Blokkok"
 
 #. Default: "Blocks Layout"
 #: src/profiles/core/behaviors/blocks.json:26
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Blocks Layout"
-msgstr ""
+msgstr "Blokk elrendezés"
 
 #. Default: "Can only be seen and edited by the owner."
 #: src/profiles/core/workflows.json:13
 msgctxt "Profiles|Core|Workflows"
 msgid "Can only be seen and edited by the owner."
-msgstr ""
+msgstr "Csak a tulajdonos láthatja és szerkesztheti."
 
 #. Default: "Categorization"
 #: src/profiles/core/behaviors/categorization.json:3
 #: src/profiles/core/behaviors/categorization.json:10
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Categorization"
-msgstr ""
+msgstr "Kategorizálás"
 
 #. Default: "Change Note"
 #: src/profiles/core/behaviors/versioning.json:16
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Change Note"
-msgstr ""
+msgstr "Változtatási megjegyzés"
 
 #. Default: "Contact"
 #: src/profiles/core/actions.json:76
 msgctxt "Profiles|Core|Actions"
 msgid "Contact"
-msgstr ""
+msgstr "Kapcsolat"
 
 #. Default: "Contains"
 #: src/profiles/core/catalog.json:234
@@ -357,81 +360,81 @@ msgstr ""
 #: src/profiles/core/catalog.json:472
 msgctxt "Profiles|Core|Catalog"
 msgid "Contains"
-msgstr ""
+msgstr "Tartalmaz"
 
 #. Default: "Content"
 #: src/routes/controlpanels/controlpanels.js:67
 msgctxt "Routes|Controlpanels"
 msgid "Content"
-msgstr ""
+msgstr "Tartalom"
 
 #. Default: "Content Types"
 #: src/routes/controlpanels/controlpanels.js:66
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels"
 msgid "Content Types"
-msgstr ""
+msgstr "Tartalomtípusok"
 
 #. Default: "Contents"
 #: src/profiles/core/actions.json:17
 msgctxt "Profiles|Core|Actions"
 msgid "Contents"
-msgstr ""
+msgstr "Tartalom"
 
 #. Default: "Contributor"
 #: src/profiles/core/roles.json:26
 msgctxt "Profiles|Core|Roles"
 msgid "Contributor"
-msgstr ""
+msgstr "Közreműködő"
 
 #. Default: "Copy"
 #: src/profiles/core/actions.json:44
 msgctxt "Profiles|Core|Actions"
 msgid "Copy"
-msgstr ""
+msgstr "Másolás"
 
 #. Default: "Coverage"
 #: src/profiles/core/behaviors/categorization.json:16
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Coverage"
-msgstr ""
+msgstr "Lefedettség"
 
 #. Default: "Creation date"
 #: src/profiles/core/catalog.json:642
 msgctxt "Profiles|Core|Catalog"
 msgid "Creation date"
-msgstr ""
+msgstr "Létrehozás dátuma"
 
 #. Default: "Creator"
 #: src/profiles/core/catalog.json:396
 msgctxt "Profiles|Core|Catalog"
 msgid "Creator"
-msgstr ""
+msgstr "Létrehozó"
 
 #. Default: "Current logged in user"
 #: src/profiles/core/catalog.json:409
 msgctxt "Profiles|Core|Catalog"
 msgid "Current logged in user"
-msgstr ""
+msgstr "Jelenleg bejelentkezett felhasználó"
 
 #. Default: "Cut"
 #: src/profiles/core/actions.json:39
 msgctxt "Profiles|Core|Actions"
 msgid "Cut"
-msgstr ""
+msgstr "Kivágás"
 
 #. Default: "Dates"
 #: src/profiles/core/behaviors/dates.json:3
 #: src/profiles/core/behaviors/dates.json:10
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Dates"
-msgstr ""
+msgstr "Dátumok"
 
 #. Default: "Debug"
 #: src/profiles/core/controlpanels/mail.json:58
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Debug"
-msgstr ""
+msgstr "Hibakeresés"
 
 #. Default: "Default"
 #: src/profiles/core/types/image.json:13
@@ -441,19 +444,19 @@ msgstr ""
 #: src/profiles/core/behaviors/basic.json:10
 msgctxt "Profiles|Core|Types|Image"
 msgid "Default"
-msgstr ""
+msgstr "Alapértelmezett"
 
 #. Default: "Define custom prompts for the assistant."
 #: src/profiles/ai/controlpanels/ai.json:16
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Define custom prompts for the assistant."
-msgstr ""
+msgstr "Egyéni promptok definiálása az asszisztens számára."
 
 #. Default: "Delete"
 #: src/profiles/core/actions.json:54
 msgctxt "Profiles|Core|Actions"
 msgid "Delete"
-msgstr ""
+msgstr "Törlés"
 
 #. Default: "Description"
 #: src/models/type/type.js:140
@@ -462,367 +465,367 @@ msgstr ""
 #: src/profiles/ai/controlpanels/ai.json:33
 msgctxt "Models|Type"
 msgid "Description"
-msgstr ""
+msgstr "Leírás"
 
 #. Default: "Displayed content types"
 #: src/profiles/core/controlpanels/navigation.json:27
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Displayed content types"
-msgstr ""
+msgstr "Megjelenített tartalomtípusok"
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
 #: src/routes/content/content.js:582
 msgctxt "Routes|History"
 msgid "Document locked"
-msgstr ""
+msgstr "Dokumentum zárolva"
 
 #. Default: "Dublin Core metadata"
 #: src/profiles/core/behaviors/dublin_core.json:3
 msgctxt "Profiles|Core|Behaviors|Dublin core"
 msgid "Dublin Core metadata"
-msgstr ""
+msgstr "Dublin Core metaadatok"
 
 #. Default: "ESMTP password"
 #: src/profiles/core/controlpanels/mail.json:41
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP password"
-msgstr ""
+msgstr "ESMTP jelszó"
 
 #. Default: "ESMTP username"
 #: src/profiles/core/controlpanels/mail.json:53
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP username"
-msgstr ""
+msgstr "ESMTP felhasználónév"
 
 #. Default: "Edit"
 #: src/profiles/core/actions.json:12
 msgctxt "Profiles|Core|Actions"
 msgid "Edit"
-msgstr ""
+msgstr "Szerkesztés"
 
 #. Default: "Editor"
 #: src/profiles/core/roles.json:31
 msgctxt "Profiles|Core|Roles"
 msgid "Editor"
-msgstr ""
+msgstr "Szerkesztő"
 
 #. Default: "Effective date"
 #: src/profiles/core/catalog.json:715
 msgctxt "Profiles|Core|Catalog"
 msgid "Effective date"
-msgstr ""
+msgstr "Hatálybalépés dátuma"
 
 #. Default: "Enables Volto Blocks support"
 #: src/profiles/core/behaviors/blocks.json:4
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Enables Volto Blocks support"
-msgstr ""
+msgstr "Engedélyezi a Volto Blocks támogatást"
 
 #. Default: "Enter a comment that describes the changes you made."
 #: src/profiles/core/behaviors/versioning.json:15
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Enter a comment that describes the changes you made."
-msgstr ""
+msgstr "Írjon be egy megjegyzést, amely leírja az elvégzett módosításokat."
 
 #. Default: "Equals"
 #: src/profiles/core/catalog.json:57
 #: src/profiles/core/catalog.json:328
 msgctxt "Profiles|Core|Catalog"
 msgid "Equals"
-msgstr ""
+msgstr "Egyenlő"
 
 #. Default: "Event end date"
 #: src/profiles/core/catalog.json:154
 msgctxt "Profiles|Core|Catalog"
 msgid "Event end date"
-msgstr ""
+msgstr "Esemény befejezési dátuma"
 
 #. Default: "Event start date"
 #: src/profiles/core/catalog.json:81
 msgctxt "Profiles|Core|Catalog"
 msgid "Event start date"
-msgstr ""
+msgstr "Esemény kezdési dátuma"
 
 #. Default: "Exclude from navigation"
 #: src/profiles/core/behaviors/exclude_from_nav.json:3
 #: src/profiles/core/behaviors/exclude_from_nav.json:15
 msgctxt "Profiles|Core|Behaviors|Exclude from nav"
 msgid "Exclude from navigation"
-msgstr ""
+msgstr "Kizárás a navigációból"
 
 #. Default: "Expiration Date"
 #: src/profiles/core/behaviors/dates.json:22
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Expiration Date"
-msgstr ""
+msgstr "Lejárat dátuma"
 
 #. Default: "Expiration date"
 #: src/profiles/core/catalog.json:569
 msgctxt "Profiles|Core|Catalog"
 msgid "Expiration date"
-msgstr ""
+msgstr "Lejárat dátuma"
 
 #. Default: "File"
 #: src/profiles/core/types/file.json:3
 #: src/profiles/core/types/file.json:19
 msgctxt "Profiles|Core|Types|File"
 msgid "File"
-msgstr ""
+msgstr "Fájl"
 
 #. Default: "Filter Contained Types"
 #: src/models/type/type.js:146
 msgctxt "Models|Type"
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "Tartalmazott típusok szűrése"
 
 #. Default: "Find items related to the selected items"
 #: src/profiles/core/catalog.json:322
 msgctxt "Profiles|Core|Catalog"
 msgid "Find items related to the selected items"
-msgstr ""
+msgstr "A kiválasztott elemekhez kapcsolódó elemek keresése"
 
 #. Default: "Find items that can contain other objects"
 #: src/profiles/core/catalog.json:341
 msgctxt "Profiles|Core|Catalog"
 msgid "Find items that can contain other objects"
-msgstr ""
+msgstr "Más objektumokat tartalmazó elemek keresése"
 
 #. Default: "Folder"
 #: src/profiles/core/types/folder.json:3
 msgctxt "Profiles|Core|Types|Folder"
 msgid "Folder"
-msgstr ""
+msgstr "Mappa"
 
 #. Default: "Folder-like"
 #: src/profiles/core/catalog.json:340
 msgctxt "Profiles|Core|Catalog"
 msgid "Folder-like"
-msgstr ""
+msgstr "Mappaszerű"
 
 #. Default: "From and message are required fields."
 #: src/routes/email/email.js:53
 #: src/routes/email/email.js:90
 msgctxt "Routes|Email"
 msgid "From and message are required fields."
-msgstr ""
+msgstr "A feladó és az üzenet kötelező mezők."
 
 #. Default: "Gives the ability to rename an item from its edit form."
 #: src/profiles/core/behaviors/short_name.json:4
 #: src/profiles/core/behaviors/preview_image_link.json:4
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Gives the ability to rename an item from its edit form."
-msgstr ""
+msgstr "Lehetővé teszi az elem átnevezését a szerkesztési űrlapról."
 
 #. Default: "History"
 #: src/profiles/core/actions.json:22
 msgctxt "Profiles|Core|Actions"
 msgid "History"
-msgstr ""
+msgstr "Előzmények"
 
 #. Default: "Identifier"
 #: src/profiles/core/behaviors/short_name.json:16
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Identifier"
-msgstr ""
+msgstr "Azonosító"
 
 #. Default: "If enabled the mail is send to a test server."
 #: src/profiles/core/controlpanels/mail.json:59
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled the mail is send to a test server."
-msgstr ""
+msgstr "Ha engedélyezve van, a levél egy tesztszerverre kerül elküldésre."
 
 #. Default: "If enabled the mail is send using a secure connection."
 #: src/profiles/core/controlpanels/mail.json:64
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled the mail is send using a secure connection."
-msgstr ""
+msgstr "Ha engedélyezve van, a levél biztonságos kapcsolaton keresztül kerül elküldésre."
 
 #. Default: "If enabled the site is multilingual."
 #: src/profiles/core/controlpanels/language.json:42
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "If enabled the site is multilingual."
-msgstr ""
+msgstr "Ha engedélyezve van, a webhely többnyelvű."
 
 #. Default: "If selected, this item will not appear in the navigation tree."
 #: src/profiles/core/behaviors/exclude_from_nav.json:4
 #: src/profiles/core/behaviors/exclude_from_nav.json:16
 msgctxt "Profiles|Core|Behaviors|Exclude from nav"
 msgid "If selected, this item will not appear in the navigation tree."
-msgstr ""
+msgstr "Ha ki van választva, ez az elem nem jelenik meg a navigációs fában."
 
 #. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
 #: src/profiles/core/behaviors/dates.json:15
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "If this date is in the future, the content will not show up in listings and searches until this date."
-msgstr ""
+msgstr "Ha ez a dátum a jövőben van, a tartalom nem jelenik meg a listákban és a keresésekben ezen dátumig."
 
 #. Default: "Image"
 #: src/profiles/core/types/image.json:3
 #: src/profiles/core/types/image.json:19
 msgctxt "Profiles|Core|Types|Image"
 msgid "Image"
-msgstr ""
+msgstr "Kép"
 
 #. Default: "Images can be referenced in pages or displayed in an album."
 #: src/profiles/core/types/image.json:4
 msgctxt "Profiles|Core|Types|Image"
 msgid "Images can be referenced in pages or displayed in an album."
-msgstr ""
+msgstr "A képekre lehet hivatkozni oldalakon, vagy megjeleníthetők egy albumban."
 
 #. Default: "Information about rights held in and over this item."
 #: src/profiles/core/behaviors/ownership.json:20
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Information about rights held in and over this item."
-msgstr ""
+msgstr "Információk az elemhez fűződő jogokról."
 
 #. Default: "Internal server error"
 #: src/app.js:170
 #: src/app.js:180
 msgctxt "App"
 msgid "Internal server error"
-msgstr ""
+msgstr "Belső szerverhiba"
 
 #. Default: "Invalid credentials"
 #: src/routes/authentication/authentication.js:48
 #: src/routes/authentication/authentication.js:62
 msgctxt "Routes|Authentication"
 msgid "Invalid credentials"
-msgstr ""
+msgstr "Érvénytelen hitelesítő adatok"
 
 #. Default: "Invalid session"
 #: src/routes/authentication/authentication.js:100
 msgctxt "Routes|Authentication"
 msgid "Invalid session"
-msgstr ""
+msgstr "Érvénytelen munkamenet"
 
 #. Default: "Is"
 #: src/profiles/core/catalog.json:384
 #: src/profiles/core/catalog.json:478
 msgctxt "Profiles|Core|Catalog"
 msgid "Is"
-msgstr ""
+msgstr "Van"
 
 #. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
 #: src/models/type/type.js:147
 msgctxt "Models|Type"
 msgid "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
-msgstr ""
+msgstr "Az ilyen típusú elemek mappaként működhetnek, amelyek más elemeket tartalmaznak. Milyen tartalomtípusok legyenek engedélyezve benne?"
 
 #. Default: "Language"
 #: src/profiles/core/controlpanels/language.json:3
 #: src/profiles/core/behaviors/categorization.json:22
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Language"
-msgstr ""
+msgstr "Nyelv"
 
 #. Default: "Languageroot"
 #: src/profiles/multilingual/types/languageroot.json:3
 msgctxt "Profiles|Multilingual|Types|Languageroot"
 msgid "Languageroot"
-msgstr ""
+msgstr "Nyelvi gyökér"
 
 #. Default: "Larger than"
 #: src/profiles/core/catalog.json:63
 msgctxt "Profiles|Core|Catalog"
 msgid "Larger than"
-msgstr ""
+msgstr "Nagyobb mint"
 
 #. Default: "Layout"
 #: src/profiles/core/behaviors/blocks.json:10
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Layout"
-msgstr ""
+msgstr "Elrendezés"
 
 #. Default: "Less than"
 #: src/profiles/core/catalog.json:69
 msgctxt "Profiles|Core|Catalog"
 msgid "Less than"
-msgstr ""
+msgstr "Kevesebb mint"
 
 #. Default: "Lets you upload a file to the site."
 #: src/profiles/core/types/file.json:4
 msgctxt "Profiles|Core|Types|File"
 msgid "Lets you upload a file to the site."
-msgstr ""
+msgstr "Lehetővé teszi fájl feltöltését az oldalra."
 
 #. Default: "Location"
 #: src/profiles/core/catalog.json:7
 msgctxt "Profiles|Core|Catalog"
 msgid "Location"
-msgstr ""
+msgstr "Hely"
 
 #. Default: "Location in the navigation structure"
 #: src/profiles/core/catalog.json:21
 msgctxt "Profiles|Core|Catalog"
 msgid "Location in the navigation structure"
-msgstr ""
+msgstr "Hely a navigációs struktúrában"
 
 #. Default: "Location in the site structure"
 #: src/profiles/core/catalog.json:15
 msgctxt "Profiles|Core|Catalog"
 msgid "Location in the site structure"
-msgstr ""
+msgstr "Hely az oldal struktúrájában"
 
 #. Default: "Log in"
 #: src/profiles/core/actions.json:93
 msgctxt "Profiles|Core|Actions"
 msgid "Log in"
-msgstr ""
+msgstr "Bejelentkezés"
 
 #. Default: "Log out"
 #: src/profiles/core/actions.json:98
 msgctxt "Profiles|Core|Actions"
 msgid "Log out"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #. Default: "Login"
 #: src/profiles/core/permissions.json:14
 msgctxt "Profiles|Core|Permissions"
 msgid "Login"
-msgstr ""
+msgstr "Bejelentkezés"
 
 #. Default: "Login and password must be provided in body."
 #: src/routes/authentication/authentication.js:28
 msgctxt "Routes|Authentication"
 msgid "Login and password must be provided in body."
-msgstr ""
+msgstr "A bejelentkezési nevet és a jelszót meg kell adni a törzsben."
 
 #. Default: "Logout"
 #: src/profiles/core/permissions.json:18
 msgctxt "Profiles|Core|Permissions"
 msgid "Logout"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #. Default: "Mail"
 #: src/profiles/core/controlpanels/mail.json:3
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Mail"
-msgstr ""
+msgstr "Levél"
 
 #. Default: "Manage Preferences"
 #: src/profiles/core/permissions.json:22
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Preferences"
-msgstr ""
+msgstr "Beállítások kezelése"
 
 #. Default: "Manage Site"
 #: src/profiles/core/permissions.json:30
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Site"
-msgstr ""
+msgstr "Webhely kezelése"
 
 #. Default: "Manage Users"
 #: src/profiles/core/permissions.json:26
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Users"
-msgstr ""
+msgstr "Felhasználók kezelése"
 
 #. Default: "Matches all of"
 #: src/profiles/core/catalog.json:293
 msgctxt "Profiles|Core|Catalog"
 msgid "Matches all of"
-msgstr ""
+msgstr "Mindegyiknek megfelel"
 
 #. Default: "Matches any of"
 #: src/profiles/core/catalog.json:299
@@ -831,56 +834,56 @@ msgstr ""
 #: src/profiles/core/catalog.json:453
 msgctxt "Profiles|Core|Catalog"
 msgid "Matches any of"
-msgstr ""
+msgstr "Bármelyiknek megfelel"
 
 #. Default: "Missing credentials"
 #: src/routes/authentication/authentication.js:27
 msgctxt "Routes|Authentication"
 msgid "Missing credentials"
-msgstr ""
+msgstr "Hiányzó hitelesítő adatok"
 
 #. Default: "Modification date"
 #: src/profiles/core/catalog.json:490
 msgctxt "Profiles|Core|Catalog"
 msgid "Modification date"
-msgstr ""
+msgstr "Módosítás dátuma"
 
 #. Default: "Modify"
 #: src/profiles/core/permissions.json:34
 msgctxt "Profiles|Core|Permissions"
 msgid "Modify"
-msgstr ""
+msgstr "Módosít"
 
 #. Default: "Multilingual"
 #: src/profiles/core/controlpanels/language.json:41
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Multilingual"
-msgstr ""
+msgstr "Többnyelvű"
 
 #. Default: "Navigation"
 #: src/profiles/core/controlpanels/navigation.json:3
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Navigation"
-msgstr ""
+msgstr "Navigáció"
 
 #. Default: "Navigation path"
 #: src/profiles/core/catalog.json:20
 msgctxt "Profiles|Core|Catalog"
 msgid "Navigation path"
-msgstr ""
+msgstr "Navigációs útvonal"
 
 #. Default: "No"
 #: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
 msgctxt "Profiles|Core|Catalog"
 msgid "No"
-msgstr ""
+msgstr "Nem"
 
 #. Default: "Not allowed"
 #: src/routes/lock/lock.js:158
 msgctxt "Routes|Lock"
 msgid "Not allowed"
-msgstr ""
+msgstr "Nem engedélyezett"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
@@ -891,51 +894,51 @@ msgstr ""
 #: src/routes/controlpanels/controlpanels.js:77
 msgctxt "Routes|Vocabularies"
 msgid "Not found."
-msgstr ""
+msgstr "Nem található."
 
 #. Default: "Order in folder"
 #: src/profiles/core/catalog.json:50
 msgctxt "Profiles|Core|Catalog"
 msgid "Order in folder"
-msgstr ""
+msgstr "Sorrend a mappában"
 
 #. Default: "Owner"
 #: src/profiles/core/roles.json:16
 msgctxt "Profiles|Core|Roles"
 msgid "Owner"
-msgstr ""
+msgstr "Tulajdonos"
 
 #. Default: "Ownership"
 #: src/profiles/core/behaviors/ownership.json:3
 #: src/profiles/core/behaviors/ownership.json:10
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Ownership"
-msgstr ""
+msgstr "Tulajdonjog"
 
 #. Default: "Page"
 #: src/profiles/core/types/page.json:3
 msgctxt "Profiles|Core|Types|Page"
 msgid "Page"
-msgstr ""
+msgstr "Oldal"
 
 #. Default: "Password reset request"
 #: src/routes/users/users.js:86
 #: src/routes/users/users.js:192
 msgctxt "Routes|Users"
 msgid "Password reset request"
-msgstr ""
+msgstr "Jelszó visszaállítási kérelem"
 
 #. Default: "Paste"
 #: src/profiles/core/actions.json:49
 msgctxt "Profiles|Core|Actions"
 msgid "Paste"
-msgstr ""
+msgstr "Beillesztés"
 
 #. Default: "Pending review"
 #: src/profiles/core/workflows.json:22
 msgctxt "Profiles|Core|Workflows"
 msgid "Pending review"
-msgstr ""
+msgstr "Ellenőrzésre vár"
 
 #. Default: "Please enter the number in days."
 #: src/profiles/core/catalog.json:125
@@ -952,7 +955,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:771
 msgctxt "Profiles|Core|Catalog"
 msgid "Please enter the number in days."
-msgstr ""
+msgstr "Kérjük, adja meg a napok számát."
 
 #. Default: "Please use YYYY/MM/DD."
 #: src/profiles/core/catalog.json:113
@@ -975,402 +978,402 @@ msgstr ""
 #: src/profiles/core/catalog.json:765
 msgctxt "Profiles|Core|Catalog"
 msgid "Please use YYYY/MM/DD."
-msgstr ""
+msgstr "Kérjük, használja az ÉÉÉÉ/HH/NN formátumot."
 
 #. Default: "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
 #: src/profiles/core/controlpanels/mail.json:26
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
-msgstr ""
+msgstr "A Plone e-maileket generál ezt a címet használva visszatérési címként. Ez szolgál célcímként az egész webhelyre kiterjedő kapcsolatfelvételi űrlaphoz és a 'Teszt e-mail küldése' funkcióhoz is."
 
 #. Default: "Plone generates e-mail using this name as the e-mail sender."
 #: src/profiles/core/controlpanels/mail.json:31
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Plone generates e-mail using this name as the e-mail sender."
-msgstr ""
+msgstr "A Plone e-maileket generál ezt a nevet használva e-mail feladóként."
 
 #. Default: "Preferences"
 #: src/profiles/core/actions.json:83
 msgctxt "Profiles|Core|Actions"
 msgid "Preferences"
-msgstr ""
+msgstr "Beállítások"
 
 #. Default: "Preview Image Link"
 #: src/profiles/core/behaviors/preview_image_link.json:3
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview Image Link"
-msgstr ""
+msgstr "Előnézeti kép hivatkozása"
 
 #. Default: "Preview image"
 #: src/profiles/core/behaviors/preview_image_link.json:15
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview image"
-msgstr ""
+msgstr "Előnézeti kép"
 
 #. Default: "Preview image caption"
 #: src/profiles/core/behaviors/preview_image_link.json:23
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview image caption"
-msgstr ""
+msgstr "Előnézeti kép felirata"
 
 #. Default: "Private"
 #: src/profiles/core/workflows.json:12
 msgctxt "Profiles|Core|Workflows"
 msgid "Private"
-msgstr ""
+msgstr "Privát"
 
 #. Default: "Prompt"
 #: src/profiles/ai/controlpanels/ai.json:18
 #: src/profiles/ai/controlpanels/ai.json:37
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Prompt"
-msgstr ""
+msgstr "Prompt"
 
 #. Default: "Prompt is a required field."
 #: src/routes/ai/ai.js:50
 #: src/routes/ai/ai.js:98
 msgctxt "Routes|Ai"
 msgid "Prompt is a required field."
-msgstr ""
+msgstr "A prompt kötelező mező."
 
 #. Default: "Prompts"
 #: src/profiles/ai/controlpanels/ai.json:15
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Prompts"
-msgstr ""
+msgstr "Promptok"
 
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
 msgctxt "Profiles|Core|Workflows"
 msgid "Publish"
-msgstr ""
+msgstr "Közzététel"
 
 #. Default: "Published"
 #: src/profiles/core/workflows.json:33
 msgctxt "Profiles|Core|Workflows"
 msgid "Published"
-msgstr ""
+msgstr "Közzétéve"
 
 #. Default: "Publisher"
 #: src/profiles/core/behaviors/ownership.json:16
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Publisher"
-msgstr ""
+msgstr "Kiadó"
 
 #. Default: "Publishing Date"
 #: src/profiles/core/behaviors/dates.json:16
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Publishing Date"
-msgstr ""
+msgstr "Közzététel dátuma"
 
 #. Default: "Reader"
 #: src/profiles/core/roles.json:21
 msgctxt "Profiles|Core|Roles"
 msgid "Reader"
-msgstr ""
+msgstr "Olvasó"
 
 #. Default: "Register"
 #: src/profiles/core/permissions.json:38
 #: src/profiles/core/actions.json:103
 msgctxt "Profiles|Core|Permissions"
 msgid "Register"
-msgstr ""
+msgstr "Regisztráció"
 
 #. Default: "Related"
 #: src/profiles/core/behaviors/categorization.json:34
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related"
-msgstr ""
+msgstr "Kapcsolódó"
 
 #. Default: "Related Items"
 #: src/profiles/core/behaviors/categorization.json:42
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related Items"
-msgstr ""
+msgstr "Kapcsolódó elemek"
 
 #. Default: "Related To"
 #: src/profiles/core/catalog.json:321
 msgctxt "Profiles|Core|Catalog"
 msgid "Related To"
-msgstr ""
+msgstr "Kapcsolódik"
 
 #. Default: "Related resources."
 #: src/profiles/core/behaviors/categorization.json:31
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related resources."
-msgstr ""
+msgstr "Kapcsolódó források."
 
 #. Default: "Relative path"
 #: src/profiles/core/catalog.json:26
 msgctxt "Profiles|Core|Catalog"
 msgid "Relative path"
-msgstr ""
+msgstr "Relatív útvonal"
 
 #. Default: "Rename"
 #: src/profiles/core/actions.json:59
 msgctxt "Profiles|Core|Actions"
 msgid "Rename"
-msgstr ""
+msgstr "Átnevezés"
 
 #. Default: "Required field(s) missing."
 #: src/routes/content/content.js:416
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
-msgstr ""
+msgstr "A kötelező mezők hiányoznak."
 
 #. Default: "Retract"
 #: src/profiles/core/workflows.json:57
 msgctxt "Profiles|Core|Workflows"
 msgid "Retract"
-msgstr ""
+msgstr "Visszavonás"
 
 #. Default: "Review"
 #: src/profiles/core/permissions.json:42
 msgctxt "Profiles|Core|Permissions"
 msgid "Review"
-msgstr ""
+msgstr "Ellenőrzés"
 
 #. Default: "Review state"
 #: src/profiles/core/catalog.json:446
 msgctxt "Profiles|Core|Catalog"
 msgid "Review state"
-msgstr ""
+msgstr "Ellenőrzés állapota"
 
 #. Default: "Reviewer"
 #: src/profiles/core/roles.json:36
 msgctxt "Profiles|Core|Roles"
 msgid "Reviewer"
-msgstr ""
+msgstr "Ellenőr"
 
 #. Default: "Rights"
 #: src/profiles/core/behaviors/ownership.json:21
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Rights"
-msgstr ""
+msgstr "Jogok"
 
 #. Default: "Robots.txt"
 #: src/profiles/core/controlpanels/site.json:15
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Robots.txt"
-msgstr ""
+msgstr "Robots.txt"
 
 #. Default: "Rules"
 #: src/profiles/core/actions.json:32
 msgctxt "Profiles|Core|Actions"
 msgid "Rules"
-msgstr ""
+msgstr "Szabályok"
 
 #. Default: "SMTP port"
 #: src/profiles/core/controlpanels/mail.json:47
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP port"
-msgstr ""
+msgstr "SMTP port"
 
 #. Default: "SMTP server"
 #: src/profiles/core/controlpanels/mail.json:35
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP server"
-msgstr ""
+msgstr "SMTP szerver"
 
 #. Default: "Searchable text"
 #: src/profiles/core/catalog.json:246
 msgctxt "Profiles|Core|Catalog"
 msgid "Searchable text"
-msgstr ""
+msgstr "Kereshető szöveg"
 
 #. Default: "Secure"
 #: src/profiles/core/controlpanels/mail.json:63
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Secure"
-msgstr ""
+msgstr "Biztonságos"
 
 #. Default: "Select an image that will be used in listing and teaser blocks."
 #: src/profiles/core/behaviors/preview_image_link.json:16
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Select an image that will be used in listing and teaser blocks."
-msgstr ""
+msgstr "Válasszon ki egy képet, amely a listázó és kedvcsináló blokkokban lesz használva."
 
 #. Default: "Send back"
 #: src/profiles/core/workflows.json:52
 msgctxt "Profiles|Core|Workflows"
 msgid "Send back"
-msgstr ""
+msgstr "Visszaküldés"
 
 #. Default: "Settings"
 #: src/profiles/core/behaviors/short_name.json:10
 #: src/profiles/core/behaviors/exclude_from_nav.json:10
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Settings"
-msgstr ""
+msgstr "Beállítások"
 
 #. Default: "Sharing"
 #: src/profiles/core/actions.json:27
 msgctxt "Profiles|Core|Actions"
 msgid "Sharing"
-msgstr ""
+msgstr "Megosztás"
 
 #. Default: "Short name"
 #: src/profiles/core/behaviors/short_name.json:3
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Short name"
-msgstr ""
+msgstr "Rövid név"
 
 #. Default: "Short name (id)"
 #: src/profiles/core/catalog.json:377
 msgctxt "Profiles|Core|Catalog"
 msgid "Short name (id)"
-msgstr ""
+msgstr "Rövid név (id)"
 
 #. Default: "Simple Publication Workflow"
 #: src/profiles/core/workflows.json:6
 msgctxt "Profiles|Core|Workflows"
 msgid "Simple Publication Workflow"
-msgstr ""
+msgstr "Egyszerű közzétételi munkafolyamat"
 
 #. Default: "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 #: src/profiles/core/workflows.json:7
 msgctxt "Profiles|Core|Workflows"
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
-msgstr ""
+msgstr "Egyszerű munkafolyamat, amely hasznos alapvető webhelyek számára. A dolgok privátként indulnak, és vagy benyújthatók ellenőrzésre, vagy közvetlenül közzétehetők. A tartalomelem létrehozója szerkesztheti az elemet még a közzététel után is."
 
 #. Default: "Site"
 #: src/profiles/core/types/site.json:3
 #: src/profiles/core/controlpanels/site.json:3
 msgctxt "Profiles|Core|Types|Site"
 msgid "Site"
-msgstr ""
+msgstr "Webhely"
 
 #. Default: "Site 'From' address"
 #: src/profiles/core/controlpanels/mail.json:25
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' address"
-msgstr ""
+msgstr "Webhely 'Feladó' címe"
 
 #. Default: "Site 'From' name"
 #: src/profiles/core/controlpanels/mail.json:30
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' name"
-msgstr ""
+msgstr "Webhely 'Feladó' neve"
 
 #. Default: "Site Logo"
 #: src/profiles/core/controlpanels/site.json:22
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Site Logo"
-msgstr ""
+msgstr "Webhely logója"
 
 #. Default: "Site Setup"
 #: src/profiles/core/actions.json:88
 msgctxt "Profiles|Core|Actions"
 msgid "Site Setup"
-msgstr ""
+msgstr "Webhely beállítása"
 
 #. Default: "Site language"
 #: src/profiles/core/controlpanels/language.json:34
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Site language"
-msgstr ""
+msgstr "Webhely nyelve"
 
 #. Default: "Site title"
 #: src/profiles/core/controlpanels/site.json:28
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Site title"
-msgstr ""
+msgstr "Webhely címe"
 
 #. Default: "Sitemap"
 #: src/profiles/core/actions.json:66
 msgctxt "Profiles|Core|Actions"
 msgid "Sitemap"
-msgstr ""
+msgstr "Oldaltérkép"
 
 #. Default: "Sortable Title"
 #: src/profiles/core/catalog.json:465
 msgctxt "Profiles|Core|Catalog"
 msgid "Sortable Title"
-msgstr ""
+msgstr "Rendezhető cím"
 
 #. Default: "Source"
 #: src/profiles/core/behaviors/ownership.json:26
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Source"
-msgstr ""
+msgstr "Forrás"
 
 #. Default: "Submit"
 #: src/profiles/core/permissions.json:46
 msgctxt "Profiles|Core|Permissions"
 msgid "Submit"
-msgstr ""
+msgstr "Beküldés"
 
 #. Default: "Submit for publication"
 #: src/profiles/core/workflows.json:62
 msgctxt "Profiles|Core|Workflows"
 msgid "Submit for publication"
-msgstr ""
+msgstr "Beküldés közzétételre"
 
 #. Default: "System group"
 #: src/routes/groups/groups.js:110
 msgctxt "Routes|Groups"
 msgid "System group"
-msgstr ""
+msgstr "Rendszercsoport"
 
 #. Default: "System users"
 #: src/routes/users/users.js:243
 msgctxt "Routes|Users"
 msgid "System users"
-msgstr ""
+msgstr "Rendszerfelhasználók"
 
 #. Default: "Tag"
 #: src/profiles/core/catalog.json:284
 msgctxt "Profiles|Core|Catalog"
 msgid "Tag"
-msgstr ""
+msgstr "Címke"
 
 #. Default: "Tags"
 #: src/profiles/core/behaviors/categorization.json:50
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Tags"
-msgstr ""
+msgstr "Címkék"
 
 #. Default: "Tags are used for organization of content"
 #: src/profiles/core/catalog.json:285
 msgctxt "Profiles|Core|Catalog"
 msgid "Tags are used for organization of content"
-msgstr ""
+msgstr "A címkéket a tartalom rendszerezésére használják"
 
 #. Default: "Text search of an item's contents"
 #: src/profiles/core/catalog.json:247
 msgctxt "Profiles|Core|Catalog"
 msgid "Text search of an item's contents"
-msgstr ""
+msgstr "Szöveges keresés az elem tartalmában"
 
 #. Default: "Text search of an item's title"
 #: src/profiles/core/catalog.json:266
 msgctxt "Profiles|Core|Catalog"
 msgid "Text search of an item's title"
-msgstr ""
+msgstr "Szöveges keresés az elem címében"
 
 #. Default: "The JSON representation of the object blocks information. Must be a JSON object."
 #: src/profiles/core/behaviors/blocks.json:16
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "The JSON representation of the object blocks information. Must be a JSON object."
-msgstr ""
+msgstr "Az objektumblokkok információinak JSON reprezentációja. JSON objektumnak kell lennie."
 
 #. Default: "The JSON representation of the object blocks layout. Must be a JSON array."
 #: src/profiles/core/behaviors/blocks.json:25
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
-msgstr ""
+msgstr "Az objektumblokkok elrendezésének JSON reprezentációja. JSON tömbnek kell lennie."
 
 #. Default: "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 #: src/profiles/core/controlpanels/mail.json:36
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
-msgstr ""
+msgstr "A helyi SMTP (kimenő e-mail) szerver címe. Általában 'localhost', kivéve, ha külső szervert használ e-mailek küldésére."
 
 #. Default: "The content types that should be shown in the navigation and site map."
 #: src/profiles/core/controlpanels/navigation.json:17
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "The content types that should be shown in the navigation and site map."
-msgstr ""
+msgstr "Azok a tartalomtípusok, amelyeknek meg kell jelenniük a navigációban és az oldaltérképen."
 
 #. Default: "The current day"
 #: src/profiles/core/catalog.json:143
@@ -1381,161 +1384,159 @@ msgstr ""
 #: src/profiles/core/catalog.json:777
 msgctxt "Profiles|Core|Catalog"
 msgid "The current day"
-msgstr ""
+msgstr "Az aktuális nap"
 
 #. Default: "The date an item was created"
 #: src/profiles/core/catalog.json:643
 msgctxt "Profiles|Core|Catalog"
 msgid "The date an item was created"
-msgstr ""
+msgstr "Az elem létrehozásának dátuma"
 
 #. Default: "The end date and time of an event"
 #: src/profiles/core/catalog.json:155
 msgctxt "Profiles|Core|Catalog"
 msgid "The end date and time of an event"
-msgstr ""
+msgstr "Az esemény befejezési dátuma és ideje"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:87
 #: src/routes/users/users.js:193
 msgctxt "Routes|Users"
-msgid "The following link takes you to a page where you can reset your password: {url}
-
-(This link will expire in 7 days)"
-msgstr ""
+msgid "The following link takes you to a page where you can reset your password: {url}"
+msgstr "nem definiált"
 
 #. Default: "The item's title, transformed for sorting"
 #: src/profiles/core/catalog.json:466
 msgctxt "Profiles|Core|Catalog"
 msgid "The item's title, transformed for sorting"
-msgstr ""
+msgstr "Az elem címe, rendezéshez átalakítva"
 
 #. Default: "The language of this item."
 #: src/profiles/core/behaviors/categorization.json:20
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The language of this item."
-msgstr ""
+msgstr "Az elem nyelve."
 
 #. Default: "The language used for the content and the UI of this site."
 #: src/profiles/core/controlpanels/language.json:33
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "The language used for the content and the UI of this site."
-msgstr ""
+msgstr "A webhely tartalmához és felhasználói felületéhez használt nyelv."
 
 #. Default: "The languages in which the site should be translatable."
 #: src/profiles/core/controlpanels/language.json:17
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "The languages in which the site should be translatable."
-msgstr ""
+msgstr "Azok a nyelvek, amelyekre a webhelynek fordíthatónak kell lennie."
 
 #. Default: "The location of an item"
 #: src/profiles/core/catalog.json:8
 msgctxt "Profiles|Core|Catalog"
 msgid "The location of an item"
-msgstr ""
+msgstr "Az elem helye"
 
 #. Default: "The order of an item in its parent folder"
 #: src/profiles/core/catalog.json:51
 msgctxt "Profiles|Core|Catalog"
 msgid "The order of an item in its parent folder"
-msgstr ""
+msgstr "Az elem sorrendje a szülőmappájában"
 
 #. Default: "The password for the ESMTP user account."
 #: src/profiles/core/controlpanels/mail.json:42
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The password for the ESMTP user account."
-msgstr ""
+msgstr "Az ESMTP felhasználói fiók jelszava."
 
 #. Default: "The person that created an item"
 #: src/profiles/core/catalog.json:397
 msgctxt "Profiles|Core|Catalog"
 msgid "The person that created an item"
-msgstr ""
+msgstr "Az elem létrehozója"
 
 #. Default: "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 #: src/profiles/core/controlpanels/mail.json:48
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
-msgstr ""
+msgstr "A helyi SMTP (kimenő e-mail) szerver portja. Általában '25'."
 
 #. Default: "The short name of an item (used in the url)"
 #: src/profiles/core/catalog.json:378
 msgctxt "Profiles|Core|Catalog"
 msgid "The short name of an item (used in the url)"
-msgstr ""
+msgstr "Az elem rövid neve (az URL-ben használatos)"
 
 #. Default: "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
 #: src/profiles/core/behaviors/categorization.json:15
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
-msgstr ""
+msgstr "Az elem térbeli vagy időbeli témája, az elem térbeli alkalmazhatósága, vagy az a joghatóság, amely alatt ez az elem releváns."
 
 #. Default: "The start date and time of an event"
 #: src/profiles/core/catalog.json:82
 msgctxt "Profiles|Core|Catalog"
 msgid "The start date and time of an event"
-msgstr ""
+msgstr "Az esemény kezdési dátuma és ideje"
 
 #. Default: "The time and date an item was expired"
 #: src/profiles/core/catalog.json:570
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was expired"
-msgstr ""
+msgstr "Az elem lejáratának ideje és dátuma"
 
 #. Default: "The time and date an item was first published"
 #: src/profiles/core/catalog.json:716
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was first published"
-msgstr ""
+msgstr "Az elem első közzétételének ideje és dátuma"
 
 #. Default: "The time and date an item was last modified"
 #: src/profiles/core/catalog.json:491
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was last modified"
-msgstr ""
+msgstr "Az elem utolsó módosításának ideje és dátuma"
 
 #. Default: "The topic of this item."
 #: src/profiles/core/behaviors/categorization.json:48
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The topic of this item."
-msgstr ""
+msgstr "Az elem témája."
 
 #. Default: "The user viewing the querystring results"
 #: src/profiles/core/catalog.json:410
 msgctxt "Profiles|Core|Catalog"
 msgid "The user viewing the querystring results"
-msgstr ""
+msgstr "A lekérdezési karakterlánc eredményeit megtekintő felhasználó"
 
 #. Default: "This document is already locked by another user."
 #: src/routes/lock/lock.js:53
 #: src/routes/lock/lock.js:105
 msgctxt "Routes|Lock"
 msgid "This document is already locked by another user."
-msgstr ""
+msgstr "Ezt a dokumentumot már zárolta egy másik felhasználó."
 
 #. Default: "This is the contents of the robots.txt file."
 #: src/profiles/core/controlpanels/site.json:16
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This is the contents of the robots.txt file."
-msgstr ""
+msgstr "Ez a robots.txt fájl tartalma."
 
 #. Default: "This name will be displayed in the URL."
 #: src/profiles/core/behaviors/short_name.json:15
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "This name will be displayed in the URL."
-msgstr ""
+msgstr "Ez a név jelenik meg az URL-ben."
 
 #. Default: "This shows a custom logo on your site."
 #: src/profiles/core/controlpanels/site.json:21
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This shows a custom logo on your site."
-msgstr ""
+msgstr "Ez egy egyedi logót jelenít meg a webhelyén."
 
 #. Default: "This shows up in the title bar of browsers and in syndication feeds."
 #: src/profiles/core/controlpanels/site.json:29
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This shows up in the title bar of browsers and in syndication feeds."
-msgstr ""
+msgstr "Ez a böngészők címsorában és a szindikációs hírcsatornákban jelenik meg."
 
 #. Default: "Tip: you can use * to autocomplete."
 #: src/profiles/core/catalog.json:291
@@ -1547,7 +1548,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:479
 msgctxt "Profiles|Core|Catalog"
 msgid "Tip: you can use * to autocomplete."
-msgstr ""
+msgstr "Tipp: használhatja a * karaktert az automatikus kiegészítéshez."
 
 #. Default: "Title"
 #: src/profiles/core/catalog.json:265
@@ -1555,13 +1556,13 @@ msgstr ""
 #: src/profiles/ai/controlpanels/ai.json:29
 msgctxt "Profiles|Core|Catalog"
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 #. Default: "To, from and message are required fields."
 #: src/routes/email/email.js:22
 msgctxt "Routes|Email"
 msgid "To, from and message are required fields."
-msgstr ""
+msgstr "A Címzett, a Feladó és az Üzenet kötelező mezők."
 
 #. Default: "Today"
 #: src/profiles/core/catalog.json:142
@@ -1572,7 +1573,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:776
 msgctxt "Profiles|Core|Catalog"
 msgid "Today"
-msgstr ""
+msgstr "Ma"
 
 #. Default: "Transaction error."
 #: src/client.js:63
@@ -1580,86 +1581,86 @@ msgstr ""
 #: src/app.js:131
 msgctxt "Client"
 msgid "Transaction error."
-msgstr ""
+msgstr "Tranzakciós hiba."
 
 #. Default: "Type"
 #: src/profiles/core/catalog.json:427
 msgctxt "Profiles|Core|Catalog"
 msgid "Type"
-msgstr ""
+msgstr "Típus"
 
 #. Default: "Type Name"
 #: src/models/type/type.js:155
 msgctxt "Models|Type"
 msgid "Type Name"
-msgstr ""
+msgstr "Típusnév"
 
 #. Default: "Type of the current document is not found."
 #: src/helpers/handler/handler.js:69
 msgctxt "Helpers|Handler"
 msgid "Type of the current document is not found."
-msgstr ""
+msgstr "Az aktuális dokumentum típusa nem található."
 
 #. Default: "Use '../' to navigate to parent objects."
 #: src/profiles/core/catalog.json:27
 msgctxt "Profiles|Core|Catalog"
 msgid "Use '../' to navigate to parent objects."
-msgstr ""
+msgstr "Használja a '../' karakterláncot a szülőobjektumokhoz való navigáláshoz."
 
 #. Default: "User doesn't exist or invalid credentials."
 #: src/routes/users/users.js:48
 msgctxt "Routes|Users"
 msgid "User doesn't exist or invalid credentials."
-msgstr ""
+msgstr "A felhasználó nem létezik, vagy érvénytelen hitelesítő adatok."
 
 #. Default: "User is not logged in."
 #: src/routes/authentication/authentication.js:101
 msgctxt "Routes|Authentication"
 msgid "User is not logged in."
-msgstr ""
+msgstr "A felhasználó nincs bejelentkezve."
 
 #. Default: "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 #: src/profiles/core/controlpanels/mail.json:54
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
-msgstr ""
+msgstr "Felhasználónév az e-mail szerver hitelesítéséhez. Nem szükséges, kivéve, ha ESMTP-t használ."
 
 #. Default: "Versioning"
 #: src/profiles/core/behaviors/versioning.json:3
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Versioning"
-msgstr ""
+msgstr "Verziókezelés"
 
 #. Default: "Versioning support"
 #: src/profiles/core/behaviors/versioning.json:4
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Versioning support"
-msgstr ""
+msgstr "Verziókezelés támogatása"
 
 #. Default: "View"
 #: src/profiles/core/permissions.json:6
 #: src/profiles/core/actions.json:7
 msgctxt "Profiles|Core|Permissions"
 msgid "View"
-msgstr ""
+msgstr "Nézet"
 
 #. Default: "Visible to everyone, editable by the owner."
 #: src/profiles/core/workflows.json:34
 msgctxt "Profiles|Core|Workflows"
 msgid "Visible to everyone, editable by the owner."
-msgstr ""
+msgstr "Mindenki számára látható, a tulajdonos szerkesztheti."
 
 #. Default: "Waiting to be reviewed, not editable by the owner."
 #: src/profiles/core/workflows.json:23
 msgctxt "Profiles|Core|Workflows"
 msgid "Waiting to be reviewed, not editable by the owner."
-msgstr ""
+msgstr "Ellenőrzésre vár, a tulajdonos nem szerkesztheti."
 
 #. Default: "When this date is reached, the content will no longer be visible in listings and searches."
 #: src/profiles/core/behaviors/dates.json:21
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
-msgstr ""
+msgstr "Amikor ez a dátum elérkezik, a tartalom többé nem lesz látható a listákban és a keresésekben."
 
 #. Default: "Within last"
 #: src/profiles/core/catalog.json:124
@@ -1670,7 +1671,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:758
 msgctxt "Profiles|Core|Catalog"
 msgid "Within last"
-msgstr ""
+msgstr "Az elmúlt ... belül"
 
 #. Default: "Within next"
 #: src/profiles/core/catalog.json:136
@@ -1681,62 +1682,62 @@ msgstr ""
 #: src/profiles/core/catalog.json:770
 msgctxt "Profiles|Core|Catalog"
 msgid "Within next"
-msgstr ""
+msgstr "A következő ... belül"
 
 #. Default: "Wrong login and/or password."
 #: src/routes/authentication/authentication.js:49
 #: src/routes/authentication/authentication.js:63
 msgctxt "Routes|Authentication"
 msgid "Wrong login and/or password."
-msgstr ""
+msgstr "Hibás bejelentkezés és/vagy jelszó."
 
 #. Default: "Yes"
 #: src/profiles/core/catalog.json:353
 #: src/profiles/core/vocabularies/boolean.json:5
 msgctxt "Profiles|Core|Catalog"
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
 #. Default: "You are not authorization to access this resource."
 #: src/routes/workflow/workflow.js:34
 #: src/helpers/handler/handler.js:91
 msgctxt "Routes|Workflow"
 msgid "You are not authorization to access this resource."
-msgstr ""
+msgstr "Nincs jogosultsága az erőforrás eléréséhez."
 
 #. Default: "You can't delete system groups."
 #: src/routes/groups/groups.js:109
 msgctxt "Routes|Groups"
 msgid "You can't delete system groups."
-msgstr ""
+msgstr "Nem törölhet rendszercsoportokat."
 
 #. Default: "You can't delete system users."
 #: src/routes/users/users.js:242
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
-msgstr ""
+msgstr "Nem törölhet rendszerfelhasználókat."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
 #: src/routes/content/content.js:579
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
-msgstr ""
+msgstr "Nincs jogosultsága a dokumentum mentésére, mert egy másik felhasználó zárolta."
 
 #. Default: "You don't have permission to unlock this document."
 #: src/routes/lock/lock.js:155
 msgctxt "Routes|Lock"
 msgid "You don't have permission to unlock this document."
-msgstr ""
+msgstr "Nincs jogosultsága a dokumentum feloldására."
 
 #. Default: "You don't have permissions to add a user."
 #: src/routes/users/users.js:148
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
-msgstr ""
+msgstr "Nincs jogosultsága felhasználó hozzáadására."
 
 #. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3
 msgctxt "Profiles|Core|Vocabularies|Boolean"
 msgid "boolean"
-msgstr ""
+msgstr "logikai"

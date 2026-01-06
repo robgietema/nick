@@ -1,15 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-01-06T11:43:11.573Z\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-06T11:50:40.334Z\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Rob Gietema\n"
+"Language: \n"
 "Language-Team: Nick\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"MIME-Version: 1.0\n"
+"Language-Code: ko\n"
+"Language-Name: ko\n"
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
@@ -17,25 +20,25 @@ msgstr ""
 #: src/profiles/core/behaviors/basic.json:15
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "A description of this item."
-msgstr ""
+msgstr "이 항목에 대한 설명입니다."
 
 #. Default: "A name given to this item."
 #: src/profiles/core/behaviors/basic.json:21
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "A name given to this item."
-msgstr ""
+msgstr "이 항목에 부여된 이름입니다."
 
 #. Default: "A related item from which this item is derived."
 #: src/profiles/core/behaviors/ownership.json:25
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "A related item from which this item is derived."
-msgstr ""
+msgstr "이 항목이 파생된 관련 항목입니다."
 
 #. Default: "AI"
 #: src/profiles/ai/controlpanels/ai.json:3
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "AI"
-msgstr ""
+msgstr "AI"
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:16
@@ -43,86 +46,86 @@ msgstr ""
 #: src/routes/ai/ai.js:108
 msgctxt "Routes|Related"
 msgid "AI is disabled."
-msgstr ""
+msgstr "AI가 비활성화되었습니다."
 
 #. Default: "Absolute path"
 #: src/profiles/core/catalog.json:14
 msgctxt "Profiles|Core|Catalog"
 msgid "Absolute path"
-msgstr ""
+msgstr "절대 경로"
 
 #. Default: "Accessibility"
 #: src/profiles/core/actions.json:71
 msgctxt "Profiles|Core|Actions"
 msgid "Accessibility"
-msgstr ""
+msgstr "접근성"
 
 #. Default: "Add"
 #: src/profiles/core/permissions.json:10
 msgctxt "Profiles|Core|Permissions"
 msgid "Add"
-msgstr ""
+msgstr "추가"
 
 #. Default: "Add additional items to the navigation, one per line. In the format 'title|description|url'."
 #: src/profiles/core/controlpanels/navigation.json:33
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Add additional items to the navigation, one per line. In the format 'title|description|url'."
-msgstr ""
+msgstr "탐색에 추가 항목을 한 줄에 하나씩 추가합니다. 형식은 'title|description|url'입니다."
 
 #. Default: "Add prompt"
 #: src/profiles/ai/controlpanels/ai.json:19
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Add prompt"
-msgstr ""
+msgstr "프롬프트 추가"
 
 #. Default: "Additional items"
 #: src/profiles/core/controlpanels/navigation.json:32
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Additional items"
-msgstr ""
+msgstr "추가 항목"
 
 #. Default: "Adds effective and expiration dates."
 #: src/profiles/core/behaviors/dates.json:4
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Adds effective and expiration dates."
-msgstr ""
+msgstr "유효 및 만료 날짜를 추가합니다."
 
 #. Default: "Adds keywords and language fields."
 #: src/profiles/core/behaviors/categorization.json:4
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Adds keywords and language fields."
-msgstr ""
+msgstr "키워드 및 언어 필드를 추가합니다."
 
 #. Default: "Adds ownership and rights fields."
 #: src/profiles/core/behaviors/ownership.json:4
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Adds ownership and rights fields."
-msgstr ""
+msgstr "소유권 및 권한 필드를 추가합니다."
 
 #. Default: "Adds standard metadatafields"
 #: src/profiles/core/behaviors/dublin_core.json:4
 msgctxt "Profiles|Core|Behaviors|Dublin core"
 msgid "Adds standard metadatafields"
-msgstr ""
+msgstr "표준 메타데이터 필드를 추가합니다."
 
 #. Default: "Adds title and description fields."
 #: src/profiles/core/behaviors/basic.json:4
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "Adds title and description fields."
-msgstr ""
+msgstr "제목 및 설명 필드를 추가합니다."
 
 #. Default: "Administrator"
 #: src/profiles/core/roles.json:41
 msgctxt "Profiles|Core|Roles"
 msgid "Administrator"
-msgstr ""
+msgstr "관리자"
 
 #. Default: "Administrators"
 #: src/profiles/multilingualcontent/groups.json:6
 #: src/profiles/default/groups.json:6
 msgctxt "Profiles|Multilingualcontent|Groups"
 msgid "Administrators"
-msgstr ""
+msgstr "관리자들"
 
 #. Default: "After N days in the future"
 #: src/profiles/core/catalog.json:89
@@ -133,7 +136,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:723
 msgctxt "Profiles|Core|Catalog"
 msgid "After N days in the future"
-msgstr ""
+msgstr "미래의 N일 후"
 
 #. Default: "After date"
 #: src/profiles/core/catalog.json:118
@@ -144,7 +147,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:752
 msgctxt "Profiles|Core|Catalog"
 msgid "After date"
-msgstr ""
+msgstr "날짜 이후"
 
 #. Default: "After relative Date"
 #: src/profiles/core/catalog.json:88
@@ -155,7 +158,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:722
 msgctxt "Profiles|Core|Catalog"
 msgid "After relative Date"
-msgstr ""
+msgstr "상대 날짜 이후"
 
 #. Default: "After the current day"
 #: src/profiles/core/catalog.json:95
@@ -166,7 +169,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:729
 msgctxt "Profiles|Core|Catalog"
 msgid "After the current day"
-msgstr ""
+msgstr "현재 날짜 이후"
 
 #. Default: "After today"
 #: src/profiles/core/catalog.json:94
@@ -177,68 +180,68 @@ msgstr ""
 #: src/profiles/core/catalog.json:728
 msgctxt "Profiles|Core|Catalog"
 msgid "After today"
-msgstr ""
+msgstr "오늘 이후"
 
 #. Default: "Allowed Content Types"
 #: src/models/type/type.js:133
 msgctxt "Models|Type"
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "허용된 콘텐츠 유형"
 
 #. Default: "Already locked"
 #: src/routes/lock/lock.js:56
 #: src/routes/lock/lock.js:108
 msgctxt "Routes|Lock"
 msgid "Already locked"
-msgstr ""
+msgstr "이미 잠겨 있음"
 
 #. Default: "An entity responsible for making this item available."
 #: src/profiles/core/behaviors/ownership.json:15
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "An entity responsible for making this item available."
-msgstr ""
+msgstr "이 항목을 사용할 수 있게 하는 책임이 있는 개체입니다."
 
 #. Default: "An item's description"
 #: src/profiles/core/catalog.json:228
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's description"
-msgstr ""
+msgstr "항목 설명"
 
 #. Default: "An item's type (e.g. Event)"
 #: src/profiles/core/catalog.json:428
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's type (e.g. Event)"
-msgstr ""
+msgstr "항목 유형 (예: 이벤트)"
 
 #. Default: "An item's workflow state (e.g.published)"
 #: src/profiles/core/catalog.json:447
 msgctxt "Profiles|Core|Catalog"
 msgid "An item's workflow state (e.g.published)"
-msgstr ""
+msgstr "항목의 워크플로 상태 (예: 게시됨)"
 
 #. Default: "Anonymous"
 #: src/profiles/core/roles.json:6
 msgctxt "Profiles|Core|Roles"
 msgid "Anonymous"
-msgstr ""
+msgstr "익명"
 
 #. Default: "Authenticated"
 #: src/profiles/core/roles.json:11
 msgctxt "Profiles|Core|Roles"
 msgid "Authenticated"
-msgstr ""
+msgstr "인증됨"
 
 #. Default: "Available languages"
 #: src/profiles/core/controlpanels/language.json:27
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Available languages"
-msgstr ""
+msgstr "사용 가능한 언어"
 
 #. Default: "Basic metadata"
 #: src/profiles/core/behaviors/basic.json:3
 msgctxt "Profiles|Core|Behaviors|Basic"
 msgid "Basic metadata"
-msgstr ""
+msgstr "기본 메타데이터"
 
 #. Default: "Before N days in the past"
 #: src/profiles/core/catalog.json:101
@@ -249,7 +252,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:735
 msgctxt "Profiles|Core|Catalog"
 msgid "Before N days in the past"
-msgstr ""
+msgstr "과거 N일 이전"
 
 #. Default: "Before date"
 #: src/profiles/core/catalog.json:130
@@ -260,7 +263,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:764
 msgctxt "Profiles|Core|Catalog"
 msgid "Before date"
-msgstr ""
+msgstr "날짜 이전"
 
 #. Default: "Before relative Date"
 #: src/profiles/core/catalog.json:100
@@ -271,7 +274,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:734
 msgctxt "Profiles|Core|Catalog"
 msgid "Before relative Date"
-msgstr ""
+msgstr "상대 날짜 이전"
 
 #. Default: "Before the current day"
 #: src/profiles/core/catalog.json:107
@@ -282,7 +285,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:741
 msgctxt "Profiles|Core|Catalog"
 msgid "Before the current day"
-msgstr ""
+msgstr "현재 날짜 이전"
 
 #. Default: "Before today"
 #: src/profiles/core/catalog.json:106
@@ -293,13 +296,13 @@ msgstr ""
 #: src/profiles/core/catalog.json:740
 msgctxt "Profiles|Core|Catalog"
 msgid "Before today"
-msgstr ""
+msgstr "오늘 이전"
 
 #. Default: "Behaviors"
 #: src/models/type/type.js:116
 msgctxt "Models|Type"
 msgid "Behaviors"
-msgstr ""
+msgstr "동작"
 
 #. Default: "Between dates"
 #: src/profiles/core/catalog.json:112
@@ -310,45 +313,45 @@ msgstr ""
 #: src/profiles/core/catalog.json:746
 msgctxt "Profiles|Core|Catalog"
 msgid "Between dates"
-msgstr ""
+msgstr "날짜 사이"
 
 #. Default: "Blocks"
 #: src/profiles/core/behaviors/blocks.json:3
 #: src/profiles/core/behaviors/blocks.json:17
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Blocks"
-msgstr ""
+msgstr "블록"
 
 #. Default: "Blocks Layout"
 #: src/profiles/core/behaviors/blocks.json:26
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Blocks Layout"
-msgstr ""
+msgstr "블록 레이아웃"
 
 #. Default: "Can only be seen and edited by the owner."
 #: src/profiles/core/workflows.json:13
 msgctxt "Profiles|Core|Workflows"
 msgid "Can only be seen and edited by the owner."
-msgstr ""
+msgstr "소유자만 보고 편집할 수 있습니다."
 
 #. Default: "Categorization"
 #: src/profiles/core/behaviors/categorization.json:3
 #: src/profiles/core/behaviors/categorization.json:10
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Categorization"
-msgstr ""
+msgstr "분류"
 
 #. Default: "Change Note"
 #: src/profiles/core/behaviors/versioning.json:16
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Change Note"
-msgstr ""
+msgstr "변경 사항 메모"
 
 #. Default: "Contact"
 #: src/profiles/core/actions.json:76
 msgctxt "Profiles|Core|Actions"
 msgid "Contact"
-msgstr ""
+msgstr "연락처"
 
 #. Default: "Contains"
 #: src/profiles/core/catalog.json:234
@@ -357,81 +360,81 @@ msgstr ""
 #: src/profiles/core/catalog.json:472
 msgctxt "Profiles|Core|Catalog"
 msgid "Contains"
-msgstr ""
+msgstr "포함"
 
 #. Default: "Content"
 #: src/routes/controlpanels/controlpanels.js:67
 msgctxt "Routes|Controlpanels"
 msgid "Content"
-msgstr ""
+msgstr "콘텐츠"
 
 #. Default: "Content Types"
 #: src/routes/controlpanels/controlpanels.js:66
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels"
 msgid "Content Types"
-msgstr ""
+msgstr "콘텐츠 유형"
 
 #. Default: "Contents"
 #: src/profiles/core/actions.json:17
 msgctxt "Profiles|Core|Actions"
 msgid "Contents"
-msgstr ""
+msgstr "목차"
 
 #. Default: "Contributor"
 #: src/profiles/core/roles.json:26
 msgctxt "Profiles|Core|Roles"
 msgid "Contributor"
-msgstr ""
+msgstr "기여자"
 
 #. Default: "Copy"
 #: src/profiles/core/actions.json:44
 msgctxt "Profiles|Core|Actions"
 msgid "Copy"
-msgstr ""
+msgstr "복사"
 
 #. Default: "Coverage"
 #: src/profiles/core/behaviors/categorization.json:16
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Coverage"
-msgstr ""
+msgstr "범위"
 
 #. Default: "Creation date"
 #: src/profiles/core/catalog.json:642
 msgctxt "Profiles|Core|Catalog"
 msgid "Creation date"
-msgstr ""
+msgstr "생성 날짜"
 
 #. Default: "Creator"
 #: src/profiles/core/catalog.json:396
 msgctxt "Profiles|Core|Catalog"
 msgid "Creator"
-msgstr ""
+msgstr "작성자"
 
 #. Default: "Current logged in user"
 #: src/profiles/core/catalog.json:409
 msgctxt "Profiles|Core|Catalog"
 msgid "Current logged in user"
-msgstr ""
+msgstr "현재 로그인한 사용자"
 
 #. Default: "Cut"
 #: src/profiles/core/actions.json:39
 msgctxt "Profiles|Core|Actions"
 msgid "Cut"
-msgstr ""
+msgstr "잘라내기"
 
 #. Default: "Dates"
 #: src/profiles/core/behaviors/dates.json:3
 #: src/profiles/core/behaviors/dates.json:10
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Dates"
-msgstr ""
+msgstr "날짜"
 
 #. Default: "Debug"
 #: src/profiles/core/controlpanels/mail.json:58
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Debug"
-msgstr ""
+msgstr "디버그"
 
 #. Default: "Default"
 #: src/profiles/core/types/image.json:13
@@ -441,19 +444,19 @@ msgstr ""
 #: src/profiles/core/behaviors/basic.json:10
 msgctxt "Profiles|Core|Types|Image"
 msgid "Default"
-msgstr ""
+msgstr "기본값"
 
 #. Default: "Define custom prompts for the assistant."
 #: src/profiles/ai/controlpanels/ai.json:16
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Define custom prompts for the assistant."
-msgstr ""
+msgstr "어시스턴트에 대한 사용자 지정 프롬프트를 정의합니다."
 
 #. Default: "Delete"
 #: src/profiles/core/actions.json:54
 msgctxt "Profiles|Core|Actions"
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 #. Default: "Description"
 #: src/models/type/type.js:140
@@ -462,367 +465,367 @@ msgstr ""
 #: src/profiles/ai/controlpanels/ai.json:33
 msgctxt "Models|Type"
 msgid "Description"
-msgstr ""
+msgstr "설명"
 
 #. Default: "Displayed content types"
 #: src/profiles/core/controlpanels/navigation.json:27
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Displayed content types"
-msgstr ""
+msgstr "표시된 콘텐츠 유형"
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
 #: src/routes/content/content.js:582
 msgctxt "Routes|History"
 msgid "Document locked"
-msgstr ""
+msgstr "문서가 잠김"
 
 #. Default: "Dublin Core metadata"
 #: src/profiles/core/behaviors/dublin_core.json:3
 msgctxt "Profiles|Core|Behaviors|Dublin core"
 msgid "Dublin Core metadata"
-msgstr ""
+msgstr "더블린 코어 메타데이터"
 
 #. Default: "ESMTP password"
 #: src/profiles/core/controlpanels/mail.json:41
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP password"
-msgstr ""
+msgstr "ESMTP 비밀번호"
 
 #. Default: "ESMTP username"
 #: src/profiles/core/controlpanels/mail.json:53
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP username"
-msgstr ""
+msgstr "ESMTP 사용자 이름"
 
 #. Default: "Edit"
 #: src/profiles/core/actions.json:12
 msgctxt "Profiles|Core|Actions"
 msgid "Edit"
-msgstr ""
+msgstr "편집"
 
 #. Default: "Editor"
 #: src/profiles/core/roles.json:31
 msgctxt "Profiles|Core|Roles"
 msgid "Editor"
-msgstr ""
+msgstr "에디터"
 
 #. Default: "Effective date"
 #: src/profiles/core/catalog.json:715
 msgctxt "Profiles|Core|Catalog"
 msgid "Effective date"
-msgstr ""
+msgstr "유효 날짜"
 
 #. Default: "Enables Volto Blocks support"
 #: src/profiles/core/behaviors/blocks.json:4
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Enables Volto Blocks support"
-msgstr ""
+msgstr "Volto Blocks 지원 활성화"
 
 #. Default: "Enter a comment that describes the changes you made."
 #: src/profiles/core/behaviors/versioning.json:15
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Enter a comment that describes the changes you made."
-msgstr ""
+msgstr "변경 사항을 설명하는 코멘트를 입력하세요."
 
 #. Default: "Equals"
 #: src/profiles/core/catalog.json:57
 #: src/profiles/core/catalog.json:328
 msgctxt "Profiles|Core|Catalog"
 msgid "Equals"
-msgstr ""
+msgstr "같음"
 
 #. Default: "Event end date"
 #: src/profiles/core/catalog.json:154
 msgctxt "Profiles|Core|Catalog"
 msgid "Event end date"
-msgstr ""
+msgstr "이벤트 종료 날짜"
 
 #. Default: "Event start date"
 #: src/profiles/core/catalog.json:81
 msgctxt "Profiles|Core|Catalog"
 msgid "Event start date"
-msgstr ""
+msgstr "이벤트 시작 날짜"
 
 #. Default: "Exclude from navigation"
 #: src/profiles/core/behaviors/exclude_from_nav.json:3
 #: src/profiles/core/behaviors/exclude_from_nav.json:15
 msgctxt "Profiles|Core|Behaviors|Exclude from nav"
 msgid "Exclude from navigation"
-msgstr ""
+msgstr "탐색에서 제외"
 
 #. Default: "Expiration Date"
 #: src/profiles/core/behaviors/dates.json:22
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Expiration Date"
-msgstr ""
+msgstr "만료일"
 
 #. Default: "Expiration date"
 #: src/profiles/core/catalog.json:569
 msgctxt "Profiles|Core|Catalog"
 msgid "Expiration date"
-msgstr ""
+msgstr "만료일"
 
 #. Default: "File"
 #: src/profiles/core/types/file.json:3
 #: src/profiles/core/types/file.json:19
 msgctxt "Profiles|Core|Types|File"
 msgid "File"
-msgstr ""
+msgstr "파일"
 
 #. Default: "Filter Contained Types"
 #: src/models/type/type.js:146
 msgctxt "Models|Type"
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "포함된 유형 필터링"
 
 #. Default: "Find items related to the selected items"
 #: src/profiles/core/catalog.json:322
 msgctxt "Profiles|Core|Catalog"
 msgid "Find items related to the selected items"
-msgstr ""
+msgstr "선택한 항목과 관련된 항목 찾기"
 
 #. Default: "Find items that can contain other objects"
 #: src/profiles/core/catalog.json:341
 msgctxt "Profiles|Core|Catalog"
 msgid "Find items that can contain other objects"
-msgstr ""
+msgstr "다른 개체를 포함할 수 있는 항목 찾기"
 
 #. Default: "Folder"
 #: src/profiles/core/types/folder.json:3
 msgctxt "Profiles|Core|Types|Folder"
 msgid "Folder"
-msgstr ""
+msgstr "폴더"
 
 #. Default: "Folder-like"
 #: src/profiles/core/catalog.json:340
 msgctxt "Profiles|Core|Catalog"
 msgid "Folder-like"
-msgstr ""
+msgstr "폴더 같은"
 
 #. Default: "From and message are required fields."
 #: src/routes/email/email.js:53
 #: src/routes/email/email.js:90
 msgctxt "Routes|Email"
 msgid "From and message are required fields."
-msgstr ""
+msgstr "보낸 사람과 메시지는 필수 필드입니다."
 
 #. Default: "Gives the ability to rename an item from its edit form."
 #: src/profiles/core/behaviors/short_name.json:4
 #: src/profiles/core/behaviors/preview_image_link.json:4
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Gives the ability to rename an item from its edit form."
-msgstr ""
+msgstr "편집 양식에서 항목의 이름을 변경할 수 있는 기능을 제공합니다."
 
 #. Default: "History"
 #: src/profiles/core/actions.json:22
 msgctxt "Profiles|Core|Actions"
 msgid "History"
-msgstr ""
+msgstr "이력"
 
 #. Default: "Identifier"
 #: src/profiles/core/behaviors/short_name.json:16
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Identifier"
-msgstr ""
+msgstr "식별자"
 
 #. Default: "If enabled the mail is send to a test server."
 #: src/profiles/core/controlpanels/mail.json:59
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled the mail is send to a test server."
-msgstr ""
+msgstr "활성화하면 메일이 테스트 서버로 전송됩니다."
 
 #. Default: "If enabled the mail is send using a secure connection."
 #: src/profiles/core/controlpanels/mail.json:64
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled the mail is send using a secure connection."
-msgstr ""
+msgstr "활성화하면 보안 연결을 사용하여 메일이 전송됩니다."
 
 #. Default: "If enabled the site is multilingual."
 #: src/profiles/core/controlpanels/language.json:42
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "If enabled the site is multilingual."
-msgstr ""
+msgstr "활성화하면 사이트가 다국어로 제공됩니다."
 
 #. Default: "If selected, this item will not appear in the navigation tree."
 #: src/profiles/core/behaviors/exclude_from_nav.json:4
 #: src/profiles/core/behaviors/exclude_from_nav.json:16
 msgctxt "Profiles|Core|Behaviors|Exclude from nav"
 msgid "If selected, this item will not appear in the navigation tree."
-msgstr ""
+msgstr "선택하면 이 항목이 탐색 트리에 나타나지 않습니다."
 
 #. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
 #: src/profiles/core/behaviors/dates.json:15
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "If this date is in the future, the content will not show up in listings and searches until this date."
-msgstr ""
+msgstr "이 날짜가 미래인 경우, 해당 날짜까지 콘텐츠가 목록 및 검색에 표시되지 않습니다."
 
 #. Default: "Image"
 #: src/profiles/core/types/image.json:3
 #: src/profiles/core/types/image.json:19
 msgctxt "Profiles|Core|Types|Image"
 msgid "Image"
-msgstr ""
+msgstr "이미지"
 
 #. Default: "Images can be referenced in pages or displayed in an album."
 #: src/profiles/core/types/image.json:4
 msgctxt "Profiles|Core|Types|Image"
 msgid "Images can be referenced in pages or displayed in an album."
-msgstr ""
+msgstr "이미지는 페이지에서 참조하거나 앨범에 표시할 수 있습니다."
 
 #. Default: "Information about rights held in and over this item."
 #: src/profiles/core/behaviors/ownership.json:20
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Information about rights held in and over this item."
-msgstr ""
+msgstr "이 항목에 대한 권한 정보입니다."
 
 #. Default: "Internal server error"
 #: src/app.js:170
 #: src/app.js:180
 msgctxt "App"
 msgid "Internal server error"
-msgstr ""
+msgstr "내부 서버 오류"
 
 #. Default: "Invalid credentials"
 #: src/routes/authentication/authentication.js:48
 #: src/routes/authentication/authentication.js:62
 msgctxt "Routes|Authentication"
 msgid "Invalid credentials"
-msgstr ""
+msgstr "잘못된 자격 증명"
 
 #. Default: "Invalid session"
 #: src/routes/authentication/authentication.js:100
 msgctxt "Routes|Authentication"
 msgid "Invalid session"
-msgstr ""
+msgstr "유효하지 않은 세션"
 
 #. Default: "Is"
 #: src/profiles/core/catalog.json:384
 #: src/profiles/core/catalog.json:478
 msgctxt "Profiles|Core|Catalog"
 msgid "Is"
-msgstr ""
+msgstr "이다"
 
 #. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
 #: src/models/type/type.js:147
 msgctxt "Models|Type"
 msgid "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
-msgstr ""
+msgstr "이 유형의 항목은 다른 항목을 포함하는 폴더 역할을 할 수 있습니다. 내부에 어떤 콘텐츠 유형을 허용해야 합니까?"
 
 #. Default: "Language"
 #: src/profiles/core/controlpanels/language.json:3
 #: src/profiles/core/behaviors/categorization.json:22
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Language"
-msgstr ""
+msgstr "언어"
 
 #. Default: "Languageroot"
 #: src/profiles/multilingual/types/languageroot.json:3
 msgctxt "Profiles|Multilingual|Types|Languageroot"
 msgid "Languageroot"
-msgstr ""
+msgstr "언어 루트"
 
 #. Default: "Larger than"
 #: src/profiles/core/catalog.json:63
 msgctxt "Profiles|Core|Catalog"
 msgid "Larger than"
-msgstr ""
+msgstr "~보다 큼"
 
 #. Default: "Layout"
 #: src/profiles/core/behaviors/blocks.json:10
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "Layout"
-msgstr ""
+msgstr "레이아웃"
 
 #. Default: "Less than"
 #: src/profiles/core/catalog.json:69
 msgctxt "Profiles|Core|Catalog"
 msgid "Less than"
-msgstr ""
+msgstr "~보다 작음"
 
 #. Default: "Lets you upload a file to the site."
 #: src/profiles/core/types/file.json:4
 msgctxt "Profiles|Core|Types|File"
 msgid "Lets you upload a file to the site."
-msgstr ""
+msgstr "사이트에 파일을 업로드할 수 있습니다."
 
 #. Default: "Location"
 #: src/profiles/core/catalog.json:7
 msgctxt "Profiles|Core|Catalog"
 msgid "Location"
-msgstr ""
+msgstr "위치"
 
 #. Default: "Location in the navigation structure"
 #: src/profiles/core/catalog.json:21
 msgctxt "Profiles|Core|Catalog"
 msgid "Location in the navigation structure"
-msgstr ""
+msgstr "탐색 구조 내 위치"
 
 #. Default: "Location in the site structure"
 #: src/profiles/core/catalog.json:15
 msgctxt "Profiles|Core|Catalog"
 msgid "Location in the site structure"
-msgstr ""
+msgstr "사이트 구조 내 위치"
 
 #. Default: "Log in"
 #: src/profiles/core/actions.json:93
 msgctxt "Profiles|Core|Actions"
 msgid "Log in"
-msgstr ""
+msgstr "로그인"
 
 #. Default: "Log out"
 #: src/profiles/core/actions.json:98
 msgctxt "Profiles|Core|Actions"
 msgid "Log out"
-msgstr ""
+msgstr "로그아웃"
 
 #. Default: "Login"
 #: src/profiles/core/permissions.json:14
 msgctxt "Profiles|Core|Permissions"
 msgid "Login"
-msgstr ""
+msgstr "로그인"
 
 #. Default: "Login and password must be provided in body."
 #: src/routes/authentication/authentication.js:28
 msgctxt "Routes|Authentication"
 msgid "Login and password must be provided in body."
-msgstr ""
+msgstr "본문에 로그인 및 비밀번호를 제공해야 합니다."
 
 #. Default: "Logout"
 #: src/profiles/core/permissions.json:18
 msgctxt "Profiles|Core|Permissions"
 msgid "Logout"
-msgstr ""
+msgstr "로그아웃"
 
 #. Default: "Mail"
 #: src/profiles/core/controlpanels/mail.json:3
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Mail"
-msgstr ""
+msgstr "메일"
 
 #. Default: "Manage Preferences"
 #: src/profiles/core/permissions.json:22
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Preferences"
-msgstr ""
+msgstr "환경설정 관리"
 
 #. Default: "Manage Site"
 #: src/profiles/core/permissions.json:30
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Site"
-msgstr ""
+msgstr "사이트 관리"
 
 #. Default: "Manage Users"
 #: src/profiles/core/permissions.json:26
 msgctxt "Profiles|Core|Permissions"
 msgid "Manage Users"
-msgstr ""
+msgstr "사용자 관리"
 
 #. Default: "Matches all of"
 #: src/profiles/core/catalog.json:293
 msgctxt "Profiles|Core|Catalog"
 msgid "Matches all of"
-msgstr ""
+msgstr "모두 일치"
 
 #. Default: "Matches any of"
 #: src/profiles/core/catalog.json:299
@@ -831,56 +834,56 @@ msgstr ""
 #: src/profiles/core/catalog.json:453
 msgctxt "Profiles|Core|Catalog"
 msgid "Matches any of"
-msgstr ""
+msgstr "하나라도 일치"
 
 #. Default: "Missing credentials"
 #: src/routes/authentication/authentication.js:27
 msgctxt "Routes|Authentication"
 msgid "Missing credentials"
-msgstr ""
+msgstr "자격 증명 누락"
 
 #. Default: "Modification date"
 #: src/profiles/core/catalog.json:490
 msgctxt "Profiles|Core|Catalog"
 msgid "Modification date"
-msgstr ""
+msgstr "수정 날짜"
 
 #. Default: "Modify"
 #: src/profiles/core/permissions.json:34
 msgctxt "Profiles|Core|Permissions"
 msgid "Modify"
-msgstr ""
+msgstr "수정"
 
 #. Default: "Multilingual"
 #: src/profiles/core/controlpanels/language.json:41
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Multilingual"
-msgstr ""
+msgstr "다국어"
 
 #. Default: "Navigation"
 #: src/profiles/core/controlpanels/navigation.json:3
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Navigation"
-msgstr ""
+msgstr "탐색"
 
 #. Default: "Navigation path"
 #: src/profiles/core/catalog.json:20
 msgctxt "Profiles|Core|Catalog"
 msgid "Navigation path"
-msgstr ""
+msgstr "탐색 경로"
 
 #. Default: "No"
 #: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
 msgctxt "Profiles|Core|Catalog"
 msgid "No"
-msgstr ""
+msgstr "아니요"
 
 #. Default: "Not allowed"
 #: src/routes/lock/lock.js:158
 msgctxt "Routes|Lock"
 msgid "Not allowed"
-msgstr ""
+msgstr "허용되지 않음"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
@@ -891,51 +894,51 @@ msgstr ""
 #: src/routes/controlpanels/controlpanels.js:77
 msgctxt "Routes|Vocabularies"
 msgid "Not found."
-msgstr ""
+msgstr "찾을 수 없습니다."
 
 #. Default: "Order in folder"
 #: src/profiles/core/catalog.json:50
 msgctxt "Profiles|Core|Catalog"
 msgid "Order in folder"
-msgstr ""
+msgstr "폴더 내 순서"
 
 #. Default: "Owner"
 #: src/profiles/core/roles.json:16
 msgctxt "Profiles|Core|Roles"
 msgid "Owner"
-msgstr ""
+msgstr "소유자"
 
 #. Default: "Ownership"
 #: src/profiles/core/behaviors/ownership.json:3
 #: src/profiles/core/behaviors/ownership.json:10
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Ownership"
-msgstr ""
+msgstr "소유권"
 
 #. Default: "Page"
 #: src/profiles/core/types/page.json:3
 msgctxt "Profiles|Core|Types|Page"
 msgid "Page"
-msgstr ""
+msgstr "페이지"
 
 #. Default: "Password reset request"
 #: src/routes/users/users.js:86
 #: src/routes/users/users.js:192
 msgctxt "Routes|Users"
 msgid "Password reset request"
-msgstr ""
+msgstr "비밀번호 재설정 요청"
 
 #. Default: "Paste"
 #: src/profiles/core/actions.json:49
 msgctxt "Profiles|Core|Actions"
 msgid "Paste"
-msgstr ""
+msgstr "붙여넣기"
 
 #. Default: "Pending review"
 #: src/profiles/core/workflows.json:22
 msgctxt "Profiles|Core|Workflows"
 msgid "Pending review"
-msgstr ""
+msgstr "검토 대기 중"
 
 #. Default: "Please enter the number in days."
 #: src/profiles/core/catalog.json:125
@@ -952,7 +955,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:771
 msgctxt "Profiles|Core|Catalog"
 msgid "Please enter the number in days."
-msgstr ""
+msgstr "일수를 입력하세요."
 
 #. Default: "Please use YYYY/MM/DD."
 #: src/profiles/core/catalog.json:113
@@ -975,402 +978,402 @@ msgstr ""
 #: src/profiles/core/catalog.json:765
 msgctxt "Profiles|Core|Catalog"
 msgid "Please use YYYY/MM/DD."
-msgstr ""
+msgstr "YYYY/MM/DD 형식을 사용하세요."
 
 #. Default: "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
 #: src/profiles/core/controlpanels/mail.json:26
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
-msgstr ""
+msgstr "Plone은 이 주소를 이메일 반송 주소로 사용하여 이메일을 생성합니다. 또한 사이트 전체 연락처 양식 및 '테스트 이메일 보내기' 기능의 대상 주소로도 사용됩니다."
 
 #. Default: "Plone generates e-mail using this name as the e-mail sender."
 #: src/profiles/core/controlpanels/mail.json:31
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Plone generates e-mail using this name as the e-mail sender."
-msgstr ""
+msgstr "Plone은 이 이름을 이메일 발신자로 사용하여 이메일을 생성합니다."
 
 #. Default: "Preferences"
 #: src/profiles/core/actions.json:83
 msgctxt "Profiles|Core|Actions"
 msgid "Preferences"
-msgstr ""
+msgstr "환경설정"
 
 #. Default: "Preview Image Link"
 #: src/profiles/core/behaviors/preview_image_link.json:3
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview Image Link"
-msgstr ""
+msgstr "미리보기 이미지 링크"
 
 #. Default: "Preview image"
 #: src/profiles/core/behaviors/preview_image_link.json:15
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview image"
-msgstr ""
+msgstr "미리보기 이미지"
 
 #. Default: "Preview image caption"
 #: src/profiles/core/behaviors/preview_image_link.json:23
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Preview image caption"
-msgstr ""
+msgstr "미리보기 이미지 캡션"
 
 #. Default: "Private"
 #: src/profiles/core/workflows.json:12
 msgctxt "Profiles|Core|Workflows"
 msgid "Private"
-msgstr ""
+msgstr "비공개"
 
 #. Default: "Prompt"
 #: src/profiles/ai/controlpanels/ai.json:18
 #: src/profiles/ai/controlpanels/ai.json:37
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Prompt"
-msgstr ""
+msgstr "프롬프트"
 
 #. Default: "Prompt is a required field."
 #: src/routes/ai/ai.js:50
 #: src/routes/ai/ai.js:98
 msgctxt "Routes|Ai"
 msgid "Prompt is a required field."
-msgstr ""
+msgstr "프롬프트는 필수 입력 항목입니다."
 
 #. Default: "Prompts"
 #: src/profiles/ai/controlpanels/ai.json:15
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Prompts"
-msgstr ""
+msgstr "프롬프트들"
 
 #. Default: "Publish"
 #: src/profiles/core/workflows.json:47
 msgctxt "Profiles|Core|Workflows"
 msgid "Publish"
-msgstr ""
+msgstr "게시"
 
 #. Default: "Published"
 #: src/profiles/core/workflows.json:33
 msgctxt "Profiles|Core|Workflows"
 msgid "Published"
-msgstr ""
+msgstr "게시됨"
 
 #. Default: "Publisher"
 #: src/profiles/core/behaviors/ownership.json:16
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Publisher"
-msgstr ""
+msgstr "게시자"
 
 #. Default: "Publishing Date"
 #: src/profiles/core/behaviors/dates.json:16
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Publishing Date"
-msgstr ""
+msgstr "게시 날짜"
 
 #. Default: "Reader"
 #: src/profiles/core/roles.json:21
 msgctxt "Profiles|Core|Roles"
 msgid "Reader"
-msgstr ""
+msgstr "독자"
 
 #. Default: "Register"
 #: src/profiles/core/permissions.json:38
 #: src/profiles/core/actions.json:103
 msgctxt "Profiles|Core|Permissions"
 msgid "Register"
-msgstr ""
+msgstr "등록"
 
 #. Default: "Related"
 #: src/profiles/core/behaviors/categorization.json:34
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related"
-msgstr ""
+msgstr "관련된"
 
 #. Default: "Related Items"
 #: src/profiles/core/behaviors/categorization.json:42
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related Items"
-msgstr ""
+msgstr "관련 항목"
 
 #. Default: "Related To"
 #: src/profiles/core/catalog.json:321
 msgctxt "Profiles|Core|Catalog"
 msgid "Related To"
-msgstr ""
+msgstr "관련 대상"
 
 #. Default: "Related resources."
 #: src/profiles/core/behaviors/categorization.json:31
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Related resources."
-msgstr ""
+msgstr "관련 리소스."
 
 #. Default: "Relative path"
 #: src/profiles/core/catalog.json:26
 msgctxt "Profiles|Core|Catalog"
 msgid "Relative path"
-msgstr ""
+msgstr "상대 경로"
 
 #. Default: "Rename"
 #: src/profiles/core/actions.json:59
 msgctxt "Profiles|Core|Actions"
 msgid "Rename"
-msgstr ""
+msgstr "이름 바꾸기"
 
 #. Default: "Required field(s) missing."
 #: src/routes/content/content.js:416
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
-msgstr ""
+msgstr "필수 필드가 누락되었습니다."
 
 #. Default: "Retract"
 #: src/profiles/core/workflows.json:57
 msgctxt "Profiles|Core|Workflows"
 msgid "Retract"
-msgstr ""
+msgstr "철회"
 
 #. Default: "Review"
 #: src/profiles/core/permissions.json:42
 msgctxt "Profiles|Core|Permissions"
 msgid "Review"
-msgstr ""
+msgstr "검토"
 
 #. Default: "Review state"
 #: src/profiles/core/catalog.json:446
 msgctxt "Profiles|Core|Catalog"
 msgid "Review state"
-msgstr ""
+msgstr "검토 상태"
 
 #. Default: "Reviewer"
 #: src/profiles/core/roles.json:36
 msgctxt "Profiles|Core|Roles"
 msgid "Reviewer"
-msgstr ""
+msgstr "검토자"
 
 #. Default: "Rights"
 #: src/profiles/core/behaviors/ownership.json:21
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Rights"
-msgstr ""
+msgstr "권리"
 
 #. Default: "Robots.txt"
 #: src/profiles/core/controlpanels/site.json:15
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Robots.txt"
-msgstr ""
+msgstr "Robots.txt"
 
 #. Default: "Rules"
 #: src/profiles/core/actions.json:32
 msgctxt "Profiles|Core|Actions"
 msgid "Rules"
-msgstr ""
+msgstr "규칙"
 
 #. Default: "SMTP port"
 #: src/profiles/core/controlpanels/mail.json:47
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP port"
-msgstr ""
+msgstr "SMTP 포트"
 
 #. Default: "SMTP server"
 #: src/profiles/core/controlpanels/mail.json:35
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP server"
-msgstr ""
+msgstr "SMTP 서버"
 
 #. Default: "Searchable text"
 #: src/profiles/core/catalog.json:246
 msgctxt "Profiles|Core|Catalog"
 msgid "Searchable text"
-msgstr ""
+msgstr "검색 가능한 텍스트"
 
 #. Default: "Secure"
 #: src/profiles/core/controlpanels/mail.json:63
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Secure"
-msgstr ""
+msgstr "보안"
 
 #. Default: "Select an image that will be used in listing and teaser blocks."
 #: src/profiles/core/behaviors/preview_image_link.json:16
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Select an image that will be used in listing and teaser blocks."
-msgstr ""
+msgstr "목록 및 티저 블록에 사용할 이미지를 선택하세요."
 
 #. Default: "Send back"
 #: src/profiles/core/workflows.json:52
 msgctxt "Profiles|Core|Workflows"
 msgid "Send back"
-msgstr ""
+msgstr "반려"
 
 #. Default: "Settings"
 #: src/profiles/core/behaviors/short_name.json:10
 #: src/profiles/core/behaviors/exclude_from_nav.json:10
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Settings"
-msgstr ""
+msgstr "설정"
 
 #. Default: "Sharing"
 #: src/profiles/core/actions.json:27
 msgctxt "Profiles|Core|Actions"
 msgid "Sharing"
-msgstr ""
+msgstr "공유"
 
 #. Default: "Short name"
 #: src/profiles/core/behaviors/short_name.json:3
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Short name"
-msgstr ""
+msgstr "짧은 이름"
 
 #. Default: "Short name (id)"
 #: src/profiles/core/catalog.json:377
 msgctxt "Profiles|Core|Catalog"
 msgid "Short name (id)"
-msgstr ""
+msgstr "짧은 이름 (ID)"
 
 #. Default: "Simple Publication Workflow"
 #: src/profiles/core/workflows.json:6
 msgctxt "Profiles|Core|Workflows"
 msgid "Simple Publication Workflow"
-msgstr ""
+msgstr "간단한 게시 워크플로"
 
 #. Default: "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
 #: src/profiles/core/workflows.json:7
 msgctxt "Profiles|Core|Workflows"
 msgid "Simple workflow that is useful for basic web sites. Things start out as private, and can either be submitted for review, or published directly. The creator of a content item can edit the item even after it is published."
-msgstr ""
+msgstr "기본적인 웹사이트에 유용한 간단한 워크플로입니다. 항목은 비공개로 시작되며, 검토를 위해 제출하거나 직접 게시할 수 있습니다. 콘텐츠 항목의 작성자는 게시된 후에도 항목을 편집할 수 있습니다."
 
 #. Default: "Site"
 #: src/profiles/core/types/site.json:3
 #: src/profiles/core/controlpanels/site.json:3
 msgctxt "Profiles|Core|Types|Site"
 msgid "Site"
-msgstr ""
+msgstr "사이트"
 
 #. Default: "Site 'From' address"
 #: src/profiles/core/controlpanels/mail.json:25
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' address"
-msgstr ""
+msgstr "사이트 '보낸 사람' 주소"
 
 #. Default: "Site 'From' name"
 #: src/profiles/core/controlpanels/mail.json:30
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' name"
-msgstr ""
+msgstr "사이트 '보낸 사람' 이름"
 
 #. Default: "Site Logo"
 #: src/profiles/core/controlpanels/site.json:22
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Site Logo"
-msgstr ""
+msgstr "사이트 로고"
 
 #. Default: "Site Setup"
 #: src/profiles/core/actions.json:88
 msgctxt "Profiles|Core|Actions"
 msgid "Site Setup"
-msgstr ""
+msgstr "사이트 설정"
 
 #. Default: "Site language"
 #: src/profiles/core/controlpanels/language.json:34
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Site language"
-msgstr ""
+msgstr "사이트 언어"
 
 #. Default: "Site title"
 #: src/profiles/core/controlpanels/site.json:28
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Site title"
-msgstr ""
+msgstr "사이트 제목"
 
 #. Default: "Sitemap"
 #: src/profiles/core/actions.json:66
 msgctxt "Profiles|Core|Actions"
 msgid "Sitemap"
-msgstr ""
+msgstr "사이트맵"
 
 #. Default: "Sortable Title"
 #: src/profiles/core/catalog.json:465
 msgctxt "Profiles|Core|Catalog"
 msgid "Sortable Title"
-msgstr ""
+msgstr "정렬 가능한 제목"
 
 #. Default: "Source"
 #: src/profiles/core/behaviors/ownership.json:26
 msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Source"
-msgstr ""
+msgstr "소스"
 
 #. Default: "Submit"
 #: src/profiles/core/permissions.json:46
 msgctxt "Profiles|Core|Permissions"
 msgid "Submit"
-msgstr ""
+msgstr "제출"
 
 #. Default: "Submit for publication"
 #: src/profiles/core/workflows.json:62
 msgctxt "Profiles|Core|Workflows"
 msgid "Submit for publication"
-msgstr ""
+msgstr "게시를 위해 제출"
 
 #. Default: "System group"
 #: src/routes/groups/groups.js:110
 msgctxt "Routes|Groups"
 msgid "System group"
-msgstr ""
+msgstr "시스템 그룹"
 
 #. Default: "System users"
 #: src/routes/users/users.js:243
 msgctxt "Routes|Users"
 msgid "System users"
-msgstr ""
+msgstr "시스템 사용자"
 
 #. Default: "Tag"
 #: src/profiles/core/catalog.json:284
 msgctxt "Profiles|Core|Catalog"
 msgid "Tag"
-msgstr ""
+msgstr "태그"
 
 #. Default: "Tags"
 #: src/profiles/core/behaviors/categorization.json:50
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "Tags"
-msgstr ""
+msgstr "태그들"
 
 #. Default: "Tags are used for organization of content"
 #: src/profiles/core/catalog.json:285
 msgctxt "Profiles|Core|Catalog"
 msgid "Tags are used for organization of content"
-msgstr ""
+msgstr "태그는 콘텐츠 정리에 사용됩니다"
 
 #. Default: "Text search of an item's contents"
 #: src/profiles/core/catalog.json:247
 msgctxt "Profiles|Core|Catalog"
 msgid "Text search of an item's contents"
-msgstr ""
+msgstr "항목 내용의 텍스트 검색"
 
 #. Default: "Text search of an item's title"
 #: src/profiles/core/catalog.json:266
 msgctxt "Profiles|Core|Catalog"
 msgid "Text search of an item's title"
-msgstr ""
+msgstr "항목 제목의 텍스트 검색"
 
 #. Default: "The JSON representation of the object blocks information. Must be a JSON object."
 #: src/profiles/core/behaviors/blocks.json:16
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "The JSON representation of the object blocks information. Must be a JSON object."
-msgstr ""
+msgstr "객체 블록 정보의 JSON 표현입니다. JSON 객체여야 합니다."
 
 #. Default: "The JSON representation of the object blocks layout. Must be a JSON array."
 #: src/profiles/core/behaviors/blocks.json:25
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
-msgstr ""
+msgstr "객체 블록 레이아웃의 JSON 표현입니다. JSON 배열이어야 합니다."
 
 #. Default: "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
 #: src/profiles/core/controlpanels/mail.json:36
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
-msgstr ""
+msgstr "로컬 SMTP(발신 이메일) 서버의 주소입니다. 이메일을 보내기 위해 외부 서버를 사용하지 않는 한 일반적으로 'localhost'입니다."
 
 #. Default: "The content types that should be shown in the navigation and site map."
 #: src/profiles/core/controlpanels/navigation.json:17
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "The content types that should be shown in the navigation and site map."
-msgstr ""
+msgstr "탐색 및 사이트맵에 표시되어야 하는 콘텐츠 유형입니다."
 
 #. Default: "The current day"
 #: src/profiles/core/catalog.json:143
@@ -1381,161 +1384,159 @@ msgstr ""
 #: src/profiles/core/catalog.json:777
 msgctxt "Profiles|Core|Catalog"
 msgid "The current day"
-msgstr ""
+msgstr "현재 날짜"
 
 #. Default: "The date an item was created"
 #: src/profiles/core/catalog.json:643
 msgctxt "Profiles|Core|Catalog"
 msgid "The date an item was created"
-msgstr ""
+msgstr "항목이 생성된 날짜"
 
 #. Default: "The end date and time of an event"
 #: src/profiles/core/catalog.json:155
 msgctxt "Profiles|Core|Catalog"
 msgid "The end date and time of an event"
-msgstr ""
+msgstr "이벤트 종료 날짜 및 시간"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:87
 #: src/routes/users/users.js:193
 msgctxt "Routes|Users"
-msgid "The following link takes you to a page where you can reset your password: {url}
-
-(This link will expire in 7 days)"
-msgstr ""
+msgid "The following link takes you to a page where you can reset your password: {url}"
+msgstr "정의되지 않음"
 
 #. Default: "The item's title, transformed for sorting"
 #: src/profiles/core/catalog.json:466
 msgctxt "Profiles|Core|Catalog"
 msgid "The item's title, transformed for sorting"
-msgstr ""
+msgstr "정렬을 위해 변환된 항목의 제목"
 
 #. Default: "The language of this item."
 #: src/profiles/core/behaviors/categorization.json:20
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The language of this item."
-msgstr ""
+msgstr "이 항목의 언어입니다."
 
 #. Default: "The language used for the content and the UI of this site."
 #: src/profiles/core/controlpanels/language.json:33
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "The language used for the content and the UI of this site."
-msgstr ""
+msgstr "이 사이트의 콘텐츠와 UI에 사용되는 언어입니다."
 
 #. Default: "The languages in which the site should be translatable."
 #: src/profiles/core/controlpanels/language.json:17
 msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "The languages in which the site should be translatable."
-msgstr ""
+msgstr "사이트를 번역할 수 있어야 하는 언어입니다."
 
 #. Default: "The location of an item"
 #: src/profiles/core/catalog.json:8
 msgctxt "Profiles|Core|Catalog"
 msgid "The location of an item"
-msgstr ""
+msgstr "항목의 위치"
 
 #. Default: "The order of an item in its parent folder"
 #: src/profiles/core/catalog.json:51
 msgctxt "Profiles|Core|Catalog"
 msgid "The order of an item in its parent folder"
-msgstr ""
+msgstr "상위 폴더 내 항목의 순서"
 
 #. Default: "The password for the ESMTP user account."
 #: src/profiles/core/controlpanels/mail.json:42
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The password for the ESMTP user account."
-msgstr ""
+msgstr "ESMTP 사용자 계정의 비밀번호입니다."
 
 #. Default: "The person that created an item"
 #: src/profiles/core/catalog.json:397
 msgctxt "Profiles|Core|Catalog"
 msgid "The person that created an item"
-msgstr ""
+msgstr "항목을 생성한 사람"
 
 #. Default: "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
 #: src/profiles/core/controlpanels/mail.json:48
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
-msgstr ""
+msgstr "로컬 SMTP(발신 이메일) 서버의 포트입니다. 일반적으로 '25'입니다."
 
 #. Default: "The short name of an item (used in the url)"
 #: src/profiles/core/catalog.json:378
 msgctxt "Profiles|Core|Catalog"
 msgid "The short name of an item (used in the url)"
-msgstr ""
+msgstr "항목의 짧은 이름 (URL에서 사용됨)"
 
 #. Default: "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
 #: src/profiles/core/behaviors/categorization.json:15
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The spatial or temporal topic of this item, spatial applicability of this item, or jurisdiction under which this item is relevant."
-msgstr ""
+msgstr "이 항목의 공간적 또는 시간적 주제, 이 항목의 공간적 적용 가능성 또는 이 항목이 관련된 관할권."
 
 #. Default: "The start date and time of an event"
 #: src/profiles/core/catalog.json:82
 msgctxt "Profiles|Core|Catalog"
 msgid "The start date and time of an event"
-msgstr ""
+msgstr "이벤트 시작 날짜 및 시간"
 
 #. Default: "The time and date an item was expired"
 #: src/profiles/core/catalog.json:570
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was expired"
-msgstr ""
+msgstr "항목이 만료된 시간과 날짜"
 
 #. Default: "The time and date an item was first published"
 #: src/profiles/core/catalog.json:716
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was first published"
-msgstr ""
+msgstr "항목이 처음 게시된 시간과 날짜"
 
 #. Default: "The time and date an item was last modified"
 #: src/profiles/core/catalog.json:491
 msgctxt "Profiles|Core|Catalog"
 msgid "The time and date an item was last modified"
-msgstr ""
+msgstr "항목이 마지막으로 수정된 시간과 날짜"
 
 #. Default: "The topic of this item."
 #: src/profiles/core/behaviors/categorization.json:48
 msgctxt "Profiles|Core|Behaviors|Categorization"
 msgid "The topic of this item."
-msgstr ""
+msgstr "이 항목의 주제입니다."
 
 #. Default: "The user viewing the querystring results"
 #: src/profiles/core/catalog.json:410
 msgctxt "Profiles|Core|Catalog"
 msgid "The user viewing the querystring results"
-msgstr ""
+msgstr "쿼리 문자열 결과를 보고 있는 사용자"
 
 #. Default: "This document is already locked by another user."
 #: src/routes/lock/lock.js:53
 #: src/routes/lock/lock.js:105
 msgctxt "Routes|Lock"
 msgid "This document is already locked by another user."
-msgstr ""
+msgstr "이 문서는 이미 다른 사용자에 의해 잠겨 있습니다."
 
 #. Default: "This is the contents of the robots.txt file."
 #: src/profiles/core/controlpanels/site.json:16
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This is the contents of the robots.txt file."
-msgstr ""
+msgstr "이것은 robots.txt 파일의 내용입니다."
 
 #. Default: "This name will be displayed in the URL."
 #: src/profiles/core/behaviors/short_name.json:15
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "This name will be displayed in the URL."
-msgstr ""
+msgstr "이 이름은 URL에 표시됩니다."
 
 #. Default: "This shows a custom logo on your site."
 #: src/profiles/core/controlpanels/site.json:21
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This shows a custom logo on your site."
-msgstr ""
+msgstr "이것은 사이트에 사용자 지정 로고를 표시합니다."
 
 #. Default: "This shows up in the title bar of browsers and in syndication feeds."
 #: src/profiles/core/controlpanels/site.json:29
 msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "This shows up in the title bar of browsers and in syndication feeds."
-msgstr ""
+msgstr "이것은 브라우저의 제목 표시줄과 신디케이션 피드에 나타납니다."
 
 #. Default: "Tip: you can use * to autocomplete."
 #: src/profiles/core/catalog.json:291
@@ -1547,7 +1548,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:479
 msgctxt "Profiles|Core|Catalog"
 msgid "Tip: you can use * to autocomplete."
-msgstr ""
+msgstr "팁: *를 사용하여 자동 완성할 수 있습니다."
 
 #. Default: "Title"
 #: src/profiles/core/catalog.json:265
@@ -1555,13 +1556,13 @@ msgstr ""
 #: src/profiles/ai/controlpanels/ai.json:29
 msgctxt "Profiles|Core|Catalog"
 msgid "Title"
-msgstr ""
+msgstr "제목"
 
 #. Default: "To, from and message are required fields."
 #: src/routes/email/email.js:22
 msgctxt "Routes|Email"
 msgid "To, from and message are required fields."
-msgstr ""
+msgstr "받는 사람, 보낸 사람 및 메시지는 필수 필드입니다."
 
 #. Default: "Today"
 #: src/profiles/core/catalog.json:142
@@ -1572,7 +1573,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:776
 msgctxt "Profiles|Core|Catalog"
 msgid "Today"
-msgstr ""
+msgstr "오늘"
 
 #. Default: "Transaction error."
 #: src/client.js:63
@@ -1580,86 +1581,86 @@ msgstr ""
 #: src/app.js:131
 msgctxt "Client"
 msgid "Transaction error."
-msgstr ""
+msgstr "트랜잭션 오류."
 
 #. Default: "Type"
 #: src/profiles/core/catalog.json:427
 msgctxt "Profiles|Core|Catalog"
 msgid "Type"
-msgstr ""
+msgstr "유형"
 
 #. Default: "Type Name"
 #: src/models/type/type.js:155
 msgctxt "Models|Type"
 msgid "Type Name"
-msgstr ""
+msgstr "유형 이름"
 
 #. Default: "Type of the current document is not found."
 #: src/helpers/handler/handler.js:69
 msgctxt "Helpers|Handler"
 msgid "Type of the current document is not found."
-msgstr ""
+msgstr "현재 문서의 유형을 찾을 수 없습니다."
 
 #. Default: "Use '../' to navigate to parent objects."
 #: src/profiles/core/catalog.json:27
 msgctxt "Profiles|Core|Catalog"
 msgid "Use '../' to navigate to parent objects."
-msgstr ""
+msgstr "상위 개체로 이동하려면 '../'를 사용하세요."
 
 #. Default: "User doesn't exist or invalid credentials."
 #: src/routes/users/users.js:48
 msgctxt "Routes|Users"
 msgid "User doesn't exist or invalid credentials."
-msgstr ""
+msgstr "사용자가 존재하지 않거나 자격 증명이 유효하지 않습니다."
 
 #. Default: "User is not logged in."
 #: src/routes/authentication/authentication.js:101
 msgctxt "Routes|Authentication"
 msgid "User is not logged in."
-msgstr ""
+msgstr "사용자가 로그인하지 않았습니다."
 
 #. Default: "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
 #: src/profiles/core/controlpanels/mail.json:54
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
-msgstr ""
+msgstr "이메일 서버 인증을 위한 사용자 이름입니다. ESMTP를 사용하지 않는 경우 필요하지 않습니다."
 
 #. Default: "Versioning"
 #: src/profiles/core/behaviors/versioning.json:3
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Versioning"
-msgstr ""
+msgstr "버전 관리"
 
 #. Default: "Versioning support"
 #: src/profiles/core/behaviors/versioning.json:4
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Versioning support"
-msgstr ""
+msgstr "버전 관리 지원"
 
 #. Default: "View"
 #: src/profiles/core/permissions.json:6
 #: src/profiles/core/actions.json:7
 msgctxt "Profiles|Core|Permissions"
 msgid "View"
-msgstr ""
+msgstr "보기"
 
 #. Default: "Visible to everyone, editable by the owner."
 #: src/profiles/core/workflows.json:34
 msgctxt "Profiles|Core|Workflows"
 msgid "Visible to everyone, editable by the owner."
-msgstr ""
+msgstr "모든 사람에게 표시되며, 소유자가 편집할 수 있습니다."
 
 #. Default: "Waiting to be reviewed, not editable by the owner."
 #: src/profiles/core/workflows.json:23
 msgctxt "Profiles|Core|Workflows"
 msgid "Waiting to be reviewed, not editable by the owner."
-msgstr ""
+msgstr "검토 대기 중이며, 소유자가 편집할 수 없습니다."
 
 #. Default: "When this date is reached, the content will no longer be visible in listings and searches."
 #: src/profiles/core/behaviors/dates.json:21
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
-msgstr ""
+msgstr "이 날짜가 되면 콘텐츠가 더 이상 목록 및 검색에 표시되지 않습니다."
 
 #. Default: "Within last"
 #: src/profiles/core/catalog.json:124
@@ -1670,7 +1671,7 @@ msgstr ""
 #: src/profiles/core/catalog.json:758
 msgctxt "Profiles|Core|Catalog"
 msgid "Within last"
-msgstr ""
+msgstr "지난 ... 이내"
 
 #. Default: "Within next"
 #: src/profiles/core/catalog.json:136
@@ -1681,62 +1682,62 @@ msgstr ""
 #: src/profiles/core/catalog.json:770
 msgctxt "Profiles|Core|Catalog"
 msgid "Within next"
-msgstr ""
+msgstr "다음 ... 이내"
 
 #. Default: "Wrong login and/or password."
 #: src/routes/authentication/authentication.js:49
 #: src/routes/authentication/authentication.js:63
 msgctxt "Routes|Authentication"
 msgid "Wrong login and/or password."
-msgstr ""
+msgstr "로그인 및/또는 비밀번호가 잘못되었습니다."
 
 #. Default: "Yes"
 #: src/profiles/core/catalog.json:353
 #: src/profiles/core/vocabularies/boolean.json:5
 msgctxt "Profiles|Core|Catalog"
 msgid "Yes"
-msgstr ""
+msgstr "예"
 
 #. Default: "You are not authorization to access this resource."
 #: src/routes/workflow/workflow.js:34
 #: src/helpers/handler/handler.js:91
 msgctxt "Routes|Workflow"
 msgid "You are not authorization to access this resource."
-msgstr ""
+msgstr "이 리소스에 액세스할 권한이 없습니다."
 
 #. Default: "You can't delete system groups."
 #: src/routes/groups/groups.js:109
 msgctxt "Routes|Groups"
 msgid "You can't delete system groups."
-msgstr ""
+msgstr "시스템 그룹은 삭제할 수 없습니다."
 
 #. Default: "You can't delete system users."
 #: src/routes/users/users.js:242
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
-msgstr ""
+msgstr "시스템 사용자는 삭제할 수 없습니다."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
 #: src/routes/content/content.js:579
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
-msgstr ""
+msgstr "다른 사용자가 잠갔으므로 이 문서를 저장할 권한이 없습니다."
 
 #. Default: "You don't have permission to unlock this document."
 #: src/routes/lock/lock.js:155
 msgctxt "Routes|Lock"
 msgid "You don't have permission to unlock this document."
-msgstr ""
+msgstr "이 문서의 잠금을 해제할 권한이 없습니다."
 
 #. Default: "You don't have permissions to add a user."
 #: src/routes/users/users.js:148
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
-msgstr ""
+msgstr "사용자를 추가할 권한이 없습니다."
 
 #. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3
 msgctxt "Profiles|Core|Vocabularies|Boolean"
 msgid "boolean"
-msgstr ""
+msgstr "불리언"

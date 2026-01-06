@@ -71,6 +71,7 @@
 - Add security headers @robgietema
 - Add rate limiting to the search and auth calls @robgietema
 - Add config option for request limits @robgietema
+- Added translations for 30 languages @mpalomaki @robgietema
 
 ### Bugfix
 
