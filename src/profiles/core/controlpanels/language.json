@@ -39,7 +39,7 @@
       },
       "multilingual": {
         "title:i18n": "Multilingual",
-        "description:i18n": "If enabled the site is multilingual.",
+        "description:i18n": "If enabled, the site is multilingual.",
         "type": "boolean"
       }
     },

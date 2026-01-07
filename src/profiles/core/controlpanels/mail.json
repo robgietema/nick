@@ -56,12 +56,12 @@
       },
       "debug": {
         "title:i18n": "Debug",
-        "description:i18n": "If enabled the mail is send to a test server.",
+        "description:i18n": "If enabled, the mail is send to a test server.",
         "type": "boolean"
       },
       "secure": {
         "title:i18n": "Secure",
-        "description:i18n": "If enabled the mail is send using a secure connection.",
+        "description:i18n": "If enabled, the mail is send using a secure connection.",
         "type": "boolean"
       }
     },

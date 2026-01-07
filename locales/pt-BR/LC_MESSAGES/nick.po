@@ -629,22 +629,22 @@ msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Identifier"
 msgstr "Identificador"
 
-#. Default: "If enabled the mail is send to a test server."
+#. Default: "If enabled, the mail is send to a test server."
 #: src/profiles/core/controlpanels/mail.json:59
 msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "If enabled the mail is send to a test server."
+msgid "If enabled, the mail is send to a test server."
 msgstr "Se ativado, o e-mail é enviado para um servidor de teste."
 
-#. Default: "If enabled the mail is send using a secure connection."
+#. Default: "If enabled, the mail is send using a secure connection."
 #: src/profiles/core/controlpanels/mail.json:64
 msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "If enabled the mail is send using a secure connection."
+msgid "If enabled, the mail is send using a secure connection."
 msgstr "Se ativado, o e-mail é enviado usando uma conexão segura."
 
-#. Default: "If enabled the site is multilingual."
+#. Default: "If enabled, the site is multilingual."
 #: src/profiles/core/controlpanels/language.json:42
 msgctxt "Profiles|Core|Controlpanels|Language"
-msgid "If enabled the site is multilingual."
+msgid "If enabled, the site is multilingual."
 msgstr "Se ativado, o site é multilíngue."
 
 #. Default: "If selected, this item will not appear in the navigation tree."
@@ -719,11 +719,11 @@ msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Language"
 msgstr "Idioma"
 
-#. Default: "Languageroot"
+#. Default: "Language root"
 #: src/profiles/multilingual/types/languageroot.json:3
 msgctxt "Profiles|Multilingual|Types|Languageroot"
-msgid "Languageroot"
-msgstr "Raiz de idioma"
+msgid "Language root"
+msgstr ""
 
 #. Default: "Larger than"
 #: src/profiles/core/catalog.json:63

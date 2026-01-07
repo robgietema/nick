@@ -360,7 +360,7 @@ msgstr "お問い合わせ"
 #: src/profiles/core/catalog.json:472
 msgctxt "Profiles|Core|Catalog"
 msgid "Contains"
-msgstr "内容"
+msgstr "含む"
 
 #. Default: "Content"
 #: src/routes/controlpanels/controlpanels.js:67
@@ -629,22 +629,22 @@ msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Identifier"
 msgstr "識別子"
 
-#. Default: "If enabled the mail is send to a test server."
+#. Default: "If enabled, the mail is send to a test server."
 #: src/profiles/core/controlpanels/mail.json:59
 msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "If enabled the mail is send to a test server."
+msgid "If enabled, the mail is send to a test server."
 msgstr "有効にすると、メールはテストサーバーに送信されます。"
 
-#. Default: "If enabled the mail is send using a secure connection."
+#. Default: "If enabled, the mail is send using a secure connection."
 #: src/profiles/core/controlpanels/mail.json:64
 msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "If enabled the mail is send using a secure connection."
+msgid "If enabled, the mail is send using a secure connection."
 msgstr "有効にすると、メールは安全な接続を使用して送信されます。"
 
-#. Default: "If enabled the site is multilingual."
+#. Default: "If enabled, the site is multilingual."
 #: src/profiles/core/controlpanels/language.json:42
 msgctxt "Profiles|Core|Controlpanels|Language"
-msgid "If enabled the site is multilingual."
+msgid "If enabled, the site is multilingual."
 msgstr "有効にすると、サイトは多言語対応になります。"
 
 #. Default: "If selected, this item will not appear in the navigation tree."
@@ -719,11 +719,11 @@ msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Language"
 msgstr "言語"
 
-#. Default: "Languageroot"
+#. Default: "Language root"
 #: src/profiles/multilingual/types/languageroot.json:3
 msgctxt "Profiles|Multilingual|Types|Languageroot"
-msgid "Languageroot"
-msgstr "言語ルート"
+msgid "Language root"
+msgstr ""
 
 #. Default: "Larger than"
 #: src/profiles/core/catalog.json:63

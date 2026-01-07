@@ -508,7 +508,7 @@ msgstr "Bearbeiten"
 #: src/profiles/core/roles.json:31
 msgctxt "Profiles|Core|Roles"
 msgid "Editor"
-msgstr "Bearbeiten"
+msgstr "Editor"
 
 #. Default: "Effective date"
 #: src/profiles/core/catalog.json:715
@@ -629,22 +629,22 @@ msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Identifier"
 msgstr "Kennung"
 
-#. Default: "If enabled the mail is send to a test server."
+#. Default: "If enabled, the mail is send to a test server."
 #: src/profiles/core/controlpanels/mail.json:59
 msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "If enabled the mail is send to a test server."
+msgid "If enabled, the mail is send to a test server."
 msgstr "Wenn aktiviert, wird die E-Mail an einen Testserver gesendet."
 
-#. Default: "If enabled the mail is send using a secure connection."
+#. Default: "If enabled, the mail is send using a secure connection."
 #: src/profiles/core/controlpanels/mail.json:64
 msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "If enabled the mail is send using a secure connection."
+msgid "If enabled, the mail is send using a secure connection."
 msgstr "Wenn aktiviert, wird die E-Mail über eine sichere Verbindung gesendet."
 
-#. Default: "If enabled the site is multilingual."
+#. Default: "If enabled, the site is multilingual."
 #: src/profiles/core/controlpanels/language.json:42
 msgctxt "Profiles|Core|Controlpanels|Language"
-msgid "If enabled the site is multilingual."
+msgid "If enabled, the site is multilingual."
 msgstr "Wenn aktiviert, ist die Website mehrsprachig."
 
 #. Default: "If selected, this item will not appear in the navigation tree."
@@ -671,7 +671,7 @@ msgstr "Bild"
 #: src/profiles/core/types/image.json:4
 msgctxt "Profiles|Core|Types|Image"
 msgid "Images can be referenced in pages or displayed in an album."
-msgstr "Bilder können in Inhalten eingebunden und angezeigt und in Alben angezeigt werden."
+msgstr "Bilder können in Inhalten eingebunden oder in Alben angezeigt werden."
 
 #. Default: "Information about rights held in and over this item."
 #: src/profiles/core/behaviors/ownership.json:20
@@ -719,11 +719,11 @@ msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Language"
 msgstr "Sprache"
 
-#. Default: "Languageroot"
+#. Default: "Language root"
 #: src/profiles/multilingual/types/languageroot.json:3
 msgctxt "Profiles|Multilingual|Types|Languageroot"
-msgid "Languageroot"
-msgstr "Sprachwurzel"
+msgid "Language root"
+msgstr ""
 
 #. Default: "Larger than"
 #: src/profiles/core/catalog.json:63
