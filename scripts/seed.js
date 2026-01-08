@@ -5,6 +5,10 @@
  */
 
 import { last } from 'es-toolkit/array';
+import configHelper from '../src/helpers/config/config';
+const { config } = require(`${process.cwd()}/config`);
+
+configHelper.settings = config; // Set config for helpers
 
 import { Profile } from '../src/models/profile/profile';
 import { fileExists } from '../src/helpers/fs/fs';
@@ -25,8 +29,6 @@ import { seedRedirect } from '../src/seeds/redirect/redirect';
 import { seedAction } from '../src/seeds/action/action';
 import { seedControlpanel } from '../src/seeds/controlpanel/controlpanel';
 import { seedVocabulary } from '../src/seeds/vocabulary/vocabulary';
-
-const { config } = require(`${process.cwd()}/config`);
 
 const reset = '\x1b[0m';
 const underline = '\x1b[4m';

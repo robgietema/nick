@@ -20,9 +20,7 @@ import { cors } from './middleware/cors/cors';
 import { i18n } from './middleware/i18n/i18n';
 import { removeZopeVhosting } from './middleware/volto/volto';
 
-const { config: configSettings } = require(`${process.cwd()}/config`);
 import config from './helpers/config/config';
-config.settings = configSettings;
 
 // Create blob dir if it doesn't exist
 if (!existsSync(config.settings.blobsDir)) {
