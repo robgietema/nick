@@ -13,7 +13,7 @@
   "scripts": {
     "develop": "missdev --config=jsconfig.json --fetch-https",
     "develop:npx": "npx -p mrs-developer missdev --config=jsconfig.json --fetch-https",
-    "bootstrap": "pnpm install && pnpm migrate && pnpm seed",
+    "bootstrap": "pnpm preinstall && pnpm install && pnpm migrate && pnpm seed",
     "convert": "node -r ts-node/register scripts/convert.js",
     "i18n": "node -r ts-node/register src/develop/nick/scripts/i18n.js",
     "i18n:ci": "pnpm i18n && git diff -G'^[^\"POT]' --exit-code",
