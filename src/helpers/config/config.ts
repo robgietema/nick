@@ -1,3 +1,5 @@
+import events from '../../events';
+
 export type ConfigSettings = {
   connection: {
     port: number;
@@ -28,6 +30,7 @@ export type ConfigSettings = {
     auth: number;
     trustProxy: number;
   };
+  events: typeof events;
   ai: {
     models: {
       embed: {
@@ -111,6 +114,7 @@ class Config {
         auth: parseInt(AUTH_RATE_LIMIT || '5'),
         trustProxy: parseInt(TRUST_PROXY || '1'),
       },
+      events,
       ai: {
         models: {
           embed: {
