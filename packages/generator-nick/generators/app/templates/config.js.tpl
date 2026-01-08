@@ -37,5 +37,36 @@ export const config = {
     `${__dirname}/src/develop/nick/src/profiles/core`,
     `${__dirname}/src/profiles/default`,
   ],
+  requestLimit: {
+    api: '1mb',
+    files: '10mb',
+  },
+  rateLimit: {
+    api: 100,
+    auth: 5,
+    trustProxy: 1,
+  },
   events,
+  ai: {
+    models: {
+      embed: {
+        name: 'nomic-embed-text',
+        api: 'http://localhost:11434/api/embed',
+        dimensions: 768,
+        minSimilarity: 0.5,
+        enabled: false,
+      },
+      llm: {
+        name: 'qwen3',
+        api: 'http://localhost:11434/api/chat',
+        contextSize: 10,
+        enabled: false,
+      },
+      vision: {
+        name: 'llava',
+        api: 'http://localhost:11434/api/generate',
+        enabled: false,
+      },
+    },
+  },
 };

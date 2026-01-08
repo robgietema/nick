@@ -1,5 +1,6 @@
 const path = require('path');
 const Generator = require('yeoman-generator');
+const { exec } = require('child_process');
 
 const currentDir = path.basename(process.cwd());
 
