@@ -61,12 +61,12 @@ Content-Type: application/json
       "debug": {
         "type": "boolean",
         "title": "Debug",
-        "description": "If enabled the mail is send to a test server."
+        "description": "If enabled, the mail is send to a test server."
       },
       "secure": {
         "type": "boolean",
         "title": "Secure",
-        "description": "If enabled the mail is send using a secure connection."
+        "description": "If enabled, the mail is send using a secure connection."
       },
       "email_from_name": {
         "type": "string",
