@@ -102,9 +102,16 @@ export default [
   {
     op: 'get',
     view: '/@users/:id',
-    permission: 'Manage Users',
     client: 'getUser',
     handler: async (req, trx) => {
+      // Check permissions
+      const manageUsers = req.permissions.includes('Manage Users');
+      if (!manageUsers && req.user.id !== req.params.id) {
+        throw new RequestException(401, {
+          message: req.i18n("You don't have permissions to view this user."),
+        });
+      }
+
       const user = await User.fetchById(
         req.params.id,
         {

@@ -112,6 +112,7 @@
 - Reduce jwt expiration to 2 hours @robgietema
 - Specify jwt algorithm explicitly @robgietema
 - Fix inherit roles on seed @robgietema
+- Fix to get own user info @robgietema
 
 ### Internal
 
