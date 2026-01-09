@@ -111,6 +111,7 @@
 - Move assistant from generate to chat endpoint @robgietema
 - Reduce jwt expiration to 2 hours @robgietema
 - Specify jwt algorithm explicitly @robgietema
+- Fix inherit roles on seed @robgietema
 
 ### Internal
 
