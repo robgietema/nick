@@ -113,6 +113,7 @@
 - Specify jwt algorithm explicitly @robgietema
 - Fix inherit roles on seed @robgietema
 - Fix to get own user info @robgietema
+- Fix only return restricted children on get content @robgietema
 
 ### Internal
 

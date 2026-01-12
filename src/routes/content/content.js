@@ -383,6 +383,7 @@ export default [
     client: 'getContent',
     handler: async (req, trx) => {
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
+      await req.document.restrictChildren(req, trx);
       await req.document.fetchRelationLists(trx);
       const json = await req.document.toJSON(req, await getComponents(req));
       return {

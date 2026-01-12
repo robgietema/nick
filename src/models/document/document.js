@@ -165,6 +165,26 @@ export class Document extends Model {
   }
 
   /**
+   * Set restricted children
+   * @method restrictChildren
+   * @param {Object} req Request object.
+   * @param {Object} trx Transaction object.
+   */
+  async restrictChildren(req, trx) {
+    const paths = this._children.map((child) => child.path);
+    const items = await Catalog.fetchAllRestricted(
+      { _path: ['=', paths] },
+      {},
+      trx,
+      req,
+    );
+    const restrictedPaths = items.map((item) => item._path);
+    this._restrictedChildren = this._children.filter((child) =>
+      restrictedPaths.includes(child.path),
+    );
+  }
+
+  /**
    * Fetch relation lists
    * @method fetchRelationLists
    * @param {Object} trx Transaction object.
@@ -409,7 +429,9 @@ export class Document extends Model {
     // Add children if available
     if (this._children) {
       json.items = await Promise.all(
-        this._children.map(async (child) => await child.toJSON(req)),
+        (this._restrictedChildren || this._children).map(
+          async (child) => await child.toJSON(req),
+        ),
       );
     }
 
