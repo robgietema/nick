@@ -1,6 +1,7 @@
 {
   "name": "<%= projectName %>",
   "description": "",
+  "type": "module",
   "license": "MIT",
   "version": "0.0.1",
   "private": true,
@@ -14,17 +15,17 @@
     "develop": "missdev --config=jsconfig.json --fetch-https",
     "develop:npx": "npx -p mrs-developer missdev --config=jsconfig.json --fetch-https",
     "bootstrap": "pnpm preinstall && pnpm install && pnpm migrate && pnpm seed",
-    "convert": "node -r ts-node/register scripts/convert.js",
-    "i18n": "node -r ts-node/register src/develop/nick/scripts/i18n.js",
+    "convert": "tsx scripts/convert.js",
+    "i18n": "tsx src/develop/nick/scripts/i18n.js",
     "i18n:ci": "pnpm i18n && git diff -G'^[^\"POT]' --exit-code",
-    "knex": "node -r ts-node/register node_modules/knex/bin/cli.js",
+    "knex": "tsx ./node_modules/knex/bin/cli.js",
     "lint": "./node_modules/eslint/bin/eslint.js --max-warnings=0 'src/**/*.{js,jsx,json}'",
     "migrate": "pnpm knex migrate:latest",
     "prettier": "./node_modules/.bin/prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "seed": "node -r ts-node/register src/develop/nick/scripts/seed.js run",
-    "seed:status": "node -r ts-node/register src/develop/nick/scripts/seed.js status",
-    "seed:upgrade": "node -r ts-node/register src/develop/nick/scripts/seed.js upgrade",
-    "start": "nodemon --exec 'node -r ts-node/register src/develop/nick/src/server.ts'",
+    "seed": "tsx src/develop/nick/scripts/seed.js run",
+    "seed:status": "tsx src/develop/nick/scripts/seed.js status",
+    "seed:upgrade": "tsx src/develop/nick/scripts/seed.js upgrade",
+    "start": "nodemon --exec 'tsx src/develop/nick/src/server.ts'",
     "rollback": "pnpm knex migrate:rollback --all",
     "reset": "pnpm rollback && pnpm migrate && pnpm seed",
     "test": "AUTH_RATE_LIMIT=1000 jest --passWithNoTests",
@@ -65,6 +66,6 @@
     "@robgietema/nick": "workspace:^",
     "knex": "3.1.0",
     "nodemon": "3.1.11",
-    "ts-node": "10.9.2"
+    "tsx": "4.21.0"
   }
 }
