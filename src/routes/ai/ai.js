@@ -4,7 +4,7 @@
  */
 
 import { omit } from 'es-toolkit/object';
-import pdfParse from 'pdf-parse';
+import PDFParse from 'pdf-parse';
 
 import { Catalog } from '../../models/catalog/catalog';
 import {
@@ -64,7 +64,8 @@ export default [
       let attachment = '';
       if (Object.hasOwn(req.body.params, 'Attachment')) {
         const buffer = Buffer.from(req.body.params.Attachment, 'base64');
-        const result = await pdfParse(buffer);
+        const parser = PDFParse({ data: buffer });
+        const result = await parser.getText();
         attachment = result.text || '';
       }
 

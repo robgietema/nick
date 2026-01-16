@@ -112,7 +112,7 @@
     "nodemon": "3.1.11",
     "objection": "3.1.5",
     "objection-table-name": "2.0.2",
-    "pdf-parse": "1.1.1",
+    "pdf-parse": "2.4.5",
     "pg": "8.16.3",
     "sharp": "0.34.5",
     "slugify": "1.6.6",

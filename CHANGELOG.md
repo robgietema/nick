@@ -137,6 +137,7 @@
 - Remove barrel files @robgietema
 - Remove require for the config @robgietema
 - Replace lodash with es-toolkit and native functions @robgietema
+- Upgrade pdf-parse @robgietema
 
 ### Documentation
 
