@@ -16,8 +16,8 @@ The name "Nick" comes from **"Nearly Headless Nick"** — a ghost character in t
 The joke: Traditional CMSs have a "head" (the frontend that renders pages). "Headless" CMSs remove the frontend entirely, providing only an API. Nick is _nearly_ headless — it provides the full backend structure of a CMS (content hierarchy, workflows, permissions, versioning) but without the template-driven frontend of traditional CMSs like WordPress or Plone Classic. You bring your own "head" (frontend) — typically Volto, but any application that speaks the API works.
 
 **Website:** [nickcms.org](https://nickcms.org)  
-**Demo:** [demo.nickcms.org](https://demo.nickcms.org)
-**Documentation:** [docs.nickcms.org](https://docs.nickcms.org)  
+**Demo:** [demo.nickcms.org](https://demo.nickcms.org)  
+**Documentation:** [docs.nickcms.org](https://docs.nickcms.org)
 **Source Code:** [github.com/robgietema/nick](https://github.com/robgietema/nick)  
 **Issue tracker:** [github.com/robgietema/nick/issues](https://github.com/robgietema/nick/issues).
 **License:** MIT
@@ -173,13 +173,13 @@ Same role model: Anonymous, Authenticated, Owner, Reader, Contributor, Editor, R
 
 ## Multilingual Support
 
-| Feature                       | Nick                 | Plone                      |
-| ----------------------------- | -------------------- | -------------------------- |
-| Language roots (`/en`, `/nl`) | ✓                    | ✓ (plone.app.multilingual) |
-| `@translations` endpoint      | ✓                    | ✓                          |
-| Link/unlink translations      | ✓                    | ✓                          |
-| Navigation root per language  | ✓                    | ✓                          |
-| i18n for backend messages     | ✓ (en, nl currently) | ✓ (many languages)         |
+| Feature                       | Nick              | Plone                      |
+| ----------------------------- | ----------------- | -------------------------- |
+| Language roots (`/en`, `/nl`) | ✓                 | ✓ (plone.app.multilingual) |
+| `@translations` endpoint      | ✓                 | ✓                          |
+| Link/unlink translations      | ✓                 | ✓                          |
+| Navigation root per language  | ✓                 | ✓                          |
+| i18n for backend messages     | ✓ (~30 languages) | ✓ (many languages)         |
 
 ---
 
@@ -202,8 +202,6 @@ These are native features in Nick, not add-ons.
 | ----------------------------- | ------------------------------- |
 | Massive add-on ecosystem      | 20+ years of community packages |
 | collective.\* packages        | Specific integrations           |
-| Archetypes migration paths    | Legacy content support          |
-| Mosaic / other layout systems | Alternatives to blocks          |
 | Built-in comments/discussions | Native in Plone                 |
 | Extensive community support   | Large user base                 |
 
@@ -245,7 +243,6 @@ A single thread handles many concurrent requests by never blocking. When waiting
 ✓ You don't need specific Plone add-ons  
 ✓ You want built-in AI/RAG capabilities  
 ✓ You value a lean, readable codebase  
-✓ You have access to Rob for support  
 ✓ You're starting a new project (no migration needed)
 
 ## When to Choose Plone
