@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { getUrl, getRootUrl } from './url';
 import type { Request } from '../../types';
 

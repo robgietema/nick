@@ -1,7 +1,6 @@
+import { describe, it, afterEach } from 'vitest';
 import app from '../../app';
 import { testRequest } from '../../helpers/tests/tests';
-
-jest.setTimeout(30000);
 
 describe('User', () => {
   afterEach(async () => {

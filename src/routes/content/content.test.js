@@ -1,3 +1,4 @@
+import { describe, it, vi } from 'vitest';
 import { v4 as uuid } from 'uuid';
 
 import app from '../../app';
@@ -36,8 +37,7 @@ describe('Content', () => {
   it('should copy multiple content objects', () => {
     // Mock uuid
     let i = 0;
-    jest.mock('uuid');
-    uuid.mockImplementation(() => {
+    vi.mocked(uuid).mockImplementation(() => {
       i = i + 1;
       return `a95388f2-e4b3-4292-98aa-62656cbd5b9${i}`;
     });

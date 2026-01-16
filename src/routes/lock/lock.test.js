@@ -1,9 +1,10 @@
+import { describe, beforeEach, afterEach, it, vi } from 'vitest';
 import app from '../../app';
 import { testRequest } from '../../helpers/tests/tests';
 import * as lock from '../../helpers/lock/lock';
 
 // Mock lockExpired
-jest.spyOn(lock, 'lockExpired').mockReturnValue(false);
+vi.spyOn(lock, 'lockExpired').mockReturnValue(false);
 
 describe('Locking', () => {
   beforeEach(async () => {

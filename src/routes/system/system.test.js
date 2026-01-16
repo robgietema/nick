@@ -1,9 +1,10 @@
+import { describe, it, vi } from 'vitest';
 import app from '../../app';
 import { testRequest } from '../../helpers/tests/tests';
 
 // Mock getNodeVersion
-jest.mock('../../helpers/utils/utils', () => {
-  const originalModule = jest.requireActual('../../helpers/utils/utils');
+vi.mock('../../helpers/utils/utils', async () => {
+  const originalModule = await vi.importActual('../../helpers/utils/utils.ts');
   return {
     __esModule: true,
     ...originalModule,
@@ -12,8 +13,8 @@ jest.mock('../../helpers/utils/utils', () => {
 });
 
 // Mock getPostgresVersion
-jest.mock('../../helpers/knex/knex', () => {
-  const originalModule = jest.requireActual('../../helpers/knex/knex');
+vi.mock('../../helpers/knex/knex', async () => {
+  const originalModule = await vi.importActual('../../helpers/knex/knex');
   return {
     __esModule: true,
     ...originalModule,

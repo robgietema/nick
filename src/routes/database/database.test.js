@@ -1,9 +1,10 @@
+import { describe, it, vi } from 'vitest';
 import app from '../../app';
 import { testRequest } from '../../helpers/tests/tests';
 
 // Mock formatSize
-jest.mock('../../helpers/format/format', () => {
-  const originalModule = jest.requireActual('../../helpers/format/format');
+vi.mock('../../helpers/format/format', async () => {
+  const originalModule = await vi.importActual('../../helpers/format/format');
   return {
     __esModule: true,
     ...originalModule,

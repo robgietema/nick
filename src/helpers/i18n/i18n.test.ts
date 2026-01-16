@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { stripI18n } from './i18n';
 
 describe('I18n', () => {

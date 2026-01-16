@@ -3,6 +3,7 @@
  * @module helpers/tests/tests
  */
 
+import { expect } from 'vitest';
 import request, { Response } from 'supertest';
 import fs from 'fs';
 import { indexOf } from 'es-toolkit/compat';
