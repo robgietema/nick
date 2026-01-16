@@ -138,6 +138,7 @@
 - Remove require for the config @robgietema
 - Replace lodash with es-toolkit and native functions @robgietema
 - Upgrade pdf-parse @robgietema
+- Set locales dir as config @robgietema
 
 ### Documentation
 

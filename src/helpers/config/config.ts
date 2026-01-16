@@ -9,6 +9,7 @@ export type ConfigSettings = {
     password: string;
   };
   blobsDir: string;
+  localesDir: string;
   port: number;
   secret: string;
   systemUsers: string[];
@@ -69,6 +70,8 @@ const {
   DB_NAME,
   SECRET,
   TRUST_PROXY,
+  BLOBS_DIR,
+  LOCALES_DIR,
 } = process.env;
 
 class Config {
@@ -84,7 +87,8 @@ class Config {
         user: DB_USER || 'nick',
         password: DB_PASSWORD || 'nick',
       },
-      blobsDir: `${__dirname}/../../../../var/blobstorage`,
+      blobsDir: BLOBS_DIR || `${__dirname}/../../../var/blobstorage`,
+      localesDir: LOCALES_DIR || `${__dirname}/../../../locales`,
       port: 8080,
       secret: SECRET || 'secret',
       systemUsers: ['admin', 'anonymous'],

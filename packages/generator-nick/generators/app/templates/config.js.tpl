@@ -9,6 +9,7 @@ export const config = {
     password: '<%= projectName %>',
   },
   blobsDir: `${__dirname}/var/blobstorage`,
+  localesDir: `${__dirname}/locales`,
   port: 8080,
   secret: 'secret',
   systemUsers: ['admin', 'anonymous'],

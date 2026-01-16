@@ -9,9 +9,11 @@ import fs from 'fs';
 
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
+import config from '../../helpers/config/config';
+
 // Get available language files
 const languages = remove(
-  fs.readdirSync(`${__dirname}/../../../locales`),
+  fs.readdirSync(`${config.settings.localesDir}`),
   (value) => value.endsWith('.json'),
 ).map((value) => value.replace(/.json/, ''));
 
@@ -30,7 +32,7 @@ const intl = zipObject(
         locale: language,
         messages: JSON.parse(
           fs.readFileSync(
-            `${__dirname}/../../../locales/${language}.json`,
+            `${config.settings.localesDir}/${language}.json`,
             'utf8',
           ),
         ),
