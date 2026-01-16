@@ -617,11 +617,11 @@ Another application is using port 8080. Either:
 
 ## Next Steps
 
-- [ ] Run the security audit on the Nick source code
-- [ ] Set up a reverse proxy (Nginx/Caddy) for production
-- [ ] Configure proper logging
-- [ ] Set up backups for PostgreSQL
-- [ ] Connect Volto frontend
+- Run the security audit on the Nick source code
+- Set up a reverse proxy (Nginx/Caddy) for production
+- Configure proper logging
+- Set up backups for PostgreSQL
+- Connect Volto frontend
 
 ---
 
@@ -651,7 +651,6 @@ yo @robgietema/nick my_nick_project
 
 # 6. Bootstrap and run
 cd my_nick_project
-pnpm install
 pnpm bootstrap
 pnpm start
 ```
