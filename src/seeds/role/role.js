@@ -8,7 +8,7 @@ import { Role } from '../../models/role/role';
 
 export const seedRole = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/roles`)) {
-    const profile = stripI18n(require(`${profilePath}/roles`));
+    const profile = stripI18n((await import(`${profilePath}/roles`)).default);
     if (profile.purge) {
       await Role.delete({}, trx);
     }

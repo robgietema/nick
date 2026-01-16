@@ -6,7 +6,7 @@ import { Action } from '../../models/action/action';
 
 export const seedAction = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/actions`)) {
-    const profile = stripI18n(require(`${profilePath}/actions`));
+    const profile = stripI18n((await import(`${profilePath}/actions`)).default);
     if (profile.purge) {
       await Action.delete({}, trx);
     }

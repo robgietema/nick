@@ -19,7 +19,7 @@ export const seedControlpanel = async (trx, profilePath) => {
     // Import controlpanels
     await mapAsync(controlpanels, async (controlpanel) => {
       let data = stripI18n(
-        require(`${profilePath}/controlpanels/${controlpanel}`),
+        (await import(`${profilePath}/controlpanels/${controlpanel}`)).default,
       );
 
       // Check if controlpanel exists

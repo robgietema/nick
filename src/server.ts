@@ -3,7 +3,7 @@
  * @module server
  */
 
-const { config: configSettings } = require(`${process.cwd()}/config`);
+const { config: configSettings } = await import(`${process.cwd()}/config`);
 import config from './helpers/config/config';
 config.settings = configSettings;
 

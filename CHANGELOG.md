@@ -140,6 +140,7 @@
 - Upgrade pdf-parse @robgietema
 - Set locales dir as config @robgietema
 - Moved from jest to vitest @robgietema
+- Move from commonjs to esm @robgietema
 
 ### Documentation
 

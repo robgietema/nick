@@ -6,7 +6,7 @@
 import { mapValues } from 'es-toolkit/object';
 
 import { Model } from '../../models/_model/_model';
-import { getRootlUrl } from '../../helpers/url/url';
+import { getRootUrl } from '../../helpers/url/url';
 
 /**
  * A model for Vocabulary.
@@ -35,7 +35,7 @@ export class Vocabulary extends Model {
   toJSON(req) {
     // Get basic data
     return {
-      '@id': `${getRootlUrl(req)}/@vocabularies/${this.id}`,
+      '@id': `${getRootUrl(req)}/@vocabularies/${this.id}`,
       items: mapValues(this.items, (item) => ({
         title: req.i18n(item.title),
         token: item.token,

@@ -1,6 +1,7 @@
 {
   "name": "@robgietema/nick",
   "description": "Nearly Headless CMS",
+  "type": "module",
   "maintainers": [
     {
       "name": "Rob Gietema",
@@ -24,22 +25,22 @@
   ],
   "scripts": {
     "bootstrap": "pnpm install && pnpm create-config && pnpm migrate && pnpm seed",
-    "client": "node -r ts-node/register src/client_test.js",
+    "client": "tsx src/client_test.js",
     "coverage": "vitest --coverage",
-    "convert": "node -r ts-node/register scripts/convert.js",
+    "convert": "tsx scripts/convert.js",
     "create-config": "cp -n config.js.sample config.js && cp -n frontend/src/config.js.sample frontend/src/config.js",
     "docs": "cd docs && bundle exec jekyll serve --baseurl=\"\"",
     "docs:install": "cd docs && bundler install",
-    "i18n": "node -r ts-node/register scripts/i18n.js",
+    "i18n": "tsx scripts/i18n.js",
     "i18n:ci": "pnpm i18n && git diff -G'^[^\"POT]' --exit-code",
-    "knex": "node -r ts-node/register node_modules/knex/bin/cli.js",
+    "knex": "tsx ./node_modules/knex/bin/cli.js",
     "lint": "./node_modules/eslint/bin/eslint.js --max-warnings=0 'src/**/*.{js,jsx,json}'",
     "migrate": "pnpm knex migrate:latest",
     "prettier": "./node_modules/.bin/prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "seed": "node -r ts-node/register scripts/seed.js run",
-    "seed:status": "node -r ts-node/register scripts/seed.js status",
-    "seed:upgrade": "node -r ts-node/register scripts/seed.js upgrade",
-    "start": "nodemon --exec 'node -r ts-node/register src/server.ts'",
+    "seed": "tsx scripts/seed.js run",
+    "seed:status": "tsx scripts/seed.js status",
+    "seed:upgrade": "tsx scripts/seed.js upgrade",
+    "start": "nodemon --exec 'tsx src/server.ts'",
     "rollback": "pnpm knex migrate:rollback --all",
     "reset": "pnpm rollback && pnpm migrate && pnpm seed",
     "test": "AUTH_RATE_LIMIT=1000 vitest"
@@ -79,7 +80,7 @@
     "pofile": "1.1.4",
     "prettier": "3.8.0",
     "supertest": "7.2.2",
-    "ts-node": "10.9.2",
+    "tsx": "4.21.0",
     "typescript": "5.9.3",
     "vitest": "4.0.17"
   },

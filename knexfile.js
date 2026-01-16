@@ -1,5 +1,8 @@
-var path = require('path');
-var { config } = require('./config');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { config } from './config.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const knexSettings = {
   client: 'pg',
@@ -17,7 +20,7 @@ const knexSettings = {
   },
 };
 
-module.exports = {
+export default {
   development: knexSettings,
   production: knexSettings,
 };

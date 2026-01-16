@@ -45,7 +45,9 @@ export const seedDocument = async (trx, profilePath) => {
       .map((file) => dropRight(file.split('.'), 1).join('.'))
       .sort();
     await mapAsync(files, async (file) => {
-      let document = stripI18n(require(`${profilePath}/documents/${file}`));
+      let document = stripI18n(
+        (await import(`${profilePath}/documents/${file}`)).default,
+      );
       const slugs = file.split('.');
       const id = last(slugs) === '_root' ? 'root' : last(slugs);
       const path = last(slugs) === '_root' ? '/' : `/${slugs.join('/')}`;

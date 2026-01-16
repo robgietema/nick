@@ -7,7 +7,9 @@ import { Workflow } from '../../models/workflow/workflow';
 
 export const seedWorkflow = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/workflows`)) {
-    const profile = stripI18n(require(`${profilePath}/workflows`));
+    const profile = stripI18n(
+      (await import(`${profilePath}/workflows`)).default,
+    );
     if (profile.purge) {
       await Workflow.delete({}, trx);
     }

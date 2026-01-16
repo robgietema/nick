@@ -8,7 +8,7 @@ import config from '../../helpers/config/config';
 
 export const seedCatalog = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/catalog`)) {
-    const profile = stripI18n(require(`${profilePath}/catalog`));
+    const profile = stripI18n((await import(`${profilePath}/catalog`)).default);
     await mapAsync(profile.indexes, async (index) => {
       // Add index
       await Index.create(

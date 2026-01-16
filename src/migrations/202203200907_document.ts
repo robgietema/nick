@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, rmSync } from 'fs';
 import type { Knex } from 'knex';
 
-const { config } = require(`${process.cwd()}/config`);
+const { config } = await import(`${process.cwd()}/config`);
 
 interface Config {
   blobsDir: string;

@@ -6,7 +6,8 @@
 
 import { last } from 'es-toolkit/array';
 import configHelper from '../src/helpers/config/config';
-const { config } = require(`${process.cwd()}/config`);
+
+const { config } = await import(`${process.cwd()}/config`);
 
 configHelper.settings = config; // Set config for helpers
 
@@ -61,7 +62,7 @@ async function main() {
   try {
     await mapAsync(config.profiles, async (profilePath, index) => {
       if (fileExists(`${profilePath}/metadata`)) {
-        const metadata = stripI18n(require(`${profilePath}/metadata`));
+        const metadata = stripI18n(await import(`${profilePath}/metadata`));
         const profile = await Profile.fetchOne({ id: metadata.id }, {}, trx);
 
         switch (command) {

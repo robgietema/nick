@@ -7,7 +7,7 @@ import { Group } from '../../models/group/group';
 
 export const seedGroup = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/groups`)) {
-    const profile = stripI18n(require(`${profilePath}/groups`));
+    const profile = stripI18n((await import(`${profilePath}/groups`)).default);
     if (profile.purge) {
       await Group.delete({}, trx);
     }

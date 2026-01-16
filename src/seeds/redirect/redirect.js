@@ -5,7 +5,9 @@ import { Redirect } from '../../models/redirect/redirect';
 
 export const seedRedirect = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/redirects`)) {
-    const profile = stripI18n(require(`${profilePath}/redirects`));
+    const profile = stripI18n(
+      (await import(`${profilePath}/redirects`)).default,
+    );
     if (profile.purge) {
       await Redirect.delete({}, trx);
     }

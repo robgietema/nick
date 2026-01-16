@@ -5,7 +5,9 @@ import { Permission } from '../../models/permission/permission';
 
 export const seedPermission = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/permissions`)) {
-    const profile = stripI18n(require(`${profilePath}/permissions`));
+    const profile = stripI18n(
+      (await import(`${profilePath}/permissions`)).default,
+    );
     if (profile.purge) {
       await Permission.delete({}, trx);
     }

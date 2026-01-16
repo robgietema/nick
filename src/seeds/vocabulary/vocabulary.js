@@ -17,7 +17,7 @@ export const seedVocabulary = async (trx, profilePath) => {
     // Import vocabularies
     await mapAsync(vocabularies, async (vocabulary) => {
       const data = stripI18n(
-        require(`${profilePath}/vocabularies/${vocabulary}`),
+        (await import(`${profilePath}/vocabularies/${vocabulary}`)).default,
       );
       await Vocabulary.create(data, {}, trx);
     });

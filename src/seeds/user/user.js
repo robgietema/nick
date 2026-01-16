@@ -8,7 +8,7 @@ import { User } from '../../models/user/user';
 
 export const seedUser = async (trx, profilePath) => {
   if (fileExists(`${profilePath}/users`)) {
-    const profile = stripI18n(require(`${profilePath}/users`));
+    const profile = stripI18n((await import(`${profilePath}/users`)).default);
     if (profile.purge) {
       await User.delete({}, trx);
     }

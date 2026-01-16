@@ -18,7 +18,9 @@ export const seedType = async (trx, profilePath) => {
 
     // Import behaviors
     await mapAsync(behaviors, async (behavior) => {
-      const data = stripI18n(require(`${profilePath}/behaviors/${behavior}`));
+      const data = stripI18n(
+        (await import(`${profilePath}/behaviors/${behavior}`)).default,
+      );
       await Behavior.create(data, {}, trx);
     });
     console.log('Behaviors imported');
@@ -33,7 +35,9 @@ export const seedType = async (trx, profilePath) => {
     // Import types
     await mapAsync(types, async (type) => {
       let typeModel;
-      const data = stripI18n(require(`${profilePath}/types/${type}`));
+      const data = stripI18n(
+        (await import(`${profilePath}/types/${type}`)).default,
+      );
 
       // Check if type exists
       const current = await Type.fetchById(data.id, {}, trx);
