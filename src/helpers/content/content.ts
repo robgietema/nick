@@ -6,7 +6,7 @@
 import { last } from 'es-toolkit/array';
 import { isObject } from 'es-toolkit/compat';
 import mime from 'mime-types';
-import PDFParse from 'pdf-parse';
+import { PDFParse } from 'pdf-parse';
 import { Knex } from 'knex';
 
 import { mapAsync } from '../utils/utils';
@@ -84,7 +84,7 @@ export async function handleFiles(
       let text = '';
       if (fields[field]['content-type'] === 'application/pdf') {
         const buffer = Buffer.from(fields[field].data, fields[field].encoding);
-        const parser = PDFParse({ data: buffer });
+        const parser = new PDFParse({ data: buffer });
         const result = await parser.getText();
         text = result.text || '';
       }
