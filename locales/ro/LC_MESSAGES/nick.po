@@ -43,7 +43,7 @@ msgstr "IA"
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:16
 #: src/routes/ai/ai.js:60
-#: src/routes/ai/ai.js:108
+#: src/routes/ai/ai.js:109
 msgctxt "Routes|Related"
 msgid "AI is disabled."
 msgstr "IA este dezactivată."
@@ -475,7 +475,7 @@ msgstr "Tipuri de conținut afișate"
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:582
+#: src/routes/content/content.js:583
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr "Document blocat"
@@ -887,7 +887,7 @@ msgstr "Nepermis"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
-#: src/routes/users/users.js:116
+#: src/routes/users/users.js:123
 #: src/routes/types/types.js:36
 #: src/routes/groups/groups.js:26
 #: src/routes/email/email.js:60
@@ -923,7 +923,7 @@ msgstr "Pagină"
 
 #. Default: "Password reset request"
 #: src/routes/users/users.js:86
-#: src/routes/users/users.js:192
+#: src/routes/users/users.js:199
 msgctxt "Routes|Users"
 msgid "Password reset request"
 msgstr "Cerere de resetare parolă"
@@ -1031,7 +1031,7 @@ msgstr "Prompt"
 
 #. Default: "Prompt is a required field."
 #: src/routes/ai/ai.js:50
-#: src/routes/ai/ai.js:98
+#: src/routes/ai/ai.js:99
 msgctxt "Routes|Ai"
 msgid "Prompt is a required field."
 msgstr "Promptul este un câmp obligatoriu."
@@ -1116,7 +1116,7 @@ msgid "Rename"
 msgstr "Redenumire"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:416
+#: src/routes/content/content.js:417
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr "Câmpuri obligatorii lipsă."
@@ -1316,7 +1316,7 @@ msgid "System group"
 msgstr "Grup de sistem"
 
 #. Default: "System users"
-#: src/routes/users/users.js:243
+#: src/routes/users/users.js:250
 msgctxt "Routes|Users"
 msgid "System users"
 msgstr "Utilizatori de sistem"
@@ -1400,7 +1400,7 @@ msgstr "Data și ora de încheiere a unui eveniment"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:87
-#: src/routes/users/users.js:193
+#: src/routes/users/users.js:200
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "nedefinit"
@@ -1712,14 +1712,14 @@ msgid "You can't delete system groups."
 msgstr "Nu puteți șterge grupurile de sistem."
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:242
+#: src/routes/users/users.js:249
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
 msgstr "Nu puteți șterge utilizatorii de sistem."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:579
+#: src/routes/content/content.js:580
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "Nu aveți permisiunea de a salva acest document deoarece este blocat de un alt utilizator."
@@ -1731,10 +1731,16 @@ msgid "You don't have permission to unlock this document."
 msgstr "Nu aveți permisiunea de a debloca acest document."
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:148
+#: src/routes/users/users.js:155
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
 msgstr "Nu aveți permisiuni pentru a adăuga un utilizator."
+
+#. Default: "You don't have permissions to view this user."
+#: src/routes/users/users.js:111
+msgctxt "Routes|Users"
+msgid "You don't have permissions to view this user."
+msgstr ""
 
 #. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3

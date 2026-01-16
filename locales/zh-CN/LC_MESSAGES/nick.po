@@ -43,7 +43,7 @@ msgstr "人工智能"
 #. Default: "AI is disabled."
 #: src/routes/related/related.js:16
 #: src/routes/ai/ai.js:60
-#: src/routes/ai/ai.js:108
+#: src/routes/ai/ai.js:109
 msgctxt "Routes|Related"
 msgid "AI is disabled."
 msgstr "人工智能已禁用。"
@@ -475,7 +475,7 @@ msgstr "显示内容类型"
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:582
+#: src/routes/content/content.js:583
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr "文档已锁定"
@@ -887,7 +887,7 @@ msgstr "不允许"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
-#: src/routes/users/users.js:116
+#: src/routes/users/users.js:123
 #: src/routes/types/types.js:36
 #: src/routes/groups/groups.js:26
 #: src/routes/email/email.js:60
@@ -923,7 +923,7 @@ msgstr "页面"
 
 #. Default: "Password reset request"
 #: src/routes/users/users.js:86
-#: src/routes/users/users.js:192
+#: src/routes/users/users.js:199
 msgctxt "Routes|Users"
 msgid "Password reset request"
 msgstr "密码重置请求"
@@ -1031,7 +1031,7 @@ msgstr "提示词"
 
 #. Default: "Prompt is a required field."
 #: src/routes/ai/ai.js:50
-#: src/routes/ai/ai.js:98
+#: src/routes/ai/ai.js:99
 msgctxt "Routes|Ai"
 msgid "Prompt is a required field."
 msgstr "提示词为必填字段。"
@@ -1116,7 +1116,7 @@ msgid "Rename"
 msgstr "重命名"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:416
+#: src/routes/content/content.js:417
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr "缺少必填字段。"
@@ -1316,7 +1316,7 @@ msgid "System group"
 msgstr "系统组"
 
 #. Default: "System users"
-#: src/routes/users/users.js:243
+#: src/routes/users/users.js:250
 msgctxt "Routes|Users"
 msgid "System users"
 msgstr "系统用户"
@@ -1400,7 +1400,7 @@ msgstr "事件的结束日期和时间"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:87
-#: src/routes/users/users.js:193
+#: src/routes/users/users.js:200
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "未定义"
@@ -1712,14 +1712,14 @@ msgid "You can't delete system groups."
 msgstr "无法删除系统组。"
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:242
+#: src/routes/users/users.js:249
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
 msgstr "无法删除系统用户。"
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:579
+#: src/routes/content/content.js:580
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "您无权保存此文档，因为它已被其他用户锁定。"
@@ -1731,10 +1731,16 @@ msgid "You don't have permission to unlock this document."
 msgstr "您无权解锁此文档。"
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:148
+#: src/routes/users/users.js:155
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
 msgstr "您无权添加用户。"
+
+#. Default: "You don't have permissions to view this user."
+#: src/routes/users/users.js:111
+msgctxt "Routes|Users"
+msgid "You don't have permissions to view this user."
+msgstr ""
 
 #. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3
