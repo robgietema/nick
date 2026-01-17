@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const { config } = await import(`${process.cwd()}/config`);
+
 export type ConfigSettings = {
   connection: {
     port: number;
@@ -30,6 +32,7 @@ export type ConfigSettings = {
   frontendUrl: string;
   prefix: string;
   userRegistration: boolean;
+  profiles: string[];
   rateLimit: {
     api: number;
     auth: number;
@@ -85,27 +88,33 @@ class Config {
   constructor() {
     this.settings = {
       connection: {
-        port: parseInt(DB_PORT || '5432'),
-        host: DB_HOST || 'localhost',
-        database: DB_NAME || 'nick',
-        user: DB_USER || 'nick',
-        password: DB_PASSWORD || 'nick',
+        port: parseInt(DB_PORT || config.connection.port || '5432'),
+        host: DB_HOST || config.connection.host || 'localhost',
+        database: DB_NAME || config.connection.database || 'nick',
+        user: DB_USER || config.connection.user || 'nick',
+        password: DB_PASSWORD || config.connection.password || 'nick',
       },
-      blobsDir: BLOBS_DIR || `${__dirname}/../../../var/blobstorage`,
-      localesDir: LOCALES_DIR || `${__dirname}/../../../locales`,
-      port: 8080,
-      secret: SECRET || 'secret',
-      systemUsers: ['admin', 'anonymous'],
-      systemGroups: ['Owner'],
+      blobsDir:
+        BLOBS_DIR || config.blobsDir || `${__dirname}/../../../var/blobstorage`,
+      localesDir:
+        LOCALES_DIR || config.localesDir || `${__dirname}/../../../locales`,
+      port: config.port || 8080,
+      secret: SECRET || config.secret || 'secret',
+      systemUsers: config.systemUsers || ['admin', 'anonymous'],
+      systemGroups: config.systemGroups || ['Owner'],
       cors: {
-        allowOrigin: ALLOWED_ORIGINS || 'http://localhost:3000',
-        allowMethods: 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
-        allowHeaders: 'Content-Type,Authorization,Accept',
-        allowCredentials: true,
-        exposeHeaders: 'Content-Length,Content-Type',
-        maxAge: 3600,
+        allowOrigin:
+          ALLOWED_ORIGINS || config.cors.allowOrigin || 'http://localhost:3000',
+        allowMethods:
+          config.cors.allowMethods || 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+        allowHeaders:
+          config.cors.allowHeaders || 'Content-Type,Authorization,Accept',
+        allowCredentials: config.cors.allowCredentials || true,
+        exposeHeaders:
+          config.cors.exposeHeaders || 'Content-Length,Content-Type',
+        maxAge: config.cors.maxAge || 3600,
       },
-      imageScales: {
+      imageScales: config.imageScales || {
         large: [768, 768],
         preview: [400, 400],
         mini: [200, 200],
@@ -114,16 +123,20 @@ class Config {
         icon: [32, 32],
         listing: [16, 16],
       },
-      frontendUrl: 'http://localhost:3000',
-      prefix: '',
-      userRegistration: false,
+      frontendUrl: config.frontendUrl || 'http://localhost:3000',
+      prefix: config.prefix || '',
+      userRegistration: config.userRegistration || false,
+      profiles: config.profiles || [
+        `${__dirname}/src/profiles/core`,
+        `${__dirname}/src/profiles/default`,
+      ],
       rateLimit: {
-        api: parseInt(API_RATE_LIMIT || '100'),
-        auth: parseInt(AUTH_RATE_LIMIT || '5'),
-        trustProxy: parseInt(TRUST_PROXY || '1'),
+        api: parseInt(API_RATE_LIMIT || config.rateLimit.api || '100'),
+        auth: parseInt(AUTH_RATE_LIMIT || config.rateLimit.auth || '5'),
+        trustProxy: parseInt(TRUST_PROXY || config.rateLimit.trustProxy || '1'),
       },
-      events,
-      ai: {
+      events: config.events || events,
+      ai: config.ai || {
         models: {
           embed: {
             name: 'nomic-embed-text',

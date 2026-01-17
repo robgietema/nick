@@ -5,12 +5,8 @@
  */
 
 import { last } from 'es-toolkit/array';
-import configHelper from '../src/helpers/config/config';
 
-const { config } = await import(`${process.cwd()}/config`);
-
-configHelper.settings = config; // Set config for helpers
-
+import config from '../src/helpers/config/config';
 import { Profile } from '../src/models/profile/profile';
 import { fileExists } from '../src/helpers/fs/fs';
 import { knex } from '../src/helpers/knex/knex';
@@ -60,7 +56,7 @@ async function main() {
   const trx = await knex.transaction();
 
   try {
-    await mapAsync(config.profiles, async (profilePath, index) => {
+    await mapAsync(config.settings.profiles, async (profilePath, index) => {
       if (fileExists(`${profilePath}/metadata`)) {
         const metadata = stripI18n(await import(`${profilePath}/metadata`));
         const profile = await Profile.fetchOne({ id: metadata.id }, {}, trx);
