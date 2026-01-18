@@ -90,10 +90,12 @@ export async function getNickConfig(projectRootPath: string) {
 
   async function loadConfigFromNamespace(namespace: string) {
     let config: NickConfigJS | null = null;
-    config = await autoConf(namespace, {
-      cwd: projectRootPath,
-      mustExist: true, // It seems that the bool is inverted
-    });
+    config = (
+      await autoConf(namespace, {
+        cwd: projectRootPath,
+        mustExist: true, // It seems that the bool is inverted
+      })
+    ).nick;
     console.log(
       `[@plone/registry] Using configuration file in: ${getConfigPath()}`,
     );
