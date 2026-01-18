@@ -1,10 +1,11 @@
 import events from '../../events';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getNickConfig } from './loader';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const { config } = await import(`${process.cwd()}/config`);
+const config = await getNickConfig(process.cwd());
 
 export type ConfigSettings = {
   connection: {
@@ -89,33 +90,37 @@ class Config {
   constructor() {
     this.settings = {
       connection: {
-        port: parseInt(DB_PORT || config.connection.port || '5432'),
-        host: DB_HOST || config.connection.host || 'localhost',
-        database: DB_NAME || config.connection.database || 'nick',
-        user: DB_USER || config.connection.user || 'nick',
-        password: DB_PASSWORD || config.connection.password || 'nick',
+        port: parseInt(DB_PORT || config?.connection?.port || '5432'),
+        host: DB_HOST || config?.connection?.host || 'localhost',
+        database: DB_NAME || config?.connection?.database || 'nick',
+        user: DB_USER || config?.connection?.user || 'nick',
+        password: DB_PASSWORD || config?.connection?.password || 'nick',
       },
       blobsDir:
-        BLOBS_DIR || config.blobsDir || `${__dirname}/../../../var/blobstorage`,
+        BLOBS_DIR ||
+        config?.blobsDir ||
+        `${__dirname}/../../../var/blobstorage`,
       localesDir:
-        LOCALES_DIR || config.localesDir || `${__dirname}/../../../locales`,
-      port: config.port || 8080,
-      secret: SECRET || config.secret || 'secret',
-      systemUsers: config.systemUsers || ['admin', 'anonymous'],
-      systemGroups: config.systemGroups || ['Owner'],
+        LOCALES_DIR || config?.localesDir || `${__dirname}/../../../locales`,
+      port: config?.port || 8080,
+      secret: SECRET || config?.secret || 'secret',
+      systemUsers: config?.systemUsers || ['admin', 'anonymous'],
+      systemGroups: config?.systemGroups || ['Owner'],
       cors: {
         allowOrigin:
-          ALLOWED_ORIGINS || config.cors.allowOrigin || 'http://localhost:3000',
+          ALLOWED_ORIGINS ||
+          config?.cors?.allowOrigin ||
+          'http://localhost:3000',
         allowMethods:
-          config.cors.allowMethods || 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+          config?.cors?.allowMethods || 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
         allowHeaders:
-          config.cors.allowHeaders || 'Content-Type,Authorization,Accept',
-        allowCredentials: config.cors.allowCredentials || true,
+          config?.cors?.allowHeaders || 'Content-Type,Authorization,Accept',
+        allowCredentials: config?.cors?.allowCredentials || true,
         exposeHeaders:
-          config.cors.exposeHeaders || 'Content-Length,Content-Type',
-        maxAge: config.cors.maxAge || 3600,
+          config?.cors?.exposeHeaders || 'Content-Length,Content-Type',
+        maxAge: config?.cors?.maxAge || 3600,
       },
-      imageScales: config.imageScales || {
+      imageScales: config?.imageScales || {
         large: [768, 768],
         preview: [400, 400],
         mini: [200, 200],
@@ -124,21 +129,23 @@ class Config {
         icon: [32, 32],
         listing: [16, 16],
       },
-      frontendUrl: config.frontendUrl || 'http://localhost:3000',
-      prefix: config.prefix || '',
-      userRegistration: config.userRegistration || false,
-      profiles: config.profiles || [
+      frontendUrl: config?.frontendUrl || 'http://localhost:3000',
+      prefix: config?.prefix || '',
+      userRegistration: config?.userRegistration || false,
+      profiles: config?.profiles || [
         `${__dirname}/src/profiles/core`,
         `${__dirname}/src/profiles/default`,
       ],
       rateLimit: {
-        api: parseInt(API_RATE_LIMIT || config.rateLimit.api || '100'),
-        auth: parseInt(AUTH_RATE_LIMIT || config.rateLimit.auth || '5'),
-        trustProxy: parseInt(TRUST_PROXY || config.rateLimit.trustProxy || '1'),
+        api: parseInt(API_RATE_LIMIT || config?.rateLimit?.api || '100'),
+        auth: parseInt(AUTH_RATE_LIMIT || config?.rateLimit?.auth || '5'),
+        trustProxy: parseInt(
+          TRUST_PROXY || config?.rateLimit?.trustProxy || '1',
+        ),
       },
-      events: config.events || events,
-      routes: config.routes || false,
-      ai: config.ai || {
+      events: config?.events || events,
+      routes: config?.routes || false,
+      ai: config?.ai || {
         models: {
           embed: {
             name: 'nomic-embed-text',
