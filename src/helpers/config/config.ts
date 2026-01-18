@@ -40,6 +40,7 @@ export type ConfigSettings = {
   };
   events: typeof events;
   routes: boolean;
+  tasks: boolean;
   ai: {
     models: {
       embed: {
@@ -138,6 +139,7 @@ class Config {
       },
       events: config.events || events,
       routes: config.routes || false,
+      tasks: config.tasks || false,
       ai: config.ai || {
         models: {
           embed: {

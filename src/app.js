@@ -7,6 +7,7 @@ import express from 'express';
 import helmet from 'helmet';
 import { existsSync, mkdirSync } from 'fs';
 import { isObject } from 'es-toolkit/compat';
+import cron from 'node-cron';
 
 import { RequestException } from './helpers/error/error';
 import { log } from './helpers/log/log';
@@ -14,6 +15,7 @@ import { regExpEscape } from './helpers/utils/utils';
 import { callHandler } from './helpers/handler/handler';
 import { Model } from './models/_model/_model';
 import globalRoutes from './routes';
+import globalTasks from './tasks';
 
 import { accessLogger } from './middleware/access-logger/access-logger';
 import { cors } from './middleware/cors/cors';
@@ -26,7 +28,20 @@ const localRoutes = config.settings.routes
   ? (await import(`${process.cwd()}/src/routes`)).default
   : [];
 
+const localTasks = config.settings.tasks
+  ? (await import(`${process.cwd()}/src/tasks`)).default
+  : [];
+
 const routes = [...localRoutes, ...globalRoutes];
+const tasks = [...localTasks, ...globalTasks];
+
+// Run scheduled tasks
+tasks.forEach((task) => {
+  cron.schedule(task.schedule, async () => {
+    log.info(`Running scheduled task: ${task.name}`);
+    task.handler();
+  });
+});
 
 // Create blob dir if it doesn't exist
 if (!existsSync(config.settings.blobsDir)) {

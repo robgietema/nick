@@ -48,6 +48,8 @@ export const config = {
     trustProxy: 1,
   },
   events,
+  routes: false,
+  tasks: false,
   ai: {
     models: {
       embed: {
