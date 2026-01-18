@@ -24,7 +24,7 @@
     "cms"
   ],
   "scripts": {
-    "bootstrap": "pnpm install && pnpm create-config && pnpm migrate && pnpm seed",
+    "bootstrap": "pnpm install && pnpm migrate && pnpm seed",
     "client": "tsx src/client_test.js",
     "coverage": "vitest --coverage",
     "convert": "tsx scripts/convert.js",
