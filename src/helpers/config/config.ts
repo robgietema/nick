@@ -39,6 +39,7 @@ export type ConfigSettings = {
     trustProxy: number;
   };
   events: typeof events;
+  routes: boolean;
   ai: {
     models: {
       embed: {
@@ -136,6 +137,7 @@ class Config {
         trustProxy: parseInt(TRUST_PROXY || config.rateLimit.trustProxy || '1'),
       },
       events: config.events || events,
+      routes: config.routes || false,
       ai: config.ai || {
         models: {
           embed: {

@@ -13,7 +13,7 @@ import { log } from './helpers/log/log';
 import { regExpEscape } from './helpers/utils/utils';
 import { callHandler } from './helpers/handler/handler';
 import { Model } from './models/_model/_model';
-import routes from './routes';
+import globalRoutes from './routes';
 
 import { accessLogger } from './middleware/access-logger/access-logger';
 import { cors } from './middleware/cors/cors';
@@ -21,6 +21,12 @@ import { i18n } from './middleware/i18n/i18n';
 import { removeZopeVhosting } from './middleware/volto/volto';
 
 import config from './helpers/config/config';
+
+const localRoutes = config.settings.routes
+  ? (await import(`${process.cwd()}/src/routes`)).default
+  : [];
+
+const routes = [...localRoutes, ...globalRoutes];
 
 // Create blob dir if it doesn't exist
 if (!existsSync(config.settings.blobsDir)) {
