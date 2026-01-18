@@ -87,6 +87,7 @@
   "dependencies": {
     "@formatjs/cli": "6.11.0",
     "@formatjs/intl": "4.1.0",
+    "auto-config-loader": "^3.0.3",
     "bcrypt": "6.0.0",
     "bcrypt-promise": "2.0.0",
     "du": "1.0.0",
