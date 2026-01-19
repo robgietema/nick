@@ -1,4 +1,9 @@
+import { fileURLToPath } from 'url';
+import path from 'path';
 import events from './src/events';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const {
   ALLOWED_ORIGINS,
   API_RATE_LIMIT,
@@ -34,9 +39,9 @@ export const config = {
     password: DB_PASSWORD || 'nick',
   },
   blobsDir: `${__dirname}/var/blobstorage`,
+  localesDir: `${__dirname}/locales`,
   port: 8080,
   secret: SECRET || 'secret',
-  clientMaxSize: '64mb',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Owner'],
   cors: {
