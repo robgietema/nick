@@ -680,8 +680,8 @@ msgid "Information about rights held in and over this item."
 msgstr "इस आइटम में और इसके ऊपर रखे गए अधिकारों के बारे में जानकारी।"
 
 #. Default: "Internal server error"
-#: src/app.js:168
-#: src/app.js:178
+#: src/app.js:189
+#: src/app.js:199
 msgctxt "App"
 msgid "Internal server error"
 msgstr "आंतरिक सर्वर त्रुटि"
@@ -1577,8 +1577,8 @@ msgstr "आज"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:116
-#: src/app.js:129
+#: src/app.js:137
+#: src/app.js:150
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "लेनदेन त्रुटि।"

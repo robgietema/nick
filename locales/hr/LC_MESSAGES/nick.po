@@ -680,8 +680,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Informacije o pravima na ovu stavku."
 
 #. Default: "Internal server error"
-#: src/app.js:168
-#: src/app.js:178
+#: src/app.js:189
+#: src/app.js:199
 msgctxt "App"
 msgid "Internal server error"
 msgstr "Interna pogreška poslužitelja"
@@ -1577,8 +1577,8 @@ msgstr "Danas"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:116
-#: src/app.js:129
+#: src/app.js:137
+#: src/app.js:150
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "Pogreška transakcije."
