@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@formatjs/cli':
-        specifier: 6.11.0
-        version: 6.11.0
+        specifier: 6.12.0
+        version: 6.12.0
       '@formatjs/intl':
-        specifier: 4.1.0
-        version: 4.1.0(typescript@5.9.3)
+        specifier: 4.1.1
+        version: 4.1.1(typescript@5.9.3)
       bcrypt:
         specifier: 6.0.0
         version: 6.0.0
@@ -40,7 +40,7 @@ importers:
         version: 9.0.3
       knex:
         specifier: 3.1.0
-        version: 3.1.0(pg@8.17.1)
+        version: 3.1.0(pg@8.17.2)
       log4js:
         specifier: 6.9.1
         version: 6.9.1
@@ -61,16 +61,16 @@ importers:
         version: 3.1.11
       objection:
         specifier: 3.1.5
-        version: 3.1.5(knex@3.1.0(pg@8.17.1))
+        version: 3.1.5(knex@3.1.0(pg@8.17.2))
       objection-table-name:
         specifier: 2.0.2
-        version: 2.0.2(objection@3.1.5(knex@3.1.0(pg@8.17.1)))
+        version: 2.0.2(objection@3.1.5(knex@3.1.0(pg@8.17.2)))
       pdf-parse:
         specifier: 2.4.5
         version: 2.4.5
       pg:
-        specifier: 8.17.1
-        version: 8.17.1
+        specifier: 8.17.2
+        version: 8.17.2
       sharp:
         specifier: 0.34.5
         version: 0.34.5
@@ -543,19 +543,18 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@formatjs/cli@6.11.0':
-    resolution: {integrity: sha512-foFSEAFZBTBCyw0iyebpAiDcErwHjCFnBdeIoRJS51cvjrUAorb+9b8jXZtj7n6eVGWCGW1c+KI9EUxQhm1Z5w==}
+  '@formatjs/cli@6.12.0':
+    resolution: {integrity: sha512-mF3U8XxwEWR+ttlG5e4onYO+M5T22jnnQq7Ce/WK10CTVYR8Us433hbML6vgBLkiTS/MuCq61L0op3yNRSp2Kg==}
     engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:
       '@glimmer/env': '*'
       '@glimmer/reference': '*'
-      '@glimmer/syntax': ^0.95.0
+      '@glimmer/syntax': ^0.84.3 || ^0.95.0
       '@glimmer/validator': '*'
-      '@vue/compiler-core': 3.5.26
+      '@vue/compiler-core': 3.5.27
       content-tag: ^4.1.0
-      ember-template-recast: ^6.1.5
-      vue: 3.5.26
+      vue: 3.5.27
     peerDependenciesMeta:
       '@glimmer/env':
         optional: true
@@ -569,8 +568,6 @@ packages:
         optional: true
       content-tag:
         optional: true
-      ember-template-recast:
-        optional: true
       vue:
         optional: true
 
@@ -580,8 +577,8 @@ packages:
   '@formatjs/fast-memoize@3.1.0':
     resolution: {integrity: sha512-b5mvSWCI+XVKiz5WhnBCY3RJ4ZwfjAidU0yVlKa3d3MSgKmH1hC3tBGEAtYyN5mqL7N0G5x0BOUYyO8CEupWgg==}
 
-  '@formatjs/icu-messageformat-parser@3.4.0':
-    resolution: {integrity: sha512-2bSQc59NFiEuN5VW0dUh7Txn5Qbeib5kZtzxFDXXqxUljvwhA3Qsrv2AwuVCRMISjbgOYwA2Rp5HW6tbdTnv9g==}
+  '@formatjs/icu-messageformat-parser@3.5.0':
+    resolution: {integrity: sha512-Q01XuvtbDVCJQsG/E2MSfMZ+UdUoZV8v4Aex8tTH44SqKJZCeu5LjuclaKFUS0o1YoXndfEinJen5k1T1GR1vg==}
 
   '@formatjs/icu-skeleton-parser@2.1.0':
     resolution: {integrity: sha512-wNer4imHDFBVAJnMb2OGoSyM4wL/uuLnuo5mrenliqkDaNjRbG4jzlJcwTTDEBhai8iCjnzUsE7xwNJC29SfWw==}
@@ -589,8 +586,8 @@ packages:
   '@formatjs/intl-localematcher@0.8.0':
     resolution: {integrity: sha512-zgMYWdUlmEZpX2Io+v3LHrfq9xZ6khpQVf9UAw2xYWhGerGgI9XgH1HvL/A34jWiruUJpYlP5pk4g8nIcaDrXQ==}
 
-  '@formatjs/intl@4.1.0':
-    resolution: {integrity: sha512-L1Jx2QHZ3kXDSCLqKuRcPuvPIIH2pZFalMDMgwzVHR053zE4xelagxxFuQ4sL1paR74LR8E34so3hvSG0YWHGw==}
+  '@formatjs/intl@4.1.1':
+    resolution: {integrity: sha512-88qfxk5XK5UApY3I8ocY2WJyA64MlVQKwmqAjkaVkX25mZb9qZokDDH4+MWD6UX67uqZlsrwUg36yZr/R4X3Jw==}
     peerDependencies:
       typescript: ^5.6.0
     peerDependenciesMeta:
@@ -1807,8 +1804,8 @@ packages:
     resolution: {integrity: sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==}
     engines: {node: '>= 0.10'}
 
-  intl-messageformat@11.1.0:
-    resolution: {integrity: sha512-5QJbBIRJqqBX0cD1z+r4e3B5HGmyLYzTFAW5WmSlGuwc3kHSOR0x9fEE/Z9wL2+Px9P1kwqj+wE6QzCoyooBSA==}
+  intl-messageformat@11.1.1:
+    resolution: {integrity: sha512-vnrF2f4vfsdaFY6tuLZfzGcx1GZFMFAq6c7QdK3HSXNcGXEIQncNgbeAcnpjAOszQzq3Jbol2SwgshIGY08WyA==}
 
   ip-address@10.0.1:
     resolution: {integrity: sha512-NWv9YLW4PoW2B7xtzaS3NCot75m6nK7Icdv0o3lfMceJVRfSoQwqD4wEH5rLwoKJwUiZ/rfpiVBhnaF0FK4HoA==}
@@ -2157,8 +2154,8 @@ packages:
   pg-cloudflare@1.3.0:
     resolution: {integrity: sha512-6lswVVSztmHiRtD6I8hw4qP/nDm1EJbKMRhf3HCYaqud7frGysPv7FYJ5noZQdhQtN2xJnimfMtvQq21pdbzyQ==}
 
-  pg-connection-string@2.10.0:
-    resolution: {integrity: sha512-ur/eoPKzDx2IjPaYyXS6Y8NSblxM7X64deV2ObV57vhjsWiwLvUD6meukAzogiOsu60GO8m/3Cb6FdJsWNjwXg==}
+  pg-connection-string@2.10.1:
+    resolution: {integrity: sha512-iNzslsoeSH2/gmDDKiyMqF64DATUCWj3YJ0wP14kqcsf2TUklwimd+66yYojKwZCA7h2yRNLGug71hCBA2a4sw==}
 
   pg-connection-string@2.6.2:
     resolution: {integrity: sha512-ch6OwaeaPYcova4kKZ15sbJ2hKb/VP48ZD2gE7i1J+L4MspCtBMAx8nMgz7bksc7IojCIIWuEhHibSMFH8m8oA==}
@@ -2179,8 +2176,8 @@ packages:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
 
-  pg@8.17.1:
-    resolution: {integrity: sha512-EIR+jXdYNSMOrpRp7g6WgQr7SaZNZfS7IzZIO0oTNEeibq956JxeD15t3Jk3zZH0KH8DmOIx38qJfQenoE8bXQ==}
+  pg@8.17.2:
+    resolution: {integrity: sha512-vjbKdiBJRqzcYw1fNU5KuHyYvdJ1qpcQg1CeBrHFqV1pWgHeVR6j/+kX0E1AAXfyuLUGY1ICrN2ELKA/z2HWzw==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -3264,7 +3261,7 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@formatjs/cli@6.11.0': {}
+  '@formatjs/cli@6.12.0': {}
 
   '@formatjs/ecma402-abstract@3.1.0':
     dependencies:
@@ -3277,7 +3274,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@formatjs/icu-messageformat-parser@3.4.0':
+  '@formatjs/icu-messageformat-parser@3.5.0':
     dependencies:
       '@formatjs/ecma402-abstract': 3.1.0
       '@formatjs/icu-skeleton-parser': 2.1.0
@@ -3293,12 +3290,12 @@ snapshots:
       '@formatjs/fast-memoize': 3.1.0
       tslib: 2.8.1
 
-  '@formatjs/intl@4.1.0(typescript@5.9.3)':
+  '@formatjs/intl@4.1.1(typescript@5.9.3)':
     dependencies:
       '@formatjs/ecma402-abstract': 3.1.0
       '@formatjs/fast-memoize': 3.1.0
-      '@formatjs/icu-messageformat-parser': 3.4.0
-      intl-messageformat: 11.1.0
+      '@formatjs/icu-messageformat-parser': 3.5.0
+      intl-messageformat: 11.1.1
       tslib: 2.8.1
     optionalDependencies:
       typescript: 5.9.3
@@ -4552,11 +4549,11 @@ snapshots:
 
   interpret@2.2.0: {}
 
-  intl-messageformat@11.1.0:
+  intl-messageformat@11.1.1:
     dependencies:
       '@formatjs/ecma402-abstract': 3.1.0
       '@formatjs/fast-memoize': 3.1.0
-      '@formatjs/icu-messageformat-parser': 3.4.0
+      '@formatjs/icu-messageformat-parser': 3.5.0
       tslib: 2.8.1
 
   ip-address@10.0.1: {}
@@ -4635,7 +4632,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knex@3.1.0(pg@8.17.1):
+  knex@3.1.0(pg@8.17.2):
     dependencies:
       colorette: 2.0.19
       commander: 10.0.1
@@ -4652,7 +4649,7 @@ snapshots:
       tarn: 3.0.2
       tildify: 2.0.0
     optionalDependencies:
-      pg: 8.17.1
+      pg: 8.17.2
     transitivePeerDependencies:
       - supports-color
 
@@ -4782,19 +4779,19 @@ snapshots:
 
   object-inspect@1.13.4: {}
 
-  objection-table-name@2.0.2(objection@3.1.5(knex@3.1.0(pg@8.17.1))):
+  objection-table-name@2.0.2(objection@3.1.5(knex@3.1.0(pg@8.17.2))):
     dependencies:
       lodash.camelcase: 4.3.0
       lodash.memoize: 4.1.2
-      objection: 3.1.5(knex@3.1.0(pg@8.17.1))
+      objection: 3.1.5(knex@3.1.0(pg@8.17.2))
       pluralize: 8.0.0
 
-  objection@3.1.5(knex@3.1.0(pg@8.17.1)):
+  objection@3.1.5(knex@3.1.0(pg@8.17.2)):
     dependencies:
       ajv: 8.17.1
       ajv-formats: 2.1.1(ajv@8.17.1)
       db-errors: 0.2.3
-      knex: 3.1.0(pg@8.17.1)
+      knex: 3.1.0(pg@8.17.2)
 
   obug@2.1.1: {}
 
@@ -4856,15 +4853,15 @@ snapshots:
   pg-cloudflare@1.3.0:
     optional: true
 
-  pg-connection-string@2.10.0: {}
+  pg-connection-string@2.10.1: {}
 
   pg-connection-string@2.6.2: {}
 
   pg-int8@1.0.1: {}
 
-  pg-pool@3.11.0(pg@8.17.1):
+  pg-pool@3.11.0(pg@8.17.2):
     dependencies:
-      pg: 8.17.1
+      pg: 8.17.2
 
   pg-protocol@1.11.0: {}
 
@@ -4876,10 +4873,10 @@ snapshots:
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
 
-  pg@8.17.1:
+  pg@8.17.2:
     dependencies:
-      pg-connection-string: 2.10.0
-      pg-pool: 3.11.0(pg@8.17.1)
+      pg-connection-string: 2.10.1
+      pg-pool: 3.11.0(pg@8.17.2)
       pg-protocol: 1.11.0
       pg-types: 2.2.0
       pgpass: 1.0.5
