@@ -142,6 +142,7 @@
 - Set locales dir as config @robgietema
 - Moved from jest to vitest @robgietema
 - Move from commonjs to esm @robgietema
+- Moved example frontend to separate repository @robgietema
 
 ### Documentation
 
