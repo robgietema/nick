@@ -28,7 +28,7 @@
     "client": "tsx src/client_test.js",
     "coverage": "vitest --coverage",
     "convert": "tsx scripts/convert.js",
-    "create-config": "cp -n config.js.sample config.js && cp -n frontend/src/config.js.sample frontend/src/config.js",
+    "create-config": "cp -n config.js.sample config.js",
     "docs": "cd docs && bundle exec jekyll serve --baseurl=\"\"",
     "docs:install": "cd docs && bundler install",
     "i18n": "tsx scripts/i18n.js",

@@ -2,6 +2,5 @@ version: 2
 updates:
   - package-ecosystem: 'npm'
     directory: '/'
-    exclude-paths: 'frontend/**'
     schedule:
       interval: 'daily'
