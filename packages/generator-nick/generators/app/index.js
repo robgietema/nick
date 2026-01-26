@@ -50,7 +50,7 @@ Run "npm install -g @robgietema/generator-nick" to update.`,
           {
             type: 'input',
             name: 'projectName',
-            message: 'Project name (e.g. my-nick-project)',
+            message: 'Project name (e.g. my_nick_project)',
             default: path.basename(process.cwd()),
           },
         ]);
