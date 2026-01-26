@@ -106,20 +106,9 @@ Run "npm install -g @robgietema/generator-nick" to update.`,
     this.fs.delete(this.destinationPath(base, '.gitignorefile'));
   }
 
-  async install() {
-    if (!this.opts['skip-install']) {
-      const base =
-        currentDir === this.globals.projectName
-          ? '.'
-          : this.globals.projectName;
-      await exec(`pnpm install --cwd ${base}`);
-    }
-  }
-
   end() {
-    if (!this.opts['skip-install']) {
-      this.log(
-        `
+    this.log(
+      `
 Done.
 
 Now install and run Postgres and setup the database by entering the following in your Postgres console:
@@ -127,29 +116,14 @@ Now install and run Postgres and setup the database by entering the following in
 $ CREATE DATABASE "${this.globals.projectName}";
 $ CREATE USER "${this.globals.projectName}" WITH ENCRYPTED PASSWORD '${this.globals.projectName}';
 $ GRANT ALL PRIVILEGES ON DATABASE "${this.globals.projectName}" TO "${this.globals.projectName}";
+$ ALTER DATABASE "${this.globals.projectName}" OWNER TO "${this.globals.projectName}";
+$ GRANT ALL ON SCHEMA public TO "${this.globals.projectName}";
 
 Now go to the ${this.globals.projectName} folder and run:
 
 pnpm bootstrap
 pnpm start
 `,
-      );
-    } else {
-      this.log(`
-Done.
-
-Now install and run Postgres and setup the database by entering the following in your Postgres console:
-
-$ CREATE DATABASE "${this.globals.projectName}";
-$ CREATE USER "${this.globals.projectName}" WITH ENCRYPTED PASSWORD '${this.globals.projectName}';
-$ GRANT ALL PRIVILEGES ON DATABASE "${this.globals.projectName}" TO "${this.globals.projectName}";
-
-Now go to the ${this.globals.projectName} folder and run:
-
-pnpm install
-pnpm bootstrap
-pnpm start
-`);
-    }
+    );
   }
 };

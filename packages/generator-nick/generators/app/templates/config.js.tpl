@@ -1,4 +1,8 @@
+import { fileURLToPath } from 'url';
+import path from 'path';
 import events from './src/events';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const config = {
   connection: {
@@ -9,7 +13,7 @@ export const config = {
     password: '<%= projectName %>',
   },
   blobsDir: `${__dirname}/var/blobstorage`,
-  localesDir: `${__dirname}/locales`,
+  localesDir: `${__dirname}/src/develop/nick/locales`,
   port: 8080,
   secret: 'secret',
   systemUsers: ['admin', 'anonymous'],
