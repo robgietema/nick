@@ -218,9 +218,29 @@ export default [
 
       const controlpanel = await Controlpanel.fetchById(req.params.id, {}, trx);
 
-      // Handle images
+      // Preserve registry-format values (filenameb64:...;datab64:...)
+      // These come from Volto's RegistryImageWidget and must be stored as-is.
+      // handleFiles/handleImages expect object uploads or profile paths,
+      // not registry-format strings — passing strings causes readProfileFile()
+      // to crash with an undefined profile path.
+      const registryValues = {};
+      const factoryFields = [
+        ...controlpanel.getFactoryFields('File'),
+        ...controlpanel.getFactoryFields('Image'),
+      ];
+      for (const field of factoryFields) {
+        if (typeof json[field] === 'string') {
+          registryValues[field] = json[field];
+          delete json[field];
+        }
+      }
+
+      // Handle standard file/image uploads (object format)
       json = await handleFiles(json, controlpanel);
       json = await handleImages(json, controlpanel);
+
+      // Restore registry-format values
+      Object.assign(json, registryValues);
 
       await Controlpanel.update(
         req.params.id,
