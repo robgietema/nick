@@ -48,7 +48,10 @@ function getSiteLogoUrl(site_logo) {
       const filenameb64 = parts[0].replace('filenameb64:', '');
       const filename = Buffer.from(filenameb64, 'base64').toString('utf-8');
       const mimeType = getMimeType(filename);
-      return `data:${mimeType};base64,${parts[1]}`;
+      // Strip trailing '}' — Volto's RegistryImageWidget (line 102) appends
+      // a stray '}' due to a template literal bug: `${fields[3]}}`
+      const data = parts[1].replace(/\}+$/, '');
+      return `data:${mimeType};base64,${data}`;
     }
     return null;
   }
