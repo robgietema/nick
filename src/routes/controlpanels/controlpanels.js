@@ -227,7 +227,7 @@ export default [
         {
           data: {
             ...controlpanel.data,
-            ...req.body,
+            ...json,
           },
         },
         trx,
