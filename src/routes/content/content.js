@@ -29,6 +29,7 @@ import { handler as breadcrumbs } from '../breadcrumbs/breadcrumbs';
 import { handler as navigation } from '../navigation/navigation';
 import { handler as navroot } from '../navroot/navroot';
 import { handler as related } from '../related/related';
+import { handler as inherit } from '../inherit/inherit';
 import { handler as translations } from '../translations/translations';
 import { handler as types } from '../types/types';
 import { handler as workflow } from '../workflow/workflow';
@@ -118,6 +119,13 @@ const getComponents = async (req, trx) => {
     components.translations = (await translations(req, trx)).json;
   } else {
     components.translations = { '@id': `${baseUrl}/@translations` };
+  }
+
+  // Include inherit expander
+  if (expand.includes('inherit')) {
+    components.inherit = (await inherit(req, trx)).json;
+  } else {
+    components.inherit = { '@id': `${baseUrl}/@inherit` };
   }
 
   // Return components
