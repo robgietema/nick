@@ -26,6 +26,13 @@ export default [
         user = await User.fetchOne({ id: req.params.email }, {}, trx);
       }
 
+      // Check min password length
+      if (req.body?.new_password.length < 8) {
+        throw new RequestException(401, {
+          message: req.i18n('Password should be at least 8 characters long.'),
+        });
+      }
+
       // Check input
       if (req.body?.reset_token && req.body?.new_password && user) {
         // Decode jwt
@@ -156,6 +163,13 @@ export default [
       if (!config.settings.userRegistration && !manageUsers) {
         throw new RequestException(401, {
           message: req.i18n("You don't have permissions to add a user."),
+        });
+      }
+
+      // Check min password length
+      if (req.body?.password.length < 8) {
+        throw new RequestException(401, {
+          message: req.i18n('Password should be at least 8 characters long.'),
         });
       }
 

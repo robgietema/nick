@@ -124,6 +124,7 @@
 - Add api limiter to like sql query calls @robgietema
 - Set b_size upper limit @robgietema
 - Check range for limit and offset values @robgietema
+- Set minimum password length to 8 @robgietema
 
 ### Internal
 
