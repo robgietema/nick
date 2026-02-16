@@ -147,6 +147,7 @@
 - Move from commonjs to esm @robgietema
 - Moved example frontend to separate repository @robgietema
 - Refactor events @robgietema
+- Refactor ai endpoints with own permission @robgietema
 
 ### Documentation
 

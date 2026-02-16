@@ -1,0 +1,10 @@
+{
+  "purge": false,
+  "roles": [
+    {
+      "id": "Authenticated",
+      "title:i18n": "Authenticated",
+      "permissions": ["AI"]
+    }
+  ]
+}

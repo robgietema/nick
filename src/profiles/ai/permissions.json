@@ -1,0 +1,9 @@
+{
+  "purge": false,
+  "permissions": [
+    {
+      "id": "AI",
+      "title:i18n": "AI"
+    }
+  ]
+}

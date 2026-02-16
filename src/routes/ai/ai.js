@@ -41,7 +41,7 @@ export default [
   {
     op: 'post',
     view: '/@generate',
-    permission: 'View',
+    permission: 'AI',
     client: 'generate',
     handler: async (req, trx, callback) => {
       // Check if required field provided
@@ -90,7 +90,7 @@ export default [
   {
     op: 'post',
     view: '/@chat',
-    permission: 'View',
+    permission: 'AI',
     client: 'chat',
     handler: async (req, trx, callback) => {
       // Check if required field provided

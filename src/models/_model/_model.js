@@ -262,11 +262,6 @@ export class Model extends mixin(ObjectionModel, [
         }
       }),
     );
-    /*
-    if (options.related) {
-      await model.fetchRelated(options.related, trx);
-    }
-    */
     return model;
   }
 

@@ -1,4 +1,6 @@
 import { omit } from 'es-toolkit/object';
+import { uniq } from 'es-toolkit/array';
+import { merge } from 'es-toolkit/object';
 
 import { fileExists } from '../../helpers/fs/fs';
 import { mapAsync } from '../../helpers/utils/utils';
@@ -13,15 +15,36 @@ export const seedRole = async (trx, profilePath) => {
       await Role.delete({}, trx);
     }
     await mapAsync(profile.roles, async (role, index) => {
-      await Role.create(
-        {
-          ...omit(role, ['permissions']),
-          _permissions: role.permissions,
-          order: role.order || index,
-        },
-        {},
-        trx,
-      );
+      // Check if role exists
+      const current = await Role.fetchById(role.id, {}, trx);
+
+      // If doesn't exist
+      if (!current) {
+        await Role.create(
+          {
+            ...omit(role, ['permissions']),
+            _permissions: role.permissions,
+            order: role.order || index,
+          },
+          {},
+          trx,
+        );
+      } else {
+        await current.fetchRelated('_permissions', trx);
+        await Role.update(
+          role.id,
+          {
+            ...omit(merge(current.$toDatabaseJson(), role), ['permissions']),
+            _permissions: role.permissions
+              ? uniq([
+                  ...current._permissions.map((permission) => permission.id),
+                  ...role.permissions,
+                ])
+              : current._permissions,
+          },
+          trx,
+        );
+      }
     });
     console.log('Roles imported');
   }
