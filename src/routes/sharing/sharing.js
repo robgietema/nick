@@ -7,6 +7,7 @@ import { Document } from '../../models/document/document';
 import { Group } from '../../models/group/group';
 import { Role } from '../../models/role/role';
 import { User } from '../../models/user/user';
+import { log } from '../../helpers/log/log';
 
 /**
  * Fetch principals

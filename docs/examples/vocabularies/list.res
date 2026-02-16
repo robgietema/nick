@@ -23,6 +23,10 @@ Content-Type: application/json
     "title": "captchaProviders"
   },
   {
+    "@id": "http://localhost:8080/@vocabularies/events",
+    "title": "events"
+  },
+  {
     "@id": "http://localhost:8080/@vocabularies/groups",
     "title": "groups"
   },
