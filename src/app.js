@@ -49,13 +49,23 @@ if (!existsSync(config.settings.blobsDir)) {
   mkdirSync(config.settings.blobsDir, { recursive: true });
 }
 
-// Check secret
-if (
-  config.settings.secret === 'secret' &&
-  process.env.NODE_ENV === 'production'
-) {
-  console.log('Secret can not have the default value in production mode.');
-  process.exit(1);
+// Check required environment variables
+if (process.env.NODE_ENV === 'production') {
+  const required = ['SECRET', 'DB_PASSWORD'];
+  const missing = required.filter((key) => !process.env[key]);
+
+  if (missing.length > 0) {
+    throw new Error(
+      `Missing required environment variables: ${missing.join(', ')}\n`,
+    );
+  }
+
+  // Check secret
+  if (config.settings.secret === 'secret') {
+    throw new Error(
+      `Secret can not have the default value in production mode.`,
+    );
+  }
 }
 
 // Create app
