@@ -922,7 +922,9 @@ export class Document extends Model {
 
     // Add image fields
     imageFields.map((field) => {
-      image_scales[field] = [addDownload(this.json[field])];
+      if (this.json[field]) {
+        image_scales[field] = [addDownload(this.json[field])];
+      }
     });
 
     // Add relation choice fields
