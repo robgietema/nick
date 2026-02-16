@@ -573,9 +573,6 @@ export class Document extends Model {
     // Get type information
     await this.fetchRelated('_type', trx);
 
-    // Trigger on before copy
-    await config.settings.events.trigger('onBeforeCopy', this, trx, json);
-
     // Store used uuids
     let fileUuid = {};
     const fileFields = this._type.getFactoryFields('File');
@@ -688,6 +685,9 @@ export class Document extends Model {
 
     // Index document
     await document.index(trx);
+
+    // Return document
+    return document;
   }
 
   /**

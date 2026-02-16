@@ -239,8 +239,25 @@ export default [
         // Add new id to list of taken ids
         childIds.push(newId);
 
+        // Trigger on before copy
+        await config.settings.events.trigger('onBeforeCopy', document, trx);
+
         // Copy object
-        await document.copy(req.document.uuid, newPath, newId, trx);
+        const copiedDocument = await document.copy(
+          req.document.uuid,
+          newPath,
+          newId,
+          trx,
+        );
+        await copiedDocument.fetchRelated('_parent', trx);
+
+        // Trigger on after copy
+        await config.settings.events.trigger(
+          'onAfterCopy',
+          copiedDocument,
+          trx,
+          document,
+        );
 
         // Add items to return array
         items.push({
@@ -493,7 +510,13 @@ export default [
       }`;
 
       // Trigger onBeforeAdd
-      await config.settings.events.trigger('onBeforeAdd', document, json, trx);
+      await config.settings.events.trigger(
+        'onBeforeAdd',
+        document,
+        trx,
+        req.document, // Parent document
+        json,
+      );
 
       // Insert document in database
       document = await req.document.createRelatedAndFetch(
@@ -525,7 +548,13 @@ export default [
       await document.fetchRelated('_type', trx);
 
       // Trigger onAfterAdd
-      await config.settings.events.trigger('onAfterAdd', document, trx);
+      await config.settings.events.trigger(
+        'onAfterAdd',
+        document,
+        trx,
+        req.document, // Parent document
+        json,
+      );
 
       // Index new document
       await document.index(trx);
@@ -643,10 +672,10 @@ export default [
 
       // Trigger onBeforeAdd
       await config.settings.events.trigger(
-        'onBeforeModified',
+        'onBeforeModify',
         req.document,
-        { ...json, id: newId, path: newPath },
         trx,
+        { ...json, id: newId, path: newPath },
       );
 
       // Save document with new values
@@ -673,11 +702,7 @@ export default [
       await req.document.reindex(trx);
 
       // Trigger onAfterModified
-      await config.settings.events.trigger(
-        'onAfterModified',
-        req.document,
-        trx,
-      );
+      await config.settings.events.trigger('onAfterModify', req.document, trx);
 
       // Send ok
       return {
@@ -723,8 +748,13 @@ export default [
       await req.document.fetchRelated('_parent', trx);
       const parent = req.document._parent;
 
-      // Trigger onBeforeAdd
-      await config.settings.events.trigger('onBeforeDelete', req.document, trx);
+      // Trigger onBeforeDelete
+      await config.settings.events.trigger(
+        'onBeforeDelete',
+        req.document,
+        trx,
+        req.document._parent,
+      );
 
       // Remove document (versions will be cascaded)
       await req.document.delete(trx);
@@ -738,6 +768,14 @@ export default [
 
       // Reindex parent
       await parent.reindex(trx);
+
+      // Trigger onAfterDelete
+      await config.settings.events.trigger(
+        'onAfterDelete',
+        null,
+        trx,
+        req.document._parent,
+      );
 
       // Return deleted
       return {

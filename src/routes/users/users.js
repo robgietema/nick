@@ -251,10 +251,25 @@ export default [
           },
         });
       }
+
+      // Trigger on before delete user
+      await config.settings.events.trigger(
+        'onBeforeDeleteUser',
+        req.params.id,
+        trx,
+      );
+
       await User.deleteById(req.params.id, trx);
       return {
         status: 204,
       };
+
+      // Trigger on after delete user
+      await config.settings.events.trigger(
+        'onAfterDeleteUser',
+        req.params.id,
+        trx,
+      );
     },
   },
 ];

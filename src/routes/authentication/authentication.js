@@ -70,6 +70,9 @@ export default [
         `Log in attempt success for user '${req.body.login}' from ${req.ip}.`,
       );
 
+      // Trigger on login
+      await config.settings.events.trigger('onLogin', user, trx);
+
       // Return ok
       return {
         json: {
@@ -124,8 +127,14 @@ export default [
     op: 'post',
     view: '/@logout',
     client: 'logout',
-    handler: async (req) => ({
-      status: 204,
-    }),
+    handler: async (req, trx) => {
+      // Trigger on logout
+      await config.settings.events.trigger('onLogout', req.user, trx);
+
+      // Log success
+      return {
+        status: 204,
+      };
+    },
   },
 ];

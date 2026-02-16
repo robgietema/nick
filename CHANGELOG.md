@@ -73,6 +73,7 @@
 - Add config option for request limits @robgietema
 - Added translations for 30 languages @mpalomaki @robgietema
 - Added scheduled task support @robgietema
+- Add events vocabulary @robgietema
 
 ### Bugfix
 
@@ -143,6 +144,7 @@
 - Moved from jest to vitest @robgietema
 - Move from commonjs to esm @robgietema
 - Moved example frontend to separate repository @robgietema
+- Refactor events @robgietema
 
 ### Documentation
 

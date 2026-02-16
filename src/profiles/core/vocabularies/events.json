@@ -1,0 +1,21 @@
+{
+  "id": "events",
+  "title:i18n": "events",
+  "items": [
+    { "title:i18n": "Document added to this container", "token": "onAfterAdd" },
+    {
+      "title:i18n": "Document removed from this container",
+      "token": "onAfterDelete"
+    },
+    { "title:i18n": "Document modified", "token": "onAfterModify" },
+    { "title:i18n": "Document copied", "token": "onAfterCopy" },
+    {
+      "title:i18n": "Workflow state changed",
+      "token": "onAfterChangeWorkflow"
+    },
+    { "title:i18n": "User logged in", "token": "onAfterLogin" },
+    { "title:i18n": "User logged out", "token": "onAfterLogout" },
+    { "title:i18n": "User created", "token": "onAfterCreateUser" },
+    { "title:i18n": "User removed", "token": "onAfterDeleteUser" }
+  ]
+}

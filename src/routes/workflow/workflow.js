@@ -5,6 +5,8 @@
 
 import moment from 'moment';
 
+import config from '../../helpers/config/config';
+
 import { hasPermission } from '../../helpers/auth/auth';
 import { RequestException } from '../../helpers/error/error';
 
@@ -40,6 +42,7 @@ export default [
       // Get new state and modified timestamp
       const new_state =
         req.type._workflow.json.transitions[req.params.transition].new_state;
+      const old_state = req.document.workflow_state;
       const modified = moment.utc().format();
 
       // Add to workflow history
@@ -54,6 +57,15 @@ export default [
           req.type._workflow.json.transitions[req.params.transition].title,
       });
 
+      // Trigger on before change workflow
+      await config.settings.events.trigger(
+        'onBeforeChangeWorkflow',
+        req.document,
+        trx,
+        req.params.transition,
+        new_state,
+      );
+
       // Update document
       await req.document.update(
         {
@@ -66,6 +78,15 @@ export default [
 
       // Reindex document
       await req.document.reindex(trx);
+
+      // Trigger on after change workflow
+      await config.settings.events.trigger(
+        'onAfterChangeWorkflow',
+        req.document,
+        trx,
+        req.params.transition,
+        old_state,
+      );
 
       // Return workflow state
       return {
