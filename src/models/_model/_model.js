@@ -121,10 +121,12 @@ export class Model extends mixin(ObjectionModel, [
 
     // Add paging options
     if (options.limit) {
-      query = query.limit(options.limit);
+      query = query.limit(
+        Math.min(1000, Math.max(1, parseInt(options.limit, 10) || 1)),
+      );
     }
     if (options.offset) {
-      query = query.offset(options.offset);
+      query = query.offset(parseInt(options.offset, 10) || 0);
     }
 
     // Add related

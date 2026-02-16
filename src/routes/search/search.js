@@ -170,12 +170,15 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
 
   // Check batch size
   if (querystring.b_size) {
-    options.limit = Math.min(1000, Math.max(1, parseInt(querystring.b_size)));
+    options.limit = Math.min(
+      1000,
+      Math.max(1, parseInt(querystring.b_size, 10) || 1),
+    );
   }
 
   // Check batch start
   if (querystring.b_start) {
-    options.offset = querystring.b_start;
+    options.offset = parseInt(querystring.b_start, 10) || 0;
   }
 
   // Check metafields
@@ -285,10 +288,10 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
           ];
           break;
         case 'b_size':
-          options.limit = value;
+          options.limit = Math.min(1000, Math.max(1, parseInt(value, 10) || 1));
           break;
         case 'b_start':
-          options.offset = value;
+          options.offset = parseInt(value, 10) || 0;
           break;
         default:
           break;
