@@ -120,7 +120,7 @@ routes.map((route) => {
         if (req.body?.stream === true) {
           res.writeHead(200, {
             'Transfer-Encoding': 'chunked',
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': config.settings.cors.allowOrigin,
           });
           callHandler(req, trx, route, async (data) => {
             res.write(data);
