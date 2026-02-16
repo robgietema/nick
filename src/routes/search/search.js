@@ -164,7 +164,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
   if (querystring['path.depth']) {
     where['_path'] = [
       '~',
-      `^${root}[^/]+${'(/[^/]+)?'.repeat(querystring['path.depth'] - 1)}$`,
+      `^${root}[^/]+${'(/[^/]+)?'.repeat(Math.min(querystring['path.depth'] - 1, 20))}$`,
     ];
   }
 

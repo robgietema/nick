@@ -118,6 +118,7 @@
 - Fix only return restricted children on get content @robgietema
 - Fix AI search parameter in sql statement @robgietema
 - Force jwt verify to HS256 @robgietema
+- Limit path.depth to 20 @robgietema
 
 ### Internal
 
