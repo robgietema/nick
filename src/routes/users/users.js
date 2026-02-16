@@ -31,6 +31,7 @@ export default [
         const decoded = jwt.verify(
           req.body?.reset_token,
           config.settings.secret,
+          { algorithms: ['HS256'] },
         );
 
         // User found

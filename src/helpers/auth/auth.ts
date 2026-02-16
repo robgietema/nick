@@ -37,7 +37,9 @@ export function getUserId(req: Request): string | undefined {
   } else {
     let decoded;
     try {
-      decoded = jwt.verify(req.token, config.settings.secret);
+      decoded = jwt.verify(req.token, config.settings.secret, {
+        algorithms: ['HS256'],
+      });
     } catch (err) {
       return 'anonymous';
     }

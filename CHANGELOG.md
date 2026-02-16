@@ -117,6 +117,7 @@
 - Fix to get own user info @robgietema
 - Fix only return restricted children on get content @robgietema
 - Fix AI search parameter in sql statement @robgietema
+- Force jwt verify to HS256 @robgietema
 
 ### Internal
 
