@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-01-19T04:27:07.737Z\n"
+"POT-Creation-Date: 2026-02-16T13:26:54.502Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -32,8 +32,9 @@ msgid "A related item from which this item is derived."
 msgstr ""
 
 #. Default: "AI"
+#: src/profiles/ai/permissions.json:6
 #: src/profiles/ai/controlpanels/ai.json:3
-msgctxt "Profiles|Ai|Controlpanels"
+msgctxt "Profiles|Ai|Permissions"
 msgid "AI"
 msgstr ""
 
@@ -224,6 +225,7 @@ msgstr ""
 
 #. Default: "Authenticated"
 #: src/profiles/core/roles.json:11
+#: src/profiles/ai/roles.json:6
 msgctxt "Profiles|Core|Roles"
 msgid "Authenticated"
 msgstr ""
@@ -470,11 +472,35 @@ msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Displayed content types"
 msgstr ""
 
+#. Default: "Document added to this container"
+#: src/profiles/core/vocabularies/events.json:5
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "Document added to this container"
+msgstr ""
+
+#. Default: "Document copied"
+#: src/profiles/core/vocabularies/events.json:11
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "Document copied"
+msgstr ""
+
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:583
+#: src/routes/content/content.js:612
 msgctxt "Routes|History"
 msgid "Document locked"
+msgstr ""
+
+#. Default: "Document modified"
+#: src/profiles/core/vocabularies/events.json:10
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "Document modified"
+msgstr ""
+
+#. Default: "Document removed from this container"
+#: src/profiles/core/vocabularies/events.json:7
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "Document removed from this container"
 msgstr ""
 
 #. Default: "Dublin Core metadata"
@@ -691,7 +717,7 @@ msgid "Invalid credentials"
 msgstr ""
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.js:100
+#: src/routes/authentication/authentication.js:103
 msgctxt "Routes|Authentication"
 msgid "Invalid session"
 msgstr ""
@@ -884,7 +910,7 @@ msgstr ""
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
-#: src/routes/users/users.js:123
+#: src/routes/users/users.js:124
 #: src/routes/types/types.js:36
 #: src/routes/groups/groups.js:26
 #: src/routes/email/email.js:60
@@ -919,8 +945,8 @@ msgid "Page"
 msgstr ""
 
 #. Default: "Password reset request"
-#: src/routes/users/users.js:86
-#: src/routes/users/users.js:199
+#: src/routes/users/users.js:87
+#: src/routes/users/users.js:200
 msgctxt "Routes|Users"
 msgid "Password reset request"
 msgstr ""
@@ -1113,7 +1139,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:417
+#: src/routes/content/content.js:434
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr ""
@@ -1313,7 +1339,7 @@ msgid "System group"
 msgstr ""
 
 #. Default: "System users"
-#: src/routes/users/users.js:250
+#: src/routes/users/users.js:251
 msgctxt "Routes|Users"
 msgid "System users"
 msgstr ""
@@ -1396,8 +1422,15 @@ msgid "The end date and time of an event"
 msgstr ""
 
 #. Default: "undefined"
-#: src/routes/users/users.js:87
-#: src/routes/users/users.js:200
+#: src/routes/users/users.js:88
+msgctxt "Routes|Users"
+msgid "The following link takes you to a page where you can reset your password: {url}
+
+(This link will expire in 2 hours)"
+msgstr ""
+
+#. Default: "undefined"
+#: src/routes/users/users.js:201
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}
 
@@ -1606,16 +1639,40 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Use '../' to navigate to parent objects."
 msgstr ""
 
+#. Default: "User created"
+#: src/profiles/core/vocabularies/events.json:18
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "User created"
+msgstr ""
+
 #. Default: "User doesn't exist or invalid credentials."
-#: src/routes/users/users.js:48
+#: src/routes/users/users.js:49
 msgctxt "Routes|Users"
 msgid "User doesn't exist or invalid credentials."
 msgstr ""
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.js:101
+#: src/routes/authentication/authentication.js:104
 msgctxt "Routes|Authentication"
 msgid "User is not logged in."
+msgstr ""
+
+#. Default: "User logged in"
+#: src/profiles/core/vocabularies/events.json:16
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "User logged in"
+msgstr ""
+
+#. Default: "User logged out"
+#: src/profiles/core/vocabularies/events.json:17
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "User logged out"
+msgstr ""
+
+#. Default: "User removed"
+#: src/profiles/core/vocabularies/events.json:19
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "User removed"
 msgstr ""
 
 #. Default: "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
@@ -1683,6 +1740,12 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Within next"
 msgstr ""
 
+#. Default: "Workflow state changed"
+#: src/profiles/core/vocabularies/events.json:13
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "Workflow state changed"
+msgstr ""
+
 #. Default: "Wrong login and/or password."
 #: src/routes/authentication/authentication.js:49
 #: src/routes/authentication/authentication.js:63
@@ -1698,7 +1761,7 @@ msgid "Yes"
 msgstr ""
 
 #. Default: "You are not authorization to access this resource."
-#: src/routes/workflow/workflow.js:34
+#: src/routes/workflow/workflow.js:36
 #: src/helpers/handler/handler.js:91
 msgctxt "Routes|Workflow"
 msgid "You are not authorization to access this resource."
@@ -1711,14 +1774,14 @@ msgid "You can't delete system groups."
 msgstr ""
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:249
+#: src/routes/users/users.js:250
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
 msgstr ""
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:580
+#: src/routes/content/content.js:609
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr ""
@@ -1730,13 +1793,13 @@ msgid "You don't have permission to unlock this document."
 msgstr ""
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:155
+#: src/routes/users/users.js:156
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
 msgstr ""
 
 #. Default: "You don't have permissions to view this user."
-#: src/routes/users/users.js:111
+#: src/routes/users/users.js:112
 msgctxt "Routes|Users"
 msgid "You don't have permissions to view this user."
 msgstr ""
@@ -1745,4 +1808,10 @@ msgstr ""
 #: src/profiles/core/vocabularies/boolean.json:3
 msgctxt "Profiles|Core|Vocabularies|Boolean"
 msgid "boolean"
+msgstr ""
+
+#. Default: "events"
+#: src/profiles/core/vocabularies/events.json:3
+msgctxt "Profiles|Core|Vocabularies|Events"
+msgid "events"
 msgstr ""
