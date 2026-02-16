@@ -630,8 +630,8 @@ msgid "Folder-like"
 msgstr "கோப்புறை போன்ற"
 
 #. Default: "From and message are required fields."
-#: src/routes/email/email.js:53
-#: src/routes/email/email.js:90
+#: src/routes/email/email.js:54
+#: src/routes/email/email.js:91
 msgctxt "Routes|Email"
 msgid "From and message are required fields."
 msgstr "அனுப்புநர் மற்றும் செய்தி கட்டாய புலங்கள்."
@@ -916,7 +916,7 @@ msgstr "அனுமதிக்கப்படவில்லை"
 #: src/routes/users/users.js:132
 #: src/routes/types/types.js:36
 #: src/routes/groups/groups.js:27
-#: src/routes/email/email.js:60
+#: src/routes/email/email.js:61
 #: src/routes/controlpanels/controlpanels.js:77
 msgctxt "Routes|Vocabularies"
 msgid "Not found."
@@ -1597,7 +1597,7 @@ msgid "Title"
 msgstr "தலைப்பு"
 
 #. Default: "To, from and message are required fields."
-#: src/routes/email/email.js:22
+#: src/routes/email/email.js:23
 msgctxt "Routes|Email"
 msgid "To, from and message are required fields."
 msgstr "பெறுநர், அனுப்புநர் மற்றும் செய்தி கட்டாய புலங்கள்."

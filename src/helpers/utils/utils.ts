@@ -115,8 +115,19 @@ export function regExpEscape(string: string): string {
 /**
  * Get the node version
  * @method getNodeVersion
+ * @param {String} string Input string
  * @returns {String} Node version
  */
 export function getNodeVersion(): string {
   return process.version;
+}
+
+/**
+ * Strip newlines from string
+ * @method stripNewlines
+ * @param {String} string Input string
+ * @returns {String} String without newlines
+ */
+export function stripNewlines(string: string): string {
+  return string.replace(/\r\n|\n|\r/gm, '');
 }

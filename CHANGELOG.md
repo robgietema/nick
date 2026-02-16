@@ -128,6 +128,7 @@
 - Set correct allow origin on streaming endpoints @robgietema
 - Check for secret in production mode @robgietema
 - Added additional directives to request header @robgietema
+- Remove newlines form email fields @robgietema
 
 ### Internal
 

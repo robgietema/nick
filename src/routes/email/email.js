@@ -5,6 +5,7 @@
 
 import { RequestException } from '../../helpers/error/error';
 import { sendMail } from '../../helpers/mail/mail';
+import { stripNewlines } from '../../helpers/utils/utils';
 
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { User } from '../../models/user/user';
@@ -26,11 +27,11 @@ export default [
       // Send mail
       await sendMail(
         {
-          to: req.body.to,
+          to: stripNewlines(req.body.to),
           from: req.body.name
-            ? `"${req.body.name}" <${req.body.from}>`
-            : req.body.from,
-          subject: req.body.subject || '',
+            ? `"${stripNewlines(req.body.name)}" <${stripNewlines(req.body.from)}>`
+            : stripNewlines(req.body.from),
+          subject: stripNewlines(req.body.subject || ''),
           text: req.body.message,
         },
         trx,
@@ -63,11 +64,11 @@ export default [
       // Send mail
       await sendMail(
         {
-          to: `"${user.fullname}" <${user.email}>`,
+          to: `"${stripNewlines(user.fullname)}" <${stripNewlines(user.email)}>`,
           from: req.body.name
-            ? `"${req.body.name}" <${req.body.from}>`
-            : req.body.from,
-          subject: req.body.subject || '',
+            ? `"${stripNewlines(req.body.name)}" <${stripNewlines(req.body.from)}>`
+            : stripNewlines(req.body.from),
+          subject: stripNewlines(req.body.subject || ''),
           text: req.body.message,
         },
         trx,
@@ -98,11 +99,11 @@ export default [
       // Send mail
       await sendMail(
         {
-          to: `"${settings.email_from_name}" <${settings.email_from_address}>`,
+          to: `"${stripNewlines(settings.email_from_name)}" <${stripNewlines(settings.email_from_address)}>`,
           from: req.body.name
-            ? `"${req.body.name}" <${req.body.from}>`
-            : req.body.from,
-          subject: req.body.subject || '',
+            ? `"${stripNewlines(req.body.name)}" <${stripNewlines(req.body.from)}>`
+            : stripNewlines(req.body.from),
+          subject: stripNewlines(req.body.subject || ''),
           text: req.body.message,
         },
         trx,
