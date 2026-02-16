@@ -20,7 +20,7 @@ const {
 
 // Check required environment variables
 if (NODE_ENV === 'production') {
-  const required = ['JWT_SECRET', 'DB_PASSWORD'];
+  const required = ['SECRET', 'DB_PASSWORD'];
   const missing = required.filter((key) => !process.env[key]);
 
   if (missing.length > 0) {
