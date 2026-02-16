@@ -3,8 +3,9 @@
  * @module helpers/auth/auth
  */
 
-import type { Request } from '../../types';
+import type { Request, User } from '../../types';
 
+import { Knex } from 'knex';
 import { isUndefined } from 'es-toolkit/predicate';
 import jwt from 'jsonwebtoken';
 
@@ -47,4 +48,58 @@ export function getUserId(req: Request): string | undefined {
     // Return user id
     return typeof decoded.sub === 'string' ? decoded.sub : undefined;
   }
+}
+
+/**
+ * Add jwt token to user
+ * @method addToken
+ * @param {string} token Token to be added.
+ * @param {Request} req Request object.
+ */
+export async function addToken(
+  user: User,
+  token: string,
+  trx: Knex.Transaction,
+): Promise<undefined> {
+  // Get tokens
+  let tokens = user.tokens || [];
+
+  // Remove expired tokens
+  tokens = tokens.filter((token) => {
+    try {
+      jwt.verify(token, config.settings.secret);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  });
+
+  // Add new token
+  tokens.push(token);
+
+  // Store tokens
+  await user.update({ tokens }, trx);
+}
+
+/**
+ * Remove jwt token from user
+ * @method removeToken
+ * @param {string} token Token to be removed.
+ * @param {User} user User object.
+ */
+export async function removeToken(
+  user: User,
+  token: string,
+  trx: Knex.Transaction,
+): Promise<undefined> {
+  // Get tokens
+  let tokens = user.tokens || [];
+
+  // Remove expired tokens
+  tokens = tokens.filter(
+    (tokenFromArray: string | undefined) => tokenFromArray !== token,
+  );
+
+  // Store tokens
+  await user.update({ tokens }, trx);
 }

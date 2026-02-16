@@ -713,14 +713,14 @@ msgid "Internal server error"
 msgstr "आंतरिक सर्वर त्रुटि"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.js:48
-#: src/routes/authentication/authentication.js:62
+#: src/routes/authentication/authentication.js:73
+#: src/routes/authentication/authentication.js:87
 msgctxt "Routes|Authentication"
 msgid "Invalid credentials"
 msgstr "अमान्य क्रेडेंशियल"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.js:103
+#: src/routes/authentication/authentication.js:121
 msgctxt "Routes|Authentication"
 msgid "Invalid session"
 msgstr "अमान्य सत्र"
@@ -812,7 +812,7 @@ msgid "Login"
 msgstr "लॉगिन"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.js:28
+#: src/routes/authentication/authentication.js:53
 msgctxt "Routes|Authentication"
 msgid "Login and password must be provided in body."
 msgstr "लॉगिन और पासवर्ड बॉडी में प्रदान किया जाना चाहिए।"
@@ -863,7 +863,7 @@ msgid "Matches any of"
 msgstr "किसी से भी मेल खाता है"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.js:27
+#: src/routes/authentication/authentication.js:52
 msgctxt "Routes|Authentication"
 msgid "Missing credentials"
 msgstr "लापता क्रेडेंशियल"
@@ -1641,7 +1641,7 @@ msgid "Type Name"
 msgstr "प्रकार का नाम"
 
 #. Default: "Type of the current document is not found."
-#: src/helpers/handler/handler.js:69
+#: src/helpers/handler/handler.js:81
 msgctxt "Helpers|Handler"
 msgid "Type of the current document is not found."
 msgstr "वर्तमान दस्तावेज़ का प्रकार नहीं मिला है।"
@@ -1665,7 +1665,7 @@ msgid "User doesn't exist or invalid credentials."
 msgstr "उपयोगकर्ता मौजूद नहीं है या अमान्य क्रेडेंशियल है।"
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.js:104
+#: src/routes/authentication/authentication.js:122
 msgctxt "Routes|Authentication"
 msgid "User is not logged in."
 msgstr "उपयोगकर्ता लॉग इन नहीं है।"
@@ -1760,8 +1760,8 @@ msgid "Workflow state changed"
 msgstr ""
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.js:49
-#: src/routes/authentication/authentication.js:63
+#: src/routes/authentication/authentication.js:74
+#: src/routes/authentication/authentication.js:88
 msgctxt "Routes|Authentication"
 msgid "Wrong login and/or password."
 msgstr "गलत लॉगिन और/या पासवर्ड।"
@@ -1775,7 +1775,7 @@ msgstr "हाँ"
 
 #. Default: "You are not authorization to access this resource."
 #: src/routes/workflow/workflow.js:36
-#: src/helpers/handler/handler.js:91
+#: src/helpers/handler/handler.js:103
 msgctxt "Routes|Workflow"
 msgid "You are not authorization to access this resource."
 msgstr "आपके पास इस संसाधन तक पहुँचने की अनुमति नहीं है।"

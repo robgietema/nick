@@ -29,6 +29,18 @@ export async function callHandler(req, trx, route, callback) {
     trx,
   );
 
+  // If token not in user model
+  if (!(req.user.tokens || []).includes(req.token)) {
+    // Set anonymous user
+    req.user = await User.fetchById(
+      'anonymous',
+      {
+        related: '[_roles, _groups._roles]',
+      },
+      trx,
+    );
+  }
+
   // Traverse to document
   const root = await Document.fetchOne({ parent: null }, {}, trx);
   const result = await root.traverse(

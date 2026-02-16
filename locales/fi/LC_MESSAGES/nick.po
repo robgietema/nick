@@ -713,14 +713,14 @@ msgid "Internal server error"
 msgstr "Sisäinen palvelinvirhe"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.js:48
-#: src/routes/authentication/authentication.js:62
+#: src/routes/authentication/authentication.js:73
+#: src/routes/authentication/authentication.js:87
 msgctxt "Routes|Authentication"
 msgid "Invalid credentials"
 msgstr "Virheelliset tunnistetiedot"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.js:103
+#: src/routes/authentication/authentication.js:121
 msgctxt "Routes|Authentication"
 msgid "Invalid session"
 msgstr "Virheellinen istunto"
@@ -812,7 +812,7 @@ msgid "Login"
 msgstr "Kirjaudu sisään"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.js:28
+#: src/routes/authentication/authentication.js:53
 msgctxt "Routes|Authentication"
 msgid "Login and password must be provided in body."
 msgstr "Käyttäjänimi ja salasana on annettava pyynnön rungossa."
@@ -863,7 +863,7 @@ msgid "Matches any of"
 msgstr "Vastaa mitä tahansa"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.js:27
+#: src/routes/authentication/authentication.js:52
 msgctxt "Routes|Authentication"
 msgid "Missing credentials"
 msgstr "Puuttuvat tunnistetiedot"
@@ -1641,7 +1641,7 @@ msgid "Type Name"
 msgstr "Tyypin nimi"
 
 #. Default: "Type of the current document is not found."
-#: src/helpers/handler/handler.js:69
+#: src/helpers/handler/handler.js:81
 msgctxt "Helpers|Handler"
 msgid "Type of the current document is not found."
 msgstr "Nykyisen asiakirjan tyyppiä ei löytynyt."
@@ -1665,7 +1665,7 @@ msgid "User doesn't exist or invalid credentials."
 msgstr "Käyttäjää ei ole olemassa tai tunnistetiedot ovat virheelliset."
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.js:104
+#: src/routes/authentication/authentication.js:122
 msgctxt "Routes|Authentication"
 msgid "User is not logged in."
 msgstr "Käyttäjä ei ole kirjautunut sisään."
@@ -1760,8 +1760,8 @@ msgid "Workflow state changed"
 msgstr ""
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.js:49
-#: src/routes/authentication/authentication.js:63
+#: src/routes/authentication/authentication.js:74
+#: src/routes/authentication/authentication.js:88
 msgctxt "Routes|Authentication"
 msgid "Wrong login and/or password."
 msgstr "Virheellinen käyttäjätunnus tai salasana."
@@ -1775,7 +1775,7 @@ msgstr "Kyllä"
 
 #. Default: "You are not authorization to access this resource."
 #: src/routes/workflow/workflow.js:36
-#: src/helpers/handler/handler.js:91
+#: src/helpers/handler/handler.js:103
 msgctxt "Routes|Workflow"
 msgid "You are not authorization to access this resource."
 msgstr "Sinulla ei ole valtuuksia käyttää tätä resurssia."

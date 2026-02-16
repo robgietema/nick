@@ -5,9 +5,14 @@ import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid';
 
 import { Model } from './src/models/_model/_model';
+import { User } from './src/models/user/user';
 import { knex } from './src/helpers/knex/knex';
 
 import * as url from './src/helpers/url/url';
+import { addToken, removeToken } from './src/helpers/auth/auth';
+
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImZ1bGxuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NDkzMTI0NDl9.RS1Ny_r0v7vIylFfK6q0JVJrkiDuTOh9iG9IL8xbzAk';
 
 // Mock get url
 vi.spyOn(url, 'getUrl').mockImplementation(
@@ -49,6 +54,10 @@ beforeAll(async () => {
 beforeEach(async () => {
   global.txn = await transaction.start(knex);
   Model.knex(global.txn);
+
+  // Add admin token
+  const admin = await User.fetchById('admin', {}, global.txn);
+  await addToken(admin, token, global.txn);
 });
 
 afterEach(async () => {

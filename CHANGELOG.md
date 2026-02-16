@@ -74,6 +74,7 @@
 - Added translations for 30 languages @mpalomaki @robgietema
 - Added scheduled task support @robgietema
 - Add events vocabulary @robgietema
+- Store and revoke user tokens @robgietema
 
 ### Bugfix
 

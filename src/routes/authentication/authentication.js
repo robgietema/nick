@@ -10,8 +10,33 @@ import { User } from '../../models/user/user';
 import { log } from '../../helpers/log/log';
 import { RequestException } from '../../helpers/error/error';
 import { authLimiter } from '../../helpers/limiter/limiter';
+import { addToken, removeToken } from '../../helpers/auth/auth';
 
 import config from '../../helpers/config/config';
+
+/**
+ * Generate and store jwt token
+ * @method storeToken
+ * @param {Object} user User to use for jwt token
+ * @returns {string} Generated token
+ */
+async function storeToken(user, trx) {
+  // Generate token
+  const token = jwt.sign(
+    {
+      sub: user.id,
+      fullname: user.fullname,
+    },
+    config.settings.secret,
+    { expiresIn: '2h', algorithm: 'HS256' },
+  );
+
+  // Add token to user
+  await addToken(user, token, trx);
+
+  // Return token
+  return token;
+}
 
 export default [
   {
@@ -76,14 +101,7 @@ export default [
       // Return ok
       return {
         json: {
-          token: jwt.sign(
-            {
-              sub: user.id,
-              fullname: user.fullname,
-            },
-            config.settings.secret,
-            { expiresIn: '2h', algorithm: 'HS256' },
-          ),
+          token: await storeToken(user, trx),
         },
       };
     },
@@ -111,14 +129,7 @@ export default [
 
       return {
         json: {
-          token: jwt.sign(
-            {
-              sub: req.user.id,
-              fullname: req.user.fullname,
-            },
-            config.settings.secret,
-            { expiresIn: '2h', algorithm: 'HS256' },
-          ),
+          token: await storeToken(req.user, trx),
         },
       };
     },
@@ -130,6 +141,9 @@ export default [
     handler: async (req, trx) => {
       // Trigger on logout
       await config.settings.events.trigger('onLogout', req.user, trx);
+
+      // Remove token from user
+      await removeToken(req.user, req.token, trx);
 
       // Log success
       return {
