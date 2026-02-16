@@ -116,6 +116,7 @@
 - Fix inherit roles on seed @robgietema
 - Fix to get own user info @robgietema
 - Fix only return restricted children on get content @robgietema
+- Fix AI search parameter in sql statement @robgietema
 
 ### Internal
 

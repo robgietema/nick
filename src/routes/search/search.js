@@ -63,7 +63,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
         ];
         options.select = [
           '*',
-          trx.raw(`1 - (_embedding <=> '${embedding}') AS similarity`),
+          trx.raw(`1 - (_embedding <=> ?) AS similarity`, [embedding]),
         ];
         options.order.column = 'similarity';
         options.order.reverse = true;
@@ -241,7 +241,7 @@ const queryparamToQuery = async (queryparam, path = '/', req, trx) => {
           ];
           options.select = [
             '*',
-            trx.raw(`1 - (_embedding <=> '${embedding}') AS similarity`),
+            trx.raw(`1 - (_embedding <=> ?) AS similarity`, [embedding]),
           ];
           options.order.column = 'similarity';
           options.order.reverse = true;
