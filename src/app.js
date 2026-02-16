@@ -23,6 +23,7 @@ import { i18n } from './middleware/i18n/i18n';
 import { removeZopeVhosting } from './middleware/volto/volto';
 
 import config from './helpers/config/config';
+import form from './routes/form/form';
 
 const localRoutes = config.settings.routes
   ? (await import(`${process.cwd()}/src/routes`)).default
@@ -69,6 +70,9 @@ app.use(
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
+        formAction: ["'self'"],
+        baseUri: ["'self'"],
+        frameAncestors: ["'self'"],
         imgSrc: ["'self'", 'data:', 'https:'],
         fontSrc: ["'self'", 'data:'],
         connectSrc: ["'self'"],

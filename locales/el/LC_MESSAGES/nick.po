@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Πληροφορίες σχετικά με τα δικαιώματα που κατέχονται σε και πάνω σε αυτό το αντικείμενο."
 
 #. Default: "Internal server error"
-#: src/app.js:197
-#: src/app.js:207
+#: src/app.js:201
+#: src/app.js:211
 msgctxt "App"
 msgid "Internal server error"
 msgstr "Εσωτερικό σφάλμα διακομιστή"
@@ -1615,8 +1615,8 @@ msgstr "Σήμερα"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:145
-#: src/app.js:158
+#: src/app.js:149
+#: src/app.js:162
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "Σφάλμα συναλλαγής."

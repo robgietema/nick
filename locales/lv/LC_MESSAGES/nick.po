@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Informācija par tiesībām uz šo vienumu."
 
 #. Default: "Internal server error"
-#: src/app.js:197
-#: src/app.js:207
+#: src/app.js:201
+#: src/app.js:211
 msgctxt "App"
 msgid "Internal server error"
 msgstr "Iekšēja servera kļūda"
@@ -1615,8 +1615,8 @@ msgstr "Šodien"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:145
-#: src/app.js:158
+#: src/app.js:149
+#: src/app.js:162
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "Darījuma kļūda."

@@ -127,6 +127,7 @@
 - Set minimum password length to 8 @robgietema
 - Set correct allow origin on streaming endpoints @robgietema
 - Check for secret in production mode @robgietema
+- Added additional directives to request header @robgietema
 
 ### Internal
 
