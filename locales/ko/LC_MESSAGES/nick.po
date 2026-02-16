@@ -913,7 +913,7 @@ msgstr "허용되지 않음"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
-#: src/routes/users/users.js:125
+#: src/routes/users/users.js:132
 #: src/routes/types/types.js:36
 #: src/routes/groups/groups.js:27
 #: src/routes/email/email.js:60
@@ -948,11 +948,18 @@ msgid "Page"
 msgstr "페이지"
 
 #. Default: "Password reset request"
-#: src/routes/users/users.js:88
-#: src/routes/users/users.js:202
+#: src/routes/users/users.js:95
+#: src/routes/users/users.js:216
 msgctxt "Routes|Users"
 msgid "Password reset request"
 msgstr "비밀번호 재설정 요청"
+
+#. Default: "Password should be at least 8 characters long."
+#: src/routes/users/users.js:32
+#: src/routes/users/users.js:172
+msgctxt "Routes|Users"
+msgid "Password should be at least 8 characters long."
+msgstr ""
 
 #. Default: "Paste"
 #: src/profiles/core/actions.json:49
@@ -1342,7 +1349,7 @@ msgid "System group"
 msgstr "시스템 그룹"
 
 #. Default: "System users"
-#: src/routes/users/users.js:253
+#: src/routes/users/users.js:267
 msgctxt "Routes|Users"
 msgid "System users"
 msgstr "시스템 사용자"
@@ -1425,13 +1432,13 @@ msgid "The end date and time of an event"
 msgstr "이벤트 종료 날짜 및 시간"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:89
+#: src/routes/users/users.js:96
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "정의되지 않음"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:203
+#: src/routes/users/users.js:217
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "정의되지 않음"
@@ -1645,7 +1652,7 @@ msgid "User created"
 msgstr ""
 
 #. Default: "User doesn't exist or invalid credentials."
-#: src/routes/users/users.js:50
+#: src/routes/users/users.js:57
 msgctxt "Routes|Users"
 msgid "User doesn't exist or invalid credentials."
 msgstr "사용자가 존재하지 않거나 자격 증명이 유효하지 않습니다."
@@ -1773,7 +1780,7 @@ msgid "You can't delete system groups."
 msgstr "시스템 그룹은 삭제할 수 없습니다."
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:252
+#: src/routes/users/users.js:266
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
 msgstr "시스템 사용자는 삭제할 수 없습니다."
@@ -1792,13 +1799,13 @@ msgid "You don't have permission to unlock this document."
 msgstr "이 문서의 잠금을 해제할 권한이 없습니다."
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:158
+#: src/routes/users/users.js:165
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
 msgstr "사용자를 추가할 권한이 없습니다."
 
 #. Default: "You don't have permissions to view this user."
-#: src/routes/users/users.js:113
+#: src/routes/users/users.js:120
 msgctxt "Routes|Users"
 msgid "You don't have permissions to view this user."
 msgstr ""
