@@ -149,6 +149,7 @@
 - Moved example frontend to separate repository @robgietema
 - Refactor events @robgietema
 - Refactor ai endpoints with own permission @robgietema
+- Log error if document already shared @robgietema
 
 ### Documentation
 

@@ -156,6 +156,9 @@ export default [
                     .relate({ id: role, document: req.document.uuid });
                 } catch (err) {
                   // Already related
+                  log.warn(
+                    `Role ${role} already related to ${req.document.path}`,
+                  );
                 }
               } else if (entry.roles[role] === false) {
                 // Unrelate
