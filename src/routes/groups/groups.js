@@ -5,6 +5,7 @@
 
 import { Group } from '../../models/group/group';
 import { RequestException } from '../../helpers/error/error';
+import { apiLimiter } from '../../helpers/limiter/limiter';
 
 import config from '../../helpers/config/config';
 
@@ -35,6 +36,7 @@ export default [
     view: '/@groups',
     permission: 'Manage Users',
     client: 'getGroups',
+    middleware: apiLimiter,
     handler: async (req, trx) => {
       const groups = await Group.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},

@@ -10,6 +10,7 @@ import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { User } from '../../models/user/user';
 import { RequestException } from '../../helpers/error/error';
 import { sendMail } from '../../helpers/mail/mail';
+import { apiLimiter } from '../../helpers/limiter/limiter';
 
 import config from '../../helpers/config/config';
 
@@ -133,6 +134,7 @@ export default [
     view: '/@users',
     permission: 'Manage Users',
     client: 'getUsers',
+    middleware: apiLimiter,
     handler: async (req, trx) => {
       const groups = await User.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},

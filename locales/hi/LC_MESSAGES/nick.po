@@ -913,9 +913,9 @@ msgstr "अनुमति नहीं है"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.js:53
-#: src/routes/users/users.js:124
+#: src/routes/users/users.js:125
 #: src/routes/types/types.js:36
-#: src/routes/groups/groups.js:26
+#: src/routes/groups/groups.js:27
 #: src/routes/email/email.js:60
 #: src/routes/controlpanels/controlpanels.js:77
 msgctxt "Routes|Vocabularies"
@@ -948,8 +948,8 @@ msgid "Page"
 msgstr "पृष्ठ"
 
 #. Default: "Password reset request"
-#: src/routes/users/users.js:87
-#: src/routes/users/users.js:200
+#: src/routes/users/users.js:88
+#: src/routes/users/users.js:202
 msgctxt "Routes|Users"
 msgid "Password reset request"
 msgstr "पासवर्ड रीसेट अनुरोध"
@@ -1336,13 +1336,13 @@ msgid "Submit for publication"
 msgstr "प्रकाशन के लिए जमा करें"
 
 #. Default: "System group"
-#: src/routes/groups/groups.js:110
+#: src/routes/groups/groups.js:112
 msgctxt "Routes|Groups"
 msgid "System group"
 msgstr "सिस्टम समूह"
 
 #. Default: "System users"
-#: src/routes/users/users.js:251
+#: src/routes/users/users.js:253
 msgctxt "Routes|Users"
 msgid "System users"
 msgstr "सिस्टम उपयोगकर्ता"
@@ -1425,13 +1425,13 @@ msgid "The end date and time of an event"
 msgstr "किसी ईवेंट की समाप्ति तिथि और समय"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:88
+#: src/routes/users/users.js:89
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "अपरिभाषित"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:201
+#: src/routes/users/users.js:203
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "अपरिभाषित"
@@ -1645,7 +1645,7 @@ msgid "User created"
 msgstr ""
 
 #. Default: "User doesn't exist or invalid credentials."
-#: src/routes/users/users.js:49
+#: src/routes/users/users.js:50
 msgctxt "Routes|Users"
 msgid "User doesn't exist or invalid credentials."
 msgstr "उपयोगकर्ता मौजूद नहीं है या अमान्य क्रेडेंशियल है।"
@@ -1767,13 +1767,13 @@ msgid "You are not authorization to access this resource."
 msgstr "आपके पास इस संसाधन तक पहुँचने की अनुमति नहीं है।"
 
 #. Default: "You can't delete system groups."
-#: src/routes/groups/groups.js:109
+#: src/routes/groups/groups.js:111
 msgctxt "Routes|Groups"
 msgid "You can't delete system groups."
 msgstr "आप सिस्टम समूहों को हटा नहीं सकते।"
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:250
+#: src/routes/users/users.js:252
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
 msgstr "आप सिस्टम उपयोगकर्ताओं को हटा नहीं सकते।"
@@ -1792,13 +1792,13 @@ msgid "You don't have permission to unlock this document."
 msgstr "आपके पास इस दस्तावेज़ को अनलॉक करने की अनुमति नहीं है।"
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:156
+#: src/routes/users/users.js:158
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
 msgstr "आपके पास उपयोगकर्ता जोड़ने की अनुमति नहीं है।"
 
 #. Default: "You don't have permissions to view this user."
-#: src/routes/users/users.js:112
+#: src/routes/users/users.js:113
 msgctxt "Routes|Users"
 msgid "You don't have permissions to view this user."
 msgstr ""

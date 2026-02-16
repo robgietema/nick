@@ -8,6 +8,7 @@ import { Group } from '../../models/group/group';
 import { Role } from '../../models/role/role';
 import { User } from '../../models/user/user';
 import { log } from '../../helpers/log/log';
+import { apiLimiter } from '../../helpers/limiter/limiter';
 
 /**
  * Fetch principals
@@ -90,6 +91,7 @@ export default [
     view: '/@sharing',
     permission: 'Modify',
     client: 'getSharing',
+    middleware: apiLimiter,
     handler: async (req, trx) => {
       // Get roles
       const roles = await Role.fetchAll({}, { order: 'order' }, trx);
