@@ -120,6 +120,7 @@
 - Force jwt verify to HS256 @robgietema
 - Limit path.depth to 20 @robgietema
 - Fix password reset email text @robgietema
+- Set trust proxy to correct value @robgietema
 
 ### Internal
 

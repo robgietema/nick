@@ -99,8 +99,7 @@ app.use(accessLogger);
 app.use(i18n);
 app.use(cors);
 
-app.enable('trust proxy');
-app.set('trust proxy', config.settings.rateLimit.trustProxy || 0);
+app.set('trust proxy', config.settings.rateLimit.trustProxy || 1);
 
 // Add routes
 routes.map((route) => {
