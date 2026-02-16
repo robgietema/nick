@@ -125,7 +125,8 @@
 - Set b_size upper limit @robgietema
 - Check range for limit and offset values @robgietema
 - Set minimum password length to 8 @robgietema
-- Set correct allow origen on streaming endpoints @robgietema
+- Set correct allow origin on streaming endpoints @robgietema
+- Check for secret in production mode @robgietema
 
 ### Internal
 

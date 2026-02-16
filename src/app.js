@@ -48,6 +48,15 @@ if (!existsSync(config.settings.blobsDir)) {
   mkdirSync(config.settings.blobsDir, { recursive: true });
 }
 
+// Check secret
+if (
+  config.settings.secret === 'secret' &&
+  process.env.NODE_ENV === 'production'
+) {
+  console.log('Secret can not have the default value in production mode.');
+  process.exit(1);
+}
+
 // Create app
 const app = express();
 
