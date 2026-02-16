@@ -170,7 +170,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
 
   // Check batch size
   if (querystring.b_size) {
-    options.limit = querystring.b_size;
+    options.limit = Math.min(1000, Math.max(1, parseInt(querystring.b_size)));
   }
 
   // Check batch start
