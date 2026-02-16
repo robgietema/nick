@@ -38,6 +38,11 @@ export default [
     client: 'getGroups',
     middleware: apiLimiter,
     handler: async (req, trx) => {
+      if (req.query.query && req.query.query.length < 2) {
+        throw new RequestException(400, {
+          error: req.i18n('Query must be at least 2 characters long.'),
+        });
+      }
       const groups = await Group.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'title', related: '_roles' },

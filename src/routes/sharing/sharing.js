@@ -32,15 +32,16 @@ async function fetchPrincipals(
   trx,
 ) {
   // Get principals
-  const principals = query
-    ? await Model.fetchAll(
-        {
-          [`LOWER(${title})`]: ['like', `%${query.toLowerCase()}%`],
-        },
-        { related: '_roles' },
-        trx,
-      )
-    : [];
+  const principals =
+    query && query.length >= 2
+      ? await Model.fetchAll(
+          {
+            [`LOWER(${title})`]: ['like', `%${query.toLowerCase()}%`],
+          },
+          { related: '_roles' },
+          trx,
+        )
+      : [];
 
   // Return principal data
   return await Promise.all(

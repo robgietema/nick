@@ -137,7 +137,7 @@ const querystringToQuery = async (querystring = {}, path = '/', req, trx) => {
           case 'string.contains':
             if (indexes[query.i].type === 'text') {
               where[`_${query.i}`] = ['@@', query.v];
-            } else {
+            } else if (query.v.length >= 2) {
               where[`_${query.i}`] = ['like', `%${query.v}%`];
             }
             break;

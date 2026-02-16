@@ -949,14 +949,14 @@ msgstr "Leathanach"
 
 #. Default: "Password reset request"
 #: src/routes/users/users.js:95
-#: src/routes/users/users.js:216
+#: src/routes/users/users.js:221
 msgctxt "Routes|Users"
 msgid "Password reset request"
 msgstr "Iarratas ar athshocrú pasfhocail"
 
 #. Default: "Password should be at least 8 characters long."
 #: src/routes/users/users.js:32
-#: src/routes/users/users.js:172
+#: src/routes/users/users.js:177
 msgctxt "Routes|Users"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1098,6 +1098,13 @@ msgstr "Foilsitheoir"
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Publishing Date"
 msgstr "Dáta Foilsithe"
+
+#. Default: "Query must be at least 2 characters long."
+#: src/routes/users/users.js:148
+#: src/routes/groups/groups.js:43
+msgctxt "Routes|Users"
+msgid "Query must be at least 2 characters long."
+msgstr ""
 
 #. Default: "Reader"
 #: src/profiles/core/roles.json:21
@@ -1343,13 +1350,13 @@ msgid "Submit for publication"
 msgstr "Cuir isteach le foilsiú"
 
 #. Default: "System group"
-#: src/routes/groups/groups.js:112
+#: src/routes/groups/groups.js:117
 msgctxt "Routes|Groups"
 msgid "System group"
 msgstr "Grúpa córais"
 
 #. Default: "System users"
-#: src/routes/users/users.js:267
+#: src/routes/users/users.js:272
 msgctxt "Routes|Users"
 msgid "System users"
 msgstr "Úsáideoirí córais"
@@ -1438,7 +1445,7 @@ msgid "The following link takes you to a page where you can reset your password:
 msgstr "neamhshainithe"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:217
+#: src/routes/users/users.js:222
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "neamhshainithe"
@@ -1774,13 +1781,13 @@ msgid "You are not authorization to access this resource."
 msgstr "Níl údarú agat chun rochtain a fháil ar an acmhainn seo."
 
 #. Default: "You can't delete system groups."
-#: src/routes/groups/groups.js:111
+#: src/routes/groups/groups.js:116
 msgctxt "Routes|Groups"
 msgid "You can't delete system groups."
 msgstr "Ní féidir leat grúpaí córais a scriosadh."
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:266
+#: src/routes/users/users.js:271
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
 msgstr "Ní féidir leat úsáideoirí córais a scriosadh."
@@ -1799,7 +1806,7 @@ msgid "You don't have permission to unlock this document."
 msgstr "Níl cead agat an doiciméad seo a dhíghlasáil."
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:165
+#: src/routes/users/users.js:170
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
 msgstr "Níl cead agat úsáideoir a chur leis."

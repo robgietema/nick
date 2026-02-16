@@ -949,14 +949,14 @@ msgstr "Strona"
 
 #. Default: "Password reset request"
 #: src/routes/users/users.js:95
-#: src/routes/users/users.js:216
+#: src/routes/users/users.js:221
 msgctxt "Routes|Users"
 msgid "Password reset request"
 msgstr "Żądanie resetowania hasła"
 
 #. Default: "Password should be at least 8 characters long."
 #: src/routes/users/users.js:32
-#: src/routes/users/users.js:172
+#: src/routes/users/users.js:177
 msgctxt "Routes|Users"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1098,6 +1098,13 @@ msgstr "Wydawca"
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "Publishing Date"
 msgstr "Data publikacji"
+
+#. Default: "Query must be at least 2 characters long."
+#: src/routes/users/users.js:148
+#: src/routes/groups/groups.js:43
+msgctxt "Routes|Users"
+msgid "Query must be at least 2 characters long."
+msgstr ""
 
 #. Default: "Reader"
 #: src/profiles/core/roles.json:21
@@ -1343,13 +1350,13 @@ msgid "Submit for publication"
 msgstr "Prześlij do publikacji"
 
 #. Default: "System group"
-#: src/routes/groups/groups.js:112
+#: src/routes/groups/groups.js:117
 msgctxt "Routes|Groups"
 msgid "System group"
 msgstr "Grupa systemowa"
 
 #. Default: "System users"
-#: src/routes/users/users.js:267
+#: src/routes/users/users.js:272
 msgctxt "Routes|Users"
 msgid "System users"
 msgstr "Użytkownicy systemowi"
@@ -1438,7 +1445,7 @@ msgid "The following link takes you to a page where you can reset your password:
 msgstr "niezdefiniowany"
 
 #. Default: "undefined"
-#: src/routes/users/users.js:217
+#: src/routes/users/users.js:222
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
 msgstr "niezdefiniowany"
@@ -1774,13 +1781,13 @@ msgid "You are not authorization to access this resource."
 msgstr "Nie masz uprawnień do dostępu do tego zasobu."
 
 #. Default: "You can't delete system groups."
-#: src/routes/groups/groups.js:111
+#: src/routes/groups/groups.js:116
 msgctxt "Routes|Groups"
 msgid "You can't delete system groups."
 msgstr "Nie można usuwać grup systemowych."
 
 #. Default: "You can't delete system users."
-#: src/routes/users/users.js:266
+#: src/routes/users/users.js:271
 msgctxt "Routes|Users"
 msgid "You can't delete system users."
 msgstr "Nie można usuwać użytkowników systemowych."
@@ -1799,7 +1806,7 @@ msgid "You don't have permission to unlock this document."
 msgstr "Nie masz uprawnień do odblokowania tego dokumentu."
 
 #. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.js:165
+#: src/routes/users/users.js:170
 msgctxt "Routes|Users"
 msgid "You don't have permissions to add a user."
 msgstr "Nie masz uprawnień do dodawania użytkownika."
