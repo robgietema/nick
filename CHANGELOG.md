@@ -131,6 +131,7 @@
 - Added additional directives to request header @robgietema
 - Remove newlines form email fields @robgietema
 - Add a minimum of 2 characters for all like queries @robgietema
+- Fix file handling in control panel endpoint @mpalomaki
 
 ### Internal
 
