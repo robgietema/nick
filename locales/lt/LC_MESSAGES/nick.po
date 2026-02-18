@@ -489,7 +489,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:612
+#: src/routes/content/content.js:620
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr "Dokumentas užrakintas"
@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Informacija apie teises, turimas šiame elemente ir virš jo."
 
 #. Default: "Internal server error"
-#: src/app.js:201
 #: src/app.js:211
+#: src/app.js:221
 msgctxt "App"
 msgid "Internal server error"
 msgstr "Vidinė serverio klaida"
@@ -1156,7 +1156,7 @@ msgid "Rename"
 msgstr "Pervadinti"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:434
+#: src/routes/content/content.js:442
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr "Trūksta privalomų laukų."
@@ -1622,8 +1622,8 @@ msgstr "Šiandien"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:149
-#: src/app.js:162
+#: src/app.js:159
+#: src/app.js:172
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "Sandorio klaida."
@@ -1794,7 +1794,7 @@ msgstr "Negalite ištrinti sistemos vartotojų."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:609
+#: src/routes/content/content.js:617
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "Neturite leidimo išsaugoti šio dokumento, nes jį užrakino kitas vartotojas."

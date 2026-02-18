@@ -489,7 +489,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:612
+#: src/routes/content/content.js:620
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr "Documento bloccato"
@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Informazioni sui diritti relativi a questo elemento."
 
 #. Default: "Internal server error"
-#: src/app.js:201
 #: src/app.js:211
+#: src/app.js:221
 msgctxt "App"
 msgid "Internal server error"
 msgstr "Errore interno del server"
@@ -1156,7 +1156,7 @@ msgid "Rename"
 msgstr "Rinomina"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:434
+#: src/routes/content/content.js:442
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr "Campo/i obbligatorio/i mancante/i."
@@ -1622,8 +1622,8 @@ msgstr "Oggi"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:149
-#: src/app.js:162
+#: src/app.js:159
+#: src/app.js:172
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "Errore di transazione."
@@ -1794,7 +1794,7 @@ msgstr "Non puoi eliminare gli utenti di sistema."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:609
+#: src/routes/content/content.js:617
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "Non hai il permesso di salvare questo documento perché è bloccato da un altro utente."

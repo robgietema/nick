@@ -489,7 +489,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:612
+#: src/routes/content/content.js:620
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr "문서가 잠김"
@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "이 항목에 대한 권한 정보입니다."
 
 #. Default: "Internal server error"
-#: src/app.js:201
 #: src/app.js:211
+#: src/app.js:221
 msgctxt "App"
 msgid "Internal server error"
 msgstr "내부 서버 오류"
@@ -1156,7 +1156,7 @@ msgid "Rename"
 msgstr "이름 바꾸기"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:434
+#: src/routes/content/content.js:442
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr "필수 필드가 누락되었습니다."
@@ -1622,8 +1622,8 @@ msgstr "오늘"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:149
-#: src/app.js:162
+#: src/app.js:159
+#: src/app.js:172
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "트랜잭션 오류."
@@ -1794,7 +1794,7 @@ msgstr "시스템 사용자는 삭제할 수 없습니다."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:609
+#: src/routes/content/content.js:617
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "다른 사용자가 잠갔으므로 이 문서를 저장할 권한이 없습니다."

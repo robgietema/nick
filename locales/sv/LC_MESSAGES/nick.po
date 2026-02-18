@@ -489,7 +489,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:612
+#: src/routes/content/content.js:620
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr "Dokument låst"
@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Information om rättigheter som innehas i och över detta objekt."
 
 #. Default: "Internal server error"
-#: src/app.js:201
 #: src/app.js:211
+#: src/app.js:221
 msgctxt "App"
 msgid "Internal server error"
 msgstr "Internt serverfel"
@@ -1156,7 +1156,7 @@ msgid "Rename"
 msgstr "Byt namn"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:434
+#: src/routes/content/content.js:442
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr "Obligatoriskt fält saknas."
@@ -1622,8 +1622,8 @@ msgstr "Idag"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:149
-#: src/app.js:162
+#: src/app.js:159
+#: src/app.js:172
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "Transaktionsfel."
@@ -1794,7 +1794,7 @@ msgstr "Du kan inte ta bort systemanvändare."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:609
+#: src/routes/content/content.js:617
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "Du har inte behörighet att spara detta dokument eftersom det är låst av en annan användare."

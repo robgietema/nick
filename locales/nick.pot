@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-02-16T16:51:07.676Z\n"
+"POT-Creation-Date: 2026-02-18T08:25:15.023Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -486,7 +486,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:612
+#: src/routes/content/content.js:620
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr ""
@@ -703,8 +703,8 @@ msgid "Information about rights held in and over this item."
 msgstr ""
 
 #. Default: "Internal server error"
-#: src/app.js:201
 #: src/app.js:211
+#: src/app.js:221
 msgctxt "App"
 msgid "Internal server error"
 msgstr ""
@@ -1153,7 +1153,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:434
+#: src/routes/content/content.js:442
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr ""
@@ -1623,8 +1623,8 @@ msgstr ""
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:149
-#: src/app.js:162
+#: src/app.js:159
+#: src/app.js:172
 msgctxt "Client"
 msgid "Transaction error."
 msgstr ""
@@ -1795,7 +1795,7 @@ msgstr ""
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:609
+#: src/routes/content/content.js:617
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr ""
