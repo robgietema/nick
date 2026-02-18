@@ -25,6 +25,9 @@ Content-Type: application/json
     "catalog": {
       "@id": "http://localhost:8080/news/@catalog"
     },
+    "inherit": {
+      "@id": "http://localhost:8080/news/@inherit"
+    },
     "navigation": {
       "@id": "http://localhost:8080/news/@navigation"
     },
