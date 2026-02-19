@@ -57,8 +57,8 @@ importers:
         specifier: 8.0.1
         version: 8.0.1
       nodemon:
-        specifier: 3.1.11
-        version: 3.1.11
+        specifier: 3.1.12
+        version: 3.1.12
       objection:
         specifier: 3.1.5
         version: 3.1.5(knex@3.1.0(pg@8.18.0))
@@ -1788,8 +1788,8 @@ packages:
     resolution: {integrity: sha512-5kcldIXmaEjZcHR6F28IKGSgpmZHaF1IXLWFTG+Xh3S+Cce4MiakLtWY+PlBU69fLbRa8HlaGIrC/QolUpHkhg==}
     engines: {node: '>=6.0.0'}
 
-  nodemon@3.1.11:
-    resolution: {integrity: sha512-is96t8F/1//UHAjNPHpbsNY46ELPpftGUoSVNXwUfMk/qdjSylYrWSu1XavVTBOn526kFiOR733ATgNBCQyH0g==}
+  nodemon@3.1.12:
+    resolution: {integrity: sha512-ubbKNjz0Xvv49+5VWiqK2N+1VkoWdWi4xfpyuVbdT4QcdpGlN6Nx/OtxBCDHW8aUelaV6QHDbOjGca9HGnCiCw==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -3786,12 +3786,12 @@ snapshots:
 
   nodemailer@8.0.1: {}
 
-  nodemon@3.1.11:
+  nodemon@3.1.12:
     dependencies:
       chokidar: 3.6.0
       debug: 4.4.3(supports-color@5.5.0)
       ignore-by-default: 1.0.1
-      minimatch: 3.1.2
+      minimatch: 10.2.2
       pstree.remy: 1.1.8
       semver: 7.7.4
       simple-update-notifier: 2.0.0
