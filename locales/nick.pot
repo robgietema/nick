@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-02-19T18:54:24.206Z\n"
+"POT-Creation-Date: 2026-02-19T18:58:07.159Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -1437,18 +1437,11 @@ msgstr ""
 
 #. Default: "undefined"
 #: src/routes/users/users.js:96
-msgctxt "Routes|Users"
-msgid "The following link takes you to a page where you can reset your password: {url}
-
-(This link will expire in 2 hours)"
-msgstr ""
-
-#. Default: "undefined"
 #: src/routes/users/users.js:222
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}
 
-(This link will expire in 7 days)"
+(This link will expire in 2 hours)"
 msgstr ""
 
 #. Default: "The item's title, transformed for sorting"

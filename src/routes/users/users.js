@@ -220,7 +220,7 @@ export default [
             from: `${settings.email_from_name} <${settings.email_from_address}>`,
             subject: req.i18n('Password reset request'),
             text: req.i18n(
-              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 7 days)',
+              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 2 hours)',
               { url: `${config.settings.frontendUrl}/password-reset/${token}` },
             ),
           },

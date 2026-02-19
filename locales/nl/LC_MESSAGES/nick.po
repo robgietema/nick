@@ -1440,11 +1440,6 @@ msgstr "De einddatum en -tijd van een evenement"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:96
-msgctxt "Routes|Users"
-msgid "The following link takes you to a page where you can reset your password: {url}"
-msgstr "De volgende link brengt u naar een pagina waar u uw wachtwoord opnieuw kunt instellen: {url}"
-
-#. Default: "undefined"
 #: src/routes/users/users.js:222
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"

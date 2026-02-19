@@ -1440,11 +1440,6 @@ msgstr "이벤트 종료 날짜 및 시간"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:96
-msgctxt "Routes|Users"
-msgid "The following link takes you to a page where you can reset your password: {url}"
-msgstr "정의되지 않음"
-
-#. Default: "undefined"
 #: src/routes/users/users.js:222
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"

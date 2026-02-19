@@ -1440,11 +1440,6 @@ msgstr "Slutdato og -tidspunkt for en begivenhed"
 
 #. Default: "undefined"
 #: src/routes/users/users.js:96
-msgctxt "Routes|Users"
-msgid "The following link takes you to a page where you can reset your password: {url}"
-msgstr "udefineret"
-
-#. Default: "undefined"
 #: src/routes/users/users.js:222
 msgctxt "Routes|Users"
 msgid "The following link takes you to a page where you can reset your password: {url}"
