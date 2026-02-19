@@ -66,6 +66,16 @@ if (process.env.NODE_ENV === 'production') {
       `Secret can not have the default value in production mode.`,
     );
   }
+
+  // Check cors settings
+  if (
+    config.settings.cors.allowCredentials === true &&
+    config.settings.cors.allowOrigin === '*'
+  ) {
+    throw new Error(
+      'CORS allowOrigin can not be * when allowCredentials is true in production mode.',
+    );
+  }
 }
 
 // Create app

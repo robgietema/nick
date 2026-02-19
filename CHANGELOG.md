@@ -134,6 +134,7 @@
 - Add a minimum of 2 characters for all like queries @robgietema
 - Fix file handling in control panel endpoint @mpalomaki
 - Fix allow credentials config setting @robgietema
+- Fix cors error with allow credentials and allow origin @robgietema
 
 ### Internal
 
