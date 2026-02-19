@@ -630,8 +630,8 @@ msgid "Folder-like"
 msgstr "Mappliknande"
 
 #. Default: "From and message are required fields."
-#: src/routes/email/email.js:54
-#: src/routes/email/email.js:91
+#: src/routes/email/email.js:55
+#: src/routes/email/email.js:93
 msgctxt "Routes|Email"
 msgid "From and message are required fields."
 msgstr "Från och meddelande är obligatoriska fält."
@@ -916,7 +916,7 @@ msgstr "Inte tillåtet"
 #: src/routes/users/users.js:132
 #: src/routes/types/types.js:36
 #: src/routes/groups/groups.js:27
-#: src/routes/email/email.js:61
+#: src/routes/email/email.js:62
 #: src/routes/controlpanels/controlpanels.js:77
 msgctxt "Routes|Vocabularies"
 msgid "Not found."
@@ -1604,7 +1604,7 @@ msgid "Title"
 msgstr "Titel"
 
 #. Default: "To, from and message are required fields."
-#: src/routes/email/email.js:23
+#: src/routes/email/email.js:24
 msgctxt "Routes|Email"
 msgid "To, from and message are required fields."
 msgstr "Till, från och meddelande är obligatoriska fält."
