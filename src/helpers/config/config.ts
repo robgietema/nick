@@ -111,7 +111,7 @@ class Config {
           config.cors.allowMethods || 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
         allowHeaders:
           config.cors.allowHeaders || 'Content-Type,Authorization,Accept',
-        allowCredentials: config.cors.allowCredentials || true,
+        allowCredentials: config.cors.allowCredentials ?? true,
         exposeHeaders:
           config.cors.exposeHeaders || 'Content-Length,Content-Type',
         maxAge: config.cors.maxAge || 3600,

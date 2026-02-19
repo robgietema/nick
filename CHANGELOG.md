@@ -133,6 +133,7 @@
 - Remove newlines form email fields @robgietema
 - Add a minimum of 2 characters for all like queries @robgietema
 - Fix file handling in control panel endpoint @mpalomaki
+- Fix allow credentials config setting @robgietema
 
 ### Internal
 
