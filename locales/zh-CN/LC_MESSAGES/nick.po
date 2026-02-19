@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "关于此项目权利的信息。"
 
 #. Default: "Internal server error"
-#: src/app.js:211
 #: src/app.js:221
+#: src/app.js:231
 msgctxt "App"
 msgid "Internal server error"
 msgstr "内部服务器错误"
@@ -1617,8 +1617,8 @@ msgstr "今天"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:159
-#: src/app.js:172
+#: src/app.js:169
+#: src/app.js:182
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "事务错误。"

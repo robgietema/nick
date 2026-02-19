@@ -706,8 +706,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Informacije o pravicah do tega elementa."
 
 #. Default: "Internal server error"
-#: src/app.js:211
 #: src/app.js:221
+#: src/app.js:231
 msgctxt "App"
 msgid "Internal server error"
 msgstr "Notranja napaka strežnika"
@@ -1617,8 +1617,8 @@ msgstr "Danes"
 
 #. Default: "Transaction error."
 #: src/client.js:63
-#: src/app.js:159
-#: src/app.js:172
+#: src/app.js:169
+#: src/app.js:182
 msgctxt "Client"
 msgid "Transaction error."
 msgstr "Napaka transakcije."
