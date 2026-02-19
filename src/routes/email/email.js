@@ -6,6 +6,7 @@
 import { RequestException } from '../../helpers/error/error';
 import { sendMail } from '../../helpers/mail/mail';
 import { stripNewlines } from '../../helpers/utils/utils';
+import { apiLimiter } from '../../helpers/limiter/limiter';
 
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { User } from '../../models/user/user';
@@ -84,6 +85,7 @@ export default [
     view: '/@email-notification',
     permission: 'View',
     client: 'emailNotification',
+    middleware: apiLimiter,
     handler: async (req, trx) => {
       // Check if required fields provided
       if (!req.body.from || !req.body.message) {
