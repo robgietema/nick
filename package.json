@@ -72,7 +72,7 @@
     "@types/pdf-parse": "1.1.5",
     "@types/supertest": "6.0.3",
     "@vitest/ui": "4.0.18",
-    "eslint": "10.0.0",
+    "eslint": "10.0.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-json": "4.0.1",
     "eslint-plugin-prettier": "5.5.5",
