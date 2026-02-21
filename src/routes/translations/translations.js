@@ -5,7 +5,7 @@
 
 import { Document } from '../../models/document/document';
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
-import { getPath, getUrl, getUrlByPath } from '../../helpers/url/url';
+import { stripPath, getUrl, getUrlByPath } from '../../helpers/url/url';
 
 export const handler = async (req, trx) => {
   const documents = req.document.translation_group
@@ -75,7 +75,7 @@ export default [
     client: 'linkTranslation',
     handler: async (req, trx) => {
       // Strip prefix of url
-      const id = getPath(req.body.id);
+      const id = stripPath(req.body.id);
 
       let target;
       // Check if path
@@ -87,7 +87,7 @@ export default [
       }
 
       // Link documents
-      await document.update(
+      await target.update(
         {
           translation_group: req.document.translation_group,
         },

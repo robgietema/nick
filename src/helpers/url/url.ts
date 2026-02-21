@@ -47,3 +47,13 @@ export function getRootUrl(req: Request): string {
 export function getPath(req: Request): string {
   return (req.documentPath as string).replace(config.settings.prefix, '');
 }
+
+/**
+ * Strip path
+ * @method stripPath
+ * @param {string} path Path to be stripped
+ * @returns {string} Path
+ */
+export function stripPath(path: string): string {
+  return path.replace(config.settings.prefix, '');
+}

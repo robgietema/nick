@@ -135,6 +135,7 @@
 - Fix file handling in control panel endpoint @mpalomaki
 - Fix allow credentials config setting @robgietema
 - Fix cors error with allow credentials and allow origin @robgietema
+- Fix bug in linking translations @mpalomaki
 
 ### Internal
 
