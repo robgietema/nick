@@ -410,7 +410,10 @@ export default [
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       await req.document.restrictChildren(req, trx);
       await req.document.fetchRelationLists(trx);
-      const json = await req.document.toJSON(req, await getComponents(req));
+      const json = await req.document.toJSON(
+        req,
+        await getComponents(req, trx),
+      );
       return {
         json: await handleBlockReferences(json, trx),
       };
@@ -573,7 +576,7 @@ export default [
       // Send data back to client
       return {
         status: 201,
-        json: await document.toJSON(req, await getComponents(req)),
+        json: await document.toJSON(req, await getComponents(req, trx)),
       };
     },
   },

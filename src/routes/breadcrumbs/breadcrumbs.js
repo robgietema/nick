@@ -53,7 +53,12 @@ async function traverse(document, slugs, items, trx) {
 }
 
 export const handler = async (req, trx) => {
-  const slugs = getPath(req).split('/');
+  const fullPath = getPath(req);
+  const navrootPath = req.navroot.path === '/' ? '' : req.navroot.path;
+  const relativePath = fullPath.startsWith(navrootPath)
+    ? fullPath.slice(navrootPath.length)
+    : fullPath;
+  const slugs = relativePath.split('/');
 
   const items = await traverse(
     req.navroot,

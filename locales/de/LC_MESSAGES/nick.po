@@ -489,7 +489,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.js:53
-#: src/routes/content/content.js:620
+#: src/routes/content/content.js:623
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr "Dokument gesperrt"
@@ -1156,7 +1156,7 @@ msgid "Rename"
 msgstr "Umbenennen"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.js:442
+#: src/routes/content/content.js:445
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr "Pflichtfeld(er) fehlen."
@@ -1789,7 +1789,7 @@ msgstr "Du kannst Systembenutzer nicht löschen."
 
 #. Default: "You don't have permission to save this document because it is locked by another user."
 #: src/routes/history/history.js:50
-#: src/routes/content/content.js:617
+#: src/routes/content/content.js:620
 msgctxt "Routes|History"
 msgid "You don't have permission to save this document because it is locked by another user."
 msgstr "Du hast keine Berechtigung, dieses Dokument zu speichern, da es von einem anderen Benutzer gesperrt ist."
