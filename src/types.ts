@@ -18,6 +18,7 @@ export interface User extends Model {
   update: (data: any, trx: Knex.Transaction) => Promise<void>;
   _groups: string[];
   getRoles: () => string[];
+  fetchUserGroupRolesByDocument: (uuid: string) => Promise<void>;
 }
 
 export interface Request extends express.Request {

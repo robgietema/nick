@@ -4,12 +4,14 @@
  */
 
 import { remove, zipObject } from 'es-toolkit/array';
-import { createIntl, createIntlCache } from '@formatjs/intl';
+import { createIntl, createIntlCache, IntlShape } from '@formatjs/intl';
 import fs from 'fs';
+import type { Response, NextFunction } from 'express';
 
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
 import config from '../../helpers/config/config';
+import type { Request } from '../../types';
 
 // Get available language files
 const languages = remove(
@@ -21,7 +23,7 @@ const languages = remove(
 const intlCache = zipObject(
   languages,
   languages.map(() => createIntlCache()),
-);
+) as Record<string, any>;
 
 // Load i18n files
 const intl = zipObject(
@@ -40,15 +42,19 @@ const intl = zipObject(
       intlCache[language],
     ),
   ),
-);
+) as Record<string, IntlShape>;
 
 // Export middleware
-export async function i18n(req, res, next) {
+export async function i18n(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
   // Fetch settings
   const controlpanel = await Controlpanel.fetchById('language');
-  const settings = controlpanel.data;
+  const settings = (controlpanel as any).data;
 
-  req.i18n = (id, ...rest) => {
+  req.i18n = (id: string, ...rest: any[]) => {
     // Check if id is specified
     if (!id) {
       return id;
@@ -65,7 +71,10 @@ export async function i18n(req, res, next) {
     }
 
     // Translate message
-    return intl[language].formatMessage({ id, defaultMessage: id }, ...rest);
+    return (intl[language] as any).formatMessage(
+      { id, defaultMessage: id },
+      ...rest,
+    );
   };
   next();
 }

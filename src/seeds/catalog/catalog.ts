@@ -1,3 +1,4 @@
+import type { Knex } from 'knex';
 import { fileExists } from '../../helpers/fs/fs';
 import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
@@ -6,10 +7,13 @@ import { Index } from '../../models/index/index';
 
 import config from '../../helpers/config/config';
 
-export const seedCatalog = async (trx, profilePath) => {
+export const seedCatalog = async (
+  trx: Knex.Transaction,
+  profilePath: string,
+): Promise<void> => {
   if (fileExists(`${profilePath}/catalog`)) {
     const profile = stripI18n((await import(`${profilePath}/catalog`)).default);
-    await mapAsync(profile.indexes, async (index) => {
+    await mapAsync(profile.indexes, async (index: any) => {
       // Add index
       await Index.create(
         {
@@ -30,7 +34,7 @@ export const seedCatalog = async (trx, profilePath) => {
         trx,
       );
       // Update catalog table
-      await trx.schema.alterTable('catalog', async (table) => {
+      await trx.schema.alterTable('catalog', async (table: any) => {
         const field = `_${index.name}`;
         switch (index.type) {
           case 'string':
@@ -72,7 +76,7 @@ export const seedCatalog = async (trx, profilePath) => {
         }
       });
     });
-    await mapAsync(profile.metadata, async (metadata) => {
+    await mapAsync(profile.metadata, async (metadata: any) => {
       // Add index
       await Index.create(
         {
@@ -86,7 +90,7 @@ export const seedCatalog = async (trx, profilePath) => {
         {},
         trx,
       );
-      await trx.schema.alterTable('catalog', async (table) => {
+      await trx.schema.alterTable('catalog', async (table: any) => {
         switch (metadata.type) {
           case 'uuid':
             table.uuid(metadata.name);

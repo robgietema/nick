@@ -1,3 +1,4 @@
+import type { Knex } from 'knex';
 import { dropRight, last } from 'es-toolkit/array';
 import { omit } from 'es-toolkit/object';
 import { promises as fs } from 'fs';
@@ -35,17 +36,20 @@ const documentFields = [
 
 const versionFields = ['uuid', 'version', 'id', 'created', 'actor', 'document'];
 
-export const seedDocument = async (trx, profilePath) => {
-  const uuids = [];
+export const seedDocument = async (
+  trx: Knex.Transaction,
+  profilePath: string,
+): Promise<void> => {
+  const uuids: string[] = [];
 
   if (dirExists(`${profilePath}/documents`)) {
-    const children = {};
+    const children: Record<string, number> = {};
     const files = (await fs.readdir(`${profilePath}/documents`))
-      .filter((file) => file.endsWith('.json'))
-      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .filter((file: string) => file.endsWith('.json'))
+      .map((file: string) => dropRight(file.split('.'), 1).join('.'))
       .sort();
-    await mapAsync(files, async (file) => {
-      let document = stripI18n(
+    await mapAsync(files, async (file: string) => {
+      let document: any = stripI18n(
         (await import(`${profilePath}/documents/${file}`)).default,
       );
       const slugs = file.split('.');
@@ -79,7 +83,7 @@ export const seedDocument = async (trx, profilePath) => {
       const newUuid = document.uuid || uuid();
 
       // Insert document
-      let insert = await Document.create(
+      let insert: any = await Document.create(
         {
           uuid: newUuid,
           version: 'version' in document ? document.version : versionCount - 1,
@@ -112,7 +116,7 @@ export const seedDocument = async (trx, profilePath) => {
       // Create versions
       const versions =
         'versions' in document
-          ? document.versions.map((version, index) => ({
+          ? document.versions.map((version: any, index: number) => ({
               version: version.version || index,
               created: version.created || moment.utc().format(),
               actor: version.actor || 'admin',
@@ -130,16 +134,16 @@ export const seedDocument = async (trx, profilePath) => {
             ];
 
       // Insert versions
-      await mapAsync(versions, async (version) => {
+      await mapAsync(versions, async (version: any) => {
         await insert.createRelated('_versions', version, trx);
       });
 
       // Insert sharing data for users
       const sharingUsers = document.sharing?.users || [];
-      await mapAsync(sharingUsers, async (user) =>
+      await mapAsync(sharingUsers, async (user: any) =>
         mapAsync(
           user.roles,
-          async (role) =>
+          async (role: any) =>
             await insert
               .$relatedQuery('_userRoles', trx)
               .relate({ id: role, user: user.id }),
@@ -148,10 +152,10 @@ export const seedDocument = async (trx, profilePath) => {
 
       // Insert sharing data for groups
       const sharingGroups = document.sharing?.groups || [];
-      await mapAsync(sharingGroups, async (group) =>
+      await mapAsync(sharingGroups, async (group: any) =>
         mapAsync(
           group.roles,
-          async (role) =>
+          async (role: any) =>
             await insert
               .$relatedQuery('_groupRoles', trx)
               .relate({ id: role, group: group.id }),
@@ -160,8 +164,8 @@ export const seedDocument = async (trx, profilePath) => {
     });
 
     // Index documents
-    await mapAsync(uuids, async (uuid) => {
-      let document = await Document.fetchOne({ uuid }, {}, trx);
+    await mapAsync(uuids, async (uuid: string) => {
+      let document: any = await Document.fetchOne({ uuid }, {}, trx);
 
       // Apply behaviors
       await document.applyBehaviors(trx);

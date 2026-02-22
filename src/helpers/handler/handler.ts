@@ -1,4 +1,5 @@
 import { compact, uniq } from 'es-toolkit/array';
+import type { Knex } from 'knex';
 
 import { RequestException } from '../error/error';
 import { getPath } from '../url/url';
@@ -9,20 +10,34 @@ import { Redirect } from '../../models/redirect/redirect';
 import { Role } from '../../models/role/role';
 import { Type } from '../../models/type/type';
 import { User } from '../../models/user/user';
+import type { Request, Json } from '../../types';
 
 /**
  * Resolve and call handler
- * @method handleFiles
+ * @method callHandler
  * @param {Request} req Request object
  * @param {Knex.Transaction} trx Transaction object.
  * @param {Object} route Route object.
  * @param {Function} callback Callback function.
- * @returns {any} Response
+ * @returns {Promise<any>} Response
  */
-export async function callHandler(req, trx, route, callback) {
+export async function callHandler(
+  req: Request,
+  trx: Knex.Transaction,
+  route: {
+    view: string;
+    permission: string;
+    handler: (
+      req: Request,
+      trx: Knex.Transaction,
+      callback: any,
+    ) => Promise<any>;
+  },
+  callback: any,
+): Promise<any> {
   // Get user
   req.user = await User.fetchById(
-    getUserId(req),
+    getUserId(req) || 'anonymous',
     {
       related: '[_roles, _groups._roles]',
     },
@@ -30,7 +45,7 @@ export async function callHandler(req, trx, route, callback) {
   );
 
   // If token not in user model
-  if (!(req.user.tokens || []).includes(req.token)) {
+  if (!req.token || !(req.user.tokens || []).includes(req.token)) {
     // Set anonymous user
     req.user = await User.fetchById(
       'anonymous',
@@ -90,7 +105,7 @@ export async function callHandler(req, trx, route, callback) {
 
   // Call handler
   req.document = document;
-  req.navroot = result.navroot;
+  (req as any).navroot = result.navroot;
   req.type = type;
   req.permissions = uniq([
     ...permissions,

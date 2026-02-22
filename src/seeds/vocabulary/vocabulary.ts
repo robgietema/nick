@@ -1,3 +1,4 @@
+import type { Knex } from 'knex';
 import { dropRight } from 'es-toolkit/array';
 import { promises as fs } from 'fs';
 
@@ -7,15 +8,18 @@ import { stripI18n } from '../../helpers/i18n/i18n';
 
 import { Vocabulary } from '../../models/vocabulary/vocabulary';
 
-export const seedVocabulary = async (trx, profilePath) => {
+export const seedVocabulary = async (
+  trx: Knex.Transaction,
+  profilePath: string,
+): Promise<void> => {
   if (dirExists(`${profilePath}/vocabularies`)) {
     // Get vocabulary profiles
     const vocabularies = (await fs.readdir(`${profilePath}/vocabularies`))
-      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .map((file: string) => dropRight(file.split('.'), 1).join('.'))
       .sort();
 
     // Import vocabularies
-    await mapAsync(vocabularies, async (vocabulary) => {
+    await mapAsync(vocabularies, async (vocabulary: string) => {
       const data = stripI18n(
         (await import(`${profilePath}/vocabularies/${vocabulary}`)).default,
       );

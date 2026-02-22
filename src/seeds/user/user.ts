@@ -1,4 +1,6 @@
+import type { Knex } from 'knex';
 import { omit } from 'es-toolkit/object';
+// @ts-ignore
 import bcrypt from 'bcrypt-promise';
 
 import { fileExists } from '../../helpers/fs/fs';
@@ -6,14 +8,17 @@ import { stripI18n } from '../../helpers/i18n/i18n';
 
 import { User } from '../../models/user/user';
 
-export const seedUser = async (trx, profilePath) => {
+export const seedUser = async (
+  trx: Knex.Transaction,
+  profilePath: string,
+): Promise<void> => {
   if (fileExists(`${profilePath}/users`)) {
     const profile = stripI18n((await import(`${profilePath}/users`)).default);
     if (profile.purge) {
       await User.delete({}, trx);
     }
     await Promise.all(
-      profile.users.map(async (user) => {
+      profile.users.map(async (user: any) => {
         // Insert user
         await User.create(
           {

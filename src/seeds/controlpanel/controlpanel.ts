@@ -1,3 +1,4 @@
+import type { Knex } from 'knex';
 import { dropRight } from 'es-toolkit/array';
 import { merge } from 'es-toolkit/object';
 import { promises as fs } from 'fs';
@@ -8,22 +9,25 @@ import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
 
-export const seedControlpanel = async (trx, profilePath) => {
+export const seedControlpanel = async (
+  trx: Knex.Transaction,
+  profilePath: string,
+): Promise<void> => {
   if (dirExists(`${profilePath}/controlpanels`)) {
     // Get controlpanel profiles
     const controlpanels = (await fs.readdir(`${profilePath}/controlpanels`))
-      .filter((file) => file.endsWith('.json'))
-      .map((file) => dropRight(file.split('.'), 1).join('.'))
+      .filter((file: string) => file.endsWith('.json'))
+      .map((file: string) => dropRight(file.split('.'), 1).join('.'))
       .sort();
 
     // Import controlpanels
-    await mapAsync(controlpanels, async (controlpanel) => {
-      let data = stripI18n(
+    await mapAsync(controlpanels, async (controlpanel: string) => {
+      let data: any = stripI18n(
         (await import(`${profilePath}/controlpanels/${controlpanel}`)).default,
       );
 
       // Check if controlpanel exists
-      let current = await Controlpanel.fetchById(data.id, {}, trx);
+      let current: any = await Controlpanel.fetchById(data.id, {}, trx);
 
       // Create control panel if not already there
       if (!current) {
@@ -46,7 +50,7 @@ export const seedControlpanel = async (trx, profilePath) => {
       // Update record
       await Controlpanel.update(
         data.id,
-        merge(current.$toDatabaseJson(), data),
+        merge((current as any).$toDatabaseJson(), data),
         trx,
       );
     });
