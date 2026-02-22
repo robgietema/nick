@@ -4,10 +4,12 @@
  */
 
 import { uniq } from 'es-toolkit/array';
+import type { Knex } from 'knex';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
 import { Permission } from '../../models/permission/permission';
+import type { Json, Request } from '../../types';
 
 /**
  * A model for Role.
@@ -19,7 +21,7 @@ export class Role extends Model {
   static get relationMappings() {
     return {
       _permissions: {
-        relation: Model.ManyToManyRelation,
+        relation: (Model as any).ManyToManyRelation,
         modelClass: Permission,
         join: {
           from: 'role.id',
@@ -36,31 +38,32 @@ export class Role extends Model {
   /**
    * Returns JSON data.
    * @method toJson
-   * @param {Object} req Request object.
-   * @returns {Object} JSON object.
+   * @param {Request} req Request object.
+   * @returns {Json} JSON object.
    */
-  toJson(req) {
+  toJson(req: Request): Json {
+    const self: any = this;
     return {
-      '@id': `${getRootUrl(req)}/@roles/${this.id}`,
+      '@id': `${getRootUrl(req)}/@roles/${self.id}`,
       '@type': 'role',
-      id: this.id,
-      title: req.i18n(this.title),
-    };
+      id: self.id,
+      title: req.i18n(self.title),
+    } as Json;
   }
 
   /**
    * Fetch permissions.
    * @method fetchPermission
    * @static
-   * @param {Array} roles Array of roles
-   * @param {Object} trx Transaction object.
-   * @returns {Array} Array of roles.
+   * @param {string[]} roles Array of roles
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<string[]>} Array of permission ids.
    */
-  static async fetchPermissions(roles, trx) {
-    return uniq(
-      (await this.relatedQuery('_permissions', trx).for(roles)).map(
-        (permission) => permission.id,
-      ),
-    );
+  static async fetchPermissions(
+    roles: string[],
+    trx: Knex.Transaction,
+  ): Promise<string[]> {
+    const permissions = await this.relatedQuery('_permissions', trx).for(roles);
+    return uniq(permissions.map((permission: any) => permission.id));
   }
 }

@@ -36,6 +36,8 @@ import { DocumentCollection } from '../../collections/document/document';
 import behaviors from '../../behaviors';
 
 import config from '../../helpers/config/config';
+import type { Json, Request } from '../../types';
+import type { Knex } from 'knex';
 
 /**
  * A model for Document.
@@ -43,15 +45,16 @@ import config from '../../helpers/config/config';
  * @extends Model
  */
 export class Document extends Model {
-  static collection = DocumentCollection;
+  static collection: (typeof Model)['collection'] =
+    DocumentCollection as unknown as (typeof Model)['collection'];
 
-  static idColumn = 'uuid';
+  static idColumn: string = 'uuid';
 
   // Set relation mappings
   static get relationMappings() {
     return {
       _owner: {
-        relation: Model.BelongsToOneRelation,
+        relation: (Model as any).BelongsToOneRelation,
         modelClass: User,
         join: {
           from: 'document.owner',
@@ -59,7 +62,7 @@ export class Document extends Model {
         },
       },
       _parent: {
-        relation: Model.BelongsToOneRelation,
+        relation: (Model as any).BelongsToOneRelation,
         modelClass: Document,
         join: {
           from: 'document.parent',
@@ -67,7 +70,7 @@ export class Document extends Model {
         },
       },
       _children: {
-        relation: Model.HasManyRelation,
+        relation: (Model as any).HasManyRelation,
         modelClass: Document,
         join: {
           from: 'document.uuid',
@@ -75,7 +78,7 @@ export class Document extends Model {
         },
       },
       _catalog: {
-        relation: Model.BelongsToOneRelation,
+        relation: (Model as any).BelongsToOneRelation,
         modelClass: Catalog,
         join: {
           from: 'document.uuid',
@@ -83,7 +86,7 @@ export class Document extends Model {
         },
       },
       _versions: {
-        relation: Model.HasManyRelation,
+        relation: (Model as any).HasManyRelation,
         modelClass: Version,
         join: {
           from: 'document.uuid',
@@ -91,7 +94,7 @@ export class Document extends Model {
         },
       },
       _type: {
-        relation: Model.BelongsToOneRelation,
+        relation: (Model as any).BelongsToOneRelation,
         modelClass: Type,
         join: {
           from: 'document.type',
@@ -99,7 +102,7 @@ export class Document extends Model {
         },
       },
       _userRoles: {
-        relation: Model.ManyToManyRelation,
+        relation: (Model as any).ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'document.uuid',
@@ -112,7 +115,7 @@ export class Document extends Model {
         },
       },
       _groupRoles: {
-        relation: Model.ManyToManyRelation,
+        relation: (Model as any).ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'document.uuid',
@@ -128,8 +131,8 @@ export class Document extends Model {
   }
 
   // Modifiers
-  static modifiers = {
-    order(query) {
+  static modifiers: any = {
+    order(query: any) {
       query.orderBy('position_in_parent');
     },
   };
@@ -138,48 +141,51 @@ export class Document extends Model {
    * Fetch version
    * @method fetchVersion
    * @param {string} document Uuid of the document
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async fetchVersion(version, trx) {
-    this._version = await this.$relatedQuery('_versions', trx)
+  async fetchVersion(version: any, trx?: Knex.Transaction): Promise<void> {
+    (this as any)._version = await (this as any)
+      .$relatedQuery('_versions', trx)
       .where({ version })
       .first();
   }
 
   /**
    * Apply behaviors
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    * @method applyBehaviors
    */
-  async applyBehaviors(trx) {
+  async applyBehaviors(trx?: Knex.Transaction): Promise<void> {
+    const self: any = this;
     // If type not found fetch type
-    if (!this._type) {
-      await this.fetchRelated('_type', trx);
+    if (!self._type) {
+      await self.fetchRelated('_type', trx);
     }
 
     // Assign behaviors
     Object.assign(
-      this,
-      ...Object.values(pick(behaviors, this._type.schema.behaviors)),
+      self,
+      ...Object.values(pick(behaviors, self._type.schema.behaviors)),
     );
   }
 
   /**
    * Set restricted children
    * @method restrictChildren
-   * @param {Object} req Request object.
-   * @param {Object} trx Transaction object.
+   * @param {Request} req Request object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async restrictChildren(req, trx) {
-    const paths = this._children.map((child) => child.path);
+  async restrictChildren(req: Request, trx?: Knex.Transaction): Promise<void> {
+    const self: any = this;
+    const paths = (self._children || []).map((child: any) => child.path);
     const items = await Catalog.fetchAllRestricted(
       { _path: ['=', paths] },
       {},
       trx,
       req,
     );
-    const restrictedPaths = items.map((item) => item._path);
-    this._restrictedChildren = this._children.filter((child) =>
+    const restrictedPaths = (items as any).map((item: any) => item._path);
+    self._restrictedChildren = (self._children || []).filter((child: any) =>
       restrictedPaths.includes(child.path),
     );
   }
@@ -187,32 +193,29 @@ export class Document extends Model {
   /**
    * Fetch relation lists
    * @method fetchRelationLists
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async fetchRelationLists(trx) {
+  async fetchRelationLists(trx?: Knex.Transaction): Promise<void> {
+    const self: any = this;
     // Check if version data
-    const version = this._version
-      ? {
-          ...this._version.json,
-        }
-      : {};
+    const version = self._version ? { ...self._version.json } : {};
 
     // Get file fields
     const json = {
-      ...this.json,
+      ...self.json,
       ...version,
     };
 
     // Reset lists
-    this._relationLists = {};
+    self._relationLists = {};
 
     // Loop through relation list fields
-    const relationListFields = this._type.getFactoryFields('Relation List');
+    const relationListFields = self._type.getFactoryFields('Relation List');
     await Promise.all(
-      relationListFields.map(async (field) => {
+      relationListFields.map(async (field: string) => {
         // Check if related documents
         if (Array.isArray(json[field]) && json[field].length > 0) {
-          this._relationLists[field] = await Document.fetchAll(
+          self._relationLists[field] = await Document.fetchAll(
             {
               uuid: ['=', json[field]],
             },
@@ -227,11 +230,12 @@ export class Document extends Model {
   /**
    * Get url
    * @method getUrl
-   * @param {Object} req Request object
+   * @param {Request} req Request object
    * @returns {string} Url
    */
-  getUrl(req) {
-    return `${getRootUrl(req)}${this.path === '/' ? '' : this.path}`;
+  getUrl(req: Request): string {
+    const self: any = this;
+    return `${getRootUrl(req)}${self.path === '/' ? '' : self.path}`;
   }
 
   /**
@@ -241,8 +245,8 @@ export class Document extends Model {
    * @param {Array} blacklist Blacklist ids
    * @returns {string} Id
    */
-  setId(id, blacklist) {
-    this.id = uniqueId(id, blacklist);
+  setId(id: string | undefined, blacklist: string[]): void {
+    (this as any).id = uniqueId(id || '', blacklist);
   }
 
   /**
@@ -250,8 +254,8 @@ export class Document extends Model {
    * @method getTitle
    * @returns {string} Title
    */
-  getTitle() {
-    return this.json.title;
+  getTitle(): string {
+    return (this as any).json.title;
   }
 
   /**
@@ -260,17 +264,21 @@ export class Document extends Model {
    * @static
    * @param {String} oldPath Old path.
    * @param {String} newPath New path.
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    * @returns {Promise} A Promise that resolves when replace is done.
    */
-  static async replacePath(oldPath, newPath, trx) {
-    const documents = await this.fetchAll(
+  static async replacePath(
+    oldPath: string,
+    newPath: string,
+    trx?: Knex.Transaction,
+  ): Promise<void> {
+    const documents: any = await this.fetchAll(
       { path: ['~', `^${oldPath}`] },
       {},
       trx,
     );
     await Promise.all(
-      documents.map(async (document) => {
+      documents.map(async (document: any) => {
         await Redirect.create(
           {
             document: document.uuid,
@@ -286,12 +294,12 @@ export class Document extends Model {
       .raw(
         `update document set path = regexp_replace(path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where path ~ '^${oldPath}/.*$'`,
       )
-      .transacting(trx);
+      .transacting(trx as any);
     await knex
       .raw(
         `update catalog set _path = regexp_replace(_path, '^${oldPath}/(.*)$', '${newPath}/\\1', 'g') where _path ~ '^${oldPath}/.*$'`,
       )
-      .transacting(trx);
+      .transacting(trx as any);
   }
 
   /**
@@ -299,37 +307,41 @@ export class Document extends Model {
    * @method reorder
    * @param {string} id Id of item to order.
    * @param {number|string} delta 'top', 'bottom' or numerical offset.
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    * @returns {Promise} A Promise that resolves when the ordering has been done.
    */
-  async reorder(id, delta, trx) {
-    let to;
-    const from = this._children.findIndex((child) => child.id === id);
+  async reorder(id: string, delta: any, trx?: Knex.Transaction): Promise<void> {
+    const self: any = this;
+    let to: number;
+    const from = (self._children || []).findIndex(
+      (child: any) => child.id === id,
+    );
 
     // Set to based on delta
     if (delta === 'top') {
       to = 0;
     } else if (delta === 'bottom') {
-      to = this._children.length - 1;
+      to = self._children.length - 1;
     } else {
       to = from + delta;
     }
 
     // Reorder and save to db
-    this._children.splice(to, 0, this._children.splice(from, 1)[0]);
-    await this.fixOrder();
+    self._children.splice(to, 0, self._children.splice(from, 1)[0]);
+    await this.fixOrder(trx);
   }
 
   /**
    * Fix order
    * @method fixOrder
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    * @returns {Promise} A Promise that resolves when the ordering has been done.
    */
-  async fixOrder(trx) {
+  async fixOrder(trx?: Knex.Transaction): Promise<any> {
+    const self: any = this;
     return await Promise.all(
-      this._children.map(
-        async (child, index) =>
+      self._children.map(
+        async (child: any, index: number) =>
           await child.update({ position_in_parent: index }, trx),
       ),
     );
@@ -338,37 +350,38 @@ export class Document extends Model {
   /**
    * Returns JSON data.
    * @method toJson
-   * @param {Object} req Request object.
-   * @returns {Object} JSON object.
+   * @param {Request} req Request object.
+   * @returns {Promise<Json>} JSON object.
    */
-  async toJson(req, components = {}) {
+  async toJson(req: Request, components: any = {}): Promise<Json> {
+    const self: any = this;
     // Check if version data
-    const version = this._version
+    const version = self._version
       ? {
-          ...omit(this._version.json, ['changeNote']),
-          id: this._version.id,
-          modified: this._version.created,
+          ...omit(self._version.json, ['changeNote']),
+          id: self._version.id,
+          modified: self._version.created,
         }
       : {};
 
     // Apply behaviors not applied
-    if (!this._behaviors) {
+    if (!self._behaviors) {
       await this.applyBehaviors();
-      this._behaviors = true;
+      self._behaviors = true;
     }
 
     // Get file fields
-    const json = {
-      ...this.json,
+    const json: any = {
+      ...self.json,
       title: this.getTitle(),
       ...version,
     };
 
     // Check if type available
-    if (this._type) {
+    if (self._type) {
       // Loop through file fields
-      const fileFields = this._type.getFactoryFields('File');
-      mapSync(fileFields, (field) => {
+      const fileFields = self._type.getFactoryFields('File');
+      mapSync(fileFields, (field: string) => {
         // Set data
         if (json[field]) {
           json[field] = {
@@ -381,8 +394,8 @@ export class Document extends Model {
       });
 
       // Loop through image fields
-      const imageFields = this._type.getFactoryFields('Image');
-      mapSync(imageFields, (field) => {
+      const imageFields = self._type.getFactoryFields('Image');
+      mapSync(imageFields, (field: string) => {
         // Set data
         if (json[field]) {
           json[field] = {
@@ -394,11 +407,11 @@ export class Document extends Model {
             size: json[field].size,
             width: json[field].width,
             height: json[field].height,
-            scales: mapValues(json[field].scales, (scale) => ({
+            scales: mapValues(json[field].scales, (scale: any) => ({
               width: scale.width,
               height: scale.height,
               download: `${this.getUrl(req)}/@@images/${scale.uuid}.${last(
-                json[field].filename.split('.'),
+                scale.filename.split('.'),
               )}`,
             })),
           };
@@ -406,16 +419,16 @@ export class Document extends Model {
       });
 
       // Loop through relation list fields
-      const relationListFields = this._type.getFactoryFields('Relation List');
-      mapSync(relationListFields, async (field) => {
+      const relationListFields = self._type.getFactoryFields('Relation List');
+      mapSync(relationListFields, async (field: string) => {
         // Check if related documents
         if (
           Array.isArray(json[field]) &&
           json[field].length > 0 &&
-          this._relationLists &&
-          this._relationLists[field]
+          self._relationLists &&
+          self._relationLists[field]
         ) {
-          json[field] = this._relationLists[field].map((document) => ({
+          json[field] = self._relationLists[field].map((document: any) => ({
             '@id': document.path,
             UID: document.uuid,
             title: document.json.title,
@@ -427,10 +440,10 @@ export class Document extends Model {
     }
 
     // Add children if available
-    if (this._children) {
+    if (self._children) {
       json.items = await Promise.all(
-        (this._restrictedChildren || this._children).map(
-          async (child) => await child.toJson(req),
+        (self._restrictedChildren || self._children).map(
+          async (child: any) => await child.toJson(req),
         ),
       );
     }
@@ -439,34 +452,34 @@ export class Document extends Model {
     return {
       ...json,
       ...(isEmpty(components) ? {} : { '@components': components }),
-      '@id': this.getUrl(req),
-      '@type': this.type,
-      id: this.id,
-      created: this.created,
-      modified: this.modified,
-      UID: this.uuid,
-      owner: this.owner,
+      '@id': self.getUrl(req),
+      '@type': self.type,
+      id: self.id,
+      created: self.created,
+      modified: self.modified,
+      UID: self.uuid,
+      owner: self.owner,
       layout: 'view',
-      is_folderish: this._type
-        ? this._type._schema.behaviors.includes('folderish')
+      is_folderish: self._type
+        ? self._type._schema.behaviors.includes('folderish')
         : true,
-      ...(this.language
+      ...(self.language
         ? {
             language: {
-              token: this.language,
-              title: languages[this.language],
+              token: self.language,
+              title: languages[self.language as keyof typeof languages],
             },
           }
         : {}),
-      review_state: this.workflow_state,
+      review_state: self.workflow_state,
       lock:
-        this.lock.locked && lockExpired(this)
+        self.lock.locked && lockExpired(self)
           ? {
               locked: false,
               stealable: true,
             }
-          : this.lock,
-    };
+          : self.lock,
+    } as Json;
   }
 
   /**
@@ -478,26 +491,33 @@ export class Document extends Model {
    * @param {Object} trx Transaction object.
    * @returns {Promise<Object>} A Promise that resolves to an object.
    */
-  async traverse(slugs, user, roles, navroot, trx) {
+  async traverse(
+    slugs: string[],
+    user: any,
+    roles: string[],
+    navroot: any,
+    trx?: Knex.Transaction,
+  ): Promise<any> {
+    const self: any = this;
     // Check if at leaf node
     if (slugs.length === 0) {
       // Add owner to roles if current document owned by user
       const extendedRoles = uniq([
         ...roles,
-        ...(user.id === this.owner ? ['Owner'] : []),
+        ...(user.id === self.owner ? ['Owner'] : []),
       ]);
 
       // Return document and authorization data
       return {
-        document: this,
+        document: self,
         localRoles: extendedRoles,
         navroot,
       };
     } else {
       // Fetch child matching the id
-      const child = await Document.fetchOne(
+      const child: any = await Document.fetchOne(
         {
-          parent: this.uuid,
+          parent: self.uuid,
           id: head(slugs),
         },
         {},
@@ -535,13 +555,16 @@ export class Document extends Model {
   /**
    * Fetch workflow history
    * @method fetchWorkflowHistory
-   * @param {Object} req Request object.
-   * @param {Object} trx Transaction object.
-   * @returns {Array} Array of workflow history.
+   * @param {Request} req Request object
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<any[]>} Array of workflow history.
    */
-  async fetchWorkflowHistory(req, trx) {
+  async fetchWorkflowHistory(
+    req: Request,
+    trx?: Knex.Transaction,
+  ): Promise<any[]> {
     return await Promise.all(
-      this.workflow_history.map(async (item) => {
+      (this as any).workflow_history.map(async (item: any) => {
         const user = await User.fetchById(item.actor, {}, trx);
         return {
           ...item,
@@ -564,23 +587,29 @@ export class Document extends Model {
    * @param {string} parent Parent to copy to.
    * @param {string} path New path.
    * @param {string} id New id.
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async copy(parent, path, id, trx) {
+  async copy(
+    parent: string,
+    path: string,
+    id: string,
+    trx?: Knex.Transaction,
+  ): Promise<any> {
+    const self: any = this;
     // Get json
-    let json = this.json;
+    let json: any = self.json;
 
     // Get type information
-    await this.fetchRelated('_type', trx);
+    await self.fetchRelated('_type', trx);
 
     // Store used uuids
-    let fileUuid = {};
-    const fileFields = this._type.getFactoryFields('File');
-    const imageFields = this._type.getFactoryFields('Image');
+    let fileUuid: Record<string, string> = {};
+    const fileFields = self._type.getFactoryFields('File');
+    const imageFields = self._type.getFactoryFields('Image');
 
     // Copy files
     const copyFiles = () =>
-      fileFields.map((field) => {
+      fileFields.map((field: string) => {
         if (json[field].uuid in fileUuid) {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
@@ -594,7 +623,7 @@ export class Document extends Model {
 
     // Copy images
     const copyImages = () =>
-      imageFields.map((field) => {
+      imageFields.map((field: string) => {
         if (json[field].uuid in fileUuid) {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
@@ -609,7 +638,7 @@ export class Document extends Model {
               fileUuid[json[field].scales[scale].uuid];
           } else {
             const newScaleUuid = uuid();
-            copyFile(this.json[field].scales[scale].uuid, newScaleUuid);
+            copyFile(self.json[field].scales[scale].uuid, newScaleUuid);
             fileUuid[json[field].scales[scale].uuid] = newScaleUuid;
             json[field].scales[scale].uuid = newScaleUuid;
           }
@@ -620,22 +649,22 @@ export class Document extends Model {
     // Copy document
     const document = await Document.create(
       {
-        ...omit(this, ['_type']),
+        ...omit(self, ['_type']),
         json,
         parent,
         path,
         id,
         uuid: uuid(),
-        workflow_history: JSON.stringify(this.workflow_history),
+        workflow_history: JSON.stringify(self.workflow_history),
       },
       {},
       trx,
     );
 
     // Copy versions
-    await this.fetchRelated('_versions', trx);
+    await self.fetchRelated('_versions', trx);
     await Promise.all(
-      this._versions.map(async (version) => {
+      self._versions.map(async (version: any) => {
         // Get current json
         json = version.json;
 
@@ -644,21 +673,14 @@ export class Document extends Model {
         copyImages();
 
         // Copy version
-        await document.createRelated(
-          '_versions',
-          {
-            ...version,
-            json,
-          },
-          trx,
-        );
+        await document.createRelated('_versions', { ...version, json }, trx);
       }),
     );
 
     // Copy user roles
-    await this.fetchRelated('_userRoles', trx);
+    await self.fetchRelated('_userRoles', trx);
     await Promise.all(
-      this._userRoles.map(async (userRole) => {
+      self._userRoles.map(async (userRole: any) => {
         await document
           .$relatedQuery('_userRoles', trx)
           .relate({ id: userRole.id, user: userRole.user });
@@ -666,9 +688,9 @@ export class Document extends Model {
     );
 
     // Copy group roles
-    await this.fetchRelated('_groupRoles', trx);
+    await self.fetchRelated('_groupRoles', trx);
     await Promise.all(
-      this._groupRoles.map(async (groupRole) => {
+      self._groupRoles.map(async (groupRole: any) => {
         await document
           .$relatedQuery('_groupRoles', trx)
           .relate({ id: groupRole.id, group: groupRole.group });
@@ -676,9 +698,9 @@ export class Document extends Model {
     );
 
     // Copy children
-    await this.fetchRelated('_children', trx);
+    await self.fetchRelated('_children', trx);
     await Promise.all(
-      this._children.map(async (child) => {
+      self._children.map(async (child: any) => {
         await child.copy(document.uuid, `${path}/${child.id}`, child.id, trx);
       }),
     );
@@ -695,8 +717,9 @@ export class Document extends Model {
    * @method isFolderish
    * @return {boolean} True if folderish
    */
-  isFolderish() {
-    return this._type._schema.behaviors.includes('folderish');
+  isFolderish(): boolean {
+    const self: any = this;
+    return self._type._schema.behaviors.includes('folderish');
   }
 
   /**
@@ -704,7 +727,8 @@ export class Document extends Model {
    * @method getSummary
    * @return {string} Summary text
    */
-  async getSummary() {
+  async getSummary(): Promise<string> {
+    const self: any = this;
     // If no AI model enabled, return empty string
     if (!config.settings.ai?.models?.llm?.enabled) {
       return '';
@@ -720,7 +744,8 @@ export class Document extends Model {
     // Generate summary using AI model
     const result = await generate(
       'Give a one paragraph summary in plain text of the context.',
-      bodytext,
+      [],
+      { Context: bodytext },
     );
     return result.response;
   }
@@ -730,16 +755,17 @@ export class Document extends Model {
    * @method getBodytext
    * @return {string} Body text
    */
-  async getBodytext() {
+  async getBodytext(): Promise<string> {
+    const self: any = this;
     // Cache result
-    if (this._cache?.bodytext) {
-      return this._cache.bodytext;
+    if (self._cache?.bodytext) {
+      return self._cache.bodytext;
     }
 
-    let chunks = [];
+    let chunks: string[] = [];
 
     // Add all text blocks
-    Object.values(this.json.blocks || {}).map((block) => {
+    Object.values(self.json.blocks || {}).map((block: any) => {
       if (block['@type'] === 'slate' && block.plaintext) {
         chunks.push(block.plaintext);
       }
@@ -747,26 +773,26 @@ export class Document extends Model {
 
     // Add vision data if enabled
     if (config.settings.ai?.models?.vision?.enabled) {
-      const imageFields = await this._type.getFactoryFields('Image');
+      const imageFields = await self._type.getFactoryFields('Image');
 
-      imageFields.map((field) => {
-        chunks.push(this.json[field].text);
+      imageFields.map((field: string) => {
+        chunks.push(self.json[field].text);
       });
     }
 
     // Add text from indexed files
-    const fileFields = await this._type.getFactoryFields('File');
-    fileFields.map((field) => {
-      chunks.push(this.json[field].text);
+    const fileFields = await self._type.getFactoryFields('File');
+    fileFields.map((field: string) => {
+      chunks.push(self.json[field].text);
     });
 
     // Cache searchable text
-    if (!this._cache) {
-      this._cache = {};
+    if (!self._cache) {
+      self._cache = {};
     }
-    this._cache.bodytext = chunks.join(' ');
+    self._cache.bodytext = chunks.join(' ');
 
-    return this._cache.bodytext;
+    return self._cache.bodytext;
   }
 
   /**
@@ -774,11 +800,11 @@ export class Document extends Model {
    * @method searchableText
    * @return {string} Searchable text
    */
-  async searchableText() {
+  async searchableText(): Promise<string> {
     // Return text from title, description and bodytext
     return compact([
-      this.json.title,
-      this.json.description,
+      (this as any).json.title,
+      (this as any).json.description,
       await this.getBodytext(),
     ]).join(' ');
   }
@@ -788,8 +814,8 @@ export class Document extends Model {
    * @method getObjSize
    * @return {number} Object size
    */
-  getObjSize() {
-    return JSON.stringify(this.json).length;
+  getObjSize(): number {
+    return JSON.stringify((this as any).json).length;
   }
 
   /**
@@ -797,14 +823,15 @@ export class Document extends Model {
    * @method mimeType
    * @return {string} Mime type of the object
    */
-  mimeType() {
-    const imageFields = this._type.getFactoryFields('Image');
+  mimeType(): string | undefined {
+    const self: any = this;
+    const imageFields = self._type.getFactoryFields('Image');
     if (imageFields.length > 0) {
-      return this.json[imageFields[0]]?.['content-type'];
+      return self.json[imageFields[0]]?.['content-type'];
     }
-    const fileFields = this._type.getFactoryFields('File');
+    const fileFields = self._type.getFactoryFields('File');
     if (fileFields.length > 0) {
-      return this.json[fileFields[0]]?.['content-type'];
+      return self.json[fileFields[0]]?.['content-type'];
     }
     return undefined;
   }
@@ -814,27 +841,28 @@ export class Document extends Model {
    * @method listCreators
    * @return {Array} List of creators
    */
-  listCreators() {
-    return [this.owner];
+  listCreators(): string[] {
+    return [(this as any).owner];
   }
 
   /**
    * List of allowed users, groups and roles
    * @method allowedUsersGroupsRoles
-   * @param {Object} trx Transaction object.
-   * @return {Array} List of allowed users, groups and roles
+   * @param {Knex.Transaction} trx Transaction object.
+   * @return {Promise<string[]>} List of allowed users and groups.
    */
-  async allowedUsersGroupsRoles(trx) {
+  async allowedUsersGroupsRoles(trx?: Knex.Transaction): Promise<string[]> {
+    const self: any = this;
     // Get global roles
-    const view = await Permission.fetchById('View', {}, trx);
+    const view: any = await Permission.fetchById('View', {}, trx);
     await view.fetchRelated('_roles', trx);
-    const globalRoles = view._roles.map((role) => role.id);
+    const globalRoles = view._roles.map((role: any) => role.id);
 
     // Get workflow roles
     const workflowRoles = Object.keys(
       pickBy(
-        this._type._workflow.json.states[this.workflow_state].permissions,
-        (value) => value.includes('View'),
+        self._type._workflow.json.states[self.workflow_state].permissions,
+        (value: any) => value.includes('View'),
       ),
     );
 
@@ -850,9 +878,10 @@ export class Document extends Model {
    * @method hasPreviewImage
    * @return {Boolean} True if has preview image
    */
-  hasPreviewImage() {
-    return isObject(this.json.preview_image) ||
-      isObject(this.json.preview_image_link)
+  hasPreviewImage(): boolean {
+    const self: any = this;
+    return isObject(self.json.preview_image) ||
+      isObject(self.json.preview_image_link)
       ? true
       : false;
   }
@@ -862,16 +891,17 @@ export class Document extends Model {
    * @method getBlockTypes
    * @return {Array} Array with block types
    */
-  getBlockTypes() {
-    return this.json.blocks
+  getBlockTypes(): string[] {
+    const self: any = this;
+    return self.json.blocks
       ? uniq(
           flatten(
-            Object.keys(this.json.blocks).map((block) => [
-              this.json.blocks[block]['@type'],
-              ...(this.json.blocks[block].blocks
-                ? Object.keys(this.json.blocks[block].blocks).map(
-                    (subblock) =>
-                      this.json.blocks[block].blocks[subblock]['@type'],
+            Object.keys(self.json.blocks).map((block: string) => [
+              self.json.blocks[block]['@type'],
+              ...(self.json.blocks[block].blocks
+                ? Object.keys(self.json.blocks[block].blocks).map(
+                    (subblock: string) =>
+                      self.json.blocks[block].blocks[subblock]['@type'],
                   )
                 : []),
             ]),
@@ -885,12 +915,13 @@ export class Document extends Model {
    * @method getImageField
    * @return {String} Image field
    */
-  getImageField() {
-    if (this._type._schema.properties.preview_image_link) {
+  getImageField(): string {
+    const self: any = this;
+    if (self._type._schema.properties.preview_image_link) {
       return 'preview_image_link';
-    } else if (this._type._schema.properties.preview_image) {
+    } else if (self._type._schema.properties.preview_image) {
       return 'preview_image';
-    } else if (this._type._schema.properties.image) {
+    } else if (self._type._schema.properties.image) {
       return 'image';
     } else {
       return '';
@@ -900,19 +931,20 @@ export class Document extends Model {
   /**
    * Get image scales
    * @method getImageScales
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    * @return {Object} Image scales object.
    */
-  async getImageScales(trx) {
-    const image_scales = {};
-    const relationChoiceFields = this._type.getFactoryFields('Relation Choice');
-    const imageFields = this._type.getFactoryFields('Image');
+  async getImageScales(trx?: Knex.Transaction): Promise<any> {
+    const self: any = this;
+    const image_scales: any = {};
+    const relationChoiceFields = self._type.getFactoryFields('Relation Choice');
+    const imageFields = self._type.getFactoryFields('Image');
 
-    const addDownload = (field) => {
+    const addDownload = (field: any) => {
       return {
         ...field,
         download: `@@images/${field.uuid}.${last(field.filename.split('.'))}`,
-        scales: mapValues(field.scales, (scale) => ({
+        scales: mapValues(field.scales, (scale: any) => ({
           width: scale.width,
           height: scale.height,
           download: `@@images/${scale.uuid}.${last(field.filename.split('.'))}`,
@@ -921,27 +953,24 @@ export class Document extends Model {
     };
 
     // Add image fields
-    imageFields.map((field) => {
-      if (this.json[field]) {
-        image_scales[field] = [addDownload(this.json[field])];
+    imageFields.map((field: string) => {
+      if (self.json[field]) {
+        image_scales[field] = [addDownload(self.json[field])];
       }
     });
 
     // Add relation choice fields
     await Promise.all(
-      relationChoiceFields.map(async (field) => {
-        if (this.json[field] && this.json[field].length > 0) {
+      relationChoiceFields.map(async (field: string) => {
+        if (self.json[field] && self.json[field].length > 0) {
           const target = await Document.fetchById(
-            this.json[field][0].UID,
+            self.json[field][0].UID,
             {},
             trx,
           );
           if (isObject(target.json.image)) {
             image_scales[field] = [
-              {
-                ...addDownload(target.json.image),
-                base_path: target.path,
-              },
+              { ...addDownload(target.json.image), base_path: target.path },
             ];
           }
         }
@@ -955,38 +984,42 @@ export class Document extends Model {
    * Fetch local users and groups.
    * @method fetchLocalUsersGroups
    * @param {Array} viewRoles List of roles with the view permission.
-   * @param {Object} trx Transaction object.
-   * @return {Array} List of allowed users and groups.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @return {Promise<string[]>} List of allowed users and groups.
    */
-  async fetchLocalUsersGroups(viewRoles, trx) {
-    let localUsersGroups = [];
+  async fetchLocalUsersGroups(
+    viewRoles: string[],
+    trx?: Knex.Transaction,
+  ): Promise<string[]> {
+    const self: any = this;
+    let localUsersGroups: string[] = [];
 
     // Fetch local user and group roles
-    await this.fetchRelated('[_userRoles, _groupRoles]', trx);
+    await self.fetchRelated('[_userRoles, _groupRoles]', trx);
 
     // Append user roles
-    this._userRoles.map((role) => {
+    self._userRoles.map((role: any) => {
       if (viewRoles.includes(role.id)) {
         localUsersGroups.push(role.user);
       }
     });
 
     // Append group roles
-    this._groupRoles.map((role) => {
+    self._groupRoles.map((role: any) => {
       if (viewRoles.includes(role.id)) {
         localUsersGroups.push(role.group);
       }
     });
 
     // Check if we should traverse up
-    if (this.parent && this.inherit_roles) {
+    if (self.parent && self.inherit_roles) {
       // Fetch parent
-      await this.fetchRelated('_parent', trx);
+      await self.fetchRelated('_parent', trx);
 
       // Append parent users and groups
       localUsersGroups = [
         ...localUsersGroups,
-        ...(await this._parent.fetchLocalUsersGroups(viewRoles, trx)),
+        ...(await self._parent.fetchLocalUsersGroups(viewRoles, trx)),
       ];
     }
     return uniq(localUsersGroups);
@@ -995,84 +1028,87 @@ export class Document extends Model {
   /**
    * Re index children
    * @method reindexChildren
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async reindexChildren(trx) {
+  async reindexChildren(trx?: Knex.Transaction): Promise<any> {
+    const self: any = this;
     return Promise.all(
-      this._children.map(async (child) => await child.index(trx, false)),
+      self._children.map(async (child: any) => await child.index(trx, false)),
     );
   }
 
   /**
    * Index children
    * @method indexChildren
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async indexChildren(trx) {
+  async indexChildren(trx?: Knex.Transaction): Promise<any> {
+    const self: any = this;
     return Promise.all(
-      this._children.map(async (child) => await child.index(trx)),
+      self._children.map(async (child: any) => await child.index(trx)),
     );
   }
 
   /**
    * Re index object
    * @method reindex
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async reindex(trx) {
+  async reindex(trx?: Knex.Transaction): Promise<any> {
     return this.index(trx, false);
   }
 
   /**
    * Index object
    * @method index
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    * @param {boolean} insert Insert or update.
    */
-  async index(trx, insert = true) {
-    let fields = {};
+  async index(trx?: Knex.Transaction, insert = true): Promise<void> {
+    const self: any = this;
+    let fields: any = {};
 
     // If type not found fetch type
-    if (!this._type) {
-      await this.fetchRelated('_type', trx);
+    if (!self._type) {
+      await self.fetchRelated('_type', trx);
     }
 
     // Apply behaviors not applied
-    if (!this._behaviors) {
+    if (!self._behaviors) {
       await this.applyBehaviors(trx);
-      this._behaviors = true;
+      self._behaviors = true;
     }
 
     // If workflow not found fetch workflow
-    if (!this._type._workflow) {
-      await this._type.fetchRelated('_workflow', trx);
+    if (!self._type._workflow) {
+      await self._type.fetchRelated('_workflow', trx);
     }
 
     // Fetch indexes
-    const indexes = await Index.fetchAll({}, {}, trx);
+    const indexes: any = await Index.fetchAll({}, {}, trx);
 
     // Loop indexes
-    await mapAsync(indexes.models, async (index) => {
+    await mapAsync((indexes as any).models, async (index: any) => {
       const name = index.metadata ? index.name : `_${index.name}`;
-      if (index.attr in this) {
+      if (index.attr in self) {
         fields[name] = { type: index.type, metadata: index.metadata };
-        if (isFunction(this[index.attr])) {
-          const value = this[index.attr](trx);
+        if (isFunction((self as any)[index.attr])) {
+          const value = (self as any)[index.attr](trx);
           fields[name].value = isPromise(value) ? await value : value;
         } else {
-          fields[name].value = this[index.attr];
+          fields[name].value = (self as any)[index.attr];
         }
         if (index.type === 'embed') {
           fields[name].value = await embed(fields[name].value);
         }
-      } else if (index.attr in this._type._schema.properties) {
+      } else if (index.attr in self._type._schema.properties) {
         fields[name] = {
           type: index.type,
           metadata: index.metadata,
           value:
             index.type === 'boolean'
-              ? !!this.json[index.attr]
-              : this.json[index.attr],
+              ? !!self.json[index.attr]
+              : self.json[index.attr],
         };
       }
     });
@@ -1081,12 +1117,12 @@ export class Document extends Model {
     const knex = Document.knex();
 
     // Remove undefined
-    fields = omitBy(fields, (field) => isUndefined(field.value));
+    fields = omitBy(fields, (field: any) => isUndefined(field.value));
 
     // Create catalog entry
     if (insert) {
       // Add document
-      fields['document'] = { type: 'uuid', value: this.uuid };
+      fields['document'] = { type: 'uuid', value: self.uuid };
 
       // Insert into catalog
       await knex
@@ -1100,9 +1136,9 @@ export class Document extends Model {
                 : '?',
             )
             .join(', ')});`,
-          Object.values(fields).map((field) => field.value),
+          Object.values(fields).map((field: any) => field.value),
         )
-        .transacting(trx);
+        .transacting(trx as any);
     } else {
       // Insert into catalog
       await knex
@@ -1110,16 +1146,12 @@ export class Document extends Model {
           `UPDATE catalog SET ${Object.keys(fields)
             .map(
               (key) =>
-                `"${key}" = ${
-                  fields[key].type === 'text' && !fields[key].metadata
-                    ? 'to_tsvector(?)'
-                    : '?'
-                }`,
+                `"${key}" = ${fields[key].type === 'text' && !fields[key].metadata ? 'to_tsvector(?)' : '?'} `,
             )
-            .join(', ')} WHERE document = '${this.uuid}';`,
-          Object.values(fields).map((field) => field.value),
+            .join(', ')} WHERE document = '${self.uuid}';`,
+          Object.values(fields).map((field: any) => field.value),
         )
-        .transacting(trx);
+        .transacting(trx as any);
     }
   }
 
@@ -1127,13 +1159,12 @@ export class Document extends Model {
    * Add reference to the model.
    * @method fetchReference
    * @param {string} field Field name.
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async fetchReference(field, trx) {
-    this.json[`_${field}`] = await Document.fetchOne(
-      {
-        uuid: this.json[field][0].UID,
-      },
+  async fetchReference(field: string, trx?: Knex.Transaction): Promise<void> {
+    const self: any = this;
+    self.json[`_${field}`] = await Document.fetchOne(
+      { uuid: self.json[field][0].UID },
       {},
       trx,
     );

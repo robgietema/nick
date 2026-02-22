@@ -16,6 +16,8 @@ export interface User extends Model {
   id: string;
   tokens: string[];
   update: (data: any, trx: Knex.Transaction) => Promise<void>;
+  _groups: string[];
+  getRoles: () => string[];
 }
 
 export interface Request extends express.Request {
@@ -23,12 +25,16 @@ export interface Request extends express.Request {
   apiPath: string;
   document: {
     path: string;
+    workflow_state: string;
   };
   documentPath: string;
   i18n: (key: string) => string;
   type: {
     filter_content_types: boolean;
     allowed_content_types: string[];
+  };
+  indexes: {
+    models: any[];
   };
   user: User;
   token?: string;
@@ -50,8 +56,9 @@ export interface Property {
 }
 
 export interface Schema {
+  behavior?: string;
   fieldsets: Fieldset[];
-  properties: { [key: string]: Property };
+  properties?: { [key: string]: Property };
   required?: string[];
   behaviors?: string[];
   layouts?: string[];

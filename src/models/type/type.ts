@@ -4,6 +4,7 @@
  */
 
 import { compact } from 'es-toolkit/array';
+import type { Knex } from 'knex';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { mergeSchemas } from '../../helpers/schema/schema';
@@ -11,6 +12,7 @@ import { TypeCollection } from '../../collections/type/type';
 import { Behavior } from '../../models/behavior/behavior';
 import { Model } from '../../models/_model/_model';
 import { Workflow } from '../../models/workflow/workflow';
+import type { Json, Request, Schema } from '../../types';
 
 /**
  * A model for Type.
@@ -18,13 +20,14 @@ import { Workflow } from '../../models/workflow/workflow';
  * @extends Model
  */
 export class Type extends Model {
-  static collection = TypeCollection;
+  static collection: (typeof Model)['collection'] =
+    TypeCollection as unknown as (typeof Model)['collection'];
 
   // Set relation mappings
   static get relationMappings() {
     return {
       _workflow: {
-        relation: Model.BelongsToOneRelation,
+        relation: (Model as any).BelongsToOneRelation,
         modelClass: Workflow,
         join: {
           from: 'type.workflow',
@@ -37,26 +40,27 @@ export class Type extends Model {
   /**
    * Cache schema.
    * @method cacheSchema
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async cacheSchema(trx) {
-    let schema;
-    if (this.schema.behaviors && this.schema.behaviors.length > 0) {
+  async cacheSchema(trx?: Knex.Transaction): Promise<void> {
+    const self: any = this;
+    let schema: any;
+    if (self.schema?.behaviors && self.schema.behaviors.length > 0) {
       const behaviors = await Behavior.fetchAll(
         {
-          id: ['=', this.schema.behaviors],
+          id: ['=', self.schema.behaviors],
         },
         {
           order: {
             column: 'id',
-            values: this.schema.behaviors,
+            values: self.schema.behaviors,
           },
         },
         trx,
       );
       schema = mergeSchemas(
         {
-          behavior: 'default',
+          name: 'default',
           data: {
             fieldsets: [
               {
@@ -69,16 +73,16 @@ export class Type extends Model {
           },
         },
         {
-          behavior: 'behaviors',
+          name: 'behaviors',
           data: await behaviors.fetchSchema(trx),
         },
         {
-          behavior: 'generated',
-          data: this.schema,
+          name: 'generated',
+          data: self.schema,
         },
       );
     } else {
-      schema = this.schema;
+      schema = self.schema;
     }
     await this.update({ _schema: schema }, trx);
   }
@@ -86,18 +90,22 @@ export class Type extends Model {
   /**
    * Returns the control panel JSON data.
    * @method toControlPanelJSON
-   * @param {Object} req Request object
-   * @param {Object} trx Transaction object.
-   * @returns {Array} JSON object.
+   * @param {Request} req Request object
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Json>} JSON object.
    */
-  async toControlPanelJSON(req, trx) {
+  async toControlPanelJSON(
+    req: Request,
+    trx?: Knex.Transaction,
+  ): Promise<Json> {
+    const self: any = this;
     const behaviors = await Behavior.fetchAll({}, {}, trx);
 
     // Get basic data
-    let json = {
-      '@id': `${getRootUrl(req)}/@controlpanels/dexterity-types/${this.id}`,
-      title: this.title,
-      description: this.description,
+    const json: any = {
+      '@id': `${getRootUrl(req)}/@controlpanels/dexterity-types/${self.id}`,
+      title: self.title,
+      description: self.description,
       schema: {
         fieldsets: [
           {
@@ -111,7 +119,7 @@ export class Type extends Model {
             title: 'Default',
           },
           {
-            fields: behaviors.map((behavior) => behavior.id),
+            fields: behaviors.map((behavior: any) => behavior.id),
             id: 'behaviors',
             title: req.i18n('Behaviors'),
           },
@@ -159,18 +167,18 @@ export class Type extends Model {
         required: ['title', 'filter_content_types'],
       },
       data: {
-        title: this.title,
-        description: this.description,
-        allowed_content_types: this.allowed_content_types,
-        filter_content_types: this.filter_content_types,
+        title: self.title,
+        description: self.description,
+        allowed_content_types: self.allowed_content_types,
+        filter_content_types: self.filter_content_types,
       },
     };
 
     // Loop through behaviors
-    behaviors.map((behavior) => {
+    behaviors.map((behavior: any) => {
       // Set behavior data
-      json.data[behavior.id] = this.schema.behaviors
-        ? this.schema.behaviors.includes(behavior.id)
+      json.data[behavior.id] = self.schema.behaviors
+        ? self.schema.behaviors.includes(behavior.id)
         : false;
 
       // Set behavior schema
@@ -183,23 +191,23 @@ export class Type extends Model {
     });
 
     // Return data
-    return json;
+    return json as Json;
   }
 
   /**
    * Get factory fields.
    * @method getFactoryFields
-   * @static
    * @param {string} factory Factory field.
-   * @returns {Array} Array of fields with given factory.
+   * @returns {string[]} Array of fields with given factory.
    */
-  getFactoryFields(factory) {
-    const properties = this._schema.properties;
+  getFactoryFields(factory: string): string[] {
+    const self: any = this;
+    const properties = (self._schema && self._schema.properties) || {};
 
     // Get factory fields
     const factoryFields = Object.keys(properties).map((property) =>
       properties[property].factory === factory ? property : false,
     );
-    return compact(factoryFields);
+    return compact(factoryFields) as string[];
   }
 }

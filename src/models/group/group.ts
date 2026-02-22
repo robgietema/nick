@@ -4,12 +4,14 @@
  */
 
 import { uniq } from 'es-toolkit/array';
+import type { Knex } from 'knex';
 
 import { getRootUrl } from '../../helpers/url/url';
 
 import { Model } from '../../models/_model/_model';
 import { Role } from '../../models/role/role';
 import { User } from '../../models/user/user';
+import type { Json, Request } from '../../types';
 
 /**
  * A model for Group.
@@ -21,7 +23,7 @@ export class Group extends Model {
   static get relationMappings() {
     return {
       _roles: {
-        relation: Model.ManyToManyRelation,
+        relation: (Model as any).ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'group.id',
@@ -33,7 +35,7 @@ export class Group extends Model {
         },
       },
       _users: {
-        relation: Model.ManyToManyRelation,
+        relation: (Model as any).ManyToManyRelation,
         modelClass: User,
         join: {
           from: 'group.id',
@@ -45,7 +47,7 @@ export class Group extends Model {
         },
       },
       _documentRoles: {
-        relation: Model.ManyToManyRelation,
+        relation: (Model as any).ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'group.id',
@@ -63,51 +65,58 @@ export class Group extends Model {
   /**
    * Returns JSON data.
    * @method toJson
-   * @param {Object} req Request object.
-   * @returns {Object} JSON object.
+   * @param {Request} req Request object.
+   * @returns {Json} JSON object.
    */
-  toJson(req) {
+  toJson(req: Request): Json {
+    const self: any = this;
     return {
-      '@id': `${getRootUrl(req)}/@groups/${this.id}`,
-      id: this.id,
-      groupname: this.id,
-      title: req.i18n(this.title),
-      description: req.i18n(this.description),
-      email: this.email,
-      roles: this._roles ? this._roles.map((role) => role.id) : [],
-    };
+      '@id': `${getRootUrl(req)}/@groups/${self.id}`,
+      id: self.id,
+      groupname: self.id,
+      title: req.i18n(self.title),
+      description: req.i18n(self.description),
+      email: self.email,
+      roles: self._roles ? self._roles.map((role: any) => role.id) : [],
+    } as Json;
   }
 
   /**
    * Fetch roles by document.
    * @method fetchRolesByDocument
-   * @param {Array} groups Array of groups
+   * @param {any} groups Array of groups
    * @param {string} document Uuid of the document
-   * @param {Object} trx Transaction object.
-   * @returns {Array} Array of roles.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<string[]>} Array of roles.
    */
-  static async fetchRolesByDocument(groups, document, trx) {
-    return uniq(
-      (
-        await this.relatedQuery('_documentRoles', trx).for(groups).where({
-          'group_role_document.document': document,
-        })
-      ).map((role) => role.id),
-    );
+  static async fetchRolesByDocument(
+    groups: any,
+    document: string,
+    trx?: Knex.Transaction,
+  ): Promise<string[]> {
+    const rows: any[] = await this.relatedQuery('_documentRoles', trx)
+      .for(groups)
+      .where({
+        'group_role_document.document': document,
+      });
+    return uniq(rows.map((role: any) => role.id));
   }
 
   /**
    * Fetch group roles by document.
    * @method fetchRolesByDocument
    * @param {string} document Uuid of the document
-   * @param {Object} trx Transaction object.
-   * @returns {Array} Array of roles.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<string[]>} Array of roles.
    */
-  async fetchRolesByDocument(document, trx) {
-    return (
-      await this.$relatedQuery('_documentRoles', trx).where({
-        'group_role_document.document': document,
-      })
-    ).map((role) => role.id);
+  async fetchRolesByDocument(
+    document: string,
+    trx?: Knex.Transaction,
+  ): Promise<string[]> {
+    const self: any = this;
+    const rows: any[] = await self.$relatedQuery('_documentRoles', trx).where({
+      'group_role_document.document': document,
+    });
+    return rows.map((role: any) => role.id);
   }
 }

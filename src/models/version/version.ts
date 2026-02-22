@@ -5,6 +5,7 @@
 
 import { Model } from '../../models/_model/_model';
 import { getRootUrl, getUrl } from '../../helpers/url/url';
+import type { Json, Request } from '../../types';
 
 import { User } from '../../models/user/user';
 
@@ -20,7 +21,7 @@ export class Version extends Model {
 
     return {
       _actor: {
-        relation: Model.BelongsToOneRelation,
+        relation: (Model as any).BelongsToOneRelation,
         modelClass: User,
         join: {
           from: 'version.actor',
@@ -31,8 +32,8 @@ export class Version extends Model {
   }
 
   // Modifiers
-  static modifiers = {
-    order(query) {
+  static modifiers: any = {
+    order(query: any) {
       query.orderBy('version', 'desc');
     },
   };
@@ -40,25 +41,26 @@ export class Version extends Model {
   /**
    * Returns JSON data.
    * @method toJson
-   * @param {Object} req Request object.
-   * @returns {Object} JSON object.
+   * @param {Request} req Request object.
+   * @returns {Json} JSON object.
    */
-  toJson(req) {
+  toJson(req: Request): Json {
+    const self: any = this;
     return {
-      '@id': `${getUrl(req)}/@history/${this.version}`,
+      '@id': `${getUrl(req)}/@history/${self.version}`,
       action: 'Edited',
       actor: {
-        '@id': `${getRootUrl(req)}/@users/${this._actor.id}`,
-        fullname: this._actor.fullname,
-        id: this._actor.id,
-        username: this._actor.id,
+        '@id': `${getRootUrl(req)}/@users/${self._actor?.id}`,
+        fullname: self._actor?.fullname,
+        id: self._actor?.id,
+        username: self._actor?.id,
       },
-      comments: this.json.changeNote,
+      comments: (self.json || {}).changeNote,
       may_revert: true,
-      time: this.created,
+      time: self.created,
       transition_title: 'Edited',
       type: 'versioning',
-      version: this.version,
-    };
+      version: self.version,
+    } as Json;
   }
 }

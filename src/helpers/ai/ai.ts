@@ -47,7 +47,7 @@ export async function generate(
   prompt: string,
   context: Array<number>,
   params: any = {},
-): Promise<string> {
+): Promise<any> {
   const response = await fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
     headers: {

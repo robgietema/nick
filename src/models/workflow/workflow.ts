@@ -8,6 +8,7 @@ import { mapValues, pick, pickBy } from 'es-toolkit/object';
 
 import { getUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
+import type { Json, Request } from '../../types';
 
 /**
  * A model for Workflow.
@@ -18,12 +19,13 @@ export class Workflow extends Model {
   /**
    * Returns JSON data.
    * @method toJson
-   * @param {Object} req Request object
-   * @returns {Array} JSON object.
+   * @param {Request} req Request object
+   * @returns {Json} JSON object.
    */
-  toJson(req) {
+  toJson(req: Request): Json {
+    const self: any = this;
     const current_state_id = req.document.workflow_state;
-    const current_state = this.json.states[current_state_id];
+    const current_state = (self.json.states || {})[current_state_id] || {};
 
     return {
       '@id': `${getUrl(req)}/@workflow`,
@@ -35,30 +37,31 @@ export class Workflow extends Model {
       transitions: Object.entries(
         mapValues(
           pick(
-            pickBy(this.json.transitions, (transition) =>
+            pickBy(self.json.transitions || {}, (transition: any) =>
               req.permissions.includes(transition.permission),
             ),
-            current_state.transitions,
+            current_state.transitions || [],
           ),
-          (item) => item.title,
+          (item: any) => item.title,
         ),
       ).map((transition) => ({
         '@id': `${getUrl(req)}/@workflow/${transition[0]}`,
         title: req.i18n(transition[1]),
       })),
-    };
+    } as Json;
   }
 
   /**
    * Get permissions by state and roles
    * @method getPermissions
    * @param {string} state Current workflow state
-   * @param {Array} roles Array of roles
-   * @returns {Array} Array of permissions.
+   * @param {string[]} roles Array of roles
+   * @returns {string[]} Array of permissions.
    */
-  getPermissions(state, roles) {
+  getPermissions(state: string, roles: string[]): string[] {
+    const self: any = this;
     return flatten(
-      roles.map((role) => this.json.states[state].permissions[role] || []),
+      roles.map((role) => ((self.json.states || {})[state]?.permissions?.[role] || [])),
     );
   }
 }

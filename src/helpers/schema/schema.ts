@@ -45,7 +45,7 @@ export function mergeSchemas(
       });
     properties = {
       ...properties,
-      ...mapValues(schema.data.properties || [], (property) => ({
+      ...mapValues(schema.data.properties || [], (property: any) => ({
         behavior: schema.name,
         ...property,
       })),
@@ -83,7 +83,7 @@ export function translateSchema(schema: Schema, req: Request): Schema {
       ...fieldset,
       title: req.i18n(fieldset.title),
     })),
-    properties: mapValues(schema.properties, (property) => ({
+    properties: mapValues(schema.properties as any, (property: any) => ({
       ...property,
       title: req.i18n(property.title),
       description: req.i18n(property.description),
