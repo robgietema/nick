@@ -8,7 +8,7 @@ import { Action } from '../../models/action/action';
 export const handler = async (req, trx) => {
   const actions = await Action.fetchAll({}, { order: 'order' }, trx);
   return {
-    json: await actions.toJSON(req),
+    json: await actions.toJson(req),
   };
 };
 

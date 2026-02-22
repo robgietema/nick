@@ -27,7 +27,7 @@ export default [
         throw new RequestException(404, { error: req.i18n('Not found.') });
       }
       return {
-        json: await group.toJSON(req),
+        json: await group.toJson(req),
       };
     },
   },
@@ -49,7 +49,7 @@ export default [
         trx,
       );
       return {
-        json: await groups.toJSON(req),
+        json: await groups.toJson(req),
       };
     },
   },
@@ -75,7 +75,7 @@ export default [
       // Send created
       return {
         status: 201,
-        json: await group.toJSON(req),
+        json: await group.toJson(req),
       };
     },
   },

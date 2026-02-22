@@ -39,11 +39,11 @@ export class Version extends Model {
 
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Object} req Request object.
    * @returns {Object} JSON object.
    */
-  toJSON(req) {
+  toJson(req) {
     return {
       '@id': `${getUrl(req)}/@history/${this.version}`,
       action: 'Edited',

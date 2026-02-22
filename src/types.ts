@@ -8,7 +8,7 @@ export type JsonComposite = JsonArray | JsonObject;
 export type Json = JsonPrimative | JsonComposite;
 
 export interface Model {
-  toJSON: (req: Request) => any;
+  toJson: (req: Request) => any;
   getVocabulary: (req: Request) => any;
 }
 

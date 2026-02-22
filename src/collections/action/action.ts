@@ -24,14 +24,14 @@ interface ActionModel extends Model {
 export class ActionCollection extends Collection<ActionModel> {
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Request} req Request object.
    * @returns {Promise<Json>} JSON object grouped by category.
    */
-  async toJSON(req: Request): Promise<Json> {
+  async toJson(req: Request): Promise<Json> {
     return mapValues(
       groupBy(
-        ((await super.toJSON(req)) as any[]).filter((model) =>
+        ((await super.toJson(req)) as any[]).filter((model) =>
           req.permissions.includes(model.permission),
         ),
         (model) => model.category,

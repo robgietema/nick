@@ -26,7 +26,7 @@ export const handler = async (req, trx) => {
 
   return {
     json: {
-      ...req.document._catalog.toJSON(req),
+      ...req.document._catalog.toJson(req),
       '@id': `${baseUrl}/@catalog`,
     },
   };

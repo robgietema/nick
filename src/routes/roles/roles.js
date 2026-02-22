@@ -14,7 +14,7 @@ export default [
     handler: async (req, trx) => {
       const roles = await Role.fetchAll({}, { order: 'order' }, trx);
       return {
-        json: await roles.toJSON(req),
+        json: await roles.toJson(req),
       };
     },
   },

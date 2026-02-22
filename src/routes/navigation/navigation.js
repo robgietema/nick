@@ -46,7 +46,7 @@ export const handler = async (req, trx) => {
             items: [],
           };
         }),
-        ...(await items.toJSON(req)).map((item) => {
+        ...(await items.toJson(req)).map((item) => {
           return {
             ...item,
             items: [],

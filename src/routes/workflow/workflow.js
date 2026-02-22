@@ -13,7 +13,7 @@ import { RequestException } from '../../helpers/error/error';
 export const handler = async (req, trx) => {
   await req.type.fetchRelated('_workflow', trx);
   return {
-    json: req.type._workflow.toJSON(req),
+    json: req.type._workflow.toJson(req),
   };
 };
 

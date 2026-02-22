@@ -17,11 +17,11 @@ import { Model } from '../../models/_model/_model';
 export class Workflow extends Model {
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Object} req Request object
    * @returns {Array} JSON object.
    */
-  toJSON(req) {
+  toJson(req) {
     const current_state_id = req.document.workflow_state;
     const current_state = this.json.states[current_state_id];
 

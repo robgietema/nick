@@ -21,11 +21,11 @@ export class Catalog extends Model {
 
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Object} req Request object.
    * @returns {Object} JSON object.
    */
-  toJSON(req) {
+  toJson(req) {
     const metadata = req.indexes.models.filter(
       (index) => index.metadata === true && index.enabled !== false,
     );

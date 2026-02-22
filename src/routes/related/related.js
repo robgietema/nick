@@ -40,7 +40,7 @@ export const handler = async (req, trx) => {
     json: {
       '@id': `${baseUrl}/@related`,
       items: items
-        .map((item) => item.toJSON(req))
+        .map((item) => item.toJson(req))
         .filter((item) => item.UID !== req.document._catalog.UID),
     },
   };

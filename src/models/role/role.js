@@ -35,11 +35,11 @@ export class Role extends Model {
 
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Object} req Request object.
    * @returns {Object} JSON object.
    */
-  toJSON(req) {
+  toJson(req) {
     return {
       '@id': `${getRootUrl(req)}/@roles/${this.id}`,
       '@type': 'role',

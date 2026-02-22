@@ -41,12 +41,12 @@ export class Collection<T extends Model> {
 
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Request} req Request object.
    * @returns {Promise<Json>} JSON object.
    */
-  async toJSON(req: Request): Promise<Json> {
-    return this.map((model) => model.toJSON(req));
+  async toJson(req: Request): Promise<Json> {
+    return this.map((model) => model.toJson(req));
   }
 
   /**

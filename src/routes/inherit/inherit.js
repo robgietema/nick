@@ -42,7 +42,7 @@ async function traverse(document, behaviors, items, req, trx) {
             '@id': getUrlByPath(req, document.path),
             title: document.json.title,
           },
-          data: pick(await document.toJSON(req), props),
+          data: pick(await document.toJson(req), props),
         };
       }
     }),

@@ -58,7 +58,7 @@ const getComponents = async (req, trx) => {
       });
     }
     components.catalog = {
-      ...req.document._catalog.toJSON(req),
+      ...req.document._catalog.toJson(req),
       '@id': `${baseUrl}/@catalog`,
     };
   } else {
@@ -300,7 +300,7 @@ export default [
       await req.document.fetchRelationLists(trx);
       return {
         json: await handleBlockReferences(
-          await req.document.toJSON(req, await getComponents(req, trx)),
+          await req.document.toJson(req, await getComponents(req, trx)),
         ),
       };
     },
@@ -374,7 +374,7 @@ export default [
     permission: 'View',
     client: 'exportContent',
     handler: async (req, trx) => {
-      const json = await req.document.toJSON(req);
+      const json = await req.document.toJson(req);
       return {
         headers: {
           'content-cype': 'application/json',
@@ -410,7 +410,7 @@ export default [
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       await req.document.restrictChildren(req, trx);
       await req.document.fetchRelationLists(trx);
-      const json = await req.document.toJSON(
+      const json = await req.document.toJson(
         req,
         await getComponents(req, trx),
       );
@@ -576,7 +576,7 @@ export default [
       // Send data back to client
       return {
         status: 201,
-        json: await document.toJSON(req, await getComponents(req, trx)),
+        json: await document.toJson(req, await getComponents(req, trx)),
       };
     },
   },

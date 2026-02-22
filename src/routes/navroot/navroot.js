@@ -8,7 +8,7 @@ export const handler = async (req, trx) => {
   await req.navroot.fetchRelationLists(trx);
 
   return {
-    json: await req.navroot.toJSON(req),
+    json: await req.navroot.toJson(req),
   };
 };
 

@@ -28,11 +28,11 @@ export class Vocabulary extends Model {
 
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Object} req Request object
    * @returns {Array} JSON object.
    */
-  toJSON(req) {
+  toJson(req) {
     // Get basic data
     return {
       '@id': `${getRootUrl(req)}/@vocabularies/${this.id}`,

@@ -28,7 +28,7 @@ export default [
         trx,
       );
       return {
-        json: await controlpanels.toJSON(req),
+        json: await controlpanels.toJson(req),
       };
     },
   },
@@ -77,7 +77,7 @@ export default [
             throw new RequestException(404, { error: req.i18n('Not found.') });
           }
           return {
-            json: await controlpanel.toJSON(req, true),
+            json: await controlpanel.toJson(req, true),
           };
       }
     },

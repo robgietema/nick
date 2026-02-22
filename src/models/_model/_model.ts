@@ -18,6 +18,7 @@ import { removeUndefined } from '../../helpers/utils/utils';
 import { knex } from '../../helpers/knex/knex';
 
 import { Collection } from '../../collections/_collection/_collection';
+import type { Json, Request } from '../../types';
 
 // Give the knex instance to objection.
 ObjectionModel.knex(knex);
@@ -50,6 +51,16 @@ export class Model extends mixin(ObjectionModel, [
   TableName({ caseMapper: snakeCase }),
 ]) {
   static collection = Collection;
+
+  /**
+   * Returns JSON data.
+   * @method toJson
+   * @param {Request} req Request object.
+   * @returns {Json} JSON object.
+   */
+  toJson(req?: Request): any {
+    return this.toJSON();
+  }
 
   /**
    * Build a query

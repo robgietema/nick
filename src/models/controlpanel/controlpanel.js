@@ -17,12 +17,12 @@ import { Model } from '../../models/_model/_model';
 export class Controlpanel extends Model {
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Object} req Request object
    * @param {Boolean} extend Extend data
    * @returns {Array} JSON object.
    */
-  toJSON(req, extend = false) {
+  toJson(req, extend = false) {
     // Get basic data
     const json = {
       '@id': `${getRootUrl(req)}/@controlpanels/${this.id}`,

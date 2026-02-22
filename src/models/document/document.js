@@ -337,11 +337,11 @@ export class Document extends Model {
 
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {Object} req Request object.
    * @returns {Object} JSON object.
    */
-  async toJSON(req, components = {}) {
+  async toJson(req, components = {}) {
     // Check if version data
     const version = this._version
       ? {
@@ -430,7 +430,7 @@ export class Document extends Model {
     if (this._children) {
       json.items = await Promise.all(
         (this._restrictedChildren || this._children).map(
-          async (child) => await child.toJSON(req),
+          async (child) => await child.toJson(req),
         ),
       );
     }

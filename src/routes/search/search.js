@@ -324,7 +324,7 @@ export default [
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
-          items: items.map((item) => item.toJSON(req)),
+          items: items.map((item) => item.toJson(req)),
           items_total: items.getLength(),
         },
       };
@@ -352,7 +352,7 @@ export default [
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
-          items: items.map((item) => item.toJSON(req)),
+          items: items.map((item) => item.toJson(req)),
           items_total: items.getLength(),
         },
       };

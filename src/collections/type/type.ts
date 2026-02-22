@@ -22,12 +22,12 @@ interface TypeModel extends Model {
 export class TypeCollection extends Collection<TypeModel> {
   /**
    * Returns JSON data.
-   * @method toJSON
+   * @method toJson
    * @param {CustomRequest} req Request object.
    * @returns {Promise<TypeResponse[]>} JSON object.
    */
-  async toJSON(req: Request): Promise<Json> {
-    return ((await super.toJSON(req)) as any).map((model: TypeModel) => ({
+  async toJson(req: Request): Promise<Json> {
+    return ((await super.toJson(req)) as any).map((model: TypeModel) => ({
       '@id': `${getRootUrl(req)}/@types/${model.id}`,
       addable:
         hasPermission(req.permissions, 'Add') &&
