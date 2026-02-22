@@ -12,5 +12,6 @@ import { ActionCollection } from '../../collections/action/action';
  * @extends Model
  */
 export class Action extends Model {
-  static collection = ActionCollection;
+  static collection: (typeof Model)['collection'] =
+    ActionCollection as unknown as (typeof Model)['collection'];
 }

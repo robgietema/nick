@@ -3,6 +3,7 @@
  * @module models/redirect/redirect
  */
 
+import type { Knex } from 'knex';
 import { Model } from '../../models/_model/_model';
 import { Document } from '../../models/document/document';
 
@@ -13,7 +14,7 @@ import { Document } from '../../models/document/document';
  */
 export class Redirect extends Model {
   // Id column
-  static get idColumn() {
+  static get idColumn(): string[] {
     return ['document', 'path'];
   }
 
@@ -21,8 +22,8 @@ export class Redirect extends Model {
   static get relationMappings() {
     return {
       _document: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: Document,
+        relation: (Model as any).BelongsToOneRelation,
+        modelClass: Document as any,
         join: {
           from: 'redirect.document',
           to: 'document.uuid',
@@ -36,10 +37,10 @@ export class Redirect extends Model {
    * @method fetchByPath
    * @static
    * @param {string} path Path to check
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Document model or false.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<any>} Document model or false.
    */
-  static fetchByPath(path, trx) {
+  static fetchByPath(path: string, trx?: Knex.Transaction): Promise<any> {
     return this.fetchOne(
       {
         path,

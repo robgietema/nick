@@ -3,9 +3,11 @@
  * @module models/behavior/behavior
  */
 
+import type { Knex } from 'knex';
 import { mergeSchemas } from '../../helpers/schema/schema';
 import { BehaviorCollection } from '../../collections/behavior/behavior';
 import { Model } from '../../models/_model/_model';
+import type { Schema } from '../../types';
 
 /**
  * A model for Behavior.
@@ -13,24 +15,27 @@ import { Model } from '../../models/_model/_model';
  * @extends Model
  */
 export class Behavior extends Model {
-  static collection = BehaviorCollection;
+  static collection: (typeof Model)['collection'] =
+    BehaviorCollection as unknown as (typeof Model)['collection'];
 
   /**
    * Fetch schema.
    * @method fetchSchema
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Schema.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Schema>} Schema.
    */
-  async fetchSchema(trx) {
-    if (this.schema.behaviors) {
+  async fetchSchema(trx?: Knex.Transaction): Promise<Schema> {
+    const schema = (this as any).schema;
+
+    if (schema.behaviors) {
       const behaviors = await Behavior.fetchAll(
         {
-          id: ['=', this.schema.behaviors],
+          id: ['=', schema.behaviors],
         },
         {
           order: {
             column: 'id',
-            values: this.schema.behaviors,
+            values: schema.behaviors,
           },
         },
         trx,
@@ -41,11 +46,12 @@ export class Behavior extends Model {
           data: await behaviors.fetchSchema(trx),
         },
         {
-          name: this.id,
-          data: this.schema,
+          name: (this as any).id,
+          data: schema,
         },
       );
     }
-    return this.schema;
+
+    return schema;
   }
 }

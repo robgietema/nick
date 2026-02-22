@@ -4,11 +4,13 @@
  */
 
 import { mixin, Model as ObjectionModel } from 'objection';
+// @ts-ignore
 import TableName from 'objection-table-name';
 import { isEmpty, isObject } from 'es-toolkit/compat';
 import { snakeCase } from 'es-toolkit/string';
 import { difference } from 'es-toolkit/array';
 import { mapKeys, omit } from 'es-toolkit/object';
+import type { Knex } from 'knex';
 
 import { formatAttribute } from '../../helpers/format/format';
 import { log } from '../../helpers/log/log';
@@ -19,6 +21,25 @@ import { Collection } from '../../collections/_collection/_collection';
 
 // Give the knex instance to objection.
 ObjectionModel.knex(knex);
+
+interface WhereClause {
+  [key: string]: any;
+}
+
+interface OrderOption {
+  column?: string;
+  reverse?: boolean;
+  values?: string[];
+}
+
+interface QueryOptions {
+  order?: string | OrderOption | string[];
+  limit?: number;
+  offset?: number;
+  related?: string;
+  select?: string[];
+  [key: string]: any;
+}
 
 /**
  * Base model used to extend models from.
@@ -34,12 +55,16 @@ export class Model extends mixin(ObjectionModel, [
    * Build a query
    * @method buildQuery
    * @static
-   * @param {Object} where Where clause.
-   * @param {Object} options Options for the query.
-   * @param {Object} trx Transaction object.
-   * @returns {Array} JSON object.
+   * @param {WhereClause} where Where clause.
+   * @param {QueryOptions} options Options for the query.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Knex.QueryBuilder} Query builder.
    */
-  static buildQuery(where, options, trx) {
+  static buildQuery(
+    where: WhereClause = {},
+    options: QueryOptions = {},
+    trx?: Knex.Transaction,
+  ): any {
     let query = this.query(trx);
 
     /**
@@ -52,9 +77,9 @@ export class Model extends mixin(ObjectionModel, [
      * { roles: ['=', ['Reader', 'Editor']] }   // Search by values
      */
     if (where) {
-      mapKeys(where, (value, key) => {
+      mapKeys(where, (value: any, key: string | number) => {
         // user and group are reserved words so need to be wrapper in quotes
-        const attribute = formatAttribute(key);
+        const attribute = formatAttribute(`${key}`);
         let operator = Array.isArray(value) ? value[0] : '=';
         const values = Array.isArray(value) ? value[1] : value;
         let valueWrapper =
@@ -69,8 +94,8 @@ export class Model extends mixin(ObjectionModel, [
         if (values === null) {
           query =
             operator === 'is not'
-              ? query.whereNotNull(key)
-              : query.whereNull(key);
+              ? query.whereNotNull(`${key}`)
+              : query.whereNull(`${key}`);
         } else if (operator === 'raw') {
           query = query.whereRaw(values);
         } else {
@@ -78,6 +103,7 @@ export class Model extends mixin(ObjectionModel, [
             values,
           ]);
         }
+        return key;
       });
     }
 
@@ -95,26 +121,27 @@ export class Model extends mixin(ObjectionModel, [
         query = query.orderByRaw(formatAttribute(options.order));
       } else if (Array.isArray(options.order)) {
         query = query.orderBy(
-          options.order.map((order) => ({
+          (options.order as string[]).map((order: string) => ({
             column: order,
           })),
         );
       } else {
         let order = '';
+        const orderOption = options.order as OrderOption;
         // Check if values are defined
-        if (options.order.values) {
-          order = `case ${options.order.values
+        if (orderOption.values) {
+          order = `case ${orderOption.values
             .map(
-              (value, index) =>
-                `when ${options.order.column} = '${value}' then ${index}`,
+              (value: string, index: number) =>
+                `when ${orderOption.column} = '${value}' then ${index}`,
             )
             .join(' ')} end`;
         } else {
           // Order by column
-          order = formatAttribute(options.order.column);
+          order = formatAttribute(orderOption.column || '');
         }
         query = query.orderByRaw(
-          `${order}${options.order.reverse ? ' DESC' : ''}`,
+          `${order}${orderOption.reverse ? ' DESC' : ''}`,
         );
       }
     }
@@ -122,11 +149,11 @@ export class Model extends mixin(ObjectionModel, [
     // Add paging options
     if (options.limit) {
       query = query.limit(
-        Math.min(1000, Math.max(1, parseInt(options.limit, 10) || 1)),
+        Math.min(1000, Math.max(1, parseInt(String(options.limit), 10) || 1)),
       );
     }
     if (options.offset) {
-      query = query.offset(parseInt(options.offset, 10) || 0);
+      query = query.offset(parseInt(String(options.offset), 10) || 0);
     }
 
     // Add related
@@ -147,9 +174,9 @@ export class Model extends mixin(ObjectionModel, [
    * Add related items to the model.
    * @method fetchRelated
    * @param {string} graph Related graph.
-   * @param {Object} trx Transaction object.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async fetchRelated(graph, trx) {
+  async fetchRelated(graph: string, trx?: Knex.Transaction): Promise<void> {
     // Get current keys
     const curKeys = Object.keys(this);
 
@@ -160,33 +187,41 @@ export class Model extends mixin(ObjectionModel, [
     const newKeys = difference(Object.keys(related), curKeys);
 
     // Assign new props
-    newKeys.map((key) => (this[key] = related[key]));
+    newKeys.map((key: string) => ((this as any)[key] = (related as any)[key]));
   }
 
   /**
    * Fetch all items.
    * @method fetchAll
    * @static
-   * @param {Object} where Where clause.
-   * @param {Object} options Options for the query.
-   * @param {Object} trx Transaction object.
-   * @returns {Array} JSON object.
+   * @param {WhereClause} where Where clause.
+   * @param {QueryOptions} options Options for the query.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<any>} Collection of models.
    */
-  static async fetchAll(where = {}, options = {}, trx) {
-    let models = await this.buildQuery(where, options, trx);
-    return new this.collection(models);
+  static async fetchAll(
+    where: WhereClause = {},
+    options: QueryOptions = {},
+    trx?: Knex.Transaction,
+  ): Promise<any> {
+    const models = await this.buildQuery(where, options, trx);
+    return new (this as any).collection(models);
   }
 
   /**
    * Fetch one item.
    * @method fetchOne
    * @static
-   * @param {Object} where Where clause.
-   * @param {Object} options Ooptions for the query.
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Model of the item.
+   * @param {WhereClause} where Where clause.
+   * @param {QueryOptions} options Options for the query.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Model>} Model of the item.
    */
-  static async fetchOne(where = {}, options = {}, trx) {
+  static async fetchOne(
+    where: WhereClause = {},
+    options: QueryOptions = {},
+    trx?: Knex.Transaction,
+  ): Promise<any> {
     return await this.buildQuery(where, options, trx).first();
   }
 
@@ -195,34 +230,40 @@ export class Model extends mixin(ObjectionModel, [
    * @method fetchById
    * @static
    * @param {string} id Id to be searched for
-   * @param {Object} options Options for the query.
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Model of the item.
+   * @param {QueryOptions} options Options for the query.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Model>} Model of the item.
    */
-  static async fetchById(id, options = {}, trx) {
+  static async fetchById(
+    id: string,
+    options: QueryOptions = {},
+    trx?: Knex.Transaction,
+  ): Promise<any> {
     return await this.buildQuery({}, options, trx).findById(id);
   }
 
   /**
    * Delete model
    * @method delete
-   * @static
-   * @param {Object} trx Transaction object.
-   * @returns {Promise} Promise resolved when model deleted.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<void>} Promise resolved when model deleted.
    */
-  async delete(trx) {
-    return await this.$query(trx).delete();
+  async delete(trx?: Knex.Transaction): Promise<void> {
+    await this.$query(trx).delete();
   }
 
   /**
    * Delete by where.
    * @method delete
    * @static
-   * @param {Object} where Where clause.
-   * @param {Object} trx Transaction object.
-   * @returns {number} Amount deleted
+   * @param {WhereClause} where Where clause.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<number>} Amount deleted
    */
-  static async delete(where, trx) {
+  static async delete(
+    where: WhereClause,
+    trx?: Knex.Transaction,
+  ): Promise<number> {
     return await this.query(trx).delete().where(where);
   }
 
@@ -231,10 +272,13 @@ export class Model extends mixin(ObjectionModel, [
    * @method deleteById
    * @static
    * @param {string} id Id to be deleted
-   * @param {Object} trx Transaction object.
-   * @returns {boolean} True if model deleted.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<boolean>} True if model deleted.
    */
-  static async deleteById(id, trx) {
+  static async deleteById(
+    id: string,
+    trx?: Knex.Transaction,
+  ): Promise<boolean> {
     const numDeleted = await this.query(trx).deleteById(id);
     return numDeleted > 0;
   }
@@ -243,22 +287,26 @@ export class Model extends mixin(ObjectionModel, [
    * Create new model.
    * @method create
    * @static
-   * @param {Object} data Model data.
-   * @param {Object} options Options for the query.
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Model of the inserted record
+   * @param {any} data Model data.
+   * @param {QueryOptions} options Options for the query.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Model>} Model of the inserted record
    */
-  static async create(data, options = {}, trx) {
-    const relations = Object.keys(this.getRelations());
-    let own = omit(data, relations);
-    let model = await this.query(trx).insertAndFetch(own);
+  static async create(
+    data: any,
+    options: QueryOptions = {},
+    trx?: Knex.Transaction,
+  ): Promise<any> {
+    const relations = Object.keys((this as any).getRelations());
+    const own = omit(data, relations);
+    const model = await this.query(trx).insertAndFetch(own);
     await Promise.all(
-      relations.map(async (related) => {
+      relations.map(async (related: string) => {
         if (data[related]) {
           await Promise.all(
             data[related].map(
-              async (item) =>
-                await model.$relatedQuery(related, trx).relate(item),
+              async (item: any) =>
+                await (model as any).$relatedQuery(related, trx).relate(item),
             ),
           );
         }
@@ -271,11 +319,15 @@ export class Model extends mixin(ObjectionModel, [
    * Create related in model.
    * @method createRelated
    * @param {string} related Related field.
-   * @param {Object} data Model data.
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Model of the inserted record
+   * @param {any} data Model data.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Model>} Model of the inserted record
    */
-  async createRelated(related, data, trx) {
+  async createRelated(
+    related: string,
+    data: any,
+    trx?: Knex.Transaction,
+  ): Promise<any> {
     return await this.$relatedQuery(related, trx).insertGraph(data);
   }
 
@@ -283,31 +335,35 @@ export class Model extends mixin(ObjectionModel, [
    * Create related in model and fetch it.
    * @method createRelatedAndFetch
    * @param {string} related Related field.
-   * @param {Object} data Model data.
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Model of the inserted record
+   * @param {any} data Model data.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Model>} Model of the inserted record
    */
-  async createRelatedAndFetch(related, data, trx) {
+  async createRelatedAndFetch(
+    related: string,
+    data: any,
+    trx?: Knex.Transaction,
+  ): Promise<any> {
     return await this.$relatedQuery(related, trx).insertGraphAndFetch(data);
   }
 
   /**
    * Update model.
    * @method update
-   * @param {Object} data Model data.
-   * @param {Object} trx Transaction object.
+   * @param {any} data Model data.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async update(data, trx) {
+  async update(data: any, trx?: Knex.Transaction): Promise<void> {
     await this.$query(trx).patch(data);
   }
 
   /**
    * Update and fetch model.
    * @method updateAndFetch
-   * @param {Object} data Model data.
-   * @param {Object} trx Transaction object.
+   * @param {any} data Model data.
+   * @param {Knex.Transaction} trx Transaction object.
    */
-  async updateAndFetch(data, trx) {
+  async updateAndFetch(data: any, trx?: Knex.Transaction): Promise<void> {
     await this.$query(trx).patchAndFetch(data);
   }
 
@@ -316,14 +372,18 @@ export class Model extends mixin(ObjectionModel, [
    * @method update
    * @static
    * @param {string} id Id of the model.
-   * @param {Object} data Model data.
-   * @param {Object} trx Transaction object.
-   * @returns {Object} Model of the updated record
+   * @param {any} data Model data.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @returns {Promise<Model>} Model of the updated record
    */
-  static async update(id, data, trx) {
-    const relationObjects = this.getRelations();
+  static async update(
+    id: string,
+    data: any,
+    trx?: Knex.Transaction,
+  ): Promise<any> {
+    const relationObjects = (this as any).getRelations();
     const relations = Object.keys(relationObjects);
-    let own = removeUndefined(omit(data, relations));
+    const own = removeUndefined(omit(data, relations));
     let model;
     if (isEmpty(own)) {
       model = await this.fetchById(id, {}, trx);
@@ -331,14 +391,14 @@ export class Model extends mixin(ObjectionModel, [
       model = await this.query(trx).updateAndFetchById(id, own);
     }
     await Promise.all(
-      relations.map(async (related) => {
+      relations.map(async (related: string) => {
         if (Array.isArray(data[related])) {
-          await model.$relatedQuery(related, trx).unrelate();
+          await (model as any).$relatedQuery(related, trx).unrelate();
           await Promise.all(
-            data[related].map(async (item) => {
+            data[related].map(async (item: any) => {
               // Ignore insert related errors
               try {
-                await model.$relatedQuery(related, trx).relate(item);
+                await (model as any).$relatedQuery(related, trx).relate(item);
               } catch (e) {
                 log.warn(`Can not relate ${item} to ${id}`);
               }
@@ -346,16 +406,16 @@ export class Model extends mixin(ObjectionModel, [
           );
         } else if (isObject(data[related])) {
           await Promise.all(
-            Object.keys(data[related]).map(async (key) => {
+            Object.keys(data[related]).map(async (key: string) => {
               if (data[related][key]) {
                 // Ignore insert related errors
                 try {
-                  await model.$relatedQuery(related, trx).relate(key);
+                  await (model as any).$relatedQuery(related, trx).relate(key);
                 } catch (e) {
                   log.warn(`Can not relate ${key} to ${id}`);
                 }
               } else {
-                await model
+                await (model as any)
                   .$relatedQuery(related, trx)
                   .unrelate()
                   .where({
@@ -374,13 +434,13 @@ export class Model extends mixin(ObjectionModel, [
   /**
    * Returns vocabulary data.
    * @method getVocabulary
-   * @param {Object} req Request object.
-   * @returns {Object} JSON object.
+   * @param {any} req Request object.
+   * @returns {any} JSON object.
    */
-  getVocabulary(req) {
+  getVocabulary(req: any): any {
     return {
-      title: req.i18n(this.title),
-      token: this.id,
+      title: req.i18n((this as any).title),
+      token: (this as any).id,
     };
   }
 }

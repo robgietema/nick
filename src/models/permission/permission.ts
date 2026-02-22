@@ -17,7 +17,7 @@ export class Permission extends Model {
   static get relationMappings() {
     return {
       _roles: {
-        relation: Model.ManyToManyRelation,
+        relation: (Model as any).ManyToManyRelation,
         modelClass: Role,
         join: {
           from: 'permission.id',
