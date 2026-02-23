@@ -7,6 +7,8 @@ import { getRootUrl } from '../../helpers/url/url';
 import { getPostgresVersion } from '../../helpers/knex/knex';
 import { getNodeVersion } from '../../helpers/utils/utils';
 import packageJson from '../../../package.json';
+import type { Knex } from 'knex';
+import type { Request } from '../../types';
 
 export default [
   {
@@ -14,7 +16,7 @@ export default [
     view: '/@system',
     permission: 'Manage Site',
     client: 'getSystem',
-    handler: async (req, trx) => {
+    handler: async (req: Request, trx: Knex.Transaction) => {
       const postgresVersion = await getPostgresVersion(trx);
 
       return {
