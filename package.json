@@ -63,7 +63,7 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-typescript": "7.28.6",
-    "@eslint/eslintrc": "3.3.3",
+    "@eslint/eslintrc": "3.3.4",
     "@eslint/js": "10.0.1",
     "@types/du": "1.0.3",
     "@types/express": "5.0.6",
