@@ -603,7 +603,7 @@ export class Document extends Model {
     await self.fetchRelated('_type', trx);
 
     // Store used uuids
-    let fileUuid: Record<string, string> = {};
+    const fileUuid: Record<string, string> = {};
     const fileFields = self._type.getFactoryFields('File');
     const imageFields = self._type.getFactoryFields('Image');
 
@@ -762,7 +762,7 @@ export class Document extends Model {
       return self._cache.bodytext;
     }
 
-    let chunks: string[] = [];
+    const chunks: string[] = [];
 
     // Add all text blocks
     Object.values(self.json.blocks || {}).map((block: any) => {

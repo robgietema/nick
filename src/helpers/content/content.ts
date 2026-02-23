@@ -51,7 +51,7 @@ interface Json {
 export async function handleFiles(
   json: Json,
   type: Type,
-  profile: string,
+  profile?: string,
 ): Promise<Json> {
   // Make a copy of the json data
   const fields = { ...json };
@@ -61,7 +61,7 @@ export async function handleFiles(
 
   await mapAsync(fileFields, async (field) => {
     // Check if filename is specified
-    if (typeof fields[field] === 'string') {
+    if (typeof fields[field] === 'string' && profile) {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',
@@ -115,7 +115,7 @@ export async function handleFiles(
 export async function handleImages(
   json: Json,
   type: Type,
-  profile: string,
+  profile?: string,
 ): Promise<Record<string, any>> {
   // Make a copy of the json data
   const fields = { ...json };
@@ -125,7 +125,7 @@ export async function handleImages(
 
   await mapAsync(imageFields, async (field) => {
     // Check if filename is specified
-    if (typeof fields[field] === 'string') {
+    if (typeof fields[field] === 'string' && profile) {
       fields[field] = {
         data: readProfileFile(profile, fields[field]),
         encoding: 'base64',

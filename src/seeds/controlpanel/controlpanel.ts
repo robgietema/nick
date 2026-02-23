@@ -22,7 +22,7 @@ export const seedControlpanel = async (
 
     // Import controlpanels
     await mapAsync(controlpanels, async (controlpanel: string) => {
-      let data: any = stripI18n(
+      const data: any = stripI18n(
         (await import(`${profilePath}/controlpanels/${controlpanel}`)).default,
       );
 

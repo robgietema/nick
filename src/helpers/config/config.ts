@@ -63,8 +63,12 @@ export type ConfigSettings = {
       };
     };
   };
-  behaviors?: Record<string, unknown>;
-  vocabularies?: Record<string, unknown>;
+  behaviors?: Record<string, any>;
+  vocabularies?: Record<string, any>;
+  requestLimit?: {
+    files: number;
+    api: number;
+  };
 };
 
 export type ConfigType = InstanceType<typeof Config>;

@@ -14,6 +14,7 @@ export interface Model {
 
 export interface User extends Model {
   id: string;
+  fullname: string;
   tokens: string[];
   update: (data: any, trx: Knex.Transaction) => Promise<void>;
   _groups: string[];
@@ -24,22 +25,19 @@ export interface User extends Model {
 export interface Request extends express.Request {
   permissions: string[];
   apiPath: string;
-  document: {
-    path: string;
-    workflow_state: string;
-  };
+  document: any;
   documentPath: string;
-  i18n: (key: string) => string;
-  type: {
-    filter_content_types: boolean;
-    allowed_content_types: string[];
-  };
+  i18n: (key: string, params?: any) => string;
   indexes: {
     models: any[];
   };
   user: User;
+  navroot: any;
+  type: any;
   token?: string;
   timestamp: string;
+  params: { [key: string]: any };
+  query: { [key: string]: string };
 }
 
 export interface Fieldset {
@@ -68,4 +66,12 @@ export interface Schema {
 export interface VocabularyTerm {
   title: string;
   token: string;
+}
+
+export interface Route {
+  view: string;
+  op: 'get' | 'post' | 'put' | 'delete' | 'patch';
+  permission: string;
+  middleware?: any;
+  handler?: any;
 }

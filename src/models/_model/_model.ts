@@ -4,7 +4,7 @@
  */
 
 import { mixin, Model as ObjectionModel } from 'objection';
-// @ts-ignore
+// @ts-expect-error Objection does not have types for this package
 import TableName from 'objection-table-name';
 import { isEmpty, isObject } from 'es-toolkit/compat';
 import { snakeCase } from 'es-toolkit/string';
@@ -37,7 +37,7 @@ interface QueryOptions {
   order?: string | OrderOption | string[];
   limit?: number;
   offset?: number;
-  related?: string;
+  related?: string | string[];
   select?: string[];
   [key: string]: any;
 }

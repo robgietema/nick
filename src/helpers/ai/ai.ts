@@ -77,7 +77,7 @@ export function streamGenerate(
   prompt: string,
   context: Array<number>,
   params: any = {},
-  callback: Function,
+  callback: (token: string) => void,
 ): undefined {
   fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
@@ -155,7 +155,7 @@ export function streamChat(
   messages: Array<Message> = [],
   params: any = {},
   tools: any = [],
-  callback: Function,
+  callback: (token: string) => void,
 ): undefined {
   fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',

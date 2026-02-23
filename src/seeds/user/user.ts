@@ -1,6 +1,6 @@
 import type { Knex } from 'knex';
 import { omit } from 'es-toolkit/object';
-// @ts-ignore
+// @ts-expect-error bcrypt-promise does not have types
 import bcrypt from 'bcrypt-promise';
 
 import { fileExists } from '../../helpers/fs/fs';

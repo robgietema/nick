@@ -23,7 +23,7 @@ export function mergeSchemas(
   let layouts: string[] = [];
 
   schemas.map((schema) => {
-    schema.data.fieldsets &&
+    if (schema.data.fieldsets) {
       schema.data.fieldsets.map((fieldset) => {
         // Find fieldset
         const index = fieldsets.findIndex((entry) => entry.id === fieldset.id);
@@ -43,6 +43,7 @@ export function mergeSchemas(
           });
         }
       });
+    }
     properties = {
       ...properties,
       ...mapValues(schema.data.properties || [], (property: any) => ({

@@ -1,0 +1,300 @@
+/**
+ * Users routes.
+ * @module routes/users/users
+ */
+
+// @ts-expect-error bcrypt-promise does not have types
+import bcrypt from 'bcrypt-promise';
+import jwt from 'jsonwebtoken';
+
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import { User } from '../../models/user/user';
+import { RequestException } from '../../helpers/error/error';
+import { sendMail } from '../../helpers/mail/mail';
+import { apiLimiter } from '../../helpers/limiter/limiter';
+import type { Knex } from 'knex';
+import type { Request } from '../../types';
+
+import config from '../../helpers/config/config';
+
+export default [
+  {
+    op: 'post',
+    view: '/@users/:email/reset-password',
+    client: 'resetPassword',
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      // Find user
+      let user = await User.fetchOne({ email: req.params.email }, {}, trx);
+      if (!user) {
+        user = await User.fetchOne({ id: req.params.email }, {}, trx);
+      }
+
+      // Check min password length
+      if (req.body?.new_password.length < 8) {
+        throw new RequestException(401, {
+          message: req.i18n('Password should be at least 8 characters long.'),
+        });
+      }
+
+      // Check input
+      if (req.body?.reset_token && req.body?.new_password && user) {
+        // Decode jwt
+        const decoded = jwt.verify(
+          req.body?.reset_token,
+          config.settings.secret,
+          { algorithms: ['HS256'] },
+        );
+
+        // User found
+        if (user && decoded && user.id === decoded.sub) {
+          const password = await bcrypt.hash(req.body?.new_password, 10);
+          await User.update(
+            user.id,
+            {
+              password,
+            },
+            trx,
+          );
+        } else {
+          throw new RequestException(401, {
+            message: req.i18n("User doesn't exist or invalid credentials."),
+          });
+        }
+      } else if (req.body?.old_password && req.body?.new_password && user) {
+        const same = await bcrypt.compare(
+          req.body?.old_password,
+          user.password,
+        );
+        if (req.user.id === user.id && same) {
+          const password = await bcrypt.hash(req.body?.new_password, 10);
+          await User.update(
+            user.id,
+            {
+              password,
+            },
+            trx,
+          );
+        }
+      } else if (user) {
+        // Create token
+        const token = jwt.sign(
+          {
+            sub: user.id,
+            fullname: user.fullname,
+          },
+          config.settings.secret,
+          { expiresIn: '2h', algorithm: 'HS256' },
+        );
+
+        // Fetch settings
+        const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
+        const settings = controlpanel.data;
+
+        // Send mail
+        await sendMail(
+          {
+            to: `${user.fullname} <${user.email}>`,
+            from: `${settings.email_from_name} <${settings.email_from_address}>`,
+            subject: req.i18n('Password reset request'),
+            text: req.i18n(
+              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 2 hours)',
+              { url: `${config.settings.frontendUrl}/passwordreset/${token}` },
+            ),
+          },
+          trx,
+        );
+      }
+
+      // Return success
+      return {
+        status: 200,
+      };
+    },
+  },
+  {
+    op: 'get',
+    view: '/@users/:id',
+    client: 'getUser',
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      // Check permissions
+      const manageUsers = req.permissions.includes('Manage Users');
+      if (!manageUsers && req.user.id !== req.params.id) {
+        throw new RequestException(401, {
+          message: req.i18n("You don't have permissions to view this user."),
+        });
+      }
+
+      const user = await User.fetchById(
+        req.params.id,
+        {
+          related: '[_roles, _groups]',
+        },
+        trx,
+      );
+      if (!user) {
+        throw new RequestException(404, { error: req.i18n('Not found.') });
+      }
+      return {
+        json: await user.toJson(req),
+      };
+    },
+  },
+  {
+    op: 'get',
+    view: '/@users',
+    permission: 'Manage Users',
+    client: 'getUsers',
+    middleware: apiLimiter,
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      if (req.query.query && req.query.query.length < 2) {
+        throw new RequestException(400, {
+          error: req.i18n('Query must be at least 2 characters long.'),
+        });
+      }
+      const groups = await User.fetchAll(
+        req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
+        { order: 'fullname', related: '[_roles, _groups]' },
+        trx,
+      );
+      return {
+        json: await groups.toJson(req),
+      };
+    },
+  },
+  {
+    op: 'post',
+    view: '/@users',
+    client: 'createUser',
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      // Check permissions
+      const manageUsers = req.permissions.includes('Manage Users');
+      if (!config.settings.userRegistration && !manageUsers) {
+        throw new RequestException(401, {
+          message: req.i18n("You don't have permissions to add a user."),
+        });
+      }
+
+      // Check min password length
+      if (req.body?.password.length < 8) {
+        throw new RequestException(401, {
+          message: req.i18n('Password should be at least 8 characters long.'),
+        });
+      }
+
+      // Encrypt password
+      const password = req.body.password
+        ? await bcrypt.hash(req.body.password, 10)
+        : '';
+
+      // Add user
+      const user = await User.create(
+        {
+          id: req.body.username,
+          fullname: req.body.fullname,
+          email: req.body.email,
+          password: manageUsers ? password : '',
+          _roles: manageUsers ? req.body.roles || [] : [],
+          _groups: manageUsers ? req.body.groups || [] : [],
+        },
+        { related: ['_roles', '_groups'] },
+        trx,
+      );
+
+      // Check if password reset
+      if (req.body.sendPasswordReset) {
+        // Create token
+        const token = jwt.sign(
+          {
+            sub: user.id,
+            fullname: user.fullname,
+          },
+          config.settings.secret,
+          { expiresIn: '2h', algorithm: 'HS256' },
+        );
+
+        // Fetch settings
+        const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
+        const settings = controlpanel.data;
+
+        // Send mail
+        await sendMail(
+          {
+            to: `${user.fullname} <${user.email}>`,
+            from: `${settings.email_from_name} <${settings.email_from_address}>`,
+            subject: req.i18n('Password reset request'),
+            text: req.i18n(
+              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 2 hours)',
+              { url: `${config.settings.frontendUrl}/password-reset/${token}` },
+            ),
+          },
+          trx,
+        );
+      }
+
+      // Send created
+      return {
+        status: 201,
+        json: await user.toJson(req),
+      };
+    },
+  },
+  {
+    op: 'patch',
+    view: '/@users/:id',
+    permission: 'Manage Users',
+    client: 'updateUser',
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      await User.update(
+        req.params.id,
+        {
+          id: req.body.username,
+          fullname: req.body.fullname,
+          email: req.body.email,
+          _roles: req.body.roles,
+          _groups: req.body.groups,
+        },
+        trx,
+      );
+
+      // Send ok
+      return {
+        status: 204,
+      };
+    },
+  },
+  {
+    op: 'delete',
+    view: '/@users/:id',
+    permission: 'Manage Users',
+    client: 'deleteUser',
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      if (config.settings.systemUsers.includes(req.params.id)) {
+        throw new RequestException(401, {
+          error: {
+            message: req.i18n("You can't delete system users."),
+            type: req.i18n('System users'),
+          },
+        });
+      }
+
+      // Trigger on before delete user
+      await config.settings.events.trigger(
+        'onBeforeDeleteUser',
+        req.params.id,
+        trx,
+      );
+
+      await User.deleteById(req.params.id, trx);
+      return {
+        status: 204,
+      };
+
+      // Trigger on after delete user
+      await config.settings.events.trigger(
+        'onAfterDeleteUser',
+        req.params.id,
+        trx,
+      );
+    },
+  },
+];

@@ -61,7 +61,9 @@ export class Workflow extends Model {
   getPermissions(state: string, roles: string[]): string[] {
     const self: any = this;
     return flatten(
-      roles.map((role) => ((self.json.states || {})[state]?.permissions?.[role] || [])),
+      roles.map(
+        (role) => (self.json.states || {})[state]?.permissions?.[role] || [],
+      ),
     );
   }
 }

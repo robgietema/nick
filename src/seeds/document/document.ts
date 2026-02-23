@@ -83,7 +83,7 @@ export const seedDocument = async (
       const newUuid = document.uuid || uuid();
 
       // Insert document
-      let insert: any = await Document.create(
+      const insert: any = await Document.create(
         {
           uuid: newUuid,
           version: 'version' in document ? document.version : versionCount - 1,
@@ -165,7 +165,7 @@ export const seedDocument = async (
 
     // Index documents
     await mapAsync(uuids, async (uuid: string) => {
-      let document: any = await Document.fetchOne({ uuid }, {}, trx);
+      const document: any = await Document.fetchOne({ uuid }, {}, trx);
 
       // Apply behaviors
       await document.applyBehaviors(trx);

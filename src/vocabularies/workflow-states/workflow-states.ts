@@ -21,7 +21,7 @@ export async function workflowStates(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
-  let states = {} as Record<string, string>;
+  const states = {} as Record<string, string>;
   const workflows = await Workflow.fetchAll({}, { order: 'title' }, trx);
 
   // Get states

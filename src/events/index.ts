@@ -39,9 +39,11 @@ const events: Events = {
       if (!Array.isArray(events.events[event])) {
         events.events[event] = [];
       }
-      position === 'bottom'
-        ? events.events[event].push(handler)
-        : events.events[event].splice(position as number, 0, handler);
+      if (position === 'bottom') {
+        events.events[event].push(handler);
+      } else {
+        events.events[event].splice(position as number, 0, handler);
+      }
       return event;
     });
   },

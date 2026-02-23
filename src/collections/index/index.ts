@@ -23,7 +23,7 @@ export class IndexCollection extends Collection<IndexModel> {
    * @returns {Promise<any[]>} JSON object.
    */
   async toJson(req: Request): Promise<Json> {
-    let json: Json = {};
+    const json: Json = {};
 
     // Add index to return json
     await Promise.all(

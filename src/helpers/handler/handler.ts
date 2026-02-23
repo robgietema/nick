@@ -10,7 +10,7 @@ import { Redirect } from '../../models/redirect/redirect';
 import { Role } from '../../models/role/role';
 import { Type } from '../../models/type/type';
 import { User } from '../../models/user/user';
-import type { Request, Json } from '../../types';
+import type { Request, Route } from '../../types';
 
 /**
  * Resolve and call handler
@@ -24,15 +24,7 @@ import type { Request, Json } from '../../types';
 export async function callHandler(
   req: Request,
   trx: Knex.Transaction,
-  route: {
-    view: string;
-    permission: string;
-    handler: (
-      req: Request,
-      trx: Knex.Transaction,
-      callback: any,
-    ) => Promise<any>;
-  },
+  route: Route,
   callback: any,
 ): Promise<any> {
   // Get user

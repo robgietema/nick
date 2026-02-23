@@ -40,4 +40,4 @@ export const vocabularies = {
   workflows,
   workflowStates,
   ...('vocabularies' in config.settings ? config.settings.vocabularies : {}),
-};
+} as any;

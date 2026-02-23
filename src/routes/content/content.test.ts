@@ -37,6 +37,7 @@ describe('Content', () => {
   it('should copy multiple content objects', () => {
     // Mock uuid
     let i = 0;
+    // @ts-expect-error Mock implementation does not match type definition, but it is only used in tests
     vi.mocked(uuid).mockImplementation(() => {
       i = i + 1;
       return `a95388f2-e4b3-4292-98aa-62656cbd5b9${i}`;
