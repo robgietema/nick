@@ -137,6 +137,7 @@
 - Fix cors error with allow credentials and allow origin @robgietema
 - Fix bug in linking translations @mpalomaki
 - Fix breadcrumbs call in multilingual site @mpalomaki
+- Check uuid on file read @robgietema
 
 ### Internal
 
@@ -168,6 +169,7 @@
 - Refactor events @robgietema
 - Refactor ai endpoints with own permission @robgietema
 - Log error if document already shared @robgietema
+- Convert all files to typescript @robgietema
 
 ### Documentation
 

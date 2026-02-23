@@ -10,7 +10,7 @@ import {
   writeFileSync,
   existsSync,
 } from 'fs';
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid, validate } from 'uuid';
 import sharp from 'sharp';
 import type { Metadata } from 'sharp';
 
@@ -62,6 +62,9 @@ export function getDimensions(metadata: Metadata): Dimensions {
  * @returns {Buffer} File buffer.
  */
 export function readFile(uuid: string): Buffer {
+  if (!validate(uuid)) {
+    throw `Invalid uuid: ${uuid}`;
+  }
   return readFileSync(`${config.settings.blobsDir}/${uuid}`);
 }
 
