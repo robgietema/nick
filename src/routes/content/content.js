@@ -459,7 +459,7 @@ export default [
       const newUuid = req.body.uuid || uuid();
 
       // Set translation
-      let translation_group = uuid;
+      let translation_group = newUuid;
       if (req.body.translation_of) {
         if (req.body.translation_of.startsWith('/')) {
           const translation = await Document.fetchOne(
