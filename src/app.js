@@ -23,7 +23,6 @@ import { i18n } from './middleware/i18n/i18n';
 import { removeZopeVhosting } from './middleware/volto/volto';
 
 import config from './helpers/config/config';
-import form from './routes/form/form';
 
 const localRoutes = config.settings.routes
   ? (await import(`${process.cwd()}/src/routes`)).default

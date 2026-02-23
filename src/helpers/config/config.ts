@@ -64,6 +64,7 @@ export type ConfigSettings = {
     };
   };
   behaviors?: Record<string, unknown>;
+  vocabularies?: Record<string, unknown>;
 };
 
 export type ConfigType = InstanceType<typeof Config>;

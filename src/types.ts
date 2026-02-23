@@ -64,3 +64,8 @@ export interface Schema {
   behaviors?: string[];
   layouts?: string[];
 }
+
+export interface VocabularyTerm {
+  title: string;
+  token: string;
+}

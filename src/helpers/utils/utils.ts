@@ -4,6 +4,7 @@
  */
 
 import { omitBy } from 'es-toolkit/object';
+import type { VocabularyTerm } from '../../types';
 
 /**
  * Map asynchronous but in order through array
@@ -57,11 +58,6 @@ export function uniqueId(id: string, ids: string[], counter = 0): string {
  */
 export function removeUndefined<T extends object>(object: T): Partial<T> {
   return omitBy(object, (value) => typeof value === 'undefined');
-}
-
-interface VocabularyTerm {
-  title: string;
-  token: string;
 }
 
 /**
