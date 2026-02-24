@@ -1446,12 +1446,12 @@ msgctxt "Profiles|Core|Catalog"
 msgid "The end date and time of an event"
 msgstr "이벤트 종료 날짜 및 시간"
 
-#. Default: "undefined"
+#. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 #: src/routes/users/users.ts:99
 #: src/routes/users/users.ts:225
 msgctxt "Routes|Users|Users.ts"
-msgid "The following link takes you to a page where you can reset your password: {url}"
-msgstr "정의되지 않음"
+msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
+msgstr ""
 
 #. Default: "The item’s title, transformed for sorting"
 #: src/profiles/core/catalog.json:466
@@ -1800,18 +1800,6 @@ msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr "시스템 사용자는 삭제할 수 없습니다."
 
-#. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.ts:173
-msgctxt "Routes|Users|Users.ts"
-msgid "You don't have permissions to add a user."
-msgstr ""
-
-#. Default: "You don't have permissions to view this user."
-#: src/routes/users/users.ts:123
-msgctxt "Routes|Users|Users.ts"
-msgid "You don't have permissions to view this user."
-msgstr ""
-
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:56
 #: src/routes/content/content.ts:623
@@ -1824,6 +1812,18 @@ msgstr "다른 사용자가 잠갔으므로 이 문서를 저장할 권한이 �
 msgctxt "Routes|Lock|Lock.ts"
 msgid "You don’t have permission to unlock this document."
 msgstr "이 문서의 잠금을 해제할 권한이 없습니다."
+
+#. Default: "You don’t have permissions to add a user."
+#: src/routes/users/users.ts:173
+msgctxt "Routes|Users|Users.ts"
+msgid "You don’t have permissions to add a user."
+msgstr ""
+
+#. Default: "You don’t have permissions to view this user."
+#: src/routes/users/users.ts:123
+msgctxt "Routes|Users|Users.ts"
+msgid "You don’t have permissions to view this user."
+msgstr ""
 
 #. Default: "boolean"
 #: src/profiles/core/vocabularies/boolean.json:3

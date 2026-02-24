@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-02-24T16:55:17.170Z\n"
+"POT-Creation-Date: 2026-02-24T17:40:43.178Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -1443,13 +1443,11 @@ msgctxt "Profiles|Core|Catalog"
 msgid "The end date and time of an event"
 msgstr ""
 
-#. Default: "undefined"
+#. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 #: src/routes/users/users.ts:99
 #: src/routes/users/users.ts:225
 msgctxt "Routes|Users|Users.ts"
-msgid "The following link takes you to a page where you can reset your password: {url}
-
-(This link will expire in 2 hours)"
+msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 msgstr ""
 
 #. Default: "The item’s title, transformed for sorting"
@@ -1799,18 +1797,6 @@ msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr ""
 
-#. Default: "You don't have permissions to add a user."
-#: src/routes/users/users.ts:173
-msgctxt "Routes|Users|Users.ts"
-msgid "You don't have permissions to add a user."
-msgstr ""
-
-#. Default: "You don't have permissions to view this user."
-#: src/routes/users/users.ts:123
-msgctxt "Routes|Users|Users.ts"
-msgid "You don't have permissions to view this user."
-msgstr ""
-
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:56
 #: src/routes/content/content.ts:623
@@ -1822,6 +1808,18 @@ msgstr ""
 #: src/routes/lock/lock.ts:157
 msgctxt "Routes|Lock|Lock.ts"
 msgid "You don’t have permission to unlock this document."
+msgstr ""
+
+#. Default: "You don’t have permissions to add a user."
+#: src/routes/users/users.ts:173
+msgctxt "Routes|Users|Users.ts"
+msgid "You don’t have permissions to add a user."
+msgstr ""
+
+#. Default: "You don’t have permissions to view this user."
+#: src/routes/users/users.ts:123
+msgctxt "Routes|Users|Users.ts"
+msgid "You don’t have permissions to view this user."
 msgstr ""
 
 #. Default: "boolean"

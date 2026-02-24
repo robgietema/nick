@@ -177,7 +177,7 @@ function extractMessages() {
         ) {
           const id = path.node.arguments[0].value;
           const defaultMessage =
-            path.node.arguments.length > 1 ? path.node.arguments[1].value : id;
+            path.node.arguments.length > 1 ? path.node.arguments[0].value : id;
           messages[id] = {
             id,
             defaultMessage,

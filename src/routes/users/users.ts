@@ -97,7 +97,7 @@ export default [
             from: `${settings.email_from_name} <${settings.email_from_address}>`,
             subject: req.i18n('Password reset request'),
             text: req.i18n(
-              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 2 hours)',
+              'The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)',
               { url: `${config.settings.frontendUrl}/passwordreset/${token}` },
             ),
           },
@@ -120,7 +120,7 @@ export default [
       const manageUsers = req.permissions.includes('Manage Users');
       if (!manageUsers && req.user.id !== req.params.id) {
         throw new RequestException(401, {
-          message: req.i18n("You don't have permissions to view this user."),
+          message: req.i18n('You don’t have permissions to view this user.'),
         });
       }
 
@@ -170,7 +170,7 @@ export default [
       const manageUsers = req.permissions.includes('Manage Users');
       if (!config.settings.userRegistration && !manageUsers) {
         throw new RequestException(401, {
-          message: req.i18n("You don't have permissions to add a user."),
+          message: req.i18n('You don’t have permissions to add a user.'),
         });
       }
 
@@ -223,7 +223,7 @@ export default [
             from: `${settings.email_from_name} <${settings.email_from_address}>`,
             subject: req.i18n('Password reset request'),
             text: req.i18n(
-              'The following link takes you to a page where you can reset your password: {url}\n\n(This link will expire in 2 hours)',
+              'The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)',
               { url: `${config.settings.frontendUrl}/password-reset/${token}` },
             ),
           },
