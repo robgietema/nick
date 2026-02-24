@@ -62,13 +62,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -98,7 +98,7 @@ Content-Type: application/json
       "operations": ["selection.any", "string.currentUser"],
       "operators": {
         "selection.any": {
-          "title": "Matches any of",
+          "title": "Matches any condition",
           "widget": "MultipleSelectionWidget",
           "operation": "contains",
           "description": "Tip: you can use * to autocomplete."
@@ -113,7 +113,7 @@ Content-Type: application/json
     },
     "Description": {
       "title": "Description",
-      "description": "An item's description",
+      "description": "An item’s description",
       "group": "Text",
       "enabled": true,
       "sortable": false,
@@ -187,13 +187,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -270,13 +270,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -353,13 +353,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -436,13 +436,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -553,13 +553,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -580,7 +580,7 @@ Content-Type: application/json
     },
     "review_state": {
       "title": "Review state",
-      "description": "An item's workflow state (e.g.published)",
+      "description": "An item’s workflow state (e.g.published)",
       "group": "Metadata",
       "enabled": true,
       "sortable": true,
@@ -589,7 +589,7 @@ Content-Type: application/json
       "operations": ["selection.any"],
       "operators": {
         "selection.any": {
-          "title": "Matches any of",
+          "title": "Matches any condition",
           "widget": "MultipleSelectionWidget",
           "operation": "contains",
           "description": "Tip: you can use * to autocomplete."
@@ -598,7 +598,7 @@ Content-Type: application/json
     },
     "SearchableText": {
       "title": "Searchable text",
-      "description": "Text search of an item's contents",
+      "description": "Text search of an item’s contents",
       "group": "Text",
       "enabled": true,
       "sortable": false,
@@ -643,13 +643,13 @@ Content-Type: application/json
       "operations": ["selection.all", "selection.any"],
       "operators": {
         "selection.all": {
-          "title": "Matches all of",
+          "title": "Matches all conditions",
           "widget": "MultipleSelectionWidget",
           "operation": "all",
           "description": "Tip: you can use * to autocomplete."
         },
         "selection.any": {
-          "title": "Matches any of",
+          "title": "Matches any condition",
           "widget": "MultipleSelectionWidget",
           "operation": "contains",
           "description": "Tip: you can use * to autocomplete."
@@ -658,7 +658,7 @@ Content-Type: application/json
     },
     "Title": {
       "title": "Title",
-      "description": "Text search of an item's title",
+      "description": "Text search of an item’s title",
       "group": "Text",
       "enabled": true,
       "sortable": false,
@@ -676,7 +676,7 @@ Content-Type: application/json
     },
     "portal_type": {
       "title": "Type",
-      "description": "An item's type (e.g. Event)",
+      "description": "An item’s type (e.g. Event)",
       "group": "Metadata",
       "enabled": true,
       "sortable": false,
@@ -685,7 +685,7 @@ Content-Type: application/json
       "operations": ["selection.any"],
       "operators": {
         "selection.any": {
-          "title": "Matches any of",
+          "title": "Matches any condition",
           "widget": "MultipleSelectionWidget",
           "operation": "contains",
           "description": "Tip: you can use * to autocomplete."
@@ -752,13 +752,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -788,7 +788,7 @@ Content-Type: application/json
       "operations": ["selection.any", "string.currentUser"],
       "operators": {
         "selection.any": {
-          "title": "Matches any of",
+          "title": "Matches any condition",
           "widget": "MultipleSelectionWidget",
           "operation": "contains",
           "description": "Tip: you can use * to autocomplete."
@@ -859,13 +859,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -942,13 +942,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -1025,13 +1025,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -1108,13 +1108,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -1191,13 +1191,13 @@ Content-Type: application/json
           "description": "Before the current day"
         },
         "date.afterRelativeDate": {
-          "title": "After relative Date",
+          "title": "After relative date",
           "widget": "RelativeDateWidget",
           "operation": "afterRelativeDate",
           "description": "After N days in the future"
         },
         "date.beforeRelativeDate": {
-          "title": "Before relative Date",
+          "title": "Before relative date",
           "widget": "RelativeDateWidget",
           "operation": "beforeRelativeDate",
           "description": "Before N days in the past"
@@ -1218,7 +1218,7 @@ Content-Type: application/json
     },
     "review_state": {
       "title": "Review state",
-      "description": "An item's workflow state (e.g.published)",
+      "description": "An item’s workflow state (e.g.published)",
       "group": "Metadata",
       "enabled": true,
       "sortable": true,
@@ -1227,7 +1227,7 @@ Content-Type: application/json
       "operations": ["selection.any"],
       "operators": {
         "selection.any": {
-          "title": "Matches any of",
+          "title": "Matches any condition",
           "widget": "MultipleSelectionWidget",
           "operation": "contains",
           "description": "Tip: you can use * to autocomplete."

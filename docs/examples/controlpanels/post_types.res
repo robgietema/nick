@@ -62,7 +62,7 @@ Content-Type: application/json
       "filter_content_types": {
         "factory": "Yes/No",
         "title": "Filter Contained Types",
-        "description": "Items of this type can act as a folder containing other  items. What content types should be allowed inside?",
+        "description": "Items of this type can act as a folder containing other items. What content types should be allowed inside?",
         "type": "boolean"
       },
       "title": {

@@ -39,7 +39,7 @@ Content-Type: application/json
         "type": "string",
         "title": "SMTP server",
         "default": "localhost",
-        "description": "The address of your local SMTP (outgoing e-mail) server. Usually 'localhost', unless you use an external server to send e-mail."
+        "description": "The address of your local SMTP (outgoing email) server. Usually 'localhost', unless you use an external server to send email."
       },
       "pass": {
         "type": "string",
@@ -51,32 +51,32 @@ Content-Type: application/json
         "type": "integer",
         "title": "SMTP port",
         "default": 25,
-        "description": "The port of your local SMTP (outgoing e-mail) server. Usually '25'."
+        "description": "The port of your local SMTP (outgoing email) server. Usually '25'."
       },
       "user": {
         "type": "string",
         "title": "ESMTP username",
-        "description": "Username for authentication to your e-mail server. Not required unless you are using ESMTP."
+        "description": "Username for authentication to your email server. Not required unless you are using ESMTP."
       },
       "debug": {
         "type": "boolean",
         "title": "Debug",
-        "description": "If enabled, the mail is send to a test server."
+        "description": "If enabled, the mail is sent to a test server."
       },
       "secure": {
         "type": "boolean",
         "title": "Secure",
-        "description": "If enabled, the mail is send using a secure connection."
+        "description": "If enabled, the mail is sent using a secure connection."
       },
       "email_from_name": {
         "type": "string",
         "title": "Site 'From' name",
-        "description": "Plone generates e-mail using this name as the e-mail sender."
+        "description": "Plone generates email using this name as the email sender."
       },
       "email_from_address": {
         "type": "string",
         "title": "Site 'From' address",
-        "description": "Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature."
+        "description": "Plone generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
       }
     }
   }
