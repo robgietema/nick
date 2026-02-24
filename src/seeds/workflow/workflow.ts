@@ -22,7 +22,7 @@ export const seedWorkflow = async (
         // Check if type exists
         const current: any = await Workflow.fetchById(workflow.id, {}, trx);
 
-        // If doesn't exist
+        // If doesn’t exist
         if (!current) {
           await Workflow.create(workflow, {}, trx);
         } else {

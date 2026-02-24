@@ -45,7 +45,7 @@ tasks.forEach((task) => {
   });
 });
 
-// Create blob dir if it doesn't exist
+// Create blob dir if it doesn’t exist
 if (!existsSync(config.settings.blobsDir)) {
   mkdirSync(config.settings.blobsDir, { recursive: true });
 }

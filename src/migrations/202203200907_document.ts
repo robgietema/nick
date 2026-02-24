@@ -4,7 +4,7 @@ import type { Knex } from 'knex';
 import config from '../helpers/config/config';
 
 export const up = async (knex: Knex): Promise<void> => {
-  // Create blob dir if it doesn't exist
+  // Create blob dir if it doesn’t exist
   if (!existsSync((config as any).settings.blobsDir)) {
     mkdirSync((config as any).settings.blobsDir, { recursive: true });
   }

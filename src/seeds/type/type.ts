@@ -46,7 +46,7 @@ export const seedType = async (
       // Check if type exists
       const current: any = await Type.fetchById(data.id, {}, trx);
 
-      // If doesn't exist
+      // If doesn’t exist
       if (!current) {
         typeModel = await Type.create(
           {

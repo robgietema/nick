@@ -153,7 +153,7 @@ export class Type extends Model {
             factory: 'Yes/No',
             title: req.i18n('Filter Contained Types'),
             description: req.i18n(
-              'Items of this type can act as a folder containing other  items. What content types should be allowed inside?',
+              'Items of this type can act as a folder containing other items. What content types should be allowed inside?',
             ),
             type: 'boolean',
           },

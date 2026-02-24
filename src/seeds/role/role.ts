@@ -22,7 +22,7 @@ export const seedRole = async (
       // Check if role exists
       const current: any = await Role.fetchById(role.id, {}, trx);
 
-      // If doesn't exist
+      // If doesn’t exist
       if (!current) {
         await Role.create(
           {

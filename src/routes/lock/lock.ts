@@ -155,7 +155,7 @@ export default [
         throw new RequestException(401, {
           error: {
             message: req.i18n(
-              "You don't have permission to unlock this document.",
+              'You don’t have permission to unlock this document.',
             ),
             type: req.i18n('Not allowed'),
           },

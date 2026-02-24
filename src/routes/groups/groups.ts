@@ -115,7 +115,7 @@ export default [
       if (config.settings.systemGroups.includes(req.params.id)) {
         throw new RequestException(401, {
           error: {
-            message: req.i18n("You can't delete system groups."),
+            message: req.i18n('You can’t delete system groups.'),
             type: req.i18n('System group'),
           },
         });

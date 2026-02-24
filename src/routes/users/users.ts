@@ -57,7 +57,7 @@ export default [
           );
         } else {
           throw new RequestException(401, {
-            message: req.i18n("User doesn't exist or invalid credentials."),
+            message: req.i18n('User doesn’t exist or invalid credentials.'),
           });
         }
       } else if (req.body?.old_password && req.body?.new_password && user) {
@@ -271,7 +271,7 @@ export default [
       if (config.settings.systemUsers.includes(req.params.id)) {
         throw new RequestException(401, {
           error: {
-            message: req.i18n("You can't delete system users."),
+            message: req.i18n('You can’t delete system users.'),
             type: req.i18n('System users'),
           },
         });

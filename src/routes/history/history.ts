@@ -54,7 +54,7 @@ export default [
         throw new RequestException(401, {
           error: {
             message: req.i18n(
-              "You don't have permission to save this document because it is locked by another user.",
+              'You don’t have permission to save this document because it is locked by another user.',
             ),
             type: req.i18n('Document locked'),
           },

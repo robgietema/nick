@@ -85,7 +85,7 @@
       "sortable": true,
       "operators": {
         "date.afterRelativeDate": {
-          "title:i18n": "After relative Date",
+          "title:i18n": "After relative date",
           "description:i18n": "After N days in the future",
           "operation": "afterRelativeDate",
           "widget": "RelativeDateWidget"
@@ -97,7 +97,7 @@
           "widget": null
         },
         "date.beforeRelativeDate": {
-          "title:i18n": "Before relative Date",
+          "title:i18n": "Before relative date",
           "description:i18n": "Before N days in the past",
           "operation": "beforeRelativeDate",
           "widget": "RelativeDateWidget"
@@ -158,7 +158,7 @@
       "sortable": true,
       "operators": {
         "date.afterRelativeDate": {
-          "title:i18n": "After relative Date",
+          "title:i18n": "After relative date",
           "description:i18n": "After N days in the future",
           "operation": "afterRelativeDate",
           "widget": "RelativeDateWidget"
@@ -170,7 +170,7 @@
           "widget": null
         },
         "date.beforeRelativeDate": {
-          "title:i18n": "Before relative Date",
+          "title:i18n": "Before relative date",
           "description:i18n": "Before N days in the past",
           "operation": "beforeRelativeDate",
           "widget": "RelativeDateWidget"
@@ -225,7 +225,7 @@
       "type": "text",
       "attr": "description",
       "title:i18n": "Description",
-      "description:i18n": "An item's description",
+      "description:i18n": "An item’s description",
       "group": "Text",
       "enabled": true,
       "sortable": false,
@@ -244,7 +244,7 @@
       "type": "text",
       "attr": "searchableText",
       "title:i18n": "Searchable text",
-      "description:i18n": "Text search of an item's contents",
+      "description:i18n": "Text search of an item’s contents",
       "group": "Text",
       "enabled": true,
       "sortable": false,
@@ -263,7 +263,7 @@
       "type": "text",
       "attr": "getTitle",
       "title:i18n": "Title",
-      "description:i18n": "Text search of an item's title",
+      "description:i18n": "Text search of an item’s title",
       "group": "Text",
       "enabled": true,
       "sortable": false,
@@ -290,13 +290,13 @@
         "selection.all": {
           "description:i18n": "Tip: you can use * to autocomplete.",
           "operation": "all",
-          "title:i18n": "Matches all of",
+          "title:i18n": "Matches all conditions",
           "widget": "MultipleSelectionWidget"
         },
         "selection.any": {
           "description:i18n": "Tip: you can use * to autocomplete.",
           "operation": "contains",
-          "title:i18n": "Matches any of",
+          "title:i18n": "Matches any condition",
           "widget": "MultipleSelectionWidget"
         }
       },
@@ -400,7 +400,7 @@
       "sortable": true,
       "operators": {
         "selection.any": {
-          "title:i18n": "Matches any of",
+          "title:i18n": "Matches any condition",
           "description:i18n": "Tip: you can use * to autocomplete.",
           "operation": "contains",
           "widget": "MultipleSelectionWidget"
@@ -425,13 +425,13 @@
       "type": "string",
       "attr": "type",
       "title:i18n": "Type",
-      "description:i18n": "An item's type (e.g. Event)",
+      "description:i18n": "An item’s type (e.g. Event)",
       "group": "Metadata",
       "enabled": true,
       "sortable": false,
       "operators": {
         "selection.any": {
-          "title:i18n": "Matches any of",
+          "title:i18n": "Matches any condition",
           "description:i18n": "Tip: you can use * to autocomplete.",
           "operation": "contains",
           "widget": "MultipleSelectionWidget"
@@ -444,13 +444,13 @@
       "type": "string",
       "attr": "workflow_state",
       "title:i18n": "Review state",
-      "description:i18n": "An item's workflow state (e.g.published)",
+      "description:i18n": "An item’s workflow state (e.g.published)",
       "group": "Metadata",
       "enabled": true,
       "sortable": true,
       "operators": {
         "selection.any": {
-          "title:i18n": "Matches any of",
+          "title:i18n": "Matches any condition",
           "description:i18n": "Tip: you can use * to autocomplete.",
           "operation": "contains",
           "widget": "MultipleSelectionWidget"
@@ -463,7 +463,7 @@
       "type": "string",
       "attr": "getTitle",
       "title:i18n": "Sortable Title",
-      "description:i18n": "The item's title, transformed for sorting",
+      "description:i18n": "The item’s title, transformed for sorting",
       "group": "Text",
       "enabled": false,
       "sortable": true,
@@ -494,7 +494,7 @@
       "sortable": true,
       "operators": {
         "date.afterRelativeDate": {
-          "title:i18n": "After relative Date",
+          "title:i18n": "After relative date",
           "description:i18n": "After N days in the future",
           "operation": "afterRelativeDate",
           "widget": "RelativeDateWidget"
@@ -506,7 +506,7 @@
           "widget": null
         },
         "date.beforeRelativeDate": {
-          "title:i18n": "Before relative Date",
+          "title:i18n": "Before relative date",
           "description:i18n": "Before N days in the past",
           "operation": "beforeRelativeDate",
           "widget": "RelativeDateWidget"
@@ -573,7 +573,7 @@
       "sortable": true,
       "operators": {
         "date.afterRelativeDate": {
-          "title:i18n": "After relative Date",
+          "title:i18n": "After relative date",
           "description:i18n": "After N days in the future",
           "operation": "afterRelativeDate",
           "widget": "RelativeDateWidget"
@@ -585,7 +585,7 @@
           "widget": null
         },
         "date.beforeRelativeDate": {
-          "title:i18n": "Before relative Date",
+          "title:i18n": "Before relative date",
           "description:i18n": "Before N days in the past",
           "operation": "beforeRelativeDate",
           "widget": "RelativeDateWidget"
@@ -646,7 +646,7 @@
       "sortable": true,
       "operators": {
         "date.afterRelativeDate": {
-          "title:i18n": "After relative Date",
+          "title:i18n": "After relative date",
           "description:i18n": "After N days in the future",
           "operation": "afterRelativeDate",
           "widget": "RelativeDateWidget"
@@ -658,7 +658,7 @@
           "widget": null
         },
         "date.beforeRelativeDate": {
-          "title:i18n": "Before relative Date",
+          "title:i18n": "Before relative date",
           "description:i18n": "Before N days in the past",
           "operation": "beforeRelativeDate",
           "widget": "RelativeDateWidget"
@@ -719,7 +719,7 @@
       "sortable": true,
       "operators": {
         "date.afterRelativeDate": {
-          "title:i18n": "After relative Date",
+          "title:i18n": "After relative date",
           "description:i18n": "After N days in the future",
           "operation": "afterRelativeDate",
           "widget": "RelativeDateWidget"
@@ -731,7 +731,7 @@
           "widget": null
         },
         "date.beforeRelativeDate": {
-          "title:i18n": "Before relative Date",
+          "title:i18n": "Before relative date",
           "description:i18n": "Before N days in the past",
           "operation": "beforeRelativeDate",
           "widget": "RelativeDateWidget"

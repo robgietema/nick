@@ -95,7 +95,7 @@ export default [
       const current = await Type.fetchById(req.body.title, {}, trx);
       let typeModel;
 
-      // If doesn't exist
+      // If doesn’t exist
       if (!current) {
         typeModel = await Type.create(
           {
