@@ -74,7 +74,7 @@
     "@types/pdf-parse": "1.1.5",
     "@types/supertest": "6.0.3",
     "@vitest/ui": "4.0.18",
-    "eslint": "10.0.1",
+    "eslint": "10.0.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
     "glob": "13.0.6",
