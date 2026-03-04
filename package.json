@@ -92,7 +92,7 @@
     "bcrypt": "6.0.0",
     "bcrypt-promise": "2.0.0",
     "du": "1.0.0",
-    "es-toolkit": "1.45.0",
+    "es-toolkit": "1.45.1",
     "express": "5.2.1",
     "express-rate-limit": "8.2.1",
     "helmet": "8.1.0",
