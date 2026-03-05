@@ -57,7 +57,7 @@ export async function i18n(
   req.i18n = (id: string, ...rest: any[]) => {
     // Check if id is specified
     if (!id) {
-      return id;
+      return '';
     }
 
     // Negotiate language
