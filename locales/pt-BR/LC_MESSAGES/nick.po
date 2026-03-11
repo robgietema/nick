@@ -190,8 +190,9 @@ msgid "Allowed Content Types"
 msgstr "Tipos de conteúdo permitidos"
 
 #. Default: "Allows users to login with their email address instead of specifying a separate login name."
+#: src/profiles/core/upgrades/1001/controlpanels/security.json:16
 #: src/profiles/core/controlpanels/security.json:16
-msgctxt "Profiles|Core|Controlpanels|Security"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Security"
 msgid "Allows users to login with their email address instead of specifying a separate login name."
 msgstr ""
 
@@ -453,6 +454,8 @@ msgstr "Debug"
 #. Default: "Default"
 #: src/routes/userschema/userschema.ts:21
 #: src/routes/userschema/userschema.ts:58
+#: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:10
+#: src/profiles/core/upgrades/1001/controlpanels/security.json:10
 #: src/profiles/core/types/image.json:13
 #: src/profiles/core/types/file.json:13
 #: src/profiles/core/controlpanels/usergroup.json:10
@@ -486,14 +489,16 @@ msgid "Description"
 msgstr "Descrição"
 
 #. Default: "Determines if your site is optimized for small or large sites. In environments with a lot of groups it can be very slow or impossible to build a list all groups. This option tunes the user interface and behaviour for this case by allowing you to search for groups instead of listing all of them."
+#: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:21
 #: src/profiles/core/controlpanels/usergroup.json:21
-msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Usergroup"
 msgid "Determines if your site is optimized for small or large sites. In environments with a lot of groups it can be very slow or impossible to build a list all groups. This option tunes the user interface and behaviour for this case by allowing you to search for groups instead of listing all of them."
 msgstr ""
 
 #. Default: "Determines if your site is optimized for small or large sites. In environments with a lot of users it can be very slow or impossible to build a list all users. This option tunes the user interface and behaviour for this case by allowing you to search for users instead of listing all of them."
+#: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:16
 #: src/profiles/core/controlpanels/usergroup.json:16
-msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Usergroup"
 msgid "Determines if your site is optimized for small or large sites. In environments with a lot of users it can be very slow or impossible to build a list all users. This option tunes the user interface and behaviour for this case by allowing you to search for users instead of listing all of them."
 msgstr ""
 
@@ -909,14 +914,16 @@ msgid "Manage Users"
 msgstr "Gerenciar usuários"
 
 #. Default: "Many groups?"
+#: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:20
 #: src/profiles/core/controlpanels/usergroup.json:20
-msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Usergroup"
 msgid "Many groups?"
 msgstr ""
 
 #. Default: "Many users?"
+#: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:15
 #: src/profiles/core/controlpanels/usergroup.json:15
-msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Usergroup"
 msgid "Many users?"
 msgstr ""
 
@@ -1188,6 +1195,7 @@ msgstr "Data de publicação"
 
 #. Default: "Query must be at least 2 characters long."
 #: src/routes/users/users.ts:151
+#: src/routes/principals/principals.ts:23
 #: src/routes/groups/groups.ts:45
 msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
@@ -1321,8 +1329,9 @@ msgid "Secure"
 msgstr "Seguro"
 
 #. Default: "Security"
+#: src/profiles/core/upgrades/1001/controlpanels/security.json:3
 #: src/profiles/core/controlpanels/security.json:3
-msgctxt "Profiles|Core|Controlpanels|Security"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Security"
 msgid "Security"
 msgstr ""
 
@@ -1753,14 +1762,16 @@ msgid "Use '../' to navigate to parent objects."
 msgstr "Use '../' para navegar para objetos pai."
 
 #. Default: "Use email address as login name"
+#: src/profiles/core/upgrades/1001/controlpanels/security.json:15
 #: src/profiles/core/controlpanels/security.json:15
-msgctxt "Profiles|Core|Controlpanels|Security"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Security"
 msgid "Use email address as login name"
 msgstr ""
 
 #. Default: "User and Group Settings"
+#: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:3
 #: src/profiles/core/controlpanels/usergroup.json:3
-msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgctxt "Profiles|Core|Upgrades|1001|Controlpanels|Usergroup"
 msgid "User and Group Settings"
 msgstr ""
 

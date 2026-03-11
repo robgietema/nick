@@ -20,6 +20,7 @@ import lock from './lock/lock';
 import navigation from './navigation/navigation';
 import navroot from './navroot/navroot';
 import nick from './nick/nick';
+import principals from './principals/principals';
 import querystring from './querystring/querystring';
 import related from './related/related';
 import roles from './roles/roles';
@@ -51,6 +52,7 @@ export default [
   ...navigation,
   ...navroot,
   ...nick,
+  ...principals,
   ...querystring,
   ...related,
   ...roles,

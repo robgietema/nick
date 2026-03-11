@@ -151,13 +151,13 @@ export default [
           error: req.i18n('Query must be at least 2 characters long.'),
         });
       }
-      const groups = await User.fetchAll(
+      const users = await User.fetchAll(
         req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
         { order: 'fullname', related: '[_roles, _groups]' },
         trx,
       );
       return {
-        json: await groups.toJson(req),
+        json: await users.toJson(req),
       };
     },
   },

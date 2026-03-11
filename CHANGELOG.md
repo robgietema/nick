@@ -79,6 +79,7 @@
 - Add @userschema endpoints @robgietema
 - Add security and usergroup controlpanel @robgietema
 - Check username or email on login based on controlpanel @robgietema
+- Add principals endpoint @robgietema
 
 ### Bugfix
 
