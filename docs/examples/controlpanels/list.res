@@ -23,8 +23,18 @@ Content-Type: application/json
     "title": "Navigation"
   },
   {
+    "@id": "http://localhost:8080/@controlpanels/security",
+    "group": "Security",
+    "title": "Security"
+  },
+  {
     "@id": "http://localhost:8080/@controlpanels/site",
     "group": "General",
     "title": "Site"
+  },
+  {
+    "@id": "http://localhost:8080/@controlpanels/usergroup",
+    "group": "Users",
+    "title": "User and Group Settings"
   }
 ]

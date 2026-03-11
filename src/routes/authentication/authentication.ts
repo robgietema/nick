@@ -12,6 +12,7 @@ import { log } from '../../helpers/log/log';
 import { RequestException } from '../../helpers/error/error';
 import { authLimiter } from '../../helpers/limiter/limiter';
 import { addToken, removeToken } from '../../helpers/auth/auth';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
@@ -58,13 +59,14 @@ export default [
         });
       }
 
-      // Find user by id
-      let user = await User.fetchById(req.body.login, {}, trx);
+      // Fetch settings
+      const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
+      const settings = controlpanel.data;
 
-      // Find user by email
-      if (!user) {
-        user = await User.fetchOne({ email: req.body.login }, {}, trx);
-      }
+      // Find user by id
+      const user = settings.use_email_as_login
+        ? await User.fetchOne({ email: req.body.login }, {}, trx)
+        : await User.fetchById(req.body.login, {}, trx);
 
       // If user not found
       if (!user) {
