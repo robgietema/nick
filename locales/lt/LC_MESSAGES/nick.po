@@ -189,6 +189,12 @@ msgctxt "Models|Type|Type.ts"
 msgid "Allowed Content Types"
 msgstr "Leidžiami turinio tipai"
 
+#. Default: "Allows users to login with their email address instead of specifying a separate login name."
+#: src/profiles/core/controlpanels/security.json:16
+msgctxt "Profiles|Core|Controlpanels|Security"
+msgid "Allows users to login with their email address instead of specifying a separate login name."
+msgstr ""
+
 #. Default: "Already locked"
 #: src/routes/lock/lock.ts:58
 #: src/routes/lock/lock.ts:110
@@ -449,6 +455,8 @@ msgstr "Derinimas"
 #: src/routes/userschema/userschema.ts:58
 #: src/profiles/core/types/image.json:13
 #: src/profiles/core/types/file.json:13
+#: src/profiles/core/controlpanels/usergroup.json:10
+#: src/profiles/core/controlpanels/security.json:10
 #: src/profiles/core/behaviors/versioning.json:10
 #: src/profiles/core/behaviors/preview_image_link.json:10
 #: src/profiles/core/behaviors/basic.json:10
@@ -476,6 +484,18 @@ msgstr "Ištrinti"
 msgctxt "Models|Type|Type.ts"
 msgid "Description"
 msgstr "Aprašymas"
+
+#. Default: "Determines if your site is optimized for small or large sites. In environments with a lot of groups it can be very slow or impossible to build a list all groups. This option tunes the user interface and behaviour for this case by allowing you to search for groups instead of listing all of them."
+#: src/profiles/core/controlpanels/usergroup.json:21
+msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgid "Determines if your site is optimized for small or large sites. In environments with a lot of groups it can be very slow or impossible to build a list all groups. This option tunes the user interface and behaviour for this case by allowing you to search for groups instead of listing all of them."
+msgstr ""
+
+#. Default: "Determines if your site is optimized for small or large sites. In environments with a lot of users it can be very slow or impossible to build a list all users. This option tunes the user interface and behaviour for this case by allowing you to search for users instead of listing all of them."
+#: src/profiles/core/controlpanels/usergroup.json:16
+msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgid "Determines if your site is optimized for small or large sites. In environments with a lot of users it can be very slow or impossible to build a list all users. This option tunes the user interface and behaviour for this case by allowing you to search for users instead of listing all of them."
+msgstr ""
 
 #. Default: "Displayed content types"
 #: src/profiles/core/controlpanels/navigation.json:27
@@ -754,14 +774,14 @@ msgid "Internal server error"
 msgstr "Vidinė serverio klaida"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.ts:76
-#: src/routes/authentication/authentication.ts:90
+#: src/routes/authentication/authentication.ts:78
+#: src/routes/authentication/authentication.ts:92
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid credentials"
 msgstr "Neteisingi prisijungimo duomenys"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.ts:124
+#: src/routes/authentication/authentication.ts:126
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid session"
 msgstr "Neteisinga sesija"
@@ -853,7 +873,7 @@ msgid "Login"
 msgstr "Prisijungimas"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.ts:56
+#: src/routes/authentication/authentication.ts:57
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Login and password must be provided in body."
 msgstr "Prisijungimo vardas ir slaptažodis turi būti pateikti tekste."
@@ -888,6 +908,18 @@ msgctxt "Profiles|Core|Permissions"
 msgid "Manage Users"
 msgstr "Valdyti vartotojus"
 
+#. Default: "Many groups?"
+#: src/profiles/core/controlpanels/usergroup.json:20
+msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgid "Many groups?"
+msgstr ""
+
+#. Default: "Many users?"
+#: src/profiles/core/controlpanels/usergroup.json:15
+msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgid "Many users?"
+msgstr ""
+
 #. Default: "Matches all conditions"
 #: src/profiles/core/catalog.json:293
 msgctxt "Profiles|Core|Catalog"
@@ -904,7 +936,7 @@ msgid "Matches any condition"
 msgstr "Atitinka bet kurį"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.ts:55
+#: src/routes/authentication/authentication.ts:56
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Missing credentials"
 msgstr "Trūksta prisijungimo duomenų"
@@ -1287,6 +1319,12 @@ msgstr "Ieškomas tekstas"
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Secure"
 msgstr "Saugus"
+
+#. Default: "Security"
+#: src/profiles/core/controlpanels/security.json:3
+msgctxt "Profiles|Core|Controlpanels|Security"
+msgid "Security"
+msgstr ""
 
 #. Default: "Select an image that will be used in listing and teaser blocks."
 #: src/profiles/core/behaviors/preview_image_link.json:16
@@ -1714,6 +1752,18 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Use '../' to navigate to parent objects."
 msgstr "Naudokite '../', kad pereitumėte prie pirminių objektų."
 
+#. Default: "Use email address as login name"
+#: src/profiles/core/controlpanels/security.json:15
+msgctxt "Profiles|Core|Controlpanels|Security"
+msgid "Use email address as login name"
+msgstr ""
+
+#. Default: "User and Group Settings"
+#: src/profiles/core/controlpanels/usergroup.json:3
+msgctxt "Profiles|Core|Controlpanels|Usergroup"
+msgid "User and Group Settings"
+msgstr ""
+
 #. Default: "User created"
 #: src/profiles/core/vocabularies/events.json:18
 msgctxt "Profiles|Core|Vocabularies|Events"
@@ -1727,7 +1777,7 @@ msgid "User doesn’t exist or invalid credentials."
 msgstr "Vartotojas neegzistuoja arba neteisingi prisijungimo duomenys."
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.ts:125
+#: src/routes/authentication/authentication.ts:127
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "User is not logged in."
 msgstr "Vartotojas nėra prisijungęs."
@@ -1835,8 +1885,8 @@ msgid "Workflow state changed"
 msgstr ""
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.ts:77
-#: src/routes/authentication/authentication.ts:91
+#: src/routes/authentication/authentication.ts:79
+#: src/routes/authentication/authentication.ts:93
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Wrong login and/or password."
 msgstr "Neteisingas prisijungimas ir (arba) slaptažodis."
