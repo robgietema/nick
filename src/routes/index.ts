@@ -30,6 +30,7 @@ import system from './system/system';
 import translations from './translations/translations';
 import types from './types/types';
 import users from './users/users';
+import userschema from './userschema/userschema';
 import vocabularies from './vocabularies/vocabularies';
 import workflow from './workflow/workflow';
 
@@ -60,6 +61,7 @@ export default [
   ...translations,
   ...types,
   ...users,
+  ...userschema,
   ...vocabularies,
   ...workflow,
   ...content, // Always keep the content routes last since this is the fallback

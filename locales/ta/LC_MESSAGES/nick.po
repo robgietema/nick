@@ -349,6 +349,12 @@ msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Change Note"
 msgstr "மாற்றக் குறிப்பு"
 
+#. Default: "Confirm password"
+#: src/routes/userschema/userschema.ts:103
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Confirm password"
+msgstr ""
+
 #. Default: "Contact"
 #: src/profiles/core/actions.json:76
 msgctxt "Profiles|Core|Actions"
@@ -439,12 +445,14 @@ msgid "Debug"
 msgstr "பிழைத்திருத்தம் (Debug)"
 
 #. Default: "Default"
+#: src/routes/userschema/userschema.ts:21
+#: src/routes/userschema/userschema.ts:58
 #: src/profiles/core/types/image.json:13
 #: src/profiles/core/types/file.json:13
 #: src/profiles/core/behaviors/versioning.json:10
 #: src/profiles/core/behaviors/preview_image_link.json:10
 #: src/profiles/core/behaviors/basic.json:10
-msgctxt "Profiles|Core|Types|Image"
+msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Default"
 msgstr "இயல்புநிலை"
 
@@ -542,6 +550,13 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Effective date"
 msgstr "நடைமுறைத் தேதி"
 
+#. Default: "Email"
+#: src/routes/userschema/userschema.ts:37
+#: src/routes/userschema/userschema.ts:81
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Email"
+msgstr ""
+
 #. Default: "Enables Volto Blocks support"
 #: src/profiles/core/behaviors/blocks.json:4
 msgctxt "Profiles|Core|Behaviors|Blocks"
@@ -553,6 +568,25 @@ msgstr "Volto Blocks ஆதரவை இயக்குகிறது"
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Enter a comment that describes the changes you made."
 msgstr "நீங்கள் செய்த மாற்றங்களை விவரிக்கும் கருத்தை உள்ளிடவும்."
+
+#. Default: "Enter a user name, usually something like 'jsmith'. No spaces or special characters. Usernames and passwords are case sensitive, make sure the caps lock key is not enabled. This is the name used to log in."
+#: src/routes/userschema/userschema.ts:108
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Enter a user name, usually something like 'jsmith'. No spaces or special characters. Usernames and passwords are case sensitive, make sure the caps lock key is not enabled. This is the name used to log in."
+msgstr ""
+
+#. Default: "Enter full name, for example, John Smith."
+#: src/routes/userschema/userschema.ts:27
+#: src/routes/userschema/userschema.ts:71
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Enter full name, for example, John Smith."
+msgstr ""
+
+#. Default: "Enter your new password."
+#: src/routes/userschema/userschema.ts:94
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Enter your new password."
+msgstr ""
 
 #. Default: "Equals"
 #: src/profiles/core/catalog.json:57
@@ -635,6 +669,13 @@ msgstr "கோப்புறை போன்ற"
 msgctxt "Routes|Email|Email.ts"
 msgid "From and message are required fields."
 msgstr "அனுப்புநர் மற்றும் செய்தி கட்டாய புலங்கள்."
+
+#. Default: "Full Name"
+#: src/routes/userschema/userschema.ts:30
+#: src/routes/userschema/userschema.ts:74
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Full Name"
+msgstr ""
 
 #. Default: "Gives the ability to rename an item from its edit form."
 #: src/profiles/core/behaviors/short_name.json:4
@@ -955,6 +996,12 @@ msgctxt "Profiles|Core|Types|Page"
 msgid "Page"
 msgstr "பக்கம்"
 
+#. Default: "Password"
+#: src/routes/userschema/userschema.ts:95
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Password"
+msgstr ""
+
 #. Default: "Password reset request"
 #: src/routes/users/users.ts:98
 #: src/routes/users/users.ts:224
@@ -1114,6 +1161,12 @@ msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
 msgstr ""
 
+#. Default: "Re-enter the password. Make sure the passwords are identical."
+#: src/routes/userschema/userschema.ts:100
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Re-enter the password. Make sure the passwords are identical."
+msgstr ""
+
 #. Default: "Reader"
 #: src/profiles/core/roles.json:21
 msgctxt "Profiles|Core|Roles"
@@ -1240,6 +1293,12 @@ msgstr "பாதுகாப்பான"
 msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Select an image that will be used in listing and teaser blocks."
 msgstr "பட்டியல் மற்றும் டீஸர் தொகுதிகளில் பயன்படுத்தப்படும் படத்தைத் தேர்ந்தெடுக்கவும்."
+
+#. Default: "Send a confirmation mail with a link to set the password"
+#: src/routes/userschema/userschema.ts:88
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Send a confirmation mail with a link to set the password"
+msgstr ""
 
 #. Default: "Send back"
 #: src/profiles/core/workflows.json:52
@@ -1691,6 +1750,12 @@ msgctxt "Profiles|Core|Vocabularies|Events"
 msgid "User removed"
 msgstr ""
 
+#. Default: "Username"
+#: src/routes/userschema/userschema.ts:111
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "Username"
+msgstr ""
+
 #. Default: "Username for authentication to your email server. Not required unless you are using ESMTP."
 #: src/profiles/core/controlpanels/mail.json:54
 msgctxt "Profiles|Core|Controlpanels|Mail"
@@ -1727,6 +1792,13 @@ msgstr "அனைவருக்கும் தெரியும், உரி
 msgctxt "Profiles|Core|Workflows"
 msgid "Waiting to be reviewed, not editable by the owner."
 msgstr "மதிப்பாய்வு செய்ய காத்திருக்கிறது, உரிமையாளரால் திருத்த முடியாது."
+
+#. Default: "We will use this address if you need to recover your password"
+#: src/routes/userschema/userschema.ts:34
+#: src/routes/userschema/userschema.ts:78
+msgctxt "Routes|Userschema|Userschema.ts"
+msgid "We will use this address if you need to recover your password"
+msgstr ""
 
 #. Default: "When this date is reached, the content will no longer be visible in listings and searches."
 #: src/profiles/core/behaviors/dates.json:21

@@ -76,6 +76,7 @@
 - Add events vocabulary @robgietema
 - Store and revoke user tokens @robgietema
 - Add api limiter to email notification endpoint @robgietema
+- Add @userschema endpoints @robgietema
 
 ### Bugfix
 
