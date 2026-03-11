@@ -76,7 +76,7 @@ async function main() {
               `${metadata.id.padEnd(50)}${(profile
                 ? profile.version
                 : 'Not found'
-              ).padEnd(10)}${metadata.version.padEnd(10)}`,
+              ).padEnd(10)}${`${metadata.version}`.padEnd(10)}`,
             );
             break;
           case 'upgrade':

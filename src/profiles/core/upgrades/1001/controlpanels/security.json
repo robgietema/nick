@@ -1,0 +1,25 @@
+{
+  "id": "security",
+  "title:i18n": "Security",
+  "group": "Security",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["use_email_as_login"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "use_email_as_login": {
+        "title:i18n": "Use email address as login name",
+        "description:i18n": "Allows users to login with their email address instead of specifying a separate login name.",
+        "type": "boolean"
+      }
+    },
+    "required": []
+  },
+  "data": {
+    "use_email_as_login": false
+  }
+}

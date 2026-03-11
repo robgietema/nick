@@ -1,0 +1,31 @@
+{
+  "id": "usergroup",
+  "title:i18n": "User and Group Settings",
+  "group": "Users",
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["many_groups", "many_users"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "many_users": {
+        "title:i18n": "Many users?",
+        "description:i18n": "Determines if your site is optimized for small or large sites. In environments with a lot of users it can be very slow or impossible to build a list all users. This option tunes the user interface and behaviour for this case by allowing you to search for users instead of listing all of them.",
+        "type": "boolean"
+      },
+      "many_groups": {
+        "title:i18n": "Many groups?",
+        "description:i18n": "Determines if your site is optimized for small or large sites. In environments with a lot of groups it can be very slow or impossible to build a list all groups. This option tunes the user interface and behaviour for this case by allowing you to search for groups instead of listing all of them.",
+        "type": "boolean"
+      }
+    },
+    "required": []
+  },
+  "data": {
+    "many_users": false,
+    "many_groups": false
+  }
+}
