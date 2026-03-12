@@ -29,7 +29,7 @@ export default [
         trx,
       );
       const groups = await Group.fetchAll(
-        req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
+        { id: ['like', `%${req.query.search}%`] },
         { order: 'title', related: '_roles' },
         trx,
       );
