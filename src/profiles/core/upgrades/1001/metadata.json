@@ -2,5 +2,6 @@
   "id": "@robgietema/nick:core",
   "title": "Nick Core",
   "description": "Core functionality of Nick",
-  "version": 1001
+  "version": 1001,
+  "upgrade": "Add security and usergroup control panels."
 }
