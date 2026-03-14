@@ -81,6 +81,7 @@
 - Check username or email on login based on controlpanel @robgietema
 - Add principals endpoint @robgietema
 - Add custom userschema to config @robgietema
+- Add custom userschema to endpoints @robgietema
 
 ### Bugfix
 

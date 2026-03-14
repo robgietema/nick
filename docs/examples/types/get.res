@@ -170,6 +170,5 @@ Content-Type: application/json
       "description": "The JSON representation of the object blocks layout. Must be a JSON array."
     }
   },
-  "layouts": [],
   "title": "Page"
 }

@@ -5,6 +5,7 @@
 
 // @ts-expect-error bcrypt-promise does not have types
 import bcrypt from 'bcrypt-promise';
+import { omit } from 'es-toolkit/object';
 import jwt from 'jsonwebtoken';
 
 import { Controlpanel } from '../../models/controlpanel/controlpanel';
@@ -16,6 +17,8 @@ import type { Knex } from 'knex';
 import type { Request } from '../../types';
 
 import config from '../../helpers/config/config';
+
+const userFields = ['id', 'fullname', 'email'];
 
 export default [
   {
@@ -192,6 +195,15 @@ export default [
           id: req.body.username,
           fullname: req.body.fullname,
           email: req.body.email,
+          json: omit(req.body, [
+            ...userFields,
+            'password',
+            'roles',
+            'groups',
+            'username',
+            'fullname',
+            'email',
+          ]),
           password: manageUsers ? password : '',
           _roles: manageUsers ? req.body.roles || [] : [],
           _groups: manageUsers ? req.body.groups || [] : [],
@@ -250,6 +262,15 @@ export default [
           id: req.body.username,
           fullname: req.body.fullname,
           email: req.body.email,
+          json: omit(req.body, [
+            ...userFields,
+            'password',
+            'roles',
+            'groups',
+            'username',
+            'fullname',
+            'email',
+          ]),
           _roles: req.body.roles,
           _groups: req.body.groups,
         },

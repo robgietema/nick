@@ -5,6 +5,8 @@
       "id": "admin",
       "password": "admin",
       "fullname": "Admin",
+      "location": "World",
+      "description": "Admin user",
       "email": "admin@example.com",
       "roles": ["Administrator"]
     }

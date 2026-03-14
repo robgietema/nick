@@ -8,6 +8,8 @@ import { stripI18n } from '../../helpers/i18n/i18n';
 
 import { User } from '../../models/user/user';
 
+const userFields = ['id', 'fullname', 'email'];
+
 export const seedUser = async (
   trx: Knex.Transaction,
   profilePath: string,
@@ -22,7 +24,18 @@ export const seedUser = async (
         // Insert user
         await User.create(
           {
-            ...omit(user, ['password', 'roles', 'groups']),
+            id: user.id,
+            fullname: user.fullname,
+            email: user.email,
+            json: omit(user, [
+              ...userFields,
+              'password',
+              'roles',
+              'groups',
+              'id',
+              'fullname',
+              'email',
+            ]),
             password: await bcrypt.hash(user.password, 10),
             _roles: user.roles,
             _groups: user.groups,

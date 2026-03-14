@@ -76,6 +76,7 @@ export class User extends Model {
       email: self.email,
       roles: self._roles ? self._roles.map((role: any) => role.id) : [],
       groups: self._groups ? self._groups.map((group: any) => group.id) : [],
+      ...self.json,
     } as Json;
   }
 

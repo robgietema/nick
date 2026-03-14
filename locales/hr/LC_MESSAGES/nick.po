@@ -1021,7 +1021,7 @@ msgstr "Nije dopušteno"
 
 #. Default: "Not found."
 #: src/routes/vocabularies/vocabularies.ts:55
-#: src/routes/users/users.ts:135
+#: src/routes/users/users.ts:138
 #: src/routes/types/types.ts:38
 #: src/routes/groups/groups.ts:29
 #: src/routes/email/email.ts:64
@@ -1062,15 +1062,15 @@ msgid "Password"
 msgstr ""
 
 #. Default: "Password reset request"
-#: src/routes/users/users.ts:98
-#: src/routes/users/users.ts:224
+#: src/routes/users/users.ts:101
+#: src/routes/users/users.ts:236
 msgctxt "Routes|Users|Users.ts"
 msgid "Password reset request"
 msgstr "Zahtjev za poništavanje lozinke"
 
 #. Default: "Password should be at least 8 characters long."
-#: src/routes/users/users.ts:35
-#: src/routes/users/users.ts:180
+#: src/routes/users/users.ts:38
+#: src/routes/users/users.ts:183
 msgctxt "Routes|Users|Users.ts"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1220,7 +1220,7 @@ msgid "Publishing Date"
 msgstr "Datum objave"
 
 #. Default: "Query must be at least 2 characters long."
-#: src/routes/users/users.ts:151
+#: src/routes/users/users.ts:154
 #: src/routes/principals/principals.ts:23
 #: src/routes/groups/groups.ts:45
 msgctxt "Routes|Users|Users.ts"
@@ -1496,7 +1496,7 @@ msgid "System group"
 msgstr "Sistemska grupa"
 
 #. Default: "System users"
-#: src/routes/users/users.ts:275
+#: src/routes/users/users.ts:296
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr "Sistemski korisnici"
@@ -1585,8 +1585,8 @@ msgid "The end date and time of an event"
 msgstr "Datum i vrijeme završetka događaja"
 
 #. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
-#: src/routes/users/users.ts:99
-#: src/routes/users/users.ts:225
+#: src/routes/users/users.ts:102
+#: src/routes/users/users.ts:237
 msgctxt "Routes|Users|Users.ts"
 msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 msgstr ""
@@ -1814,7 +1814,7 @@ msgid "User created"
 msgstr ""
 
 #. Default: "User doesn’t exist or invalid credentials."
-#: src/routes/users/users.ts:60
+#: src/routes/users/users.ts:63
 msgctxt "Routes|Users|Users.ts"
 msgid "User doesn’t exist or invalid credentials."
 msgstr "Korisnik ne postoji ili neispravne vjerodajnice."
@@ -1960,7 +1960,7 @@ msgid "You can’t delete system groups."
 msgstr "Ne možete izbrisati sistemske grupe."
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:274
+#: src/routes/users/users.ts:295
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr "Ne možete izbrisati sistemske korisnike."
@@ -1979,13 +1979,13 @@ msgid "You don’t have permission to unlock this document."
 msgstr "Nemate dopuštenje za otključavanje ovog dokumenta."
 
 #. Default: "You don’t have permissions to add a user."
-#: src/routes/users/users.ts:173
+#: src/routes/users/users.ts:176
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to add a user."
 msgstr ""
 
 #. Default: "You don’t have permissions to view this user."
-#: src/routes/users/users.ts:123
+#: src/routes/users/users.ts:126
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to view this user."
 msgstr ""

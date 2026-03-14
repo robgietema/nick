@@ -4,7 +4,9 @@ Content-Type: application/json
 [
   {
     "@id": "http://localhost:8080/@users/admin",
+    "description": "Admin user",
     "id": "admin",
+    "location": "World",
     "fullname": "Admin",
     "email": "admin@example.com",
     "roles": [
