@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 import events from './src/events';
+import userschema from './src/develop/nick/src/constants/userschema';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -76,4 +77,5 @@ export const config = {
       },
     },
   },
+  userschema,
 };
