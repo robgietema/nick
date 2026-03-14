@@ -1,4 +1,5 @@
 import events from '../../events';
+import type { Request } from '../../types';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -69,6 +70,7 @@ export type ConfigSettings = {
     files: number;
     api: number;
   };
+  userschema?: (req: Request) => any;
 };
 
 export type ConfigType = InstanceType<typeof Config>;
@@ -167,6 +169,7 @@ class Config {
           },
         },
       },
+      userschema: config.userschema,
     };
     if (!Config.instance) {
       Config.instance = this;

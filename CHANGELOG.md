@@ -80,6 +80,7 @@
 - Add security and usergroup controlpanel @robgietema
 - Check username or email on login based on controlpanel @robgietema
 - Add principals endpoint @robgietema
+- Add custom userschema to config @robgietema
 
 ### Bugfix
 
@@ -174,6 +175,7 @@
 - Refactor ai endpoints with own permission @robgietema
 - Log error if document already shared @robgietema
 - Convert all files to typescript @robgietema
+- Don't expose layout and behaviors on schema if empty @robgietema
 
 ### Documentation
 

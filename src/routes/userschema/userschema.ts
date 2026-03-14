@@ -6,6 +6,9 @@
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
+import { mergeSchemas } from '../../helpers/schema/schema';
+import config from '../../helpers/config/config';
+
 export default [
   {
     op: 'get',
@@ -13,34 +16,39 @@ export default [
     permission: 'View',
     client: 'getUserSchema',
     handler: async (req: Request, trx: Knex.Transaction) => {
-      return {
-        json: {
-          fieldsets: [
-            {
-              id: 'default',
-              title: req.i18n('Default'),
-              fields: ['fullname', 'email'],
-            },
-          ],
-          properties: {
-            fullname: {
-              description: req.i18n(
-                'Enter full name, for example, John Smith.',
-              ),
-              title: req.i18n('Full Name'),
-              type: 'string',
-            },
-            email: {
-              description: req.i18n(
-                'We will use this address if you need to recover your password',
-              ),
-              title: req.i18n('Email'),
-              type: 'string',
-              widget: 'email',
-            },
+      const schema = {
+        fieldsets: [
+          {
+            id: 'default',
+            title: req.i18n('Default'),
+            fields: ['fullname', 'email'],
           },
-          required: ['email'],
+        ],
+        properties: {
+          fullname: {
+            description: req.i18n('Enter full name, for example, John Smith.'),
+            title: req.i18n('Full Name'),
+            type: 'string',
+          },
+          email: {
+            description: req.i18n(
+              'We will use this address if you need to recover your password',
+            ),
+            title: req.i18n('Email'),
+            type: 'string',
+            widget: 'email',
+          },
         },
+        required: ['email'],
+      };
+      return {
+        json:
+          config.settings.userschema instanceof Function
+            ? mergeSchemas(
+                { name: 'default', data: schema },
+                { name: 'custom', data: config.settings.userschema(req) },
+              )
+            : schema,
       };
     },
   },

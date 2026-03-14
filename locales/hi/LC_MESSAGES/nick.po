@@ -34,6 +34,12 @@ msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "A related item from which this item is derived."
 msgstr "एक संबंधित आइटम जिससे यह आइटम लिया गया है।"
 
+#. Default: "A short overview of who you are and what you do. Will be displayed on your author page, linked from the items you create."
+#: src/constants/userschema.ts:18
+msgctxt "Constants|Userschema.ts"
+msgid "A short overview of who you are and what you do. Will be displayed on your author page, linked from the items you create."
+msgstr ""
+
 #. Default: "AI"
 #: src/profiles/ai/permissions.json:6
 #: src/profiles/ai/controlpanels/ai.json:3
@@ -324,6 +330,12 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Between dates"
 msgstr "तिथियों के बीच"
 
+#. Default: "Biography"
+#: src/constants/userschema.ts:21
+msgctxt "Constants|Userschema.ts"
+msgid "Biography"
+msgstr ""
+
 #. Default: "Blocks"
 #: src/profiles/core/behaviors/blocks.json:3
 #: src/profiles/core/behaviors/blocks.json:17
@@ -357,7 +369,7 @@ msgid "Change Note"
 msgstr "परिवर्तन नोट"
 
 #. Default: "Confirm password"
-#: src/routes/userschema/userschema.ts:103
+#: src/routes/userschema/userschema.ts:111
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Confirm password"
 msgstr ""
@@ -452,8 +464,9 @@ msgid "Debug"
 msgstr "डिबग (Debug)"
 
 #. Default: "Default"
-#: src/routes/userschema/userschema.ts:21
-#: src/routes/userschema/userschema.ts:58
+#: src/routes/userschema/userschema.ts:23
+#: src/routes/userschema/userschema.ts:66
+#: src/constants/userschema.ts:12
 #: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:10
 #: src/profiles/core/upgrades/1001/controlpanels/security.json:10
 #: src/profiles/core/types/image.json:13
@@ -577,7 +590,7 @@ msgstr "प्रभावी तिथि"
 
 #. Default: "Email"
 #: src/routes/userschema/userschema.ts:37
-#: src/routes/userschema/userschema.ts:81
+#: src/routes/userschema/userschema.ts:89
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Email"
 msgstr ""
@@ -595,20 +608,20 @@ msgid "Enter a comment that describes the changes you made."
 msgstr "एक टिप्पणी दर्ज करें जो आपके द्वारा किए गए परिवर्तनों का वर्णन करती है।"
 
 #. Default: "Enter a user name, usually something like 'jsmith'. No spaces or special characters. Usernames and passwords are case sensitive, make sure the caps lock key is not enabled. This is the name used to log in."
-#: src/routes/userschema/userschema.ts:108
+#: src/routes/userschema/userschema.ts:116
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Enter a user name, usually something like 'jsmith'. No spaces or special characters. Usernames and passwords are case sensitive, make sure the caps lock key is not enabled. This is the name used to log in."
 msgstr ""
 
 #. Default: "Enter full name, for example, John Smith."
-#: src/routes/userschema/userschema.ts:27
-#: src/routes/userschema/userschema.ts:71
+#: src/routes/userschema/userschema.ts:29
+#: src/routes/userschema/userschema.ts:79
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Enter full name, for example, John Smith."
 msgstr ""
 
 #. Default: "Enter your new password."
-#: src/routes/userschema/userschema.ts:94
+#: src/routes/userschema/userschema.ts:102
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Enter your new password."
 msgstr ""
@@ -697,7 +710,7 @@ msgstr "प्रेषक और संदेश आवश्यक फ़ी�
 
 #. Default: "Full Name"
 #: src/routes/userschema/userschema.ts:30
-#: src/routes/userschema/userschema.ts:74
+#: src/routes/userschema/userschema.ts:82
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Full Name"
 msgstr ""
@@ -714,6 +727,12 @@ msgstr "संपादन फॉर्म से किसी आइटम क�
 msgctxt "Profiles|Core|Actions"
 msgid "History"
 msgstr "इतिहास"
+
+#. Default: "Home Page"
+#: src/constants/userschema.ts:29
+msgctxt "Constants|Userschema.ts"
+msgid "Home Page"
+msgstr ""
 
 #. Default: "Identifier"
 #: src/profiles/core/behaviors/short_name.json:16
@@ -842,8 +861,9 @@ msgid "Lets you upload a file to the site."
 msgstr "आपको साइट पर फ़ाइल अपलोड करने देता है।"
 
 #. Default: "Location"
+#: src/constants/userschema.ts:37
 #: src/profiles/core/catalog.json:7
-msgctxt "Profiles|Core|Catalog"
+msgctxt "Constants|Userschema.ts"
 msgid "Location"
 msgstr "स्थान"
 
@@ -1036,7 +1056,7 @@ msgid "Page"
 msgstr "पृष्ठ"
 
 #. Default: "Password"
-#: src/routes/userschema/userschema.ts:95
+#: src/routes/userschema/userschema.ts:103
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Password"
 msgstr ""
@@ -1118,6 +1138,12 @@ msgstr "Plone इस पते का उपयोग ईमेल वापस�
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Plone generates email using this name as the email sender."
 msgstr "Plone इस नाम का उपयोग ईमेल प्रेषक के रूप में करके ईमेल उत्पन्न करता है।"
+
+#. Default: "Portrait"
+#: src/constants/userschema.ts:42
+msgctxt "Constants|Userschema.ts"
+msgid "Portrait"
+msgstr ""
 
 #. Default: "Preferences"
 #: src/profiles/core/actions.json:83
@@ -1202,7 +1228,7 @@ msgid "Query must be at least 2 characters long."
 msgstr ""
 
 #. Default: "Re-enter the password. Make sure the passwords are identical."
-#: src/routes/userschema/userschema.ts:100
+#: src/routes/userschema/userschema.ts:108
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Re-enter the password. Make sure the passwords are identical."
 msgstr ""
@@ -1342,7 +1368,7 @@ msgid "Select an image that will be used in listing and teaser blocks."
 msgstr "एक छवि चुनें जिसका उपयोग सूची और टीज़र ब्लॉक में किया जाएगा।"
 
 #. Default: "Send a confirmation mail with a link to set the password"
-#: src/routes/userschema/userschema.ts:88
+#: src/routes/userschema/userschema.ts:96
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Send a confirmation mail with a link to set the password"
 msgstr ""
@@ -1516,6 +1542,12 @@ msgstr "ऑब्जेक्ट ब्लॉक जानकारी का JS
 msgctxt "Profiles|Core|Behaviors|Blocks"
 msgid "The JSON representation of the object blocks layout. Must be a JSON array."
 msgstr "ऑब्जेक्ट ब्लॉक लेआउट का JSON प्रतिनिधित्व। एक JSON सरणी होनी चाहिए।"
+
+#. Default: "The URL for your external home page, if you have one."
+#: src/constants/userschema.ts:26
+msgctxt "Constants|Userschema.ts"
+msgid "The URL for your external home page, if you have one."
+msgstr ""
 
 #. Default: "The address of your local SMTP (outgoing email) server. Usually 'localhost', unless you use an external server to send email."
 #: src/profiles/core/controlpanels/mail.json:36
@@ -1812,7 +1844,7 @@ msgid "User removed"
 msgstr ""
 
 #. Default: "Username"
-#: src/routes/userschema/userschema.ts:111
+#: src/routes/userschema/userschema.ts:119
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Username"
 msgstr ""
@@ -1856,7 +1888,7 @@ msgstr "समीक्षा की प्रतीक्षा में, स�
 
 #. Default: "We will use this address if you need to recover your password"
 #: src/routes/userschema/userschema.ts:34
-#: src/routes/userschema/userschema.ts:78
+#: src/routes/userschema/userschema.ts:86
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "We will use this address if you need to recover your password"
 msgstr ""
@@ -1956,6 +1988,18 @@ msgstr ""
 #: src/routes/users/users.ts:123
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to view this user."
+msgstr ""
+
+#. Default: "Your location - either city and country - or in a company setting, where your office is located."
+#: src/constants/userschema.ts:34
+msgctxt "Constants|Userschema.ts"
+msgid "Your location - either city and country - or in a company setting, where your office is located."
+msgstr ""
+
+#. Default: "Your portrait photo."
+#: src/constants/userschema.ts:41
+msgctxt "Constants|Userschema.ts"
+msgid "Your portrait photo."
 msgstr ""
 
 #. Default: "boolean"

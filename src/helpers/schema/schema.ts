@@ -65,8 +65,8 @@ export function mergeSchemas(
     fieldsets,
     properties,
     required,
-    behaviors,
-    layouts,
+    ...(behaviors.length > 0 ? { behaviors } : {}),
+    ...(layouts.length > 0 ? { layouts } : {}),
   };
 }
 
