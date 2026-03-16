@@ -82,6 +82,7 @@
 - Add principals endpoint @robgietema
 - Add custom userschema to config @robgietema
 - Add custom userschema to endpoints @robgietema
+- Add aliases endpoints @robgietema
 
 ### Bugfix
 

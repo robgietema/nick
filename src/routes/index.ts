@@ -5,6 +5,7 @@
 
 import actions from './actions/actions';
 import ai from './ai/ai';
+import aliases from './aliases/aliases';
 import authentication from './authentication/authentication';
 import breadcrumbs from './breadcrumbs/breadcrumbs';
 import catalog from './catalog/catalog';
@@ -38,6 +39,7 @@ import workflow from './workflow/workflow';
 export default [
   ...actions,
   ...ai,
+  ...aliases,
   ...authentication,
   ...breadcrumbs,
   ...catalog,

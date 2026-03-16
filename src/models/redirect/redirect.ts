@@ -4,6 +4,7 @@
  */
 
 import type { Knex } from 'knex';
+import type { Json, Request } from '../../types';
 import { Model } from '../../models/_model/_model';
 import { Document } from '../../models/document/document';
 
@@ -30,6 +31,22 @@ export class Redirect extends Model {
         },
       },
     };
+  }
+
+  /**
+   * Returns JSON data.
+   * @method toJson
+   * @param {Request} req Request object.
+   * @returns {Json} JSON object.
+   */
+  toJson(req: Request): Json {
+    const self: any = this;
+    return {
+      path: self.path,
+      manual: self.manual,
+      datetime: self.datetime,
+      'redirect-to': self._document ? self._document.path : null,
+    } as Json;
   }
 
   /**
