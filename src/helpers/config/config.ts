@@ -34,11 +34,11 @@ class Config {
   constructor() {
     this.settings = {
       connection: {
-        port: parseInt(DB_PORT || config.connection.port || '5432'),
-        host: DB_HOST || config.connection.host || 'localhost',
-        database: DB_NAME || config.connection.database || 'nick',
-        user: DB_USER || config.connection.user || 'nick',
-        password: DB_PASSWORD || config.connection.password || 'nick',
+        port: parseInt(DB_PORT || config.connection?.port || '5432'),
+        host: DB_HOST || config.connection?.host || 'localhost',
+        database: DB_NAME || config.connection?.database || 'nick',
+        user: DB_USER || config.connection?.user || 'nick',
+        password: DB_PASSWORD || config.connection?.password || 'nick',
       },
       blobsDir:
         BLOBS_DIR || config.blobsDir || `${__dirname}/../../../var/blobstorage`,
@@ -50,15 +50,17 @@ class Config {
       systemGroups: config.systemGroups || ['Owner'],
       cors: {
         allowOrigin:
-          ALLOWED_ORIGINS || config.cors.allowOrigin || 'http://localhost:3000',
+          ALLOWED_ORIGINS ||
+          config.cors?.allowOrigin ||
+          'http://localhost:3000',
         allowMethods:
-          config.cors.allowMethods || 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+          config.cors?.allowMethods || 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
         allowHeaders:
-          config.cors.allowHeaders || 'Content-Type,Authorization,Accept',
-        allowCredentials: config.cors.allowCredentials ?? true,
+          config.cors?.allowHeaders || 'Content-Type,Authorization,Accept',
+        allowCredentials: config.cors?.allowCredentials ?? true,
         exposeHeaders:
-          config.cors.exposeHeaders || 'Content-Length,Content-Type',
-        maxAge: config.cors.maxAge || 3600,
+          config.cors?.exposeHeaders || 'Content-Length,Content-Type',
+        maxAge: config.cors?.maxAge || 3600,
       },
       imageScales: config.imageScales || {
         large: [768, 768],
@@ -77,9 +79,11 @@ class Config {
         `${__dirname}/src/profiles/default`,
       ],
       rateLimit: {
-        api: parseInt(API_RATE_LIMIT || config.rateLimit.api || '100'),
-        auth: parseInt(AUTH_RATE_LIMIT || config.rateLimit.auth || '5'),
-        trustProxy: parseInt(TRUST_PROXY || config.rateLimit.trustProxy || '1'),
+        api: parseInt(API_RATE_LIMIT || config.rateLimit?.api || '100'),
+        auth: parseInt(AUTH_RATE_LIMIT || config.rateLimit?.auth || '5'),
+        trustProxy: parseInt(
+          TRUST_PROXY || config.rateLimit?.trustProxy || '1',
+        ),
       },
       events: config.events || events,
       routes: config.routes || false,
