@@ -1,12 +1,12 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { config } from './config.js';
+import config from './src/helpers/config/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const knexSettings = {
   client: 'pg',
-  connection: config.connection,
+  connection: config.settings.connection,
   pool: {
     min: 2,
     max: 10,
