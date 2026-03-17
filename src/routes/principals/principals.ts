@@ -18,18 +18,20 @@ export default [
     client: 'getPrincipals',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
-      if (!req.query.search || req.query.search.length < 2) {
+      const query =
+        typeof req.query.search === 'string' ? req.query.search : undefined;
+      if (!query || query.length < 2) {
         throw new RequestException(400, {
           error: req.i18n('Query must be at least 2 characters long.'),
         });
       }
       const users = await User.fetchAll(
-        { id: ['like', `%${req.query.search}%`] },
+        { id: ['like', `%${query}%`] },
         { order: 'fullname', related: '[_roles, _groups]' },
         trx,
       );
       const groups = await Group.fetchAll(
-        { id: ['like', `%${req.query.search}%`] },
+        { id: ['like', `%${query}%`] },
         { order: 'title', related: '_roles' },
         trx,
       );

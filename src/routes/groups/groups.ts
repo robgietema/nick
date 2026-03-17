@@ -40,13 +40,15 @@ export default [
     client: 'getGroups',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
-      if (req.query.query && req.query.query.length < 2) {
+      const query =
+        typeof req.query.query === 'string' ? req.query.query : undefined;
+      if (query && query.length < 2) {
         throw new RequestException(400, {
           error: req.i18n('Query must be at least 2 characters long.'),
         });
       }
       const groups = await Group.fetchAll(
-        req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
+        query ? { id: ['like', `%${query}%`] } : {},
         { order: 'title', related: '_roles' },
         trx,
       );

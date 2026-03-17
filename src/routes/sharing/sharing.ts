@@ -27,7 +27,7 @@ import type { Knex } from 'knex';
 async function fetchPrincipals(
   roles: string[],
   document: any,
-  query: string,
+  query: string | undefined,
   Model: any,
   title: string,
   type: string,
@@ -103,7 +103,7 @@ export default [
       const users = await fetchPrincipals(
         roles,
         req.document,
-        req.query.search,
+        typeof req.query.search === 'string' ? req.query.search : undefined,
         User,
         'fullname',
         'user',
@@ -114,7 +114,7 @@ export default [
       const groups = await fetchPrincipals(
         roles,
         req.document,
-        req.query.search,
+        typeof req.query.search === 'string' ? req.query.search : undefined,
         Group,
         'title',
         'group',

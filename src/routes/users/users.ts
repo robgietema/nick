@@ -149,13 +149,15 @@ export default [
     client: 'getUsers',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
-      if (req.query.query && req.query.query.length < 2) {
+      const query =
+        typeof req.query.query === 'string' ? req.query.query : undefined;
+      if (query && query.length < 2) {
         throw new RequestException(400, {
           error: req.i18n('Query must be at least 2 characters long.'),
         });
       }
       const users = await User.fetchAll(
-        req.query.query ? { id: ['like', `%${req.query.query}%`] } : {},
+        query ? { id: ['like', `%${query}%`] } : {},
         { order: 'fullname', related: '[_roles, _groups]' },
         trx,
       );
