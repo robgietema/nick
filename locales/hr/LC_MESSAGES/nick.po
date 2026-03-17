@@ -1063,14 +1063,14 @@ msgstr ""
 
 #. Default: "Password reset request"
 #: src/routes/users/users.ts:101
-#: src/routes/users/users.ts:236
+#: src/routes/users/users.ts:238
 msgctxt "Routes|Users|Users.ts"
 msgid "Password reset request"
 msgstr "Zahtjev za poništavanje lozinke"
 
 #. Default: "Password should be at least 8 characters long."
 #: src/routes/users/users.ts:38
-#: src/routes/users/users.ts:183
+#: src/routes/users/users.ts:185
 msgctxt "Routes|Users|Users.ts"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1220,9 +1220,9 @@ msgid "Publishing Date"
 msgstr "Datum objave"
 
 #. Default: "Query must be at least 2 characters long."
-#: src/routes/users/users.ts:154
-#: src/routes/principals/principals.ts:23
-#: src/routes/groups/groups.ts:45
+#: src/routes/users/users.ts:156
+#: src/routes/principals/principals.ts:25
+#: src/routes/groups/groups.ts:47
 msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
 msgstr ""
@@ -1490,13 +1490,13 @@ msgid "Submit for publication"
 msgstr "Pošalji za objavu"
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:119
+#: src/routes/groups/groups.ts:121
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr "Sistemska grupa"
 
 #. Default: "System users"
-#: src/routes/users/users.ts:296
+#: src/routes/users/users.ts:298
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr "Sistemski korisnici"
@@ -1586,7 +1586,7 @@ msgstr "Datum i vrijeme završetka događaja"
 
 #. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 #: src/routes/users/users.ts:102
-#: src/routes/users/users.ts:237
+#: src/routes/users/users.ts:239
 msgctxt "Routes|Users|Users.ts"
 msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 msgstr ""
@@ -1954,13 +1954,13 @@ msgid "You are not authorized to access this resource."
 msgstr "Nemate ovlaštenje za pristup ovom resursu."
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:118
+#: src/routes/groups/groups.ts:120
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr "Ne možete izbrisati sistemske grupe."
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:295
+#: src/routes/users/users.ts:297
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr "Ne možete izbrisati sistemske korisnike."
@@ -1979,7 +1979,7 @@ msgid "You don’t have permission to unlock this document."
 msgstr "Nemate dopuštenje za otključavanje ovog dokumenta."
 
 #. Default: "You don’t have permissions to add a user."
-#: src/routes/users/users.ts:176
+#: src/routes/users/users.ts:178
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to add a user."
 msgstr ""
