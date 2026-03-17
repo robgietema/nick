@@ -10,6 +10,7 @@ import { knex } from './src/helpers/knex/knex';
 import type { Knex } from 'knex';
 
 import * as url from './src/helpers/url/url';
+import * as mail from './src/helpers/mail/mail';
 import { addToken, removeToken } from './src/helpers/auth/auth';
 
 declare global {
@@ -37,6 +38,9 @@ vi.spyOn(url, 'getUrlByPath').mockImplementation(
 vi.spyOn(url, 'getRootUrl').mockImplementation(
   (req) => 'http://localhost:8080',
 );
+
+// Mock send mail
+vi.spyOn(mail, 'sendMail').mockImplementation(() => Promise.resolve(undefined));
 
 // Mock JWT sign
 vi.spyOn(jwt, 'sign').mockReturnValue(

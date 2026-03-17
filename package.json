@@ -28,7 +28,7 @@
     "client": "tsx src/client_test.ts",
     "coverage": "vitest --coverage",
     "convert": "tsx scripts/convert.ts",
-    "create-config": "cp -n config.js.sample config.js",
+    "create-config": "cp -n config.ts.sample config.ts",
     "docs": "cd docs && bundle exec jekyll serve --baseurl=\"\"",
     "docs:install": "cd docs && bundler install",
     "i18n": "tsx scripts/i18n.ts",
@@ -89,7 +89,6 @@
   "dependencies": {
     "@formatjs/cli": "6.13.3",
     "@formatjs/intl": "4.1.3",
-    "auto-config-loader": "3.0.3",
     "bcrypt": "6.0.0",
     "bcrypt-promise": "2.0.0",
     "du": "1.0.0",

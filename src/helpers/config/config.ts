@@ -1,79 +1,11 @@
 import events from '../../events';
-import type { Request } from '../../types';
+import type { ConfigSettings } from '../../types';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const { config } = await import(`${process.cwd()}/config`);
-
-export type ConfigSettings = {
-  connection: {
-    port: number;
-    host: string;
-    database: string;
-    user: string;
-    password: string;
-  };
-  blobsDir: string;
-  localesDir: string;
-  port: number;
-  secret: string;
-  systemUsers: string[];
-  systemGroups: string[];
-  cors: {
-    allowOrigin: string;
-    allowMethods: string;
-    allowHeaders: string;
-    allowCredentials: boolean;
-    exposeHeaders: string;
-    maxAge: number;
-  };
-  imageScales: Record<string, [number, number]>;
-  frontendUrl: string;
-  prefix: string;
-  userRegistration: boolean;
-  profiles: string[];
-  rateLimit: {
-    api: number;
-    auth: number;
-    trustProxy: number;
-  };
-  events: typeof events;
-  routes: boolean;
-  tasks: boolean;
-  ai: {
-    models: {
-      embed: {
-        name: string;
-        api: string;
-        dimensions: number;
-        minSimilarity: number;
-        enabled: boolean;
-      };
-      llm: {
-        name: string;
-        api: string;
-        contextSize: number;
-        enabled: boolean;
-      };
-      vision: {
-        name: string;
-        api: string;
-        enabled: boolean;
-      };
-    };
-  };
-  behaviors?: Record<string, any>;
-  vocabularies?: Record<string, any>;
-  requestLimit?: {
-    files: number;
-    api: number;
-  };
-  userschema?: (req: Request) => any;
-};
-
 export type ConfigType = InstanceType<typeof Config>;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const {
   ALLOWED_ORIGINS,
@@ -88,7 +20,10 @@ const {
   TRUST_PROXY,
   BLOBS_DIR,
   LOCALES_DIR,
+  REGISTRYCONFIG,
 } = process.env;
+
+const config = (await import(REGISTRYCONFIG || `${process.cwd()}/config`)).nick;
 
 class Config {
   public settings: ConfigSettings;

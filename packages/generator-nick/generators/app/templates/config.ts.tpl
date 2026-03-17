@@ -1,44 +1,31 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 import events from './src/events';
-import userschema from './src/constants/userschema';
+import userschema from './src/develop/nick/src/constants/userschema';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const {
-  ALLOWED_ORIGINS,
-  API_RATE_LIMIT,
-  AUTH_RATE_LIMIT,
-  DB_HOST,
-  DB_PORT,
-  DB_USER,
-  DB_PASSWORD,
-  DB_NAME,
-  SECRET,
-  TRUST_PROXY,
-} = process.env;
-
 export const config = {
   connection: {
-    port: DB_PORT || 5432,
-    host: DB_HOST || 'localhost',
-    database: DB_NAME || 'nick',
-    user: DB_USER || 'nick',
-    password: DB_PASSWORD || 'nick',
+    port: 5432,
+    host: 'localhost',
+    database: '<%= projectName %>',
+    user: '<%= projectName %>',
+    password: '<%= projectName %>',
   },
   blobsDir: `${__dirname}/var/blobstorage`,
-  localesDir: `${__dirname}/locales`,
+  localesDir: `${__dirname}/src/develop/nick/locales`,
   port: 8080,
-  secret: SECRET || 'secret',
+  secret: 'secret',
   systemUsers: ['admin', 'anonymous'],
   systemGroups: ['Owner'],
   cors: {
-    allowOrigin: ALLOWED_ORIGINS || 'http://localhost:3000',
-    allowMethods: 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
-    allowHeaders: 'Content-Type,Authorization,Accept',
+    allowOrigin: '*',
+    allowMethods: '*',
+    allowHeaders: '*',
     allowCredentials: true,
-    exposeHeaders: 'Content-Length,Content-Type',
-    maxAge: 3600,
+    exposeHeaders: '*',
+    maxAge: 3660,
   },
   imageScales: {
     large: [768, 768],
@@ -51,9 +38,10 @@ export const config = {
   },
   frontendUrl: 'http://localhost:3000',
   prefix: '',
-  userRegistration: false,
+  userRegistration: true,
   profiles: [
-    `${__dirname}/src/profiles/core`,
+    `${__dirname}/src/develop/nick/src/profiles/core`,
+    /* `${__dirname}/src/develop/nick/src/profiles/ai`, */
     `${__dirname}/src/profiles/default`,
   ],
   requestLimit: {
@@ -61,11 +49,13 @@ export const config = {
     files: '10mb',
   },
   rateLimit: {
-    api: API_RATE_LIMIT || 100,
-    auth: AUTH_RATE_LIMIT || 5,
-    trustProxy: TRUST_PROXY || 1,
+    api: 100,
+    auth: 5,
+    trustProxy: 1,
   },
   events,
+  routes: false,
+  tasks: false,
   ai: {
     models: {
       embed: {
