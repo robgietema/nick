@@ -27,10 +27,18 @@ const config = REGISTRYCONFIG
   ? (await import(REGISTRYCONFIG)).nick
   : (await import(`${process.cwd()}/config`)).config;
 
+/**
+ * A model for the config.
+ * @class Config
+ */
 class Config {
   public settings: ConfigSettings;
   static instance: ConfigType;
 
+  /**
+   * Construct a Config.
+   * @constructs Config
+   */
   constructor() {
     this.settings = {
       connection: {
