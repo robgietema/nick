@@ -23,7 +23,9 @@ const {
   REGISTRYCONFIG,
 } = process.env;
 
-const config = (await import(REGISTRYCONFIG || `${process.cwd()}/config`)).nick;
+const config = REGISTRYCONFIG
+  ? (await import(REGISTRYCONFIG)).nick
+  : (await import(`${process.cwd()}/config`)).config;
 
 class Config {
   public settings: ConfigSettings;

@@ -18,7 +18,7 @@ const {
   TRUST_PROXY,
 } = process.env;
 
-export const nick = {
+export const config = {
   connection: {
     port: DB_PORT || 5432,
     host: DB_HOST || 'localhost',
