@@ -127,6 +127,8 @@ export type ConfigSettings = {
   routes: boolean;
   tasks: boolean;
   cache: {
+    enabled: boolean;
+    anonymousOnly: boolean;
     policies: {
       alter: CachePolicy;
       manage: CachePolicy;

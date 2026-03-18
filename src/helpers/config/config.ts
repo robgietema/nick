@@ -97,6 +97,8 @@ class Config {
       routes: config.routes || false,
       tasks: config.tasks || false,
       cache: config.cache || {
+        enable: false,
+        anonymousOnly: true,
         policies: {
           alter: {
             method: 'no-cache',
@@ -104,14 +106,12 @@ class Config {
           manage: {
             method: 'no-cache',
           },
+          content: {
+            method: 'no-cache',
+          },
           dynamic: {
             method: 'public',
             maxAge: 10,
-            sMaxAge: 0,
-          },
-          content: {
-            method: 'public',
-            maxAge: 3600,
             sMaxAge: 0,
           },
           resource: {
