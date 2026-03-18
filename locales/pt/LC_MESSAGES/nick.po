@@ -49,8 +49,8 @@ msgstr "IA"
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.ts:19
-#: src/routes/ai/ai.ts:66
-#: src/routes/ai/ai.ts:115
+#: src/routes/ai/ai.ts:67
+#: src/routes/ai/ai.ts:117
 msgctxt "Routes|Related|Related.ts"
 msgid "AI is disabled."
 msgstr "A IA está desativada."
@@ -203,8 +203,8 @@ msgid "Allows users to login with their email address instead of specifying a se
 msgstr ""
 
 #. Default: "Already locked"
-#: src/routes/lock/lock.ts:58
-#: src/routes/lock/lock.ts:110
+#: src/routes/lock/lock.ts:60
+#: src/routes/lock/lock.ts:113
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Already locked"
 msgstr "Já bloqueado"
@@ -369,7 +369,7 @@ msgid "Change Note"
 msgstr "Nota de alteração"
 
 #. Default: "Confirm password"
-#: src/routes/userschema/userschema.ts:111
+#: src/routes/userschema/userschema.ts:113
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Confirm password"
 msgstr ""
@@ -390,13 +390,13 @@ msgid "Contains"
 msgstr "Contém"
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.ts:69
+#: src/routes/controlpanels/controlpanels.ts:71
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content"
 msgstr "Conteúdo"
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.ts:68
+#: src/routes/controlpanels/controlpanels.ts:70
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content Types"
@@ -464,8 +464,8 @@ msgid "Debug"
 msgstr "Debug"
 
 #. Default: "Default"
-#: src/routes/userschema/userschema.ts:23
-#: src/routes/userschema/userschema.ts:66
+#: src/routes/userschema/userschema.ts:24
+#: src/routes/userschema/userschema.ts:68
 #: src/constants/userschema.ts:12
 #: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:10
 #: src/profiles/core/upgrades/1001/controlpanels/security.json:10
@@ -534,8 +534,8 @@ msgid "Document copied"
 msgstr ""
 
 #. Default: "Document locked"
-#: src/routes/history/history.ts:59
-#: src/routes/content/content.ts:626
+#: src/routes/history/history.ts:61
+#: src/routes/content/content.ts:633
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "Documento bloqueado"
@@ -589,8 +589,8 @@ msgid "Effective date"
 msgstr "Data efectiva"
 
 #. Default: "Email"
-#: src/routes/userschema/userschema.ts:37
-#: src/routes/userschema/userschema.ts:89
+#: src/routes/userschema/userschema.ts:38
+#: src/routes/userschema/userschema.ts:91
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Email"
 msgstr ""
@@ -608,20 +608,20 @@ msgid "Enter a comment that describes the changes you made."
 msgstr "Introduz um comentário que descreva as alterações efetuadas."
 
 #. Default: "Enter a user name, usually something like 'jsmith'. No spaces or special characters. Usernames and passwords are case sensitive, make sure the caps lock key is not enabled. This is the name used to log in."
-#: src/routes/userschema/userschema.ts:116
+#: src/routes/userschema/userschema.ts:118
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Enter a user name, usually something like 'jsmith'. No spaces or special characters. Usernames and passwords are case sensitive, make sure the caps lock key is not enabled. This is the name used to log in."
 msgstr ""
 
 #. Default: "Enter full name, for example, John Smith."
-#: src/routes/userschema/userschema.ts:29
-#: src/routes/userschema/userschema.ts:79
+#: src/routes/userschema/userschema.ts:30
+#: src/routes/userschema/userschema.ts:81
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Enter full name, for example, John Smith."
 msgstr ""
 
 #. Default: "Enter your new password."
-#: src/routes/userschema/userschema.ts:102
+#: src/routes/userschema/userschema.ts:104
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Enter your new password."
 msgstr ""
@@ -702,15 +702,15 @@ msgid "Folder-like"
 msgstr "Semelhante a Pasta"
 
 #. Default: "From and message are required fields."
-#: src/routes/email/email.ts:57
-#: src/routes/email/email.ts:95
+#: src/routes/email/email.ts:59
+#: src/routes/email/email.ts:98
 msgctxt "Routes|Email|Email.ts"
 msgid "From and message are required fields."
 msgstr "Remetente e mensagem são campos obrigatórios."
 
 #. Default: "Full Name"
-#: src/routes/userschema/userschema.ts:30
-#: src/routes/userschema/userschema.ts:82
+#: src/routes/userschema/userschema.ts:31
+#: src/routes/userschema/userschema.ts:84
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Full Name"
 msgstr ""
@@ -791,21 +791,21 @@ msgid "Information about rights held in and over this item."
 msgstr "Informações sobre os direitos relativos a este item."
 
 #. Default: "Internal server error"
-#: src/app.ts:225
-#: src/app.ts:235
+#: src/app.ts:255
+#: src/app.ts:265
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr "Erro interno do servidor"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.ts:78
-#: src/routes/authentication/authentication.ts:92
+#: src/routes/authentication/authentication.ts:79
+#: src/routes/authentication/authentication.ts:93
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid credentials"
 msgstr "Credenciais inválidas"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.ts:126
+#: src/routes/authentication/authentication.ts:128
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid session"
 msgstr "Sessão inválida"
@@ -898,7 +898,7 @@ msgid "Login"
 msgstr "Autenticação"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.ts:57
+#: src/routes/authentication/authentication.ts:58
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Login and password must be provided in body."
 msgstr "O nome de utilizador e a palavra-passe devem ser fornecidos no corpo do pedido."
@@ -963,7 +963,7 @@ msgid "Matches any condition"
 msgstr "Corresponde quaisquer dos"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.ts:56
+#: src/routes/authentication/authentication.ts:57
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Missing credentials"
 msgstr "Credenciais em falta"
@@ -1014,18 +1014,18 @@ msgid "No"
 msgstr "Não"
 
 #. Default: "Not allowed"
-#: src/routes/lock/lock.ts:160
+#: src/routes/lock/lock.ts:164
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Not allowed"
 msgstr "Não permitido"
 
 #. Default: "Not found."
-#: src/routes/vocabularies/vocabularies.ts:55
-#: src/routes/users/users.ts:138
-#: src/routes/types/types.ts:38
-#: src/routes/groups/groups.ts:29
-#: src/routes/email/email.ts:64
-#: src/routes/controlpanels/controlpanels.ts:79
+#: src/routes/vocabularies/vocabularies.ts:57
+#: src/routes/users/users.ts:140
+#: src/routes/types/types.ts:40
+#: src/routes/groups/groups.ts:30
+#: src/routes/email/email.ts:66
+#: src/routes/controlpanels/controlpanels.ts:81
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr "Não encontrado."
@@ -1056,21 +1056,21 @@ msgid "Page"
 msgstr "Página"
 
 #. Default: "Password"
-#: src/routes/userschema/userschema.ts:103
+#: src/routes/userschema/userschema.ts:105
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Password"
 msgstr ""
 
 #. Default: "Password reset request"
-#: src/routes/users/users.ts:101
-#: src/routes/users/users.ts:238
+#: src/routes/users/users.ts:102
+#: src/routes/users/users.ts:242
 msgctxt "Routes|Users|Users.ts"
 msgid "Password reset request"
 msgstr "Pedido de reposição de palavra-passe"
 
 #. Default: "Password should be at least 8 characters long."
-#: src/routes/users/users.ts:38
-#: src/routes/users/users.ts:185
+#: src/routes/users/users.ts:39
+#: src/routes/users/users.ts:189
 msgctxt "Routes|Users|Users.ts"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1183,8 +1183,8 @@ msgid "Prompt"
 msgstr "Prompt"
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.ts:56
-#: src/routes/ai/ai.ts:105
+#: src/routes/ai/ai.ts:57
+#: src/routes/ai/ai.ts:107
 msgctxt "Routes|Ai|Ai.ts"
 msgid "Prompt is a required field."
 msgstr "Prompt é um campo obrigatório."
@@ -1220,15 +1220,15 @@ msgid "Publishing Date"
 msgstr "Data de publicação"
 
 #. Default: "Query must be at least 2 characters long."
-#: src/routes/users/users.ts:156
-#: src/routes/principals/principals.ts:25
-#: src/routes/groups/groups.ts:47
+#: src/routes/users/users.ts:159
+#: src/routes/principals/principals.ts:26
+#: src/routes/groups/groups.ts:49
 msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
 msgstr ""
 
 #. Default: "Re-enter the password. Make sure the passwords are identical."
-#: src/routes/userschema/userschema.ts:108
+#: src/routes/userschema/userschema.ts:110
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Re-enter the password. Make sure the passwords are identical."
 msgstr ""
@@ -1283,7 +1283,7 @@ msgid "Rename"
 msgstr "Renomear"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:449
+#: src/routes/content/content.ts:455
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "Campo(s) obrigatório(s) em falta."
@@ -1368,7 +1368,7 @@ msgid "Select an image that will be used in listing and teaser blocks."
 msgstr "Seleciona uma imagem que será usada em blocos de listagem e teaser."
 
 #. Default: "Send a confirmation mail with a link to set the password"
-#: src/routes/userschema/userschema.ts:96
+#: src/routes/userschema/userschema.ts:98
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Send a confirmation mail with a link to set the password"
 msgstr ""
@@ -1490,13 +1490,13 @@ msgid "Submit for publication"
 msgstr "Enviar para publicação"
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:121
+#: src/routes/groups/groups.ts:126
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr "Grupo de sistema"
 
 #. Default: "System users"
-#: src/routes/users/users.ts:298
+#: src/routes/users/users.ts:304
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr "Utilizadores de sistema"
@@ -1585,8 +1585,8 @@ msgid "The end date and time of an event"
 msgstr "Data e hora finais de um evento"
 
 #. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
-#: src/routes/users/users.ts:102
-#: src/routes/users/users.ts:239
+#: src/routes/users/users.ts:103
+#: src/routes/users/users.ts:243
 msgctxt "Routes|Users|Users.ts"
 msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 msgstr ""
@@ -1694,8 +1694,8 @@ msgid "The user viewing the querystring results"
 msgstr "O utilizador que está a ver o resultado da pesquisa"
 
 #. Default: "This document is already locked by another user."
-#: src/routes/lock/lock.ts:55
-#: src/routes/lock/lock.ts:107
+#: src/routes/lock/lock.ts:57
+#: src/routes/lock/lock.ts:110
 msgctxt "Routes|Lock|Lock.ts"
 msgid "This document is already locked by another user."
 msgstr "Este documento já está bloqueado por outro utilizador."
@@ -1745,7 +1745,7 @@ msgid "Title"
 msgstr "Título"
 
 #. Default: "To, from and message are required fields."
-#: src/routes/email/email.ts:26
+#: src/routes/email/email.ts:27
 msgctxt "Routes|Email|Email.ts"
 msgid "To, from and message are required fields."
 msgstr "Destinatário, remetente e mensagem são campos obrigatórios."
@@ -1814,13 +1814,13 @@ msgid "User created"
 msgstr ""
 
 #. Default: "User doesn’t exist or invalid credentials."
-#: src/routes/users/users.ts:63
+#: src/routes/users/users.ts:64
 msgctxt "Routes|Users|Users.ts"
 msgid "User doesn’t exist or invalid credentials."
 msgstr "O utilizador não existe ou credenciais inválidas."
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.ts:127
+#: src/routes/authentication/authentication.ts:129
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "User is not logged in."
 msgstr "O utilizador não está autenticado."
@@ -1844,7 +1844,7 @@ msgid "User removed"
 msgstr ""
 
 #. Default: "Username"
-#: src/routes/userschema/userschema.ts:119
+#: src/routes/userschema/userschema.ts:121
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Username"
 msgstr ""
@@ -1887,8 +1887,8 @@ msgid "Waiting to be reviewed, not editable by the owner."
 msgstr "Aguardando revisão, não editável pelo dono."
 
 #. Default: "We will use this address if you need to recover your password"
-#: src/routes/userschema/userschema.ts:34
-#: src/routes/userschema/userschema.ts:86
+#: src/routes/userschema/userschema.ts:35
+#: src/routes/userschema/userschema.ts:88
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "We will use this address if you need to recover your password"
 msgstr ""
@@ -1928,8 +1928,8 @@ msgid "Workflow state changed"
 msgstr ""
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.ts:79
-#: src/routes/authentication/authentication.ts:93
+#: src/routes/authentication/authentication.ts:80
+#: src/routes/authentication/authentication.ts:94
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Wrong login and/or password."
 msgstr "Nome de utilizador e/ou palavra-passe incorretos."
@@ -1942,7 +1942,7 @@ msgid "Yes"
 msgstr "Sim"
 
 #. Default: "You are not authorization to access this resource."
-#: src/routes/workflow/workflow.ts:38
+#: src/routes/workflow/workflow.ts:39
 msgctxt "Routes|Workflow|Workflow.ts"
 msgid "You are not authorization to access this resource."
 msgstr ""
@@ -1954,38 +1954,38 @@ msgid "You are not authorized to access this resource."
 msgstr "Não tens autorização para aceder a este recurso."
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:120
+#: src/routes/groups/groups.ts:125
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr "Não podes eliminar grupos de sistema."
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:297
+#: src/routes/users/users.ts:303
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr "Não podes eliminar utilizadores de sistema."
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
-#: src/routes/history/history.ts:56
-#: src/routes/content/content.ts:623
+#: src/routes/history/history.ts:58
+#: src/routes/content/content.ts:630
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "Não tens permissão para guardar este documento porque está bloqueado por outro utilizador."
 
 #. Default: "You don’t have permission to unlock this document."
-#: src/routes/lock/lock.ts:157
+#: src/routes/lock/lock.ts:161
 msgctxt "Routes|Lock|Lock.ts"
 msgid "You don’t have permission to unlock this document."
 msgstr "Não tens permissão para desbloquear este documento."
 
 #. Default: "You don’t have permissions to add a user."
-#: src/routes/users/users.ts:178
+#: src/routes/users/users.ts:182
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to add a user."
 msgstr ""
 
 #. Default: "You don’t have permissions to view this user."
-#: src/routes/users/users.ts:126
+#: src/routes/users/users.ts:128
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to view this user."
 msgstr ""

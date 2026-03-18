@@ -83,7 +83,7 @@
 - Add custom userschema to config @robgietema
 - Add custom userschema to endpoints @robgietema
 - Add aliases endpoints @robgietema
-- Add cache headers for all views @robgietema
+- Add cache headers for all routes @robgietema
 
 ### Bugfix
 
