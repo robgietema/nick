@@ -21,6 +21,7 @@ export default [
     view: '/@navroot',
     permission: 'View',
     client: 'getNavroot',
+    cache: 'content',
     handler,
   },
 ];

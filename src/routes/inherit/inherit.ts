@@ -91,6 +91,7 @@ export default [
     view: '/@inherit',
     permission: 'View',
     client: 'inherit',
+    cache: 'content',
     handler,
   },
 ];

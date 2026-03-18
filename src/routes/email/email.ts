@@ -19,6 +19,7 @@ export default [
     view: '/@email-send',
     permission: 'Modify',
     client: 'sendEmail',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check if required fields provided
       if (!req.body.to || !req.body.from || !req.body.message) {
@@ -50,6 +51,7 @@ export default [
     view: '/@users/:id/@email-notification',
     permission: 'Modify',
     client: 'userEmailNotification',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check if required fields provided
       if (!req.body.from || !req.body.message) {
@@ -88,6 +90,7 @@ export default [
     permission: 'View',
     client: 'emailNotification',
     middleware: apiLimiter,
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check if required fields provided
       if (!req.body.from || !req.body.message) {

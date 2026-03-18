@@ -72,8 +72,23 @@ export interface Route {
   view: string;
   op: 'get' | 'post' | 'put' | 'delete' | 'patch';
   permission: string;
+  client?: string;
+  cache:
+    | 'alter'
+    | 'manage'
+    | 'dynamic'
+    | 'content'
+    | 'resource'
+    | 'stable'
+    | 'static';
   middleware?: any;
   handler?: any;
+}
+
+export interface CachePolicy {
+  method: 'public' | 'private' | 'no-cache';
+  maxAge?: number;
+  sMaxAge?: number;
 }
 
 export type ConfigSettings = {
@@ -111,6 +126,17 @@ export type ConfigSettings = {
   events: any;
   routes: boolean;
   tasks: boolean;
+  cache: {
+    policies: {
+      alter: CachePolicy;
+      manage: CachePolicy;
+      dynamic: CachePolicy;
+      content: CachePolicy;
+      resource: CachePolicy;
+      stable: CachePolicy;
+      static: CachePolicy;
+    };
+  };
   ai: {
     models: {
       embed: {

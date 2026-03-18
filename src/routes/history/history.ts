@@ -21,6 +21,7 @@ export default [
     view: '/@history',
     permission: 'View',
     client: 'getHistory',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       await req.document.fetchRelated('_versions(order)._actor', trx);
       const workflow_history = await req.document.fetchWorkflowHistory(
@@ -43,6 +44,7 @@ export default [
     view: '/@history',
     permission: 'View',
     client: 'revertHistory',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check if locked
       const lock = req.document.lock;

@@ -16,6 +16,7 @@ export default [
     view: '/@principals',
     permission: 'Manage Users',
     client: 'getPrincipals',
+    cache: 'manage',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
       const query =

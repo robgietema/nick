@@ -25,6 +25,7 @@ export default [
     view: '/@types',
     permission: 'View',
     client: 'getTypes',
+    cache: 'manage',
     handler,
   },
   {
@@ -32,6 +33,7 @@ export default [
     view: '/@types/:type',
     permission: 'View',
     client: 'getType',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const type = await Type.fetchById(req.params.type, {}, trx);
       if (!type) {

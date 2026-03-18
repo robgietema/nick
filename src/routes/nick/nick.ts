@@ -109,6 +109,8 @@ export default [
     op: 'get',
     view: '/@nick',
     permission: 'View',
+    client: 'getNick',
+    cache: 'static',
     handler,
   },
 ];

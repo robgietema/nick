@@ -65,6 +65,7 @@ export default [
     view: '/@navigation',
     permission: 'View',
     client: 'getNavigation',
+    cache: 'content',
     handler,
   },
 ];

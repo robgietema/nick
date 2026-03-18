@@ -16,6 +16,7 @@ export default [
     view: '/@system',
     permission: 'Manage Site',
     client: 'getSystem',
+    cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const postgresVersion = await getPostgresVersion(trx);
 

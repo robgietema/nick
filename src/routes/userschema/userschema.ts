@@ -15,6 +15,7 @@ export default [
     view: '/@userschema',
     permission: 'View',
     client: 'getUserSchema',
+    cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const schema = {
         fieldsets: [
@@ -57,6 +58,7 @@ export default [
     view: '/@userschema/registration',
     permission: 'View',
     client: 'getRegistrationSchema',
+    cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
       return {
         json: {

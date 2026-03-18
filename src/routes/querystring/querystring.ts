@@ -14,6 +14,7 @@ export default [
     view: '/@querystring',
     permission: 'View',
     client: 'getQuerystring',
+    cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Get all enabled indexes
       const indexes = await Index.fetchAll(

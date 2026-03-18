@@ -25,6 +25,7 @@ export default [
     op: 'post',
     view: '/@users/:email/reset-password',
     client: 'resetPassword',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Find user
       let user = await User.fetchOne({ email: req.params.email }, {}, trx);
@@ -118,6 +119,7 @@ export default [
     op: 'get',
     view: '/@users/:id',
     client: 'getUser',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check permissions
       const manageUsers = req.permissions.includes('Manage Users');
@@ -147,6 +149,7 @@ export default [
     view: '/@users',
     permission: 'Manage Users',
     client: 'getUsers',
+    cache: 'manage',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
       const query =
@@ -170,6 +173,7 @@ export default [
     op: 'post',
     view: '/@users',
     client: 'createUser',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check permissions
       const manageUsers = req.permissions.includes('Manage Users');
@@ -257,6 +261,7 @@ export default [
     view: '/@users/:id',
     permission: 'Manage Users',
     client: 'updateUser',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       await User.update(
         req.params.id,
@@ -290,6 +295,7 @@ export default [
     view: '/@users/:id',
     permission: 'Manage Users',
     client: 'deleteUser',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       if (config.settings.systemUsers.includes(req.params.id)) {
         throw new RequestException(401, {

@@ -18,6 +18,7 @@ export default [
     view: '/@site',
     permission: 'View',
     client: 'getSite',
+    cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const siteControlpanel = await Controlpanel.fetchById('site', {}, trx);
       const languageControlpanel = await Controlpanel.fetchById(

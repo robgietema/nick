@@ -321,6 +321,7 @@ export default [
     view: '/@search',
     permission: 'View',
     client: 'search',
+    cache: 'dynamic',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
       const query = await queryparamToQuery(
@@ -356,6 +357,7 @@ export default [
     view: '/@querystring-search',
     permission: 'View',
     client: 'querystringSearch',
+    cache: 'dynamic',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
       const query = await querystringToQuery(

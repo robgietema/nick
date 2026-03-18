@@ -47,6 +47,7 @@ export default [
     op: 'post',
     view: '/@login',
     client: 'login',
+    cache: 'alter',
     middleware: authLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
       if (!req.body.login || !req.body.password) {
@@ -115,6 +116,7 @@ export default [
     op: 'post',
     view: '/@login-renew',
     client: 'renewLogin',
+    cache: 'alter',
     middleware: authLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
       if (req.user.id === 'anonymous') {
@@ -143,6 +145,7 @@ export default [
     op: 'post',
     view: '/@logout',
     client: 'logout',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Trigger on logout
       await config.settings.events.trigger('onLogout', req.user, trx);

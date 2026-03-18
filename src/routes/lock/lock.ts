@@ -17,6 +17,7 @@ export default [
     view: '/@lock',
     permission: 'View',
     client: 'getLock',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       if (req.document.lock.locked && lockExpired(req.document)) {
         return {
@@ -37,6 +38,7 @@ export default [
     view: '/@lock',
     permission: 'Modify',
     client: 'createLock',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const lock = req.document.lock;
 
@@ -92,6 +94,7 @@ export default [
     view: '/@lock',
     permission: 'Modify',
     client: 'updateLock',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const lock = req.document.lock;
 
@@ -143,6 +146,7 @@ export default [
     view: '/@lock',
     permission: 'Modify',
     client: 'deleteLock',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const lock = req.document.lock;
 

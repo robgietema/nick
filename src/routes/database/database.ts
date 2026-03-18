@@ -19,6 +19,7 @@ export default [
     view: '/@database',
     permission: 'Manage Site',
     client: 'getDatabase',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Get db size
       const knex = Model.knex();

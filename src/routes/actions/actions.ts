@@ -20,6 +20,7 @@ export default [
     view: '/@actions',
     permission: 'View',
     client: 'getActions',
+    cache: 'content',
     handler,
   },
 ];

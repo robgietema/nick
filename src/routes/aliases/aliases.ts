@@ -17,6 +17,7 @@ export default [
     view: '/@aliases',
     permission: 'View',
     client: 'getAliases',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const options = {
         ...(req.query.query ? { path: ['like', `%${req.query.query}%`] } : {}),
@@ -61,6 +62,7 @@ export default [
     view: '/@aliases',
     permission: 'Add',
     client: 'createAliases',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Set creation time
       const created = moment.utc().format();
@@ -95,6 +97,7 @@ export default [
     view: '/@aliases',
     permission: 'Modify',
     client: 'deleteAliases',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const items = req.body.items || [];
       await mapAsync(items, async (item: any) => {

@@ -23,6 +23,7 @@ export default [
     view: '/@controlpanels',
     permission: 'Manage Site',
     client: 'getControlpanels',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const controlpanels = await Controlpanel.fetchAll(
         {},
@@ -39,6 +40,7 @@ export default [
     view: '/@controlpanels/:id',
     permission: 'Manage Site',
     client: 'getControlpanel',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       switch (req.params.id) {
         case 'dexterity-types':
@@ -89,6 +91,7 @@ export default [
     view: '/@controlpanels/dexterity-types',
     permission: 'Manage Site',
     client: 'createControlpanelType',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check if type exists
       const workflows = await Workflow.fetchAll({}, {}, trx);
@@ -138,6 +141,7 @@ export default [
     view: '/@controlpanels/dexterity-types/:id',
     permission: 'Manage Site',
     client: 'deleteControlpanelType',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       await Type.deleteById(req.params.id, trx);
 
@@ -152,6 +156,7 @@ export default [
     view: '/@controlpanels/dexterity-types/:id',
     permission: 'Manage Site',
     client: 'getControlpanelType',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const type = await Type.fetchById(req.params.id, {}, trx);
 
@@ -166,6 +171,7 @@ export default [
     view: '/@controlpanels/dexterity-types/:id',
     permission: 'Manage Site',
     client: 'updateControlpanel',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const fields = [
         'title',
@@ -217,6 +223,7 @@ export default [
     view: '/@controlpanels/:id',
     permission: 'Manage Site',
     client: 'updateControlpanel',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Make a copy
       let json = { ...req.body };

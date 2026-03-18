@@ -55,6 +55,7 @@ export default [
     view: '/@related',
     permission: 'View',
     client: 'getRelated',
+    cache: 'manage',
     handler,
   },
 ];

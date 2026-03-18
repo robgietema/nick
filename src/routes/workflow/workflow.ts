@@ -24,6 +24,7 @@ export default [
     op: 'post',
     view: '/@workflow/:transition',
     client: 'changeWorkflow',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       await req.type.fetchRelated('_workflow', trx);
 
@@ -108,6 +109,7 @@ export default [
     view: '/@workflow',
     permission: 'View',
     client: 'getWorkflow',
+    cache: 'manage',
     handler,
   },
 ];

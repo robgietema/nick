@@ -141,6 +141,7 @@ export default [
     view: '/@move',
     permission: 'Add',
     client: 'moveContent',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Get children
       await req.document.fetchRelated('_children', trx);
@@ -226,6 +227,7 @@ export default [
     view: '/@copy',
     permission: 'Add',
     client: 'copyContent',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Get children
       await req.document.fetchRelated('_children', trx);
@@ -297,6 +299,7 @@ export default [
     view: '/@history/:version',
     permission: 'View',
     client: 'getHistoryVersion',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       await req.document.fetchRelated('[_children._type, _type]', trx);
       await req.document.fetchVersion(parseInt(req.params.version, 10), trx);
@@ -377,6 +380,7 @@ export default [
     view: '@export',
     permission: 'View',
     client: 'exportContent',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const json = await req.document.toJson(req);
       return {
@@ -410,6 +414,7 @@ export default [
     view: '',
     permission: 'View',
     client: 'getContent',
+    cache: 'content',
     handler: async (req: Request, trx: Knex.Transaction) => {
       await req.document.fetchRelated('[_children(order)._type, _type]', trx);
       await req.document.restrictChildren(req, trx);
@@ -428,6 +433,7 @@ export default [
     view: '',
     permission: 'Add',
     client: 'addContent',
+    cache: 'manage',
     middleware: express.json({
       limit: config.settings.requestLimit?.files || '10mb',
     }),
@@ -588,6 +594,7 @@ export default [
     view: '',
     permission: 'Modify',
     client: 'updateContent',
+    cache: 'alter',
     middleware: express.json({
       limit: config.settings.requestLimit?.files || '10mb',
     }),
@@ -729,6 +736,7 @@ export default [
     view: '',
     permission: 'Modify',
     client: 'deleteContent',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Get file and image fields
       const fileFields = req.type.getFactoryFields('File');

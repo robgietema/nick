@@ -93,6 +93,7 @@ export default [
     view: '/@breadcrumbs',
     permission: 'View',
     client: 'getBreadcrumbs',
+    cache: 'content',
     handler,
   },
 ];

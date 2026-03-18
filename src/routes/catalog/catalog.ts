@@ -41,6 +41,7 @@ export default [
     view: '/@catalog',
     permission: 'View',
     client: 'getCatalog',
+    cache: 'manage',
     handler,
   },
 ];

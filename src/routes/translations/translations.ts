@@ -43,6 +43,7 @@ export default [
     view: '/@translations',
     permission: 'View',
     client: 'getTranslations',
+    cache: 'content',
     handler,
   },
   {
@@ -50,6 +51,7 @@ export default [
     view: '/@translations',
     permission: 'Modify',
     client: 'unlinkTranslation',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const document = await Document.fetchOne(
         {
@@ -75,6 +77,7 @@ export default [
     view: '/@translations',
     permission: 'Modify',
     client: 'linkTranslation',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Strip prefix of url
       const id = stripPath(req.body.id);
@@ -106,6 +109,7 @@ export default [
     view: '/@translation-locator',
     permission: 'View',
     client: 'getTranslationLocation',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Fetch parent
       const parent = await Document.fetchOne({

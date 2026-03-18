@@ -96,6 +96,41 @@ class Config {
       events: config.events || events,
       routes: config.routes || false,
       tasks: config.tasks || false,
+      cache: config.cache || {
+        policies: {
+          alter: {
+            method: 'no-cache',
+          },
+          manage: {
+            method: 'no-cache',
+          },
+          dynamic: {
+            method: 'public',
+            maxAge: 10,
+            sMaxAge: 0,
+          },
+          content: {
+            method: 'public',
+            maxAge: 3600,
+            sMaxAge: 0,
+          },
+          resource: {
+            method: 'public',
+            maxAge: 86400,
+            sMaxAge: 0,
+          },
+          stable: {
+            method: 'public',
+            maxAge: 31536000,
+            sMaxAge: 0,
+          },
+          static: {
+            method: 'public',
+            maxAge: 31536000,
+            sMaxAge: 0,
+          },
+        },
+      },
       ai: config.ai || {
         models: {
           embed: {

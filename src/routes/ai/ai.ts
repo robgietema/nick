@@ -49,6 +49,7 @@ export default [
     view: '/@generate',
     permission: 'AI',
     client: 'generate',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction, callback: any) => {
       // Check if required field provided
       if (!req.body.prompt) {
@@ -98,6 +99,7 @@ export default [
     view: '/@chat',
     permission: 'AI',
     client: 'chat',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction, callback: any) => {
       // Check if required field provided
       if (!req.body.prompt) {

@@ -20,6 +20,7 @@ export default [
     view: '/@vocabularies',
     permission: 'View',
     client: 'getVocabularies',
+    cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const profileVocabularies = await Vocabulary.fetchAll({}, {}, trx);
       return {
@@ -44,6 +45,7 @@ export default [
     view: '/@vocabularies/:id',
     permission: 'View',
     client: 'getVocabulary',
+    cache: 'dynamic',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Check if vocabulary is available
       if (

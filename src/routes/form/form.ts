@@ -12,6 +12,7 @@ export default [
     view: '/@schemaform-data',
     permission: 'View',
     client: 'schemaformData',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       return {
         json: {},

@@ -17,6 +17,7 @@ export default [
     view: '/@groups/:id',
     permission: 'Manage Users',
     client: 'getGroup',
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const group = await Group.fetchById(
         req.params.id,
@@ -39,6 +40,7 @@ export default [
     permission: 'Manage Users',
     client: 'getGroups',
     middleware: apiLimiter,
+    cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const query =
         typeof req.query.query === 'string' ? req.query.query : undefined;
@@ -62,6 +64,7 @@ export default [
     view: '/@groups',
     permission: 'Manage Users',
     client: 'createGroup',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const group = await Group.create(
         {
@@ -88,6 +91,7 @@ export default [
     view: '/@groups/:id',
     permission: 'Manage Users',
     client: 'updateGroup',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       await Group.update(
         req.params.id,
@@ -113,6 +117,7 @@ export default [
     view: '/@groups/:id',
     permission: 'Manage Users',
     client: 'deleteGroup',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       if (config.settings.systemGroups.includes(req.params.id)) {
         throw new RequestException(401, {

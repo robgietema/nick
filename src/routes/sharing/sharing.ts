@@ -94,6 +94,7 @@ export default [
     view: '/@sharing',
     permission: 'Modify',
     client: 'getSharing',
+    cache: 'manage',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Get roles
@@ -141,6 +142,7 @@ export default [
     view: '/@sharing',
     permission: 'Modify',
     client: 'updateSharing',
+    cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Update inherit
       if (req.document.inherit_roles !== req.body.inherit) {
