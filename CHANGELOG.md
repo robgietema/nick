@@ -151,6 +151,7 @@
 - Check uuid on file read @robgietema
 - Check if content type exists on add document @robgietema
 - Fix bug when uploading an image @robgietema
+- Fix issue with language not saved on document update @robgietema
 
 ### Internal
 

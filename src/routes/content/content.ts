@@ -770,6 +770,10 @@ export default [
             req.body.position_in_parent !== undefined
               ? req.body.position_in_parent
               : req.document.position_in_parent,
+          language:
+            req.body.language !== undefined
+              ? req.body.language
+              : req.document.language,
           version,
           modified,
           json,
