@@ -11,7 +11,8 @@ import type { Knex } from 'knex';
 
 import * as url from './src/helpers/url/url';
 import * as mail from './src/helpers/mail/mail';
-import { addToken, removeToken } from './src/helpers/auth/auth';
+import { addToken } from './src/helpers/auth/auth';
+import { logger } from './src/helpers/log/log';
 
 declare global {
   var knex: Knex;
@@ -59,6 +60,21 @@ vi.spyOn(moment, 'utc').mockReturnValue({
 beforeAll(async () => {
   global.knex = knex;
   global.txn = null;
+  logger.configure({
+    appenders: {
+      error_stdout: {
+        type: 'stdout',
+        layout: { type: 'pattern', pattern: '%[%d %p%] [%f{1}:%l] %m' },
+      },
+    },
+    categories: {
+      default: {
+        appenders: ['error_stdout'],
+        level: 'fatal',
+        enableCallStack: true,
+      },
+    },
+  });
 });
 
 beforeEach(async () => {

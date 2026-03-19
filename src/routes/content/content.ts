@@ -245,7 +245,7 @@ export default [
         ? req.body.source
         : [req.body.source];
       await mapAsync(sources, async (source: string) => {
-        // Get item to be moved
+        // Get item to be copied
         const document = await Document.fetchOne({ path: source }, {}, trx);
 
         // Calculate new id and path

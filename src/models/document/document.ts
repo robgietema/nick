@@ -1032,8 +1032,9 @@ export class Document extends Model {
    */
   async reindexChildren(trx?: Knex.Transaction): Promise<any> {
     const self: any = this;
-    return Promise.all(
-      self._children.map(async (child: any) => await child.index(trx, false)),
+    return mapAsync(
+      self._children,
+      async (child: any) => await child.index(trx, false),
     );
   }
 
@@ -1044,8 +1045,9 @@ export class Document extends Model {
    */
   async indexChildren(trx?: Knex.Transaction): Promise<any> {
     const self: any = this;
-    return Promise.all(
-      self._children.map(async (child: any) => await child.index(trx)),
+    return mapAsync(
+      self._children,
+      async (child: any) => await child.index(trx),
     );
   }
 
