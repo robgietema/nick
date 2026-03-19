@@ -535,7 +535,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.ts:62
-#: src/routes/content/content.ts:683
+#: src/routes/content/content.ts:686
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "दस्तावेज़ लॉक है"
@@ -791,8 +791,8 @@ msgid "Information about rights held in and over this item."
 msgstr "इस आइटम में और इसके ऊपर रखे गए अधिकारों के बारे में जानकारी।"
 
 #. Default: "Internal server error"
-#: src/app.ts:229
-#: src/app.ts:239
+#: src/app.ts:235
+#: src/app.ts:245
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr "आंतरिक सर्वर त्रुटि"
@@ -1222,7 +1222,7 @@ msgstr "प्रकाशन तिथि"
 #. Default: "Query must be at least 2 characters long."
 #: src/routes/users/users.ts:160
 #: src/routes/principals/principals.ts:26
-#: src/routes/groups/groups.ts:49
+#: src/routes/groups/groups.ts:50
 msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
 msgstr ""
@@ -1283,7 +1283,7 @@ msgid "Rename"
 msgstr "नाम बदलें"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:505
+#: src/routes/content/content.ts:508
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "आवश्यक फ़ील्ड गायब हैं।"
@@ -1490,13 +1490,13 @@ msgid "Submit for publication"
 msgstr "प्रकाशन के लिए जमा करें"
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:127
+#: src/routes/groups/groups.ts:134
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr "सिस्टम समूह"
 
 #. Default: "System users"
-#: src/routes/users/users.ts:306
+#: src/routes/users/users.ts:312
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr "सिस्टम उपयोगकर्ता"
@@ -1763,8 +1763,8 @@ msgstr "आज"
 
 #. Default: "Transaction error."
 #: src/client.ts:60
-#: src/app.ts:174
-#: src/app.ts:187
+#: src/app.ts:180
+#: src/app.ts:193
 msgctxt "Client.ts"
 msgid "Transaction error."
 msgstr "लेनदेन त्रुटि।"
@@ -1954,20 +1954,20 @@ msgid "You are not authorized to access this resource."
 msgstr "आपके पास इस संसाधन तक पहुँचने की अनुमति नहीं है।"
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:126
+#: src/routes/groups/groups.ts:133
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr "आप सिस्टम समूहों को हटा नहीं सकते।"
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:305
+#: src/routes/users/users.ts:311
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr "आप सिस्टम उपयोगकर्ताओं को हटा नहीं सकते।"
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:59
-#: src/routes/content/content.ts:680
+#: src/routes/content/content.ts:683
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "आपके पास इस दस्तावेज़ को सहेजने की अनुमति नहीं है क्योंकि इसे किसी अन्य उपयोगकर्ता द्वारा लॉक किया गया है।"

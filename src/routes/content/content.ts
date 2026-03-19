@@ -200,6 +200,9 @@ export default [
           // Reindex siblings
           await parent.reindexChildren(trx);
 
+          // Trigger on after move
+          await config.settings.events.trigger('onAfterMove', document, trx);
+
           // Add items to return array
           items.push({
             source,

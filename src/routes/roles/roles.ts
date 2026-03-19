@@ -13,7 +13,7 @@ export default [
     view: '/@roles',
     permission: 'View',
     client: 'getRoles',
-    cache: 'manage',
+    cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const roles = await Role.fetchAll({}, { order: 'order' }, trx);
       return {

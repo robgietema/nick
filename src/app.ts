@@ -16,6 +16,7 @@ import { callHandler } from './helpers/handler/handler';
 import { Model } from './models/_model/_model';
 import globalRoutes from './routes';
 import globalTasks from './tasks';
+import { purge } from './events/cache/cache';
 
 import { accessLogger } from './middleware/access-logger/access-logger';
 import { cors } from './middleware/cors/cors';
@@ -82,6 +83,11 @@ if (process.env.NODE_ENV === 'production') {
 
 // Create app
 const app = express();
+
+// Add purge events if enabled
+if (config.settings.cache.enabled && config.settings.cache.purge) {
+  config.settings.events.register(purge);
+}
 
 // Add middleware
 app.use(

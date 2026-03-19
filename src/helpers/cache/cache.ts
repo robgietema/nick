@@ -4,6 +4,7 @@
  */
 
 import crypto from 'node:crypto';
+import https from 'node:https';
 import type { Response } from 'express';
 import type { Request, Route, View } from '../../types';
 import config from '../config/config';
@@ -116,4 +117,33 @@ export function checkETag(req: Request, etag: string): boolean {
     return reqETags.includes('*') || reqETags.includes(etag);
   }
   return false;
+}
+
+/**
+ * Purge xkey
+ * @method purgeXkey
+ * @param {string} xkey Xkey to purge
+ */
+export function purgeXkey(xkey: string): void {
+  if (
+    config.settings.cache.enabled &&
+    config.settings.cache.purge.enabled &&
+    Array.isArray(config.settings.cache.purge.urls)
+  ) {
+    config.settings.cache.purge.urls.map((url) => {
+      // Parse url
+      const req = new URL(url);
+
+      // Send purge request
+      https.request({
+        hostname: req.hostname,
+        port: req.protocol === 'https:' ? 443 : 80,
+        path: req.pathname,
+        method: 'PURGE',
+        headers: {
+          'X-Xkey-Purge': xkey,
+        },
+      });
+    });
+  }
 }

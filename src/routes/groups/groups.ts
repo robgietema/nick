@@ -31,6 +31,7 @@ export default [
       }
       return {
         json: await group.toJson(req),
+        keys: [req.params.id],
       };
     },
   },
@@ -56,7 +57,7 @@ export default [
       );
       return {
         json: await groups.toJson(req),
-        keys: ['groups', 'roles'],
+        keys: ['groups'],
       };
     },
   },
@@ -80,6 +81,9 @@ export default [
         trx,
       );
 
+      // Trigger on after add group
+      await config.settings.events.trigger('onAfterAddGroup', group, trx);
+
       // Send created
       return {
         status: 201,
@@ -94,7 +98,7 @@ export default [
     client: 'updateGroup',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
-      await Group.update(
+      const group = await Group.update(
         req.params.id,
         {
           id: req.body.groupname,
@@ -106,6 +110,9 @@ export default [
         },
         trx,
       );
+
+      // Trigger on after update group
+      await config.settings.events.trigger('onAfterUpdateGroup', group, trx);
 
       // Send ok
       return {
@@ -128,7 +135,23 @@ export default [
           },
         });
       }
+
+      // Trigger on before delete group
+      await config.settings.events.trigger(
+        'onBeforeDeleteGroup',
+        req.params.id,
+        trx,
+      );
+
       await Group.deleteById(req.params.id, trx);
+
+      // Trigger on after delete group
+      await config.settings.events.trigger(
+        'onAfterDeleteGroup',
+        req.params.id,
+        trx,
+      );
+
       return {
         status: 204,
       };

@@ -140,6 +140,10 @@ export type ConfigSettings = {
     anonymousOnly: boolean;
     etag: boolean;
     xkeys: boolean;
+    purge: {
+      enabled: boolean;
+      urls: string[];
+    };
     policies: {
       alter: CachePolicy;
       manage: CachePolicy;

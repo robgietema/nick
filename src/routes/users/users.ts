@@ -141,7 +141,7 @@ export default [
       }
       return {
         json: await user.toJson(req),
-        xkeys: [req.params.id, 'groups', 'roles'],
+        xkeys: [req.params.id, 'groups'],
       };
     },
   },
@@ -167,7 +167,7 @@ export default [
       );
       return {
         json: await users.toJson(req),
-        xkeys: ['users', 'groups', 'roles'],
+        xkeys: ['users', 'groups'],
       };
     },
   },
@@ -251,6 +251,9 @@ export default [
         );
       }
 
+      // Trigger on after add user
+      await config.settings.events.trigger('onAfterAddUser', user, trx);
+
       // Send created
       return {
         status: 201,
@@ -265,7 +268,7 @@ export default [
     client: 'updateUser',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
-      await User.update(
+      const user = await User.update(
         req.params.id,
         {
           id: req.body.username,
@@ -285,6 +288,9 @@ export default [
         },
         trx,
       );
+
+      // Trigger on after update user
+      await config.settings.events.trigger('onAfterUpdateUser', user, trx);
 
       // Send ok
       return {
@@ -316,9 +322,6 @@ export default [
       );
 
       await User.deleteById(req.params.id, trx);
-      return {
-        status: 204,
-      };
 
       // Trigger on after delete user
       await config.settings.events.trigger(
@@ -326,6 +329,10 @@ export default [
         req.params.id,
         trx,
       );
+
+      return {
+        status: 204,
+      };
     },
   },
 ];

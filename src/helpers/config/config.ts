@@ -101,6 +101,10 @@ class Config {
         anonymousOnly: true,
         etag: false,
         xkeys: false,
+        purge: {
+          enabled: false,
+          urls: [],
+        },
         policies: {
           alter: {
             method: 'no-cache',

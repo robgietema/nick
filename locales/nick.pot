@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-03-19T08:30:25.835Z\n"
+"POT-Creation-Date: 2026-03-19T09:57:09.655Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -532,7 +532,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.ts:62
-#: src/routes/content/content.ts:683
+#: src/routes/content/content.ts:686
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr ""
@@ -788,8 +788,8 @@ msgid "Information about rights held in and over this item."
 msgstr ""
 
 #. Default: "Internal server error"
-#: src/app.ts:229
-#: src/app.ts:239
+#: src/app.ts:235
+#: src/app.ts:245
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr ""
@@ -1219,7 +1219,7 @@ msgstr ""
 #. Default: "Query must be at least 2 characters long."
 #: src/routes/users/users.ts:160
 #: src/routes/principals/principals.ts:26
-#: src/routes/groups/groups.ts:49
+#: src/routes/groups/groups.ts:50
 msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
 msgstr ""
@@ -1280,7 +1280,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:505
+#: src/routes/content/content.ts:508
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr ""
@@ -1487,13 +1487,13 @@ msgid "Submit for publication"
 msgstr ""
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:127
+#: src/routes/groups/groups.ts:134
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr ""
 
 #. Default: "System users"
-#: src/routes/users/users.ts:306
+#: src/routes/users/users.ts:312
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr ""
@@ -1760,8 +1760,8 @@ msgstr ""
 
 #. Default: "Transaction error."
 #: src/client.ts:60
-#: src/app.ts:174
-#: src/app.ts:187
+#: src/app.ts:180
+#: src/app.ts:193
 msgctxt "Client.ts"
 msgid "Transaction error."
 msgstr ""
@@ -1951,20 +1951,20 @@ msgid "You are not authorized to access this resource."
 msgstr ""
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:126
+#: src/routes/groups/groups.ts:133
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr ""
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:305
+#: src/routes/users/users.ts:311
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr ""
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:59
-#: src/routes/content/content.ts:680
+#: src/routes/content/content.ts:683
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr ""

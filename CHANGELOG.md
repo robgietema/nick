@@ -86,6 +86,7 @@
 - Add cache headers for all routes @robgietema
 - Add etag support for caching @robgietema
 - Add xkeys support for caching @robgietema
+- Add purge support for caching @robgietema
 
 ### Bugfix
 
