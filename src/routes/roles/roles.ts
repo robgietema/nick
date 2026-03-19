@@ -18,6 +18,7 @@ export default [
       const roles = await Role.fetchAll({}, { order: 'order' }, trx);
       return {
         json: await roles.toJson(req),
+        xkeys: ['roles'],
       };
     },
   },

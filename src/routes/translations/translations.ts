@@ -34,6 +34,7 @@ export const handler = async (req: Request, trx: Knex.Transaction) => {
         ]),
       ),
     },
+    xkeys: [req.document.translation_group],
   };
 };
 

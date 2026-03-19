@@ -36,6 +36,7 @@ export default [
         ].sort(
           (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime(),
         ),
+        xkeys: [req.document.uuid],
       };
     },
   },

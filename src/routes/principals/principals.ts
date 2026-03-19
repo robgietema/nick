@@ -41,6 +41,7 @@ export default [
           users: await users.toJson(req),
           groups: await groups.toJson(req),
         },
+        xkeys: ['groups', 'roles', 'users'],
       };
     },
   },

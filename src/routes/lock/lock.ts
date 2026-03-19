@@ -25,10 +25,12 @@ export default [
             locked: false,
             stealable: true,
           },
+          xkeys: [req.document.uuid],
         };
       } else {
         return {
           json: req.document.lock,
+          xkeys: [req.document.uuid],
         };
       }
     },

@@ -45,7 +45,18 @@ export function applyCache(
         return {
           status: 304,
         };
+      } else if (typeof etag === 'string') {
+        res.set({ Etag: etag });
       }
+    }
+
+    // Set xkeys
+    if (
+      config.settings.cache.xkeys &&
+      Array.isArray(view.xkeys) &&
+      view.xkeys.length > 0
+    ) {
+      res.set({ Xkey: view.xkeys.join(' ') });
     }
 
     // Set cache policy header

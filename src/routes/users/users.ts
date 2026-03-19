@@ -141,6 +141,7 @@ export default [
       }
       return {
         json: await user.toJson(req),
+        xkeys: [req.params.id, 'groups', 'roles'],
       };
     },
   },
@@ -166,6 +167,7 @@ export default [
       );
       return {
         json: await users.toJson(req),
+        xkeys: ['users', 'groups', 'roles'],
       };
     },
   },

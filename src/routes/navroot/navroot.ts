@@ -3,6 +3,7 @@
  * @module routes/navroot/navroot
  */
 
+import { uniq } from 'es-toolkit/array';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
@@ -12,6 +13,7 @@ export const handler = async (req: Request, trx: Knex.Transaction) => {
 
   return {
     json: await req.navroot.toJson(req),
+    xkeys: uniq([req.document.uuid, req.navroot.uuid]),
   };
 };
 

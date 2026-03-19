@@ -56,6 +56,43 @@ export const config = {
   events,
   routes: false,
   tasks: false,
+   cache: {
+    enabled: false,
+    anonymousOnly: true,
+    etag: false,
+    xkeys: false,
+    policies: {
+      alter: {
+        method: 'no-cache',
+      },
+      manage: {
+        method: 'no-cache',
+      },
+      content: {
+        method: 'no-cache',
+      },
+      dynamic: {
+        method: 'public',
+        maxAge: 10,
+        sMaxAge: 0,
+      },
+      resource: {
+        method: 'public',
+        maxAge: 86400,
+        sMaxAge: 0,
+      },
+      stable: {
+        method: 'public',
+        maxAge: 31536000,
+        sMaxAge: 0,
+      },
+      static: {
+        method: 'public',
+        maxAge: 31536000,
+        sMaxAge: 0,
+      },
+    },
+  },
   ai: {
     models: {
       embed: {

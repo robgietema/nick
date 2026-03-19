@@ -97,9 +97,10 @@ class Config {
       routes: config.routes || false,
       tasks: config.tasks || false,
       cache: config.cache || {
-        enable: false,
+        enabled: false,
         anonymousOnly: true,
         etag: false,
+        xkeys: false,
         policies: {
           alter: {
             method: 'no-cache',

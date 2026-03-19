@@ -56,6 +56,7 @@ export default [
       );
       return {
         json: await groups.toJson(req),
+        keys: ['groups', 'roles'],
       };
     },
   },

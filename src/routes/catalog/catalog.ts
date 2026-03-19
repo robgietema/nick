@@ -32,6 +32,7 @@ export const handler = async (req: Request, trx: Knex.Transaction) => {
       ...req.document._catalog.toJson(req),
       '@id': `${baseUrl}/@catalog`,
     },
+    xkeys: [req.document.uuid],
   };
 };
 

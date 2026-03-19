@@ -43,6 +43,7 @@ export interface Request extends express.Request {
 export interface View {
   status: number;
   etag?: string;
+  xkeys?: string[];
   json?: any;
   html?: string;
 }
@@ -88,6 +89,7 @@ export interface Route {
     | 'resource'
     | 'stable'
     | 'static';
+  etag?: string;
   middleware?: any;
   handler?: any;
 }
@@ -137,6 +139,7 @@ export type ConfigSettings = {
     enabled: boolean;
     anonymousOnly: boolean;
     etag: boolean;
+    xkeys: boolean;
     policies: {
       alter: CachePolicy;
       manage: CachePolicy;

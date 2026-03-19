@@ -101,6 +101,7 @@ export default [
           time: modified,
           title: req.type._workflow.json.states[new_state].title,
         },
+        xkeys: [req.document.uuid],
       };
     },
   },

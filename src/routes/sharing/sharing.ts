@@ -134,6 +134,7 @@ export default [
           ),
           inherit: req.document.inherit_roles,
         },
+        xkeys: [req.document.uuid],
       };
     },
   },

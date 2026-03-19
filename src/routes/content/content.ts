@@ -310,6 +310,7 @@ export default [
           await req.document.toJson(req, await getComponents(req, trx)),
           trx,
         ),
+        xkeys: [req.document.uuid],
       };
     },
   },
@@ -337,6 +338,7 @@ export default [
           'Accept-Ranges': 'bytes',
         },
         etag: uuid,
+        xkeys: [req.document.uuid],
         binary: buffer,
       };
     },
@@ -362,6 +364,7 @@ export default [
           'content-type': `image/${req.params.ext}`,
         },
         etag: uuid,
+        xkeys: [req.document.uuid],
         binary: buffer,
       };
     },
@@ -389,6 +392,7 @@ export default [
           'content-disposition': `attachment; filename="${field.filename}"`,
         },
         etag: uuid,
+        xkeys: [req.document.uuid],
         binary: buffer,
       };
     },
@@ -416,6 +420,7 @@ export default [
           'content-disposition': `attachment; filename="${field.filename}"`,
         },
         etag: uuid,
+        xkeys: [req.document.uuid],
         binary: buffer,
       };
     },

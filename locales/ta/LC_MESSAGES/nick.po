@@ -203,8 +203,8 @@ msgid "Allows users to login with their email address instead of specifying a se
 msgstr ""
 
 #. Default: "Already locked"
-#: src/routes/lock/lock.ts:60
-#: src/routes/lock/lock.ts:113
+#: src/routes/lock/lock.ts:62
+#: src/routes/lock/lock.ts:115
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Already locked"
 msgstr "ஏற்கனவே பூட்டப்பட்டுள்ளது"
@@ -534,8 +534,8 @@ msgid "Document copied"
 msgstr ""
 
 #. Default: "Document locked"
-#: src/routes/history/history.ts:61
-#: src/routes/content/content.ts:678
+#: src/routes/history/history.ts:62
+#: src/routes/content/content.ts:683
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "ஆவணம் பூட்டப்பட்டுள்ளது"
@@ -1014,7 +1014,7 @@ msgid "No"
 msgstr "இல்லை"
 
 #. Default: "Not allowed"
-#: src/routes/lock/lock.ts:164
+#: src/routes/lock/lock.ts:166
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Not allowed"
 msgstr "அனுமதிக்கப்படவில்லை"
@@ -1063,14 +1063,14 @@ msgstr ""
 
 #. Default: "Password reset request"
 #: src/routes/users/users.ts:102
-#: src/routes/users/users.ts:242
+#: src/routes/users/users.ts:244
 msgctxt "Routes|Users|Users.ts"
 msgid "Password reset request"
 msgstr "கடவுச்சொல் மீட்டமைப்பு கோரிக்கை"
 
 #. Default: "Password should be at least 8 characters long."
 #: src/routes/users/users.ts:39
-#: src/routes/users/users.ts:189
+#: src/routes/users/users.ts:191
 msgctxt "Routes|Users|Users.ts"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1220,7 +1220,7 @@ msgid "Publishing Date"
 msgstr "வெளியீட்டு தேதி"
 
 #. Default: "Query must be at least 2 characters long."
-#: src/routes/users/users.ts:159
+#: src/routes/users/users.ts:160
 #: src/routes/principals/principals.ts:26
 #: src/routes/groups/groups.ts:49
 msgctxt "Routes|Users|Users.ts"
@@ -1283,7 +1283,7 @@ msgid "Rename"
 msgstr "பெயர் மாற்றம்"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:500
+#: src/routes/content/content.ts:505
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "தேவையான புலம்(கள்) இல்லை."
@@ -1490,13 +1490,13 @@ msgid "Submit for publication"
 msgstr "வெளியீட்டிற்குச் சமர்ப்பிக்கவும்"
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:126
+#: src/routes/groups/groups.ts:127
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr "கணினி குழு"
 
 #. Default: "System users"
-#: src/routes/users/users.ts:304
+#: src/routes/users/users.ts:306
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr "கணினி பயனர்கள்"
@@ -1586,7 +1586,7 @@ msgstr "நிகழ்வின் முடிவு தேதி மற்ற
 
 #. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 #: src/routes/users/users.ts:103
-#: src/routes/users/users.ts:243
+#: src/routes/users/users.ts:245
 msgctxt "Routes|Users|Users.ts"
 msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 msgstr ""
@@ -1694,8 +1694,8 @@ msgid "The user viewing the querystring results"
 msgstr "வினவல் சர முடிவுகளைப் பார்க்கும் பயனர்"
 
 #. Default: "This document is already locked by another user."
-#: src/routes/lock/lock.ts:57
-#: src/routes/lock/lock.ts:110
+#: src/routes/lock/lock.ts:59
+#: src/routes/lock/lock.ts:112
 msgctxt "Routes|Lock|Lock.ts"
 msgid "This document is already locked by another user."
 msgstr "இந்த ஆவணம் ஏற்கனவே மற்றொரு பயனரால் பூட்டப்பட்டுள்ளது."
@@ -1954,32 +1954,32 @@ msgid "You are not authorized to access this resource."
 msgstr "இந்த வளத்தை அணுக உங்களுக்கு அனுமதி இல்லை."
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:125
+#: src/routes/groups/groups.ts:126
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr "நீங்கள் கணினி குழுக்களை நீக்க முடியாது."
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:303
+#: src/routes/users/users.ts:305
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr "நீங்கள் கணினி பயனர்களை நீக்க முடியாது."
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
-#: src/routes/history/history.ts:58
-#: src/routes/content/content.ts:675
+#: src/routes/history/history.ts:59
+#: src/routes/content/content.ts:680
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "இந்த ஆவணம் மற்றொரு பயனரால் பூட்டப்பட்டுள்ளதால், அதைச் சேமிக்க உங்களுக்கு அனுமதி இல்லை."
 
 #. Default: "You don’t have permission to unlock this document."
-#: src/routes/lock/lock.ts:161
+#: src/routes/lock/lock.ts:163
 msgctxt "Routes|Lock|Lock.ts"
 msgid "You don’t have permission to unlock this document."
 msgstr "இந்த ஆவணத்தைத் திறக்க உங்களுக்கு அனுமதி இல்லை."
 
 #. Default: "You don’t have permissions to add a user."
-#: src/routes/users/users.ts:182
+#: src/routes/users/users.ts:184
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to add a user."
 msgstr ""
