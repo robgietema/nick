@@ -150,6 +150,7 @@
 - Fix breadcrumbs call in multilingual site @mpalomaki
 - Check uuid on file read @robgietema
 - Check if content type exists on add document @robgietema
+- Fix bug when uploading an image @robgietema
 
 ### Internal
 

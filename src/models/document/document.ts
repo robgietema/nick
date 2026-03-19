@@ -411,7 +411,7 @@ export class Document extends Model {
               width: scale.width,
               height: scale.height,
               download: `${this.getUrl(req)}/@@images/${scale.uuid}.${last(
-                scale.filename.split('.'),
+                json[field].filename.split('.'),
               )}`,
             })),
           };
