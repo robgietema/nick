@@ -29,8 +29,6 @@
     "coverage": "vitest --coverage",
     "convert": "tsx scripts/convert.ts",
     "create-config": "cp -n config.ts.sample config.ts",
-    "docs": "cd docs && bundle exec jekyll serve --baseurl=\"\"",
-    "docs:install": "cd docs && bundler install",
     "i18n": "tsx scripts/i18n.ts",
     "i18n:ci": "pnpm i18n && git diff -G'^[^\"POT]' --exit-code",
     "knex": "tsx ./node_modules/knex/bin/cli.js",
