@@ -66,7 +66,7 @@ export async function callHandler(
     // If no redirect found
     if (!redirect) {
       throw new RequestException(404, {
-        error: req.i18n(`Not found: ${getPath(req)}`),
+        error: req.i18n('Not found: {url}', { url: getPath(req) }),
       });
     }
 

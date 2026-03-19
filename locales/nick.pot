@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-03-19T09:57:09.655Z\n"
+"POT-Creation-Date: 2026-03-19T13:24:54.570Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -532,7 +532,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.ts:62
-#: src/routes/content/content.ts:686
+#: src/routes/content/content.ts:695
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr ""
@@ -1027,6 +1027,12 @@ msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr ""
 
+#. Default: "Not found: {url}"
+#: src/helpers/handler/handler.ts:69
+msgctxt "Helpers|Handler|Handler.ts"
+msgid "Not found: {url}"
+msgstr ""
+
 #. Default: "Order in folder"
 #: src/profiles/core/catalog.json:50
 msgctxt "Profiles|Core|Catalog"
@@ -1280,7 +1286,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:508
+#: src/routes/content/content.ts:517
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr ""
@@ -1784,6 +1790,12 @@ msgctxt "Helpers|Handler|Handler.ts"
 msgid "Type of the current document is not found."
 msgstr ""
 
+#. Default: "Type {type} not found."
+#: src/routes/content/content.ts:506
+msgctxt "Routes|Content|Content.ts"
+msgid "Type {type} not found."
+msgstr ""
+
 #. Default: "Use '../' to navigate to parent objects."
 #: src/profiles/core/catalog.json:27
 msgctxt "Profiles|Core|Catalog"
@@ -1964,7 +1976,7 @@ msgstr ""
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:59
-#: src/routes/content/content.ts:683
+#: src/routes/content/content.ts:692
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr ""

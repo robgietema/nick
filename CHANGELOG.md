@@ -149,6 +149,7 @@
 - Fix bug in linking translations @mpalomaki
 - Fix breadcrumbs call in multilingual site @mpalomaki
 - Check uuid on file read @robgietema
+- Check if content type exists on add document @robgietema
 
 ### Internal
 

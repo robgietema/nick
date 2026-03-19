@@ -500,6 +500,15 @@ export default [
         trx,
       );
 
+      // Check if valid type
+      if (!type) {
+        throw new RequestException(400, {
+          message: req.i18n('Type {type} not found.', {
+            type: req.body['@type'],
+          }),
+        });
+      }
+
       // Check required fields
       const required = type._schema.required;
       const requiredPosted = intersection(required, Object.keys(req.body));
