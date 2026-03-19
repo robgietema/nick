@@ -535,7 +535,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.ts:61
-#: src/routes/content/content.ts:633
+#: src/routes/content/content.ts:678
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "Dokuments bloķēts"
@@ -1283,7 +1283,7 @@ msgid "Rename"
 msgstr "Pārdēvēt"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:455
+#: src/routes/content/content.ts:500
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "Trūkst obligāto lauku."
@@ -1967,7 +1967,7 @@ msgstr "Jūs nevarat dzēst sistēmas lietotājus. "
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:58
-#: src/routes/content/content.ts:630
+#: src/routes/content/content.ts:675
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "Jums nav atļaujas saglabāt šo dokumentu, jo to ir bloķējis cits lietotājs."

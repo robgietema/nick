@@ -535,7 +535,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.ts:61
-#: src/routes/content/content.ts:633
+#: src/routes/content/content.ts:678
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "दस्तावेज़ लॉक है"
@@ -1283,7 +1283,7 @@ msgid "Rename"
 msgstr "नाम बदलें"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:455
+#: src/routes/content/content.ts:500
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "आवश्यक फ़ील्ड गायब हैं।"
@@ -1967,7 +1967,7 @@ msgstr "आप सिस्टम उपयोगकर्ताओं को �
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:58
-#: src/routes/content/content.ts:630
+#: src/routes/content/content.ts:675
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "आपके पास इस दस्तावेज़ को सहेजने की अनुमति नहीं है क्योंकि इसे किसी अन्य उपयोगकर्ता द्वारा लॉक किया गया है।"

@@ -84,6 +84,7 @@
 - Add custom userschema to endpoints @robgietema
 - Add aliases endpoints @robgietema
 - Add cache headers for all routes @robgietema
+- Add etag support for caching @robgietema
 
 ### Bugfix
 

@@ -1,5 +1,5 @@
 /**
- * Auth helper.
+ * Content helper.
  * @module helpers/content/content
  */
 

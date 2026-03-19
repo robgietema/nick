@@ -177,7 +177,7 @@ routes.map((route: Route) => {
             }
           });
         } else {
-          const view = await callHandler(req, trx, route, () => {});
+          let view = await callHandler(req, trx, route, () => {});
 
           // Try to commit the transaction
           try {
@@ -194,7 +194,7 @@ routes.map((route: Route) => {
           }
 
           // Add caching
-          applyCache(req, res, route);
+          view = applyCache(req, res, route, view);
 
           if (view && view.json) {
             // Send json data

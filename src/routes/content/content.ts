@@ -13,6 +13,7 @@ import { getRootUrl, getUrl } from '../../helpers/url/url';
 import { lockExpired } from '../../helpers/lock/lock';
 import { mapAsync, uniqueId } from '../../helpers/utils/utils';
 import { readFile, removeFile } from '../../helpers/fs/fs';
+import { checkETag } from '../../helpers/cache/cache';
 import { RequestException } from '../../helpers/error/error';
 import {
   handleFiles,
@@ -318,13 +319,24 @@ export default [
     permission: 'View',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const field = req.document.json[req.params.field];
-      const buffer = readFile(field.uuid);
+      const uuid = field.uuid;
+
+      // Check if current etag
+      if (checkETag(req, uuid)) {
+        return {
+          status: 304,
+        };
+      }
+
+      // Fetch file
+      const buffer = readFile(uuid);
       return {
         headers: {
           'content-type': field['content-type'],
           'content-disposition': `attachment; filename="${field.filename}"`,
           'Accept-Ranges': 'bytes',
         },
+        etag: uuid,
         binary: buffer,
       };
     },
@@ -334,11 +346,22 @@ export default [
     view: '/@@images/:uuid.:ext',
     permission: 'View',
     handler: async (req: Request, trx: Knex.Transaction) => {
-      const buffer = readFile(req.params.uuid);
+      const uuid = req.params.uuid;
+
+      // Check if current etag
+      if (checkETag(req, uuid)) {
+        return {
+          status: 304,
+        };
+      }
+
+      // Fetch file
+      const buffer = readFile(uuid);
       return {
         headers: {
           'content-type': `image/${req.params.ext}`,
         },
+        etag: uuid,
         binary: buffer,
       };
     },
@@ -349,12 +372,23 @@ export default [
     permission: 'View',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const field = req.document.json[req.params.field];
-      const buffer = readFile(field.uuid);
+      const uuid = field.uuid;
+
+      // Check if current etag
+      if (checkETag(req, uuid)) {
+        return {
+          status: 304,
+        };
+      }
+
+      // Fetch file
+      const buffer = readFile(uuid);
       return {
         headers: {
           'content-type': field['content-type'],
           'content-disposition': `attachment; filename="${field.filename}"`,
         },
+        etag: uuid,
         binary: buffer,
       };
     },
@@ -365,12 +399,23 @@ export default [
     permission: 'View',
     handler: async (req: Request, trx: Knex.Transaction) => {
       const field = req.document.json[req.params.field];
-      const buffer = readFile(field.scales[req.params.scale].uuid);
+      const uuid = field.scales[req.params.scale].uuid;
+
+      // Check if current etag
+      if (checkETag(req, uuid)) {
+        return {
+          status: 304,
+        };
+      }
+
+      // Fetch file
+      const buffer = readFile(uuid);
       return {
         headers: {
           'content-type': field['content-type'],
           'content-disposition': `attachment; filename="${field.filename}"`,
         },
+        etag: uuid,
         binary: buffer,
       };
     },

@@ -99,6 +99,7 @@ class Config {
       cache: config.cache || {
         enable: false,
         anonymousOnly: true,
+        etag: false,
         policies: {
           alter: {
             method: 'no-cache',

@@ -3,8 +3,9 @@
  * @module helpers/cache/cache
  */
 
+import crypto from 'node:crypto';
 import type { Response } from 'express';
-import type { Request, Route } from '../../types';
+import type { Request, Route, View } from '../../types';
 import config from '../config/config';
 
 /**
@@ -12,13 +13,42 @@ import config from '../config/config';
  * @method applyCache
  * @param {Response} res Response object
  */
-export function applyCache(req: Request, res: Response, route: Route): void {
+export function applyCache(
+  req: Request,
+  res: Response,
+  route: Route,
+  view: View,
+): View {
   // Add caching
   if (
     config.settings.cache.enabled &&
     ((config.settings.cache.anonymousOnly && req.user.id === 'anonymous') ||
       !config.settings.cache.anonymousOnly)
   ) {
+    // Set etag
+    if (config.settings.cache.etag) {
+      // Calculate etag
+      const etag =
+        typeof view.etag === 'string'
+          ? view.etag
+          : view.json || view.html
+            ? crypto
+                .createHash('md5')
+                .update(
+                  view.json ? JSON.stringify(view.json) : (view.html as string),
+                )
+                .digest('hex')
+            : null;
+
+      // Check if etag matches
+      if (typeof etag === 'string' && checkETag(req, etag)) {
+        return {
+          status: 304,
+        };
+      }
+    }
+
+    // Set cache policy header
     const cachePolicy = config.settings.cache.policies[route.cache];
     switch (cachePolicy.method) {
       case 'private':
@@ -46,4 +76,33 @@ export function applyCache(req: Request, res: Response, route: Route): void {
         break;
     }
   }
+
+  // Return view
+  return view;
+}
+
+/**
+ * Check etag
+ * @method checkETag
+ * @param {Request} req Request object
+ * @param {string} etag Etag
+ */
+export function checkETag(req: Request, etag: string): boolean {
+  // Check if etag support enabled
+  if (!config.settings.cache.etag) {
+    return false;
+  }
+
+  // Fetch etag
+  const reqETag = req.get('If-None-Match');
+
+  // Check if emtpy
+  if (reqETag) {
+    // Split and trim etags
+    const reqETags = reqETag.split(',').map((tag) => tag.trim());
+
+    // Check if any tag matches or wildcard is specified
+    return reqETags.includes('*') || reqETags.includes(etag);
+  }
+  return false;
 }

@@ -40,6 +40,13 @@ export interface Request extends express.Request {
   query: { [key: string]: string };
 }
 
+export interface View {
+  status: number;
+  etag?: string;
+  json?: any;
+  html?: string;
+}
+
 export interface Fieldset {
   id: string;
   title: string;
@@ -129,6 +136,7 @@ export type ConfigSettings = {
   cache: {
     enabled: boolean;
     anonymousOnly: boolean;
+    etag: boolean;
     policies: {
       alter: CachePolicy;
       manage: CachePolicy;
