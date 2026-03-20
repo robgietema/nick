@@ -71,6 +71,9 @@ importers:
       pg:
         specifier: 8.20.0
         version: 8.20.0
+      pg-large-object:
+        specifier: 2.0.0
+        version: 2.0.0(pg@8.20.0)
       sharp:
         specifier: 0.34.5
         version: 0.34.5
@@ -2003,6 +2006,11 @@ packages:
   pg-int8@1.0.1:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
+
+  pg-large-object@2.0.0:
+    resolution: {integrity: sha512-SiqyK3G4Qv4WJLsSCh7N59om9Ga3t6ysAqyguTIojYG/SIU+YO1wQIRp7SM4Bov3sikGtRP8GZ9iqDJv8h/xXA==}
+    peerDependencies:
+      pg: '>=2.7.0'
 
   pg-pool@3.13.0:
     resolution: {integrity: sha512-gB+R+Xud1gLFuRD/QgOIgGOBE2KCQPaPwkzBBGC9oG69pHTkhQeIuejVIk3/cnDyX39av2AxomQiyPT13WKHQA==}
@@ -4155,6 +4163,10 @@ snapshots:
   pg-connection-string@2.6.2: {}
 
   pg-int8@1.0.1: {}
+
+  pg-large-object@2.0.0(pg@8.20.0):
+    dependencies:
+      pg: 8.20.0
 
   pg-pool@3.13.0(pg@8.20.0):
     dependencies:
