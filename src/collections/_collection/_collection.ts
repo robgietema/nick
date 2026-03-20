@@ -36,7 +36,7 @@ export class Collection<T extends Model> {
    * @param {function} callback Callback function.
    */
   filter(callback: (model: T) => boolean): void {
-    this.models.filter(callback) as T[];
+    this.models = this.models.filter(callback) as T[];
   }
 
   /**
