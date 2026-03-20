@@ -85,6 +85,10 @@ nvm install lts
 nvm use lts
 ```
 
+On macOS:
+
+You will also need to install either the Xcode Command Line Tools or the `node-gyp` node package.
+
 #### Verify installation
 
 ```bash
