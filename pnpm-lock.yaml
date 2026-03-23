@@ -39,8 +39,8 @@ importers:
         specifier: 9.0.3
         version: 9.0.3
       knex:
-        specifier: 3.1.0
-        version: 3.1.0(pg@8.20.0)
+        specifier: 3.2.3
+        version: 3.2.3(pg@8.20.0)
       log4js:
         specifier: 6.9.1
         version: 6.9.1
@@ -61,10 +61,10 @@ importers:
         version: 3.1.14
       objection:
         specifier: 3.1.5
-        version: 3.1.5(knex@3.1.0(pg@8.20.0))
+        version: 3.1.5(knex@3.2.3(pg@8.20.0))
       objection-table-name:
         specifier: 2.0.2
-        version: 2.0.2(objection@3.1.5(knex@3.1.0(pg@8.20.0)))
+        version: 2.0.2(objection@3.1.5(knex@3.2.3(pg@8.20.0)))
       pdf-parse:
         specifier: 2.4.5
         version: 2.4.5
@@ -1215,8 +1215,8 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
-  caniuse-lite@1.0.30001780:
-    resolution: {integrity: sha512-llngX0E7nQci5BPJDqoZSbuZ5Bcs9F5db7EtgfwBerX9XGtkkiO4NwfDDIRzHTTwcYC8vC7bmeUEPGrKlR/TkQ==}
+  caniuse-lite@1.0.30001781:
+    resolution: {integrity: sha512-RdwNCyMsNBftLjW6w01z8bKEvT6e/5tpPVEgtn22TiLGlstHOVecsX2KHFkD5e/vRnIE4EGzpuIODb3mtswtkw==}
 
   chai@6.2.2:
     resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
@@ -1735,8 +1735,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knex@3.1.0:
-    resolution: {integrity: sha512-GLoII6hR0c4ti243gMs5/1Rb3B+AjwMOfjYm97pu0FOQa7JH56hgBxYf5WK2525ceSbBY1cjeZ9yk99GPMB6Kw==}
+  knex@3.2.3:
+    resolution: {integrity: sha512-IpMWAkRs36bqY+1Ar7Q6harAtOL8+2Zka3wmYs8KG+0dLIBCJNQeRfzsebJdontuDKVWIsd1b4JX6Uk/yadh4w==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
@@ -1745,6 +1745,7 @@ packages:
       mysql2: '*'
       pg: '*'
       pg-native: '*'
+      pg-query-stream: ^4.14.0
       sqlite3: '*'
       tedious: '*'
     peerDependenciesMeta:
@@ -1757,6 +1758,8 @@ packages:
       pg:
         optional: true
       pg-native:
+        optional: true
+      pg-query-stream:
         optional: true
       sqlite3:
         optional: true
@@ -3383,7 +3386,7 @@ snapshots:
   browserslist@4.28.1:
     dependencies:
       baseline-browser-mapping: 2.10.10
-      caniuse-lite: 1.0.30001780
+      caniuse-lite: 1.0.30001781
       electron-to-chromium: 1.5.321
       node-releases: 2.0.36
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
@@ -3404,7 +3407,7 @@ snapshots:
 
   callsites@3.1.0: {}
 
-  caniuse-lite@1.0.30001780: {}
+  caniuse-lite@1.0.30001781: {}
 
   chai@6.2.2: {}
 
@@ -3939,7 +3942,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knex@3.1.0(pg@8.20.0):
+  knex@3.2.3(pg@8.20.0):
     dependencies:
       colorette: 2.0.19
       commander: 10.0.1
@@ -4084,19 +4087,19 @@ snapshots:
 
   object-inspect@1.13.4: {}
 
-  objection-table-name@2.0.2(objection@3.1.5(knex@3.1.0(pg@8.20.0))):
+  objection-table-name@2.0.2(objection@3.1.5(knex@3.2.3(pg@8.20.0))):
     dependencies:
       lodash.camelcase: 4.3.0
       lodash.memoize: 4.1.2
-      objection: 3.1.5(knex@3.1.0(pg@8.20.0))
+      objection: 3.1.5(knex@3.2.3(pg@8.20.0))
       pluralize: 8.0.0
 
-  objection@3.1.5(knex@3.1.0(pg@8.20.0)):
+  objection@3.1.5(knex@3.2.3(pg@8.20.0)):
     dependencies:
       ajv: 8.18.0
       ajv-formats: 2.1.1(ajv@8.18.0)
       db-errors: 0.2.3
-      knex: 3.1.0(pg@8.20.0)
+      knex: 3.2.3(pg@8.20.0)
 
   obug@2.1.1: {}
 
