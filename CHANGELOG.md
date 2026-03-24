@@ -87,6 +87,7 @@
 - Add etag support for caching @robgietema
 - Add xkeys support for caching @robgietema
 - Add purge support for caching @robgietema
+- Add recursive applying workflow changes to endpoint @robgietema
 
 ### Bugfix
 

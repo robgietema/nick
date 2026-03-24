@@ -26,6 +26,7 @@ export default [
     client: 'changeWorkflow',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const recursive = req.body?.include_children === true ? true : false;
       await req.type.fetchRelated('_workflow', trx);
 
       // Check permission
@@ -45,50 +46,15 @@ export default [
       // Get new state and modified timestamp
       const new_state =
         req.type._workflow.json.transitions[req.params.transition].new_state;
-      const old_state = req.document.workflow_state;
       const modified = moment.utc().format();
 
-      // Add to workflow history
-      const workflow_history = req.document.workflow_history;
-      workflow_history.push({
-        time: modified,
-        actor: req.user.id,
-        action: req.params.transition,
-        state_title: req.type._workflow.json.states[new_state].title,
-        review_state: new_state,
-        transition_title:
-          req.type._workflow.json.transitions[req.params.transition].title,
-      });
-
-      // Trigger on before change workflow
-      await config.settings.events.trigger(
-        'onBeforeChangeWorkflow',
-        req.document,
-        trx,
+      // Change workflow
+      await req.document.changeWorkflow(
         req.params.transition,
-        new_state,
-      );
-
-      // Update document
-      await req.document.update(
-        {
-          modified: modified,
-          workflow_state: new_state,
-          workflow_history: JSON.stringify(workflow_history),
-        },
+        req.user.id,
+        modified,
+        recursive,
         trx,
-      );
-
-      // Reindex document
-      await req.document.reindex(trx);
-
-      // Trigger on after change workflow
-      await config.settings.events.trigger(
-        'onAfterChangeWorkflow',
-        req.document,
-        trx,
-        req.params.transition,
-        old_state,
       );
 
       // Return workflow state

@@ -582,6 +582,98 @@ export class Document extends Model {
   }
 
   /**
+   * Change worksflow
+   * @method changeWorkflow
+   * @param {boolean} recursive
+   * @param {Knex.Transaction} trx Transaction object.
+   */
+  async changeWorkflow(
+    transition: string,
+    actor: string,
+    modified: string,
+    recursive: boolean,
+    trx: Knex.Transaction,
+  ): Promise<void> {
+    const self: any = this;
+
+    // Fetch type and workflow
+    if (!self._type) {
+      await self.fetchRelated('_type', trx);
+    }
+    if (!self._type._workflow) {
+      await self._type.fetchRelated('_workflow', trx);
+    }
+
+    // Get prev state
+    const old_state = self.workflow_state;
+    const new_state =
+      self._type._workflow.json.transitions[transition]?.new_state;
+
+    // Check if state is available
+    if (new_state) {
+      // Add to workflow history
+      const workflow_history = self.workflow_history;
+      workflow_history.push({
+        time: modified,
+        actor,
+        action: transition,
+        state_title: self._type._workflow.json.states[new_state].title,
+        review_state: new_state,
+        transition_title:
+          self._type._workflow.json.transitions[transition].title,
+      });
+
+      // Trigger on before change workflow
+      await config.settings.events.trigger(
+        'onBeforeChangeWorkflow',
+        self,
+        trx,
+        transition,
+        new_state,
+      );
+
+      // Update document
+      await self.update(
+        {
+          modified: modified,
+          workflow_state: new_state,
+          workflow_history: JSON.stringify(workflow_history),
+        },
+        trx,
+      );
+
+      // Reindex document
+      await self.reindex(trx);
+
+      // Trigger on after change workflow
+      await config.settings.events.trigger(
+        'onAfterChangeWorkflow',
+        self,
+        trx,
+        transition,
+        old_state,
+      );
+    }
+
+    // Done when not recursive
+    if (!recursive) {
+      return;
+    }
+
+    // If children not found fetch children
+    if (!self._children) {
+      await self.fetchRelated('_children', trx);
+    }
+
+    // Change workflow of children
+    await mapAsync(
+      self._children,
+      async (child: any) =>
+        await child.changeWorkflow(transition, actor, modified, recursive, trx),
+    );
+  }
+
+  /**
    * Copy object
    * @method copy
    * @param {string} parent Parent to copy to.
