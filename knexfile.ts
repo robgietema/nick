@@ -9,7 +9,7 @@ const knexSettings = {
   connection: config.settings.connection,
   pool: {
     min: 2,
-    max: 10,
+    max: 25,
   },
   migrations: {
     directory: path.resolve(__dirname, './src/migrations'),

@@ -71,7 +71,7 @@
     "@types/nodemailer": "7.0.11",
     "@types/pdf-parse": "1.1.5",
     "@types/supertest": "7.2.0",
-    "@vitest/ui": "4.1.0",
+    "@vitest/ui": "4.1.1",
     "eslint": "10.1.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
@@ -80,9 +80,9 @@
     "pofile": "1.1.4",
     "prettier": "3.8.1",
     "supertest": "7.2.2",
-    "typescript": "5.9.3",
-    "typescript-eslint": "8.57.1",
-    "vitest": "4.1.0"
+    "typescript": "6.0.2",
+    "typescript-eslint": "8.57.2",
+    "vitest": "4.1.1"
   },
   "dependencies": {
     "@formatjs/cli": "6.14.0",
@@ -95,7 +95,7 @@
     "express-rate-limit": "8.3.1",
     "helmet": "8.1.0",
     "jsonwebtoken": "9.0.3",
-    "knex": "3.2.3",
+    "knex": "3.2.5",
     "log4js": "6.9.1",
     "mime-types": "3.0.2",
     "moment": "2.30.1",

@@ -56,7 +56,7 @@ export const config = {
   events,
   routes: false,
   tasks: false,
-   cache: {
+  cache: {
     enabled: false,
     anonymousOnly: true,
     etag: false,

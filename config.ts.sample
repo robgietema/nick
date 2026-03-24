@@ -67,6 +67,47 @@ export const config = {
     trustProxy: TRUST_PROXY || 1,
   },
   events,
+  cache: {
+    enabled: false,
+    anonymousOnly: true,
+    etag: false,
+    xkeys: false,
+    purge: {
+      enabled: false,
+      urls: ['http://localhost:9000'],
+    },
+    policies: {
+      alter: {
+        method: 'no-cache',
+      },
+      manage: {
+        method: 'no-cache',
+      },
+      content: {
+        method: 'no-cache',
+      },
+      dynamic: {
+        method: 'public',
+        maxAge: 10,
+        sMaxAge: 0,
+      },
+      resource: {
+        method: 'public',
+        maxAge: 86400,
+        sMaxAge: 0,
+      },
+      stable: {
+        method: 'public',
+        maxAge: 31536000,
+        sMaxAge: 0,
+      },
+      static: {
+        method: 'public',
+        maxAge: 31536000,
+        sMaxAge: 0,
+      },
+    },
+  },
   ai: {
     models: {
       embed: {
