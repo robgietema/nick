@@ -154,6 +154,7 @@
 - Fix issue with language not saved on document update @robgietema
 - Fix exclude from nav bug @robgietema
 - Fix issue with layouts in types endpoint @robgietema
+- Fix issue with sharing @robgietema
 
 ### Internal
 

@@ -7,7 +7,7 @@ import { Document } from '../../models/document/document';
 import { Group } from '../../models/group/group';
 import { Role } from '../../models/role/role';
 import { User } from '../../models/user/user';
-import { log } from '../../helpers/log/log';
+import { mapAsync } from '../../helpers/utils/utils';
 import { apiLimiter } from '../../helpers/limiter/limiter';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
@@ -160,19 +160,18 @@ export default [
         req.body.entries.map(async (entry: any) => {
           const Model = entry.type === 'user' ? User : Group;
           const principal = await Model.fetchById(entry.id, {}, trx);
-          await Promise.all(
-            Object.keys(entry.roles).map(async (role) => {
+          if (principal) {
+            await mapAsync(Object.keys(entry.roles), async (role: any) => {
               // If should relate
               if (entry.roles[role] === true) {
-                try {
+                const existing = await principal
+                  .$relatedQuery('_documentRoles', trx)
+                  .where({ id: role, document: req.document.uuid })
+                  .first();
+                if (!existing) {
                   await principal
                     .$relatedQuery('_documentRoles', trx)
                     .relate({ id: role, document: req.document.uuid });
-                } catch (err) {
-                  // Already related
-                  log.warn(
-                    `Role ${role} already related to ${req.document.path}`,
-                  );
                 }
               } else if (entry.roles[role] === false) {
                 // Unrelate
@@ -181,8 +180,8 @@ export default [
                   .unrelate()
                   .where({ role, document: req.document.uuid });
               }
-            }),
-          );
+            });
+          }
         }),
       );
       return {

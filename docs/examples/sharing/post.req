@@ -11,7 +11,7 @@ Content-Type: application/json
         "Contributor": true,
         "Reader": true
       },
-      "type": "user"
+      "type": "group"
     }
   ],
   "inherit": true
