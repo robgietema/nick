@@ -41,6 +41,7 @@ Content-Type: application/json
       "fields": ["id", "exclude_from_nav"]
     }
   ],
+  "layouts": [],
   "properties": {
     "id": {
       "behavior": "short_name",

@@ -42,6 +42,7 @@ export default [
       return {
         json: {
           ...translateSchema(omit(type._schema, ['behaviors']) as any, req),
+          layouts: type._schema.layouts || [],
           title: req.i18n(type.title),
         },
       };
