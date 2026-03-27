@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@formatjs/cli':
-        specifier: 6.14.0
-        version: 6.14.0
+        specifier: 6.14.1
+        version: 6.14.1
       '@formatjs/intl':
-        specifier: 4.1.4
-        version: 4.1.4(typescript@6.0.2)
+        specifier: 4.1.5
+        version: 4.1.5
       bcrypt:
         specifier: 6.0.0
         version: 6.0.0
@@ -39,8 +39,8 @@ importers:
         specifier: 9.0.3
         version: 9.0.3
       knex:
-        specifier: 3.2.6
-        version: 3.2.6(pg@8.20.0)
+        specifier: 3.2.7
+        version: 3.2.7(pg@8.20.0)
       log4js:
         specifier: 6.9.1
         version: 6.9.1
@@ -61,10 +61,10 @@ importers:
         version: 3.1.14
       objection:
         specifier: 3.1.5
-        version: 3.1.5(knex@3.2.6(pg@8.20.0))
+        version: 3.1.5(knex@3.2.7(pg@8.20.0))
       objection-table-name:
         specifier: 2.0.2
-        version: 2.0.2(objection@3.1.5(knex@3.2.6(pg@8.20.0)))
+        version: 2.0.2(objection@3.1.5(knex@3.2.7(pg@8.20.0)))
       pdf-parse:
         specifier: 2.4.5
         version: 2.4.5
@@ -478,8 +478,8 @@ packages:
   '@formatjs/bigdecimal@0.2.0':
     resolution: {integrity: sha512-GeaxHZbUoYvHL9tC5eltHLs+1zU70aPw0s7LwqgktIzF5oMhNY4o4deEtusJMsq7WFJF3Ye2zQEzdG8beVk73w==}
 
-  '@formatjs/cli@6.14.0':
-    resolution: {integrity: sha512-5lqzAyAObZ8J8Ljtua8s4e5GKrPBu/lmuYN5ok5GgKUe+u+QwBPNlR3d2aYJpUbhgYuV8PXPHFXVPOwyhSR1uw==}
+  '@formatjs/cli@6.14.1':
+    resolution: {integrity: sha512-afBgzduP4lrOEm1FxMAVMXKi2FNE7KDOWJ7SyhvEI7zRbHhA7qVkb2DbxpPUhtDg0BrdHjdp8ppVyVVNYaFaaA==}
     engines: {node: '>= 20.12.0'}
     hasBin: true
     peerDependencies:
@@ -521,13 +521,8 @@ packages:
   '@formatjs/intl-localematcher@0.8.2':
     resolution: {integrity: sha512-q05KMYGJLyqFNFtIb8NhWLF5X3aK/k0wYt7dnRFuy6aLQL+vUwQ1cg5cO4qawEiINybeCPXAWlprY2mSBjSXAQ==}
 
-  '@formatjs/intl@4.1.4':
-    resolution: {integrity: sha512-y5aZ5p5zO74mZPdQMe9gq8SR1P6rlPQkaYOVFHyRzWrViif4sRKIQX01GYbKJvaGanupVVX+0WoKJqLVsP+X3Q==}
-    peerDependencies:
-      typescript: ^5.6.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
+  '@formatjs/intl@4.1.5':
+    resolution: {integrity: sha512-ybF/NIB/sIgP2oAq6KdJD6TQgUEJQL7F/ry4d4AbJ6zV0dfkwpQqycnIgpvChM9wRQ6IMr3XEdFevNjMNlC4WA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1732,8 +1727,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knex@3.2.6:
-    resolution: {integrity: sha512-26I1Tvx0D9SOsFBF9jRWT/JdE3FPI52jAwYpXfREEtnoqgjGvAi8/ux8ktjaTC9IQcAVTCrREkOpa7lrjeAcow==}
+  knex@3.2.7:
+    resolution: {integrity: sha512-VxdDE72x7Tc08E5yCu8HqYoeOm0HOjAraOtYiGSAUJTYkydwfSGBOpQqYHrzM5vjLNzw2JDL2vDH8m7DjIjtgA==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
@@ -2774,7 +2769,7 @@ snapshots:
 
   '@formatjs/bigdecimal@0.2.0': {}
 
-  '@formatjs/cli@6.14.0': {}
+  '@formatjs/cli@6.14.1': {}
 
   '@formatjs/ecma402-abstract@3.2.0':
     dependencies:
@@ -2797,14 +2792,12 @@ snapshots:
     dependencies:
       '@formatjs/fast-memoize': 3.1.1
 
-  '@formatjs/intl@4.1.4(typescript@6.0.2)':
+  '@formatjs/intl@4.1.5':
     dependencies:
       '@formatjs/ecma402-abstract': 3.2.0
       '@formatjs/fast-memoize': 3.1.1
       '@formatjs/icu-messageformat-parser': 3.5.3
       intl-messageformat: 11.2.0
-    optionalDependencies:
-      typescript: 6.0.2
 
   '@humanfs/core@0.19.1': {}
 
@@ -3937,7 +3930,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knex@3.2.6(pg@8.20.0):
+  knex@3.2.7(pg@8.20.0):
     dependencies:
       colorette: 2.0.19
       commander: 10.0.1
@@ -4082,19 +4075,19 @@ snapshots:
 
   object-inspect@1.13.4: {}
 
-  objection-table-name@2.0.2(objection@3.1.5(knex@3.2.6(pg@8.20.0))):
+  objection-table-name@2.0.2(objection@3.1.5(knex@3.2.7(pg@8.20.0))):
     dependencies:
       lodash.camelcase: 4.3.0
       lodash.memoize: 4.1.2
-      objection: 3.1.5(knex@3.2.6(pg@8.20.0))
+      objection: 3.1.5(knex@3.2.7(pg@8.20.0))
       pluralize: 8.0.0
 
-  objection@3.1.5(knex@3.2.6(pg@8.20.0)):
+  objection@3.1.5(knex@3.2.7(pg@8.20.0)):
     dependencies:
       ajv: 8.18.0
       ajv-formats: 2.1.1(ajv@8.18.0)
       db-errors: 0.2.3
-      knex: 3.2.6(pg@8.20.0)
+      knex: 3.2.7(pg@8.20.0)
 
   obug@2.1.1: {}
 
