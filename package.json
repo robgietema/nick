@@ -71,7 +71,7 @@
     "@types/nodemailer": "7.0.11",
     "@types/pdf-parse": "1.1.5",
     "@types/supertest": "7.2.0",
-    "@vitest/ui": "4.1.1",
+    "@vitest/ui": "4.1.2",
     "eslint": "10.1.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
@@ -82,7 +82,7 @@
     "supertest": "7.2.2",
     "typescript": "6.0.2",
     "typescript-eslint": "8.57.2",
-    "vitest": "4.1.1"
+    "vitest": "4.1.2"
   },
   "dependencies": {
     "@formatjs/cli": "6.14.0",
