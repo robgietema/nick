@@ -59,7 +59,7 @@ async function main() {
 
   try {
     await mapAsync(config.settings.profiles, async (profilePath, index) => {
-      if (fileExists(`${profilePath}/metadata`)) {
+      if (await fileExists(`${profilePath}/metadata`)) {
         const metadata = stripI18n(await import(`${profilePath}/metadata`));
         const profile = await Profile.fetchOne({ id: metadata.id }, {}, trx);
 

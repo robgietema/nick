@@ -63,7 +63,7 @@ export async function handleFiles(
     // Check if filename is specified
     if (typeof fields[field] === 'string' && profile) {
       fields[field] = {
-        data: readProfileFile(profile, fields[field]),
+        data: await readProfileFile(profile, fields[field]),
         encoding: 'base64',
         'content-type':
           mime.lookup(`${profile}${fields[field]}`) ||
@@ -75,7 +75,7 @@ export async function handleFiles(
     // Check if new data is uploaded
     if ('data' in fields[field]) {
       // Create filestream
-      const { uuid, size } = writeFile(
+      const { uuid, size } = await writeFile(
         fields[field].data,
         fields[field].encoding,
       );
@@ -127,7 +127,7 @@ export async function handleImages(
     // Check if filename is specified
     if (typeof fields[field] === 'string' && profile) {
       fields[field] = {
-        data: readProfileFile(profile, fields[field]),
+        data: await readProfileFile(profile, fields[field]),
         encoding: 'base64',
         'content-type':
           mime.lookup(`${profile}${fields[field]}`) ||

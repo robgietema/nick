@@ -8,7 +8,7 @@ export const seedPermission = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (fileExists(`${profilePath}/permissions`)) {
+  if (await fileExists(`${profilePath}/permissions`)) {
     const profile = stripI18n(
       (await import(`${profilePath}/permissions`)).default,
     );

@@ -13,7 +13,7 @@ export const seedControlpanel = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (dirExists(`${profilePath}/controlpanels`)) {
+  if (await dirExists(`${profilePath}/controlpanels`)) {
     // Get controlpanel profiles
     const controlpanels = (await fs.readdir(`${profilePath}/controlpanels`))
       .filter((file: string) => file.endsWith('.json'))

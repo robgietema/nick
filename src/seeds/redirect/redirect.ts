@@ -8,7 +8,7 @@ export const seedRedirect = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (fileExists(`${profilePath}/redirects`)) {
+  if (await fileExists(`${profilePath}/redirects`)) {
     const profile = stripI18n(
       (await import(`${profilePath}/redirects`)).default,
     );

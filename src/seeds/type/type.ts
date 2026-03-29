@@ -14,7 +14,7 @@ export const seedType = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (dirExists(`${profilePath}/behaviors`)) {
+  if (await dirExists(`${profilePath}/behaviors`)) {
     // Get behavior profiles
     const behaviors = (await fs.readdir(`${profilePath}/behaviors`))
       .map((file: string) => dropRight(file.split('.'), 1).join('.'))
@@ -30,7 +30,7 @@ export const seedType = async (
     console.log('Behaviors imported');
   }
 
-  if (dirExists(`${profilePath}/types`)) {
+  if (await dirExists(`${profilePath}/types`)) {
     // Get type profiles
     const types = (await fs.readdir(`${profilePath}/types`))
       .map((file: string) => dropRight(file.split('.'), 1).join('.'))

@@ -4,12 +4,12 @@
  */
 
 import {
-  copyFileSync,
-  rmSync,
-  readFileSync,
-  writeFileSync,
-  existsSync,
-} from 'fs';
+  access as accessPromise,
+  copyFile as copyFilePromise,
+  readFile as readFilePromise,
+  writeFile as writeFilePromise,
+  rm as rmPromise,
+} from 'node:fs/promises';
 import { v4 as uuid, validate } from 'uuid';
 import sharp from 'sharp';
 import type { Metadata } from 'sharp';
@@ -60,13 +60,17 @@ export function getDimensions(metadata: Metadata): Dimensions {
  * Read file
  * @method readFile
  * @param {string} uuid Uuid of the file to read.
- * @returns {Buffer} File buffer.
+ * @returns {Promise<Buffer>} File buffer.
  */
-export function readFile(uuid: string): Buffer {
+export async function readFile(uuid: string): Promise<Buffer> {
   if (!validate(uuid)) {
     throw `Invalid uuid: ${uuid}`;
   }
-  return readFileSync(`${config.settings.blobsDir}/${uuid}`);
+  try {
+    return await readFilePromise(`${config.settings.blobsDir}/${uuid}`);
+  } catch (err) {
+    throw `Can not read file`;
+  }
 }
 
 /**
@@ -74,14 +78,18 @@ export function readFile(uuid: string): Buffer {
  * @method readProfileFile
  * @param {string} profile Profile path
  * @param {string} path Path of the file
- * @returns {string} Base64 string of the file
+ * @returns {Promise<string>} Base64 string of the file
  */
-export function readProfileFile(profile: string, path: string): string {
+export async function readProfileFile(
+  profile: string,
+  path: string,
+): Promise<string> {
   const file = `${profile}${path}`;
-  if (!existsSync(file)) {
+  try {
+    return await readFilePromise(file, { encoding: 'base64' });
+  } catch (err) {
     throw `Can not read file: ${file}`;
   }
-  return readFileSync(file, { encoding: 'base64' });
 }
 
 /**
@@ -105,17 +113,17 @@ export interface WriteFileMeta {
  * @method writeFile
  * @param {string} data Data of the file
  * @param {BufferEncoding} encoding Encoding of the file data
- * @returns {WriteFileMeta} Return data of the file written.
+ * @returns {Promise<WriteFileMeta>} Return data of the file written.
  */
-export function writeFile(
+export async function writeFile(
   data: string,
   encoding: BufferEncoding,
-): WriteFileMeta {
+): Promise<WriteFileMeta> {
   const buffer = Buffer.from(data, encoding);
   const id = uuid();
 
   // Write file to disk
-  writeFileSync(`${config.settings.blobsDir}/${id}`, buffer);
+  await writeFilePromise(`${config.settings.blobsDir}/${id}`, buffer);
 
   // Return data
   return {
@@ -176,7 +184,7 @@ export async function writeImage(
   const id = uuid();
 
   // Write file to disk
-  writeFileSync(`${config.settings.blobsDir}/${id}`, buffer);
+  await writeFilePromise(`${config.settings.blobsDir}/${id}`, buffer);
 
   // Create image and get metadata
   const image = sharp(buffer);
@@ -190,7 +198,10 @@ export async function writeImage(
     async (scale: string) => {
       const scaleId = uuid();
       if ((await image.metadata()).format === 'svg') {
-        writeFileSync(`${config.settings.blobsDir}/${scaleId}`, buffer);
+        await writeFilePromise(
+          `${config.settings.blobsDir}/${scaleId}`,
+          buffer,
+        );
       } else {
         const scaleImage = sharp(buffer)
           .rotate()
@@ -231,9 +242,10 @@ export async function writeImage(
  * Remove file
  * @method removeFile
  * @param {string} uuid Uuid of the file to remove.
+ * @returns {Promise<void>} Void
  */
-export function removeFile(uuid: string) {
-  rmSync(`${config.settings.blobsDir}/${uuid}`);
+export async function removeFile(uuid: string): Promise<void> {
+  await rmPromise(`${config.settings.blobsDir}/${uuid}`);
 }
 
 /**
@@ -241,9 +253,10 @@ export function removeFile(uuid: string) {
  * @method copyFile
  * @param {string} source Uuid of the source file.
  * @param {string} target Uuid of the target file.
+ * @returns {Promise<void>} Void
  */
-export function copyFile(source: string, target: string) {
-  copyFileSync(
+export async function copyFile(source: string, target: string): Promise<void> {
+  await copyFilePromise(
     `${config.settings.blobsDir}/${source}`,
     `${config.settings.blobsDir}/${target}`,
   );
@@ -253,18 +266,38 @@ export function copyFile(source: string, target: string) {
  * Check if file exists
  * @method fileExists
  * @param {string} file Path of the file to check.
- * @returns {boolean} True if file exists
+ * @returns {Promise<boolean>} True if file exists
  */
-export function fileExists(file: string): boolean {
-  return existsSync(`${file}.js`) || existsSync(`${file}.json`);
+export async function fileExists(file: string): Promise<boolean> {
+  try {
+    await accessPromise(`${file}.ts`);
+    return true;
+  } catch {
+    try {
+      await accessPromise(`${file}.json`);
+      return true;
+    } catch {
+      try {
+        await accessPromise(`${file}.js`);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+  }
 }
 
 /**
  * Check if directory exists
  * @method dirExists
  * @param {string} dir Path of the directory to check.
- * @returns {boolean} True if dir exists
+ * @returns {Promise<boolean>} True if dir exists
  */
-export function dirExists(dir: string): boolean {
-  return existsSync(dir);
+export async function dirExists(dir: string): Promise<boolean> {
+  try {
+    await accessPromise(dir);
+    return true;
+  } catch {
+    return false;
+  }
 }

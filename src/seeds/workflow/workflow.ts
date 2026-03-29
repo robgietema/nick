@@ -10,7 +10,7 @@ export const seedWorkflow = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (fileExists(`${profilePath}/workflows`)) {
+  if (await fileExists(`${profilePath}/workflows`)) {
     const profile = stripI18n(
       (await import(`${profilePath}/workflows`)).default,
     );

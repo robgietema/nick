@@ -11,7 +11,7 @@ export const seedCatalog = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (fileExists(`${profilePath}/catalog`)) {
+  if (await fileExists(`${profilePath}/catalog`)) {
     const profile = stripI18n((await import(`${profilePath}/catalog`)).default);
     await mapAsync(profile.indexes, async (index: any) => {
       // Add index

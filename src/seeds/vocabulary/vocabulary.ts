@@ -12,7 +12,7 @@ export const seedVocabulary = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (dirExists(`${profilePath}/vocabularies`)) {
+  if (await dirExists(`${profilePath}/vocabularies`)) {
     // Get vocabulary profiles
     const vocabularies = (await fs.readdir(`${profilePath}/vocabularies`))
       .map((file: string) => dropRight(file.split('.'), 1).join('.'))

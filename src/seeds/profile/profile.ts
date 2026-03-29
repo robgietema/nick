@@ -8,7 +8,7 @@ export const seedProfile = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (fileExists(`${profilePath}/metadata`)) {
+  if (await fileExists(`${profilePath}/metadata`)) {
     const profile = stripI18n(
       (await import(`${profilePath}/metadata`)).default,
     );

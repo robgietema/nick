@@ -42,7 +42,7 @@ export const seedDocument = async (
 ): Promise<void> => {
   const uuids: string[] = [];
 
-  if (dirExists(`${profilePath}/documents`)) {
+  if (await dirExists(`${profilePath}/documents`)) {
     const children: Record<string, number> = {};
     const files = (await fs.readdir(`${profilePath}/documents`))
       .filter((file: string) => file.endsWith('.json'))

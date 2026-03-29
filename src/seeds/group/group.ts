@@ -10,7 +10,7 @@ export const seedGroup = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (fileExists(`${profilePath}/groups`)) {
+  if (await fileExists(`${profilePath}/groups`)) {
     const profile = stripI18n((await import(`${profilePath}/groups`)).default);
     if (profile.purge) {
       await Group.delete({}, trx);

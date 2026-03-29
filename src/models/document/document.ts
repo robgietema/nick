@@ -700,43 +700,46 @@ export class Document extends Model {
     const imageFields = self._type.getFactoryFields('Image');
 
     // Copy files
-    const copyFiles = () =>
-      fileFields.map((field: string) => {
+    const copyFiles = async () =>
+      await mapAsync(fileFields, async (field: string) => {
         if (json[field].uuid in fileUuid) {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
           const newUuid = uuid();
-          copyFile(json[field].uuid, newUuid);
+          await copyFile(json[field].uuid, newUuid);
           fileUuid[json[field].uuid] = newUuid;
           json[field].uuid = newUuid;
         }
       });
-    copyFiles();
+    await copyFiles();
 
     // Copy images
-    const copyImages = () =>
-      imageFields.map((field: string) => {
+    const copyImages = async () =>
+      await mapAsync(imageFields, async (field: string) => {
         if (json[field].uuid in fileUuid) {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
           const newUuid = uuid();
-          copyFile(json[field].uuid, newUuid);
+          await copyFile(json[field].uuid, newUuid);
           fileUuid[json[field].uuid] = newUuid;
           json[field].uuid = newUuid;
         }
-        Object.keys(config.settings.imageScales).map((scale) => {
-          if (json[field].scales[scale].uuid in fileUuid) {
-            json[field].scales[scale].uuid =
-              fileUuid[json[field].scales[scale].uuid];
-          } else {
-            const newScaleUuid = uuid();
-            copyFile(self.json[field].scales[scale].uuid, newScaleUuid);
-            fileUuid[json[field].scales[scale].uuid] = newScaleUuid;
-            json[field].scales[scale].uuid = newScaleUuid;
-          }
-        });
+        await mapAsync(
+          Object.keys(config.settings.imageScales),
+          async (scale) => {
+            if (json[field].scales[scale].uuid in fileUuid) {
+              json[field].scales[scale].uuid =
+                fileUuid[json[field].scales[scale].uuid];
+            } else {
+              const newScaleUuid = uuid();
+              copyFile(self.json[field].scales[scale].uuid, newScaleUuid);
+              fileUuid[json[field].scales[scale].uuid] = newScaleUuid;
+              json[field].scales[scale].uuid = newScaleUuid;
+            }
+          },
+        );
       });
-    copyImages();
+    await copyImages();
 
     // Copy document
     const document = await Document.create(
@@ -761,8 +764,8 @@ export class Document extends Model {
         json = version.json;
 
         // Copy images/files
-        copyFiles();
-        copyImages();
+        await copyFiles();
+        await copyImages();
 
         // Copy version
         await document.createRelated('_versions', { ...version, json }, trx);

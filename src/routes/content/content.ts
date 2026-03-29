@@ -333,7 +333,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = readFile(uuid);
+      const buffer = await readFile(uuid);
       return {
         headers: {
           'content-type': field['content-type'],
@@ -361,7 +361,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = readFile(uuid);
+      const buffer = await readFile(uuid);
       return {
         headers: {
           'content-type': `image/${req.params.ext}`,
@@ -388,7 +388,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = readFile(uuid);
+      const buffer = await readFile(uuid);
       return {
         headers: {
           'content-type': field['content-type'],
@@ -416,7 +416,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = readFile(uuid);
+      const buffer = await readFile(uuid);
       return {
         headers: {
           'content-type': field['content-type'],
@@ -829,7 +829,7 @@ export default [
         );
 
         // Remove files
-        files.map((file: any) => removeFile(file));
+        await mapAsync(files, async (file: any) => await removeFile(file));
       }
 
       // Get parent

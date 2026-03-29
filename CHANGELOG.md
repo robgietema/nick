@@ -189,6 +189,7 @@
 - Log error if document already shared @robgietema
 - Convert all files to typescript @robgietema
 - Don't expose layout and behaviors on schema if empty @robgietema
+- Moved file handling to async @robgietema
 
 ### Documentation
 

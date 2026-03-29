@@ -14,7 +14,7 @@ export const seedUser = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
-  if (fileExists(`${profilePath}/users`)) {
+  if (await fileExists(`${profilePath}/users`)) {
     const profile = stripI18n((await import(`${profilePath}/users`)).default);
     if (profile.purge) {
       await User.delete({}, trx);
