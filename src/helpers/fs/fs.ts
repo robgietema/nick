@@ -13,6 +13,7 @@ import {
 import { v4 as uuid, validate } from 'uuid';
 import sharp from 'sharp';
 import type { Metadata } from 'sharp';
+import type { Knex } from 'knex';
 
 import { mapAsync } from '../utils/utils';
 import { File } from '../../models/file/file';
@@ -60,16 +61,24 @@ export function getDimensions(metadata: Metadata): Dimensions {
  * Read file
  * @method readFile
  * @param {string} uuid Uuid of the file to read.
+ * @param {Knex.Transaction} trx Transaction object.
  * @returns {Promise<Buffer>} File buffer.
  */
-export async function readFile(uuid: string): Promise<Buffer> {
-  if (!validate(uuid)) {
-    throw `Invalid uuid: ${uuid}`;
-  }
-  try {
-    return await readFilePromise(`${config.settings.blobsDir}/${uuid}`);
-  } catch (err) {
-    throw `Can not read file`;
+export async function readFile(
+  uuid: string,
+  trx: Knex.Transaction,
+): Promise<Buffer> {
+  if (config.settings.blobs === 'db') {
+    return (await File.fetchById(uuid, {}, trx)).data;
+  } else {
+    if (!validate(uuid)) {
+      throw `Invalid uuid: ${uuid}`;
+    }
+    try {
+      return await readFilePromise(`${config.settings.blobsDir}/${uuid}`);
+    } catch (err) {
+      throw `Can not read file`;
+    }
   }
 }
 
@@ -113,17 +122,19 @@ export interface WriteFileMeta {
  * @method writeFile
  * @param {string} data Data of the file
  * @param {BufferEncoding} encoding Encoding of the file data
+ * @param {Knex.Transaction} trx Transaction object.
  * @returns {Promise<WriteFileMeta>} Return data of the file written.
  */
 export async function writeFile(
   data: string,
   encoding: BufferEncoding,
+  trx: Knex.Transaction,
 ): Promise<WriteFileMeta> {
   const buffer = Buffer.from(data, encoding);
   const id = uuid();
 
   // Write file to disk
-  await writeFilePromise(`${config.settings.blobsDir}/${id}`, buffer);
+  await storeFile(id, buffer, trx);
 
   // Return data
   return {
@@ -170,21 +181,50 @@ export interface WriteImageMeta {
 }
 
 /**
+ * Store file
+ * @method storeFile
+ * @param {string} uuid Uuid of the file
+ * @param {Buffer} data Data to store
+ * @param {Knex.Transaction} trx Transaction object.
+ * @returns {Promise<void>} Void
+ */
+export async function storeFile(
+  uuid: string,
+  data: Buffer,
+  trx: Knex.Transaction | undefined,
+): Promise<void> {
+  if (config.settings.blobs === 'db') {
+    await File.create(
+      {
+        uuid,
+        data,
+      },
+      {},
+      trx,
+    );
+  } else {
+    await writeFilePromise(`${config.settings.blobsDir}/${uuid}`, data);
+  }
+}
+
+/**
  * Write image
  * @method writeImage
  * @param {string} data Data of the image
  * @param {BufferEncoding} encoding Encoding of the image data
+ * @param {Knex.Transaction} trx Transaction object.
  * @returns {Promise<WriteImageMeta>} Return data of the image written.
  */
 export async function writeImage(
   data: string,
   encoding: BufferEncoding,
+  trx: Knex.Transaction,
 ): Promise<WriteImageMeta> {
   const buffer = Buffer.from(data, encoding);
   const id = uuid();
 
   // Write file to disk
-  await writeFilePromise(`${config.settings.blobsDir}/${id}`, buffer);
+  await storeFile(id, buffer, trx);
 
   // Create image and get metadata
   const image = sharp(buffer);
@@ -198,10 +238,7 @@ export async function writeImage(
     async (scale: string) => {
       const scaleId = uuid();
       if ((await image.metadata()).format === 'svg') {
-        await writeFilePromise(
-          `${config.settings.blobsDir}/${scaleId}`,
-          buffer,
-        );
+        await storeFile(scaleId, buffer, trx);
       } else {
         const scaleImage = sharp(buffer)
           .rotate()
@@ -212,7 +249,8 @@ export async function writeImage(
               fit: 'inside',
             },
           );
-        await scaleImage.toFile(`${config.settings.blobsDir}/${scaleId}`);
+        const scaleBuffer = await scaleImage.toBuffer();
+        await storeFile(scaleId, scaleBuffer, trx);
       }
       const [scaleWidth, scaleHeight] = getScaleDimensions(
         width,
@@ -245,7 +283,11 @@ export async function writeImage(
  * @returns {Promise<void>} Void
  */
 export async function removeFile(uuid: string): Promise<void> {
-  await rmPromise(`${config.settings.blobsDir}/${uuid}`);
+  if (config.settings.blobs === 'db') {
+    await File.deleteById(uuid);
+  } else {
+    await rmPromise(`${config.settings.blobsDir}/${uuid}`);
+  }
 }
 
 /**
@@ -253,13 +295,23 @@ export async function removeFile(uuid: string): Promise<void> {
  * @method copyFile
  * @param {string} source Uuid of the source file.
  * @param {string} target Uuid of the target file.
+ * @param {Knex.Transaction} trx Transaction object.
  * @returns {Promise<void>} Void
  */
-export async function copyFile(source: string, target: string): Promise<void> {
-  await copyFilePromise(
-    `${config.settings.blobsDir}/${source}`,
-    `${config.settings.blobsDir}/${target}`,
-  );
+export async function copyFile(
+  source: string,
+  target: string,
+  trx: Knex.Transaction | undefined,
+): Promise<void> {
+  if (config.settings.blobs === 'db') {
+    const buffer = (await File.fetchById(source, {}, trx)).data;
+    await storeFile(target, buffer, trx);
+  } else {
+    await copyFilePromise(
+      `${config.settings.blobsDir}/${source}`,
+      `${config.settings.blobsDir}/${target}`,
+    );
+  }
 }
 
 /**

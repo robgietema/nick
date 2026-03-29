@@ -10,4 +10,6 @@ import { Model } from '../../models/_model/_model';
  * @class File
  * @extends Model
  */
-export class File extends Model {}
+export class File extends Model {
+  static idColumn: string = 'uuid';
+}

@@ -706,7 +706,7 @@ export class Document extends Model {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
           const newUuid = uuid();
-          await copyFile(json[field].uuid, newUuid);
+          await copyFile(json[field].uuid, newUuid, trx);
           fileUuid[json[field].uuid] = newUuid;
           json[field].uuid = newUuid;
         }
@@ -720,7 +720,7 @@ export class Document extends Model {
           json[field].uuid = fileUuid[json[field].uuid];
         } else {
           const newUuid = uuid();
-          await copyFile(json[field].uuid, newUuid);
+          await copyFile(json[field].uuid, newUuid, trx);
           fileUuid[json[field].uuid] = newUuid;
           json[field].uuid = newUuid;
         }
@@ -732,7 +732,7 @@ export class Document extends Model {
                 fileUuid[json[field].scales[scale].uuid];
             } else {
               const newScaleUuid = uuid();
-              copyFile(self.json[field].scales[scale].uuid, newScaleUuid);
+              copyFile(self.json[field].scales[scale].uuid, newScaleUuid, trx);
               fileUuid[json[field].scales[scale].uuid] = newScaleUuid;
               json[field].scales[scale].uuid = newScaleUuid;
             }

@@ -333,7 +333,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = await readFile(uuid);
+      const buffer = await readFile(uuid, trx);
       return {
         headers: {
           'content-type': field['content-type'],
@@ -361,7 +361,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = await readFile(uuid);
+      const buffer = await readFile(uuid, trx);
       return {
         headers: {
           'content-type': `image/${req.params.ext}`,
@@ -388,7 +388,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = await readFile(uuid);
+      const buffer = await readFile(uuid, trx);
       return {
         headers: {
           'content-type': field['content-type'],
@@ -416,7 +416,7 @@ export default [
       }
 
       // Fetch file
-      const buffer = await readFile(uuid);
+      const buffer = await readFile(uuid, trx);
       return {
         headers: {
           'content-type': field['content-type'],
@@ -553,8 +553,8 @@ export default [
       };
 
       // Handle files, images and relation lists
-      json = await handleFiles(json, type);
-      json = await handleImages(json, type);
+      json = await handleFiles(json, type, trx);
+      json = await handleImages(json, type, trx);
       json = await handleRelationLists(json, req.type);
 
       // Create new document
@@ -725,8 +725,8 @@ export default [
           omitProperties,
         ),
       };
-      json = await handleFiles(json, req.type);
-      json = await handleImages(json, req.type);
+      json = await handleFiles(json, req.type, trx);
+      json = await handleImages(json, req.type, trx);
       json = await handleRelationLists(json, req.type);
 
       // Create new version

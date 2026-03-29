@@ -231,8 +231,8 @@ export default [
       const controlpanel = await Controlpanel.fetchById(req.params.id, {}, trx);
 
       // Handle images
-      json = await handleFiles(json, controlpanel);
-      json = await handleImages(json, controlpanel);
+      json = await handleFiles(json, controlpanel, trx);
+      json = await handleImages(json, controlpanel, trx);
 
       await Controlpanel.update(
         req.params.id,

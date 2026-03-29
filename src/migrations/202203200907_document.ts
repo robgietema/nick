@@ -5,7 +5,10 @@ import config from '../helpers/config/config';
 
 export const up = async (knex: Knex): Promise<void> => {
   // Create blob dir if it doesn’t exist
-  if (!existsSync((config as any).settings.blobsDir)) {
+  if (
+    config.settings.blobs === 'file' &&
+    !existsSync((config as any).settings.blobsDir)
+  ) {
     mkdirSync((config as any).settings.blobsDir, { recursive: true });
   }
   await knex.schema.createTable('document', (table: Knex.TableBuilder) => {
@@ -115,7 +118,9 @@ export const down = async (knex: Knex): Promise<void> => {
   await knex.schema.dropTable('user_role_document');
   await knex.schema.dropTable('version');
   await knex.schema.dropTable('document');
-  readdirSync((config as any).settings.blobsDir).forEach((file) =>
-    rmSync(`${(config as any).settings.blobsDir}/${file}`),
-  );
+  if (config.settings.blobs === 'file') {
+    readdirSync((config as any).settings.blobsDir).forEach((file) =>
+      rmSync(`${(config as any).settings.blobsDir}/${file}`),
+    );
+  }
 };

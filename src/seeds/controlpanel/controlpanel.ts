@@ -39,11 +39,13 @@ export const seedControlpanel = async (
       data.data = await handleFiles(
         data.data,
         current,
+        trx,
         `${profilePath}/controlpanels`,
       );
       data.data = await handleImages(
         data.data,
         current,
+        trx,
         `${profilePath}/controlpanels`,
       );
 

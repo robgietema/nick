@@ -88,6 +88,7 @@
 - Add xkeys support for caching @robgietema
 - Add purge support for caching @robgietema
 - Add recursive applying workflow changes to endpoint @robgietema
+- Add support for blob storage written to database @robgietema
 
 ### Bugfix
 

@@ -45,12 +45,14 @@ interface Json {
  * @method handleFiles
  * @param {Json} json Current json object.
  * @param {Type} type Type object.
+ * @param {Knex.Transaction} trx Transaction object.
  * @param {string} profile Path of the profile.
  * @returns {Json} Fields with uuid info.
  */
 export async function handleFiles(
   json: Json,
   type: Type,
+  trx: Knex.Transaction,
   profile?: string,
 ): Promise<Json> {
   // Make a copy of the json data
@@ -78,6 +80,7 @@ export async function handleFiles(
       const { uuid, size } = await writeFile(
         fields[field].data,
         fields[field].encoding,
+        trx,
       );
 
       // Check if pdf
@@ -109,12 +112,14 @@ export async function handleFiles(
  * @method handleImages
  * @param {Json} json Current json object.
  * @param {Type} type Type object.
+ * @param {Knex.Transaction} trx Transaction object.
  * @param {string} profile Path of the profile.
  * @returns {Json} Fields with uuid info.
  */
 export async function handleImages(
   json: Json,
   type: Type,
+  trx: Knex.Transaction,
   profile?: string,
 ): Promise<Record<string, any>> {
   // Make a copy of the json data
@@ -142,6 +147,7 @@ export async function handleImages(
       const { uuid, size, width, height, scales } = await writeImage(
         fields[field].data,
         fields[field].encoding,
+        trx,
       );
 
       // Check if vision is enabled

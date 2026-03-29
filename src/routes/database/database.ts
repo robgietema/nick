@@ -33,7 +33,11 @@ export default [
           '@id': `${getRootUrl(req)}/@database`,
           db_name: config.settings.connection.database,
           db_size: formatSize(postgres.rows[0].pg_database_size),
-          blob_size: formatSize(await du(config.settings.blobsDir)),
+          blob_size: formatSize(
+            config.settings.blobs === 'file'
+              ? await du(config.settings.blobsDir)
+              : 0,
+          ),
         },
       };
     },
