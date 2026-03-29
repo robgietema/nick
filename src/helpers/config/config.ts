@@ -48,6 +48,7 @@ class Config {
         user: DB_USER || config.connection?.user || 'nick',
         password: DB_PASSWORD || config.connection?.password || 'nick',
       },
+      blobs: config.blobs || 'file',
       blobsDir:
         BLOBS_DIR || config.blobsDir || `${__dirname}/../../../var/blobstorage`,
       localesDir:

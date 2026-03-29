@@ -15,6 +15,7 @@ import sharp from 'sharp';
 import type { Metadata } from 'sharp';
 
 import { mapAsync } from '../utils/utils';
+import { File } from '../../models/file/file';
 
 import config from '../../helpers/config/config';
 

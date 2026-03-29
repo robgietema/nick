@@ -13,6 +13,7 @@ export const config = {
     user: '<%= projectName %>',
     password: '<%= projectName %>',
   },
+  blobs: 'file',
   blobsDir: `${__dirname}/var/blobstorage`,
   localesDir: `${__dirname}/src/develop/nick/locales`,
   port: 8080,

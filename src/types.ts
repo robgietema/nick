@@ -108,6 +108,7 @@ export type ConfigSettings = {
     user: string;
     password: string;
   };
+  blobs: string;
   blobsDir: string;
   localesDir: string;
   port: number;
