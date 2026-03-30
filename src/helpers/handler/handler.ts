@@ -106,7 +106,7 @@ export async function callHandler(
 
   // Check permission
   if (!hasPermission(req.permissions, route.permission)) {
-    throw new RequestException(401, {
+    throw new RequestException(403, {
       message: req.i18n('You are not authorized to access this resource.'),
     });
   }
