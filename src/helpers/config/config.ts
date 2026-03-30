@@ -87,6 +87,10 @@ class Config {
         `${__dirname}/src/profiles/core`,
         `${__dirname}/src/profiles/default`,
       ],
+      requestLimit: config.requestLimit || {
+        api: '1mb',
+        files: '10mb',
+      },
       rateLimit: {
         api: parseInt(API_RATE_LIMIT || config.rateLimit?.api || '100'),
         auth: parseInt(AUTH_RATE_LIMIT || config.rateLimit?.auth || '5'),
