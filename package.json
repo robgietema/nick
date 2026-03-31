@@ -81,7 +81,7 @@
     "prettier": "3.8.1",
     "supertest": "7.2.2",
     "typescript": "6.0.2",
-    "typescript-eslint": "8.57.2",
+    "typescript-eslint": "8.58.0",
     "vitest": "4.1.2"
   },
   "dependencies": {
@@ -92,10 +92,10 @@
     "du": "1.0.0",
     "es-toolkit": "1.45.1",
     "express": "5.2.1",
-    "express-rate-limit": "8.3.1",
+    "express-rate-limit": "8.3.2",
     "helmet": "8.1.0",
     "jsonwebtoken": "9.0.3",
-    "knex": "3.2.7",
+    "knex": "3.2.8",
     "log4js": "6.9.1",
     "mime-types": "3.0.2",
     "moment": "2.30.1",
