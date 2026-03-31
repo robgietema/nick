@@ -203,6 +203,9 @@ export async function storeFile(
       trx,
     );
   } else {
+    if (!validate(uuid)) {
+      throw `Invalid uuid: ${uuid}`;
+    }
     await writeFilePromise(`${config.settings.blobsDir}/${uuid}`, data);
   }
 }
@@ -286,6 +289,9 @@ export async function removeFile(uuid: string): Promise<void> {
   if (config.settings.blobs === 'db') {
     await File.deleteById(uuid);
   } else {
+    if (!validate(uuid)) {
+      throw `Invalid uuid: ${uuid}`;
+    }
     await rmPromise(`${config.settings.blobsDir}/${uuid}`);
   }
 }
@@ -307,6 +313,12 @@ export async function copyFile(
     const buffer = (await File.fetchById(source, {}, trx)).data;
     await storeFile(target, buffer, trx);
   } else {
+    if (!validate(source)) {
+      throw `Invalid source uuid: ${source}`;
+    }
+    if (!validate(target)) {
+      throw `Invalid target uuid: ${target}`;
+    }
     await copyFilePromise(
       `${config.settings.blobsDir}/${source}`,
       `${config.settings.blobsDir}/${target}`,
