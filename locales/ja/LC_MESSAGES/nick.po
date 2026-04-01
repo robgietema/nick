@@ -458,7 +458,7 @@ msgid "Dates"
 msgstr "日付"
 
 #. Default: "Debug"
-#: src/profiles/core/controlpanels/mail.json:58
+#: src/profiles/core/controlpanels/mail.json:57
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Debug"
 msgstr "デバッグ"
@@ -559,13 +559,13 @@ msgid "Dublin Core metadata"
 msgstr "ダブリン・コア メタデータ"
 
 #. Default: "ESMTP password"
-#: src/profiles/core/controlpanels/mail.json:41
+#: src/profiles/core/controlpanels/mail.json:40
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP password"
 msgstr "ESMTPパスワード"
 
 #. Default: "ESMTP username"
-#: src/profiles/core/controlpanels/mail.json:53
+#: src/profiles/core/controlpanels/mail.json:52
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP username"
 msgstr "ESMTPユーザー名"
@@ -741,13 +741,13 @@ msgid "Identifier"
 msgstr "識別子"
 
 #. Default: "If enabled, the mail is sent to a test server."
-#: src/profiles/core/controlpanels/mail.json:59
+#: src/profiles/core/controlpanels/mail.json:58
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled, the mail is sent to a test server."
 msgstr "有効にすると、メールはテストサーバーに送信されます。"
 
 #. Default: "If enabled, the mail is sent using a secure connection."
-#: src/profiles/core/controlpanels/mail.json:64
+#: src/profiles/core/controlpanels/mail.json:63
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled, the mail is sent using a secure connection."
 msgstr "有効にすると、メールは安全な接続を使用して送信されます。"
@@ -1006,6 +1006,18 @@ msgctxt "Helpers|I18n|I18n.test.ts"
 msgid "News"
 msgstr ""
 
+#. Default: "Nick generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
+#: src/profiles/core/controlpanels/mail.json:25
+msgctxt "Profiles|Core|Controlpanels|Mail"
+msgid "Nick generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
+msgstr ""
+
+#. Default: "Nick generates email using this name as the email sender."
+#: src/profiles/core/controlpanels/mail.json:30
+msgctxt "Profiles|Core|Controlpanels|Mail"
+msgid "Nick generates email using this name as the email sender."
+msgstr ""
+
 #. Default: "No"
 #: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
@@ -1132,18 +1144,6 @@ msgstr "日数を入力してください。"
 msgctxt "Profiles|Core|Catalog"
 msgid "Please use YYYY/MM/DD."
 msgstr "YYYY/MM/DD形式を使用してください。"
-
-#. Default: "Plone generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
-#: src/profiles/core/controlpanels/mail.json:26
-msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "Plone generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
-msgstr "Ploneはこのアドレスをメールの返信先アドレスとして使用してメールを生成します。また、サイト全体の問い合わせフォームや「テストメール送信」機能の宛先アドレスとしても使用されます。"
-
-#. Default: "Plone generates email using this name as the email sender."
-#: src/profiles/core/controlpanels/mail.json:31
-msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "Plone generates email using this name as the email sender."
-msgstr "Ploneはこの名前をメールの送信者として使用してメールを生成します。"
 
 #. Default: "Portrait"
 #: src/constants/userschema.ts:42
@@ -1337,13 +1337,13 @@ msgid "Rules"
 msgstr "ルール"
 
 #. Default: "SMTP port"
-#: src/profiles/core/controlpanels/mail.json:47
+#: src/profiles/core/controlpanels/mail.json:46
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP port"
 msgstr "SMTPポート"
 
 #. Default: "SMTP server"
-#: src/profiles/core/controlpanels/mail.json:35
+#: src/profiles/core/controlpanels/mail.json:34
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP server"
 msgstr "SMTPサーバー"
@@ -1355,7 +1355,7 @@ msgid "Searchable text"
 msgstr "検索可能なテキスト"
 
 #. Default: "Secure"
-#: src/profiles/core/controlpanels/mail.json:63
+#: src/profiles/core/controlpanels/mail.json:62
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Secure"
 msgstr "安全"
@@ -1430,13 +1430,13 @@ msgid "Site"
 msgstr "サイト"
 
 #. Default: "Site 'From' address"
-#: src/profiles/core/controlpanels/mail.json:25
+#: src/profiles/core/controlpanels/mail.json:24
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' address"
 msgstr "サイトの「送信元」アドレス"
 
 #. Default: "Site 'From' name"
-#: src/profiles/core/controlpanels/mail.json:30
+#: src/profiles/core/controlpanels/mail.json:29
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' name"
 msgstr "サイトの「送信元」名"
@@ -1556,7 +1556,7 @@ msgid "The URL for your external home page, if you have one."
 msgstr ""
 
 #. Default: "The address of your local SMTP (outgoing email) server. Usually 'localhost', unless you use an external server to send email."
-#: src/profiles/core/controlpanels/mail.json:36
+#: src/profiles/core/controlpanels/mail.json:35
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The address of your local SMTP (outgoing email) server. Usually 'localhost', unless you use an external server to send email."
 msgstr "ローカルSMTP（送信メール）サーバーのアドレス。外部サーバーを使用してメールを送信しない限り、通常は 'localhost' です。"
@@ -1634,7 +1634,7 @@ msgid "The order of an item in its parent folder"
 msgstr "親フォルダー内のアイテムの順序"
 
 #. Default: "The password for the ESMTP user account."
-#: src/profiles/core/controlpanels/mail.json:42
+#: src/profiles/core/controlpanels/mail.json:41
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The password for the ESMTP user account."
 msgstr "ESMTPユーザーアカウントのパスワード。"
@@ -1646,7 +1646,7 @@ msgid "The person that created an item"
 msgstr "アイテムを作成した人物"
 
 #. Default: "The port of your local SMTP (outgoing email) server. Usually '25'."
-#: src/profiles/core/controlpanels/mail.json:48
+#: src/profiles/core/controlpanels/mail.json:47
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The port of your local SMTP (outgoing email) server. Usually '25'."
 msgstr "ローカルSMTP（送信メール）サーバーのポート。通常は '25' です。"
@@ -1862,7 +1862,7 @@ msgid "Username"
 msgstr ""
 
 #. Default: "Username for authentication to your email server. Not required unless you are using ESMTP."
-#: src/profiles/core/controlpanels/mail.json:54
+#: src/profiles/core/controlpanels/mail.json:53
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Username for authentication to your email server. Not required unless you are using ESMTP."
 msgstr "メールサーバーへの認証用ユーザー名。ESMTPを使用していない場合は不要です。"

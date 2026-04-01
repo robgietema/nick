@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-03-24T14:59:21.530Z\n"
+"POT-Creation-Date: 2026-04-01T07:25:57.786Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -455,7 +455,7 @@ msgid "Dates"
 msgstr ""
 
 #. Default: "Debug"
-#: src/profiles/core/controlpanels/mail.json:58
+#: src/profiles/core/controlpanels/mail.json:57
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Debug"
 msgstr ""
@@ -556,13 +556,13 @@ msgid "Dublin Core metadata"
 msgstr ""
 
 #. Default: "ESMTP password"
-#: src/profiles/core/controlpanels/mail.json:41
+#: src/profiles/core/controlpanels/mail.json:40
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP password"
 msgstr ""
 
 #. Default: "ESMTP username"
-#: src/profiles/core/controlpanels/mail.json:53
+#: src/profiles/core/controlpanels/mail.json:52
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "ESMTP username"
 msgstr ""
@@ -738,13 +738,13 @@ msgid "Identifier"
 msgstr ""
 
 #. Default: "If enabled, the mail is sent to a test server."
-#: src/profiles/core/controlpanels/mail.json:59
+#: src/profiles/core/controlpanels/mail.json:58
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled, the mail is sent to a test server."
 msgstr ""
 
 #. Default: "If enabled, the mail is sent using a secure connection."
-#: src/profiles/core/controlpanels/mail.json:64
+#: src/profiles/core/controlpanels/mail.json:63
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "If enabled, the mail is sent using a secure connection."
 msgstr ""
@@ -1003,6 +1003,18 @@ msgctxt "Helpers|I18n|I18n.test.ts"
 msgid "News"
 msgstr ""
 
+#. Default: "Nick generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
+#: src/profiles/core/controlpanels/mail.json:25
+msgctxt "Profiles|Core|Controlpanels|Mail"
+msgid "Nick generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
+msgstr ""
+
+#. Default: "Nick generates email using this name as the email sender."
+#: src/profiles/core/controlpanels/mail.json:30
+msgctxt "Profiles|Core|Controlpanels|Mail"
+msgid "Nick generates email using this name as the email sender."
+msgstr ""
+
 #. Default: "No"
 #: src/profiles/core/catalog.json:347
 #: src/profiles/core/vocabularies/boolean.json:6
@@ -1128,18 +1140,6 @@ msgstr ""
 #: src/profiles/core/catalog.json:765
 msgctxt "Profiles|Core|Catalog"
 msgid "Please use YYYY/MM/DD."
-msgstr ""
-
-#. Default: "Plone generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
-#: src/profiles/core/controlpanels/mail.json:26
-msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "Plone generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
-msgstr ""
-
-#. Default: "Plone generates email using this name as the email sender."
-#: src/profiles/core/controlpanels/mail.json:31
-msgctxt "Profiles|Core|Controlpanels|Mail"
-msgid "Plone generates email using this name as the email sender."
 msgstr ""
 
 #. Default: "Portrait"
@@ -1334,13 +1334,13 @@ msgid "Rules"
 msgstr ""
 
 #. Default: "SMTP port"
-#: src/profiles/core/controlpanels/mail.json:47
+#: src/profiles/core/controlpanels/mail.json:46
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP port"
 msgstr ""
 
 #. Default: "SMTP server"
-#: src/profiles/core/controlpanels/mail.json:35
+#: src/profiles/core/controlpanels/mail.json:34
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "SMTP server"
 msgstr ""
@@ -1352,7 +1352,7 @@ msgid "Searchable text"
 msgstr ""
 
 #. Default: "Secure"
-#: src/profiles/core/controlpanels/mail.json:63
+#: src/profiles/core/controlpanels/mail.json:62
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Secure"
 msgstr ""
@@ -1427,13 +1427,13 @@ msgid "Site"
 msgstr ""
 
 #. Default: "Site 'From' address"
-#: src/profiles/core/controlpanels/mail.json:25
+#: src/profiles/core/controlpanels/mail.json:24
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' address"
 msgstr ""
 
 #. Default: "Site 'From' name"
-#: src/profiles/core/controlpanels/mail.json:30
+#: src/profiles/core/controlpanels/mail.json:29
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Site 'From' name"
 msgstr ""
@@ -1553,7 +1553,7 @@ msgid "The URL for your external home page, if you have one."
 msgstr ""
 
 #. Default: "The address of your local SMTP (outgoing email) server. Usually 'localhost', unless you use an external server to send email."
-#: src/profiles/core/controlpanels/mail.json:36
+#: src/profiles/core/controlpanels/mail.json:35
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The address of your local SMTP (outgoing email) server. Usually 'localhost', unless you use an external server to send email."
 msgstr ""
@@ -1631,7 +1631,7 @@ msgid "The order of an item in its parent folder"
 msgstr ""
 
 #. Default: "The password for the ESMTP user account."
-#: src/profiles/core/controlpanels/mail.json:42
+#: src/profiles/core/controlpanels/mail.json:41
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The password for the ESMTP user account."
 msgstr ""
@@ -1643,7 +1643,7 @@ msgid "The person that created an item"
 msgstr ""
 
 #. Default: "The port of your local SMTP (outgoing email) server. Usually '25'."
-#: src/profiles/core/controlpanels/mail.json:48
+#: src/profiles/core/controlpanels/mail.json:47
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The port of your local SMTP (outgoing email) server. Usually '25'."
 msgstr ""
@@ -1859,7 +1859,7 @@ msgid "Username"
 msgstr ""
 
 #. Default: "Username for authentication to your email server. Not required unless you are using ESMTP."
-#: src/profiles/core/controlpanels/mail.json:54
+#: src/profiles/core/controlpanels/mail.json:53
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Username for authentication to your email server. Not required unless you are using ESMTP."
 msgstr ""

@@ -5,7 +5,6 @@
   "schema": {
     "fieldsets": [
       {
-        "behavior": "plone",
         "fields": [
           "host",
           "port",
@@ -23,12 +22,12 @@
     "properties": {
       "email_from_address": {
         "title:i18n": "Site 'From' address",
-        "description:i18n": "Plone generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature.",
+        "description:i18n": "Nick generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature.",
         "type": "string"
       },
       "email_from_name": {
         "title:i18n": "Site 'From' name",
-        "description:i18n": "Plone generates email using this name as the email sender.",
+        "description:i18n": "Nick generates email using this name as the email sender.",
         "type": "string"
       },
       "host": {
