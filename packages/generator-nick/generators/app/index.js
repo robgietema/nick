@@ -1,5 +1,6 @@
 import path from 'path';
 import Generator from 'yeoman-generator';
+import updateNotifier from 'update-notifier';
 
 const currentDir = path.basename(process.cwd());
 
@@ -20,8 +21,7 @@ export default class extends Generator {
   }
 
   async prompting() {
-    const updateNotifier = import('update-notifier');
-    const pkg = import('../../package.json');
+    const pkg = await import('../../package.json');
     const notifier = updateNotifier({
       pkg,
       shouldNotifyInNpmScript: true,
