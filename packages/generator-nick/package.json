@@ -1,6 +1,7 @@
 {
   "name": "@robgietema/generator-nick",
   "description": "Generator for Nick",
+  "type": "module",
   "maintainers": [
     {
       "name": "Rob Gietema",
@@ -9,7 +10,7 @@
     }
   ],
   "license": "MIT",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "repository": {
     "type": "git",
     "url": "git@github.com:robgietema/nick.git"
