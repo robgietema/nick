@@ -1,6 +1,6 @@
-const path = require('path');
-const Generator = require('yeoman-generator');
-const { exec } = require('child_process');
+import path from 'path';
+import Generator from 'yeoman-generator';
+import { exec } from 'child_process';
 
 const currentDir = path.basename(process.cwd());
 
@@ -21,8 +21,8 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
-    const updateNotifier = require('update-notifier');
-    const pkg = require('../../package.json');
+    const updateNotifier = import('update-notifier');
+    const pkg = import('../../package.json');
     const notifier = updateNotifier({
       pkg,
       shouldNotifyInNpmScript: true,
