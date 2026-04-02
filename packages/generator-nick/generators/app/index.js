@@ -1,10 +1,9 @@
 import path from 'path';
 import Generator from 'yeoman-generator';
-import { exec } from 'child_process';
 
 const currentDir = path.basename(process.cwd());
 
-module.exports = class extends Generator {
+export default class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument('projectName', {
@@ -126,4 +125,4 @@ pnpm start
 `,
     );
   }
-};
+}
