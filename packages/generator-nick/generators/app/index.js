@@ -76,8 +76,8 @@ Run "npm install -g @robgietema/generator-nick" to update.`,
       this.globals,
     );
     this.fs.copyTpl(
-      this.templatePath('config.js.tpl'),
-      this.destinationPath(base, 'config.js'),
+      this.templatePath('config.ts.tpl'),
+      this.destinationPath(base, 'config.ts'),
       this.globals,
     );
 
@@ -100,7 +100,7 @@ Run "npm install -g @robgietema/generator-nick" to update.`,
       this.globals,
     );
 
-    this.fs.delete(this.destinationPath(base, 'config.js.tpl'));
+    this.fs.delete(this.destinationPath(base, 'config.ts.tpl'));
     this.fs.delete(this.destinationPath(base, 'package.json.tpl'));
     this.fs.delete(this.destinationPath(base, '.gitignorefile'));
   }
