@@ -71,12 +71,12 @@ Content-Type: application/json
       "email_from_name": {
         "type": "string",
         "title": "Site 'From' name",
-        "description": "Plone generates email using this name as the email sender."
+        "description": "Nick generates email using this name as the email sender."
       },
       "email_from_address": {
         "type": "string",
         "title": "Site 'From' address",
-        "description": "Plone generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
+        "description": "Nick generates email using this address as the email return address. It is also used as the destination address for the site-wide contact form and the “Send test email” feature."
       }
     }
   }
