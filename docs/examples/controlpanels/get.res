@@ -30,8 +30,7 @@ Content-Type: application/json
           "email_from_name",
           "email_from_address",
           "debug"
-        ],
-        "behavior": "plone"
+        ]
       }
     ],
     "properties": {
