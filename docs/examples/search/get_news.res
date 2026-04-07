@@ -26,6 +26,8 @@ Content-Type: application/json
       "modified": "2022-04-02T20:22:00.000Z",
       "Date": "2022-04-02T20:22:00.000Z",
       "expires": null,
+      "end": null,
+      "start": null,
       "created": "2022-04-02T20:22:00.000Z",
       "effective": "2022-04-02T20:22:00.000Z",
       "getObjSize": 217,

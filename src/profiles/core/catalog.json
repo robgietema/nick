@@ -919,6 +919,16 @@
       "attr": "getImageScales"
     },
     {
+      "name": "start",
+      "type": "date",
+      "attr": "start"
+    },
+    {
+      "name": "end",
+      "type": "date",
+      "attr": "end"
+    },
+    {
       "name": "hasPreviewImage",
       "type": "boolean",
       "attr": "hasPreviewImage"
