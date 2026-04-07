@@ -239,6 +239,12 @@ msgctxt "Profiles|Core|Roles"
 msgid "Anonymous"
 msgstr "Анонимен"
 
+#. Default: "Attendees"
+#: src/profiles/core/types/event.json:81
+msgctxt "Profiles|Core|Types|Event"
+msgid "Attendees"
+msgstr ""
+
 #. Default: "Authenticated"
 #: src/profiles/core/roles.json:11
 #: src/profiles/ai/roles.json:6
@@ -380,6 +386,24 @@ msgctxt "Profiles|Core|Actions"
 msgid "Contact"
 msgstr "Контакт"
 
+#. Default: "Contact E-mail"
+#: src/profiles/core/types/event.json:94
+msgctxt "Profiles|Core|Types|Event"
+msgid "Contact E-mail"
+msgstr ""
+
+#. Default: "Contact Name"
+#: src/profiles/core/types/event.json:88
+msgctxt "Profiles|Core|Types|Event"
+msgid "Contact Name"
+msgstr ""
+
+#. Default: "Contact Phone"
+#: src/profiles/core/types/event.json:100
+msgctxt "Profiles|Core|Types|Event"
+msgid "Contact Phone"
+msgstr ""
+
 #. Default: "Contains"
 #: src/profiles/core/catalog.json:234
 #: src/profiles/core/catalog.json:253
@@ -450,6 +474,18 @@ msgctxt "Profiles|Core|Actions"
 msgid "Cut"
 msgstr "Изрязване"
 
+#. Default: "Date and Time, when the event begins."
+#: src/profiles/core/types/event.json:30
+msgctxt "Profiles|Core|Types|Event"
+msgid "Date and Time, when the event begins."
+msgstr ""
+
+#. Default: "Date and Time, when the event ends."
+#: src/profiles/core/types/event.json:37
+msgctxt "Profiles|Core|Types|Event"
+msgid "Date and Time, when the event ends."
+msgstr ""
+
 #. Default: "Dates"
 #: src/profiles/core/behaviors/dates.json:3
 #: src/profiles/core/behaviors/dates.json:10
@@ -471,6 +507,7 @@ msgstr "Отстраняване на грешки"
 #: src/profiles/core/upgrades/1001/controlpanels/security.json:10
 #: src/profiles/core/types/image.json:13
 #: src/profiles/core/types/file.json:13
+#: src/profiles/core/types/event.json:25
 #: src/profiles/core/controlpanels/usergroup.json:10
 #: src/profiles/core/controlpanels/security.json:10
 #: src/profiles/core/behaviors/versioning.json:10
@@ -485,6 +522,12 @@ msgstr "По подразбиране"
 msgctxt "Profiles|Ai|Controlpanels"
 msgid "Define custom prompts for the assistant."
 msgstr "Дефинирайте персонализирани подкани за асистента."
+
+#. Default: "Define the event recurrence rule."
+#: src/profiles/core/types/event.json:58
+msgctxt "Profiles|Core|Types|Event"
+msgid "Define the event recurrence rule."
+msgstr ""
 
 #. Default: "Delete"
 #: src/profiles/core/actions.json:54
@@ -595,6 +638,12 @@ msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Email"
 msgstr ""
 
+#. Default: "Email address to contact about this event."
+#: src/profiles/core/types/event.json:92
+msgctxt "Profiles|Core|Types|Event"
+msgid "Email address to contact about this event."
+msgstr ""
+
 #. Default: "Enables Volto Blocks support"
 #: src/profiles/core/behaviors/blocks.json:4
 msgctxt "Profiles|Core|Behaviors|Blocks"
@@ -633,11 +682,41 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Equals"
 msgstr "Равно на"
 
+#. Default: "Event"
+#: src/profiles/core/types/event.json:3
+msgctxt "Profiles|Core|Types|Event"
+msgid "Event"
+msgstr ""
+
+#. Default: "Event Ends"
+#: src/profiles/core/types/event.json:38
+msgctxt "Profiles|Core|Types|Event"
+msgid "Event Ends"
+msgstr ""
+
+#. Default: "Event Starts"
+#: src/profiles/core/types/event.json:31
+msgctxt "Profiles|Core|Types|Event"
+msgid "Event Starts"
+msgstr ""
+
+#. Default: "Event URL"
+#: src/profiles/core/types/event.json:106
+msgctxt "Profiles|Core|Types|Event"
+msgid "Event URL"
+msgstr ""
+
 #. Default: "Event end date"
 #: src/profiles/core/catalog.json:154
 msgctxt "Profiles|Core|Catalog"
 msgid "Event end date"
 msgstr "Крайна дата на събитието"
+
+#. Default: "Event lasts whole day."
+#: src/profiles/core/types/event.json:45
+msgctxt "Profiles|Core|Types|Event"
+msgid "Event lasts whole day."
+msgstr ""
 
 #. Default: "Event start date"
 #: src/profiles/core/catalog.json:81
@@ -860,9 +939,16 @@ msgctxt "Profiles|Core|Types|File"
 msgid "Lets you upload a file to the site."
 msgstr "Позволява ви да качите файл в сайта."
 
+#. Default: "List of attendees."
+#: src/profiles/core/types/event.json:73
+msgctxt "Profiles|Core|Types|Event"
+msgid "List of attendees."
+msgstr ""
+
 #. Default: "Location"
 #: src/constants/userschema.ts:37
 #: src/profiles/core/catalog.json:7
+#: src/profiles/core/types/event.json:67
 msgctxt "Constants|Userschema.ts"
 msgid "Location"
 msgstr "Местоположение"
@@ -878,6 +964,12 @@ msgstr "Местоположение в навигационната струк�
 msgctxt "Profiles|Core|Catalog"
 msgid "Location in the site structure"
 msgstr "Местоположение в структурата на сайта"
+
+#. Default: "Location of the event."
+#: src/profiles/core/types/event.json:65
+msgctxt "Profiles|Core|Types|Event"
+msgid "Location of the event."
+msgstr ""
 
 #. Default: "Log in"
 #: src/profiles/core/actions.json:93
@@ -986,6 +1078,12 @@ msgctxt "Profiles|Core|Controlpanels|Language"
 msgid "Multilingual"
 msgstr "Многоезичен"
 
+#. Default: "Name of a person to contact about this event."
+#: src/profiles/core/types/event.json:86
+msgctxt "Profiles|Core|Types|Event"
+msgid "Name of a person to contact about this event."
+msgstr ""
+
 #. Default: "Navigation"
 #: src/profiles/core/controlpanels/navigation.json:3
 msgctxt "Profiles|Core|Controlpanels|Navigation"
@@ -1048,6 +1146,12 @@ msgctxt "Helpers|Handler|Handler.ts"
 msgid "Not found: {url}"
 msgstr ""
 
+#. Default: "Open End"
+#: src/profiles/core/types/event.json:54
+msgctxt "Profiles|Core|Types|Event"
+msgid "Open End"
+msgstr ""
+
 #. Default: "Order in folder"
 #: src/profiles/core/catalog.json:50
 msgctxt "Profiles|Core|Catalog"
@@ -1104,6 +1208,12 @@ msgstr "Поставяне"
 msgctxt "Profiles|Core|Workflows"
 msgid "Pending review"
 msgstr "Чакащ преглед"
+
+#. Default: "Phone number to contact about this event."
+#: src/profiles/core/types/event.json:98
+msgctxt "Profiles|Core|Types|Event"
+msgid "Phone number to contact about this event."
+msgstr ""
 
 #. Default: "Please enter the number in days."
 #: src/profiles/core/catalog.json:125
@@ -1244,6 +1354,12 @@ msgstr ""
 msgctxt "Profiles|Core|Roles"
 msgid "Reader"
 msgstr "Читател"
+
+#. Default: "Recurrence"
+#: src/profiles/core/types/event.json:60
+msgctxt "Profiles|Core|Types|Event"
+msgid "Recurrence"
+msgstr ""
 
 #. Default: "Register"
 #: src/profiles/core/permissions.json:38
@@ -1706,6 +1822,12 @@ msgctxt "Routes|Lock|Lock.ts"
 msgid "This document is already locked by another user."
 msgstr "Този документ вече е заключен от друг потребител."
 
+#. Default: "This event is open ended."
+#: src/profiles/core/types/event.json:52
+msgctxt "Profiles|Core|Types|Event"
+msgid "This event is open ended."
+msgstr ""
+
 #. Default: "This is the contents of the robots.txt file."
 #: src/profiles/core/controlpanels/site.json:16
 msgctxt "Profiles|Core|Controlpanels|Site"
@@ -1905,11 +2027,23 @@ msgctxt "Routes|Userschema|Userschema.ts"
 msgid "We will use this address if you need to recover your password"
 msgstr ""
 
+#. Default: "Web address with more info about the event. Add http:// for external links."
+#: src/profiles/core/types/event.json:104
+msgctxt "Profiles|Core|Types|Event"
+msgid "Web address with more info about the event. Add http:// for external links."
+msgstr ""
+
 #. Default: "When this date is reached, the content will no longer be visible in listings and searches."
 #: src/profiles/core/behaviors/dates.json:21
 msgctxt "Profiles|Core|Behaviors|Dates"
 msgid "When this date is reached, the content will no longer be visible in listings and searches."
 msgstr "Когато тази дата бъде достигната, съдържанието вече няма да бъде видимо в списъци и търсения."
+
+#. Default: "Whole Day"
+#: src/profiles/core/types/event.json:47
+msgctxt "Profiles|Core|Types|Event"
+msgid "Whole Day"
+msgstr ""
 
 #. Default: "Within last"
 #: src/profiles/core/catalog.json:124

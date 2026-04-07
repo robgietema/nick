@@ -1,0 +1,125 @@
+{
+  "id": "Event",
+  "title:i18n": "Event",
+  "description": "",
+  "global_allow": true,
+  "filter_content_types": false,
+  "allowed_content_types": [],
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": [
+          "start",
+          "end",
+          "whole_day",
+          "open_end",
+          "recurrence",
+          "location",
+          "attendies",
+          "contact_name",
+          "contact_email",
+          "contact_phone",
+          "event_url"
+        ],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "start": {
+        "description:i18n": "Date and Time, when the event begins.",
+        "title:i18n": "Event Starts",
+        "type": "string",
+        "widget": "datetime",
+        "factory": "Date/Time"
+      },
+      "end": {
+        "description:i18n": "Date and Time, when the event ends.",
+        "title:i18n": "Event Ends",
+        "type": "string",
+        "widget": "datetime",
+        "factory": "Date/Time"
+      },
+      "whole_day": {
+        "default": false,
+        "description:i18n": "Event lasts whole day.",
+        "factory": "Yes/No",
+        "title:i18n": "Whole Day",
+        "type": "boolean"
+      },
+      "open_end": {
+        "default": false,
+        "description:i18n": "This event is open ended.",
+        "factory": "Yes/No",
+        "title:i18n": "Open End",
+        "type": "boolean"
+      },
+      "recurrence": {
+        "description:i18n": "Define the event recurrence rule.",
+        "factory": "Text",
+        "title:i18n": "Recurrence",
+        "type": "string",
+        "widget": "textarea"
+      },
+      "location": {
+        "description:i18n": "Location of the event.",
+        "factory": "Text line (String)",
+        "title:i18n": "Location",
+        "type": "string"
+      },
+      "attendies": {
+        "additionalItems": true,
+        "default": [],
+        "description:i18n": "List of attendees.",
+        "factory": "Tuple",
+        "items": {
+          "description": "",
+          "factory": "Text line (String)",
+          "title": "",
+          "type": "string"
+        },
+        "title:i18n": "Attendees",
+        "type": "array",
+        "uniqueItems": true
+      },
+      "contact_name": {
+        "description:i18n": "Name of a person to contact about this event.",
+        "factory": "Text line (String)",
+        "title:i18n": "Contact Name",
+        "type": "string"
+      },
+      "contact_email": {
+        "description:i18n": "Email address to contact about this event.",
+        "factory": "Text line (String)",
+        "title:i18n": "Contact E-mail",
+        "type": "string"
+      },
+      "contact_phone": {
+        "description:i18n": "Phone number to contact about this event.",
+        "factory": "Text line (String)",
+        "title:i18n": "Contact Phone",
+        "type": "string"
+      },
+      "event_url": {
+        "description:i18n": "Web address with more info about the event. Add http:// for external links.",
+        "factory": "URL",
+        "title:i18n": "Event URL",
+        "type": "string",
+        "widget": "url"
+      }
+    },
+    "required": ["start", "end"],
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "blocks",
+      "versioning",
+      "short_name",
+      "id_from_title",
+      "folderish",
+      "exclude_from_nav"
+    ],
+    "layouts": ["event_view"]
+  },
+  "workflow": "simple_publication_workflow"
+}

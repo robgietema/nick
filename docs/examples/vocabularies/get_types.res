@@ -5,6 +5,10 @@ Content-Type: application/json
   "@id": "http://localhost:8080/@vocabularies/types",
   "items": [
     {
+      "title": "Event",
+      "token": "Event"
+    },
+    {
       "title": "File",
       "token": "File"
     },
@@ -25,5 +29,5 @@ Content-Type: application/json
       "token": "Site"
     }
   ],
-  "items_total": 5
+  "items_total": 6
 }

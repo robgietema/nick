@@ -3,6 +3,11 @@ Content-Type: application/json
 
 [
   {
+    "@id": "http://localhost:8080/@types/Event",
+    "addable": true,
+    "title": "Event"
+  },
+  {
     "@id": "http://localhost:8080/@types/File",
     "addable": true,
     "title": "File"

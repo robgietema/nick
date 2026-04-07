@@ -5,6 +5,15 @@ Content-Type: application/json
   "@id": "http://localhost:8080/@controlpanels/dexterity-types",
   "items": [
     {
+      "@id": "http://localhost:8080/@controlpanels/dexterity-types/Event",
+      "@type": "Event",
+      "title": "Event",
+      "description": "",
+      "id": "Event",
+      "count": 0,
+      "meta_type": "Event"
+    },
+    {
       "@id": "http://localhost:8080/@controlpanels/dexterity-types/File",
       "@type": "File",
       "title": "File",
