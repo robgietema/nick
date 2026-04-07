@@ -1,10 +1,19 @@
-import { describe, it, vi } from 'vitest';
+import { beforeEach, afterEach, describe, it, vi } from 'vitest';
 import { v4 as uuid } from 'uuid';
 
 import app from '../../app';
 import { testRequest } from '../../helpers/tests/tests';
 
 describe('Content', () => {
+  beforeEach(() => {
+    const mockDate = new Date(2022, 0, 1);
+    vi.setSystemTime(mockDate);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('should return a content object', () => testRequest(app, 'content/get'));
 
   it('should add a content object', () => testRequest(app, 'content/post'));
@@ -48,4 +57,7 @@ describe('Content', () => {
 
   it('should export a content object', () =>
     testRequest(app, 'content/export'));
+
+  it('should export an ics file for a content object', () =>
+    testRequest(app, 'content/ics'));
 });

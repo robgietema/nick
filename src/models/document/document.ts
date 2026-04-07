@@ -8,11 +8,13 @@ import { mapValues, omit, omitBy, pick, pickBy } from 'es-toolkit/object';
 import { isObject, isEmpty } from 'es-toolkit/compat';
 import { isUndefined, isFunction } from 'es-toolkit/predicate';
 import { v4 as uuid } from 'uuid';
+import moment from 'moment';
 
 import languages from '../../constants/languages';
 import { Model } from '../../models/_model/_model';
 import { Catalog } from '../../models/catalog/catalog';
 import { Index } from '../../models/index/index';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { Permission } from '../../models/permission/permission';
 import { Redirect } from '../../models/redirect/redirect';
 import { Role } from '../../models/role/role';
@@ -1257,6 +1259,7 @@ export class Document extends Model {
    * @method fetchReference
    * @param {string} field Field name.
    * @param {Knex.Transaction} trx Transaction object.
+   * @return {Promise<void>} No return value.
    */
   async fetchReference(field: string, trx?: Knex.Transaction): Promise<void> {
     const self: any = this;
@@ -1265,5 +1268,54 @@ export class Document extends Model {
       {},
       trx,
     );
+  }
+
+  /**
+   * Convert document to ICS format
+   * @method toICS
+   * @param {Knex.Transaction} trx Transaction object.
+   * @return {Promise<string>} ICS string
+   */
+  async toICS(trx: Knex.Transaction): Promise<string> {
+    const self: any = this;
+
+    // Fetch settings
+    const controlpanel = await Controlpanel.fetchById('site', {}, trx);
+    const settings = controlpanel.data;
+
+    // Set event data
+    const event = {
+      SUMMARY: self.json.title,
+      DTSTART: moment(self.json.start).utc().format('YYYYMMDDTHHmmss[Z]'),
+      DTEND: moment(self.json.end).utc().format('YYYYMMDDTHHmmss[Z]'),
+      DTSTAMP: moment().utc().format('YYYYMMDDTHHmmss[Z]'),
+      UID: `${self.uuid}@${config.settings.frontendUrl}`,
+      CREATED: moment(self.created).utc().format('YYYYMMDDTHHmmss[Z]'),
+      'LAST-MODIFIED': moment(self.modified).utc().format('YYYYMMDDTHHmmss[Z]'),
+      URL: `${config.settings.frontendUrl}${self.path === '/' ? '' : self.path}`,
+    } as any;
+
+    // Add recurrence rule if available
+    if (self.json.recurrence) {
+      self.json.recurrence.split('\n').forEach((rule: string) => {
+        const [key, value] = rule.split(':');
+        event[key] = value;
+      });
+    }
+
+    return `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//${settings.site_title}//NONSGML Nick//EN
+X-WR-TIMEZONE:UTC${
+      self.json.start && self.json.end
+        ? `
+BEGIN:VEVENT
+${Object.keys(event)
+  .map((key) => `${key}:${event[key]}`)
+  .join('\n')}
+END:VEVENT`
+        : ''
+    }
+END:VCALENDAR`;
   }
 }

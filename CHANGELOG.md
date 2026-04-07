@@ -90,6 +90,7 @@
 - Add recursive applying workflow changes to endpoint @robgietema
 - Add support for blob storage written to database @robgietema
 - Add event content type @robgietema
+- Add ics view endpoint @robgietema
 
 ### Bugfix
 

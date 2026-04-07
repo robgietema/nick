@@ -10,7 +10,7 @@ Content-Type: application/json
       "title": "Event",
       "description": "",
       "id": "Event",
-      "count": 0,
+      "count": 1,
       "meta_type": "Event"
     },
     {
@@ -46,7 +46,7 @@ Content-Type: application/json
       "title": "Page",
       "description": "",
       "id": "Page",
-      "count": 1,
+      "count": 0,
       "meta_type": "Page"
     },
     {

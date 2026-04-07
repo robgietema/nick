@@ -9,6 +9,7 @@ import fs from 'fs';
 import { indexOf } from 'es-toolkit/compat';
 import { Application } from 'express';
 import type { AllMethods } from 'supertest/types';
+import { isEmpty } from 'es-toolkit/compat';
 
 interface FileData {
   request: string;
@@ -52,7 +53,10 @@ function readFile(filename: string): FileData {
   // Get body from request
   const body =
     data.length - 1 > headerLength
-      ? JSON.parse(data.slice(headerLength).join('\n'))
+      ? headers['Content-Type'] === 'application/json' ||
+        headers['Accept'] === 'application/json'
+        ? JSON.parse(data.slice(headerLength + 1).join('\n'))
+        : data.slice(headerLength + 1).join('\n')
       : null;
 
   return {
@@ -116,7 +120,11 @@ export function testRequest(app: Application, filename: string): request.Test {
   if (resBody) {
     return result
       .expect(status)
-      .expect((res: Response) => expect(res.body).toStrictEqual(resBody));
+      .expect((res: Response) =>
+        isEmpty(res.body)
+          ? expect(res.text).toStrictEqual(resBody)
+          : expect(res.body).toStrictEqual(resBody),
+      );
   } else {
     return result.expect(status);
   }

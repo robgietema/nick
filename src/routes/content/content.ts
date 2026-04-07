@@ -464,6 +464,23 @@ export default [
   },
   {
     op: 'get',
+    view: '/ics_view',
+    permission: 'View',
+    client: 'getICS',
+    cache: 'content',
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      return {
+        headers: {
+          'content-type': 'text/calendar',
+          'content-disposition': `attachment; filename="${req.document.id}.ics"`,
+        },
+        xkeys: [req.document.uuid],
+        html: await req.document.toICS(trx),
+      };
+    },
+  },
+  {
+    op: 'get',
     view: '',
     permission: 'View',
     client: 'getContent',
