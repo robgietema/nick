@@ -205,3 +205,25 @@ If a resource has been retrieved successfully, the server responds with `200 OK`
 ```http
 {% include_relative examples/content/ics.res %}
 ```
+
+## Exporting ICS format on a path
+
+We can also use the `ics_view` endpoint to export multiple events. When we call the `ics_view` on a path it will fetch all events from this path down in an `.ics`-file. We can export the data by sending a GET request to the resource URL:
+
+```http
+{% include_relative examples/content/ics_folder.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/content/ics_folder.ts %}
+```
+
+### Successful Response (200 OK)
+
+If a resource has been retrieved successfully, the server responds with `200 OK`:
+
+```http
+{% include_relative examples/content/ics_folder.res %}
+```

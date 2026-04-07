@@ -23,6 +23,8 @@ import {
 } from '../../helpers/content/content';
 
 import { Document } from '../../models/document/document';
+import { Catalog } from '../../models/catalog/catalog';
+import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { Type } from '../../models/type/type';
 
 import { handler as actions } from '../actions/actions';
@@ -469,13 +471,38 @@ export default [
     client: 'getICS',
     cache: 'content',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      // Fetch settings
+      const controlpanel = await Controlpanel.fetchById('site', {}, trx);
+      const settings = controlpanel.data;
+
+      let events = req.document.toICS(trx);
+      if (!events) {
+        const items = await Catalog.fetchAllRestricted(
+          {
+            _start: ['is not', null],
+            _end: ['is not', null],
+            _path: ['~', `^${req.document.path}`],
+          },
+          {},
+          trx,
+          req,
+        );
+        events = items
+          .map((item: any) => item.toICS(trx))
+          .filter((ics: any) => ics !== null)
+          .join('\n');
+      }
       return {
-        headers: {
-          'content-type': 'text/calendar',
-          'content-disposition': `attachment; filename="${req.document.id}.ics"`,
-        },
+        //        headers: {
+        //          'content-type': 'text/calendar',
+        //          'content-disposition': `attachment; filename="${req.document.id}.ics"`,
+        //        },
         xkeys: [req.document.uuid],
-        html: await req.document.toICS(trx),
+        html: `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//${settings.site_title}//NONSGML Nick//EN
+X-WR-TIMEZONE:UTC${events ? `\n${events}` : ''}
+END:VCALENDAR`,
       };
     },
   },

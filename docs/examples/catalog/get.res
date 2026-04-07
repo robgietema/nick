@@ -20,6 +20,7 @@ Content-Type: application/json
   "portal_type": "Site",
   "review_state": "published",
   "start": null,
+  "recurrence": null,
   "modified": "2022-04-02T20:00:00.000Z",
   "Date": "2022-04-02T20:00:00.000Z",
   "expires": null,

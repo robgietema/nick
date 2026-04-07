@@ -14,7 +14,6 @@ import languages from '../../constants/languages';
 import { Model } from '../../models/_model/_model';
 import { Catalog } from '../../models/catalog/catalog';
 import { Index } from '../../models/index/index';
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import { Permission } from '../../models/permission/permission';
 import { Redirect } from '../../models/redirect/redirect';
 import { Role } from '../../models/role/role';
@@ -1273,15 +1272,15 @@ export class Document extends Model {
   /**
    * Convert document to ICS format
    * @method toICS
-   * @param {Knex.Transaction} trx Transaction object.
-   * @return {Promise<string>} ICS string
+   * @return {string | null} ICS string or null if start or end date is missing
    */
-  async toICS(trx: Knex.Transaction): Promise<string> {
+  toICS(): string | null {
     const self: any = this;
 
-    // Fetch settings
-    const controlpanel = await Controlpanel.fetchById('site', {}, trx);
-    const settings = controlpanel.data;
+    // Check if start and end date are available
+    if (!self.json.start || !self.json.end) {
+      return null;
+    }
 
     // Set event data
     const event = {
@@ -1303,19 +1302,10 @@ export class Document extends Model {
       });
     }
 
-    return `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//${settings.site_title}//NONSGML Nick//EN
-X-WR-TIMEZONE:UTC${
-      self.json.start && self.json.end
-        ? `
-BEGIN:VEVENT
+    return `BEGIN:VEVENT
 ${Object.keys(event)
   .map((key) => `${key}:${event[key]}`)
   .join('\n')}
-END:VEVENT`
-        : ''
-    }
-END:VCALENDAR`;
+END:VEVENT`;
   }
 }

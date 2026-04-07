@@ -5,6 +5,7 @@
 
 import { uniq } from 'es-toolkit/array';
 import { pick } from 'es-toolkit/object';
+import moment from 'moment';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
@@ -132,5 +133,45 @@ export class Catalog extends Model {
       title: req.i18n(self.Title),
       token: self.Title,
     } as Json;
+  }
+
+  /**
+   * Convert document to ICS format
+   * @method toICS
+   * @return {string | null} ICS string or null if start or end date is missing
+   */
+  toICS(): string | null {
+    const self: any = this;
+
+    // Check if start and end date are available
+    if (!self.start || !self.end) {
+      return null;
+    }
+
+    // Set event data
+    const event = {
+      SUMMARY: self.Title,
+      DTSTART: moment(self.start).utc().format('YYYYMMDDTHHmmss[Z]'),
+      DTEND: moment(self.end).utc().format('YYYYMMDDTHHmmss[Z]'),
+      DTSTAMP: moment().utc().format('YYYYMMDDTHHmmss[Z]'),
+      UID: `${self.UID}@${config.settings.frontendUrl}`,
+      CREATED: moment(self.created).utc().format('YYYYMMDDTHHmmss[Z]'),
+      'LAST-MODIFIED': moment(self.modified).utc().format('YYYYMMDDTHHmmss[Z]'),
+      URL: `${config.settings.frontendUrl}${self.path === '/' ? '' : self.path}`,
+    } as any;
+
+    // Add recurrence rule if available
+    if (self.recurrence) {
+      self.recurrence.split('\n').forEach((rule: string) => {
+        const [key, value] = rule.split(':');
+        event[key] = value;
+      });
+    }
+
+    return `BEGIN:VEVENT
+${Object.keys(event)
+  .map((key) => `${key}:${event[key]}`)
+  .join('\n')}
+END:VEVENT`;
   }
 }

@@ -929,6 +929,11 @@
       "attr": "end"
     },
     {
+      "name": "recurrence",
+      "type": "string",
+      "attr": "recurrence"
+    },
+    {
       "name": "hasPreviewImage",
       "type": "boolean",
       "attr": "hasPreviewImage"

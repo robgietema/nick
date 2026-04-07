@@ -60,4 +60,7 @@ describe('Content', () => {
 
   it('should export an ics file for a content object', () =>
     testRequest(app, 'content/ics'));
+
+  it('should export an ics file for a folder object', () =>
+    testRequest(app, 'content/ics_folder'));
 });

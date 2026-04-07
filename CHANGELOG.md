@@ -91,6 +91,7 @@
 - Add support for blob storage written to database @robgietema
 - Add event content type @robgietema
 - Add ics view endpoint @robgietema
+- Add ics view to folders to fetch events recursively @robgietema
 
 ### Bugfix
 
