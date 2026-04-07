@@ -6,7 +6,7 @@ import { testRequest } from '../../helpers/tests/tests';
 
 describe('Content', () => {
   beforeEach(() => {
-    const mockDate = new Date(2022, 0, 1);
+    const mockDate = new Date(Date.UTC(2022, 0, 1));
     vi.setSystemTime(mockDate);
   });
 
