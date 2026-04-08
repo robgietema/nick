@@ -493,10 +493,10 @@ export default [
           .join('\n');
       }
       return {
-        //        headers: {
-        //          'content-type': 'text/calendar',
-        //          'content-disposition': `attachment; filename="${req.document.id}.ics"`,
-        //        },
+        headers: {
+          'content-type': 'text/calendar',
+          'content-disposition': `attachment; filename="${req.document.id}.ics"`,
+        },
         xkeys: [req.document.uuid],
         html: `BEGIN:VCALENDAR
 VERSION:2.0
