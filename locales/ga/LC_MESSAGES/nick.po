@@ -474,16 +474,16 @@ msgctxt "Profiles|Core|Actions"
 msgid "Cut"
 msgstr "Gearr"
 
-#. Default: "Date and Time, when the event begins."
+#. Default: "Date and Time when the event begins."
 #: src/profiles/core/types/event.json:30
 msgctxt "Profiles|Core|Types|Event"
-msgid "Date and Time, when the event begins."
+msgid "Date and Time when the event begins."
 msgstr ""
 
-#. Default: "Date and Time, when the event ends."
+#. Default: "Date and Time when the event ends."
 #: src/profiles/core/types/event.json:37
 msgctxt "Profiles|Core|Types|Event"
-msgid "Date and Time, when the event ends."
+msgid "Date and Time when the event ends."
 msgstr ""
 
 #. Default: "Dates"

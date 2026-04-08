@@ -27,14 +27,14 @@
     ],
     "properties": {
       "start": {
-        "description:i18n": "Date and Time, when the event begins.",
+        "description:i18n": "Date and Time when the event begins.",
         "title:i18n": "Event Starts",
         "type": "string",
         "widget": "datetime",
         "factory": "Date/Time"
       },
       "end": {
-        "description:i18n": "Date and Time, when the event ends.",
+        "description:i18n": "Date and Time when the event ends.",
         "title:i18n": "Event Ends",
         "type": "string",
         "widget": "datetime",
@@ -108,7 +108,7 @@
         "widget": "url"
       }
     },
-    "required": ["start", "end"],
+    "required": ["start"],
     "behaviors": [
       "dublin_core",
       "dates",

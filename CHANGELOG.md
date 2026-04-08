@@ -92,6 +92,7 @@
 - Add event content type @robgietema
 - Add ics view endpoint @robgietema
 - Add ics view to folders to fetch events recursively @robgietema
+- Make end date in events optional @robgietema
 
 ### Bugfix
 

@@ -1277,8 +1277,8 @@ export class Document extends Model {
   toICS(): string | null {
     const self: any = this;
 
-    // Check if start and end date are available
-    if (!self.json.start || !self.json.end) {
+    // Check if start date is available
+    if (!self.json.start) {
       return null;
     }
 
@@ -1286,13 +1286,17 @@ export class Document extends Model {
     const event = {
       SUMMARY: self.json.title,
       DTSTART: moment(self.json.start).utc().format('YYYYMMDDTHHmmss[Z]'),
-      DTEND: moment(self.json.end).utc().format('YYYYMMDDTHHmmss[Z]'),
       DTSTAMP: moment().utc().format('YYYYMMDDTHHmmss[Z]'),
       UID: `${self.uuid}@${config.settings.frontendUrl}`,
       CREATED: moment(self.created).utc().format('YYYYMMDDTHHmmss[Z]'),
       'LAST-MODIFIED': moment(self.modified).utc().format('YYYYMMDDTHHmmss[Z]'),
       URL: `${config.settings.frontendUrl}${self.path === '/' ? '' : self.path}`,
     } as any;
+
+    // Add end date if available
+    if (self.json.end) {
+      event.DTEND = moment(self.json.end).utc().format('YYYYMMDDTHHmmss[Z]');
+    }
 
     // Add recurrence rule if available
     if (self.json.recurrence) {
