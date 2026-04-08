@@ -4,7 +4,11 @@
  */
 
 import { logger } from '../../helpers/log/log';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
 import { Response, NextFunction } from 'express';
 import type { Request } from '../../types';
 
@@ -30,7 +34,7 @@ export function accessLogger(
       } ${res._contentLength || '-'} "-" "${req.get('User-Agent')}"`,
     );
   }
-  req.timestamp = moment.utc().format();
+  req.timestamp = dayjs.utc().format();
   res.on('finish', onResFinished);
   res.on('error', onResFinished);
   next();

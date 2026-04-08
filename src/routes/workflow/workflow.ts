@@ -3,9 +3,10 @@
  * @module routes/workflow/workflow
  */
 
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
-import config from '../../helpers/config/config';
+dayjs.extend(utc);
 
 import { hasPermission } from '../../helpers/auth/auth';
 import { RequestException } from '../../helpers/error/error';
@@ -46,7 +47,7 @@ export default [
       // Get new state and modified timestamp
       const new_state =
         req.type._workflow.json.transitions[req.params.transition].new_state;
-      const modified = moment.utc().format();
+      const modified = dayjs.utc().format();
 
       // Change workflow
       await req.document.changeWorkflow(

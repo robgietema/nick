@@ -4,7 +4,11 @@
  */
 
 import express from 'express';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
 import { drop, flattenDeep, intersection, uniq } from 'es-toolkit/array';
 import { omit, pick } from 'es-toolkit/object';
 import { v4 as uuid } from 'uuid';
@@ -563,7 +567,7 @@ END:VCALENDAR`,
       }
 
       // Set creation time
-      const created = moment.utc().format();
+      const created = dayjs.utc().format();
 
       // Get child nodes
       await req.document.fetchRelated('_children', trx);
@@ -774,7 +778,7 @@ END:VCALENDAR`,
       json = await handleRelationLists(json, req.type);
 
       // Create new version
-      const modified = moment.utc().format();
+      const modified = dayjs.utc().format();
       const version = req.document.version + 1;
       await req.document.createRelated(
         '_versions',

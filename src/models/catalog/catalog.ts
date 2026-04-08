@@ -5,7 +5,10 @@
 
 import { uniq } from 'es-toolkit/array';
 import { pick } from 'es-toolkit/object';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../../models/_model/_model';
@@ -151,17 +154,17 @@ export class Catalog extends Model {
     // Set event data
     const event = {
       SUMMARY: self.Title,
-      DTSTART: moment(self.start).utc().format('YYYYMMDDTHHmmss[Z]'),
-      DTSTAMP: moment().utc().format('YYYYMMDDTHHmmss[Z]'),
+      DTSTART: dayjs(self.start).utc().format('YYYYMMDDTHHmmss[Z]'),
+      DTSTAMP: dayjs().utc().format('YYYYMMDDTHHmmss[Z]'),
       UID: `${self.UID}@${config.settings.frontendUrl}`,
-      CREATED: moment(self.created).utc().format('YYYYMMDDTHHmmss[Z]'),
-      'LAST-MODIFIED': moment(self.modified).utc().format('YYYYMMDDTHHmmss[Z]'),
+      CREATED: dayjs(self.created).utc().format('YYYYMMDDTHHmmss[Z]'),
+      'LAST-MODIFIED': dayjs(self.modified).utc().format('YYYYMMDDTHHmmss[Z]'),
       URL: `${config.settings.frontendUrl}${self.path === '/' ? '' : self.path}`,
     } as any;
 
     // Add end date if available
     if (self.end) {
-      event.DTEND = moment(self.end).utc().format('YYYYMMDDTHHmmss[Z]');
+      event.DTEND = dayjs(self.end).utc().format('YYYYMMDDTHHmmss[Z]');
     }
 
     // Add recurrence rule if available

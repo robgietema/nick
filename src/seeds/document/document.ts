@@ -2,8 +2,11 @@ import type { Knex } from 'knex';
 import { dropRight, last } from 'es-toolkit/array';
 import { omit } from 'es-toolkit/object';
 import { promises as fs } from 'fs';
-import moment from 'moment';
 import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 import { dirExists } from '../../helpers/fs/fs';
 import { handleFiles, handleImages } from '../../helpers/content/content';
@@ -110,8 +113,8 @@ export const seedDocument = async (
           workflow_state: document.workflow_state || 'published',
           workflow_history: JSON.stringify(document.workflow_history || []),
           type: document.type || 'Page',
-          created: document.created || moment.utc().format(),
-          modified: document.modified || moment.utc().format(),
+          created: document.created || dayjs.utc().format(),
+          modified: document.modified || dayjs.utc().format(),
           translation_group: document.translation_group || newUuid,
           language: document.language,
           json: omit(document, documentFields),
@@ -128,7 +131,7 @@ export const seedDocument = async (
         'versions' in document
           ? document.versions.map((version: any, index: number) => ({
               version: version.version || index,
-              created: version.created || moment.utc().format(),
+              created: version.created || dayjs.utc().format(),
               actor: version.actor || 'admin',
               id: version.id || id,
               json: omit(version, versionFields),
@@ -136,7 +139,7 @@ export const seedDocument = async (
           : [
               {
                 version: 0,
-                created: document.created || moment.utc().format(),
+                created: document.created || dayjs.utc().format(),
                 actor: document.owner || 'admin',
                 id,
                 json: omit(document, documentFields),

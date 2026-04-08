@@ -203,8 +203,8 @@ msgid "Allows users to login with their email address instead of specifying a se
 msgstr ""
 
 #. Default: "Already locked"
-#: src/routes/lock/lock.ts:62
-#: src/routes/lock/lock.ts:115
+#: src/routes/lock/lock.ts:66
+#: src/routes/lock/lock.ts:119
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Already locked"
 msgstr "이미 잠겨 있음"
@@ -577,8 +577,8 @@ msgid "Document copied"
 msgstr ""
 
 #. Default: "Document locked"
-#: src/routes/history/history.ts:62
-#: src/routes/content/content.ts:739
+#: src/routes/history/history.ts:66
+#: src/routes/content/content.ts:743
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "문서가 잠김"
@@ -1124,7 +1124,7 @@ msgid "No"
 msgstr "아니요"
 
 #. Default: "Not allowed"
-#: src/routes/lock/lock.ts:166
+#: src/routes/lock/lock.ts:170
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Not allowed"
 msgstr "허용되지 않음"
@@ -1405,7 +1405,7 @@ msgid "Rename"
 msgstr "이름 바꾸기"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:561
+#: src/routes/content/content.ts:565
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "필수 필드가 누락되었습니다."
@@ -1816,8 +1816,8 @@ msgid "The user viewing the querystring results"
 msgstr "쿼리 문자열 결과를 보고 있는 사용자"
 
 #. Default: "This document is already locked by another user."
-#: src/routes/lock/lock.ts:59
-#: src/routes/lock/lock.ts:112
+#: src/routes/lock/lock.ts:63
+#: src/routes/lock/lock.ts:116
 msgctxt "Routes|Lock|Lock.ts"
 msgid "This document is already locked by another user."
 msgstr "이 문서는 이미 다른 사용자에 의해 잠겨 있습니다."
@@ -1916,7 +1916,7 @@ msgid "Type of the current document is not found."
 msgstr "현재 문서의 유형을 찾을 수 없습니다."
 
 #. Default: "Type {type} not found."
-#: src/routes/content/content.ts:550
+#: src/routes/content/content.ts:554
 msgctxt "Routes|Content|Content.ts"
 msgid "Type {type} not found."
 msgstr ""
@@ -2088,7 +2088,7 @@ msgid "Yes"
 msgstr "예"
 
 #. Default: "You are not authorization to access this resource."
-#: src/routes/workflow/workflow.ts:40
+#: src/routes/workflow/workflow.ts:41
 msgctxt "Routes|Workflow|Workflow.ts"
 msgid "You are not authorization to access this resource."
 msgstr ""
@@ -2112,14 +2112,14 @@ msgid "You can’t delete system users."
 msgstr "시스템 사용자는 삭제할 수 없습니다."
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
-#: src/routes/history/history.ts:59
-#: src/routes/content/content.ts:736
+#: src/routes/history/history.ts:63
+#: src/routes/content/content.ts:740
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "다른 사용자가 잠갔으므로 이 문서를 저장할 권한이 없습니다."
 
 #. Default: "You don’t have permission to unlock this document."
-#: src/routes/lock/lock.ts:163
+#: src/routes/lock/lock.ts:167
 msgctxt "Routes|Lock|Lock.ts"
 msgid "You don’t have permission to unlock this document."
 msgstr "이 문서의 잠금을 해제할 권한이 없습니다."

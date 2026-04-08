@@ -3,7 +3,11 @@
  * @module routes/history/history
  */
 
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
 import { omit } from 'es-toolkit/object';
 
 import { lockExpired } from '../../helpers/lock/lock';
@@ -92,7 +96,7 @@ export default [
 
       // Create new version
       const json = omit(version.json, ['changeNote']);
-      const modified = moment.utc().format();
+      const modified = dayjs.utc().format();
       const versionNumber = req.document.version + 1;
       await req.document.createRelated(
         '_versions',

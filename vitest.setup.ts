@@ -1,6 +1,10 @@
 import { beforeAll, beforeEach, afterAll, afterEach, vi } from 'vitest';
 import { transaction } from 'objection';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
 import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid';
 
@@ -52,8 +56,8 @@ vi.spyOn(jwt, 'sign').mockReturnValue(
 vi.mock('uuid');
 vi.mocked(uuid).mockReturnValue('a95388f2-e4b3-4292-98aa-62656cbd5b9c' as any);
 
-// Mock moment
-vi.spyOn(moment, 'utc').mockReturnValue({
+// Mock dayjs
+vi.spyOn(dayjs, 'utc').mockReturnValue({
   format: () => '2022-04-08T16:00:00.000Z',
 } as any);
 

@@ -3,8 +3,12 @@
  * @module routes/lock/lock
  */
 
-import moment from 'moment';
 import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
 import { getRootUrl } from '../../helpers/url/url';
 import { lockExpired } from '../../helpers/lock/lock';
 import { RequestException } from '../../helpers/error/error';
@@ -65,7 +69,7 @@ export default [
         }
       } else {
         const newLock = {
-          created: moment.utc().format(),
+          created: dayjs.utc().format(),
           creator: req.user.id,
           creator_name: req.user.fullname,
           creator_url: `${getRootUrl(req)}/@users/${req.user.id}`,
@@ -74,7 +78,7 @@ export default [
             typeof req.body?.stealable === 'undefined'
               ? true
               : req.body.stealable,
-          time: moment.utc().format(),
+          time: dayjs.utc().format(),
           timeout: req.body?.timeout || 600,
           token: uuid(),
         };
@@ -117,7 +121,7 @@ export default [
         });
       } else {
         const newLock = {
-          created: moment.utc().format(),
+          created: dayjs.utc().format(),
           creator: req.user.id,
           creator_name: req.user.fullname,
           creator_url: `${getRootUrl(req)}/@users/${req.user.id}`,
@@ -126,7 +130,7 @@ export default [
             typeof req.body?.stealable === 'undefined'
               ? true
               : req.body.stealable,
-          time: moment.utc().format(),
+          time: dayjs.utc().format(),
           timeout: req.body?.timeout || 600,
           token: uuid(),
         };

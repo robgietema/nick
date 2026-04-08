@@ -3,7 +3,10 @@
  * @module helpers/lock/lock
  */
 
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 /**
  * Lock type
@@ -33,7 +36,7 @@ export interface Document {
  */
 export function lockExpired(document: Document): boolean {
   const lock = document.lock;
-  const created = moment(lock.created).unix();
+  const created = dayjs(lock.created).unix();
 
-  return moment.utc().unix() > created + lock.timeout;
+  return dayjs.utc().unix() > created + lock.timeout;
 }

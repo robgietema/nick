@@ -3,7 +3,7 @@
  * @module routes/search/search
  */
 
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { normalize } from 'path';
 
 import { apiLimiter } from '../../helpers/limiter/limiter';
@@ -86,11 +86,11 @@ const querystringToQuery = async (
           case 'date.today':
             where[`_${query.i}`] = [
               '>=',
-              `${moment().format('MM-DD-YYYY')} 00:00:00`,
+              `${dayjs().format('MM-DD-YYYY')} 00:00:00`,
             ];
             where[`_${query.i}`] = [
               '<=',
-              `${moment().format('MM-DD-YYYY')} 23:59:59`,
+              `${dayjs().format('MM-DD-YYYY')} 23:59:59`,
             ];
             break;
           case 'date.between':
@@ -103,7 +103,7 @@ const querystringToQuery = async (
           case 'date.afterToday':
             where[`_${query.i}`] = [
               '>',
-              `${moment().format('MM-DD-YYYY')} 23:59:59`,
+              `${dayjs().format('MM-DD-YYYY')} 23:59:59`,
             ];
             break;
           case 'date.largerThan':
@@ -112,7 +112,7 @@ const querystringToQuery = async (
           case 'date.beforeToday':
             where[`_${query.i}`] = [
               '<',
-              `${moment().format('MM-DD-YYYY')} 00:00:00`,
+              `${dayjs().format('MM-DD-YYYY')} 00:00:00`,
             ];
             break;
           case 'date.afterRelativeDate':

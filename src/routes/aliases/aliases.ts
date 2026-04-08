@@ -3,7 +3,11 @@
  * @module routes/aliases/aliases
  */
 
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
 import { Redirect } from '../../models/redirect/redirect';
 import { mapAsync } from '../../helpers/utils/utils';
 import { Document } from '../../models/document/document';
@@ -65,7 +69,7 @@ export default [
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Set creation time
-      const created = moment.utc().format();
+      const created = dayjs.utc().format();
       const root = req.document.uuid === req.navroot.uuid;
 
       const items = req.body.items || [];

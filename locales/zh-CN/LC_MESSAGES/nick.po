@@ -203,8 +203,8 @@ msgid "Allows users to login with their email address instead of specifying a se
 msgstr ""
 
 #. Default: "Already locked"
-#: src/routes/lock/lock.ts:62
-#: src/routes/lock/lock.ts:115
+#: src/routes/lock/lock.ts:66
+#: src/routes/lock/lock.ts:119
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Already locked"
 msgstr "已锁定"
@@ -577,8 +577,8 @@ msgid "Document copied"
 msgstr ""
 
 #. Default: "Document locked"
-#: src/routes/history/history.ts:62
-#: src/routes/content/content.ts:739
+#: src/routes/history/history.ts:66
+#: src/routes/content/content.ts:743
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "文档已锁定"
@@ -1124,7 +1124,7 @@ msgid "No"
 msgstr "否"
 
 #. Default: "Not allowed"
-#: src/routes/lock/lock.ts:166
+#: src/routes/lock/lock.ts:170
 msgctxt "Routes|Lock|Lock.ts"
 msgid "Not allowed"
 msgstr "不允许"
@@ -1405,7 +1405,7 @@ msgid "Rename"
 msgstr "重命名"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:561
+#: src/routes/content/content.ts:565
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "缺少必填字段。"
@@ -1816,8 +1816,8 @@ msgid "The user viewing the querystring results"
 msgstr "查看查询字符串结果的用户"
 
 #. Default: "This document is already locked by another user."
-#: src/routes/lock/lock.ts:59
-#: src/routes/lock/lock.ts:112
+#: src/routes/lock/lock.ts:63
+#: src/routes/lock/lock.ts:116
 msgctxt "Routes|Lock|Lock.ts"
 msgid "This document is already locked by another user."
 msgstr "此文档已被其他用户锁定。"
@@ -1916,7 +1916,7 @@ msgid "Type of the current document is not found."
 msgstr "未找到当前文档的类型。"
 
 #. Default: "Type {type} not found."
-#: src/routes/content/content.ts:550
+#: src/routes/content/content.ts:554
 msgctxt "Routes|Content|Content.ts"
 msgid "Type {type} not found."
 msgstr ""
@@ -2088,7 +2088,7 @@ msgid "Yes"
 msgstr "是"
 
 #. Default: "You are not authorization to access this resource."
-#: src/routes/workflow/workflow.ts:40
+#: src/routes/workflow/workflow.ts:41
 msgctxt "Routes|Workflow|Workflow.ts"
 msgid "You are not authorization to access this resource."
 msgstr ""
@@ -2112,14 +2112,14 @@ msgid "You can’t delete system users."
 msgstr "无法删除系统用户。"
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
-#: src/routes/history/history.ts:59
-#: src/routes/content/content.ts:736
+#: src/routes/history/history.ts:63
+#: src/routes/content/content.ts:740
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "您无权保存此文档，因为它已被其他用户锁定。"
 
 #. Default: "You don’t have permission to unlock this document."
-#: src/routes/lock/lock.ts:163
+#: src/routes/lock/lock.ts:167
 msgctxt "Routes|Lock|Lock.ts"
 msgid "You don’t have permission to unlock this document."
 msgstr "您无权解锁此文档。"
