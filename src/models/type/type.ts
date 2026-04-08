@@ -9,9 +9,8 @@ import type { Knex } from 'knex';
 import { getRootUrl } from '../../helpers/url/url';
 import { mergeSchemas } from '../../helpers/schema/schema';
 import { TypeCollection } from '../../collections/type/type';
-import { Behavior } from '../../models/behavior/behavior';
-import { Model } from '../../models/_model/_model';
-import { Workflow } from '../../models/workflow/workflow';
+import { Model } from '../_model/_model';
+import models from '../';
 import type { Json, Request, Schema } from '../../types';
 
 /**
@@ -25,6 +24,7 @@ export class Type extends Model {
 
   // Set relation mappings
   static get relationMappings() {
+    const Workflow = models.get('Workflow');
     return {
       _workflow: {
         relation: (Model as any).BelongsToOneRelation,
@@ -44,6 +44,7 @@ export class Type extends Model {
    */
   async cacheSchema(trx?: Knex.Transaction): Promise<void> {
     const self: any = this;
+    const Behavior = models.get('Behavior');
     let schema: any;
     if (self.schema?.behaviors && self.schema.behaviors.length > 0) {
       const behaviors = await Behavior.fetchAll(
@@ -99,6 +100,7 @@ export class Type extends Model {
     trx?: Knex.Transaction,
   ): Promise<Json> {
     const self: any = this;
+    const Behavior = models.get('Behavior');
     const behaviors = await Behavior.fetchAll({}, {}, trx);
 
     // Get basic data

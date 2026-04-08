@@ -5,7 +5,7 @@
 
 import du from 'du';
 
-import { Model } from '../../models/_model/_model';
+import models from '../../models';
 import { formatSize } from '../../helpers/format/format';
 import { getRootUrl } from '../../helpers/url/url';
 import type { Knex } from 'knex';
@@ -21,8 +21,9 @@ export default [
     client: 'getDatabase',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
       // Get db size
-      const knex = Model.knex();
+      const knex = Document.knex();
       const postgres = await knex
         .raw("select pg_database_size('nick')")
         .transacting(trx);

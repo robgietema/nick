@@ -13,7 +13,7 @@ import { mapAsync } from '../utils/utils';
 import { readProfileFile, writeFile, writeImage } from '../fs/fs';
 import { vision } from '../ai/ai';
 
-import { Catalog } from '../../models/catalog/catalog';
+import models from '../../models';
 
 import config from '../config/config';
 
@@ -218,6 +218,7 @@ export async function handleBlockReferences(
   json: Json,
   trx: Knex.Transaction,
 ): Promise<Json> {
+  const Catalog = models.get('Catalog');
   // Make a copy of the json data
   const output = { ...json };
 

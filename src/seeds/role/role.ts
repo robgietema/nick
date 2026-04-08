@@ -7,12 +7,13 @@ import { fileExists } from '../../helpers/fs/fs';
 import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Role } from '../../models/role/role';
+import models from '../../models';
 
 export const seedRole = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Role = models.get('Role');
   if (await fileExists(`${profilePath}/roles`)) {
     const profile = stripI18n((await import(`${profilePath}/roles`)).default);
     if (profile.purge) {

@@ -7,13 +7,15 @@ import { dirExists } from '../../helpers/fs/fs';
 import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Behavior } from '../../models/behavior/behavior';
-import { Type } from '../../models/type/type';
+import models from '../../models';
 
 export const seedType = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Type = models.get('Type');
+  const Behavior = models.get('Behavior');
+
   if (await dirExists(`${profilePath}/behaviors`)) {
     // Get behavior profiles
     const behaviors = (await fs.readdir(`${profilePath}/behaviors`))

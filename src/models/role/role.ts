@@ -7,8 +7,8 @@ import { uniq } from 'es-toolkit/array';
 import type { Knex } from 'knex';
 
 import { getRootUrl } from '../../helpers/url/url';
-import { Model } from '../../models/_model/_model';
-import { Permission } from '../../models/permission/permission';
+import { Model } from '../_model/_model';
+import models from '../';
 import type { Json, Request } from '../../types';
 
 /**
@@ -19,6 +19,7 @@ import type { Json, Request } from '../../types';
 export class Role extends Model {
   // Set relation mappings
   static get relationMappings() {
+    const Permission = models.get('Permission');
     return {
       _permissions: {
         relation: (Model as any).ManyToManyRelation,

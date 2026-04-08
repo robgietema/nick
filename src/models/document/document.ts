@@ -14,15 +14,9 @@ import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 import languages from '../../constants/languages';
-import { Model } from '../../models/_model/_model';
-import { Catalog } from '../../models/catalog/catalog';
-import { Index } from '../../models/index/index';
-import { Permission } from '../../models/permission/permission';
-import { Redirect } from '../../models/redirect/redirect';
-import { Role } from '../../models/role/role';
-import { User } from '../../models/user/user';
-import { Type } from '../../models/type/type';
-import { Version } from '../../models/version/version';
+
+import { Model } from '../_model/_model';
+import models from '../';
 
 import { copyFile } from '../../helpers/fs/fs';
 import {
@@ -56,6 +50,12 @@ export class Document extends Model {
 
   // Set relation mappings
   static get relationMappings() {
+    const User = models.get('User');
+    const Role = models.get('Role');
+    const Catalog = models.get('Catalog');
+    const Version = models.get('Version');
+    const Type = models.get('Type');
+
     return {
       _owner: {
         relation: (Model as any).BelongsToOneRelation,
@@ -181,6 +181,7 @@ export class Document extends Model {
    */
   async restrictChildren(req: Request, trx?: Knex.Transaction): Promise<void> {
     const self: any = this;
+    const Catalog = models.get('Catalog');
     const paths = (self._children || []).map((child: any) => child.path);
     const items = await Catalog.fetchAllRestricted(
       { _path: ['=', paths] },
@@ -276,6 +277,7 @@ export class Document extends Model {
     newPath: string,
     trx?: Knex.Transaction,
   ): Promise<void> {
+    const Redirect = models.get('Redirect');
     const documents: any = await this.fetchAll(
       { path: ['~', `^${oldPath}`] },
       {},
@@ -567,6 +569,7 @@ export class Document extends Model {
     req: Request,
     trx?: Knex.Transaction,
   ): Promise<any[]> {
+    const User = models.get('User');
     return await Promise.all(
       (this as any).workflow_history.map(async (item: any) => {
         const user = await User.fetchById(item.actor, {}, trx);
@@ -952,6 +955,7 @@ export class Document extends Model {
    */
   async allowedUsersGroupsRoles(trx?: Knex.Transaction): Promise<string[]> {
     const self: any = this;
+    const Permission = models.get('Permission');
     // Get global roles
     const view: any = await Permission.fetchById('View', {}, trx);
     await view.fetchRelated('_roles', trx);
@@ -1186,6 +1190,7 @@ export class Document extends Model {
     }
 
     // Fetch indexes
+    const Index = models.get('Index');
     const indexes: any = await Index.fetchAll({}, {}, trx);
 
     // Loop indexes

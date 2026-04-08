@@ -4,7 +4,7 @@
  */
 
 import { getUrl } from '../../helpers/url/url';
-import { Index } from '../../models/index/index';
+import models from '../../models';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
@@ -16,6 +16,8 @@ export default [
     client: 'getQuerystring',
     cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Index = models.get('Index');
+
       // Get all enabled indexes
       const indexes = await Index.fetchAll(
         { enabled: true, metadata: false },

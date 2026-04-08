@@ -7,7 +7,7 @@ import { compact } from 'es-toolkit/array';
 
 import { getRootUrl } from '../../helpers/url/url';
 import { translateSchema } from '../../helpers/schema/schema';
-import { Model } from '../../models/_model/_model';
+import { Model } from '../_model/_model';
 import type { Json, Request } from '../../types';
 
 /**

@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt-promise';
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { User } from '../../models/user/user';
+import models from '../../models';
 
 const userFields = ['id', 'fullname', 'email'];
 
@@ -14,6 +14,8 @@ export const seedUser = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const User = models.get('User');
+
   if (await fileExists(`${profilePath}/users`)) {
     const profile = stripI18n((await import(`${profilePath}/users`)).default);
     if (profile.purge) {

@@ -9,8 +9,7 @@ import { getRootUrl } from '../../helpers/url/url';
 import config from '../../helpers/config/config';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
-
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import models from '../../models';
 
 export default [
   {
@@ -20,6 +19,7 @@ export default [
     client: 'getSite',
     cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Controlpanel = models.get('Controlpanel');
       const siteControlpanel = await Controlpanel.fetchById('site', {}, trx);
       const languageControlpanel = await Controlpanel.fetchById(
         'language',

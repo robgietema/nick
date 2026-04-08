@@ -3,7 +3,7 @@
  * @module vocabularies/permissions/permissions
  */
 
-import { Permission } from '../../models/permission/permission';
+import models from '../../models';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
@@ -18,6 +18,7 @@ export async function permissions(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Permission = models.get('Permission');
   const permissions = await Permission.fetchAll({}, { order: 'title' }, trx);
   return permissions.getVocabulary(req);
 }

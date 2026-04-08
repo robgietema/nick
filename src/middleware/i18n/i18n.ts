@@ -8,7 +8,7 @@ import { createIntl, createIntlCache, IntlShape } from '@formatjs/intl';
 import fs from 'fs';
 import type { Response, NextFunction } from 'express';
 
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import models from '../../models';
 
 import config from '../../helpers/config/config';
 import type { Request } from '../../types';
@@ -50,6 +50,8 @@ export async function i18n(
   res: Response,
   next: NextFunction,
 ): Promise<void> {
+  const Controlpanel = models.get('Controlpanel');
+
   // Fetch settings
   const controlpanel = await Controlpanel.fetchById('language');
   const settings = (controlpanel as any).data;

@@ -8,8 +8,7 @@ import bcrypt from 'bcrypt-promise';
 import { omit } from 'es-toolkit/object';
 import jwt from 'jsonwebtoken';
 
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
-import { User } from '../../models/user/user';
+import models from '../../models';
 import { RequestException } from '../../helpers/error/error';
 import { sendMail } from '../../helpers/mail/mail';
 import { apiLimiter } from '../../helpers/limiter/limiter';
@@ -27,6 +26,8 @@ export default [
     client: 'resetPassword',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
+
       // Find user
       let user = await User.fetchOne({ email: req.params.email }, {}, trx);
       if (!user) {
@@ -91,6 +92,7 @@ export default [
         );
 
         // Fetch settings
+        const Controlpanel = models.get('Controlpanel');
         const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
         const settings = controlpanel.data;
 
@@ -121,6 +123,8 @@ export default [
     client: 'getUser',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
+
       // Check permissions
       const manageUsers = req.permissions.includes('Manage Users');
       if (!manageUsers && req.user.id !== req.params.id) {
@@ -153,6 +157,7 @@ export default [
     cache: 'manage',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
       const query =
         typeof req.query.query === 'string' ? req.query.query : undefined;
       if (query && query.length < 2) {
@@ -177,6 +182,8 @@ export default [
     client: 'createUser',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
+
       // Check permissions
       const manageUsers = req.permissions.includes('Manage Users');
       if (!config.settings.userRegistration && !manageUsers) {
@@ -233,6 +240,7 @@ export default [
         );
 
         // Fetch settings
+        const Controlpanel = models.get('Controlpanel');
         const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
         const settings = controlpanel.data;
 
@@ -268,6 +276,7 @@ export default [
     client: 'updateUser',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
       const user = await User.update(
         req.params.id,
         {
@@ -305,6 +314,7 @@ export default [
     client: 'deleteUser',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
       if (config.settings.systemUsers.includes(req.params.id)) {
         throw new RequestException(401, {
           error: {

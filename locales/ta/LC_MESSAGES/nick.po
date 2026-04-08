@@ -48,9 +48,9 @@ msgid "AI"
 msgstr "செயற்கை நுண்ணறிவு (AI)"
 
 #. Default: "AI is disabled."
-#: src/routes/related/related.ts:19
-#: src/routes/ai/ai.ts:67
-#: src/routes/ai/ai.ts:117
+#: src/routes/related/related.ts:20
+#: src/routes/ai/ai.ts:69
+#: src/routes/ai/ai.ts:119
 msgctxt "Routes|Related|Related.ts"
 msgid "AI is disabled."
 msgstr "AI முடக்கப்பட்டுள்ளது."
@@ -190,7 +190,7 @@ msgid "After today"
 msgstr "இன்றுக்குப் பிறகு"
 
 #. Default: "Allowed Content Types"
-#: src/models/type/type.ts:141
+#: src/models/type/type.ts:143
 msgctxt "Models|Type|Type.ts"
 msgid "Allowed Content Types"
 msgstr "அனுமதிக்கப்பட்ட உள்ளடக்க வகைகள்"
@@ -320,7 +320,7 @@ msgid "Before today"
 msgstr "இன்றுக்கு முன்"
 
 #. Default: "Behaviors"
-#: src/models/type/type.ts:124
+#: src/models/type/type.ts:126
 msgctxt "Models|Type|Type.ts"
 msgid "Behaviors"
 msgstr "நடத்தைகள்"
@@ -414,13 +414,13 @@ msgid "Contains"
 msgstr "கொண்டுள்ளது"
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.ts:71
+#: src/routes/controlpanels/controlpanels.ts:70
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content"
 msgstr "உள்ளடக்கம்"
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.ts:70
+#: src/routes/controlpanels/controlpanels.ts:69
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content Types"
@@ -536,7 +536,7 @@ msgid "Delete"
 msgstr "அழி"
 
 #. Default: "Description"
-#: src/models/type/type.ts:148
+#: src/models/type/type.ts:150
 #: src/profiles/core/catalog.json:227
 #: src/profiles/core/behaviors/basic.json:16
 #: src/profiles/ai/controlpanels/ai.json:33
@@ -577,8 +577,8 @@ msgid "Document copied"
 msgstr ""
 
 #. Default: "Document locked"
-#: src/routes/history/history.ts:66
-#: src/routes/content/content.ts:743
+#: src/routes/history/history.ts:65
+#: src/routes/content/content.ts:752
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr "ஆவணம் பூட்டப்பட்டுள்ளது"
@@ -751,7 +751,7 @@ msgid "File"
 msgstr "கோப்பு"
 
 #. Default: "Filter Contained Types"
-#: src/models/type/type.ts:154
+#: src/models/type/type.ts:156
 msgctxt "Models|Type|Type.ts"
 msgid "Filter Contained Types"
 msgstr "கொண்ட வகைகளை வடிகட்டவும்"
@@ -781,8 +781,8 @@ msgid "Folder-like"
 msgstr "கோப்புறை போன்ற"
 
 #. Default: "From and message are required fields."
-#: src/routes/email/email.ts:59
-#: src/routes/email/email.ts:98
+#: src/routes/email/email.ts:57
+#: src/routes/email/email.ts:97
 msgctxt "Routes|Email|Email.ts"
 msgid "From and message are required fields."
 msgstr "அனுப்புநர் மற்றும் செய்தி கட்டாய புலங்கள்."
@@ -870,21 +870,21 @@ msgid "Information about rights held in and over this item."
 msgstr "இந்த உருப்படியின் உரிமைகள் பற்றிய தகவல்."
 
 #. Default: "Internal server error"
-#: src/app.ts:235
-#: src/app.ts:245
+#: src/app.ts:236
+#: src/app.ts:246
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr "உள் சேவையக பிழை"
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.ts:79
-#: src/routes/authentication/authentication.ts:93
+#: src/routes/authentication/authentication.ts:81
+#: src/routes/authentication/authentication.ts:95
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid credentials"
 msgstr "தவறான சான்றுகள்"
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.ts:128
+#: src/routes/authentication/authentication.ts:130
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid session"
 msgstr "தவறான அமர்வு"
@@ -897,7 +897,7 @@ msgid "Is"
 msgstr "ஆகும்"
 
 #. Default: "Items of this type can act as a folder containing other items. What content types should be allowed inside?"
-#: src/models/type/type.ts:155
+#: src/models/type/type.ts:157
 msgctxt "Models|Type|Type.ts"
 msgid "Items of this type can act as a folder containing other items. What content types should be allowed inside?"
 msgstr "இந்த வகையின் உருப்படிகள் பிற உருப்படிகளைக் கொண்ட கோப்புறையாகச் செயல்படும். உள்ளே என்ன உள்ளடக்க வகைகள் அனுமதிக்கப்பட வேண்டும்?"
@@ -990,7 +990,7 @@ msgid "Login"
 msgstr "உள்நுழைவு"
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.ts:58
+#: src/routes/authentication/authentication.ts:60
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Login and password must be provided in body."
 msgstr "உள்நுழைவு மற்றும் கடவுச்சொல் உடலில் வழங்கப்பட வேண்டும்."
@@ -1055,7 +1055,7 @@ msgid "Matches any condition"
 msgstr "எதனுடனும் பொருந்துகிறது"
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.ts:57
+#: src/routes/authentication/authentication.ts:59
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Missing credentials"
 msgstr "சான்றுகள் இல்லை"
@@ -1130,18 +1130,18 @@ msgid "Not allowed"
 msgstr "அனுமதிக்கப்படவில்லை"
 
 #. Default: "Not found."
-#: src/routes/vocabularies/vocabularies.ts:57
-#: src/routes/users/users.ts:140
-#: src/routes/types/types.ts:40
-#: src/routes/groups/groups.ts:30
-#: src/routes/email/email.ts:66
+#: src/routes/vocabularies/vocabularies.ts:59
+#: src/routes/users/users.ts:144
+#: src/routes/types/types.ts:41
+#: src/routes/groups/groups.ts:31
+#: src/routes/email/email.ts:65
 #: src/routes/controlpanels/controlpanels.ts:81
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr "கணக்கிடப்படவில்லை."
 
 #. Default: "Not found: {url}"
-#: src/helpers/handler/handler.ts:69
+#: src/helpers/handler/handler.ts:71
 msgctxt "Helpers|Handler|Handler.ts"
 msgid "Not found: {url}"
 msgstr ""
@@ -1184,15 +1184,15 @@ msgid "Password"
 msgstr ""
 
 #. Default: "Password reset request"
-#: src/routes/users/users.ts:102
-#: src/routes/users/users.ts:244
+#: src/routes/users/users.ts:104
+#: src/routes/users/users.ts:252
 msgctxt "Routes|Users|Users.ts"
 msgid "Password reset request"
 msgstr "கடவுச்சொல் மீட்டமைப்பு கோரிக்கை"
 
 #. Default: "Password should be at least 8 characters long."
-#: src/routes/users/users.ts:39
-#: src/routes/users/users.ts:191
+#: src/routes/users/users.ts:40
+#: src/routes/users/users.ts:198
 msgctxt "Routes|Users|Users.ts"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1299,8 +1299,8 @@ msgid "Prompt"
 msgstr "தூண்டுதல் (Prompt)"
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.ts:57
-#: src/routes/ai/ai.ts:107
+#: src/routes/ai/ai.ts:59
+#: src/routes/ai/ai.ts:109
 msgctxt "Routes|Ai|Ai.ts"
 msgid "Prompt is a required field."
 msgstr "தூண்டுதல் ஒரு கட்டாய புலம்."
@@ -1336,9 +1336,9 @@ msgid "Publishing Date"
 msgstr "வெளியீட்டு தேதி"
 
 #. Default: "Query must be at least 2 characters long."
-#: src/routes/users/users.ts:160
-#: src/routes/principals/principals.ts:26
-#: src/routes/groups/groups.ts:50
+#: src/routes/users/users.ts:165
+#: src/routes/principals/principals.ts:27
+#: src/routes/groups/groups.ts:52
 msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
 msgstr ""
@@ -1405,7 +1405,7 @@ msgid "Rename"
 msgstr "பெயர் மாற்றம்"
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:565
+#: src/routes/content/content.ts:572
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr "தேவையான புலம்(கள்) இல்லை."
@@ -1612,13 +1612,13 @@ msgid "Submit for publication"
 msgstr "வெளியீட்டிற்குச் சமர்ப்பிக்கவும்"
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:134
+#: src/routes/groups/groups.ts:139
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr "கணினி குழு"
 
 #. Default: "System users"
-#: src/routes/users/users.ts:312
+#: src/routes/users/users.ts:322
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr "கணினி பயனர்கள்"
@@ -1707,8 +1707,8 @@ msgid "The end date and time of an event"
 msgstr "நிகழ்வின் முடிவு தேதி மற்றும் நேரம்"
 
 #. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
-#: src/routes/users/users.ts:103
-#: src/routes/users/users.ts:245
+#: src/routes/users/users.ts:105
+#: src/routes/users/users.ts:253
 msgctxt "Routes|Users|Users.ts"
 msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 msgstr ""
@@ -1873,7 +1873,7 @@ msgid "Title"
 msgstr "தலைப்பு"
 
 #. Default: "To, from and message are required fields."
-#: src/routes/email/email.ts:27
+#: src/routes/email/email.ts:25
 msgctxt "Routes|Email|Email.ts"
 msgid "To, from and message are required fields."
 msgstr "பெறுநர், அனுப்புநர் மற்றும் செய்தி கட்டாய புலங்கள்."
@@ -1890,9 +1890,9 @@ msgid "Today"
 msgstr "இன்று"
 
 #. Default: "Transaction error."
-#: src/client.ts:60
-#: src/app.ts:180
-#: src/app.ts:193
+#: src/client.ts:61
+#: src/app.ts:181
+#: src/app.ts:194
 msgctxt "Client.ts"
 msgid "Transaction error."
 msgstr "பரிவர்த்தனை பிழை."
@@ -1904,19 +1904,19 @@ msgid "Type"
 msgstr "வகை"
 
 #. Default: "Type Name"
-#: src/models/type/type.ts:163
+#: src/models/type/type.ts:165
 msgctxt "Models|Type|Type.ts"
 msgid "Type Name"
 msgstr "வகை பெயர்"
 
 #. Default: "Type of the current document is not found."
-#: src/helpers/handler/handler.ts:88
+#: src/helpers/handler/handler.ts:90
 msgctxt "Helpers|Handler|Handler.ts"
 msgid "Type of the current document is not found."
 msgstr "தற்போதைய ஆவணத்தின் வகை காணப்படவில்லை."
 
 #. Default: "Type {type} not found."
-#: src/routes/content/content.ts:554
+#: src/routes/content/content.ts:561
 msgctxt "Routes|Content|Content.ts"
 msgid "Type {type} not found."
 msgstr ""
@@ -1948,13 +1948,13 @@ msgid "User created"
 msgstr ""
 
 #. Default: "User doesn’t exist or invalid credentials."
-#: src/routes/users/users.ts:64
+#: src/routes/users/users.ts:65
 msgctxt "Routes|Users|Users.ts"
 msgid "User doesn’t exist or invalid credentials."
 msgstr "பயனர் இல்லை அல்லது தவறான சான்றுகள்."
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.ts:129
+#: src/routes/authentication/authentication.ts:131
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "User is not logged in."
 msgstr "பயனர் உள்நுழையவில்லை."
@@ -2074,8 +2074,8 @@ msgid "Workflow state changed"
 msgstr ""
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.ts:80
-#: src/routes/authentication/authentication.ts:94
+#: src/routes/authentication/authentication.ts:82
+#: src/routes/authentication/authentication.ts:96
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Wrong login and/or password."
 msgstr "தவறான உள்நுழைவு மற்றும்/அல்லது கடவுச்சொல்."
@@ -2094,26 +2094,26 @@ msgid "You are not authorization to access this resource."
 msgstr ""
 
 #. Default: "You are not authorized to access this resource."
-#: src/helpers/handler/handler.ts:110
+#: src/helpers/handler/handler.ts:112
 msgctxt "Helpers|Handler|Handler.ts"
 msgid "You are not authorized to access this resource."
 msgstr "இந்த வளத்தை அணுக உங்களுக்கு அனுமதி இல்லை."
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:133
+#: src/routes/groups/groups.ts:138
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr "நீங்கள் கணினி குழுக்களை நீக்க முடியாது."
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:311
+#: src/routes/users/users.ts:321
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr "நீங்கள் கணினி பயனர்களை நீக்க முடியாது."
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
-#: src/routes/history/history.ts:63
-#: src/routes/content/content.ts:740
+#: src/routes/history/history.ts:62
+#: src/routes/content/content.ts:749
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr "இந்த ஆவணம் மற்றொரு பயனரால் பூட்டப்பட்டுள்ளதால், அதைச் சேமிக்க உங்களுக்கு அனுமதி இல்லை."
@@ -2125,13 +2125,13 @@ msgid "You don’t have permission to unlock this document."
 msgstr "இந்த ஆவணத்தைத் திறக்க உங்களுக்கு அனுமதி இல்லை."
 
 #. Default: "You don’t have permissions to add a user."
-#: src/routes/users/users.ts:184
+#: src/routes/users/users.ts:191
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to add a user."
 msgstr ""
 
 #. Default: "You don’t have permissions to view this user."
-#: src/routes/users/users.ts:128
+#: src/routes/users/users.ts:132
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to view this user."
 msgstr ""

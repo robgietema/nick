@@ -3,10 +3,7 @@
  * @module routes/sharing/sharing
  */
 
-import { Document } from '../../models/document/document';
-import { Group } from '../../models/group/group';
-import { Role } from '../../models/role/role';
-import { User } from '../../models/user/user';
+import models from '../../models';
 import { mapAsync } from '../../helpers/utils/utils';
 import { apiLimiter } from '../../helpers/limiter/limiter';
 import type { Request } from '../../types';
@@ -33,6 +30,8 @@ async function fetchPrincipals(
   type: string,
   trx: Knex.Transaction,
 ) {
+  const Document = models.get('Document');
+
   // Get principals
   const principals =
     query && query.length >= 2
@@ -97,6 +96,10 @@ export default [
     cache: 'manage',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Role = models.get('Role');
+      const User = models.get('User');
+      const Group = models.get('Group');
+
       // Get roles
       const roles = await Role.fetchAll({}, { order: 'order' }, trx);
 
@@ -145,6 +148,9 @@ export default [
     client: 'updateSharing',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
+      const Group = models.get('Group');
+
       // Update inherit
       if (req.document.inherit_roles !== req.body.inherit) {
         await req.document.update(

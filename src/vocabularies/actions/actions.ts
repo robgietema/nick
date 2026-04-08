@@ -4,7 +4,7 @@
  */
 
 import type { Knex } from 'knex';
-import { Action } from '../../models/action/action';
+import models from '../../models';
 import type { Request, VocabularyTerm } from '../../types';
 
 /**
@@ -18,6 +18,7 @@ export async function actions(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Action = models.get('Action');
   const actions = await Action.fetchAll(
     {},
     { order: ['category', 'order'] },

@@ -5,7 +5,7 @@
 
 import { sortBy } from 'es-toolkit/compat';
 
-import { Vocabulary } from '../../models/vocabulary/vocabulary';
+import models from '../../models';
 import { vocabularies } from '../../vocabularies';
 import { RequestException } from '../../helpers/error/error';
 import { getUrl } from '../../helpers/url/url';
@@ -22,6 +22,7 @@ export default [
     client: 'getVocabularies',
     cache: 'static',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Vocabulary = models.get('Vocabulary');
       const profileVocabularies = await Vocabulary.fetchAll({}, {}, trx);
       return {
         json: sortBy(
@@ -52,6 +53,7 @@ export default [
         !Object.keys(vocabularies).includes(req.params.id) &&
         !Object.keys(config.settings.vocabularies || {}).includes(req.params.id)
       ) {
+        const Vocabulary = models.get('Vocabulary');
         const vocabulary = await Vocabulary.fetchById(req.params.id, {}, trx);
         if (!vocabulary) {
           throw new RequestException(404, { error: req.i18n('Not found.') });

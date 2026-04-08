@@ -6,7 +6,7 @@
 import type { Knex } from 'knex';
 import { mergeSchemas } from '../../helpers/schema/schema';
 import { BehaviorCollection } from '../../collections/behavior/behavior';
-import { Model } from '../../models/_model/_model';
+import { Model } from '../_model/_model';
 import type { Schema } from '../../types';
 
 /**

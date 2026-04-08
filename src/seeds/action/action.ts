@@ -3,12 +3,13 @@ import { fileExists } from '../../helpers/fs/fs';
 import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Action } from '../../models/action/action';
+import models from '../../models';
 
 export const seedAction = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Action = models.get('Action');
   if (await fileExists(`${profilePath}/actions`)) {
     const profile = stripI18n((await import(`${profilePath}/actions`)).default);
     if (profile.purge) {

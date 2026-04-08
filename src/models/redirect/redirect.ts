@@ -5,8 +5,8 @@
 
 import type { Knex } from 'knex';
 import type { Json, Request } from '../../types';
-import { Model } from '../../models/_model/_model';
-import { Document } from '../../models/document/document';
+import { Model } from '../_model/_model';
+import models from '../';
 
 /**
  * A model for Redirect.
@@ -21,6 +21,7 @@ export class Redirect extends Model {
 
   // Set relation mappings
   static get relationMappings() {
+    const Document = models.get('Document');
     return {
       _document: {
         relation: (Model as any).BelongsToOneRelation,

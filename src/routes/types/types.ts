@@ -9,10 +9,10 @@ import { RequestException } from '../../helpers/error/error';
 import { translateSchema } from '../../helpers/schema/schema';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
-
-import { Type } from '../../models/type/type';
+import models from '../../models';
 
 export const handler = async (req: Request, trx: Knex.Transaction) => {
+  const Type = models.get('Type');
   const types = await Type.fetchAll({}, {}, trx);
   return {
     json: await types.toJson(req),
@@ -35,6 +35,7 @@ export default [
     client: 'getType',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Type = models.get('Type');
       const type = await Type.fetchById(req.params.type, {}, trx);
       if (!type) {
         throw new RequestException(404, { error: req.i18n('Not found.') });

@@ -7,12 +7,11 @@
 import bcrypt from 'bcrypt-promise';
 import jwt from 'jsonwebtoken';
 
-import { User } from '../../models/user/user';
+import models from '../../models';
 import { log } from '../../helpers/log/log';
 import { RequestException } from '../../helpers/error/error';
 import { authLimiter } from '../../helpers/limiter/limiter';
 import { addToken, removeToken } from '../../helpers/auth/auth';
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
@@ -50,6 +49,9 @@ export default [
     cache: 'alter',
     middleware: authLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Controlpanel = models.get('Controlpanel');
+      const User = models.get('User');
+
       if (!req.body.login || !req.body.password) {
         log.error(`Log in attempt without login or password from ${req.ip}.`);
         throw new RequestException(400, {

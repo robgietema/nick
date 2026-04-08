@@ -7,7 +7,7 @@ import { uniq } from 'es-toolkit/array';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
-import { Catalog } from '../../models/catalog/catalog';
+import models from '../../models';
 import { arrayToVocabulary } from '../../helpers/utils/utils';
 
 /**
@@ -21,6 +21,7 @@ export async function subjects(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Catalog = models.get('Catalog');
   const subjects = await Catalog.fetchAll(
     { _Subject: ['is not', null] },
     {},

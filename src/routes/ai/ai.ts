@@ -8,7 +8,7 @@ import { PDFParse } from 'pdf-parse';
 import type { Knex } from 'knex';
 import type { Request } from '../../types';
 
-import { Catalog } from '../../models/catalog/catalog';
+import models from '../../models';
 import {
   chat,
   embed,
@@ -25,6 +25,8 @@ const getEmbedFromPrompt = async (
   req: Request,
   trx: Knex.Transaction,
 ) => {
+  const Catalog = models.get('Catalog');
+
   // Get embedding vector
   const embedding = await embed(prompt);
 

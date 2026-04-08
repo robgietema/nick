@@ -7,7 +7,7 @@ import { flatten } from 'es-toolkit/array';
 import { mapValues, pick, pickBy } from 'es-toolkit/object';
 
 import { getUrl } from '../../helpers/url/url';
-import { Model } from '../../models/_model/_model';
+import { Model } from '../_model/_model';
 import type { Json, Request } from '../../types';
 
 /**

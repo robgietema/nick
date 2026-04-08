@@ -4,7 +4,7 @@
  */
 
 import routes from './routes';
-import { Model } from './models/_model/_model';
+import models from './models';
 import { i18n } from './middleware/i18n/i18n';
 import type { Request } from './types';
 import { RequestException } from './helpers/error/error';
@@ -26,6 +26,7 @@ export class Client {
    */
   static initialize = ({ token: initToken, apiPath }: any): any => {
     const client = new Client() as any;
+    const Document = models.get('Document');
 
     routes.map((route: any) => {
       if (route.client) {
@@ -47,7 +48,7 @@ export class Client {
 
           await i18n(req, {} as Response, (() => {}) as NextFunction);
 
-          const trx = await Model.startTransaction();
+          const trx = await Document.startTransaction();
 
           try {
             const res = await callHandler(req, trx, route, () => {});

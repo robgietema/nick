@@ -13,7 +13,7 @@ import { RequestException } from './helpers/error/error';
 import { log } from './helpers/log/log';
 import { regExpEscape } from './helpers/utils/utils';
 import { callHandler } from './helpers/handler/handler';
-import { Model } from './models/_model/_model';
+import models from './models';
 import globalRoutes from './routes';
 import globalTasks from './tasks';
 import { purge } from './events/cache/cache';
@@ -23,7 +23,7 @@ import { cors } from './middleware/cors/cors';
 import { i18n } from './middleware/i18n/i18n';
 import { removeZopeVhosting } from './middleware/volto/volto';
 import type { Request, Route } from './types';
-import { Request as ExpressRequest, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 
 import config from './helpers/config/config';
 import { applyCache } from './helpers/cache/cache';
@@ -152,7 +152,8 @@ routes.map((route: Route) => {
       ((req: Request, res: Response, next: NextFunction) => next()),
     async (req: any, res: Response): Promise<any> => {
       // Start transaction
-      const trx = await Model.startTransaction();
+      const Document = models.get('Document');
+      const trx = await Document.startTransaction();
       req.apiPath = `${req.protocol}://${req.headers.host}`;
       if (req.headers.authorization) {
         const match = req.headers.authorization.match(/^Bearer (.*)$/);

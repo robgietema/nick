@@ -3,7 +3,7 @@
  * @module vocabularies/workflows/workflows
  */
 
-import { Workflow } from '../../models/workflow/workflow';
+import models from '../../models';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
@@ -18,6 +18,7 @@ export async function workflows(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Workflow = models.get('Workflow');
   const workflows = await Workflow.fetchAll({}, { order: 'title' }, trx);
   return workflows.getVocabulary(req);
 }

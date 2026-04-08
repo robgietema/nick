@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-04-08T11:57:52.624Z\n"
+"POT-Creation-Date: 2026-04-08T18:41:45.199Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -45,9 +45,9 @@ msgid "AI"
 msgstr ""
 
 #. Default: "AI is disabled."
-#: src/routes/related/related.ts:19
-#: src/routes/ai/ai.ts:67
-#: src/routes/ai/ai.ts:117
+#: src/routes/related/related.ts:20
+#: src/routes/ai/ai.ts:69
+#: src/routes/ai/ai.ts:119
 msgctxt "Routes|Related|Related.ts"
 msgid "AI is disabled."
 msgstr ""
@@ -187,7 +187,7 @@ msgid "After today"
 msgstr ""
 
 #. Default: "Allowed Content Types"
-#: src/models/type/type.ts:141
+#: src/models/type/type.ts:143
 msgctxt "Models|Type|Type.ts"
 msgid "Allowed Content Types"
 msgstr ""
@@ -317,7 +317,7 @@ msgid "Before today"
 msgstr ""
 
 #. Default: "Behaviors"
-#: src/models/type/type.ts:124
+#: src/models/type/type.ts:126
 msgctxt "Models|Type|Type.ts"
 msgid "Behaviors"
 msgstr ""
@@ -411,13 +411,13 @@ msgid "Contains"
 msgstr ""
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.ts:71
+#: src/routes/controlpanels/controlpanels.ts:70
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content"
 msgstr ""
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.ts:70
+#: src/routes/controlpanels/controlpanels.ts:69
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content Types"
@@ -533,7 +533,7 @@ msgid "Delete"
 msgstr ""
 
 #. Default: "Description"
-#: src/models/type/type.ts:148
+#: src/models/type/type.ts:150
 #: src/profiles/core/catalog.json:227
 #: src/profiles/core/behaviors/basic.json:16
 #: src/profiles/ai/controlpanels/ai.json:33
@@ -574,8 +574,8 @@ msgid "Document copied"
 msgstr ""
 
 #. Default: "Document locked"
-#: src/routes/history/history.ts:66
-#: src/routes/content/content.ts:743
+#: src/routes/history/history.ts:65
+#: src/routes/content/content.ts:752
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr ""
@@ -748,7 +748,7 @@ msgid "File"
 msgstr ""
 
 #. Default: "Filter Contained Types"
-#: src/models/type/type.ts:154
+#: src/models/type/type.ts:156
 msgctxt "Models|Type|Type.ts"
 msgid "Filter Contained Types"
 msgstr ""
@@ -778,8 +778,8 @@ msgid "Folder-like"
 msgstr ""
 
 #. Default: "From and message are required fields."
-#: src/routes/email/email.ts:59
-#: src/routes/email/email.ts:98
+#: src/routes/email/email.ts:57
+#: src/routes/email/email.ts:97
 msgctxt "Routes|Email|Email.ts"
 msgid "From and message are required fields."
 msgstr ""
@@ -867,21 +867,21 @@ msgid "Information about rights held in and over this item."
 msgstr ""
 
 #. Default: "Internal server error"
-#: src/app.ts:235
-#: src/app.ts:245
+#: src/app.ts:236
+#: src/app.ts:246
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr ""
 
 #. Default: "Invalid credentials"
-#: src/routes/authentication/authentication.ts:79
-#: src/routes/authentication/authentication.ts:93
+#: src/routes/authentication/authentication.ts:81
+#: src/routes/authentication/authentication.ts:95
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid credentials"
 msgstr ""
 
 #. Default: "Invalid session"
-#: src/routes/authentication/authentication.ts:128
+#: src/routes/authentication/authentication.ts:130
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid session"
 msgstr ""
@@ -894,7 +894,7 @@ msgid "Is"
 msgstr ""
 
 #. Default: "Items of this type can act as a folder containing other items. What content types should be allowed inside?"
-#: src/models/type/type.ts:155
+#: src/models/type/type.ts:157
 msgctxt "Models|Type|Type.ts"
 msgid "Items of this type can act as a folder containing other items. What content types should be allowed inside?"
 msgstr ""
@@ -987,7 +987,7 @@ msgid "Login"
 msgstr ""
 
 #. Default: "Login and password must be provided in body."
-#: src/routes/authentication/authentication.ts:58
+#: src/routes/authentication/authentication.ts:60
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Login and password must be provided in body."
 msgstr ""
@@ -1052,7 +1052,7 @@ msgid "Matches any condition"
 msgstr ""
 
 #. Default: "Missing credentials"
-#: src/routes/authentication/authentication.ts:57
+#: src/routes/authentication/authentication.ts:59
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Missing credentials"
 msgstr ""
@@ -1127,18 +1127,18 @@ msgid "Not allowed"
 msgstr ""
 
 #. Default: "Not found."
-#: src/routes/vocabularies/vocabularies.ts:57
-#: src/routes/users/users.ts:140
-#: src/routes/types/types.ts:40
-#: src/routes/groups/groups.ts:30
-#: src/routes/email/email.ts:66
+#: src/routes/vocabularies/vocabularies.ts:59
+#: src/routes/users/users.ts:144
+#: src/routes/types/types.ts:41
+#: src/routes/groups/groups.ts:31
+#: src/routes/email/email.ts:65
 #: src/routes/controlpanels/controlpanels.ts:81
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr ""
 
 #. Default: "Not found: {url}"
-#: src/helpers/handler/handler.ts:69
+#: src/helpers/handler/handler.ts:71
 msgctxt "Helpers|Handler|Handler.ts"
 msgid "Not found: {url}"
 msgstr ""
@@ -1181,15 +1181,15 @@ msgid "Password"
 msgstr ""
 
 #. Default: "Password reset request"
-#: src/routes/users/users.ts:102
-#: src/routes/users/users.ts:244
+#: src/routes/users/users.ts:104
+#: src/routes/users/users.ts:252
 msgctxt "Routes|Users|Users.ts"
 msgid "Password reset request"
 msgstr ""
 
 #. Default: "Password should be at least 8 characters long."
-#: src/routes/users/users.ts:39
-#: src/routes/users/users.ts:191
+#: src/routes/users/users.ts:40
+#: src/routes/users/users.ts:198
 msgctxt "Routes|Users|Users.ts"
 msgid "Password should be at least 8 characters long."
 msgstr ""
@@ -1296,8 +1296,8 @@ msgid "Prompt"
 msgstr ""
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.ts:57
-#: src/routes/ai/ai.ts:107
+#: src/routes/ai/ai.ts:59
+#: src/routes/ai/ai.ts:109
 msgctxt "Routes|Ai|Ai.ts"
 msgid "Prompt is a required field."
 msgstr ""
@@ -1333,9 +1333,9 @@ msgid "Publishing Date"
 msgstr ""
 
 #. Default: "Query must be at least 2 characters long."
-#: src/routes/users/users.ts:160
-#: src/routes/principals/principals.ts:26
-#: src/routes/groups/groups.ts:50
+#: src/routes/users/users.ts:165
+#: src/routes/principals/principals.ts:27
+#: src/routes/groups/groups.ts:52
 msgctxt "Routes|Users|Users.ts"
 msgid "Query must be at least 2 characters long."
 msgstr ""
@@ -1402,7 +1402,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:565
+#: src/routes/content/content.ts:572
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr ""
@@ -1609,13 +1609,13 @@ msgid "Submit for publication"
 msgstr ""
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:134
+#: src/routes/groups/groups.ts:139
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr ""
 
 #. Default: "System users"
-#: src/routes/users/users.ts:312
+#: src/routes/users/users.ts:322
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr ""
@@ -1704,8 +1704,8 @@ msgid "The end date and time of an event"
 msgstr ""
 
 #. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
-#: src/routes/users/users.ts:103
-#: src/routes/users/users.ts:245
+#: src/routes/users/users.ts:105
+#: src/routes/users/users.ts:253
 msgctxt "Routes|Users|Users.ts"
 msgid "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 msgstr ""
@@ -1870,7 +1870,7 @@ msgid "Title"
 msgstr ""
 
 #. Default: "To, from and message are required fields."
-#: src/routes/email/email.ts:27
+#: src/routes/email/email.ts:25
 msgctxt "Routes|Email|Email.ts"
 msgid "To, from and message are required fields."
 msgstr ""
@@ -1887,9 +1887,9 @@ msgid "Today"
 msgstr ""
 
 #. Default: "Transaction error."
-#: src/client.ts:60
-#: src/app.ts:180
-#: src/app.ts:193
+#: src/client.ts:61
+#: src/app.ts:181
+#: src/app.ts:194
 msgctxt "Client.ts"
 msgid "Transaction error."
 msgstr ""
@@ -1901,19 +1901,19 @@ msgid "Type"
 msgstr ""
 
 #. Default: "Type Name"
-#: src/models/type/type.ts:163
+#: src/models/type/type.ts:165
 msgctxt "Models|Type|Type.ts"
 msgid "Type Name"
 msgstr ""
 
 #. Default: "Type of the current document is not found."
-#: src/helpers/handler/handler.ts:88
+#: src/helpers/handler/handler.ts:90
 msgctxt "Helpers|Handler|Handler.ts"
 msgid "Type of the current document is not found."
 msgstr ""
 
 #. Default: "Type {type} not found."
-#: src/routes/content/content.ts:554
+#: src/routes/content/content.ts:561
 msgctxt "Routes|Content|Content.ts"
 msgid "Type {type} not found."
 msgstr ""
@@ -1945,13 +1945,13 @@ msgid "User created"
 msgstr ""
 
 #. Default: "User doesn’t exist or invalid credentials."
-#: src/routes/users/users.ts:64
+#: src/routes/users/users.ts:65
 msgctxt "Routes|Users|Users.ts"
 msgid "User doesn’t exist or invalid credentials."
 msgstr ""
 
 #. Default: "User is not logged in."
-#: src/routes/authentication/authentication.ts:129
+#: src/routes/authentication/authentication.ts:131
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "User is not logged in."
 msgstr ""
@@ -2071,8 +2071,8 @@ msgid "Workflow state changed"
 msgstr ""
 
 #. Default: "Wrong login and/or password."
-#: src/routes/authentication/authentication.ts:80
-#: src/routes/authentication/authentication.ts:94
+#: src/routes/authentication/authentication.ts:82
+#: src/routes/authentication/authentication.ts:96
 msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Wrong login and/or password."
 msgstr ""
@@ -2091,26 +2091,26 @@ msgid "You are not authorization to access this resource."
 msgstr ""
 
 #. Default: "You are not authorized to access this resource."
-#: src/helpers/handler/handler.ts:110
+#: src/helpers/handler/handler.ts:112
 msgctxt "Helpers|Handler|Handler.ts"
 msgid "You are not authorized to access this resource."
 msgstr ""
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:133
+#: src/routes/groups/groups.ts:138
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr ""
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:311
+#: src/routes/users/users.ts:321
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr ""
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
-#: src/routes/history/history.ts:63
-#: src/routes/content/content.ts:740
+#: src/routes/history/history.ts:62
+#: src/routes/content/content.ts:749
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr ""
@@ -2122,13 +2122,13 @@ msgid "You don’t have permission to unlock this document."
 msgstr ""
 
 #. Default: "You don’t have permissions to add a user."
-#: src/routes/users/users.ts:184
+#: src/routes/users/users.ts:191
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to add a user."
 msgstr ""
 
 #. Default: "You don’t have permissions to view this user."
-#: src/routes/users/users.ts:128
+#: src/routes/users/users.ts:132
 msgctxt "Routes|Users|Users.ts"
 msgid "You don’t have permissions to view this user."
 msgstr ""

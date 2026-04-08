@@ -4,7 +4,7 @@
  */
 
 import type { Knex } from 'knex';
-import { Behavior } from '../../models/behavior/behavior';
+import models from '../../models';
 import type { Request, VocabularyTerm } from '../../types';
 
 /**
@@ -18,6 +18,7 @@ export async function behaviors(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Behavior = models.get('Behavior');
   const behaviors = await Behavior.fetchAll({}, { order: 'title' }, trx);
   return behaviors.getVocabulary(req);
 }

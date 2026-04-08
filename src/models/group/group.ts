@@ -8,9 +8,9 @@ import type { Knex } from 'knex';
 
 import { getRootUrl } from '../../helpers/url/url';
 
-import { Model } from '../../models/_model/_model';
-import { Role } from '../../models/role/role';
-import { User } from '../../models/user/user';
+import { Model } from '../_model/_model';
+import models from '../';
+
 import type { Json, Request } from '../../types';
 
 /**
@@ -21,6 +21,9 @@ import type { Json, Request } from '../../types';
 export class Group extends Model {
   // Set relation mappings
   static get relationMappings() {
+    const Role = models.get('Role');
+    const User = models.get('User');
+
     return {
       _roles: {
         relation: (Model as any).ManyToManyRelation,

@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { Type } from '../../models/type/type';
+import { Type } from './type';
 
 describe('Type', () => {
   it('should cache schema', async () => {

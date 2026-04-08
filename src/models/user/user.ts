@@ -7,9 +7,8 @@ import { uniq } from 'es-toolkit/array';
 import type { Knex } from 'knex';
 
 import { getRootUrl } from '../../helpers/url/url';
-import { Model } from '../../models/_model/_model';
-import { Group } from '../../models/group/group';
-import { Role } from '../../models/role/role';
+import { Model } from '../_model/_model';
+import models from '../';
 import type { Json, Request } from '../../types';
 
 /**
@@ -20,6 +19,8 @@ import type { Json, Request } from '../../types';
 export class User extends Model {
   // Set relation mappings
   static get relationMappings(): any {
+    const Role = models.get('Role');
+    const Group = models.get('Group');
     return {
       _roles: {
         relation: (Model as any).ManyToManyRelation,
@@ -148,6 +149,7 @@ export class User extends Model {
     document: string,
     trx?: Knex.Transaction,
   ): Promise<string[]> {
+    const Group = models.get('Group');
     const roles = await this.fetchRolesByDocument(document, trx);
     const groupRoles = await Group.fetchRolesByDocument(
       this.getGroups(),

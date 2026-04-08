@@ -4,12 +4,13 @@ import { omit } from 'es-toolkit/object';
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Group } from '../../models/group/group';
+import models from '../../models';
 
 export const seedGroup = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Group = models.get('Group');
   if (await fileExists(`${profilePath}/groups`)) {
     const profile = stripI18n((await import(`${profilePath}/groups`)).default);
     if (profile.purge) {

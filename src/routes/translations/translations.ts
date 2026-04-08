@@ -3,13 +3,14 @@
  * @module routes/translations/translations
  */
 
-import { Document } from '../../models/document/document';
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import models from '../../models';
 import { stripPath, getUrl, getUrlByPath } from '../../helpers/url/url';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
 export const handler = async (req: Request, trx: Knex.Transaction) => {
+  const Document = models.get('Document');
+  const Controlpanel = models.get('Controlpanel');
   const documents = req.document.translation_group
     ? await Document.fetchAll(
         { translation_group: req.document.translation_group },
@@ -54,6 +55,7 @@ export default [
     client: 'unlinkTranslation',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
       const document = await Document.fetchOne(
         {
           translation_group: req.document.translation_group,
@@ -80,6 +82,8 @@ export default [
     client: 'linkTranslation',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
+
       // Strip prefix of url
       const id = stripPath(req.body.id);
 
@@ -112,6 +116,8 @@ export default [
     client: 'getTranslationLocation',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
+
       // Fetch parent
       const parent = await Document.fetchOne({
         uuid: req.document.parent,

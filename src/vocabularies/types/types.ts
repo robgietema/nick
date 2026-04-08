@@ -3,7 +3,7 @@
  * @module vocabularies/types/types
  */
 
-import { Type } from '../../models/type/type';
+import models from '../../models';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
@@ -18,6 +18,7 @@ export async function types(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Type = models.get('Type');
   const types = await Type.fetchAll({}, { order: 'title' }, trx);
   return types.getVocabulary(req);
 }

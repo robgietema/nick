@@ -3,15 +3,16 @@
  * @module routes/navigation/navigation
  */
 
-import { Catalog } from '../../models/catalog/catalog';
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
-import { Index } from '../../models/index/index';
+import models from '../../models';
 import { getUrl } from '../../helpers/url/url';
 import { compact } from 'es-toolkit/array';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
 export const handler = async (req: Request, trx: Knex.Transaction) => {
+  const Catalog = models.get('Catalog');
+  const Controlpanel = models.get('Controlpanel');
+  const Index = models.get('Index');
   const items = await Catalog.fetchAllRestricted(
     { _parent: req.navroot.uuid },
     { order: '_getObjPositionInParent' },

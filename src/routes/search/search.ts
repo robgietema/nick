@@ -10,8 +10,7 @@ import { apiLimiter } from '../../helpers/limiter/limiter';
 import { embed } from '../../helpers/ai/ai';
 import { getUrl, getUrlByPath } from '../../helpers/url/url';
 
-import { Catalog } from '../../models/catalog/catalog';
-import { Index } from '../../models/index/index';
+import models from '../../models';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
@@ -32,6 +31,8 @@ const querystringToQuery = async (
   req: Request,
   trx: Knex.Transaction,
 ) => {
+  const Index = models.get('Index');
+
   // Get root url
   const root = path.endsWith('/') ? path : `${path}/`;
 
@@ -212,6 +213,8 @@ const queryparamToQuery = async (
   req: Request,
   trx: Knex.Transaction,
 ) => {
+  const Index = models.get('Index');
+
   // Get root url
   const root = path.endsWith('/') ? path : `${path}/`;
 
@@ -324,6 +327,8 @@ export default [
     cache: 'dynamic',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Catalog = models.get('Catalog');
+      const Index = models.get('Index');
       const query = await queryparamToQuery(
         req.query,
         req.document.path,
@@ -360,6 +365,8 @@ export default [
     cache: 'dynamic',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Catalog = models.get('Catalog');
+      const Index = models.get('Index');
       const query = await querystringToQuery(
         req.body,
         req.document.path,

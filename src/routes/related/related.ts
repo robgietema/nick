@@ -4,8 +4,7 @@
  */
 
 import { getUrl } from '../../helpers/url/url';
-import { Catalog } from '../../models/catalog/catalog';
-import { Index } from '../../models/index/index';
+import models from '../../models';
 import type { Request, Json } from '../../types';
 import type { Knex } from 'knex';
 import { RequestException } from '../../helpers/error/error';
@@ -13,6 +12,8 @@ import { RequestException } from '../../helpers/error/error';
 import config from '../../helpers/config/config';
 
 export const handler = async (req: Request, trx: Knex.Transaction) => {
+  const Catalog = models.get('Catalog');
+
   // Check if ai enabled
   if (!config.settings.ai?.models?.embed?.enabled) {
     throw new RequestException(400, {
@@ -36,6 +37,7 @@ export const handler = async (req: Request, trx: Knex.Transaction) => {
 
   // Fetch indexes
   if (!req.indexes) {
+    const Index = models.get('Index');
     req.indexes = await Index.fetchAll({}, {}, trx);
   }
 

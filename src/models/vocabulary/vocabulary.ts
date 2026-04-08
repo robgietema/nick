@@ -5,7 +5,7 @@
 
 import { mapValues } from 'es-toolkit/object';
 
-import { Model } from '../../models/_model/_model';
+import { Model } from '../_model/_model';
 import { getRootUrl } from '../../helpers/url/url';
 import type { Json, Request } from '../../types';
 

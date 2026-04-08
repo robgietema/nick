@@ -2,12 +2,13 @@ import type { Knex } from 'knex';
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Redirect } from '../../models/redirect/redirect';
+import models from '../../models';
 
 export const seedRedirect = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Redirect = models.get('Redirect');
   if (await fileExists(`${profilePath}/redirects`)) {
     const profile = stripI18n(
       (await import(`${profilePath}/redirects`)).default,

@@ -5,7 +5,7 @@
 
 import { compact, drop, head, last } from 'es-toolkit/array';
 
-import { Document } from '../../models/document/document';
+import models from '../../models';
 import { getRootUrl, getUrl, getPath } from '../../helpers/url/url';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
@@ -28,6 +28,8 @@ async function traverse(
   if (slugs.length === 0) {
     return items;
   } else {
+    const Document = models.get('Document');
+
     // Get child
     const child = await Document.fetchOne(
       {

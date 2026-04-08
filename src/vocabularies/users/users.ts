@@ -3,7 +3,7 @@
  * @module vocabularies/users/users
  */
 
-import { User } from '../../models/user/user';
+import models from '../../models';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
@@ -18,6 +18,7 @@ export async function users(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const User = models.get('User');
   const users = await User.fetchAll({}, { order: 'fullname' }, trx);
   return users.getVocabulary(req);
 }

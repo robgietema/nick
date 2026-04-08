@@ -7,7 +7,7 @@
 import { last } from 'es-toolkit/array';
 
 import config from '../src/helpers/config/config';
-import { Profile } from '../src/models/profile/profile';
+import models from '../src/models';
 import { fileExists } from '../src/helpers/fs/fs';
 import { knex } from '../src/helpers/knex/knex';
 import { mapAsync } from '../src/helpers/utils/utils';
@@ -56,6 +56,7 @@ const seed = async (trx: Knex.Transaction, profilePath: string) => {
 async function main() {
   const command = last(process.argv);
   const trx = await knex.transaction();
+  const Profile = models.get('Profile');
 
   try {
     await mapAsync(config.settings.profiles, async (profilePath, index) => {

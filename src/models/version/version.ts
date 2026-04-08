@@ -3,11 +3,10 @@
  * @module models/version/version
  */
 
-import { Model } from '../../models/_model/_model';
+import { Model } from '../_model/_model';
+import models from '../';
 import { getRootUrl, getUrl } from '../../helpers/url/url';
 import type { Json, Request } from '../../types';
-
-import { User } from '../../models/user/user';
 
 /**
  * A model for Version.
@@ -17,8 +16,7 @@ import { User } from '../../models/user/user';
 export class Version extends Model {
   // Set relation mappings
   static get relationMappings() {
-    // Prevent circular imports
-
+    const User = models.get('User');
     return {
       _actor: {
         relation: (Model as any).BelongsToOneRelation,

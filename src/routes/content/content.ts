@@ -26,10 +26,7 @@ import {
   handleBlockReferences,
 } from '../../helpers/content/content';
 
-import { Document } from '../../models/document/document';
-import { Catalog } from '../../models/catalog/catalog';
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
-import { Type } from '../../models/type/type';
+import models from '../../models';
 
 import { handler as actions } from '../actions/actions';
 import { handler as breadcrumbs } from '../breadcrumbs/breadcrumbs';
@@ -150,6 +147,8 @@ export default [
     client: 'moveContent',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
+
       // Get children
       await req.document.fetchRelated('_children', trx);
       const childIds = req.document._children.map((child: any) => child.id);
@@ -239,6 +238,8 @@ export default [
     client: 'copyContent',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
+
       // Get children
       await req.document.fetchRelated('_children', trx);
       const childIds = req.document._children.map((child: any) => child.id);
@@ -475,6 +476,9 @@ export default [
     client: 'getICS',
     cache: 'content',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Controlpanel = models.get('Controlpanel');
+      const Catalog = models.get('Catalog');
+
       // Fetch settings
       const controlpanel = await Controlpanel.fetchById('site', {}, trx);
       const settings = controlpanel.data;
@@ -487,7 +491,7 @@ export default [
             _end: ['is not', null],
             _path: ['~', `^${req.document.path}`],
           },
-          {},
+          { order: '_path' },
           trx,
           req,
         );
@@ -539,6 +543,9 @@ END:VCALENDAR`,
       limit: config.settings.requestLimit?.files || '10mb',
     }),
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Type = models.get('Type');
+      const Document = models.get('Document');
+
       // Get content type date
       const type = await Type.fetchById(
         req.body['@type'],
@@ -709,6 +716,8 @@ END:VCALENDAR`,
       limit: config.settings.requestLimit?.files || '10mb',
     }),
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
+
       // Check if ordering request
       if (typeof req.body?.ordering !== 'undefined') {
         // Get children and reorder

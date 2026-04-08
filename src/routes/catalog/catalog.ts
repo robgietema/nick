@@ -3,9 +3,9 @@
  * @module routes/catalog/catalog
  */
 
+import models from '../../models';
 import { getUrl } from '../../helpers/url/url';
 import { mapAsync } from '../../helpers/utils/utils';
-import { Index } from '../../models/index/index';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
@@ -24,6 +24,7 @@ export const handler = async (req: Request, trx: Knex.Transaction) => {
 
   // Fetch indexes
   if (!req.indexes) {
+    const Index = models.get('Index');
     req.indexes = await Index.fetchAll({}, {}, trx);
   }
 

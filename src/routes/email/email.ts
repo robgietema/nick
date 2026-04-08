@@ -9,9 +9,7 @@ import { stripNewlines } from '../../helpers/utils/utils';
 import { apiLimiter } from '../../helpers/limiter/limiter';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
-
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
-import { User } from '../../models/user/user';
+import models from '../../models';
 
 export default [
   {
@@ -61,6 +59,7 @@ export default [
       }
 
       // Fetch user
+      const User = models.get('User');
       const user = await User.fetchById(req.params.id, {}, trx);
       if (!user) {
         throw new RequestException(404, { error: req.i18n('Not found.') });
@@ -100,6 +99,7 @@ export default [
       }
 
       // Fetch settings
+      const Controlpanel = models.get('Controlpanel');
       const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
       const settings = controlpanel.data;
 

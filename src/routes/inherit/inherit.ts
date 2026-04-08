@@ -5,8 +5,7 @@
 
 import { pick } from 'es-toolkit/object';
 
-import { Behavior } from '../../models/behavior/behavior';
-import { Document } from '../../models/document/document';
+import models from '../../models';
 import { getUrl, getUrlByPath } from '../../helpers/url/url';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
@@ -28,6 +27,8 @@ async function traverse(
   req: Request,
   trx: Knex.Transaction,
 ) {
+  const Document = models.get('Document');
+  const Behavior = models.get('Behavior');
   const returnItems = { ...items };
 
   // If type not found fetch type

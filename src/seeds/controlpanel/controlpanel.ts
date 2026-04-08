@@ -7,12 +7,13 @@ import { dirExists } from '../../helpers/fs/fs';
 import { handleFiles, handleImages } from '../../helpers/content/content';
 import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import models from '../../models';
 
 export const seedControlpanel = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Controlpanel = models.get('Controlpanel');
   if (await dirExists(`${profilePath}/controlpanels`)) {
     // Get controlpanel profiles
     const controlpanels = (await fs.readdir(`${profilePath}/controlpanels`))

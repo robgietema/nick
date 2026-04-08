@@ -2,12 +2,13 @@ import type { Knex } from 'knex';
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Permission } from '../../models/permission/permission';
+import models from '../../models';
 
 export const seedPermission = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Permission = models.get('Permission');
   if (await fileExists(`${profilePath}/permissions`)) {
     const profile = stripI18n(
       (await import(`${profilePath}/permissions`)).default,

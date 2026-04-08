@@ -3,7 +3,7 @@
  * @module vocabularies/roles/roles
  */
 
-import { Role } from '../../models/role/role';
+import models from '../../models';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
@@ -18,6 +18,7 @@ export async function roles(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Role = models.get('Role');
   const roles = await Role.fetchAll({}, { order: 'title' }, trx);
   return roles.getVocabulary(req);
 }

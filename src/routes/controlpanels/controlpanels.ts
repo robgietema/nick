@@ -6,11 +6,7 @@
 import { without } from 'es-toolkit/array';
 import { mapKeys, merge, omit, pick } from 'es-toolkit/object';
 
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
-import { Document } from '../../models/document/document';
-import { Type } from '../../models/type/type';
-import { Workflow } from '../../models/workflow/workflow';
-
+import models from '../../models';
 import { getUrl } from '../../helpers/url/url';
 import { RequestException } from '../../helpers/error/error';
 import { handleFiles, handleImages } from '../../helpers/content/content';
@@ -25,6 +21,7 @@ export default [
     client: 'getControlpanels',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Controlpanel = models.get('Controlpanel');
       const controlpanels = await Controlpanel.fetchAll(
         {},
         { order: 'title' },
@@ -44,6 +41,8 @@ export default [
     handler: async (req: Request, trx: Knex.Transaction) => {
       switch (req.params.id) {
         case 'dexterity-types':
+          const Type = models.get('Type');
+          const Document = models.get('Document');
           const types = await Type.fetchAll({}, {}, trx);
           const path = getUrl(req);
           const documents = await Document.buildQuery({}, {}, trx)
@@ -72,6 +71,7 @@ export default [
             },
           };
         default:
+          const Controlpanel = models.get('Controlpanel');
           const controlpanel = await Controlpanel.fetchById(
             req.params.id,
             {},
@@ -93,6 +93,9 @@ export default [
     client: 'createControlpanelType',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Type = models.get('Type');
+      const Workflow = models.get('Workflow');
+
       // Check if type exists
       const workflows = await Workflow.fetchAll({}, {}, trx);
       const current = await Type.fetchById(req.body.title, {}, trx);
@@ -143,6 +146,7 @@ export default [
     client: 'deleteControlpanelType',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Type = models.get('Type');
       await Type.deleteById(req.params.id, trx);
 
       // Return deleted
@@ -158,6 +162,7 @@ export default [
     client: 'getControlpanelType',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Type = models.get('Type');
       const type = await Type.fetchById(req.params.id, {}, trx);
 
       // Return success
@@ -173,6 +178,7 @@ export default [
     client: 'updateControlpanel',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Type = models.get('Type');
       const fields = [
         'title',
         'description',
@@ -225,6 +231,8 @@ export default [
     client: 'updateControlpanel',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Controlpanel = models.get('Controlpanel');
+
       // Make a copy
       let json = { ...req.body };
 

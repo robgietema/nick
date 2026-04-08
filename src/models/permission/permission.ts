@@ -3,9 +3,8 @@
  * @module models/permission/permission
  */
 
-import { Model } from '../../models/_model/_model';
-
-import { Role } from '../../models/role/role';
+import { Model } from '../_model/_model';
+import models from '../';
 
 /**
  * A model for Permission.
@@ -15,6 +14,7 @@ import { Role } from '../../models/role/role';
 export class Permission extends Model {
   // Set relation mappings
   static get relationMappings() {
+    const Role = models.get('Role');
     return {
       _roles: {
         relation: (Model as any).ManyToManyRelation,

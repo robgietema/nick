@@ -8,9 +8,8 @@ import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 
-import { Redirect } from '../../models/redirect/redirect';
+import models from '../../models';
 import { mapAsync } from '../../helpers/utils/utils';
-import { Document } from '../../models/document/document';
 import { getUrl } from '../../helpers/url/url';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
@@ -23,6 +22,7 @@ export default [
     client: 'getAliases',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Redirect = models.get('Redirect');
       const options = {
         ...(req.query.query ? { path: ['like', `%${req.query.query}%`] } : {}),
         ...(typeof req.query.manual !== 'undefined'
@@ -68,6 +68,9 @@ export default [
     client: 'createAliases',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Document = models.get('Document');
+      const Redirect = models.get('Redirect');
+
       // Set creation time
       const created = dayjs.utc().format();
       const root = req.document.uuid === req.navroot.uuid;
@@ -103,6 +106,7 @@ export default [
     client: 'deleteAliases',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Redirect = models.get('Redirect');
       const items = req.body.items || [];
       await mapAsync(items, async (item: any) => {
         await Redirect.delete(

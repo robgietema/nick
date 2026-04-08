@@ -5,11 +5,7 @@ import { RequestException } from '../error/error';
 import { getPath } from '../url/url';
 import { getUserId, hasPermission } from '../auth/auth';
 
-import { Document } from '../../models/document/document';
-import { Redirect } from '../../models/redirect/redirect';
-import { Role } from '../../models/role/role';
-import { Type } from '../../models/type/type';
-import { User } from '../../models/user/user';
+import models from '../../models';
 import type { Request, Route } from '../../types';
 
 /**
@@ -27,6 +23,12 @@ export async function callHandler(
   route: Route,
   callback: any,
 ): Promise<any> {
+  const User = models.get('User');
+  const Document = models.get('Document');
+  const Redirect = models.get('Redirect');
+  const Role = models.get('Role');
+  const Type = models.get('Type');
+
   // Get user
   req.user = await User.fetchById(
     getUserId(req) || 'anonymous',

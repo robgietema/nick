@@ -3,7 +3,7 @@ import { fileExists } from '../../helpers/fs/fs';
 import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Index } from '../../models/index/index';
+import models from '../../models';
 
 import config from '../../helpers/config/config';
 
@@ -11,6 +11,7 @@ export const seedCatalog = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Index = models.get('Index');
   if (await fileExists(`${profilePath}/catalog`)) {
     const profile = stripI18n((await import(`${profilePath}/catalog`)).default);
     await mapAsync(profile.indexes, async (index: any) => {

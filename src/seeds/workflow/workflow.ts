@@ -4,12 +4,13 @@ import { merge } from 'es-toolkit/object';
 import { fileExists } from '../../helpers/fs/fs';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Workflow } from '../../models/workflow/workflow';
+import models from '../../models';
 
 export const seedWorkflow = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Workflow = models.get('Workflow');
   if (await fileExists(`${profilePath}/workflows`)) {
     const profile = stripI18n(
       (await import(`${profilePath}/workflows`)).default,

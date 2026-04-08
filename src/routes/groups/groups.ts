@@ -3,7 +3,7 @@
  * @module routes/groups/groups
  */
 
-import { Group } from '../../models/group/group';
+import models from '../../models';
 import { RequestException } from '../../helpers/error/error';
 import { apiLimiter } from '../../helpers/limiter/limiter';
 import type { Request } from '../../types';
@@ -19,6 +19,7 @@ export default [
     client: 'getGroup',
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Group = models.get('Group');
       const group = await Group.fetchById(
         req.params.id,
         {
@@ -43,6 +44,7 @@ export default [
     middleware: apiLimiter,
     cache: 'manage',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Group = models.get('Group');
       const query =
         typeof req.query.query === 'string' ? req.query.query : undefined;
       if (query && query.length < 2) {
@@ -68,6 +70,7 @@ export default [
     client: 'createGroup',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Group = models.get('Group');
       const group = await Group.create(
         {
           id: req.body.groupname,
@@ -98,6 +101,7 @@ export default [
     client: 'updateGroup',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Group = models.get('Group');
       const group = await Group.update(
         req.params.id,
         {
@@ -127,6 +131,7 @@ export default [
     client: 'deleteGroup',
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const Group = models.get('Group');
       if (config.settings.systemGroups.includes(req.params.id)) {
         throw new RequestException(401, {
           error: {

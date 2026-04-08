@@ -6,7 +6,7 @@
 import type { Knex } from 'knex';
 import { pick } from 'es-toolkit/object';
 
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import models from '../../models';
 import languages from '../../constants/languages';
 import { objectToVocabulary } from '../../helpers/utils/utils';
 import type { Request, VocabularyTerm } from '../../types';
@@ -22,6 +22,8 @@ export async function availableLanguages(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Controlpanel = models.get('Controlpanel');
+
   // Fetch settings
   const controlpanel = await Controlpanel.fetchById('language', {}, trx);
   const settings = (controlpanel as any).data;

@@ -7,7 +7,7 @@ import { mapValues } from 'es-toolkit/object';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
-import { Workflow } from '../../models/workflow/workflow';
+import models from '../../models';
 import { objectToVocabulary } from '../../helpers/utils/utils';
 
 /**
@@ -21,6 +21,7 @@ export async function workflowStates(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Workflow = models.get('Workflow');
   const states = {} as Record<string, string>;
   const workflows = await Workflow.fetchAll({}, { order: 'title' }, trx);
 

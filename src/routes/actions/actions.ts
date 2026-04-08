@@ -3,11 +3,12 @@
  * @module routes/actions/actions
  */
 
-import { Action } from '../../models/action/action';
+import models from '../../models';
 import type { Knex } from 'knex';
 import type { Request } from '../../types';
 
 export const handler = async (req: Request, trx: Knex.Transaction) => {
+  const Action = models.get('Action');
   const actions = await Action.fetchAll({}, { order: 'order' }, trx);
   return {
     json: await actions.toJson(req),

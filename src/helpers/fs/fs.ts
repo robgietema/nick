@@ -16,7 +16,7 @@ import type { Metadata } from 'sharp';
 import type { Knex } from 'knex';
 
 import { mapAsync } from '../utils/utils';
-import { File } from '../../models/file/file';
+import models from '../../models';
 
 import config from '../../helpers/config/config';
 
@@ -69,6 +69,7 @@ export async function readFile(
   trx: Knex.Transaction,
 ): Promise<Buffer> {
   if (config.settings.blobs === 'db') {
+    const File = models.get('File');
     return (await File.fetchById(uuid, {}, trx)).data;
   } else {
     if (!validate(uuid)) {
@@ -194,6 +195,7 @@ export async function storeFile(
   trx: Knex.Transaction | undefined,
 ): Promise<void> {
   if (config.settings.blobs === 'db') {
+    const File = models.get('File');
     await File.create(
       {
         uuid,
@@ -287,6 +289,7 @@ export async function writeImage(
  */
 export async function removeFile(uuid: string): Promise<void> {
   if (config.settings.blobs === 'db') {
+    const File = models.get('File');
     await File.deleteById(uuid);
   } else {
     if (!validate(uuid)) {
@@ -310,6 +313,7 @@ export async function copyFile(
   trx: Knex.Transaction | undefined,
 ): Promise<void> {
   if (config.settings.blobs === 'db') {
+    const File = models.get('File');
     const buffer = (await File.fetchById(source, {}, trx)).data;
     await storeFile(target, buffer, trx);
   } else {

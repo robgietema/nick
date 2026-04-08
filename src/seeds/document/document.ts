@@ -13,8 +13,7 @@ import { handleFiles, handleImages } from '../../helpers/content/content';
 import { mapAsync } from '../../helpers/utils/utils';
 import { stripI18n } from '../../helpers/i18n/i18n';
 
-import { Document } from '../../models/document/document';
-import { Type } from '../../models/type/type';
+import models from '../../models';
 
 const documentFields = [
   'uuid',
@@ -43,6 +42,8 @@ export const seedDocument = async (
   trx: Knex.Transaction,
   profilePath: string,
 ): Promise<void> => {
+  const Document = models.get('Document');
+  const Type = models.get('Type');
   const uuids: string[] = [];
 
   if (await dirExists(`${profilePath}/documents`)) {

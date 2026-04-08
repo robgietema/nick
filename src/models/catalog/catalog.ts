@@ -11,7 +11,7 @@ import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 import { getRootUrl } from '../../helpers/url/url';
-import { Model } from '../../models/_model/_model';
+import { Model } from '../_model/_model';
 
 import config from '../../helpers/config/config';
 import type { Json, Request } from '../../types';

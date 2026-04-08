@@ -3,8 +3,7 @@
  * @module routes/principals/principals
  */
 
-import { User } from '../../models/user/user';
-import { Group } from '../../models/group/group';
+import models from '../../models';
 import { RequestException } from '../../helpers/error/error';
 import { apiLimiter } from '../../helpers/limiter/limiter';
 import type { Knex } from 'knex';
@@ -19,6 +18,8 @@ export default [
     cache: 'manage',
     middleware: apiLimiter,
     handler: async (req: Request, trx: Knex.Transaction) => {
+      const User = models.get('User');
+      const Group = models.get('Group');
       const query =
         typeof req.query.search === 'string' ? req.query.search : undefined;
       if (!query || query.length < 2) {

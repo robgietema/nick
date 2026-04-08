@@ -3,7 +3,7 @@
  * @module vocabularies/groups/groups
  */
 
-import { Group } from '../../models/group/group';
+import models from '../../models';
 import type { Knex } from 'knex';
 import type { Request, VocabularyTerm } from '../../types';
 
@@ -18,6 +18,7 @@ export async function groups(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
+  const Group = models.get('Group');
   const groups = await Group.fetchAll({}, { order: 'title' }, trx);
   return groups.getVocabulary(req);
 }

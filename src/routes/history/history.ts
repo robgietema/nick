@@ -14,8 +14,7 @@ import { lockExpired } from '../../helpers/lock/lock';
 import { RequestException } from '../../helpers/error/error';
 import { uniqueId } from '../../helpers/utils/utils';
 import { Collection } from '../../collections/_collection/_collection';
-import { Version } from '../../models/version/version';
-import { Document } from '../../models/document/document';
+import models from '../../models';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
@@ -69,6 +68,7 @@ export default [
       }
 
       // Get version
+      const Version = models.get('Version');
       const version = await Version.fetchOne(
         {
           document: req.document.uuid,
@@ -116,6 +116,7 @@ export default [
 
       // If path has changed change path of document and children
       if (path !== newPath) {
+        const Document = models.get('Document');
         await Document.replacePath(path, newPath, trx);
       }
 

@@ -8,7 +8,7 @@ import type { SendMailOptions } from 'nodemailer';
 import { Knex } from 'knex';
 
 import { log } from '../log/log';
-import { Controlpanel } from '../../models/controlpanel/controlpanel';
+import models from '../../models';
 
 interface MailConfig {
   debug: boolean;
@@ -30,6 +30,7 @@ export async function sendMail(
   data: SendMailOptions,
   trx: Knex.Transaction,
 ): Promise<void> {
+  const Controlpanel = models.get('Controlpanel');
   let transporter: nodemailer.Transporter;
 
   // Fetch settings
