@@ -196,6 +196,7 @@
 - Convert all files to typescript @robgietema
 - Don't expose layout and behaviors on schema if empty @robgietema
 - Moved file handling to async @robgietema
+- Check migrations and profile upgrades on startup @robgietema
 
 ### Documentation
 
