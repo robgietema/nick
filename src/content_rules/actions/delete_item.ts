@@ -9,7 +9,13 @@ export const delete_item = {
   getTitle: (req: Request) => req.i18n('Delete item'),
   getDescription: (req: Request) => req.i18n('Delete the triggering item'),
   schema: {
-    fieldsets: [],
+    fieldsets: [
+      {
+        fields: [],
+        id: 'default',
+        title: 'Default',
+      },
+    ],
     properties: {},
     required: [],
     type: 'object',

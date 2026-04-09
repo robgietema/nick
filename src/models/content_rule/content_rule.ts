@@ -6,7 +6,7 @@
 import { Model } from '../_model/_model';
 import type { Json, Request } from '../../types';
 import { getRootUrl } from '../../helpers/url/url';
-import { add } from 'es-toolkit/compat';
+import contentRules from '../../content_rules';
 
 /**
  * A model for Content Rule.
@@ -38,8 +38,8 @@ export class ContentRule extends Model {
             cascading: self.json.cascading || false,
             stop: self.json.stop || false,
             event: self.event,
-            addable_actions: [],
-            addable_conditions: [],
+            addable_actions: contentRules.getActions(req),
+            addable_conditions: contentRules.getConditions(req),
             assignments: [],
           }
         : {}),

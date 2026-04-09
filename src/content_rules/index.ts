@@ -3,6 +3,10 @@
  * @module content_rules
  */
 
+import { translateSchema } from '../helpers/schema/schema';
+import { stripI18n } from '../helpers/i18n/i18n';
+import type { Request } from '../types';
+
 import { copy_item } from './actions/copy_item';
 import { delete_item } from './actions/delete_item';
 import { logger } from './actions/logger';
@@ -60,6 +64,21 @@ class ContentRules {
   }
 
   /**
+   * Get a list of all actions.
+   * @param {Request} req The request object.
+   * @returns {any} The actions.
+   */
+  getActions(req: Request): any {
+    const self: any = this;
+    return Object.entries(self.actions).map((action: any) => ({
+      addview: action[0],
+      title: action[1].getTitle(req),
+      description: action[1].getDescription(req),
+      '@schema': translateSchema(stripI18n(action[1].schema), req),
+    }));
+  }
+
+  /**
    * Register a condition rule.
    * @param {string} name The name of the condition.
    * @param {any} rule The condition to register.
@@ -75,6 +94,21 @@ class ContentRules {
    */
   getCondition(name: string): any {
     return this.conditions[name]();
+  }
+
+  /**
+   * Get a list of all conditions.
+   * @param {Request} req The request object.
+   * @returns {any} The conditions.
+   */
+  getConditions(req: Request): any {
+    const self: any = this;
+    return Object.entries(self.conditions).map((condition: any) => ({
+      addview: condition[0],
+      title: condition[1].getTitle(req),
+      description: condition[1].getDescription(req),
+      '@schema': translateSchema(stripI18n(condition[1].schema), req),
+    }));
   }
 }
 
