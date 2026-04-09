@@ -6,7 +6,11 @@ const login = await cli.login({ username: 'admin', password: 'admin' });
 const { data } = await cli.createControlpanelType({
   token: login.data.token,
   data: {
-    title: 'My Type',
-    description: 'Type Description',
+    title: 'Content Rule 3',
+    description: 'Description for Content Rule 3',
+    event: 'onAfterModify',
+    cascading: false,
+    enabled: false,
+    stop: false,
   },
 });

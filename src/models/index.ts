@@ -1,6 +1,7 @@
 import { Action } from './action/action';
 import { Behavior } from './behavior/behavior';
 import { Catalog } from './catalog/catalog';
+import { ContentRule } from './content_rule/content_rule';
 import { Controlpanel } from './controlpanel/controlpanel';
 import { Document } from './document/document';
 import { File } from './file/file';
@@ -62,6 +63,7 @@ const models = new Models();
 models.register('Action', () => Action);
 models.register('Behavior', () => Behavior);
 models.register('Catalog', () => Catalog);
+models.register('ContentRule', () => ContentRule);
 models.register('Controlpanel', () => Controlpanel);
 models.register('Document', () => Document);
 models.register('File', () => File);

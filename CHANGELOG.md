@@ -94,6 +94,7 @@
 - Add ics view to folders to fetch events recursively @robgietema
 - Make end date in events optional @robgietema
 - Replace momentjs with dayjs @robgietema
+- Add basic crud operations for content rules @robgietema
 
 ### Bugfix
 

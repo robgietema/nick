@@ -1130,12 +1130,14 @@ msgid "Not allowed"
 msgstr "அனுமதிக்கப்படவில்லை"
 
 #. Default: "Not found."
-#: src/routes/vocabularies/vocabularies.ts:59
+#: src/routes/vocabularies/vocabularies.ts:63
 #: src/routes/users/users.ts:144
 #: src/routes/types/types.ts:41
 #: src/routes/groups/groups.ts:31
 #: src/routes/email/email.ts:65
 #: src/routes/controlpanels/controlpanels.ts:81
+#: src/routes/content_rules/content_rules.ts:26
+#: src/routes/content_rules/content_rules.ts:103
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr "கணக்கிடப்படவில்லை."

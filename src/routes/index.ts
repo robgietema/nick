@@ -10,6 +10,7 @@ import authentication from './authentication/authentication';
 import breadcrumbs from './breadcrumbs/breadcrumbs';
 import catalog from './catalog/catalog';
 import content from './content/content';
+import content_rules from './content_rules/content_rules';
 import controlpanels from './controlpanels/controlpanels';
 import database from './database/database';
 import email from './email/email';
@@ -43,6 +44,7 @@ export default [
   ...authentication,
   ...breadcrumbs,
   ...catalog,
+  ...content_rules,
   ...controlpanels,
   ...database,
   ...email,

@@ -207,3 +207,129 @@ Response:
 ```http
 {% include_relative examples/controlpanels/delete_type.res %}
 ```
+
+### Content Rules
+
+`@controlpanels/content-rules` is a custom control panel endpoint that will allow you to add, remove, and configure available `Content Rules`.
+
+Reading or writing content rules require the `Manage Site` permission.
+
+| Verb     | URL                                       | Action                                    |
+| -------- | ----------------------------------------- | ----------------------------------------- |
+| `GET`    | `/@controlpanels/content-rules`           | List configurable content rules           |
+| `POST`   | `/@controlpanels/content-rules`           | Creates a new content rule                |
+| `GET`    | `/@controlpanels/content-rules/{rule-id}` | Get the current state of the content rule |
+| `PATCH`  | `/@controlpanels/content-rules/{rule-id}` | Update the content rule details           |
+| `DELETE` | `/@controlpanels/content-rules/{rule-id}` | Remove the content rule                   |
+
+#### Listing Content Types
+
+To list the available content rules, send a `GET` request to `@controlpanels/content-rules`
+
+```http
+{% include_relative examples/controlpanels/get_content_rules.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/get_content_rules.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/get_content_rules.res %}
+```
+
+The following fields are returned:
+
+- `@id`: hypermedia link to the rule
+- `id`: actual id of the content rule
+- `assigned`: rule assigned or not
+- `title`: title of the rule
+- `description`: rule description
+- `trigger`: triggering event
+- `conditions`: conditions before triggering the rule
+- `actions`: actions to take place
+
+#### Creating a new Content rule with `POST`
+
+To create a new content rule, send a `POST` request to the `/@controlpanels/content-rules` endpoint:
+
+```http
+{% include_relative examples/controlpanels/post_content_rules.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/post_content_rules.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/post_content_rules.res %}
+```
+
+#### Reading a Content rule with `GET`
+
+After a successful `POST`, access the content rule by sending a `GET` request to the endpoint `/@controlpanels/content-rules/{rule-id}`:
+
+```http
+{% include_relative examples/controlpanels/get_content_rule.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/get_content_rule.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/get_content_rule.res %}
+```
+
+#### Updating a Content rule with `PATCH`
+
+To update an existing content rule, send a `PATCH` request to the server.
+`PATCH` allows to provide just a subset of the resource, that is, the values you actually want to change:
+
+```http
+{% include_relative examples/controlpanels/patch_content_rule.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/patch_content_rule.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/patch_content_rule.res %}
+```
+
+#### Removing a Content rule with `DELETE`
+
+Delete an existing content rule by sending a `DELETE` request to the URL of an existing content rule:
+
+```http
+{% include_relative examples/controlpanels/delete_content_rule.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/delete_content_rule.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/delete_content_rule.res %}
+```

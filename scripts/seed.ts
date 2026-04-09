@@ -26,6 +26,7 @@ import { seedRedirect } from '../src/seeds/redirect/redirect';
 import { seedAction } from '../src/seeds/action/action';
 import { seedControlpanel } from '../src/seeds/controlpanel/controlpanel';
 import { seedVocabulary } from '../src/seeds/vocabulary/vocabulary';
+import { seedContentRule } from '../src/seeds/content_rule/content_rule';
 
 import type { Knex } from 'knex';
 
@@ -46,6 +47,7 @@ const seed = async (trx: Knex.Transaction, profilePath: string) => {
   await seedAction(trx, profilePath);
   await seedControlpanel(trx, profilePath);
   await seedVocabulary(trx, profilePath);
+  await seedContentRule(trx, profilePath);
 };
 
 /**

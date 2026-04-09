@@ -5,5 +5,5 @@ const login = await cli.login({ username: 'admin', password: 'admin' });
 
 const { data } = await cli.getControlpanelType({
   token: login.data.token,
-  path: '/controlpanels/dexterity-types/Page',
+  path: '/@controlpanels/dexterity-types/Page',
 });

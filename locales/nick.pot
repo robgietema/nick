@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-04-08T18:41:45.199Z\n"
+"POT-Creation-Date: 2026-04-09T19:51:40.289Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -1127,12 +1127,14 @@ msgid "Not allowed"
 msgstr ""
 
 #. Default: "Not found."
-#: src/routes/vocabularies/vocabularies.ts:59
+#: src/routes/vocabularies/vocabularies.ts:63
 #: src/routes/users/users.ts:144
 #: src/routes/types/types.ts:41
 #: src/routes/groups/groups.ts:31
 #: src/routes/email/email.ts:65
 #: src/routes/controlpanels/controlpanels.ts:81
+#: src/routes/content_rules/content_rules.ts:26
+#: src/routes/content_rules/content_rules.ts:103
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr ""

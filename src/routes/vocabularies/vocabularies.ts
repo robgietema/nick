@@ -54,7 +54,11 @@ export default [
         !Object.keys(config.settings.vocabularies || {}).includes(req.params.id)
       ) {
         const Vocabulary = models.get('Vocabulary');
-        const vocabulary = await Vocabulary.fetchById(req.params.id, {}, trx);
+        const id =
+          req.params.id === 'plone.contentrules.events'
+            ? 'events'
+            : req.params.id;
+        const vocabulary = await Vocabulary.fetchById(id, {}, trx);
         if (!vocabulary) {
           throw new RequestException(404, { error: req.i18n('Not found.') });
         }
@@ -62,7 +66,7 @@ export default [
         // Return data
         return {
           json: {
-            '@id': `${getUrl(req)}/@vocabularies/${req.params.id}`,
+            '@id': `${getUrl(req)}/@vocabularies/${id}`,
             items: vocabulary.items,
             items_total: vocabulary.items.length,
           },

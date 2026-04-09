@@ -5,5 +5,5 @@ const login = await cli.login({ username: 'admin', password: 'admin' });
 
 const { data } = await cli.deleteControlpanelType({
   token: login.data.token,
-  path: '/controlpanels/dexterity-types/File',
+  path: '/@controlpanels/dexterity-types/File',
 });

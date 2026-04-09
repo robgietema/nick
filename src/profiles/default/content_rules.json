@@ -1,0 +1,27 @@
+{
+  "purge": true,
+  "content_rules": [
+    {
+      "id": "rule-1",
+      "title": "Content Rule 1",
+      "description": "Description for Content Rule 1",
+      "event": "onAfterAdd",
+      "enabled": false,
+      "cascading": false,
+      "stop": false,
+      "actions": [],
+      "conditions": []
+    },
+    {
+      "id": "rule-2",
+      "title": "Content Rule 2",
+      "description": "Description for Content Rule 2",
+      "event": "onAfterDelete",
+      "enabled": false,
+      "cascading": true,
+      "stop": false,
+      "actions": [],
+      "conditions": []
+    }
+  ]
+}
