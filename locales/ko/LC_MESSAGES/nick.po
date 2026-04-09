@@ -16,6 +16,12 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: nick\n"
 
+#. Default: "&e = the triggering event, &c = the context, &u = the user"
+#: src/content_rules/actions/logger.ts:22
+msgctxt "Content rules|Actions|Logger.ts"
+msgid "&e = the triggering event, &c = the context, &u = the user"
+msgstr ""
+
 #. Default: "A description of this item."
 #: src/profiles/core/behaviors/basic.json:15
 msgctxt "Profiles|Core|Behaviors|Basic"
@@ -239,6 +245,43 @@ msgctxt "Profiles|Core|Roles"
 msgid "Anonymous"
 msgstr "익명"
 
+#. Default: "Apply only to a objects in a particular workflow state"
+#: src/content_rules/conditions/workflow_state.ts:11
+msgctxt "Content rules|Conditions|Workflow state.ts"
+msgid "Apply only to a objects in a particular workflow state"
+msgstr ""
+
+#. Default: "Apply only to a particular file extension"
+#: src/content_rules/conditions/file_extension.ts:11
+msgctxt "Content rules|Conditions|File extension.ts"
+msgid "Apply only to a particular file extension"
+msgstr ""
+
+#. Default: "Apply only when the current content object is of a particular type"
+#: src/content_rules/conditions/content_type.ts:11
+msgctxt "Content rules|Conditions|Content type.ts"
+msgid "Apply only when the current content object is of a particular type"
+msgstr ""
+
+#. Default: "Apply only when the current user has the given role"
+#: src/content_rules/conditions/user_role.ts:11
+msgctxt "Content rules|Conditions|User role.ts"
+msgid "Apply only when the current user has the given role"
+msgstr ""
+
+#. Default: "Apply only when the current user is in the given group"
+#: src/content_rules/conditions/user_group.ts:11
+msgctxt "Content rules|Conditions|User group.ts"
+msgid "Apply only when the current user is in the given group"
+msgstr ""
+
+#. Default: "As a path relative to the portal root."
+#: src/content_rules/actions/move_item.ts:22
+#: src/content_rules/actions/copy_item.ts:22
+msgctxt "Content rules|Actions|Move item.ts"
+msgid "As a path relative to the portal root."
+msgstr ""
+
 #. Default: "Attendees"
 #: src/profiles/core/types/event.json:81
 msgctxt "Profiles|Core|Types|Event"
@@ -374,6 +417,12 @@ msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Change Note"
 msgstr "변경 사항 메모"
 
+#. Default: "Comment"
+#: src/content_rules/actions/version_item.ts:24
+msgctxt "Content rules|Actions|Version item.ts"
+msgid "Comment"
+msgstr ""
+
 #. Default: "Confirm password"
 #: src/routes/userschema/userschema.ts:113
 msgctxt "Routes|Userschema|Userschema.ts"
@@ -426,6 +475,13 @@ msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content Types"
 msgstr "콘텐츠 유형"
 
+#. Default: "Content type"
+#: src/content_rules/conditions/content_type.ts:9
+#: src/content_rules/conditions/content_type.ts:36
+msgctxt "Content rules|Conditions|Content type.ts"
+msgid "Content type"
+msgstr ""
+
 #. Default: "Contents"
 #: src/profiles/core/actions.json:17
 msgctxt "Profiles|Core|Actions"
@@ -443,6 +499,18 @@ msgstr "기여자"
 msgctxt "Profiles|Core|Actions"
 msgid "Copy"
 msgstr "복사"
+
+#. Default: "Copy the triggering item to a specific folder"
+#: src/content_rules/actions/copy_item.ts:11
+msgctxt "Content rules|Actions|Copy item.ts"
+msgid "Copy the triggering item to a specific folder"
+msgstr ""
+
+#. Default: "Copy to folder"
+#: src/content_rules/actions/copy_item.ts:9
+msgctxt "Content rules|Actions|Copy item.ts"
+msgid "Copy to folder"
+msgstr ""
 
 #. Default: "Coverage"
 #: src/profiles/core/behaviors/categorization.json:16
@@ -502,6 +570,14 @@ msgstr "디버그"
 #. Default: "Default"
 #: src/routes/userschema/userschema.ts:24
 #: src/routes/userschema/userschema.ts:68
+#: src/content_rules/conditions/workflow_state.ts:17
+#: src/content_rules/conditions/user_role.ts:17
+#: src/content_rules/conditions/user_group.ts:17
+#: src/content_rules/conditions/file_extension.ts:17
+#: src/content_rules/conditions/content_type.ts:19
+#: src/content_rules/actions/version_item.ts:16
+#: src/content_rules/actions/transition_workflow.ts:17
+#: src/content_rules/actions/send_email.ts:17
 #: src/constants/userschema.ts:12
 #: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:10
 #: src/profiles/core/upgrades/1001/controlpanels/security.json:10
@@ -535,6 +611,18 @@ msgctxt "Profiles|Core|Actions"
 msgid "Delete"
 msgstr "삭제"
 
+#. Default: "Delete item"
+#: src/content_rules/actions/delete_item.ts:9
+msgctxt "Content rules|Actions|Delete item.ts"
+msgid "Delete item"
+msgstr ""
+
+#. Default: "Delete the triggering item"
+#: src/content_rules/actions/delete_item.ts:10
+msgctxt "Content rules|Actions|Delete item.ts"
+msgid "Delete the triggering item"
+msgstr ""
+
 #. Default: "Description"
 #: src/models/type/type.ts:150
 #: src/profiles/core/catalog.json:227
@@ -563,6 +651,12 @@ msgstr ""
 msgctxt "Profiles|Core|Controlpanels|Navigation"
 msgid "Displayed content types"
 msgstr "표시된 콘텐츠 유형"
+
+#. Default: "Do not send the email to the user that did the action."
+#: src/content_rules/actions/send_email.ts:22
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Do not send the email to the user that did the action."
+msgstr ""
 
 #. Default: "Document added to this container"
 #: src/profiles/core/vocabularies/events.json:5
@@ -642,6 +736,18 @@ msgstr ""
 #: src/profiles/core/types/event.json:92
 msgctxt "Profiles|Core|Types|Event"
 msgid "Email address to contact about this event."
+msgstr ""
+
+#. Default: "Email recipients"
+#: src/content_rules/actions/send_email.ts:39
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Email recipients"
+msgstr ""
+
+#. Default: "Email source"
+#: src/content_rules/actions/send_email.ts:46
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Email source"
 msgstr ""
 
 #. Default: "Enables Volto Blocks support"
@@ -724,6 +830,12 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Event start date"
 msgstr "이벤트 시작 날짜"
 
+#. Default: "Exclude actor from recipients"
+#: src/content_rules/actions/send_email.ts:25
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Exclude actor from recipients"
+msgstr ""
+
 #. Default: "Exclude from navigation"
 #: src/profiles/core/behaviors/exclude_from_nav.json:3
 #: src/profiles/core/behaviors/exclude_from_nav.json:15
@@ -749,6 +861,18 @@ msgstr "만료일"
 msgctxt "Profiles|Core|Types|File"
 msgid "File"
 msgstr "파일"
+
+#. Default: "File Extension"
+#: src/content_rules/conditions/file_extension.ts:9
+msgctxt "Content rules|Conditions|File extension.ts"
+msgid "File Extension"
+msgstr ""
+
+#. Default: "File extension"
+#: src/content_rules/conditions/file_extension.ts:24
+msgctxt "Content rules|Conditions|File extension.ts"
+msgid "File extension"
+msgstr ""
 
 #. Default: "Filter Contained Types"
 #: src/models/type/type.ts:156
@@ -800,6 +924,12 @@ msgstr ""
 msgctxt "Profiles|Core|Behaviors|Short name"
 msgid "Gives the ability to rename an item from its edit form."
 msgstr "편집 양식에서 항목의 이름을 변경할 수 있는 기능을 제공합니다."
+
+#. Default: "Group name"
+#: src/content_rules/conditions/user_group.ts:34
+msgctxt "Content rules|Conditions|User group.ts"
+msgid "Group name"
+msgstr ""
 
 #. Default: "History"
 #: src/profiles/core/actions.json:22
@@ -971,6 +1101,12 @@ msgctxt "Profiles|Core|Types|Event"
 msgid "Location of the event."
 msgstr ""
 
+#. Default: "Log a particular event"
+#: src/content_rules/actions/logger.ts:10
+msgctxt "Content rules|Actions|Logger.ts"
+msgid "Log a particular event"
+msgstr ""
+
 #. Default: "Log in"
 #: src/profiles/core/actions.json:93
 msgctxt "Profiles|Core|Actions"
@@ -982,6 +1118,12 @@ msgstr "로그인"
 msgctxt "Profiles|Core|Actions"
 msgid "Log out"
 msgstr "로그아웃"
+
+#. Default: "Logger"
+#: src/content_rules/actions/logger.ts:9
+msgctxt "Content rules|Actions|Logger.ts"
+msgid "Logger"
+msgstr ""
 
 #. Default: "Login"
 #: src/profiles/core/permissions.json:14
@@ -1054,6 +1196,13 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Matches any condition"
 msgstr "하나라도 일치"
 
+#. Default: "Message"
+#: src/content_rules/actions/send_email.ts:31
+#: src/content_rules/actions/logger.ts:25
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Message"
+msgstr ""
+
 #. Default: "Missing credentials"
 #: src/routes/authentication/authentication.ts:59
 msgctxt "Routes|Authentication|Authentication.ts"
@@ -1071,6 +1220,18 @@ msgstr "수정 날짜"
 msgctxt "Profiles|Core|Permissions"
 msgid "Modify"
 msgstr "수정"
+
+#. Default: "Move the triggering item to a specific folder"
+#: src/content_rules/actions/move_item.ts:11
+msgctxt "Content rules|Actions|Move item.ts"
+msgid "Move the triggering item to a specific folder"
+msgstr ""
+
+#. Default: "Move to folder"
+#: src/content_rules/actions/move_item.ts:9
+msgctxt "Content rules|Actions|Move item.ts"
+msgid "Move to folder"
+msgstr ""
 
 #. Default: "Multilingual"
 #: src/profiles/core/controlpanels/language.json:41
@@ -1210,6 +1371,12 @@ msgstr "붙여넣기"
 msgctxt "Profiles|Core|Workflows"
 msgid "Pending review"
 msgstr "검토 대기 중"
+
+#. Default: "Perform a workflow transition on the triggering object"
+#: src/content_rules/actions/transition_workflow.ts:11
+msgctxt "Content rules|Actions|Transition workflow.ts"
+msgid "Perform a workflow transition on the triggering object"
+msgstr ""
 
 #. Default: "Phone number to contact about this event."
 #: src/profiles/core/types/event.json:98
@@ -1448,6 +1615,12 @@ msgctxt "Profiles|Core|Controlpanels|Site"
 msgid "Robots.txt"
 msgstr "Robots.txt"
 
+#. Default: "Roles"
+#: src/content_rules/conditions/user_role.ts:34
+msgctxt "Content rules|Conditions|User role.ts"
+msgid "Roles"
+msgstr ""
+
 #. Default: "Rules"
 #: src/profiles/core/actions.json:32
 msgctxt "Profiles|Core|Actions"
@@ -1491,10 +1664,22 @@ msgctxt "Profiles|Core|Behaviors|Preview image link"
 msgid "Select an image that will be used in listing and teaser blocks."
 msgstr "목록 및 티저 블록에 사용할 이미지를 선택하세요."
 
+#. Default: "Select the workflow transition to attempt"
+#: src/content_rules/actions/transition_workflow.ts:22
+msgctxt "Content rules|Actions|Transition workflow.ts"
+msgid "Select the workflow transition to attempt"
+msgstr ""
+
 #. Default: "Send a confirmation mail with a link to set the password"
 #: src/routes/userschema/userschema.ts:98
 msgctxt "Routes|Userschema|Userschema.ts"
 msgid "Send a confirmation mail with a link to set the password"
+msgstr ""
+
+#. Default: "Send an email on the triggering object"
+#: src/content_rules/actions/send_email.ts:11
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Send an email on the triggering object"
 msgstr ""
 
 #. Default: "Send back"
@@ -1502,6 +1687,12 @@ msgstr ""
 msgctxt "Profiles|Core|Workflows"
 msgid "Send back"
 msgstr "반려"
+
+#. Default: "Send email"
+#: src/content_rules/actions/send_email.ts:9
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Send email"
+msgstr ""
 
 #. Default: "Settings"
 #: src/profiles/core/behaviors/short_name.json:10
@@ -1601,6 +1792,24 @@ msgctxt "Profiles|Core|Behaviors|Ownership"
 msgid "Source"
 msgstr "소스"
 
+#. Default: "Store a new version of the item"
+#: src/content_rules/actions/version_item.ts:10
+msgctxt "Content rules|Actions|Version item.ts"
+msgid "Store a new version of the item"
+msgstr ""
+
+#. Default: "Subject"
+#: src/content_rules/actions/send_email.ts:52
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Subject"
+msgstr ""
+
+#. Default: "Subject of the message"
+#: src/content_rules/actions/send_email.ts:50
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Subject of the message"
+msgstr ""
+
 #. Default: "Submit"
 #: src/profiles/core/permissions.json:46
 msgctxt "Profiles|Core|Permissions"
@@ -1643,6 +1852,13 @@ msgctxt "Profiles|Core|Catalog"
 msgid "Tags are used for organization of content"
 msgstr "태그는 콘텐츠 정리에 사용됩니다"
 
+#. Default: "Target folder"
+#: src/content_rules/actions/move_item.ts:23
+#: src/content_rules/actions/copy_item.ts:23
+msgctxt "Content rules|Actions|Move item.ts"
+msgid "Target folder"
+msgstr ""
+
 #. Default: "Text search of an item’s contents"
 #: src/profiles/core/catalog.json:247
 msgctxt "Profiles|Core|Catalog"
@@ -1679,6 +1895,18 @@ msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The address of your local SMTP (outgoing email) server. Usually 'localhost', unless you use an external server to send email."
 msgstr "로컬 SMTP(발신 이메일) 서버의 주소입니다. 이메일을 보내기 위해 외부 서버를 사용하지 않는 한 일반적으로 'localhost'입니다."
 
+#. Default: "The comment added to the history while versioning the content."
+#: src/content_rules/actions/version_item.ts:21
+msgctxt "Content rules|Actions|Version item.ts"
+msgid "The comment added to the history while versioning the content."
+msgstr ""
+
+#. Default: "The content type to check for."
+#: src/content_rules/conditions/content_type.ts:25
+msgctxt "Content rules|Conditions|Content type.ts"
+msgid "The content type to check for."
+msgstr ""
+
 #. Default: "The content types that should be shown in the navigation and site map."
 #: src/profiles/core/controlpanels/navigation.json:17
 msgctxt "Profiles|Core|Controlpanels|Navigation"
@@ -1702,11 +1930,29 @@ msgctxt "Profiles|Core|Catalog"
 msgid "The date an item was created"
 msgstr "항목이 생성된 날짜"
 
+#. Default: "The email address that sends the email. If no email is provided here, it will use the portal from address."
+#: src/content_rules/actions/send_email.ts:43
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "The email address that sends the email. If no email is provided here, it will use the portal from address."
+msgstr ""
+
+#. Default: "The email where you want to send this message. To send it to different email addresses, just separate them with ,"
+#: src/content_rules/actions/send_email.ts:36
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "The email where you want to send this message. To send it to different email addresses, just separate them with ,"
+msgstr ""
+
 #. Default: "The end date and time of an event"
 #: src/profiles/core/catalog.json:155
 msgctxt "Profiles|Core|Catalog"
 msgid "The end date and time of an event"
 msgstr "이벤트 종료 날짜 및 시간"
+
+#. Default: "The file extension to check for"
+#: src/content_rules/conditions/file_extension.ts:22
+msgctxt "Content rules|Conditions|File extension.ts"
+msgid "The file extension to check for"
+msgstr ""
 
 #. Default: "The following link takes you to a page where you can reset your password: {url} (This link will expire in 2 hours)"
 #: src/routes/users/users.ts:105
@@ -1745,6 +1991,18 @@ msgctxt "Profiles|Core|Catalog"
 msgid "The location of an item"
 msgstr "항목의 위치"
 
+#. Default: "The message that you want to mail."
+#: src/content_rules/actions/send_email.ts:29
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "The message that you want to mail."
+msgstr ""
+
+#. Default: "The name of the group."
+#: src/content_rules/conditions/user_group.ts:23
+msgctxt "Content rules|Conditions|User group.ts"
+msgid "The name of the group."
+msgstr ""
+
 #. Default: "The order of an item in its parent folder"
 #: src/profiles/core/catalog.json:51
 msgctxt "Profiles|Core|Catalog"
@@ -1768,6 +2026,12 @@ msgstr "항목을 생성한 사람"
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "The port of your local SMTP (outgoing email) server. Usually '25'."
 msgstr "로컬 SMTP(발신 이메일) 서버의 포트입니다. 일반적으로 '25'입니다."
+
+#. Default: "The roles to check for."
+#: src/content_rules/conditions/user_role.ts:23
+msgctxt "Content rules|Conditions|User role.ts"
+msgid "The roles to check for."
+msgstr ""
 
 #. Default: "The short name of an item (used in the url)"
 #: src/profiles/core/catalog.json:378
@@ -1816,6 +2080,12 @@ msgstr "이 항목의 주제입니다."
 msgctxt "Profiles|Core|Catalog"
 msgid "The user viewing the querystring results"
 msgstr "쿼리 문자열 결과를 보고 있는 사용자"
+
+#. Default: "The workflow states to check for."
+#: src/content_rules/conditions/workflow_state.ts:23
+msgctxt "Content rules|Conditions|Workflow state.ts"
+msgid "The workflow states to check for."
+msgstr ""
 
 #. Default: "This document is already locked by another user."
 #: src/routes/lock/lock.ts:63
@@ -1899,6 +2169,18 @@ msgctxt "Client.ts"
 msgid "Transaction error."
 msgstr "트랜잭션 오류."
 
+#. Default: "Transition"
+#: src/content_rules/actions/transition_workflow.ts:24
+msgctxt "Content rules|Actions|Transition workflow.ts"
+msgid "Transition"
+msgstr ""
+
+#. Default: "Transition workflow state"
+#: src/content_rules/actions/transition_workflow.ts:9
+msgctxt "Content rules|Actions|Transition workflow.ts"
+msgid "Transition workflow state"
+msgstr ""
+
 #. Default: "Type"
 #: src/profiles/core/catalog.json:427
 msgctxt "Profiles|Core|Catalog"
@@ -1979,6 +2261,18 @@ msgctxt "Profiles|Core|Vocabularies|Events"
 msgid "User removed"
 msgstr ""
 
+#. Default: "User`s group"
+#: src/content_rules/conditions/user_group.ts:9
+msgctxt "Content rules|Conditions|User group.ts"
+msgid "User`s group"
+msgstr ""
+
+#. Default: "User`s role"
+#: src/content_rules/conditions/user_role.ts:9
+msgctxt "Content rules|Conditions|User role.ts"
+msgid "User`s role"
+msgstr ""
+
 #. Default: "Username"
 #: src/routes/userschema/userschema.ts:121
 msgctxt "Routes|Userschema|Userschema.ts"
@@ -1990,6 +2284,12 @@ msgstr ""
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Username for authentication to your email server. Not required unless you are using ESMTP."
 msgstr "이메일 서버 인증을 위한 사용자 이름입니다. ESMTP를 사용하지 않는 경우 필요하지 않습니다."
+
+#. Default: "Version item"
+#: src/content_rules/actions/version_item.ts:9
+msgctxt "Content rules|Actions|Version item.ts"
+msgid "Version item"
+msgstr ""
 
 #. Default: "Versioning"
 #: src/profiles/core/behaviors/versioning.json:3
@@ -2068,6 +2368,13 @@ msgstr "지난 ... 이내"
 msgctxt "Profiles|Core|Catalog"
 msgid "Within next"
 msgstr "다음 ... 이내"
+
+#. Default: "Workflow state"
+#: src/content_rules/conditions/workflow_state.ts:9
+#: src/content_rules/conditions/workflow_state.ts:34
+msgctxt "Content rules|Conditions|Workflow state.ts"
+msgid "Workflow state"
+msgstr ""
 
 #. Default: "Workflow state changed"
 #: src/profiles/core/vocabularies/events.json:13

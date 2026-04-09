@@ -1,0 +1,43 @@
+/**
+ * Workflow state condition for content rules
+ * @module content_rules/conditions/workflow_state
+ */
+
+import type { Request } from '../../types';
+
+export const workflow_state = {
+  getTitle: (req: Request) => req.i18n('Workflow state'),
+  getDescription: (req: Request) =>
+    req.i18n('Apply only to a objects in a particular workflow state'),
+  schema: {
+    fieldsets: [
+      {
+        fields: ['wf_states'],
+        id: 'default',
+        'title:i18n': 'Default',
+      },
+    ],
+    properties: {
+      wf_states: {
+        additionalItems: true,
+        'description:i18n': 'The workflow states to check for.',
+        factory: 'Multiple Choice',
+        items: {
+          description: '',
+          factory: 'Choice',
+          title: '',
+          type: 'string',
+          vocabulary: {
+            '@id': 'workflowStates',
+          },
+        },
+        'title:i18n': 'Workflow state',
+        type: 'array',
+        uniqueItems: true,
+      },
+    },
+    required: ['wf_states'],
+    type: 'object',
+  },
+  handler: async (params: any, req: Request) => {},
+};
