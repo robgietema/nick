@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "content-rules": {
-    "aquired_rules": [],
+    "acquired_rules": [],
     "assignable_rules": [
       {
         "id": "rule-2",

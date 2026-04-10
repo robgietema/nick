@@ -102,6 +102,7 @@
 - Add summary method to content rules @robgietema
 - Add content rule assignments endpoints @robgietema
 - Add assignments to content rule endpoints @robgietema
+- Return acquired content rules @robgietema
 
 ### Bugfix
 

@@ -1909,31 +1909,31 @@ msgid "Submit for publication"
 msgstr "Pošalji za objavu"
 
 #. Default: "Successfully assigned the content rule {rule}"
-#: src/routes/content_rules/content_rules.ts:84
+#: src/routes/content_rules/content_rules.ts:114
 msgctxt "Routes|Content rules|Content rules.ts"
 msgid "Successfully assigned the content rule {rule}"
 msgstr ""
 
 #. Default: "Successfully disabled rules {rules}"
-#: src/routes/content_rules/content_rules.ts:131
+#: src/routes/content_rules/content_rules.ts:161
 msgctxt "Routes|Content rules|Content rules.ts"
 msgid "Successfully disabled rules {rules}"
 msgstr ""
 
 #. Default: "Successfully disabled rules {rules} to subfolders"
-#: src/routes/content_rules/content_rules.ts:174
+#: src/routes/content_rules/content_rules.ts:204
 msgctxt "Routes|Content rules|Content rules.ts"
 msgid "Successfully disabled rules {rules} to subfolders"
 msgstr ""
 
 #. Default: "Successfully enabled rules {rules}"
-#: src/routes/content_rules/content_rules.ts:111
+#: src/routes/content_rules/content_rules.ts:141
 msgctxt "Routes|Content rules|Content rules.ts"
 msgid "Successfully enabled rules {rules}"
 msgstr ""
 
 #. Default: "Successfully enabled rules {rules} to subfolders"
-#: src/routes/content_rules/content_rules.ts:151
+#: src/routes/content_rules/content_rules.ts:181
 msgctxt "Routes|Content rules|Content rules.ts"
 msgid "Successfully enabled rules {rules} to subfolders"
 msgstr ""

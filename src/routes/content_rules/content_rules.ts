@@ -7,6 +7,7 @@ import models from '../../models';
 import { apiLimiter } from '../../helpers/limiter/limiter';
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
+import content from '../content/content';
 
 export default [
   {
@@ -32,10 +33,39 @@ export default [
 
       // Fetch content rules for this document
       await req.document.fetchRelated('_contentRules', trx);
+      const assignedContentRuleIds = req.document._contentRules.map(
+        (content_rule: any) => content_rule.id,
+      );
+
+      // Fetch aquired content rules
+      const aquiredContentRules: any[] = [];
+      if (req.document.parent) {
+        let document = req.document;
+        do {
+          await document.fetchRelated('_parent', trx);
+          document = document._parent;
+
+          await document.fetchRelated('_contentRules', trx);
+
+          document._contentRules.forEach((content_rule: any) => {
+            if (assignedContentRuleIds.includes(content_rule.id)) {
+              return;
+            }
+            aquiredContentRules.push({
+              id: content_rule.id,
+              title: content_rule.title,
+              description: content_rule.description,
+              enabled: content_rule.enabled,
+              trigger: content_rule.event,
+            });
+          });
+        } while (document.parent);
+      }
+
       return {
         json: {
           'content-rules': {
-            aquired_rules: [], // id, title, description, enabled, trigger
+            acquired_rules: aquiredContentRules,
             assignable_rules: content_rules.models
               .filter(
                 (content_rule: any) =>
