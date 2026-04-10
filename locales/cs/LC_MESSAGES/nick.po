@@ -463,13 +463,13 @@ msgid "Contains"
 msgstr "Obsahuje"
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.ts:140
+#: src/routes/controlpanels/controlpanels.ts:141
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content"
 msgstr "Obsah"
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.ts:139
+#: src/routes/controlpanels/controlpanels.ts:140
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content Types"
@@ -1051,8 +1051,8 @@ msgid "Invalid credentials"
 msgstr "Neplatné přihlašovací údaje"
 
 #. Default: "Invalid move."
-#: src/routes/controlpanels/controlpanels.ts:508
-#: src/routes/controlpanels/controlpanels.ts:561
+#: src/routes/controlpanels/controlpanels.ts:512
+#: src/routes/controlpanels/controlpanels.ts:565
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Invalid move."
 msgstr ""
@@ -1368,17 +1368,17 @@ msgstr "Nepovoleno"
 #: src/routes/types/types.ts:41
 #: src/routes/groups/groups.ts:31
 #: src/routes/email/email.ts:65
-#: src/routes/controlpanels/controlpanels.ts:151
-#: src/routes/controlpanels/controlpanels.ts:349
-#: src/routes/controlpanels/controlpanels.ts:386
-#: src/routes/controlpanels/controlpanels.ts:418
-#: src/routes/controlpanels/controlpanels.ts:436
-#: src/routes/controlpanels/controlpanels.ts:466
-#: src/routes/controlpanels/controlpanels.ts:501
-#: src/routes/controlpanels/controlpanels.ts:553
-#: src/routes/controlpanels/controlpanels.ts:601
-#: src/routes/controlpanels/controlpanels.ts:648
-#: src/routes/controlpanels/controlpanels.ts:686
+#: src/routes/controlpanels/controlpanels.ts:152
+#: src/routes/controlpanels/controlpanels.ts:350
+#: src/routes/controlpanels/controlpanels.ts:387
+#: src/routes/controlpanels/controlpanels.ts:419
+#: src/routes/controlpanels/controlpanels.ts:438
+#: src/routes/controlpanels/controlpanels.ts:469
+#: src/routes/controlpanels/controlpanels.ts:505
+#: src/routes/controlpanels/controlpanels.ts:557
+#: src/routes/controlpanels/controlpanels.ts:605
+#: src/routes/controlpanels/controlpanels.ts:652
+#: src/routes/controlpanels/controlpanels.ts:690
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr "Nenalezeno."

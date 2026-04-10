@@ -412,5 +412,11 @@ Content-Type: application/json
       "title": "Workflow state"
     }
   ],
-  "assignments": []
+  "assignments": [
+    {
+      "description": "",
+      "title": "Events",
+      "url": "http://localhost:8080/events"
+    }
+  ]
 }

@@ -7,6 +7,7 @@ import { Model } from '../_model/_model';
 import type { Json, Request } from '../../types';
 import { getRootUrl } from '../../helpers/url/url';
 import contentRules from '../../content_rules';
+import models from '../';
 
 /**
  * A model for Content Rule.
@@ -14,6 +15,27 @@ import contentRules from '../../content_rules';
  * @extends Model
  */
 export class ContentRule extends Model {
+  // Set relation mappings
+  static get relationMappings() {
+    const Document = models.get('Document');
+
+    return {
+      _documents: {
+        relation: (Model as any).ManyToManyRelation,
+        modelClass: Document,
+        join: {
+          from: 'content_rule.id',
+          through: {
+            from: 'content_rule_document.content_rule',
+            to: 'content_rule_document.document',
+            extra: ['enabled', 'bubble'],
+          },
+          to: 'document.uuid',
+        },
+      },
+    };
+  }
+
   /**
    * Returns JSON data.
    * @method toJson
@@ -66,7 +88,11 @@ export class ContentRule extends Model {
             event: self.event,
             addable_actions: contentRules.getActions(req),
             addable_conditions: contentRules.getConditions(req),
-            assignments: [],
+            assignments: self._documents.map((document: any) => ({
+              url: `${getRootUrl(req)}${document.path}`,
+              title: document.json.title,
+              description: document.json.description || '',
+            })),
           }
         : {}),
     } as Json;

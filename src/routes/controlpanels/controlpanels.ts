@@ -96,6 +96,7 @@ export default [
       );
 
       // Send created
+      await content_rule.fetchRelated('_documents', trx);
       return {
         status: 201,
         json: await content_rule.toJson(req, true),
@@ -417,6 +418,7 @@ export default [
       if (!content_rule) {
         throw new RequestException(404, { error: req.i18n('Not found.') });
       }
+      await content_rule.fetchRelated('_documents', trx);
       return {
         json: await content_rule.toJson(req, true),
       };
@@ -447,6 +449,7 @@ export default [
       );
 
       // Send created
+      await updated_content_rule.fetchRelated('_documents', trx);
       return {
         status: 201,
         json: await updated_content_rule.toJson(req, true),
@@ -477,6 +480,7 @@ export default [
       );
 
       // Send created
+      await updated_content_rule.fetchRelated('_documents', trx);
       return {
         status: 201,
         json: await updated_content_rule.toJson(req, true),

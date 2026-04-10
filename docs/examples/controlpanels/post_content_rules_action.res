@@ -420,5 +420,11 @@ Content-Type: application/json
       }
     }
   ],
-  "assignments": []
+  "assignments": [
+    {
+      "description": "",
+      "title": "Events",
+      "url": "http://localhost:8080/events"
+    }
+  ]
 }
