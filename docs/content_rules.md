@@ -1,5 +1,5 @@
 ---
-nav_order:
+nav_order: 6
 permalink: /endpoints/content_rules
 parent: Endpoints
 ---
@@ -83,7 +83,7 @@ Example response:
 {% include_relative examples/content_rules/patch_bubble.res %}
 ```
 
-## Disable apply on subfolder
+### Disable apply on subfolder
 
 ```http
 {% include_relative examples/content_rules/patch_nobubble.req %}
