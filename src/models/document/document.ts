@@ -52,6 +52,7 @@ export class Document extends Model {
   static get relationMappings() {
     const User = models.get('User');
     const Role = models.get('Role');
+    const ContentRule = models.get('ContentRule');
     const Catalog = models.get('Catalog');
     const Version = models.get('Version');
     const Type = models.get('Type');
@@ -129,6 +130,19 @@ export class Document extends Model {
             extra: ['group'],
           },
           to: 'role.id',
+        },
+      },
+      _contentRules: {
+        relation: (Model as any).ManyToManyRelation,
+        modelClass: ContentRule,
+        join: {
+          from: 'document.uuid',
+          through: {
+            from: 'content_rule_document.document',
+            to: 'content_rule_document.content_rule',
+            extra: ['enabled', 'bubble'],
+          },
+          to: 'content_rule.id',
         },
       },
     };

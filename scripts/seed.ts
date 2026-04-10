@@ -42,12 +42,12 @@ const seed = async (trx: Knex.Transaction, profilePath: string) => {
   await seedWorkflow(trx, profilePath);
   await seedType(trx, profilePath);
   await seedCatalog(trx, profilePath);
+  await seedContentRule(trx, profilePath);
   await seedDocument(trx, profilePath);
   await seedRedirect(trx, profilePath);
   await seedAction(trx, profilePath);
   await seedControlpanel(trx, profilePath);
   await seedVocabulary(trx, profilePath);
-  await seedContentRule(trx, profilePath);
 };
 
 /**

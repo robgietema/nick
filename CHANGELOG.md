@@ -100,6 +100,7 @@
 - Add workflow transitions vocabulary @robgietema
 - Add routes to manage actions and conditions on a content rule @robgietema
 - Add summary method to content rules @robgietema
+- Add content rule assignments endpoints @robgietema
 
 ### Bugfix
 

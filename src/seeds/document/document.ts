@@ -34,6 +34,7 @@ const documentFields = [
   'workflow_state',
   'workflow_history',
   'sharing',
+  'content_rules',
 ];
 
 const versionFields = ['uuid', 'version', 'id', 'created', 'actor', 'document'];
@@ -174,6 +175,20 @@ export const seedDocument = async (
               .$relatedQuery('_groupRoles', trx)
               .relate({ id: role, group: group.id }),
         ),
+      );
+
+      // Insert content rule data for the document
+      const contentRules = document.content_rules || [];
+      await mapAsync(
+        contentRules,
+        async (contentRule: any) =>
+          await insert
+            .$relatedQuery('_contentRules', trx)
+            .relate({
+              id: contentRule.id,
+              enabled: contentRule.enabled,
+              bubble: contentRule.bubble,
+            }),
       );
     });
 

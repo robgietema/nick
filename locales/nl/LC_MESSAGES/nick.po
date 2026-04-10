@@ -463,13 +463,13 @@ msgid "Contains"
 msgstr "Bevat"
 
 #. Default: "Content"
-#: src/routes/controlpanels/controlpanels.ts:70
+#: src/routes/controlpanels/controlpanels.ts:140
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content"
 msgstr "Inhoud"
 
 #. Default: "Content Types"
-#: src/routes/controlpanels/controlpanels.ts:69
+#: src/routes/controlpanels/controlpanels.ts:139
 #: src/profiles/core/controlpanels/dexterity-types.json:3
 msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Content Types"
@@ -1051,9 +1051,9 @@ msgid "Invalid credentials"
 msgstr "Ongeldige inloggegevens"
 
 #. Default: "Invalid move."
-#: src/routes/content_rules/content_rules.ts:260
-#: src/routes/content_rules/content_rules.ts:313
-msgctxt "Routes|Content rules|Content rules.ts"
+#: src/routes/controlpanels/controlpanels.ts:508
+#: src/routes/controlpanels/controlpanels.ts:561
+msgctxt "Routes|Controlpanels|Controlpanels.ts"
 msgid "Invalid move."
 msgstr ""
 
@@ -1368,17 +1368,17 @@ msgstr "Niet toegestaan"
 #: src/routes/types/types.ts:41
 #: src/routes/groups/groups.ts:31
 #: src/routes/email/email.ts:65
-#: src/routes/controlpanels/controlpanels.ts:81
-#: src/routes/content_rules/content_rules.ts:37
-#: src/routes/content_rules/content_rules.ts:75
-#: src/routes/content_rules/content_rules.ts:107
-#: src/routes/content_rules/content_rules.ts:188
-#: src/routes/content_rules/content_rules.ts:218
-#: src/routes/content_rules/content_rules.ts:253
-#: src/routes/content_rules/content_rules.ts:305
-#: src/routes/content_rules/content_rules.ts:353
-#: src/routes/content_rules/content_rules.ts:400
-#: src/routes/content_rules/content_rules.ts:438
+#: src/routes/controlpanels/controlpanels.ts:151
+#: src/routes/controlpanels/controlpanels.ts:349
+#: src/routes/controlpanels/controlpanels.ts:386
+#: src/routes/controlpanels/controlpanels.ts:418
+#: src/routes/controlpanels/controlpanels.ts:436
+#: src/routes/controlpanels/controlpanels.ts:466
+#: src/routes/controlpanels/controlpanels.ts:501
+#: src/routes/controlpanels/controlpanels.ts:553
+#: src/routes/controlpanels/controlpanels.ts:601
+#: src/routes/controlpanels/controlpanels.ts:648
+#: src/routes/controlpanels/controlpanels.ts:686
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr "Niet gevonden."
@@ -1907,6 +1907,36 @@ msgstr "Indienen"
 msgctxt "Profiles|Core|Workflows"
 msgid "Submit for publication"
 msgstr "Indienen ter publicatie"
+
+#. Default: "Successfully assigned the content rule {rule}"
+#: src/routes/content_rules/content_rules.ts:84
+msgctxt "Routes|Content rules|Content rules.ts"
+msgid "Successfully assigned the content rule {rule}"
+msgstr ""
+
+#. Default: "Successfully disabled rules {rules}"
+#: src/routes/content_rules/content_rules.ts:131
+msgctxt "Routes|Content rules|Content rules.ts"
+msgid "Successfully disabled rules {rules}"
+msgstr ""
+
+#. Default: "Successfully disabled rules {rules} to subfolders"
+#: src/routes/content_rules/content_rules.ts:174
+msgctxt "Routes|Content rules|Content rules.ts"
+msgid "Successfully disabled rules {rules} to subfolders"
+msgstr ""
+
+#. Default: "Successfully enabled rules {rules}"
+#: src/routes/content_rules/content_rules.ts:111
+msgctxt "Routes|Content rules|Content rules.ts"
+msgid "Successfully enabled rules {rules}"
+msgstr ""
+
+#. Default: "Successfully enabled rules {rules} to subfolders"
+#: src/routes/content_rules/content_rules.ts:151
+msgctxt "Routes|Content rules|Content rules.ts"
+msgid "Successfully enabled rules {rules} to subfolders"
+msgstr ""
 
 #. Default: "System group"
 #: src/routes/groups/groups.ts:139
