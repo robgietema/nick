@@ -98,6 +98,7 @@
 - Add content rules actions and conditions registry @robgietema
 - Add addable actions and conditions to routes @robgietema
 - Add workflow transitions vocabulary @robgietema
+- Add routes to manage actions and conditions on a content rule @robgietema
 
 ### Bugfix
 

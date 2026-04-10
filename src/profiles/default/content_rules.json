@@ -9,8 +9,26 @@
       "enabled": false,
       "cascading": false,
       "stop": false,
-      "actions": [],
-      "conditions": []
+      "actions": [
+        {
+          "type": "transition_workflow",
+          "transition": "publish"
+        },
+        {
+          "type": "logger",
+          "message": "Test message"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "file_extension",
+          "file_extension": "jpg"
+        },
+        {
+          "type": "workflow_state",
+          "wf_states": ["private"]
+        }
+      ]
     },
     {
       "id": "rule-2",

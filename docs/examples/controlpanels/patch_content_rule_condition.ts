@@ -1,0 +1,12 @@
+import { Client } from '@robgietema/nick';
+
+const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
+const login = await cli.login({ username: 'admin', password: 'admin' });
+
+const { data } = await cli.updateControlpanelContentRuleCondition({
+  token: login.data.token,
+  path: '/@controlpanels/content-rules/rule-1/condition/0',
+  data: {
+    file_extension: 'png',
+  },
+});

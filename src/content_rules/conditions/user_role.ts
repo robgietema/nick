@@ -6,7 +6,7 @@
 import type { Request } from '../../types';
 
 export const user_role = {
-  getTitle: (req: Request) => req.i18n('User`s role'),
+  getTitle: (req: Request) => req.i18n('User’s role'),
   getDescription: (req: Request) =>
     req.i18n('Apply only when the current user has the given role'),
   schema: {

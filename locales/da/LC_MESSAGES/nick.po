@@ -1013,6 +1013,13 @@ msgctxt "Routes|Authentication|Authentication.ts"
 msgid "Invalid credentials"
 msgstr "Ugyldige legitimationsoplysninger"
 
+#. Default: "Invalid move."
+#: src/routes/content_rules/content_rules.ts:260
+#: src/routes/content_rules/content_rules.ts:313
+msgctxt "Routes|Content rules|Content rules.ts"
+msgid "Invalid move."
+msgstr ""
+
 #. Default: "Invalid session"
 #: src/routes/authentication/authentication.ts:130
 msgctxt "Routes|Authentication|Authentication.ts"
@@ -1297,8 +1304,16 @@ msgstr "Ikke tilladt"
 #: src/routes/groups/groups.ts:31
 #: src/routes/email/email.ts:65
 #: src/routes/controlpanels/controlpanels.ts:81
-#: src/routes/content_rules/content_rules.ts:26
-#: src/routes/content_rules/content_rules.ts:103
+#: src/routes/content_rules/content_rules.ts:37
+#: src/routes/content_rules/content_rules.ts:75
+#: src/routes/content_rules/content_rules.ts:107
+#: src/routes/content_rules/content_rules.ts:188
+#: src/routes/content_rules/content_rules.ts:218
+#: src/routes/content_rules/content_rules.ts:253
+#: src/routes/content_rules/content_rules.ts:305
+#: src/routes/content_rules/content_rules.ts:353
+#: src/routes/content_rules/content_rules.ts:400
+#: src/routes/content_rules/content_rules.ts:438
 msgctxt "Routes|Vocabularies|Vocabularies.ts"
 msgid "Not found."
 msgstr "Ikke fundet."
@@ -2261,18 +2276,6 @@ msgctxt "Profiles|Core|Vocabularies|Events"
 msgid "User removed"
 msgstr ""
 
-#. Default: "User`s group"
-#: src/content_rules/conditions/user_group.ts:9
-msgctxt "Content rules|Conditions|User group.ts"
-msgid "User`s group"
-msgstr ""
-
-#. Default: "User`s role"
-#: src/content_rules/conditions/user_role.ts:9
-msgctxt "Content rules|Conditions|User role.ts"
-msgid "User`s role"
-msgstr ""
-
 #. Default: "Username"
 #: src/routes/userschema/userschema.ts:121
 msgctxt "Routes|Userschema|Userschema.ts"
@@ -2284,6 +2287,18 @@ msgstr ""
 msgctxt "Profiles|Core|Controlpanels|Mail"
 msgid "Username for authentication to your email server. Not required unless you are using ESMTP."
 msgstr "Brugernavn til godkendelse på din email-server. Ikke påkrævet, medmindre du bruger ESMTP."
+
+#. Default: "User’s group"
+#: src/content_rules/conditions/user_group.ts:9
+msgctxt "Content rules|Conditions|User group.ts"
+msgid "User’s group"
+msgstr ""
+
+#. Default: "User’s role"
+#: src/content_rules/conditions/user_role.ts:9
+msgctxt "Content rules|Conditions|User role.ts"
+msgid "User’s role"
+msgstr ""
 
 #. Default: "Version item"
 #: src/content_rules/actions/version_item.ts:9

@@ -273,6 +273,46 @@ Response:
 {% include_relative examples/controlpanels/post_content_rules.res %}
 ```
 
+#### Creating a new Condition on a Content rule with `POST`
+
+To create a new condition on a content rule, send a `POST` request to the `/@controlpanels/content-rules/{rule-id}/condition` endpoint:
+
+```http
+{% include_relative examples/controlpanels/post_content_rules_condition.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/post_content_rules_condition.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/post_content_rules_condition.res %}
+```
+
+#### Creating a new Action on a Content rule with `POST`
+
+To create a new action on a content rule, send a `POST` request to the `/@controlpanels/content-rules/{rule-id}/action` endpoint:
+
+```http
+{% include_relative examples/controlpanels/post_content_rules_action.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/post_content_rules_action.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/post_content_rules_action.res %}
+```
+
 #### Reading a Content rule with `GET`
 
 After a successful `POST`, access the content rule by sending a `GET` request to the endpoint `/@controlpanels/content-rules/{rule-id}`:
@@ -314,6 +354,90 @@ Response:
 {% include_relative examples/controlpanels/patch_content_rule.res %}
 ```
 
+#### Updating a Condition on a Content rule with `PATCH`
+
+To update an existing condition on a content rule, send a `PATCH` request to the server.
+`PATCH` allows to provide just a subset of the resource, that is, the values you actually want to change:
+
+```http
+{% include_relative examples/controlpanels/patch_content_rule_condition.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/patch_content_rule_condition.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/patch_content_rule_condition.res %}
+```
+
+#### Updating an Action on a Content rule with `PATCH`
+
+To update an existing action on a content rule, send a `PATCH` request to the server.
+`PATCH` allows to provide just a subset of the resource, that is, the values you actually want to change:
+
+```http
+{% include_relative examples/controlpanels/patch_content_rule_action.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/patch_content_rule_action.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/patch_content_rule_action.res %}
+```
+
+#### Reorder a Condition on a Content rule with `PATCH`
+
+To reorder an existing condition on a content rule, send a `PATCH` request to the server.
+Specify the direction `_move_up` or `_move_down` in the `form.button.Move` attribute.
+
+```http
+{% include_relative examples/controlpanels/move_content_rule_condition.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/move_content_rule_condition.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/move_content_rule_condition.res %}
+```
+
+#### Reorder an Action on a Content rule with `PATCH`
+
+To reorder an existing action on a content rule, send a `PATCH` request to the server.
+Specify the direction `_move_up` or `_move_down` in the `form.button.Move` attribute.
+
+```http
+{% include_relative examples/controlpanels/move_content_rule_action.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/move_content_rule_action.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/move_content_rule_action.res %}
+```
+
 #### Removing a Content rule with `DELETE`
 
 Delete an existing content rule by sending a `DELETE` request to the URL of an existing content rule:
@@ -332,4 +456,44 @@ Response:
 
 ```http
 {% include_relative examples/controlpanels/delete_content_rule.res %}
+```
+
+### Removing a Condition on a Content rule with `DELETE`
+
+Delete an existing condition on a content rule by sending a `DELETE` request to the URL of an existing content rule:
+
+```http
+{% include_relative examples/controlpanels/delete_content_rule_condition.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/delete_content_rule_condition.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/delete_content_rule_condition.res %}
+```
+
+### Removing an Action on a Content rule with `DELETE`
+
+Delete an existing action on a content rule by sending a `DELETE` request to the URL of an existing content rule:
+
+```http
+{% include_relative examples/controlpanels/delete_content_rule_action.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/controlpanels/delete_content_rule_action.ts %}
+```
+
+Response:
+
+```http
+{% include_relative examples/controlpanels/delete_content_rule_action.res %}
 ```

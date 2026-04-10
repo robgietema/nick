@@ -60,7 +60,7 @@ class ContentRules {
    * @returns {any} The action rule.
    */
   getAction(name: string): any {
-    return this.actions[name]();
+    return this.actions[name];
   }
 
   /**
@@ -93,7 +93,7 @@ class ContentRules {
    * @returns {any} The condition rule.
    */
   getCondition(name: string): any {
-    return this.conditions[name]();
+    return this.conditions[name];
   }
 
   /**

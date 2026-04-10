@@ -9,8 +9,42 @@ Content-Type: application/json
   "assigned": false,
   "enabled": false,
   "trigger": "onAfterAdd",
-  "actions": [],
-  "conditions": [],
+  "actions": [
+    {
+      "description": "Perform a workflow transition on the triggering object",
+      "first": true,
+      "idx": 0,
+      "last": false,
+      "summary": "Perform a workflow transition on the triggering object",
+      "title": "Transition workflow state"
+    },
+    {
+      "description": "Log a particular event",
+      "first": false,
+      "idx": 1,
+      "last": true,
+      "summary": "Log a particular event",
+      "title": "Logger"
+    }
+  ],
+  "conditions": [
+    {
+      "description": "Apply only to a particular file extension",
+      "first": true,
+      "idx": 0,
+      "last": false,
+      "summary": "Apply only to a particular file extension",
+      "title": "File Extension"
+    },
+    {
+      "description": "Apply only to a objects in a particular workflow state",
+      "first": false,
+      "idx": 1,
+      "last": true,
+      "summary": "Apply only to a objects in a particular workflow state",
+      "title": "Workflow state"
+    }
+  ],
   "cascading": false,
   "stop": false,
   "event": "onAfterAdd",
@@ -305,7 +339,7 @@ Content-Type: application/json
       },
       "addview": "user_group",
       "description": "Apply only when the current user is in the given group",
-      "title": "User`s group"
+      "title": "User’s group"
     },
     {
       "@schema": {
@@ -340,7 +374,7 @@ Content-Type: application/json
       },
       "addview": "user_role",
       "description": "Apply only when the current user has the given role",
-      "title": "User`s role"
+      "title": "User’s role"
     },
     {
       "@schema": {

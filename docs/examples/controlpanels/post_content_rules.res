@@ -305,7 +305,7 @@ Content-Type: application/json
       },
       "addview": "user_group",
       "description": "Apply only when the current user is in the given group",
-      "title": "User`s group"
+      "title": "User’s group"
     },
     {
       "@schema": {
@@ -340,7 +340,7 @@ Content-Type: application/json
       },
       "addview": "user_role",
       "description": "Apply only when the current user has the given role",
-      "title": "User`s role"
+      "title": "User’s role"
     },
     {
       "@schema": {

@@ -33,8 +33,34 @@ export class ContentRule extends Model {
       trigger: self.event,
       ...(extend
         ? {
-            actions: self.json.actions || [],
-            conditions: self.json.conditions || [],
+            actions: self.json.actions
+              ? self.json.actions.map((action: any, index: number) => {
+                  const actionData = contentRules.getAction(action.type);
+                  return {
+                    idx: index,
+                    title: actionData.getTitle(req),
+                    description: actionData.getDescription(req),
+                    summary: actionData.getDescription(req),
+                    first: index === 0,
+                    last: index === self.json.actions.length - 1,
+                  };
+                })
+              : [],
+            conditions: self.json.conditions
+              ? self.json.conditions.map((condition: any, index: number) => {
+                  const conditionData = contentRules.getCondition(
+                    condition.type,
+                  );
+                  return {
+                    idx: index,
+                    title: conditionData.getTitle(req),
+                    description: conditionData.getDescription(req),
+                    summary: conditionData.getDescription(req),
+                    first: index === 0,
+                    last: index === self.json.conditions.length - 1,
+                  };
+                })
+              : [],
             cascading: self.json.cascading || false,
             stop: self.json.stop || false,
             event: self.event,

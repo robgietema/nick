@@ -6,7 +6,7 @@
 import type { Request } from '../../types';
 
 export const user_group = {
-  getTitle: (req: Request) => req.i18n('User`s group'),
+  getTitle: (req: Request) => req.i18n('User’s group'),
   getDescription: (req: Request) =>
     req.i18n('Apply only when the current user is in the given group'),
   schema: {
