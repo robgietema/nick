@@ -8,6 +8,10 @@ import type { Request } from '../../types';
 export const logger = {
   getTitle: (req: Request) => req.i18n('Logger'),
   getDescription: (req: Request) => req.i18n('Log a particular event'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Log message {message}', {
+      message: params.message || req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {

@@ -9,6 +9,10 @@ export const send_email = {
   getTitle: (req: Request) => req.i18n('Send email'),
   getDescription: (req: Request) =>
     req.i18n('Send an email on the triggering object'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Email report to {recipients}', {
+      recipients: params.recipients || req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {

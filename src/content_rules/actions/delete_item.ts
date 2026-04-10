@@ -8,6 +8,7 @@ import type { Request } from '../../types';
 export const delete_item = {
   getTitle: (req: Request) => req.i18n('Delete item'),
   getDescription: (req: Request) => req.i18n('Delete the triggering item'),
+  getSummary: (req: Request, params: any) => req.i18n('Delete item'),
   schema: {
     fieldsets: [
       {

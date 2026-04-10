@@ -8,6 +8,10 @@ import type { Request } from '../../types';
 export const version_item = {
   getTitle: (req: Request) => req.i18n('Version item'),
   getDescription: (req: Request) => req.i18n('Store a new version of the item'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Version item with comment {comment}', {
+      comment: params.comment || req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {

@@ -9,6 +9,10 @@ export const transition_workflow = {
   getTitle: (req: Request) => req.i18n('Transition workflow state'),
   getDescription: (req: Request) =>
     req.i18n('Perform a workflow transition on the triggering object'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Execute transition {transition}', {
+      transition: params.transition || req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {

@@ -9,6 +9,13 @@ export const workflow_state = {
   getTitle: (req: Request) => req.i18n('Workflow state'),
   getDescription: (req: Request) =>
     req.i18n('Apply only to a objects in a particular workflow state'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Workflow states are: {states}', {
+      states:
+        params.wf_states && params.wf_states.length > 0
+          ? params.wf_states.join(', ')
+          : req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {

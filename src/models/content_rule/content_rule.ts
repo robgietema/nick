@@ -40,7 +40,7 @@ export class ContentRule extends Model {
                     idx: index,
                     title: actionData.getTitle(req),
                     description: actionData.getDescription(req),
-                    summary: actionData.getDescription(req),
+                    summary: actionData.getSummary(req, action),
                     first: index === 0,
                     last: index === self.json.actions.length - 1,
                   };
@@ -55,7 +55,7 @@ export class ContentRule extends Model {
                     idx: index,
                     title: conditionData.getTitle(req),
                     description: conditionData.getDescription(req),
-                    summary: conditionData.getDescription(req),
+                    summary: conditionData.getSummary(req, condition),
                     first: index === 0,
                     last: index === self.json.conditions.length - 1,
                   };

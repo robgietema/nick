@@ -9,6 +9,13 @@ export const user_group = {
   getTitle: (req: Request) => req.i18n('User’s group'),
   getDescription: (req: Request) =>
     req.i18n('Apply only when the current user is in the given group'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Groups are: {groups}', {
+      groups:
+        params.group_names && params.group_names.length > 0
+          ? params.group_names.join(', ')
+          : req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {

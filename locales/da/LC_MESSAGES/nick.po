@@ -17,7 +17,7 @@ msgstr ""
 "Domain: nick\n"
 
 #. Default: "&e = the triggering event, &c = the context, &u = the user"
-#: src/content_rules/actions/logger.ts:22
+#: src/content_rules/actions/logger.ts:26
 msgctxt "Content rules|Actions|Logger.ts"
 msgid "&e = the triggering event, &c = the context, &u = the user"
 msgstr ""
@@ -276,8 +276,8 @@ msgid "Apply only when the current user is in the given group"
 msgstr ""
 
 #. Default: "As a path relative to the portal root."
-#: src/content_rules/actions/move_item.ts:22
-#: src/content_rules/actions/copy_item.ts:22
+#: src/content_rules/actions/move_item.ts:29
+#: src/content_rules/actions/copy_item.ts:29
 msgctxt "Content rules|Actions|Move item.ts"
 msgid "As a path relative to the portal root."
 msgstr ""
@@ -418,7 +418,7 @@ msgid "Change Note"
 msgstr "Ændringsnotat"
 
 #. Default: "Comment"
-#: src/content_rules/actions/version_item.ts:24
+#: src/content_rules/actions/version_item.ts:28
 msgctxt "Content rules|Actions|Version item.ts"
 msgid "Comment"
 msgstr ""
@@ -477,9 +477,15 @@ msgstr "Indholdstyper"
 
 #. Default: "Content type"
 #: src/content_rules/conditions/content_type.ts:9
-#: src/content_rules/conditions/content_type.ts:36
+#: src/content_rules/conditions/content_type.ts:43
 msgctxt "Content rules|Conditions|Content type.ts"
 msgid "Content type"
+msgstr ""
+
+#. Default: "Content type: {types}"
+#: src/content_rules/conditions/content_type.ts:15
+msgctxt "Content rules|Conditions|Content type.ts"
+msgid "Content type: {types}"
 msgstr ""
 
 #. Default: "Contents"
@@ -510,6 +516,12 @@ msgstr ""
 #: src/content_rules/actions/copy_item.ts:9
 msgctxt "Content rules|Actions|Copy item.ts"
 msgid "Copy to folder"
+msgstr ""
+
+#. Default: "Copy to folder {target_folder}"
+#: src/content_rules/actions/copy_item.ts:13
+msgctxt "Content rules|Actions|Copy item.ts"
+msgid "Copy to folder {target_folder}"
 msgstr ""
 
 #. Default: "Coverage"
@@ -570,14 +582,14 @@ msgstr "Fejlfinding"
 #. Default: "Default"
 #: src/routes/userschema/userschema.ts:24
 #: src/routes/userschema/userschema.ts:68
-#: src/content_rules/conditions/workflow_state.ts:17
-#: src/content_rules/conditions/user_role.ts:17
-#: src/content_rules/conditions/user_group.ts:17
-#: src/content_rules/conditions/file_extension.ts:17
-#: src/content_rules/conditions/content_type.ts:19
-#: src/content_rules/actions/version_item.ts:16
-#: src/content_rules/actions/transition_workflow.ts:17
-#: src/content_rules/actions/send_email.ts:17
+#: src/content_rules/conditions/workflow_state.ts:24
+#: src/content_rules/conditions/user_role.ts:24
+#: src/content_rules/conditions/user_group.ts:24
+#: src/content_rules/conditions/file_extension.ts:21
+#: src/content_rules/conditions/content_type.ts:26
+#: src/content_rules/actions/version_item.ts:20
+#: src/content_rules/actions/transition_workflow.ts:21
+#: src/content_rules/actions/send_email.ts:21
 #: src/constants/userschema.ts:12
 #: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:10
 #: src/profiles/core/upgrades/1001/controlpanels/security.json:10
@@ -613,6 +625,7 @@ msgstr "Slet"
 
 #. Default: "Delete item"
 #: src/content_rules/actions/delete_item.ts:9
+#: src/content_rules/actions/delete_item.ts:11
 msgctxt "Content rules|Actions|Delete item.ts"
 msgid "Delete item"
 msgstr ""
@@ -653,7 +666,7 @@ msgid "Displayed content types"
 msgstr "Viste indholdstyper"
 
 #. Default: "Do not send the email to the user that did the action."
-#: src/content_rules/actions/send_email.ts:22
+#: src/content_rules/actions/send_email.ts:26
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Do not send the email to the user that did the action."
 msgstr ""
@@ -739,13 +752,19 @@ msgid "Email address to contact about this event."
 msgstr ""
 
 #. Default: "Email recipients"
-#: src/content_rules/actions/send_email.ts:39
+#: src/content_rules/actions/send_email.ts:43
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Email recipients"
 msgstr ""
 
+#. Default: "Email report to {recipients}"
+#: src/content_rules/actions/send_email.ts:13
+msgctxt "Content rules|Actions|Send email.ts"
+msgid "Email report to {recipients}"
+msgstr ""
+
 #. Default: "Email source"
-#: src/content_rules/actions/send_email.ts:46
+#: src/content_rules/actions/send_email.ts:50
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Email source"
 msgstr ""
@@ -831,7 +850,7 @@ msgid "Event start date"
 msgstr "Begivenhedens startdato"
 
 #. Default: "Exclude actor from recipients"
-#: src/content_rules/actions/send_email.ts:25
+#: src/content_rules/actions/send_email.ts:29
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Exclude actor from recipients"
 msgstr ""
@@ -842,6 +861,12 @@ msgstr ""
 msgctxt "Profiles|Core|Behaviors|Exclude from nav"
 msgid "Exclude from navigation"
 msgstr "Udeluk fra navigation"
+
+#. Default: "Execute transition {transition}"
+#: src/content_rules/actions/transition_workflow.ts:13
+msgctxt "Content rules|Actions|Transition workflow.ts"
+msgid "Execute transition {transition}"
+msgstr ""
 
 #. Default: "Expiration Date"
 #: src/profiles/core/behaviors/dates.json:22
@@ -869,9 +894,15 @@ msgid "File Extension"
 msgstr ""
 
 #. Default: "File extension"
-#: src/content_rules/conditions/file_extension.ts:24
+#: src/content_rules/conditions/file_extension.ts:28
 msgctxt "Content rules|Conditions|File extension.ts"
 msgid "File extension"
+msgstr ""
+
+#. Default: "File extension is {extension}"
+#: src/content_rules/conditions/file_extension.ts:13
+msgctxt "Content rules|Conditions|File extension.ts"
+msgid "File extension is {extension}"
 msgstr ""
 
 #. Default: "Filter Contained Types"
@@ -926,9 +957,15 @@ msgid "Gives the ability to rename an item from its edit form."
 msgstr "Giver mulighed for at omdøbe et element fra dets redigeringsformular."
 
 #. Default: "Group name"
-#: src/content_rules/conditions/user_group.ts:34
+#: src/content_rules/conditions/user_group.ts:41
 msgctxt "Content rules|Conditions|User group.ts"
 msgid "Group name"
+msgstr ""
+
+#. Default: "Groups are: {groups}"
+#: src/content_rules/conditions/user_group.ts:13
+msgctxt "Content rules|Conditions|User group.ts"
+msgid "Groups are: {groups}"
 msgstr ""
 
 #. Default: "History"
@@ -1120,6 +1157,12 @@ msgctxt "Profiles|Core|Actions"
 msgid "Log in"
 msgstr "Log ind"
 
+#. Default: "Log message {message}"
+#: src/content_rules/actions/logger.ts:12
+msgctxt "Content rules|Actions|Logger.ts"
+msgid "Log message {message}"
+msgstr ""
+
 #. Default: "Log out"
 #: src/profiles/core/actions.json:98
 msgctxt "Profiles|Core|Actions"
@@ -1204,8 +1247,8 @@ msgid "Matches any condition"
 msgstr "Matcher nogen af"
 
 #. Default: "Message"
-#: src/content_rules/actions/send_email.ts:31
-#: src/content_rules/actions/logger.ts:25
+#: src/content_rules/actions/send_email.ts:35
+#: src/content_rules/actions/logger.ts:29
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Message"
 msgstr ""
@@ -1238,6 +1281,12 @@ msgstr ""
 #: src/content_rules/actions/move_item.ts:9
 msgctxt "Content rules|Actions|Move item.ts"
 msgid "Move to folder"
+msgstr ""
+
+#. Default: "Move to folder {target_folder}"
+#: src/content_rules/actions/move_item.ts:13
+msgctxt "Content rules|Actions|Move item.ts"
+msgid "Move to folder {target_folder}"
 msgstr ""
 
 #. Default: "Multilingual"
@@ -1290,6 +1339,22 @@ msgstr ""
 msgctxt "Profiles|Core|Catalog"
 msgid "No"
 msgstr "Nej"
+
+#. Default: "None"
+#: src/content_rules/conditions/workflow_state.ts:17
+#: src/content_rules/conditions/user_role.ts:17
+#: src/content_rules/conditions/user_group.ts:17
+#: src/content_rules/conditions/file_extension.ts:14
+#: src/content_rules/conditions/content_type.ts:19
+#: src/content_rules/actions/version_item.ts:13
+#: src/content_rules/actions/transition_workflow.ts:14
+#: src/content_rules/actions/send_email.ts:14
+#: src/content_rules/actions/move_item.ts:17
+#: src/content_rules/actions/logger.ts:13
+#: src/content_rules/actions/copy_item.ts:17
+msgctxt "Content rules|Conditions|Workflow state.ts"
+msgid "None"
+msgstr ""
 
 #. Default: "Not allowed"
 #: src/routes/lock/lock.ts:170
@@ -1631,9 +1696,15 @@ msgid "Robots.txt"
 msgstr "Robots.txt"
 
 #. Default: "Roles"
-#: src/content_rules/conditions/user_role.ts:34
+#: src/content_rules/conditions/user_role.ts:41
 msgctxt "Content rules|Conditions|User role.ts"
 msgid "Roles"
+msgstr ""
+
+#. Default: "Roles are: {roles}"
+#: src/content_rules/conditions/user_role.ts:13
+msgctxt "Content rules|Conditions|User role.ts"
+msgid "Roles are: {roles}"
 msgstr ""
 
 #. Default: "Rules"
@@ -1680,7 +1751,7 @@ msgid "Select an image that will be used in listing and teaser blocks."
 msgstr "Vælg et billede, der skal bruges i liste- og teaserblokke."
 
 #. Default: "Select the workflow transition to attempt"
-#: src/content_rules/actions/transition_workflow.ts:22
+#: src/content_rules/actions/transition_workflow.ts:26
 msgctxt "Content rules|Actions|Transition workflow.ts"
 msgid "Select the workflow transition to attempt"
 msgstr ""
@@ -1814,13 +1885,13 @@ msgid "Store a new version of the item"
 msgstr ""
 
 #. Default: "Subject"
-#: src/content_rules/actions/send_email.ts:52
+#: src/content_rules/actions/send_email.ts:56
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Subject"
 msgstr ""
 
 #. Default: "Subject of the message"
-#: src/content_rules/actions/send_email.ts:50
+#: src/content_rules/actions/send_email.ts:54
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Subject of the message"
 msgstr ""
@@ -1868,8 +1939,8 @@ msgid "Tags are used for organization of content"
 msgstr "Tags bruges til organisering af indhold"
 
 #. Default: "Target folder"
-#: src/content_rules/actions/move_item.ts:23
-#: src/content_rules/actions/copy_item.ts:23
+#: src/content_rules/actions/move_item.ts:30
+#: src/content_rules/actions/copy_item.ts:30
 msgctxt "Content rules|Actions|Move item.ts"
 msgid "Target folder"
 msgstr ""
@@ -1911,13 +1982,13 @@ msgid "The address of your local SMTP (outgoing email) server. Usually 'localhos
 msgstr "Adressen på din lokale SMTP-server (udgående email). Normalt 'localhost', medmindre du bruger en ekstern server til at sende email."
 
 #. Default: "The comment added to the history while versioning the content."
-#: src/content_rules/actions/version_item.ts:21
+#: src/content_rules/actions/version_item.ts:25
 msgctxt "Content rules|Actions|Version item.ts"
 msgid "The comment added to the history while versioning the content."
 msgstr ""
 
 #. Default: "The content type to check for."
-#: src/content_rules/conditions/content_type.ts:25
+#: src/content_rules/conditions/content_type.ts:32
 msgctxt "Content rules|Conditions|Content type.ts"
 msgid "The content type to check for."
 msgstr ""
@@ -1946,13 +2017,13 @@ msgid "The date an item was created"
 msgstr "Datoen et element blev oprettet"
 
 #. Default: "The email address that sends the email. If no email is provided here, it will use the portal from address."
-#: src/content_rules/actions/send_email.ts:43
+#: src/content_rules/actions/send_email.ts:47
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "The email address that sends the email. If no email is provided here, it will use the portal from address."
 msgstr ""
 
 #. Default: "The email where you want to send this message. To send it to different email addresses, just separate them with ,"
-#: src/content_rules/actions/send_email.ts:36
+#: src/content_rules/actions/send_email.ts:40
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "The email where you want to send this message. To send it to different email addresses, just separate them with ,"
 msgstr ""
@@ -1964,7 +2035,7 @@ msgid "The end date and time of an event"
 msgstr "Slutdato og -tidspunkt for en begivenhed"
 
 #. Default: "The file extension to check for"
-#: src/content_rules/conditions/file_extension.ts:22
+#: src/content_rules/conditions/file_extension.ts:26
 msgctxt "Content rules|Conditions|File extension.ts"
 msgid "The file extension to check for"
 msgstr ""
@@ -2007,13 +2078,13 @@ msgid "The location of an item"
 msgstr "Placeringen af et element"
 
 #. Default: "The message that you want to mail."
-#: src/content_rules/actions/send_email.ts:29
+#: src/content_rules/actions/send_email.ts:33
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "The message that you want to mail."
 msgstr ""
 
 #. Default: "The name of the group."
-#: src/content_rules/conditions/user_group.ts:23
+#: src/content_rules/conditions/user_group.ts:30
 msgctxt "Content rules|Conditions|User group.ts"
 msgid "The name of the group."
 msgstr ""
@@ -2043,7 +2114,7 @@ msgid "The port of your local SMTP (outgoing email) server. Usually '25'."
 msgstr "Porten på din lokale SMTP-server (udgående email). Normalt '25'."
 
 #. Default: "The roles to check for."
-#: src/content_rules/conditions/user_role.ts:23
+#: src/content_rules/conditions/user_role.ts:30
 msgctxt "Content rules|Conditions|User role.ts"
 msgid "The roles to check for."
 msgstr ""
@@ -2097,7 +2168,7 @@ msgid "The user viewing the querystring results"
 msgstr "Brugeren, der ser forespørgselsstrengresultaterne"
 
 #. Default: "The workflow states to check for."
-#: src/content_rules/conditions/workflow_state.ts:23
+#: src/content_rules/conditions/workflow_state.ts:30
 msgctxt "Content rules|Conditions|Workflow state.ts"
 msgid "The workflow states to check for."
 msgstr ""
@@ -2185,7 +2256,7 @@ msgid "Transaction error."
 msgstr "Transaktionsfejl."
 
 #. Default: "Transition"
-#: src/content_rules/actions/transition_workflow.ts:24
+#: src/content_rules/actions/transition_workflow.ts:28
 msgctxt "Content rules|Actions|Transition workflow.ts"
 msgid "Transition"
 msgstr ""
@@ -2306,6 +2377,12 @@ msgctxt "Content rules|Actions|Version item.ts"
 msgid "Version item"
 msgstr ""
 
+#. Default: "Version item with comment {comment}"
+#: src/content_rules/actions/version_item.ts:12
+msgctxt "Content rules|Actions|Version item.ts"
+msgid "Version item with comment {comment}"
+msgstr ""
+
 #. Default: "Versioning"
 #: src/profiles/core/behaviors/versioning.json:3
 msgctxt "Profiles|Core|Behaviors|Versioning"
@@ -2386,7 +2463,7 @@ msgstr "Inden for de næste"
 
 #. Default: "Workflow state"
 #: src/content_rules/conditions/workflow_state.ts:9
-#: src/content_rules/conditions/workflow_state.ts:34
+#: src/content_rules/conditions/workflow_state.ts:41
 msgctxt "Content rules|Conditions|Workflow state.ts"
 msgid "Workflow state"
 msgstr ""
@@ -2395,6 +2472,12 @@ msgstr ""
 #: src/profiles/core/vocabularies/events.json:13
 msgctxt "Profiles|Core|Vocabularies|Events"
 msgid "Workflow state changed"
+msgstr ""
+
+#. Default: "Workflow states are: {states}"
+#: src/content_rules/conditions/workflow_state.ts:13
+msgctxt "Content rules|Conditions|Workflow state.ts"
+msgid "Workflow states are: {states}"
 msgstr ""
 
 #. Default: "Wrong login and/or password."

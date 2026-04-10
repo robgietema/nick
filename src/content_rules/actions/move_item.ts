@@ -9,6 +9,13 @@ export const move_item = {
   getTitle: (req: Request) => req.i18n('Move to folder'),
   getDescription: (req: Request) =>
     req.i18n('Move the triggering item to a specific folder'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Move to folder {target_folder}', {
+      target_folder:
+        params.target_folder && params.target_folder.length > 0
+          ? params.target_folder.map((item: any) => item.path).join(', ')
+          : req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {

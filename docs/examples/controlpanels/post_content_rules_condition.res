@@ -14,7 +14,7 @@ Content-Type: application/json
       "idx": 0,
       "title": "Transition workflow state",
       "description": "Perform a workflow transition on the triggering object",
-      "summary": "Perform a workflow transition on the triggering object",
+      "summary": "Execute transition publish",
       "first": true,
       "last": false
     },
@@ -22,7 +22,7 @@ Content-Type: application/json
       "idx": 1,
       "title": "Logger",
       "description": "Log a particular event",
-      "summary": "Log a particular event",
+      "summary": "Log message Test message",
       "first": false,
       "last": true
     }
@@ -32,7 +32,7 @@ Content-Type: application/json
       "idx": 0,
       "title": "File Extension",
       "description": "Apply only to a particular file extension",
-      "summary": "Apply only to a particular file extension",
+      "summary": "File extension is jpg",
       "first": true,
       "last": false
     },
@@ -40,7 +40,7 @@ Content-Type: application/json
       "idx": 1,
       "title": "Workflow state",
       "description": "Apply only to a objects in a particular workflow state",
-      "summary": "Apply only to a objects in a particular workflow state",
+      "summary": "Workflow states are: private",
       "first": false,
       "last": false
     },
@@ -48,7 +48,7 @@ Content-Type: application/json
       "idx": 2,
       "title": "File Extension",
       "description": "Apply only to a particular file extension",
-      "summary": "Apply only to a particular file extension",
+      "summary": "File extension is jpg",
       "first": false,
       "last": true
     }

@@ -99,6 +99,7 @@
 - Add addable actions and conditions to routes @robgietema
 - Add workflow transitions vocabulary @robgietema
 - Add routes to manage actions and conditions on a content rule @robgietema
+- Add summary method to content rules @robgietema
 
 ### Bugfix
 

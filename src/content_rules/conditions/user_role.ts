@@ -9,6 +9,13 @@ export const user_role = {
   getTitle: (req: Request) => req.i18n('User’s role'),
   getDescription: (req: Request) =>
     req.i18n('Apply only when the current user has the given role'),
+  getSummary: (req: Request, params: any) =>
+    req.i18n('Roles are: {roles}', {
+      roles:
+        params.role_names && params.role_names.length > 0
+          ? params.role_names.join(', ')
+          : req.i18n('None'),
+    }),
   schema: {
     fieldsets: [
       {
