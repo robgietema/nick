@@ -182,13 +182,11 @@ export const seedDocument = async (
       await mapAsync(
         contentRules,
         async (contentRule: any) =>
-          await insert
-            .$relatedQuery('_contentRules', trx)
-            .relate({
-              id: contentRule.id,
-              enabled: contentRule.enabled,
-              bubble: contentRule.bubble,
-            }),
+          await insert.$relatedQuery('_contentRules', trx).relate({
+            id: contentRule.id,
+            enabled: contentRule.enabled,
+            bubble: contentRule.bubble,
+          }),
       );
     });
 
