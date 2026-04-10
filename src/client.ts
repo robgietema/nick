@@ -11,6 +11,11 @@ import { RequestException } from './helpers/error/error';
 import { Response, NextFunction } from 'express';
 
 import { callHandler } from './helpers/handler/handler';
+import { content_rules } from './events/content_rules/content_rules';
+
+// Add content rules events
+import config from './helpers/config/config';
+config.settings.events.register(content_rules);
 
 /**
  * Client component

@@ -1037,8 +1037,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Teave selle üksusega seotud õiguste kohta."
 
 #. Default: "Internal server error"
-#: src/app.ts:236
-#: src/app.ts:246
+#: src/app.ts:240
+#: src/app.ts:250
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr "Serveri sisemine viga"
@@ -2278,9 +2278,9 @@ msgid "Today"
 msgstr "Täna"
 
 #. Default: "Transaction error."
-#: src/client.ts:61
-#: src/app.ts:181
-#: src/app.ts:194
+#: src/client.ts:66
+#: src/app.ts:185
+#: src/app.ts:198
 msgctxt "Client.ts"
 msgid "Transaction error."
 msgstr "Tehingu viga."

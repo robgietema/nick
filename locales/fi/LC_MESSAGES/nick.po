@@ -1037,8 +1037,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Tietoa tähän kohteeseen liittyvistä oikeuksista."
 
 #. Default: "Internal server error"
-#: src/app.ts:236
-#: src/app.ts:246
+#: src/app.ts:240
+#: src/app.ts:250
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr "Sisäinen palvelinvirhe"
@@ -2278,9 +2278,9 @@ msgid "Today"
 msgstr "Tänään"
 
 #. Default: "Transaction error."
-#: src/client.ts:61
-#: src/app.ts:181
-#: src/app.ts:194
+#: src/client.ts:66
+#: src/app.ts:185
+#: src/app.ts:198
 msgctxt "Client.ts"
 msgid "Transaction error."
 msgstr "Transaktiovirhe."

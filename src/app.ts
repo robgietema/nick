@@ -17,6 +17,7 @@ import models from './models';
 import globalRoutes from './routes';
 import globalTasks from './tasks';
 import { purge } from './events/cache/cache';
+import { content_rules } from './events/content_rules/content_rules';
 
 import { accessLogger } from './middleware/access-logger/access-logger';
 import { cors } from './middleware/cors/cors';
@@ -88,6 +89,9 @@ const app = express();
 if (config.settings.cache.enabled && config.settings.cache.purge) {
   config.settings.events.register(purge);
 }
+
+// Add content rules events
+config.settings.events.register(content_rules);
 
 // Add middleware
 app.use(
