@@ -19,6 +19,7 @@ import { types } from './types/types';
 import { users } from './users/users';
 import { workflows } from './workflows/workflows';
 import { workflowStates } from './workflow-states/workflow-states';
+import { workflowTransitions } from './workflow-transitions/workflow-transitions';
 
 import config from '../helpers/config/config';
 
@@ -39,5 +40,6 @@ export const vocabularies = {
   users,
   workflows,
   workflowStates,
+  workflowTransitions,
   ...('vocabularies' in config.settings ? config.settings.vocabularies : {}),
 } as any;

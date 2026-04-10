@@ -71,6 +71,10 @@ Content-Type: application/json
     "title": "workflowStates"
   },
   {
+    "@id": "http://localhost:8080/@vocabularies/workflowTransitions",
+    "title": "workflowTransitions"
+  },
+  {
     "@id": "http://localhost:8080/@vocabularies/workflows",
     "title": "workflows"
   }

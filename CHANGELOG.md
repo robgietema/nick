@@ -97,6 +97,7 @@
 - Add basic crud operations for content rules @robgietema
 - Add content rules actions and conditions registry @robgietema
 - Add addable actions and conditions to routes @robgietema
+- Add workflow transitions vocabulary @robgietema
 
 ### Bugfix
 

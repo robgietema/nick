@@ -1,6 +1,6 @@
 /**
- * Workflows states vocabulary.
- * @module vocabularies/workflows-states/workflows-states
+ * Workflows transitions vocabulary.
+ * @module vocabularies/workflows-transitions/workflows-transitions
  */
 
 import { mapValues } from 'es-toolkit/object';
@@ -11,27 +11,27 @@ import models from '../../models';
 import { objectToVocabulary } from '../../helpers/utils/utils';
 
 /**
- * Returns the workflows states vocabulary.
- * @method workflowStates
+ * Returns the workflows transitions vocabulary.
+ * @method workflowTransitions
  * @param {Request} req Request object
  * @param {Knex.Transaction} trx Transaction object
  * @returns {Promise<VocabularyTerm[]>} Array of terms.
  */
-export async function workflowStates(
+export async function workflowTransitions(
   req: Request,
   trx: Knex.Transaction,
 ): Promise<VocabularyTerm[]> {
   const Workflow = models.get('Workflow');
-  const states = {} as Record<string, string>;
+  const transitions = {} as Record<string, string>;
   const workflows = await Workflow.fetchAll({}, { order: 'title' }, trx);
 
-  // Get states
+  // Get transitions
   workflows.map((workflow: any) =>
-    mapValues(workflow.json.states, (value, key: string) => {
-      states[key] = value.title;
+    mapValues(workflow.json.transitions, (value, key: string) => {
+      transitions[key] = value.title;
     }),
   );
 
-  // Return states
-  return objectToVocabulary(states);
+  // Return transitions
+  return objectToVocabulary(transitions);
 }
