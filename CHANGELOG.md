@@ -171,6 +171,7 @@
 - Fix exclude from nav bug @robgietema
 - Fix issue with layouts in types endpoint @robgietema
 - Fix issue with sharing @robgietema
+- Narrow down the `config.blobs` type to only allow 'file' or 'db' @sneridagh
 
 ### Internal
 
