@@ -26,6 +26,7 @@ export const config = {
     user: DB_USER || 'nick',
     password: DB_PASSWORD || 'nick',
   },
+  blobs: 'file',
   blobsDir: `${__dirname}/var/blobstorage`,
   localesDir: `${__dirname}/locales`,
   port: 8080,
