@@ -4,7 +4,7 @@ const cli = Client.initialize({ apiPath: 'http://localhost:8080' });
 
 const { data } = await cli.login({
   data: {
-    username: 'doesntexist',
+    login: 'doesntexist',
     password: 'wrong',
   },
 });
