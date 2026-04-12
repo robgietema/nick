@@ -47,7 +47,6 @@ export class Client {
             ...rest
           } = {} as any,
         ) => {
-          console.log(rest);
           const req = {
             token: initToken || token,
             apiPath,
