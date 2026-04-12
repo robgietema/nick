@@ -208,6 +208,7 @@
 - Check migrations and profile upgrades on startup @robgietema
 - Make it possible to overwrite models @robgietema
 - Register event handler for content rules @robgietema
+- Pass remaining params in client to params object @robgietema
 
 ### Documentation
 

@@ -36,15 +36,28 @@ export class Client {
     routes.map((route: any) => {
       if (route.client) {
         client[route.client] = async (
-          { token, path, data, locktoken, query, params, headers } = {} as any,
+          {
+            token,
+            path,
+            data,
+            locktoken,
+            query,
+            params,
+            headers,
+            ...rest
+          } = {} as any,
         ) => {
+          console.log(rest);
           const req = {
             token: initToken || token,
             apiPath,
             documentPath: path || '/',
             body: data,
             query,
-            params,
+            params: {
+              ...(params ? params : {}),
+              ...rest,
+            },
             headers,
           } as Request;
           if (locktoken) {
