@@ -2278,7 +2278,7 @@ msgid "Today"
 msgstr "Dnes"
 
 #. Default: "Transaction error."
-#: src/client.ts:66
+#: src/client.ts:78
 #: src/app.ts:185
 #: src/app.ts:198
 msgctxt "Client.ts"
