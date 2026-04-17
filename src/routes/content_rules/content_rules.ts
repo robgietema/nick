@@ -37,8 +37,8 @@ export default [
         (content_rule: any) => content_rule.id,
       );
 
-      // Fetch aquired content rules
-      const aquiredContentRules: any[] = [];
+      // Fetch acquired content rules
+      const acquiredContentRules: any[] = [];
       if (req.document.parent) {
         let document = req.document;
         do {
@@ -51,7 +51,7 @@ export default [
             if (assignedContentRuleIds.includes(content_rule.id)) {
               return;
             }
-            aquiredContentRules.push({
+            acquiredContentRules.push({
               id: content_rule.id,
               title: content_rule.title,
               description: content_rule.description,
@@ -65,7 +65,7 @@ export default [
       return {
         json: {
           'content-rules': {
-            acquired_rules: aquiredContentRules,
+            acquired_rules: acquiredContentRules,
             assignable_rules: content_rules.models
               .filter(
                 (content_rule: any) =>
