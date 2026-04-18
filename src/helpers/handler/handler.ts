@@ -6,7 +6,7 @@ import { getPath } from '../url/url';
 import { getUserId, hasPermission } from '../auth/auth';
 
 import models from '../../models';
-import type { Request, Route } from '../../types';
+import type { Callback, Request, Route, View } from '../../types';
 
 /**
  * Resolve and call handler
@@ -15,14 +15,14 @@ import type { Request, Route } from '../../types';
  * @param {Knex.Transaction} trx Transaction object.
  * @param {Object} route Route object.
  * @param {Function} callback Callback function.
- * @returns {Promise<any>} Response
+ * @returns {Promise<View>} Response
  */
 export async function callHandler(
   req: Request,
   trx: Knex.Transaction,
   route: Route,
-  callback: any,
-): Promise<any> {
+  callback: Callback,
+): Promise<View> {
   const User = models.get('User');
   const Document = models.get('Document');
   const Redirect = models.get('Redirect');
@@ -99,7 +99,7 @@ export async function callHandler(
 
   // Call handler
   req.document = document;
-  (req as any).navroot = result.navroot;
+  req.navroot = result.navroot;
   req.type = type;
   req.permissions = uniq([
     ...permissions,

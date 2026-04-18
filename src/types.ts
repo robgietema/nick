@@ -14,6 +14,18 @@ export interface Model {
 
 export type Params = { [key: string]: any };
 
+export type Callback = (...args: any[]) => any;
+
+export interface View {
+  status: number;
+  etag?: string;
+  xkeys?: string[];
+  json?: Json;
+  html?: string;
+  headers?: { [key: string]: string };
+  binary?: Buffer;
+}
+
 export interface User extends Model {
   id: string;
   fullname: string;
@@ -83,14 +95,6 @@ export type ContentRuleActions = {
 export type ContentRuleConditions = {
   [key: string]: ContentRuleCondition;
 };
-
-export interface View {
-  status: number;
-  etag?: string;
-  xkeys?: string[];
-  json?: any;
-  html?: string;
-}
 
 export type Fieldset = {
   id: string;
