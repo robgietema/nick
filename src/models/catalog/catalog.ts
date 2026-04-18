@@ -14,7 +14,7 @@ import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../_model/_model';
 
 import config from '../../helpers/config/config';
-import type { Json, Request } from '../../types';
+import type { Json, Request, VocabularyTerm } from '../../types';
 import type { Knex } from 'knex';
 
 /**
@@ -125,17 +125,17 @@ export class Catalog extends Model {
   }
 
   /**
-   * Returns vocabulary data.
-   * @method getVocabulary
+   * Returns a vocabulary term.
+   * @method getVocabularyTerm
    * @param {Request} req Request object.
-   * @returns {Json} JSON object.
+   * @returns {VocabularyTerm} Vocabulary term.
    */
-  getVocabulary(req: Request): Json {
+  getVocabularyTerm(req: Request): VocabularyTerm {
     const self: any = this;
     return {
       title: req.i18n(self.Title),
       token: self.Title,
-    } as Json;
+    };
   }
 
   /**

@@ -18,7 +18,7 @@ import { removeUndefined } from '../../helpers/utils/utils';
 import { knex } from '../../helpers/knex/knex';
 
 import { Collection } from '../../collections/_collection/_collection';
-import type { Json, Request } from '../../types';
+import type { VocabularyTerm, Request } from '../../types';
 
 // Give the knex instance to objection.
 ObjectionModel.knex(knex);
@@ -443,12 +443,12 @@ export class Model extends mixin(ObjectionModel, [
   }
 
   /**
-   * Returns vocabulary data.
-   * @method getVocabulary
-   * @param {any} req Request object.
-   * @returns {any} JSON object.
+   * Return a vocabulary term.
+   * @method getVocabularyTerm
+   * @param {Request} req Request object.
+   * @returns {VocabularyTerm} Vocabulary term.
    */
-  getVocabulary(req: any): any {
+  getVocabularyTerm(req: Request): VocabularyTerm {
     return {
       title: req.i18n((this as any).title),
       token: (this as any).id,

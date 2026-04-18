@@ -9,7 +9,7 @@ import type { Knex } from 'knex';
 import { getRootUrl } from '../../helpers/url/url';
 import { Model } from '../_model/_model';
 import models from '../';
-import type { Json, Request } from '../../types';
+import type { Json, Request, VocabularyTerm } from '../../types';
 
 /**
  * A model for User.
@@ -161,15 +161,15 @@ export class User extends Model {
 
   /**
    * Returns vocabulary data.
-   * @method getVocabulary
+   * @method getVocabularyTerm
    * @param {Request} req Request object.
-   * @returns {Json} JSON object.
+   * @returns {VocabularyTerm} Vocabulary term.
    */
-  getVocabulary(req: Request): Json {
+  getVocabularyTerm(req: Request): VocabularyTerm {
     const self: any = this;
     return {
       title: req.i18n(self.fullname),
       token: self.id,
-    } as Json;
+    };
   }
 }

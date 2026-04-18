@@ -9,7 +9,7 @@ export type Json = JsonPrimative | JsonComposite;
 
 export interface Model {
   toJson: (req: Request) => any | Promise<any>;
-  getVocabulary: (req: Request) => any;
+  getVocabularyTerm: (req: Request) => VocabularyTerm;
 }
 
 export interface User extends Model {
@@ -75,6 +75,8 @@ export interface VocabularyTerm {
   title: string;
   token: string;
 }
+
+export type Vocabulary = VocabularyTerm[];
 
 export interface Route {
   view: string;

@@ -3,7 +3,7 @@
  * @module collection/_collection/_collection
  */
 
-import type { Json, Model, Request } from '../../types';
+import type { Json, Vocabulary, Model, Request } from '../../types';
 
 /**
  * Base collection used to extend collections from.
@@ -53,10 +53,10 @@ export class Collection<T extends Model> {
    * Returns vocabulary data.
    * @method getVocabulary
    * @param {Request} req Request object.
-   * @returns {Object} JSON object.
+   * @returns {Vocabulary} Vocabulary.
    */
-  getVocabulary(req: Request): any[] {
-    return this.map((model) => model.getVocabulary(req));
+  getVocabulary(req: Request): Vocabulary {
+    return this.map((model) => model.getVocabularyTerm(req));
   }
 
   /**
