@@ -113,7 +113,7 @@ export function checkETag(req: Request, etag: string): boolean {
     // Split and trim etags
     const reqETags = reqETag.split(',').map((tag) => tag.trim());
 
-    // Check if any tag matches or wildcard is specified
+    // Check if a tag matches or wildcard is specified
     return reqETags.includes('*') || reqETags.includes(etag);
   }
   return false;

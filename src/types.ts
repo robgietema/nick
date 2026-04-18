@@ -50,7 +50,7 @@ export interface ContentRuleAction {
   getTitle(req: Request): string;
   getDescription(req: Request): string;
   getSummary(req: Request, params: Params): string;
-  schema: Schema;
+  schema: Json;
   handler(params: Params, req: Request): Promise<void>;
 }
 
@@ -65,7 +65,7 @@ export interface ContentRuleCondition {
   getTitle(req: Request): string;
   getDescription(req: Request): string;
   getSummary(req: Request, params: Params): string;
-  schema: Schema;
+  schema: Json;
   handler(params: Params, req: Request): Promise<void>;
 }
 
@@ -92,15 +92,15 @@ export interface View {
   html?: string;
 }
 
-export interface Fieldset {
+export type Fieldset = {
   id: string;
-  title?: string;
+  title: string;
   behavior?: string;
   fields: string[];
-}
+};
 
 export interface Property {
-  title?: string;
+  title: string;
   description?: string;
   behavior?: string;
   [key: string]: any;

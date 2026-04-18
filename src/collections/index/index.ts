@@ -20,7 +20,7 @@ export class IndexCollection extends Collection<IndexModel> {
    * Returns JSON data.
    * @method toJson
    * @param {Request} req Request object.
-   * @returns {Promise<any[]>} JSON object.
+   * @returns {Promise<Json>} JSON object.
    */
   async toJson(req: Request): Promise<Json> {
     const json: Json = {};

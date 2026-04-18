@@ -5,6 +5,8 @@
 
 import config from '../config/config';
 
+import type { Json, Params } from '../../types';
+
 interface VisionResult {
   response: string;
 }
@@ -46,8 +48,8 @@ export async function embed(input: string): Promise<string> {
 export async function generate(
   prompt: string,
   context: Array<number>,
-  params: any = {},
-): Promise<any> {
+  params: Params = {},
+): Promise<Json> {
   const response = await fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
     headers: {
@@ -76,7 +78,7 @@ export async function generate(
 export function streamGenerate(
   prompt: string,
   context: Array<number>,
-  params: any = {},
+  params: Params = {},
   callback: (token: string) => void,
 ): undefined {
   fetch(config.settings.ai?.models?.llm?.api, {
@@ -92,8 +94,10 @@ export function streamGenerate(
       think: false,
     }),
   }).then(async (response: Response) => {
-    const reader: any = response.body?.getReader();
-    let readResult: any;
+    const reader: ReadableStreamDefaultReader | undefined =
+      response.body?.getReader();
+    let readResult;
+    if (!reader) return;
     readResult = await reader.read();
     while (!readResult.done) {
       const token = new TextDecoder().decode(readResult.value);
@@ -115,8 +119,8 @@ export function streamGenerate(
 export async function chat(
   prompt: string,
   messages: Array<Message> = [],
-  params: any = {},
-  tools: any = [],
+  params: Params = {},
+  tools = [],
 ): Promise<string> {
   const response = await fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
@@ -153,8 +157,8 @@ export async function chat(
 export function streamChat(
   prompt: string,
   messages: Array<Message> = [],
-  params: any = {},
-  tools: any = [],
+  params: Params = {},
+  tools = [],
   callback: (token: string) => void,
 ): undefined {
   fetch(config.settings.ai?.models?.llm?.api, {
@@ -176,8 +180,10 @@ export function streamChat(
       think: false,
     }),
   }).then(async (response: Response) => {
-    const reader: any = response.body?.getReader();
-    let readResult: any;
+    const reader: ReadableStreamDefaultReader | undefined =
+      response.body?.getReader();
+    let readResult;
+    if (!reader) return;
     readResult = await reader.read();
     while (!readResult.done) {
       const token = new TextDecoder().decode(readResult.value);
