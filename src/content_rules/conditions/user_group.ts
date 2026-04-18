@@ -3,13 +3,13 @@
  * @module content_rules/conditions/user_group
  */
 
-import type { Request } from '../../types';
+import type { Params, Request } from '../../types';
 
 export const user_group = {
   getTitle: (req: Request) => req.i18n('User’s group'),
   getDescription: (req: Request) =>
     req.i18n('Apply only when the current user is in the given group'),
-  getSummary: (req: Request, params: any) =>
+  getSummary: (req: Request, params: Params) =>
     req.i18n('Groups are: {groups}', {
       groups:
         params.group_names && params.group_names.length > 0
@@ -46,5 +46,5 @@ export const user_group = {
     required: ['group_names'],
     type: 'object',
   },
-  handler: async (params: any, req: Request) => {},
+  handler: async (params: Params, req: Request) => {},
 };

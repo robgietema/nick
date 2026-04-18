@@ -3,13 +3,13 @@
  * @module content_rules/actions/transition_workflow
  */
 
-import type { Request } from '../../types';
+import type { Params, Request } from '../../types';
 
 export const transition_workflow = {
   getTitle: (req: Request) => req.i18n('Transition workflow state'),
   getDescription: (req: Request) =>
     req.i18n('Perform a workflow transition on the triggering object'),
-  getSummary: (req: Request, params: any) =>
+  getSummary: (req: Request, params: Params) =>
     req.i18n('Execute transition {transition}', {
       transition: params.transition || req.i18n('None'),
     }),
@@ -35,5 +35,5 @@ export const transition_workflow = {
     required: ['transition'],
     type: 'object',
   },
-  handler: async (params: any, req: Request) => {},
+  handler: async (params: Params, req: Request) => {},
 };

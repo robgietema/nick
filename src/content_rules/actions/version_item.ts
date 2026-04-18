@@ -3,12 +3,12 @@
  * @module content_rules/actions/version_item
  */
 
-import type { Request } from '../../types';
+import type { Params, Request } from '../../types';
 
 export const version_item = {
   getTitle: (req: Request) => req.i18n('Version item'),
   getDescription: (req: Request) => req.i18n('Store a new version of the item'),
-  getSummary: (req: Request, params: any) =>
+  getSummary: (req: Request, params: Params) =>
     req.i18n('Version item with comment {comment}', {
       comment: params.comment || req.i18n('None'),
     }),
@@ -32,5 +32,5 @@ export const version_item = {
     required: [],
     type: 'object',
   },
-  handler: async (params: any, req: Request) => {},
+  handler: async (params: Params, req: Request) => {},
 };

@@ -3,13 +3,13 @@
  * @module content_rules/conditions/user_role
  */
 
-import type { Request } from '../../types';
+import type { Params, Request } from '../../types';
 
 export const user_role = {
   getTitle: (req: Request) => req.i18n('User’s role'),
   getDescription: (req: Request) =>
     req.i18n('Apply only when the current user has the given role'),
-  getSummary: (req: Request, params: any) =>
+  getSummary: (req: Request, params: Params) =>
     req.i18n('Roles are: {roles}', {
       roles:
         params.role_names && params.role_names.length > 0
@@ -46,5 +46,5 @@ export const user_role = {
     required: ['role_names'],
     type: 'object',
   },
-  handler: async (params: any, req: Request) => {},
+  handler: async (params: Params, req: Request) => {},
 };

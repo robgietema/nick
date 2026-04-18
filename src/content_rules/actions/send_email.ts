@@ -3,13 +3,13 @@
  * @module content_rules/actions/send_email
  */
 
-import type { Request } from '../../types';
+import type { Params, Request } from '../../types';
 
 export const send_email = {
   getTitle: (req: Request) => req.i18n('Send email'),
   getDescription: (req: Request) =>
     req.i18n('Send an email on the triggering object'),
-  getSummary: (req: Request, params: any) =>
+  getSummary: (req: Request, params: Params) =>
     req.i18n('Email report to {recipients}', {
       recipients: params.recipients || req.i18n('None'),
     }),
@@ -60,5 +60,5 @@ export const send_email = {
     required: ['subject', 'recipients', 'message'],
     type: 'object',
   },
-  handler: async (params: any, req: Request) => {},
+  handler: async (params: Params, req: Request) => {},
 };

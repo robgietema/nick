@@ -3,13 +3,13 @@
  * @module content_rules/conditions/file_extension
  */
 
-import type { Request } from '../../types';
+import type { Params, Request } from '../../types';
 
 export const file_extension = {
   getTitle: (req: Request) => req.i18n('File Extension'),
   getDescription: (req: Request) =>
     req.i18n('Apply only to a particular file extension'),
-  getSummary: (req: Request, params: any) =>
+  getSummary: (req: Request, params: Params) =>
     req.i18n('File extension is {extension}', {
       extension: params.file_extension || req.i18n('None'),
     }),
@@ -32,5 +32,5 @@ export const file_extension = {
     required: ['file_extension'],
     type: 'object',
   },
-  handler: async (params: any, req: Request) => {},
+  handler: async (params: Params, req: Request) => {},
 };

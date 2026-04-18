@@ -12,6 +12,8 @@ export interface Model {
   getVocabularyTerm: (req: Request) => VocabularyTerm;
 }
 
+export type Params = { [key: string]: any };
+
 export interface User extends Model {
   id: string;
   fullname: string;
@@ -36,9 +38,51 @@ export interface Request extends express.Request {
   type: any;
   token?: string;
   timestamp: string;
-  params: { [key: string]: any };
+  params: Params;
   query: { [key: string]: string };
 }
+
+export interface Reference {
+  path: string;
+}
+
+export interface ContentRuleAction {
+  getTitle(req: Request): string;
+  getDescription(req: Request): string;
+  getSummary(req: Request, params: Params): string;
+  schema: Schema;
+  handler(params: Params, req: Request): Promise<void>;
+}
+
+export interface ContentRuleActionJson {
+  addview: string;
+  title: string;
+  description: string;
+  '@schema': Schema;
+}
+
+export interface ContentRuleCondition {
+  getTitle(req: Request): string;
+  getDescription(req: Request): string;
+  getSummary(req: Request, params: Params): string;
+  schema: Schema;
+  handler(params: Params, req: Request): Promise<void>;
+}
+
+export interface ContentRuleConditionJson {
+  addview: string;
+  title: string;
+  description: string;
+  '@schema': Schema;
+}
+
+export type ContentRuleActions = {
+  [key: string]: ContentRuleAction;
+};
+
+export type ContentRuleConditions = {
+  [key: string]: ContentRuleCondition;
+};
 
 export interface View {
   status: number;
@@ -50,14 +94,14 @@ export interface View {
 
 export interface Fieldset {
   id: string;
-  title: string;
+  title?: string;
   behavior?: string;
   fields: string[];
 }
 
 export interface Property {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   behavior?: string;
   [key: string]: any;
 }

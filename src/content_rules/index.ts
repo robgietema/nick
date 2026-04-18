@@ -5,7 +5,15 @@
 
 import { translateSchema } from '../helpers/schema/schema';
 import { stripI18n } from '../helpers/i18n/i18n';
-import type { Request } from '../types';
+import type {
+  Request,
+  ContentRuleAction,
+  ContentRuleActions,
+  ContentRuleActionJson,
+  ContentRuleCondition,
+  ContentRuleConditions,
+  ContentRuleConditionJson,
+} from '../types';
 
 import { copy_item } from './actions/copy_item';
 import { delete_item } from './actions/delete_item';
@@ -26,8 +34,8 @@ import { workflow_state } from './conditions/workflow_state';
  * @class ContentRules
  */
 class ContentRules {
-  public actions: any;
-  public conditions: any;
+  public actions: ContentRuleActions;
+  public conditions: ContentRuleConditions;
   static instance: ContentRules;
 
   /**
@@ -48,67 +56,71 @@ class ContentRules {
   /**
    * Register an action rule.
    * @param {string} name The name of the action.
-   * @param {any} rule The action to register.
+   * @param {ContentRuleAction} rule The action to register.
    */
-  registerAction(name: string, rule: any) {
+  registerAction(name: string, rule: ContentRuleAction) {
     this.actions[name] = rule;
   }
 
   /**
    * Get an action rule.
    * @param {string} name The name of the action rule.
-   * @returns {any} The action rule.
+   * @returns {ContentRuleAction} The action rule.
    */
-  getAction(name: string): any {
+  getAction(name: string): ContentRuleAction {
     return this.actions[name];
   }
 
   /**
    * Get a list of all actions.
    * @param {Request} req The request object.
-   * @returns {any} The actions.
+   * @returns {ContentRuleActionJson[]} The actions.
    */
-  getActions(req: Request): any {
-    const self: any = this;
-    return Object.entries(self.actions).map((action: any) => ({
-      addview: action[0],
-      title: action[1].getTitle(req),
-      description: action[1].getDescription(req),
-      '@schema': translateSchema(stripI18n(action[1].schema), req),
-    }));
+  getActions(req: Request): ContentRuleActionJson[] {
+    const self: ContentRules = this;
+    return Object.entries(self.actions).map(
+      ([name, action]: [string, ContentRuleAction]) => ({
+        addview: name,
+        title: action.getTitle(req),
+        description: action.getDescription(req),
+        '@schema': translateSchema(stripI18n(action.schema), req),
+      }),
+    );
   }
 
   /**
    * Register a condition rule.
    * @param {string} name The name of the condition.
-   * @param {any} rule The condition to register.
+   * @param {ContentRuleCondition} rule The condition to register.
    */
-  registerCondition(name: string, rule: any) {
+  registerCondition(name: string, rule: ContentRuleCondition) {
     this.conditions[name] = rule;
   }
 
   /**
    * Get a condition rule.
    * @param {string} name The name of the condition rule.
-   * @returns {any} The condition rule.
+   * @returns {ContentRuleCondition} The condition rule.
    */
-  getCondition(name: string): any {
+  getCondition(name: string): ContentRuleCondition {
     return this.conditions[name];
   }
 
   /**
    * Get a list of all conditions.
    * @param {Request} req The request object.
-   * @returns {any} The conditions.
+   * @returns {ContentRuleConditionJson[]} The conditions.
    */
-  getConditions(req: Request): any {
-    const self: any = this;
-    return Object.entries(self.conditions).map((condition: any) => ({
-      addview: condition[0],
-      title: condition[1].getTitle(req),
-      description: condition[1].getDescription(req),
-      '@schema': translateSchema(stripI18n(condition[1].schema), req),
-    }));
+  getConditions(req: Request): ContentRuleConditionJson[] {
+    const self: ContentRules = this;
+    return Object.entries(self.conditions).map(
+      (condition: [string, ContentRuleCondition]) => ({
+        addview: condition[0],
+        title: condition[1].getTitle(req),
+        description: condition[1].getDescription(req),
+        '@schema': translateSchema(stripI18n(condition[1].schema), req),
+      }),
+    );
   }
 }
 

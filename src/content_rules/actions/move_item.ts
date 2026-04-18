@@ -3,17 +3,17 @@
  * @module content_rules/actions/move_item
  */
 
-import type { Request } from '../../types';
+import type { Params, Request, Reference } from '../../types';
 
 export const move_item = {
   getTitle: (req: Request) => req.i18n('Move to folder'),
   getDescription: (req: Request) =>
     req.i18n('Move the triggering item to a specific folder'),
-  getSummary: (req: Request, params: any) =>
+  getSummary: (req: Request, params: Params) =>
     req.i18n('Move to folder {target_folder}', {
       target_folder:
         params.target_folder && params.target_folder.length > 0
-          ? params.target_folder.map((item: any) => item.path).join(', ')
+          ? params.target_folder.map((item: Reference) => item.path).join(', ')
           : req.i18n('None'),
     }),
   schema: {
@@ -35,5 +35,5 @@ export const move_item = {
     required: ['target_folder'],
     type: 'object',
   },
-  handler: async (params: any, req: Request) => {},
+  handler: async (params: Params, req: Request) => {},
 };
