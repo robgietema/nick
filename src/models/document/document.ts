@@ -931,7 +931,7 @@ export class Document extends Model {
    * @return {number} Object size
    */
   getObjSize(): number {
-    return JSON.stringify((this as any).json).length;
+    return Buffer.byteLength(JSON.stringify((this as any).json), 'utf8');
   }
 
   /**

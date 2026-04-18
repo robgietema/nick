@@ -44,7 +44,7 @@ const tasks = [...localTasks, ...globalTasks];
 tasks.forEach((task) => {
   cron.schedule(task.schedule, async () => {
     log.info(`Running scheduled task: ${task.name}`);
-    task.handler();
+    await task.handler();
   });
 });
 
