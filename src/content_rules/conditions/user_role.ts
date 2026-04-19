@@ -3,6 +3,7 @@
  * @module content_rules/conditions/user_role
  */
 
+import { intersection } from 'es-toolkit/array';
 import type { Params, Request } from '../../types';
 
 export const user_role = {
@@ -46,12 +47,9 @@ export const user_role = {
     required: ['role_names'],
     type: 'object',
   },
-  handler: async (
-    params: Params,
-    document: any,
-    user: any,
-    contentRule: any,
-  ) => {
-    return true;
-  },
+  handler: async (params: Params, document: any, user: any, contentRule: any) =>
+    intersection(
+      params.role_names,
+      user._roles.map((role: any) => role.id),
+    ).length > 0,
 };

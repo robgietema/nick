@@ -264,13 +264,13 @@ msgid "Apply only when the current content object is of a particular type"
 msgstr ""
 
 #. Default: "Apply only when the current user has the given role"
-#: src/content_rules/conditions/user_role.ts:11
+#: src/content_rules/conditions/user_role.ts:12
 msgctxt "Content rules|Conditions|User role.ts"
 msgid "Apply only when the current user has the given role"
 msgstr ""
 
 #. Default: "Apply only when the current user is in the given group"
-#: src/content_rules/conditions/user_group.ts:11
+#: src/content_rules/conditions/user_group.ts:12
 msgctxt "Content rules|Conditions|User group.ts"
 msgid "Apply only when the current user is in the given group"
 msgstr ""
@@ -583,8 +583,8 @@ msgstr "Debug"
 #: src/routes/userschema/userschema.ts:24
 #: src/routes/userschema/userschema.ts:68
 #: src/content_rules/conditions/workflow_state.ts:24
-#: src/content_rules/conditions/user_role.ts:24
-#: src/content_rules/conditions/user_group.ts:24
+#: src/content_rules/conditions/user_role.ts:25
+#: src/content_rules/conditions/user_group.ts:25
 #: src/content_rules/conditions/file_extension.ts:21
 #: src/content_rules/conditions/content_type.ts:26
 #: src/content_rules/actions/version_item.ts:20
@@ -957,13 +957,13 @@ msgid "Gives the ability to rename an item from its edit form."
 msgstr "Fornece a habilidade de renomear um item a partir do seu formulário de edição."
 
 #. Default: "Group name"
-#: src/content_rules/conditions/user_group.ts:41
+#: src/content_rules/conditions/user_group.ts:42
 msgctxt "Content rules|Conditions|User group.ts"
 msgid "Group name"
 msgstr ""
 
 #. Default: "Groups are: {groups}"
-#: src/content_rules/conditions/user_group.ts:13
+#: src/content_rules/conditions/user_group.ts:14
 msgctxt "Content rules|Conditions|User group.ts"
 msgid "Groups are: {groups}"
 msgstr ""
@@ -1342,8 +1342,8 @@ msgstr "Não"
 
 #. Default: "None"
 #: src/content_rules/conditions/workflow_state.ts:17
-#: src/content_rules/conditions/user_role.ts:17
-#: src/content_rules/conditions/user_group.ts:17
+#: src/content_rules/conditions/user_role.ts:18
+#: src/content_rules/conditions/user_group.ts:18
 #: src/content_rules/conditions/file_extension.ts:14
 #: src/content_rules/conditions/content_type.ts:19
 #: src/content_rules/actions/version_item.ts:13
@@ -1696,13 +1696,13 @@ msgid "Robots.txt"
 msgstr "Robots.txt"
 
 #. Default: "Roles"
-#: src/content_rules/conditions/user_role.ts:41
+#: src/content_rules/conditions/user_role.ts:42
 msgctxt "Content rules|Conditions|User role.ts"
 msgid "Roles"
 msgstr ""
 
 #. Default: "Roles are: {roles}"
-#: src/content_rules/conditions/user_role.ts:13
+#: src/content_rules/conditions/user_role.ts:14
 msgctxt "Content rules|Conditions|User role.ts"
 msgid "Roles are: {roles}"
 msgstr ""
@@ -2114,7 +2114,7 @@ msgid "The message that you want to mail."
 msgstr ""
 
 #. Default: "The name of the group."
-#: src/content_rules/conditions/user_group.ts:30
+#: src/content_rules/conditions/user_group.ts:31
 msgctxt "Content rules|Conditions|User group.ts"
 msgid "The name of the group."
 msgstr ""
@@ -2144,7 +2144,7 @@ msgid "The port of your local SMTP (outgoing email) server. Usually '25'."
 msgstr "A porta do teu servidor SMTP local (correio de saída). Normalmente '25'."
 
 #. Default: "The roles to check for."
-#: src/content_rules/conditions/user_role.ts:30
+#: src/content_rules/conditions/user_role.ts:31
 msgctxt "Content rules|Conditions|User role.ts"
 msgid "The roles to check for."
 msgstr ""
@@ -2390,13 +2390,13 @@ msgid "Username for authentication to your email server. Not required unless you
 msgstr "Nome de utilizador para autenticação no teu servidor de email. Não é necessário a menos que uses ESMTP."
 
 #. Default: "User’s group"
-#: src/content_rules/conditions/user_group.ts:9
+#: src/content_rules/conditions/user_group.ts:10
 msgctxt "Content rules|Conditions|User group.ts"
 msgid "User’s group"
 msgstr ""
 
 #. Default: "User’s role"
-#: src/content_rules/conditions/user_role.ts:9
+#: src/content_rules/conditions/user_role.ts:10
 msgctxt "Content rules|Conditions|User role.ts"
 msgid "User’s role"
 msgstr ""

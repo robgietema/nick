@@ -51,9 +51,7 @@ export const content_type = {
   handler: async (
     params: Params,
     document: any,
-    user: any,
-    contentRule: any,
-  ) => {
-    return true;
-  },
+    _user: any,
+    _contentRule: any,
+  ) => params.check_types.includes(document.type),
 };

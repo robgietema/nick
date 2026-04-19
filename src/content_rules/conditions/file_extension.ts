@@ -35,9 +35,23 @@ export const file_extension = {
   handler: async (
     params: Params,
     document: any,
-    user: any,
-    contentRule: any,
+    _user: any,
+    _contentRule: any,
   ) => {
-    return true;
+    await document.fetchRelated('_type');
+
+    const fileFields = await document._type.getFactoryFields('File');
+    const imageFields = await document._type.getFactoryFields('Image');
+    const checks = [...fileFields, ...imageFields].map((field) => {
+      const value = document.json[field];
+      if (value && typeof value === 'object' && 'filename' in value) {
+        const extension = value.filename.split('.').pop();
+        if (extension === params.file_extension) {
+          return true;
+        }
+      }
+      return false;
+    });
+    return checks.indexOf(true) !== -1;
   },
 };

@@ -49,9 +49,7 @@ export const workflow_state = {
   handler: async (
     params: Params,
     document: any,
-    user: any,
-    contentRule: any,
-  ) => {
-    return true;
-  },
+    _user: any,
+    _contentRule: any,
+  ) => params.wf_states.includes(document.workflow_state),
 };

@@ -104,6 +104,7 @@
 - Add assignments to content rule endpoints @robgietema
 - Return acquired content rules @robgietema
 - Trigger content rules @robgietema
+- Add content rule condition handlers @robgietema
 
 ### Bugfix
 

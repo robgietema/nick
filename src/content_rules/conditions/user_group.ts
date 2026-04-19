@@ -3,6 +3,7 @@
  * @module content_rules/conditions/user_group
  */
 
+import { intersection } from 'es-toolkit/array';
 import type { Params, Request } from '../../types';
 
 export const user_group = {
@@ -46,12 +47,9 @@ export const user_group = {
     required: ['group_names'],
     type: 'object',
   },
-  handler: async (
-    params: Params,
-    document: any,
-    user: any,
-    contentRule: any,
-  ) => {
-    return true;
-  },
+  handler: async (params: Params, document: any, user: any, contentRule: any) =>
+    intersection(
+      params.group_names,
+      user._groups.map((group: any) => group.id),
+    ).length > 0,
 };
