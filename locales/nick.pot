@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-04-16T14:41:32.647Z\n"
+"POT-Creation-Date: 2026-04-19T16:01:56.869Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Domain: nick\n"
 
 #. Default: "&e = the triggering event, &c = the context, &u = the user"
-#: src/content_rules/actions/logger.ts:26
+#: src/content_rules/actions/logger.ts:27
 msgctxt "Content rules|Actions|Logger.ts"
 msgid "&e = the triggering event, &c = the context, &u = the user"
 msgstr ""
@@ -682,7 +682,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.ts:65
-#: src/routes/content/content.ts:752
+#: src/routes/content/content.ts:765
 msgctxt "Routes|History|History.ts"
 msgid "Document locked"
 msgstr ""
@@ -1143,7 +1143,7 @@ msgid "Location of the event."
 msgstr ""
 
 #. Default: "Log a particular event"
-#: src/content_rules/actions/logger.ts:10
+#: src/content_rules/actions/logger.ts:11
 msgctxt "Content rules|Actions|Logger.ts"
 msgid "Log a particular event"
 msgstr ""
@@ -1155,7 +1155,7 @@ msgid "Log in"
 msgstr ""
 
 #. Default: "Log message {message}"
-#: src/content_rules/actions/logger.ts:12
+#: src/content_rules/actions/logger.ts:13
 msgctxt "Content rules|Actions|Logger.ts"
 msgid "Log message {message}"
 msgstr ""
@@ -1167,7 +1167,7 @@ msgid "Log out"
 msgstr ""
 
 #. Default: "Logger"
-#: src/content_rules/actions/logger.ts:9
+#: src/content_rules/actions/logger.ts:10
 msgctxt "Content rules|Actions|Logger.ts"
 msgid "Logger"
 msgstr ""
@@ -1245,7 +1245,7 @@ msgstr ""
 
 #. Default: "Message"
 #: src/content_rules/actions/send_email.ts:35
-#: src/content_rules/actions/logger.ts:29
+#: src/content_rules/actions/logger.ts:30
 msgctxt "Content rules|Actions|Send email.ts"
 msgid "Message"
 msgstr ""
@@ -1347,7 +1347,7 @@ msgstr ""
 #: src/content_rules/actions/transition_workflow.ts:14
 #: src/content_rules/actions/send_email.ts:14
 #: src/content_rules/actions/move_item.ts:17
-#: src/content_rules/actions/logger.ts:13
+#: src/content_rules/actions/logger.ts:14
 #: src/content_rules/actions/copy_item.ts:17
 msgctxt "Content rules|Conditions|Workflow state.ts"
 msgid "None"
@@ -1651,7 +1651,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:572
+#: src/routes/content/content.ts:583
 msgctxt "Routes|Content|Content.ts"
 msgid "Required field(s) missing."
 msgstr ""
@@ -1936,13 +1936,13 @@ msgid "Successfully enabled rules {rules} to subfolders"
 msgstr ""
 
 #. Default: "System group"
-#: src/routes/groups/groups.ts:139
+#: src/routes/groups/groups.ts:149
 msgctxt "Routes|Groups|Groups.ts"
 msgid "System group"
 msgstr ""
 
 #. Default: "System users"
-#: src/routes/users/users.ts:322
+#: src/routes/users/users.ts:332
 msgctxt "Routes|Users|Users.ts"
 msgid "System users"
 msgstr ""
@@ -2313,7 +2313,7 @@ msgid "Type of the current document is not found."
 msgstr ""
 
 #. Default: "Type {type} not found."
-#: src/routes/content/content.ts:561
+#: src/routes/content/content.ts:572
 msgctxt "Routes|Content|Content.ts"
 msgid "Type {type} not found."
 msgstr ""
@@ -2534,20 +2534,20 @@ msgid "You are not authorized to access this resource."
 msgstr ""
 
 #. Default: "You can’t delete system groups."
-#: src/routes/groups/groups.ts:138
+#: src/routes/groups/groups.ts:148
 msgctxt "Routes|Groups|Groups.ts"
 msgid "You can’t delete system groups."
 msgstr ""
 
 #. Default: "You can’t delete system users."
-#: src/routes/users/users.ts:321
+#: src/routes/users/users.ts:331
 msgctxt "Routes|Users|Users.ts"
 msgid "You can’t delete system users."
 msgstr ""
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:62
-#: src/routes/content/content.ts:749
+#: src/routes/content/content.ts:762
 msgctxt "Routes|History|History.ts"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr ""
