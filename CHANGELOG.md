@@ -105,6 +105,7 @@
 - Return acquired content rules @robgietema
 - Trigger content rules @robgietema
 - Add content rule condition handlers @robgietema
+- Add content rule action handlers @robgietema
 
 ### Bugfix
 

@@ -696,6 +696,12 @@ END:VCALENDAR`,
       // Fetch type
       await document.fetchRelated('_type', trx);
 
+      // Index new document
+      await document.index(trx);
+
+      // Fetch related lists
+      await document.fetchRelationLists(trx);
+
       // Trigger onAfterAdd
       await config.settings.events.trigger(
         'onAfterAdd',
@@ -705,12 +711,6 @@ END:VCALENDAR`,
         req.document, // Parent document
         json,
       );
-
-      // Index new document
-      await document.index(trx);
-
-      // Fetch related lists
-      await document.fetchRelationLists(trx);
 
       // Send data back to client
       return {

@@ -54,11 +54,12 @@ const contentHandler = async (
     const checks = await Promise.all(
       contentRule.json.conditions.map(async (condition: any) => {
         const conditionObj = contentRules.getCondition(condition.type);
-        return conditionObj.handler(
+        return await conditionObj.handler(
           omit(condition, ['type']),
           document,
           user,
           contentRule,
+          trx,
           ...(params as []),
         );
       }),
@@ -69,11 +70,12 @@ const contentHandler = async (
       // Call all actions
       await mapAsync(contentRule.json.actions, async (action: any) => {
         const actionObj = contentRules.getAction(action.type);
-        actionObj.handler(
+        await actionObj.handler(
           omit(action, ['type']),
           document,
           user,
           contentRule,
+          trx,
           ...(params as []),
         );
       });
@@ -112,11 +114,12 @@ const userHandler = async (
     const checks = await Promise.all(
       contentRule.json.conditions.map(async (condition: any) => {
         const conditionObj = contentRules.getCondition(condition.type);
-        return conditionObj.handler(
+        return await conditionObj.handler(
           omit(condition, ['type']),
           document,
           user,
           contentRule,
+          trx,
           ...(params as []),
         );
       }),
@@ -127,11 +130,12 @@ const userHandler = async (
       // Call all actions
       await mapAsync(contentRule.json.actions, async (action: any) => {
         const actionObj = contentRules.getAction(action.type);
-        actionObj.handler(
+        await actionObj.handler(
           omit(action, ['type']),
           document,
           user,
           contentRule,
+          trx,
           ...(params as []),
         );
       });

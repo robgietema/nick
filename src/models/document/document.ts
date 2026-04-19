@@ -767,7 +767,15 @@ export class Document extends Model {
     // Copy document
     const document = await Document.create(
       {
-        ...omit(self, ['_type']),
+        ...omit(self, [
+          '_type',
+          '_behaviors',
+          '_cache',
+          '_versions',
+          '_userRoles',
+          '_groupRoles',
+          '_children',
+        ]),
         json,
         parent,
         path,

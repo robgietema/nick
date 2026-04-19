@@ -3,6 +3,8 @@
  * @module content_rules/actions/transition_workflow
  */
 
+import dayjs from 'dayjs';
+import { Knex } from 'knex';
 import type { Params, Request } from '../../types';
 
 export const transition_workflow = {
@@ -40,5 +42,17 @@ export const transition_workflow = {
     document: any,
     user: any,
     contentRule: any,
-  ) => {},
+    trx: Knex.Transaction,
+  ) => {
+    const modified = dayjs.utc().format();
+
+    // Change workflow
+    await document.changeWorkflow(
+      params.transition,
+      user,
+      modified,
+      false,
+      trx,
+    );
+  },
 };

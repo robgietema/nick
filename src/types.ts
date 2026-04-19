@@ -56,6 +56,7 @@ export interface Request extends express.Request {
 
 export interface Reference {
   path: string;
+  UID?: string;
 }
 
 export interface ContentRuleAction {
@@ -68,6 +69,7 @@ export interface ContentRuleAction {
     context: any,
     user: any,
     contentRule: any,
+    trx: Knex.Transaction,
   ): Promise<void>;
 }
 
@@ -88,6 +90,7 @@ export interface ContentRuleCondition {
     context: any,
     user: any,
     contentRule: any,
+    trx: Knex.Transaction,
   ): Promise<void>;
 }
 

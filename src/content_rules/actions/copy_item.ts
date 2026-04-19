@@ -3,6 +3,9 @@
  * @module content_rules/actions/copy_item
  */
 
+import { mapAsync, uniqueId } from '../../helpers/utils/utils';
+import { Knex } from 'knex';
+import models from '../../models';
 import type { Params, Reference, Request } from '../../types';
 
 export const copy_item = {
@@ -38,7 +41,39 @@ export const copy_item = {
   handler: async (
     params: Params,
     document: any,
-    user: any,
-    contentRule: any,
-  ) => {},
+    _user: any,
+    _contentRule: any,
+    trx: Knex.Transaction,
+  ) => {
+    const Document = models.get('Document');
+    await mapAsync(params.target_folder, async (targetFolder: Reference) => {
+      // Get target parent
+      const targetParent = await Document.fetchOne({ path: targetFolder.path });
+
+      // Get children
+      await targetParent.fetchRelated('_children', trx);
+      const childIds = targetParent._children.map((child: any) => child.id);
+
+      // Calculate new id and path
+      const path = targetFolder.path;
+      const newId = uniqueId(document.id, childIds);
+      const newPath = `${path}${path === '/' ? '' : '/'}${newId}`;
+
+      // Copy object
+      const copiedDocument = await document.copy(
+        targetParent.uuid,
+        newPath,
+        newId,
+        trx,
+      );
+      await copiedDocument.fetchRelated('_parent', trx);
+
+      // Fetch new children and fix order
+      await targetParent.fetchRelated('_children', trx);
+      await targetParent.fixOrder(trx);
+
+      // Reindex children
+      await targetParent.reindexChildren(trx);
+    });
+  },
 };

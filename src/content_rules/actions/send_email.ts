@@ -3,6 +3,10 @@
  * @module content_rules/actions/send_email
  */
 
+import { Knex } from 'knex';
+import { sendMail } from '../../helpers/mail/mail';
+import { stripNewlines } from '../../helpers/utils/utils';
+import models from '../../models';
 import type { Params, Request } from '../../types';
 
 export const send_email = {
@@ -65,5 +69,30 @@ export const send_email = {
     document: any,
     user: any,
     contentRule: any,
-  ) => {},
+    trx: Knex.Transaction,
+  ) => {
+    // Fetch settings
+    const Controlpanel = models.get('Controlpanel');
+    const controlpanel = await Controlpanel.fetchById('mail', {}, trx);
+    const settings = controlpanel.data;
+
+    const source = params.source || stripNewlines(settings.email_from_address);
+    let to = params.recipients
+      .split(',')
+      .map((email: string) => stripNewlines(email.trim()));
+    if (params.exclude_actor) {
+      to = to.filter((email: string) => email !== user.email);
+    }
+
+    // Send mail
+    await sendMail(
+      {
+        to: to.join(', '),
+        from: source,
+        subject: params.subject || '',
+        text: params.message || '',
+      },
+      trx,
+    );
+  },
 };

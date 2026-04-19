@@ -49,7 +49,7 @@ export default [
       const ContentRule = models.get('ContentRule');
       const content_rules = await ContentRule.fetchAll(
         {},
-        { order: 'title' },
+        { order: 'title', related: '_documents' },
         trx,
       );
       return {

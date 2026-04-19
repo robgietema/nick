@@ -50,7 +50,7 @@ export class ContentRule extends Model {
       id: self.id,
       title: self.title,
       description: self.description,
-      assigned: false,
+      assigned: self._documents.length > 0,
       enabled: self.enabled,
       trigger: self.event,
       ...(extend

@@ -3,6 +3,12 @@
  * @module content_rules/actions/move_item
  */
 
+import { mapAsync, uniqueId } from '../../helpers/utils/utils';
+import { Knex } from 'knex';
+import models from '../../models';
+import { flattenDeep, uniq } from 'es-toolkit/array';
+import config from '../../helpers/config/config';
+import { removeFile } from '../../helpers/fs/fs';
 import type { Params, Request, Reference } from '../../types';
 
 export const move_item = {
@@ -38,7 +44,89 @@ export const move_item = {
   handler: async (
     params: Params,
     document: any,
-    user: any,
-    contentRule: any,
-  ) => {},
+    _user: any,
+    _contentRule: any,
+    trx: Knex.Transaction,
+  ) => {
+    const Document = models.get('Document');
+    await mapAsync(params.target_folder, async (targetFolder: Reference) => {
+      // Get target parent
+      const targetParent = await Document.fetchOne({ path: targetFolder.path });
+
+      // Get children
+      await targetParent.fetchRelated('_children', trx);
+      const childIds = targetParent._children.map((child: any) => child.id);
+
+      // Calculate new id and path
+      const path = targetFolder.path;
+      const newId = uniqueId(document.id, childIds);
+      const newPath = `${path}${path === '/' ? '' : '/'}${newId}`;
+
+      // Copy object
+      const copiedDocument = await document.copy(
+        targetParent.uuid,
+        newPath,
+        newId,
+        trx,
+      );
+      await copiedDocument.fetchRelated('_parent', trx);
+
+      // Fetch new children and fix order
+      await targetParent.fetchRelated('_children', trx);
+      await targetParent.fixOrder(trx);
+
+      // Reindex children
+      await targetParent.reindexChildren(trx);
+    });
+
+    // Check if target folder
+    if (params.target_folder && params.target_folder.length > 0) {
+      await document.fetchRelated('_type', trx);
+
+      // Get file and image fields
+      const fileFields = document._type.getFactoryFields('File');
+      const imageFields = document._type.getFactoryFields('Image');
+
+      // If file fields exist
+      if (fileFields.length > 0 || imageFields.length > 0) {
+        // Get versions
+        await document.fetchRelated('_versions', trx);
+
+        // Get all file uuids from all versions and all fields
+        const files = uniq(
+          flattenDeep(
+            document._versions.map((version: any) => [
+              ...fileFields.map((field: string) => version.json[field].uuid),
+              ...imageFields.map((field: string) => [
+                version.json[field].uuid,
+                ...Object.keys(config.settings.imageScales).map(
+                  (scale) => version.json[field].scales[scale].uuid,
+                ),
+              ]),
+            ]),
+          ),
+        );
+
+        // Remove files
+        await mapAsync(files, async (file: any) => await removeFile(file));
+      }
+
+      // Get parent
+      await document.fetchRelated('_parent', trx);
+      const parent = document._parent;
+
+      // Remove document (versions will be cascaded)
+      await document.delete(trx);
+
+      // Fix order in parent
+      await parent.fetchRelated('_children(order)', trx);
+      await parent.fixOrder(trx);
+
+      // Reindex children
+      await parent.reindexChildren(trx);
+
+      // Reindex parent
+      await parent.reindex(trx);
+    }
+  },
 };

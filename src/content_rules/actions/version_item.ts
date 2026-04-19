@@ -3,6 +3,8 @@
  * @module content_rules/actions/version_item
  */
 
+import dayjs from 'dayjs';
+import { Knex } from 'knex';
 import type { Params, Request } from '../../types';
 
 export const version_item = {
@@ -37,5 +39,33 @@ export const version_item = {
     document: any,
     user: any,
     contentRule: any,
-  ) => {},
+    trx: Knex.Transaction,
+  ) => {
+    // Create new version
+    const modified = dayjs.utc().format();
+    const version = document.version + 1;
+    await document.createRelated(
+      '_versions',
+      {
+        document: document.uuid,
+        id: document.id,
+        created: modified,
+        actor: user.id,
+        version,
+        json: {
+          ...document.json,
+          changeNote: params.comment,
+        },
+      },
+      trx,
+    );
+
+    // Save version
+    await document.update(
+      {
+        version,
+      },
+      trx,
+    );
+  },
 };

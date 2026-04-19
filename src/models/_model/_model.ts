@@ -313,7 +313,7 @@ export class Model extends mixin(ObjectionModel, [
     const model = await this.query(trx).insertAndFetch(own);
     await Promise.all(
       relations.map(async (related: string) => {
-        if (data[related]) {
+        if (data[related] && Array.isArray(data[related])) {
           await Promise.all(
             data[related].map(
               async (item: any) =>

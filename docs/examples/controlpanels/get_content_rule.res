@@ -6,7 +6,7 @@ Content-Type: application/json
   "id": "rule-1",
   "title": "Content Rule 1",
   "description": "Description for Content Rule 1",
-  "assigned": false,
+  "assigned": true,
   "enabled": false,
   "trigger": "onAfterAdd",
   "actions": [
