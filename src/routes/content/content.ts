@@ -846,7 +846,11 @@ END:VCALENDAR`,
       await req.document.reindex(trx);
 
       // Trigger onAfterModified
-      await config.settings.events.trigger('onAfterModify', req.document, trx);
+      await config.settings.events.trigger(
+        'onAfterModified',
+        req.document,
+        trx,
+      );
 
       // Send ok
       return {
