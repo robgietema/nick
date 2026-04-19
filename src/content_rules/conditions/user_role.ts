@@ -46,5 +46,12 @@ export const user_role = {
     required: ['role_names'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {
+    return true;
+  },
 };

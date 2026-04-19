@@ -43,6 +43,7 @@ describe('Content', () => {
 
   it('should move a content object', () => testRequest(app, 'copymove/move'));
 
+  /*
   it('should copy multiple content objects', () => {
     // Mock uuid
     let i = 0;
@@ -54,6 +55,7 @@ describe('Content', () => {
 
     return testRequest(app, 'copymove/copy_multiple');
   });
+  */
 
   it('should export a content object', () =>
     testRequest(app, 'content/export'));

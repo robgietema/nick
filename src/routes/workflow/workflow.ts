@@ -52,7 +52,7 @@ export default [
       // Change workflow
       await req.document.changeWorkflow(
         req.params.transition,
-        req.user.id,
+        req.user,
         modified,
         recursive,
         trx,

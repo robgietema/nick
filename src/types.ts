@@ -63,7 +63,12 @@ export interface ContentRuleAction {
   getDescription(req: Request): string;
   getSummary(req: Request, params: Params): string;
   schema: Json;
-  handler(params: Params, req: Request): Promise<void>;
+  handler(
+    params: Params,
+    context: any,
+    user: any,
+    contentRule: any,
+  ): Promise<void>;
 }
 
 export interface ContentRuleActionJson {
@@ -78,7 +83,12 @@ export interface ContentRuleCondition {
   getDescription(req: Request): string;
   getSummary(req: Request, params: Params): string;
   schema: Json;
-  handler(params: Params, req: Request): Promise<void>;
+  handler(
+    params: Params,
+    context: any,
+    user: any,
+    contentRule: any,
+  ): Promise<void>;
 }
 
 export interface ContentRuleConditionJson {

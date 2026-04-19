@@ -103,6 +103,7 @@
 - Add content rule assignments endpoints @robgietema
 - Add assignments to content rule endpoints @robgietema
 - Return acquired content rules @robgietema
+- Trigger content rules @robgietema
 
 ### Bugfix
 

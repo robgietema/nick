@@ -35,5 +35,10 @@ export const move_item = {
     required: ['target_folder'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {},
 };

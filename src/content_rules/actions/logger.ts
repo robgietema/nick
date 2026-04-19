@@ -4,6 +4,7 @@
  */
 
 import type { Params, Request } from '../../types';
+import { log } from '../../helpers/log/log';
 
 export const logger = {
   getTitle: (req: Request) => req.i18n('Logger'),
@@ -33,5 +34,17 @@ export const logger = {
     required: ['message'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {
+    log.info(
+      params.message
+        .replace(/\&e/g, contentRule.event)
+        .replace(/\&c/g, document.path)
+        .replace(/\&u/g, user.id) || '',
+    );
+  },
 };

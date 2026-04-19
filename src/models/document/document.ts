@@ -610,7 +610,7 @@ export class Document extends Model {
    */
   async changeWorkflow(
     transition: string,
-    actor: string,
+    actor: any,
     modified: string,
     recursive: boolean,
     trx: Knex.Transaction,
@@ -636,7 +636,7 @@ export class Document extends Model {
       const workflow_history = self.workflow_history;
       workflow_history.push({
         time: modified,
-        actor,
+        actor: actor.id,
         action: transition,
         state_title: self._type._workflow.json.states[new_state].title,
         review_state: new_state,
@@ -648,6 +648,7 @@ export class Document extends Model {
       await config.settings.events.trigger(
         'onBeforeChangeWorkflow',
         self,
+        actor,
         trx,
         transition,
         new_state,
@@ -670,6 +671,7 @@ export class Document extends Model {
       await config.settings.events.trigger(
         'onAfterChangeWorkflow',
         self,
+        actor,
         trx,
         transition,
         old_state,

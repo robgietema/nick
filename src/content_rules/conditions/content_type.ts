@@ -48,5 +48,12 @@ export const content_type = {
     required: ['check_types'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {
+    return true;
+  },
 };

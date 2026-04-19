@@ -85,7 +85,12 @@ export default [
       );
 
       // Trigger on after add group
-      await config.settings.events.trigger('onAfterAddGroup', group, trx);
+      await config.settings.events.trigger(
+        'onAfterAddGroup',
+        req.document,
+        group,
+        trx,
+      );
 
       // Send created
       return {
@@ -116,7 +121,12 @@ export default [
       );
 
       // Trigger on after update group
-      await config.settings.events.trigger('onAfterUpdateGroup', group, trx);
+      await config.settings.events.trigger(
+        'onAfterUpdateGroup',
+        req.document,
+        group,
+        trx,
+      );
 
       // Send ok
       return {
@@ -144,8 +154,10 @@ export default [
       // Trigger on before delete group
       await config.settings.events.trigger(
         'onBeforeDeleteGroup',
-        req.params.id,
+        req.document,
+        req.user,
         trx,
+        req.params.id,
       );
 
       await Group.deleteById(req.params.id, trx);
@@ -153,8 +165,10 @@ export default [
       // Trigger on after delete group
       await config.settings.events.trigger(
         'onAfterDeleteGroup',
-        req.params.id,
+        req.document,
+        req.user,
         trx,
+        req.params.id,
       );
 
       return {

@@ -32,5 +32,10 @@ export const version_item = {
     required: [],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {},
 };

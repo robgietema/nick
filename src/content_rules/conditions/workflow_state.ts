@@ -46,5 +46,12 @@ export const workflow_state = {
     required: ['wf_states'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {
+    return true;
+  },
 };

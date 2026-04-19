@@ -32,5 +32,12 @@ export const file_extension = {
     required: ['file_extension'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {
+    return true;
+  },
 };

@@ -260,7 +260,12 @@ export default [
       }
 
       // Trigger on after add user
-      await config.settings.events.trigger('onAfterAddUser', user, trx);
+      await config.settings.events.trigger(
+        'onAfterAddUser',
+        req.document,
+        user,
+        trx,
+      );
 
       // Send created
       return {
@@ -299,7 +304,12 @@ export default [
       );
 
       // Trigger on after update user
-      await config.settings.events.trigger('onAfterUpdateUser', user, trx);
+      await config.settings.events.trigger(
+        'onAfterUpdateUser',
+        req.document,
+        user,
+        trx,
+      );
 
       // Send ok
       return {
@@ -324,21 +334,29 @@ export default [
         });
       }
 
-      // Trigger on before delete user
-      await config.settings.events.trigger(
-        'onBeforeDeleteUser',
-        req.params.id,
-        trx,
-      );
+      // Fetch user
+      const user = await User.fetchById(req.params.id, {}, trx);
 
-      await User.deleteById(req.params.id, trx);
+      // Check if user exists
+      if (user) {
+        // Trigger on before delete user
+        await config.settings.events.trigger(
+          'onBeforeDeleteUser',
+          req.document,
+          user,
+          trx,
+        );
 
-      // Trigger on after delete user
-      await config.settings.events.trigger(
-        'onAfterDeleteUser',
-        req.params.id,
-        trx,
-      );
+        await User.deleteById(req.params.id, trx);
+
+        // Trigger on after delete user
+        await config.settings.events.trigger(
+          'onAfterDeleteUser',
+          req.document,
+          user,
+          trx,
+        );
+      }
 
       return {
         status: 204,

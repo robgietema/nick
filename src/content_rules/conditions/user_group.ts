@@ -46,5 +46,12 @@ export const user_group = {
     required: ['group_names'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {
+    return true;
+  },
 };

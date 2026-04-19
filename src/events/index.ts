@@ -23,7 +23,8 @@ interface Events {
   register: (plugin: EventPlugin, position?: number | 'bottom') => void;
   trigger: (
     event: string,
-    context: any,
+    document: any,
+    user: any,
     trx: Knex.Transaction,
     ...params: any[]
   ) => Promise<void>;
@@ -50,14 +51,15 @@ const events: Events = {
 
   trigger: async (
     event: string,
-    context: any,
+    document: any,
+    user: any,
     trx: Knex.Transaction,
     ...params: any[]
   ): Promise<void> => {
     if (!events.events[event]) return;
     await mapAsync(
       events.events[event],
-      async (handler) => await handler(context, trx, ...params),
+      async (handler) => await handler(document, user, trx, ...params),
     );
   },
 };

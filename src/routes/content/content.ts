@@ -206,7 +206,12 @@ export default [
           await parent.reindexChildren(trx);
 
           // Trigger on after move
-          await config.settings.events.trigger('onAfterMove', document, trx);
+          await config.settings.events.trigger(
+            'onAfterMove',
+            document,
+            req.user,
+            trx,
+          );
 
           // Add items to return array
           items.push({
@@ -264,7 +269,12 @@ export default [
         childIds.push(newId);
 
         // Trigger on before copy
-        await config.settings.events.trigger('onBeforeCopy', document, trx);
+        await config.settings.events.trigger(
+          'onBeforeCopy',
+          document,
+          req.user,
+          trx,
+        );
 
         // Copy object
         const copiedDocument = await document.copy(
@@ -279,6 +289,7 @@ export default [
         await config.settings.events.trigger(
           'onAfterCopy',
           copiedDocument,
+          req.user,
           trx,
           document,
         );
@@ -650,6 +661,7 @@ END:VCALENDAR`,
       await config.settings.events.trigger(
         'onBeforeAdd',
         document,
+        req.user,
         trx,
         req.document, // Parent document
         json,
@@ -688,6 +700,7 @@ END:VCALENDAR`,
       await config.settings.events.trigger(
         'onAfterAdd',
         document,
+        req.user,
         trx,
         req.document, // Parent document
         json,
@@ -814,6 +827,7 @@ END:VCALENDAR`,
       await config.settings.events.trigger(
         'onBeforeModify',
         req.document,
+        req.user,
         trx,
         { ...json, id: newId, path: newPath },
       );
@@ -849,6 +863,7 @@ END:VCALENDAR`,
       await config.settings.events.trigger(
         'onAfterModified',
         req.document,
+        req.user,
         trx,
       );
 
@@ -901,6 +916,7 @@ END:VCALENDAR`,
       await config.settings.events.trigger(
         'onBeforeDelete',
         req.document,
+        req.user,
         trx,
         req.document._parent,
       );
@@ -921,7 +937,8 @@ END:VCALENDAR`,
       // Trigger onAfterDelete
       await config.settings.events.trigger(
         'onAfterDelete',
-        null,
+        req.document,
+        req.user,
         trx,
         req.document._parent,
       );

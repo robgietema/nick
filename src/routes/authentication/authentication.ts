@@ -104,7 +104,7 @@ export default [
       );
 
       // Trigger on login
-      await config.settings.events.trigger('onLogin', user, trx);
+      await config.settings.events.trigger('onLogin', req.document, user, trx);
 
       // Return ok
       return {
@@ -150,7 +150,12 @@ export default [
     cache: 'alter',
     handler: async (req: Request, trx: Knex.Transaction) => {
       // Trigger on logout
-      await config.settings.events.trigger('onLogout', req.user, trx);
+      await config.settings.events.trigger(
+        'onLogout',
+        req.document,
+        req.user,
+        trx,
+      );
 
       // Remove token from user
       if (req.token) {

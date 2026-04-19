@@ -35,5 +35,10 @@ export const transition_workflow = {
     required: ['transition'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {},
 };

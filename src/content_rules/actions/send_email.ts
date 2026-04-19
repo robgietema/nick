@@ -60,5 +60,10 @@ export const send_email = {
     required: ['subject', 'recipients', 'message'],
     type: 'object',
   },
-  handler: async (params: Params, req: Request) => {},
+  handler: async (
+    params: Params,
+    document: any,
+    user: any,
+    contentRule: any,
+  ) => {},
 };
