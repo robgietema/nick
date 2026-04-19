@@ -863,7 +863,7 @@ export class Document extends Model {
       [],
       { Context: bodytext },
     );
-    return result.response;
+    return (result as any).response;
   }
 
   /**

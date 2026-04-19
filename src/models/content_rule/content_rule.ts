@@ -95,6 +95,6 @@ export class ContentRule extends Model {
             })),
           }
         : {}),
-    } as Json;
+    } as any;
   }
 }
