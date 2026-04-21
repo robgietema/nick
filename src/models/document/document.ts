@@ -1302,6 +1302,43 @@ export class Document extends Model {
   }
 
   /**
+   * Convert document to RSS format
+   * @method toRSS
+   * @param {Request} req Request object.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @return {Promise<string>} RSS string
+   */
+  async toRSS(req: Request, trx: Knex.Transaction): Promise<string> {
+    const self: any = this;
+    await self.fetchRelated('_owner', trx);
+    await self.fetchRelated('[_children(order)]', trx);
+    await self.restrictChildren(req, trx);
+
+    return `<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>${self.json.title}</title>
+    <description>${self.json.description || ''}</description>
+    <language>${self.language || 'en'}</language>
+    <link>${self.getUrl(req)}</link>
+    <lastBuildDate>${dayjs().utc().format('ddd, DD MMM YYYY HH:mm:ss [GMT]')}</lastBuildDate>
+    <managingEditor>${self._owner.email} (${self._owner.fullname})</managingEditor>
+${self._restrictedChildren
+  .map(
+    (child: any) => `      <item>
+        <title>${child.json.title}</title>
+        <link>${child.getUrl(req)}</link>
+        <guid>${child.uuid}</guid>
+        <pubDate>${dayjs(child.created).utc().format('ddd, DD MMM YYYY HH:mm:ss [GMT]')}</pubDate>
+        <description>${child.json.description || ''}</description>
+      </item>`,
+  )
+  .join('\n')}
+  </channel>
+</rss>`;
+  }
+
+  /**
    * Convert document to ICS format
    * @method toICS
    * @param {Request} req Request object.

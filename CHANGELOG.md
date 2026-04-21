@@ -106,6 +106,7 @@
 - Trigger content rules @robgietema
 - Add content rule condition handlers @robgietema
 - Add content rule action handlers @robgietema
+- Add rss support @robgietema
 
 ### Bugfix
 

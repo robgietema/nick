@@ -227,3 +227,25 @@ If a resource has been retrieved successfully, the server responds with `200 OK`
 ```http
 {% include_relative examples/content/ics_folder.res %}
 ```
+
+# Exporting RSS format on a path
+
+We can call the `rss_view` endpoint to export the content in RSS format. When we call the `rss_view` on a path it will fetch all content from this path down in a RSS file. We can export the data by sending a GET request to the resource URL:
+
+```http
+{% include_relative examples/content/rss.req %}
+```
+
+Or use the client directly:
+
+```ts
+{% include_relative examples/content/rss.ts %}
+```
+
+### Successful Response (200 OK)
+
+If a resource has been retrieved successfully, the server responds with `200 OK`:
+
+```http
+{% include_relative examples/content/rss.res %}
+```

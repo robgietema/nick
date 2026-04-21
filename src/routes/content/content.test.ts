@@ -65,4 +65,7 @@ describe('Content', () => {
 
   it('should export an ics file for a folder object', () =>
     testRequest(app, 'content/ics_folder'));
+
+  it('should export a rss file for a folder object', () =>
+    testRequest(app, 'content/rss'));
 });

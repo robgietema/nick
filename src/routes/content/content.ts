@@ -500,6 +500,24 @@ export default [
   },
   {
     op: 'get',
+    view: '/rss_view',
+    permission: 'View',
+    client: 'getRSS',
+    cache: 'content',
+    handler: async (req: Request, trx: Knex.Transaction) => {
+      const rss = await req.document.toRSS(req, trx);
+      return {
+        headers: {
+          'content-type': 'application/rss+xml',
+          'content-disposition': `attachment; filename="${req.document.id}.rss"`,
+        },
+        xkeys: [req.document.uuid],
+        html: rss,
+      };
+    },
+  },
+  {
+    op: 'get',
     view: '',
     permission: 'View',
     client: 'getContent',
