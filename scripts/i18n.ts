@@ -24,6 +24,7 @@ function pathToContext(path: string) {
       .replace('src/', '')
       .replace('.json', '')
       .replace('.js', '')
+      .replace('.ts', '')
       .replace(/:.*$/, '')
       .split(/\//)
       .map((part) => upperFirst(part.replace(/_/gi, ' '))),
