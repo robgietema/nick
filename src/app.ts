@@ -234,9 +234,17 @@ routes.map((route: Route) => {
             }`,
           );
 
+          // Set location header in redirect
+          if (err.status === 301 || err.status === 302) {
+            if (typeof err.message === 'string') {
+              res.setHeader('Location', err.message);
+            }
+            return res.status(err.status).send();
+          }
+
           // Return error message
           const message =
-            process.env.NODE_ENV === 'production'
+            process.env.NODE_ENV === 'production' && err.status >= 500
               ? { message: req.i18n('Internal server error') }
               : err.message;
           return res.status(err.status).send(message);

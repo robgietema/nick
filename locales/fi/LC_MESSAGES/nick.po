@@ -1037,8 +1037,8 @@ msgid "Information about rights held in and over this item."
 msgstr "Tietoa tähän kohteeseen liittyvistä oikeuksista."
 
 #. Default: "Internal server error"
-#: src/app.ts:240
-#: src/app.ts:250
+#: src/app.ts:248
+#: src/app.ts:258
 msgctxt "App.ts"
 msgid "Internal server error"
 msgstr "Sisäinen palvelinvirhe"
