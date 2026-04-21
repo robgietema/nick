@@ -9,6 +9,10 @@ Content-Type: application/json
       "token": "Event"
     },
     {
+      "title": "Feed",
+      "token": "Feed"
+    },
+    {
       "title": "File",
       "token": "File"
     },
@@ -29,5 +33,5 @@ Content-Type: application/json
       "token": "Site"
     }
   ],
-  "items_total": 6
+  "items_total": 7
 }

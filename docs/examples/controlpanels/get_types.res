@@ -14,6 +14,15 @@ Content-Type: application/json
       "meta_type": "Event"
     },
     {
+      "@id": "http://localhost:8080/@controlpanels/dexterity-types/Feed",
+      "@type": "Feed",
+      "count": 0,
+      "description": "",
+      "id": "Feed",
+      "meta_type": "Feed",
+      "title": "Feed"
+    },
+    {
       "@id": "http://localhost:8080/@controlpanels/dexterity-types/File",
       "@type": "File",
       "title": "File",

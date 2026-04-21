@@ -1,0 +1,37 @@
+{
+  "id": "Feed",
+  "title:i18n": "Feed",
+  "description": "",
+  "global_allow": false,
+  "filter_content_types": false,
+  "allowed_content_types": [],
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["query"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "query": {
+        "description": "",
+        "title:i18n": "Query",
+        "widget": "querystring"
+      }
+    },
+    "required": ["query"],
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "blocks",
+      "versioning",
+      "short_name",
+      "id_from_title",
+      "children_from_query",
+      "exclude_from_nav"
+    ],
+    "layouts": []
+  },
+  "workflow": "simple_publication_workflow"
+}

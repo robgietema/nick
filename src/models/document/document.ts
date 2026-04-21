@@ -1286,7 +1286,19 @@ export class Document extends Model {
   }
 
   /**
-   * Add reference to the model.
+   * Fetch children.
+   * @method fetchChildren
+   * @param {Request} req Request object.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @return {Promise<void>} No return value.
+   */
+  async fetchChildren(_req: Request, trx?: Knex.Transaction): Promise<void> {
+    const self: any = this;
+    await self.fetchRelated('[_children(order)._type, _type]', trx);
+  }
+
+  /**
+   * Fetch reference to the model.
    * @method fetchReference
    * @param {string} field Field name.
    * @param {Knex.Transaction} trx Transaction object.
@@ -1311,8 +1323,6 @@ export class Document extends Model {
   async toRSS(req: Request, trx: Knex.Transaction): Promise<string> {
     const self: any = this;
     await self.fetchRelated('_owner', trx);
-    await self.fetchRelated('[_children(order)]', trx);
-    await self.restrictChildren(req, trx);
 
     return `<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
@@ -1348,7 +1358,6 @@ ${self._restrictedChildren
   async toICS(req: Request, trx: Knex.Transaction): Promise<string> {
     const self: any = this;
     const Controlpanel = models.get('Controlpanel');
-    const Catalog = models.get('Catalog');
 
     // Fetch settings
     const controlpanel = await Controlpanel.fetchById('site', {}, trx);
@@ -1356,17 +1365,7 @@ ${self._restrictedChildren
 
     let events = self.toICSEvent();
     if (!events) {
-      const items = await Catalog.fetchAllRestricted(
-        {
-          _start: ['is not', null],
-          _end: ['is not', null],
-          _path: ['~', `^${self.path}`],
-        },
-        { order: '_path' },
-        trx,
-        req,
-      );
-      events = items
+      events = self._restrictedChildren
         .map((item: any) => item.toICSEvent())
         .filter((ics: any) => ics !== null)
         .join('\n');

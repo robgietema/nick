@@ -8,6 +8,11 @@ Content-Type: application/json
     "title": "Event"
   },
   {
+    "@id": "http://localhost:8080/@types/Feed",
+    "addable": false,
+    "title": "Feed"
+  },
+  {
     "@id": "http://localhost:8080/@types/File",
     "addable": true,
     "title": "File"

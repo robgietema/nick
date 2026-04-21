@@ -487,6 +487,9 @@ export default [
     client: 'getICS',
     cache: 'content',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      await req.document.fetchChildren(req, trx);
+      await req.document.restrictChildren(req, trx);
+
       const ics = await req.document.toICS(req, trx);
       return {
         headers: {
@@ -505,6 +508,9 @@ export default [
     client: 'getRSS',
     cache: 'content',
     handler: async (req: Request, trx: Knex.Transaction) => {
+      await req.document.fetchChildren(req, trx);
+      await req.document.restrictChildren(req, trx);
+
       const rss = await req.document.toRSS(req, trx);
       return {
         headers: {
@@ -523,9 +529,9 @@ export default [
     client: 'getContent',
     cache: 'content',
     handler: async (req: Request, trx: Knex.Transaction) => {
-      await req.document.fetchRelated('[_children(order)._type, _type]', trx);
-      await req.document.restrictChildren(req, trx);
       await req.document.fetchRelationLists(trx);
+      await req.document.fetchChildren(req, trx);
+      await req.document.restrictChildren(req, trx);
       const json = await req.document.toJson(
         req,
         await getComponents(req, trx),
