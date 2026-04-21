@@ -139,11 +139,11 @@ export class Catalog extends Model {
   }
 
   /**
-   * Convert document to ICS format
-   * @method toICS
+   * Convert document to ICS event format
+   * @method toICSEvent
    * @return {string | null} ICS string or null if start or end date is missing
    */
-  toICS(): string | null {
+  toICSEvent(): string | null {
     const self: any = this;
 
     // Check if start date is available

@@ -1304,9 +1304,50 @@ export class Document extends Model {
   /**
    * Convert document to ICS format
    * @method toICS
+   * @param {Request} req Request object.
+   * @param {Knex.Transaction} trx Transaction object.
+   * @return {Promise<string>} ICS string
+   */
+  async toICS(req: Request, trx: Knex.Transaction): Promise<string> {
+    const self: any = this;
+    const Controlpanel = models.get('Controlpanel');
+    const Catalog = models.get('Catalog');
+
+    // Fetch settings
+    const controlpanel = await Controlpanel.fetchById('site', {}, trx);
+    const settings = controlpanel.data;
+
+    let events = self.toICSEvent();
+    if (!events) {
+      const items = await Catalog.fetchAllRestricted(
+        {
+          _start: ['is not', null],
+          _end: ['is not', null],
+          _path: ['~', `^${self.path}`],
+        },
+        { order: '_path' },
+        trx,
+        req,
+      );
+      events = items
+        .map((item: any) => item.toICSEvent())
+        .filter((ics: any) => ics !== null)
+        .join('\n');
+    }
+
+    return `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//${settings.site_title}//NONSGML Nick//EN
+X-WR-TIMEZONE:UTC${events ? `\n${events}` : ''}
+END:VCALENDAR`;
+  }
+
+  /**
+   * Convert document to ICS event format
+   * @method toICSEvent
    * @return {string | null} ICS string or null if start or end date is missing
    */
-  toICS(): string | null {
+  toICSEvent(): string | null {
     const self: any = this;
 
     // Check if start date is available

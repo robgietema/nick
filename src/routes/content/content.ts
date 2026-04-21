@@ -487,41 +487,14 @@ export default [
     client: 'getICS',
     cache: 'content',
     handler: async (req: Request, trx: Knex.Transaction) => {
-      const Controlpanel = models.get('Controlpanel');
-      const Catalog = models.get('Catalog');
-
-      // Fetch settings
-      const controlpanel = await Controlpanel.fetchById('site', {}, trx);
-      const settings = controlpanel.data;
-
-      let events = req.document.toICS(trx);
-      if (!events) {
-        const items = await Catalog.fetchAllRestricted(
-          {
-            _start: ['is not', null],
-            _end: ['is not', null],
-            _path: ['~', `^${req.document.path}`],
-          },
-          { order: '_path' },
-          trx,
-          req,
-        );
-        events = items
-          .map((item: any) => item.toICS(trx))
-          .filter((ics: any) => ics !== null)
-          .join('\n');
-      }
+      const ics = await req.document.toICS(req, trx);
       return {
         headers: {
           'content-type': 'text/calendar',
           'content-disposition': `attachment; filename="${req.document.id}.ics"`,
         },
         xkeys: [req.document.uuid],
-        html: `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//${settings.site_title}//NONSGML Nick//EN
-X-WR-TIMEZONE:UTC${events ? `\n${events}` : ''}
-END:VCALENDAR`,
+        html: ics,
       };
     },
   },
