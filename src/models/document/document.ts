@@ -406,7 +406,7 @@ export class Document extends Model {
         if (json[field]) {
           json[field] = {
             'content-type': json[field]['content-type'],
-            download: `${this.getUrl(req)}/@@download/file`,
+            download: `${this.getUrl(req)}/@@download/${field}`,
             filename: json[field].filename,
             size: json[field].size,
           };
