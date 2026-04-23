@@ -8,42 +8,17 @@ import { PDFParse } from 'pdf-parse';
 import type { Knex } from 'knex';
 import type { Request } from '../../types';
 
-import models from '../../models';
 import {
   chat,
   embed,
   generate,
   streamChat,
   streamGenerate,
+  getEmbedFromPrompt,
 } from '../../helpers/ai/ai';
 import config from '../../helpers/config/config';
 
 import { RequestException } from '../../helpers/error/error';
-
-const getEmbedFromPrompt = async (
-  prompt: string,
-  req: Request,
-  trx: Knex.Transaction,
-) => {
-  const Catalog = models.get('Catalog');
-
-  // Get embedding vector
-  const embedding = await embed(prompt);
-
-  // Fetch catalog items with closest embeddings
-  const result = await Catalog.fetchClosestEmbeddingRestricted(
-    embedding,
-    config.settings.ai.models.llm.contextSize,
-    trx,
-    req,
-  );
-
-  // Generate contents from the results
-  return result
-    .map((item: any) => item.SearchableText)
-    .join(' ')
-    .replace(/\n/g, ' ');
-};
 
 export default [
   {

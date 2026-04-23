@@ -4,8 +4,11 @@
  */
 
 import config from '../config/config';
+import models from '../../models';
 
 import type { Json, Params } from '../../types';
+import type { Knex } from 'knex';
+import type { Request } from '../../types';
 
 interface VisionResult {
   response: string;
@@ -40,15 +43,17 @@ export async function embed(input: string): Promise<string> {
 /**
  * Generate
  * @method generate
- * @param {string} prompt Prompt to be used for generation
+ * @param {string} query Query to be used for generation
  * @param {Array<number>} context Context to be used for generation
  * @param {Object} params Params to be used for generation
+ * @param {string} prompt Prompt to be used for generation
  * @returns {string} response
  */
 export async function generate(
-  prompt: string,
+  query: string,
   context: Array<number>,
   params: Params = {},
+  prompt: string = 'Please provide an answer to the question and use the given page and site content if needed.',
 ): Promise<Json> {
   const response = await fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
@@ -58,7 +63,7 @@ export async function generate(
     body: JSON.stringify({
       model: config.settings.ai?.models?.llm?.name,
       context,
-      prompt: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
+      prompt: `Query: ${query}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\n${prompt}`,
       stream: false,
       think: false,
     }),
@@ -69,17 +74,19 @@ export async function generate(
 /**
  * Stream generate
  * @method streamGenerate
- * @param {string} prompt Prompt to be used for generation
+ * @param {string} query Query to be used for generation
  * @param {Array<number>} context Context to be used for generation
  * @param {Object} params Params to be used for generation
  * @param {Function|null} callback Callback function to be called with the response
+ * @param {string} prompt Prompt to be used for generation
  * @returns {string} response
  */
 export function streamGenerate(
-  prompt: string,
+  query: string,
   context: Array<number>,
   params: Params = {},
   callback: (token: string) => void,
+  prompt: string = 'Please provide an answer to the question and use the given page and site content if needed.',
 ): undefined {
   fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
@@ -89,7 +96,7 @@ export function streamGenerate(
     body: JSON.stringify({
       model: config.settings.ai?.models?.llm?.name,
       context,
-      prompt: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer to the question.`,
+      prompt: `Query: ${query}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\n${prompt}`,
       stream: true,
       think: false,
     }),
@@ -110,17 +117,19 @@ export function streamGenerate(
 /**
  * Chat
  * @method chat
- * @param {string} prompt Prompt to be used for generation
+ * @param {string} query Query to be used for generation
  * @param {Array<Message>} messages Message history
  * @param {Object} params Params to be used for generation
  * @param {Object} tools Tools to be used for generation
+ * @param {string} prompt Prompt to be used for generation
  * @returns {string} response
  */
 export async function chat(
-  prompt: string,
+  query: string,
   messages: Array<Message> = [],
   params: Params = {},
   tools = [],
+  prompt: string = 'Please provide an answer to the question and use the given page and site content if needed.',
 ): Promise<string> {
   const response = await fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
@@ -133,7 +142,7 @@ export async function chat(
         ...messages,
         {
           role: 'user',
-          content: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+          content: `Query: ${query}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\n${prompt}`,
         },
       ],
       tools,
@@ -147,19 +156,21 @@ export async function chat(
 /**
  * Stream chat
  * @method streamChat
- * @param {string} prompt Prompt to be used for generation
+ * @param {string} query Query to be used for generation
  * @param {Array<Message>} messages Message history
  * @param {Object} params Params to be used for generation
  * @param {Object} tools Tools to be used for generation
  * @param {Function|null} callback Callback function to be called with the response
+ * @param {string} prompt Prompt to be used for generation
  * @returns {string} response
  */
 export function streamChat(
-  prompt: string,
+  query: string,
   messages: Array<Message> = [],
   params: Params = {},
   tools = [],
   callback: (token: string) => void,
+  prompt: string = 'Please provide an answer to the question and use the given page and site content if needed.',
 ): undefined {
   fetch(config.settings.ai?.models?.llm?.api, {
     method: 'POST',
@@ -172,7 +183,7 @@ export function streamChat(
         ...messages,
         {
           role: 'user',
-          content: `Query: ${prompt}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\nPlease provide an answer and use the given page and site content if needed.`,
+          content: `Query: ${query}\n${Object.keys(params).map((key: string) => `${key}: ${params[key]}`)}\n${prompt}`,
         },
       ],
       tools,
@@ -213,4 +224,29 @@ export async function vision(data: string): Promise<VisionResult> {
     }),
   });
   return await response.json();
+}
+
+export async function getEmbedFromPrompt(
+  prompt: string,
+  req: Request,
+  trx: Knex.Transaction,
+): Promise<string> {
+  const Catalog = models.get('Catalog');
+
+  // Get embedding vector
+  const embedding = await embed(prompt);
+
+  // Fetch catalog items with closest embeddings
+  const result = await Catalog.fetchClosestEmbeddingRestricted(
+    embedding,
+    config.settings.ai.models.llm.contextSize,
+    trx,
+    req,
+  );
+
+  // Generate contents from the results
+  return result
+    .map((item: any) => item.SearchableText)
+    .join(' ')
+    .replace(/\n/g, ' ');
 }

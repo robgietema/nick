@@ -55,8 +55,8 @@ msgstr "人工智能"
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.ts:20
-#: src/routes/ai/ai.ts:69
-#: src/routes/ai/ai.ts:119
+#: src/routes/ai/ai.ts:44
+#: src/routes/ai/ai.ts:94
 msgctxt "Routes|Related"
 msgid "AI is disabled."
 msgstr "人工智能已禁用。"
@@ -1556,8 +1556,8 @@ msgid "Prompt"
 msgstr "提示词"
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.ts:59
-#: src/routes/ai/ai.ts:109
+#: src/routes/ai/ai.ts:34
+#: src/routes/ai/ai.ts:84
 msgctxt "Routes|Ai"
 msgid "Prompt is a required field."
 msgstr "提示词为必填字段。"

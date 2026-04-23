@@ -151,10 +151,10 @@ class Config {
       ai: config.ai || {
         models: {
           embed: {
-            name: 'nomic-embed-text',
+            name: 'nomic-embed-text-v2-moe',
             api: 'http://localhost:11434/api/embed',
             dimensions: 768,
-            minSimilarity: 0.5,
+            minSimilarity: 0.3,
             enabled: false,
           },
           llm: {

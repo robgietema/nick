@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-04-23T16:31:46.085Z\n"
+"POT-Creation-Date: 2026-04-23T20:28:22.685Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 #. Default: "AI is disabled."
 #: src/routes/related/related.ts:20
-#: src/routes/ai/ai.ts:69
-#: src/routes/ai/ai.ts:119
+#: src/routes/ai/ai.ts:44
+#: src/routes/ai/ai.ts:94
 msgctxt "Routes|Related"
 msgid "AI is disabled."
 msgstr ""
@@ -1553,8 +1553,8 @@ msgid "Prompt"
 msgstr ""
 
 #. Default: "Prompt is a required field."
-#: src/routes/ai/ai.ts:59
-#: src/routes/ai/ai.ts:109
+#: src/routes/ai/ai.ts:34
+#: src/routes/ai/ai.ts:84
 msgctxt "Routes|Ai"
 msgid "Prompt is a required field."
 msgstr ""

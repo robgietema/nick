@@ -9,6 +9,8 @@ import {
   queryparamToQuery,
 } from '../../helpers/query/query';
 import { getUrl } from '../../helpers/url/url';
+import { chat } from '../../helpers/ai/ai';
+import config from '../../helpers/config/config';
 
 import models from '../../models';
 import type { Request } from '../../types';
@@ -43,12 +45,29 @@ export default [
         req.indexes = await Index.fetchAll({}, {}, trx);
       }
 
+      // Check if AI response requested
+      let ai: any = null;
+      if (
+        config.settings.ai?.models?.embed?.enabled &&
+        req.query.use_ai === '1'
+      ) {
+        const prompt = req.query.SearchableText.replaceAll(/\*/g, '') || '';
+        ai = await chat(
+          prompt,
+          [],
+          {},
+          [],
+          'Please give a short description of the terms provided in the query',
+        );
+      }
+
       // Return JSON response
       return {
         json: {
           '@id': `${getUrl(req)}/@search`,
           items: items.map((item: any) => item.toJson(req)),
           items_total: items.getLength(),
+          ...(ai ? { ai: ai.message.content } : {}),
         },
       };
     },
