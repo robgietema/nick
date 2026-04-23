@@ -45,6 +45,12 @@ export const config = {
     /* `${__dirname}/src/develop/nick/src/profiles/ai`, */
     `${__dirname}/src/profiles/default`,
   ],
+  push: {
+    enabled: false,
+    user: 'admin',
+    password: 'admin',
+    url: 'https://somehost/push',
+  },
   requestLimit: {
     api: '1mb',
     files: '10mb',
@@ -101,10 +107,10 @@ export const config = {
   ai: {
     models: {
       embed: {
-        name: 'nomic-embed-text',
+        name: 'nomic-embed-text-v2-moe',
         api: 'http://localhost:11434/api/embed',
         dimensions: 768,
-        minSimilarity: 0.5,
+        minSimilarity: 0.3,
         enabled: false,
       },
       llm: {
