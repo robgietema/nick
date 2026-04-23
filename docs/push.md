@@ -25,7 +25,7 @@ export const config = {
 };
 ```
 
-The user and password are optional but will be used to call the url with basic auth.
+The `user` and `password` are optional but will be used to call the `url` with basic auth.
 
 ## Events
 
