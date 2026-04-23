@@ -13,12 +13,13 @@ import { drop, flattenDeep, intersection, uniq } from 'es-toolkit/array';
 import { omit, pick } from 'es-toolkit/object';
 import { v4 as uuid } from 'uuid';
 
-import { getRootUrl, getUrl } from '../../helpers/url/url';
+import { getRootUrl } from '../../helpers/url/url';
 import { lockExpired } from '../../helpers/lock/lock';
 import { mapAsync, uniqueId } from '../../helpers/utils/utils';
 import { readFile, removeFile } from '../../helpers/fs/fs';
 import { checkETag } from '../../helpers/cache/cache';
 import { RequestException } from '../../helpers/error/error';
+import { getComponents } from '../../helpers/content/content';
 import {
   handleFiles,
   handleImages,
@@ -28,116 +29,12 @@ import {
 
 import models from '../../models';
 
-import { handler as actions } from '../actions/actions';
-import { handler as breadcrumbs } from '../breadcrumbs/breadcrumbs';
-import { handler as navigation } from '../navigation/navigation';
-import { handler as navroot } from '../navroot/navroot';
-import { handler as related } from '../related/related';
-import { handler as inherit } from '../inherit/inherit';
-import { handler as translations } from '../translations/translations';
-import { handler as types } from '../types/types';
-import { handler as workflow } from '../workflow/workflow';
-
 import type { Request } from '../../types';
 import type { Knex } from 'knex';
 
 import config from '../../helpers/config/config';
 
 const omitProperties = ['@type', 'id', 'changeNote', 'language'];
-
-const getComponents = async (req: Request, trx: Knex.Transaction) => {
-  const components = {} as any;
-
-  // Get nodes to expand
-  const expand = req.query?.expand?.split(',') || [];
-
-  // Get base url
-  const baseUrl = getUrl(req);
-
-  // Include catalog expander
-  if (expand.includes('catalog')) {
-    await req.document.fetchRelated('_catalog', trx);
-
-    if (req.document._children) {
-      await mapAsync(req.document._children, async (child: any) => {
-        await child.fetchRelated('_catalog', trx);
-        await child.fetchRelationLists(trx);
-      });
-    }
-    components.catalog = {
-      ...req.document._catalog.toJson(req),
-      '@id': `${baseUrl}/@catalog`,
-    };
-  } else {
-    components.catalog = { '@id': `${baseUrl}/@catalog` };
-  }
-
-  // Include actions expander
-  if (expand.includes('actions')) {
-    components.actions = (await actions(req, trx)).json;
-  } else {
-    components.actions = { '@id': `${baseUrl}/@actions` };
-  }
-
-  // Include breadcrumbs expander
-  if (expand.includes('breadcrumbs')) {
-    components.breadcrumbs = (await breadcrumbs(req, trx)).json;
-  } else {
-    components.breadcrumbs = { '@id': `${baseUrl}/@breadcrumbs` };
-  }
-
-  // Include navigation expander
-  if (expand.includes('navigation')) {
-    components.navigation = (await navigation(req, trx)).json;
-  } else {
-    components.navigation = { '@id': `${baseUrl}/@navigation` };
-  }
-
-  // Include navroot expander
-  if (expand.includes('navroot')) {
-    components.navroot = (await navroot(req, trx)).json;
-  } else {
-    components.navroot = { '@id': `${baseUrl}/@navroot` };
-  }
-
-  // Include related expander
-  if (expand.includes('related')) {
-    components.related = (await related(req, trx)).json;
-  } else {
-    components.related = { '@id': `${baseUrl}/@related` };
-  }
-
-  // Include types expander
-  if (expand.includes('types')) {
-    components.types = (await types(req, trx)).json;
-  } else {
-    components.types = { '@id': `${baseUrl}/@types` };
-  }
-
-  // Include workflow expander
-  if (expand.includes('workflow')) {
-    components.workflow = (await workflow(req, trx)).json;
-  } else {
-    components.workflow = { '@id': `${baseUrl}/@workflow` };
-  }
-
-  // Include translations expander
-  if (expand.includes('translations')) {
-    components.translations = (await translations(req, trx)).json;
-  } else {
-    components.translations = { '@id': `${baseUrl}/@translations` };
-  }
-
-  // Include inherit expander
-  if (expand.includes('inherit')) {
-    components.inherit = (await inherit(req, trx)).json;
-  } else {
-    components.inherit = { '@id': `${baseUrl}/@inherit` };
-  }
-
-  // Return components
-  return components;
-};
 
 export default [
   {
@@ -189,7 +86,7 @@ export default [
           await Document.replacePath(source, newPath, trx);
 
           // Save document in new location
-          await document.update(
+          await document.updateAndFetch(
             {
               parent: req.document.uuid,
               position_in_parent: 32767,
@@ -211,6 +108,7 @@ export default [
             document,
             req.user,
             trx,
+            source,
           );
 
           // Add items to return array
@@ -291,7 +189,7 @@ export default [
           copiedDocument,
           req.user,
           trx,
-          document,
+          source,
         );
 
         // Add items to return array
@@ -328,7 +226,10 @@ export default [
       await req.document.fetchRelationLists(trx);
       return {
         json: await handleBlockReferences(
-          await req.document.toJson(req, await getComponents(req, trx)),
+          await req.document.toJson(
+            req,
+            await getComponents(req, trx, req.query?.expand?.split(',') || []),
+          ),
           trx,
         ),
         xkeys: [req.document.uuid],
@@ -534,7 +435,7 @@ export default [
       await req.document.restrictChildren(req, trx);
       const json = await req.document.toJson(
         req,
-        await getComponents(req, trx),
+        await getComponents(req, trx, req.query?.expand?.split(',') || []),
       );
       return {
         json: await handleBlockReferences(json, trx),
@@ -705,6 +606,7 @@ export default [
         document,
         req.user,
         trx,
+        req,
         req.document, // Parent document
         json,
       );
@@ -712,7 +614,10 @@ export default [
       // Send data back to client
       return {
         status: 201,
-        json: await document.toJson(req, await getComponents(req, trx)),
+        json: await document.toJson(
+          req,
+          await getComponents(req, trx, req.query?.expand?.split(',') || []),
+        ),
       };
     },
   },
@@ -830,7 +735,7 @@ export default [
       );
 
       // Save document with new values
-      await req.document.update(
+      await req.document.updateAndFetch(
         {
           id: newId,
           path: newPath,
@@ -856,12 +761,19 @@ export default [
       // Reindex document
       await req.document.reindex(trx);
 
+      // Get document json
+      const documentJson = await req.document.toJson(
+        req,
+        await getComponents(req, trx, req.query?.expand?.split(',') || []),
+      );
+
       // Trigger onAfterModified
       await config.settings.events.trigger(
         'onAfterModified',
         req.document,
         req.user,
         trx,
+        req,
       );
 
       // Send ok

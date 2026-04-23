@@ -109,6 +109,7 @@
 - Add rss support @robgietema
 - Add feed content type @robgietema
 - Add video content type @robgietema
+- Add push api @robgietema
 
 ### Bugfix
 

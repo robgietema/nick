@@ -13,7 +13,20 @@ import { mapAsync } from '../utils/utils';
 import { readProfileFile, writeFile, writeImage } from '../fs/fs';
 import { vision } from '../ai/ai';
 
+import { handler as actions } from '../../routes/actions/actions';
+import { handler as breadcrumbs } from '../../routes/breadcrumbs/breadcrumbs';
+import { handler as navigation } from '../../routes/navigation/navigation';
+import { handler as navroot } from '../../routes/navroot/navroot';
+import { handler as related } from '../../routes/related/related';
+import { handler as inherit } from '../../routes/inherit/inherit';
+import { handler as translations } from '../../routes/translations/translations';
+import { handler as types } from '../../routes/types/types';
+import { handler as workflow } from '../../routes/workflow/workflow';
+
+import { getUrl } from '../../helpers/url/url';
+
 import models from '../../models';
+import type { Request } from '../../types';
 
 import config from '../config/config';
 
@@ -284,4 +297,99 @@ export async function handleBlockReferences(
 
   // Return new json data
   return output;
+}
+
+export async function getComponents(
+  req: Request,
+  trx: Knex.Transaction,
+  expand: string[],
+): Promise<Record<string, any>> {
+  const components = {} as any;
+
+  // Get base url
+  const baseUrl = getUrl(req);
+
+  // Include catalog expander
+  if (expand.includes('catalog')) {
+    await req.document.fetchRelated('_catalog', trx);
+
+    if (req.document._children) {
+      await mapAsync(req.document._children, async (child: any) => {
+        await child.fetchRelated('_catalog', trx);
+        await child.fetchRelationLists(trx);
+      });
+    }
+    components.catalog = {
+      ...req.document._catalog.toJson(req),
+      '@id': `${baseUrl}/@catalog`,
+    };
+  } else {
+    components.catalog = { '@id': `${baseUrl}/@catalog` };
+  }
+
+  // Include actions expander
+  if (expand.includes('actions')) {
+    components.actions = (await actions(req, trx)).json;
+  } else {
+    components.actions = { '@id': `${baseUrl}/@actions` };
+  }
+
+  // Include breadcrumbs expander
+  if (expand.includes('breadcrumbs')) {
+    components.breadcrumbs = (await breadcrumbs(req, trx)).json;
+  } else {
+    components.breadcrumbs = { '@id': `${baseUrl}/@breadcrumbs` };
+  }
+
+  // Include navigation expander
+  if (expand.includes('navigation')) {
+    components.navigation = (await navigation(req, trx)).json;
+  } else {
+    components.navigation = { '@id': `${baseUrl}/@navigation` };
+  }
+
+  // Include navroot expander
+  if (expand.includes('navroot')) {
+    components.navroot = (await navroot(req, trx)).json;
+  } else {
+    components.navroot = { '@id': `${baseUrl}/@navroot` };
+  }
+
+  // Include related expander
+  if (expand.includes('related')) {
+    components.related = (await related(req, trx)).json;
+  } else {
+    components.related = { '@id': `${baseUrl}/@related` };
+  }
+
+  // Include types expander
+  if (expand.includes('types')) {
+    components.types = (await types(req, trx)).json;
+  } else {
+    components.types = { '@id': `${baseUrl}/@types` };
+  }
+
+  // Include workflow expander
+  if (expand.includes('workflow')) {
+    components.workflow = (await workflow(req, trx)).json;
+  } else {
+    components.workflow = { '@id': `${baseUrl}/@workflow` };
+  }
+
+  // Include translations expander
+  if (expand.includes('translations')) {
+    components.translations = (await translations(req, trx)).json;
+  } else {
+    components.translations = { '@id': `${baseUrl}/@translations` };
+  }
+
+  // Include inherit expander
+  if (expand.includes('inherit')) {
+    components.inherit = (await inherit(req, trx)).json;
+  } else {
+    components.inherit = { '@id': `${baseUrl}/@inherit` };
+  }
+
+  // Return components
+  return components;
 }

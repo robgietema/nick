@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nick\n"
-"POT-Creation-Date: 2026-04-21T22:02:42.470Z\n"
+"POT-Creation-Date: 2026-04-23T16:31:46.085Z\n"
 "Last-Translator: Rob Gietema\n"
 "Language-Team: Nick\n"
 "MIME-Version: 1.0\n"
@@ -590,6 +590,7 @@ msgstr ""
 #: src/constants/userschema.ts:12
 #: src/profiles/core/upgrades/1001/controlpanels/usergroup.json:10
 #: src/profiles/core/upgrades/1001/controlpanels/security.json:10
+#: src/profiles/core/types/video.json:13
 #: src/profiles/core/types/image.json:13
 #: src/profiles/core/types/file.json:13
 #: src/profiles/core/types/feed.json:13
@@ -683,7 +684,7 @@ msgstr ""
 
 #. Default: "Document locked"
 #: src/routes/history/history.ts:65
-#: src/routes/content/content.ts:762
+#: src/routes/content/content.ts:667
 msgctxt "Routes|History"
 msgid "Document locked"
 msgstr ""
@@ -1041,8 +1042,8 @@ msgid "Information about rights held in and over this item."
 msgstr ""
 
 #. Default: "Internal server error"
-#: src/app.ts:248
-#: src/app.ts:258
+#: src/app.ts:254
+#: src/app.ts:264
 msgctxt "App"
 msgid "Internal server error"
 msgstr ""
@@ -1664,7 +1665,7 @@ msgid "Rename"
 msgstr ""
 
 #. Default: "Required field(s) missing."
-#: src/routes/content/content.ts:580
+#: src/routes/content/content.ts:481
 msgctxt "Routes|Content"
 msgid "Required field(s) missing."
 msgstr ""
@@ -2289,8 +2290,8 @@ msgstr ""
 
 #. Default: "Transaction error."
 #: src/client.ts:78
-#: src/app.ts:185
-#: src/app.ts:198
+#: src/app.ts:191
+#: src/app.ts:204
 msgctxt "Client"
 msgid "Transaction error."
 msgstr ""
@@ -2326,7 +2327,7 @@ msgid "Type of the current document is not found."
 msgstr ""
 
 #. Default: "Type {type} not found."
-#: src/routes/content/content.ts:569
+#: src/routes/content/content.ts:470
 msgctxt "Routes|Content"
 msgid "Type {type} not found."
 msgstr ""
@@ -2433,6 +2434,19 @@ msgstr ""
 #: src/profiles/core/behaviors/versioning.json:4
 msgctxt "Profiles|Core|Behaviors|Versioning"
 msgid "Versioning support"
+msgstr ""
+
+#. Default: "Video"
+#: src/profiles/core/types/video.json:3
+#: src/profiles/core/types/video.json:19
+msgctxt "Profiles|Core|Types|Video"
+msgid "Video"
+msgstr ""
+
+#. Default: "Videos can be referenced in pages."
+#: src/profiles/core/types/video.json:4
+msgctxt "Profiles|Core|Types|Video"
+msgid "Videos can be referenced in pages."
 msgstr ""
 
 #. Default: "View"
@@ -2560,7 +2574,7 @@ msgstr ""
 
 #. Default: "You don’t have permission to save this document because it is locked by another user."
 #: src/routes/history/history.ts:62
-#: src/routes/content/content.ts:759
+#: src/routes/content/content.ts:664
 msgctxt "Routes|History"
 msgid "You don’t have permission to save this document because it is locked by another user."
 msgstr ""

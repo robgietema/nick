@@ -91,6 +91,12 @@ class Config {
         api: '1mb',
         files: '10mb',
       },
+      push: {
+        enabled: config.push?.enabled || false,
+        user: config.push?.user || 'admin',
+        password: config.push?.password || 'admin',
+        url: config.push?.url || 'https://somehost/push',
+      },
       rateLimit: {
         api: parseInt(API_RATE_LIMIT || config.rateLimit?.api || '100'),
         auth: parseInt(AUTH_RATE_LIMIT || config.rateLimit?.auth || '5'),

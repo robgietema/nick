@@ -228,6 +228,11 @@ export class Document extends Model {
     // Reset lists
     self._relationLists = {};
 
+    // Fetch type
+    if (!self._type) {
+      await self.fetchRelated('_type', trx);
+    }
+
     // Loop through relation list fields
     const relationListFields = self._type.getFactoryFields('Relation List');
     await Promise.all(
@@ -605,8 +610,12 @@ export class Document extends Model {
   /**
    * Change worksflow
    * @method changeWorkflow
+   * @param {string} transition Transition to change to.
+   * @param {Object} actor Actor object.
+   * @param {string} modified Modified timestamp.
    * @param {boolean} recursive
    * @param {Knex.Transaction} trx Transaction object.
+   * @param {Request} req Request object.
    */
   async changeWorkflow(
     transition: string,
@@ -614,6 +623,7 @@ export class Document extends Model {
     modified: string,
     recursive: boolean,
     trx: Knex.Transaction,
+    req: Request,
   ): Promise<void> {
     const self: any = this;
 
@@ -655,7 +665,7 @@ export class Document extends Model {
       );
 
       // Update document
-      await self.update(
+      await self.updateAndFetch(
         {
           modified: modified,
           workflow_state: new_state,
@@ -673,6 +683,7 @@ export class Document extends Model {
         self,
         actor,
         trx,
+        req,
         transition,
         old_state,
       );
@@ -692,7 +703,14 @@ export class Document extends Model {
     await mapAsync(
       self._children,
       async (child: any) =>
-        await child.changeWorkflow(transition, actor, modified, recursive, trx),
+        await child.changeWorkflow(
+          transition,
+          actor,
+          modified,
+          recursive,
+          trx,
+          req,
+        ),
     );
   }
 

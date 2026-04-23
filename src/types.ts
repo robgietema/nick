@@ -191,6 +191,12 @@ export type ConfigSettings = {
   prefix: string;
   userRegistration: boolean;
   profiles: string[];
+  push: {
+    enabled: boolean;
+    user: string;
+    password: string;
+    url: string;
+  };
   rateLimit: {
     api: number;
     auth: number;

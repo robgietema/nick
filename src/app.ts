@@ -18,6 +18,7 @@ import globalRoutes from './routes';
 import globalTasks from './tasks';
 import { purge } from './events/cache/cache';
 import { content_rules } from './events/content_rules/content_rules';
+import { push } from './events/push/push';
 
 import { accessLogger } from './middleware/access-logger/access-logger';
 import { cors } from './middleware/cors/cors';
@@ -92,6 +93,11 @@ if (config.settings.cache.enabled && config.settings.cache.purge) {
 
 // Add content rules events
 config.settings.events.register(content_rules);
+
+// Add push events if enabled
+if (config.settings.push?.enabled) {
+  config.settings.events.register(push);
+}
 
 // Add middleware
 app.use(

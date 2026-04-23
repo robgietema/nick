@@ -56,6 +56,7 @@ export default [
         modified,
         recursive,
         trx,
+        req,
       );
 
       // Return workflow state

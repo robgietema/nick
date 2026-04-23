@@ -31,7 +31,11 @@ Content-Type: application/json
     {
       "title": "Site",
       "token": "Site"
+    },
+    {
+      "title": "Video",
+      "token": "Video"
     }
   ],
-  "items_total": 7
+  "items_total": 8
 }

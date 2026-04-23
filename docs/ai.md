@@ -28,7 +28,7 @@ $ CREATE EXTENSION IF NOT EXISTS vector;
 
 ## Setup the config
 
-Next step is setup the AI models in the config. You can do so by adding following settings to your `config.js` file:
+Next step is setup the AI models in the config. You can do so by adding following settings to your `config.ts` file:
 
 ```ts
 export const config = {

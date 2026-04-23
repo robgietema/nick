@@ -66,6 +66,15 @@ Content-Type: application/json
       "id": "Site",
       "count": 1,
       "meta_type": "Site"
+    },
+    {
+      "@id": "http://localhost:8080/@controlpanels/dexterity-types/Video",
+      "@type": "Video",
+      "title": "Video",
+      "description": "Videos can be referenced in pages.",
+      "id": "Video",
+      "count": 0,
+      "meta_type": "Video"
     }
   ],
   "title": "Content Types",
