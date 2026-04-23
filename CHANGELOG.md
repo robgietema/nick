@@ -108,6 +108,7 @@
 - Add content rule action handlers @robgietema
 - Add rss support @robgietema
 - Add feed content type @robgietema
+- Add video content type @robgietema
 
 ### Bugfix
 

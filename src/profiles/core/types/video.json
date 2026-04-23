@@ -1,0 +1,37 @@
+{
+  "id": "Video",
+  "title:i18n": "Video",
+  "description:i18n": "Videos can be referenced in pages.",
+  "global_allow": false,
+  "filter_content_types": true,
+  "allowed_content_types": [],
+  "schema": {
+    "fieldsets": [
+      {
+        "fields": ["video"],
+        "id": "default",
+        "title:i18n": "Default"
+      }
+    ],
+    "properties": {
+      "video": {
+        "description": "",
+        "title:i18n": "Video",
+        "type": "object",
+        "widget": "file",
+        "factory": "File"
+      }
+    },
+    "required": ["video"],
+    "behaviors": [
+      "dublin_core",
+      "dates",
+      "versioning",
+      "short_name",
+      "id_from_title",
+      "exclude_from_nav"
+    ],
+    "layouts": []
+  },
+  "workflow": "simple_publication_workflow"
+}
