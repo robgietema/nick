@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@formatjs/cli':
-        specifier: 6.14.2
-        version: 6.14.2
+        specifier: 6.14.3
+        version: 6.14.3
       '@formatjs/intl':
-        specifier: 4.1.6
-        version: 4.1.6
+        specifier: 4.1.7
+        version: 4.1.7
       bcrypt:
         specifier: 6.0.0
         version: 6.0.0
@@ -472,8 +472,8 @@ packages:
     resolution: {integrity: sha512-rZAP3aVgB9ds9KOeUSL+zZ21hPmo8dh6fnIFwRQj5EAZl9gzR7wxYbYXYysAM8CTqGmUGyp2S4kUdV17MnGuWQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@formatjs/cli@6.14.2':
-    resolution: {integrity: sha512-0aZLIRcrxIf6QU2u04bIorYIVA1Sm8hHlHzlK9ROGB2BLN0WbiBCwK3jAPV9um+pPS6O4ZFT6K9c2j/3iMkmSw==}
+  '@formatjs/cli@6.14.3':
+    resolution: {integrity: sha512-CDJmPZCkOvUV1ick+kD6lwFnCC8fDSek7am8i6Ao8qKefiute4RVgoKDLqlCppWJzG+FaFaTHEODEIrNc0w2oQ==}
     engines: {node: '>= 20.12.0'}
     hasBin: true
     peerDependencies:
@@ -503,14 +503,14 @@ packages:
   '@formatjs/fast-memoize@3.1.2':
     resolution: {integrity: sha512-vPnriihkfK0lzoQGaXq+qXH23VsYyansRTkTgo2aTG0k1NjLFyZimFVdfj4C9JkSE5dm7CEngcQ5TTc1yAyBfQ==}
 
-  '@formatjs/icu-messageformat-parser@3.5.4':
-    resolution: {integrity: sha512-JVY39ROgLt+pIYngo6piyj4OVfZmXs/2FkC4wLS+ql1Eig/sGJKB7YwDO/5bkJFkfwaFAeIpgEiJc8hiYxNalw==}
+  '@formatjs/icu-messageformat-parser@3.5.5':
+    resolution: {integrity: sha512-ASMon8BNlKHgQQpZx84xI80EXRS90GlsEU4wEulCKCzrMtUdrfEvFc9UEYmRbvEvtFQLZ4qHXnisUy6PuFjwyA==}
 
-  '@formatjs/icu-skeleton-parser@2.1.4':
-    resolution: {integrity: sha512-8bSFZbrlvGX11ywMZxtgkPBt5Q8/etyts7j7j+GWpOVK1g43zwMIH3LZxk43HAtEP7L/jtZ+OZaMiFTOiBj9CA==}
+  '@formatjs/icu-skeleton-parser@2.1.5':
+    resolution: {integrity: sha512-9Kc6tMaAPZKTGevdfcvx5zT3v4BTfamo+djJE29wF6ds1QLhoA09MZNDpWMZaebWzuoOTIXhDvgmqmjSlUOGlw==}
 
-  '@formatjs/intl@4.1.6':
-    resolution: {integrity: sha512-eQuZCkG7kVBIjMhLhvsRZmYnVbTHBiiM+fNxIbDg7LZ9WXcpWUISuv58baq2dov7vz3qXYtDEgJ9AODZK6idaQ==}
+  '@formatjs/intl@4.1.7':
+    resolution: {integrity: sha512-SOJHtwG4Ke17zHBO61BLOiA1dcK2kk+QChsNZyPlBbI7dElAEkCLl5e3ZX1uxxXF1RtjAnD+lvqMN0tiPlP2Ww==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -1636,8 +1636,8 @@ packages:
     resolution: {integrity: sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==}
     engines: {node: '>= 0.10'}
 
-  intl-messageformat@11.2.1:
-    resolution: {integrity: sha512-1gAVEUt3wEPvTqML4Fsw9klZV5j0vszQxayP/fi6gUroAc8AUHiNaisBKLWxybL1AdWq1mP07YV1q8v4N92ilQ==}
+  intl-messageformat@11.2.2:
+    resolution: {integrity: sha512-yUfyIkPGqMvvk2onw2xBJeLsjXdiYUYebR8mmZVQYBuZUJsFGVht48Ftm1khgu8EZ0n+izX4rAEj3fLAilkh9g==}
 
   ip-address@10.1.0:
     resolution: {integrity: sha512-XXADHxXmvT9+CRxhXg56LJovE+bmWnEWB78LB83VZTprKTmaC5QfruXocxzTZ2Kl0DNwKuBdlIhjL8LeY8Sf8Q==}
@@ -2760,21 +2760,21 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@formatjs/cli@6.14.2': {}
+  '@formatjs/cli@6.14.3': {}
 
   '@formatjs/fast-memoize@3.1.2': {}
 
-  '@formatjs/icu-messageformat-parser@3.5.4':
+  '@formatjs/icu-messageformat-parser@3.5.5':
     dependencies:
-      '@formatjs/icu-skeleton-parser': 2.1.4
+      '@formatjs/icu-skeleton-parser': 2.1.5
 
-  '@formatjs/icu-skeleton-parser@2.1.4': {}
+  '@formatjs/icu-skeleton-parser@2.1.5': {}
 
-  '@formatjs/intl@4.1.6':
+  '@formatjs/intl@4.1.7':
     dependencies:
       '@formatjs/fast-memoize': 3.1.2
-      '@formatjs/icu-messageformat-parser': 3.5.4
-      intl-messageformat: 11.2.1
+      '@formatjs/icu-messageformat-parser': 3.5.5
+      intl-messageformat: 11.2.2
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -3832,10 +3832,10 @@ snapshots:
 
   interpret@2.2.0: {}
 
-  intl-messageformat@11.2.1:
+  intl-messageformat@11.2.2:
     dependencies:
       '@formatjs/fast-memoize': 3.1.2
-      '@formatjs/icu-messageformat-parser': 3.5.4
+      '@formatjs/icu-messageformat-parser': 3.5.5
 
   ip-address@10.1.0: {}
 

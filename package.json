@@ -86,8 +86,8 @@
     "vitest": "4.1.5"
   },
   "dependencies": {
-    "@formatjs/cli": "6.14.2",
-    "@formatjs/intl": "4.1.6",
+    "@formatjs/cli": "6.14.3",
+    "@formatjs/intl": "4.1.7",
     "bcrypt": "6.0.0",
     "bcrypt-promise": "2.0.0",
     "dayjs": "1.11.20",
