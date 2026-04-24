@@ -66,7 +66,7 @@ export default [
       );
       await document.update(
         {
-          translation_group: null,
+          translation_group: document.uuid,
         },
         trx,
       );
