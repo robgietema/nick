@@ -101,7 +101,7 @@
     "log4js": "6.9.1",
     "mime-types": "3.0.2",
     "node-cron": "4.2.1",
-    "nodemailer": "8.0.5",
+    "nodemailer": "8.0.6",
     "nodemon": "3.1.14",
     "objection": "3.1.5",
     "objection-table-name": "2.0.2",
