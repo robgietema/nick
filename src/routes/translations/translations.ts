@@ -136,7 +136,12 @@ export default [
         json: {
           '@id': document
             ? getUrlByPath(req, document.path)
-            : getUrlByPath(req, `/${req.query.target_language}`),
+            : getUrlByPath(
+                req,
+                req.document.type === 'Languageroot'
+                  ? '/'
+                  : `/${req.query.target_language}`,
+              ),
         },
       };
     },
