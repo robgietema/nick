@@ -10,12 +10,18 @@ import type { Knex } from 'knex';
 // External imports
 import { uniq } from 'es-toolkit/array';
 
+// Internal imports
+import { getUrl } from '../../helpers/url/url';
+
 export const handler = async (req: Request, trx: Knex.Transaction) => {
   await req.navroot.fetchChildren({}, trx);
   await req.navroot.fetchRelationLists(trx);
 
   return {
-    json: await req.navroot.toJson(req),
+    json: {
+      '@id': `${getUrl(req)}/@navroot`,
+      navroot: await req.navroot.toJson(req),
+    },
     xkeys: uniq([req.document.uuid, req.navroot.uuid]),
   };
 };

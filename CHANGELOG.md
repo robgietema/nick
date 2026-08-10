@@ -228,6 +228,7 @@
 - Fix breadcrumbs with navroots @mpalomaki
 - Fix job runner import @robgietema
 - Fix transaction bug in jobs @robgietema
+- Fix navroot structure @robgietema
 
 ### Internal
 
