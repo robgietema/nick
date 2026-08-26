@@ -229,6 +229,7 @@
 - Fix job runner import @robgietema
 - Fix transaction bug in jobs @robgietema
 - Fix navroot structure @robgietema
+- Fix PostgreSQL 18 volume mount @sneridagh
 
 ### Internal
 
